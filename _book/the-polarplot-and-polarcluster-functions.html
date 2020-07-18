@@ -798,8 +798,15 @@ into a new data frame:</p>
 ##   206   412   160 24133 16049  2590  7925  2832</code></pre>
 <p>Now other <strong>openair</strong> analysis functions can be used to analyse the
 results. For example, to consider the temporal variations by cluster:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-polarplot-and-polarcluster-functions.html#cb28-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(results, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,</span>
-<span id="cb28-2"><a href="the-polarplot-and-polarcluster-functions.html#cb28-2" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, <span class="dt">ci =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-polarplot-and-polarcluster-functions.html#cb28-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(results, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,</span>
+<span id="cb28-2"><a href="the-polarplot-and-polarcluster-functions.html#cb28-2" aria-hidden="true"></a>              <span class="dt">key.columns =</span> <span class="dv">4</span>,</span>
+<span id="cb28-3"><a href="the-polarplot-and-polarcluster-functions.html#cb28-3" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, <span class="dt">ci =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:tempEvalClust"></span>
+<img src="openair_files/figure-html/tempEvalClust-1.png" alt="Temporal variation in SO~2~ split by cluster." width="864" />
+<p class="caption">
+Figure 4.12: Temporal variation in SO<sub>2</sub> split by cluster.
+</p>
+</div>
 <p>Or if we just want to plot a couple of clusters (5 and 6) <em>using the same colours</em> as in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarClustn6">4.11</a>:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-polarplot-and-polarcluster-functions.html#cb29-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">subset</span>(results, cluster <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C5&quot;</span>, <span class="st">&quot;C6&quot;</span>)),</span>
 <span id="cb29-2"><a href="the-polarplot-and-polarcluster-functions.html#cb29-2" aria-hidden="true"></a>              <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>,</span>
@@ -816,7 +823,7 @@ using other <strong>openair</strong> functions or indeed other analyses altogeth
 split by a categorical variable (in this case the cluster). In this
 case it is useful to plot the time series of SO<sub>2</sub> <em>and</em> show
 how much of the concentration is contributed to by each cluster. Such
-a plot is shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:timePropPolar">4.12</a>. It is now easy to see
+a plot is shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:timePropPolar">4.13</a>. It is now easy to see
 for example that many of the peaks in SO<sub>2</sub> are associated with
 cluster 6 (power station sources from the east), seen in Figure
 <a href="the-polarplot-and-polarcluster-functions.html#fig:polarClustn6">4.11</a>. Cluster~6 is particularly prominent
@@ -831,7 +838,7 @@ through the whole year.</p>
 <div class="figure"><span id="fig:timePropPolar"></span>
 <img src="openair_files/figure-html/timePropPolar-1.png" alt="Temporal variation in daily SO~2~ concentration at the Marylebone Road site show by contribution of each cluster for 2003." width="1440" />
 <p class="caption">
-Figure 4.12: Temporal variation in daily SO<sub>2</sub> concentration at the Marylebone Road site show by contribution of each cluster for 2003.
+Figure 4.13: Temporal variation in daily SO<sub>2</sub> concentration at the Marylebone Road site show by contribution of each cluster for 2003.
 </p>
 </div>
 

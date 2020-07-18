@@ -695,8 +695,9 @@ table(results[["cluster"]])
 Now other **openair** analysis functions can be used to analyse the
 results. For example, to consider the temporal variations by cluster:
 
-```{r tempEvalClust, eval=FALSE}
-timeVariation(results, pollutant="so2", group = "cluster",
+```{r tempEvalClust,fig.width=9,fig.height=7,fig.cap='Temporal variation in SO~2~ split by cluster.'}
+timeVariation(results, pollutant = "so2", group = "cluster",
+              key.columns = 4,
               col = "Set2", ci = FALSE, lwd = 3)
 ```
 
