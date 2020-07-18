@@ -216,7 +216,7 @@ used when trying to locate sources when using back trajectories as
 described in Section \@ref(sec:trajPlot). Users can ignore the automatic
 weighting by supplying the option `weights = c(1, 1, 1)`.
 
-```{r polarPlot2,fig.width=5,fig.height=5,cache=TRUE,fig.cap='Example plots using the `polarPlot` function with different options for the mean concentration of NO~x~.'}
+```{r polarPlot2,fig.width=5,fig.height=5,,out.width='50%',fig.cap='Example plots using the `polarPlot` function with different options for the mean concentration of NO~x~.'}
 ## NOx plot
 polarPlot(mydata, pollutant = "nox", col = "jet", 
           key.position = "bottom",
@@ -225,7 +225,7 @@ polarPlot(mydata, pollutant = "nox", col = "jet",
 ```
 
 
-```{r polarPlot3,fig.width=5,fig.height=5,fig.cap='Example plots using the `polarPlot` function for the mean concentration of SO~2~.'}
+```{r polarPlot3,fig.width=5,fig.height=5,,out.width='50%',fig.cap='Example plots using the `polarPlot` function for the mean concentration of SO~2~.'}
 polarPlot(mydata, pollutant = "so2")
 ```
 
@@ -266,7 +266,7 @@ effectively in many functions and are particularly useful in the
 presence of high source complexity.
 
 
-```{r polarRatio,fig.width=5,fig.height=5,fig.cap='Bivariate polar plot of the ratio of SO~2~/NO~x~.'}
+```{r polarRatio,fig.width=5,fig.height=5,out.width='50%',fig.cap='Bivariate polar plot of the ratio of SO~2~/NO~x~.'}
 polarPlot(mydata, pollutant = "ratio", main = "so2/nox ratio")
 ```
 
@@ -344,7 +344,7 @@ controlled by the options `wd_spread` and `ws_spread`.
 An example for SO~2~ concentrations is shown in Figure
 \@ref(fig:polarNWR), which can be compared with Figure \@ref(fig:polarPlot3).
 
-```{r polarNWR,fig.width=5,fig.height=5,fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach.'}
+```{r polarNWR,fig.width=5,fig.height=5,out.width='50%',fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach.'}
 polarPlot(mydata, pollutant = "so2", statistic = "nwr")
 ```
 
@@ -369,7 +369,7 @@ probability of doing so. A full explanation of the development and use
 of the bivariate case of the CPF is described in @Uria2014
 where it is applied to monitoring data close to steelworks.
 
-```{r polarPlotCPF,fig.width=5,fig.height=5,fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function.'}
+```{r polarPlotCPF,fig.width=5,fig.height=5,out.width='50%',fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function.'}
 polarPlot(mydata, 
           pollutant = "so2", 
           statistic = "cpf", 
@@ -409,7 +409,7 @@ values can therefore help to build up a more complete understanding of
 source contributions.
 
 
-```{r polarPlotCPFInt,fig.width=4.5,fig.height=4,fig.show='hold',fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100.'}
+```{r polarPlotCPFInt,fig.width=4.5,fig.height=4,out.width='33%',fig.show='hold',fig.cap='`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100.'}
 polarPlot(mydata, poll = "so2", stati = "cpf", percentile = c(0, 10))
 polarPlot(mydata, poll = "so2", stati = "cpf", percentile = c(10, 20))
 polarPlot(mydata, poll = "so2", stati = "cpf", percentile = c(20, 30))
@@ -531,7 +531,7 @@ A simple scatter plot between PM~2.5~ and PM~10~ strongly suggests a
 1:1 relationship and it is not obvious that there is a higher
 PM~2.5~/PM~10~ ratio when the wind is from the east.
 
-```{r polarPair,fig.width=5,fig.height=5,fig.cap='Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated.'}
+```{r polarPair,fig.width=5,fig.height=5,out.width='50%',,fig.cap='Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated.'}
 polarPlot(har, poll = c("pm2.5", "pm10"), 
           statistic = "robust_slope",
           col = "jet",
@@ -654,7 +654,7 @@ polarCluster(mydata, pollutant="so2", n.clusters=2:10, cols= "Set2")
 ```
 
 
-```{r polarClustn6,fig.width=5,fig.height=5,fig.keep='last',fig.cap='Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 8 clusters have been chosen.'}
+```{r polarClustn6,fig.width=5,fig.height=5,out.width='50%',fig.keep='last',fig.cap='Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 8 clusters have been chosen.'}
 results <- polarCluster(mydata, pollutant="so2", 
                         n.clusters = 8, 
                         cols = "Set2")

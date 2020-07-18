@@ -353,14 +353,14 @@ weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
 <span id="cb4-4"><a href="the-polarplot-and-polarcluster-functions.html#cb4-4" aria-hidden="true"></a>          <span class="dt">key.header =</span> <span class="st">&quot;mean nox (ug/m3)&quot;</span>, </span>
 <span id="cb4-5"><a href="the-polarplot-and-polarcluster-functions.html#cb4-5" aria-hidden="true"></a>          <span class="dt">key.footer =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot2"></span>
-<img src="openair_files/figure-html/polarPlot2-1.png" alt="Example plots using the `polarPlot` function with different options for the mean concentration of NO~x~." width="480" />
+<img src="openair_files/figure-html/polarPlot2-1.png" alt="Example plots using the `polarPlot` function with different options for the mean concentration of NO~x~." width="50%" />
 <p class="caption">
 Figure 4.2: Example plots using the <code>polarPlot</code> function with different options for the mean concentration of NO<sub>x</sub>.
 </p>
 </div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-polarplot-and-polarcluster-functions.html#cb5-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot3"></span>
-<img src="openair_files/figure-html/polarPlot3-1.png" alt="Example plots using the `polarPlot` function for the mean concentration of SO~2~." width="480" />
+<img src="openair_files/figure-html/polarPlot3-1.png" alt="Example plots using the `polarPlot` function for the mean concentration of SO~2~." width="50%" />
 <p class="caption">
 Figure 4.3: Example plots using the <code>polarPlot</code> function for the mean concentration of SO<sub>2</sub>.
 </p>
@@ -396,7 +396,7 @@ effectively in many functions and are particularly useful in the
 presence of high source complexity.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-polarplot-and-polarcluster-functions.html#cb9-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;so2/nox ratio&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarRatio"></span>
-<img src="openair_files/figure-html/polarRatio-1.png" alt="Bivariate polar plot of the ratio of SO~2~/NO~x~." width="480" />
+<img src="openair_files/figure-html/polarRatio-1.png" alt="Bivariate polar plot of the ratio of SO~2~/NO~x~." width="50%" />
 <p class="caption">
 Figure 4.4: Bivariate polar plot of the ratio of SO<sub>2</sub>/NO<sub>x</sub>.
 </p>
@@ -467,7 +467,7 @@ controlled by the options <code>wd_spread</code> and <code>ws_spread</code>.</p>
 <a href="the-polarplot-and-polarcluster-functions.html#fig:polarNWR">4.6</a>, which can be compared with Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot3">4.3</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-polarplot-and-polarcluster-functions.html#cb13-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;nwr&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarNWR"></span>
-<img src="openair_files/figure-html/polarNWR-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach." width="480" />
+<img src="openair_files/figure-html/polarNWR-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach." width="50%" />
 <p class="caption">
 Figure 4.6: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the NWR approach.
 </p>
@@ -498,7 +498,7 @@ where it is applied to monitoring data close to steelworks.</p>
 <span id="cb14-3"><a href="the-polarplot-and-polarcluster-functions.html#cb14-3" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;cpf&quot;</span>, </span>
 <span id="cb14-4"><a href="the-polarplot-and-polarcluster-functions.html#cb14-4" aria-hidden="true"></a>          <span class="dt">percentile =</span> <span class="dv">90</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlotCPF"></span>
-<img src="openair_files/figure-html/polarPlotCPF-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function." width="480" />
+<img src="openair_files/figure-html/polarPlotCPF-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function." width="50%" />
 <p class="caption">
 Figure 4.7: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function.
 </p>
@@ -544,7 +544,7 @@ source contributions.</p>
 <span id="cb15-9"><a href="the-polarplot-and-polarcluster-functions.html#cb15-9" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">90</span>))</span>
 <span id="cb15-10"><a href="the-polarplot-and-polarcluster-functions.html#cb15-10" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">100</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlotCPFInt"></span>
-<img src="openair_files/figure-html/polarPlotCPFInt-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-2.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-3.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-4.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-5.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-6.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-7.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-8.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-9.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" /><img src="openair_files/figure-html/polarPlotCPFInt-10.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="432" />
+<img src="openair_files/figure-html/polarPlotCPFInt-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-2.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-3.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-4.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-5.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-6.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-7.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-8.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-9.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-10.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" />
 <p class="caption">
 Figure 4.8: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0–10, 10–20, … , 90–100.
 </p>
@@ -650,7 +650,7 @@ PM<sub>2.5</sub>/PM<sub>10</sub> ratio when the wind is from the east.</p>
 <span id="cb19-5"><a href="the-polarplot-and-polarcluster-functions.html#cb19-5" aria-hidden="true"></a>          <span class="dt">ws_spread =</span> <span class="fl">1.5</span>,</span>
 <span id="cb19-6"><a href="the-polarplot-and-polarcluster-functions.html#cb19-6" aria-hidden="true"></a>          <span class="dt">wd_spread =</span> <span class="dv">10</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPair"></span>
-<img src="openair_files/figure-html/polarPair-1.png" alt="Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated." width="480" />
+<img src="openair_files/figure-html/polarPair-1.png" alt="Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated." width="50%" />
 <p class="caption">
 Figure 4.9: Use of the <code>polarPlot</code> function to investigate the linear regression slope between PM<sub>2.5</sub> and PM<sub>10</sub> at Harwell in 2013. In this case the robust slope is calculated.
 </p>
@@ -756,7 +756,7 @@ Figure 4.10: Use of the <code>polarCluster</code> function applied to SO<sub>2</
 <span id="cb22-2"><a href="the-polarplot-and-polarcluster-functions.html#cb22-2" aria-hidden="true"></a>                        <span class="dt">n.clusters =</span> <span class="dv">8</span>, </span>
 <span id="cb22-3"><a href="the-polarplot-and-polarcluster-functions.html#cb22-3" aria-hidden="true"></a>                        <span class="dt">cols =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarClustn6"></span>
-<img src="openair_files/figure-html/polarClustn6-1.png" alt="Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 8 clusters have been chosen." width="480" />
+<img src="openair_files/figure-html/polarClustn6-1.png" alt="Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 8 clusters have been chosen." width="50%" />
 <p class="caption">
 Figure 4.11: Use of the <code>polarCluster</code> function applied to SO<sub>2</sub> concentrations at Marylebone Road. In this case 8 clusters have been chosen.
 </p>
