@@ -25,7 +25,7 @@ considered the joint wind speed-direction dependence of concentrations
 (see for example @Yu2004). However, plotting the data in
 polar coordinates and for the purposes of source identification is
 new. Furthermore, the basic polar plot is since been enhanced in many
-ways as described below. Recent publications that describe or use the
+ways as described below. Publications that describe or use the
 technique are @Carslaw2006a and
 @Westmoreland2007. These plots have proved to be useful for
 quickly gaining a graphical impression of potential sources influences
@@ -86,12 +86,10 @@ Bivariate polar plots are constructed in the following way. First,
 wind speed, wind direction and concentration data are partitioned into
 wind speed-direction bins and the mean concentration calculated for
 each bin. Testing on a wide range of data suggests that wind direction
-intervals at 10$^\circ$ and 40 wind speed intervals capture sufficient
+intervals at 5--10$^\circ$ and 40 wind speed intervals capture sufficient
 detail of the concentration distribution. The wind direction data
 typically available are generally rounded to 10$^\circ$ and for
-typical surface measurements of wind speed in the range 0 to 20 to
-30 m s^-1^, intervals greater than 30 would be difficult to justify based
-on a consideration of the accuracy of the instruments. Binning the
+typical surface measurements. Binning the
 data in this way is not strictly necessary but acts as an effective
 data reduction technique without affecting the fidelity of the plot
 itself. Furthermore, because of the inherent wind direction
@@ -171,8 +169,7 @@ plots using different defaults and for other pollutants. In the first
 (Figure \@ref(fig:polarPlot2), a different colour scheme is used and some
 adjustments are made to the key. In Figure \@ref(fig:polarPlot3), SO~2~
 concentrations are shown. What is interesting about this plot compared
-with either Figure \@ref(fig:polarPlot2) or Figure \@ref(fig:polarPlot) is
-that the concentration pattern is very different i.e. high
+with either Figure \@ref(fig:polarPlot2) or Figure \@ref(fig:polarPlot) is that the concentration pattern is very different i.e. high
 concentrations with high wind speeds from the east. The most likely
 source of this SO~2~ are industrial sources to the east of
 London. The plot does still however show evidence of a source to the
@@ -253,7 +250,7 @@ calculate ratios.
 summary(mydata$ratio)
 ```
 
-A polar plot of the SO~2~/NO~x~ ratio is shown in
+A polar plot of the SO~2~/NO~x~ ratio is shown in Figure
 \@ref(fig:polarRatio). The plot highlights some new features not
 seen before. First, to the north there seems to be evidence that the
 air tends to have a higher SO~2~/NO~x~ ratio. Also, the source to the
@@ -273,8 +270,7 @@ polarPlot(mydata, pollutant = "ratio", main = "so2/nox ratio")
 Sometimes when considering ratios it might be necessary to limit the
 values in some way; perhaps due to some unusually low value
 denominator data resulting in a few very high values for the
-ratio. This is easy to do with the `filter` command. The code below
-selects ratios less than 0.1.
+ratio. This is easy to do with the **dplyr** `filter` command. The code below selects ratios less than 0.1.
 
 ```{r eval=FALSE}
 polarPlot(filter(mydata, ratio < 0.1), pollutant = "ratio")
@@ -359,7 +355,7 @@ probability of such concentrations occurring by wind direction
 applied to bivariate polar plots. In this case the CPF is defined as
 CPF = $m_{\theta,j}/n_{\theta,j}$, where $m_{\theta,j}$ is the number
 of samples in the wind sector $\theta$ and wind speed interval $j$
-with mixing ratios greater than some `high' concentration, and
+with mixing ratios greater than some 'high' concentration, and
 $n_{\theta, j}$ is the total number of samples in the same wind
 direction-speed interval. Note that $j$ does not have to be wind speed
 but could be any numeric variable e.g. ambient temperature. CPF
@@ -445,7 +441,7 @@ analysis. However, there is no reason to believe that the potential
 sources shown in the percentile ranges 0 to 50 are artefacts. They
 could for example be signals from more distant point sources whose
 plumes have diluted more over longer distances. Such sources would be
-`washed out' in an ordinary polar plot. For a fuller example of this
+'washed out' in an ordinary polar plot. For a fuller example of this
 approach see @Uria2014.
 
 Note that it is easy to work out what the concentration intervals are
@@ -457,13 +453,13 @@ quantile(mydata$so2, probs = seq(0, 1, by = 0.1), na.rm = TRUE)
 
 To plot the Figures on one page it is necessary to make the plot
 objects first and then decide how to plot them. To plot the Figures in
-a particular layout see \autopageref{sec:multiple-plots-page}.
+a particular layout see \@ref(sec:multiple-plots-page).
 
 ## Pairwise statistics
 
 @grange2016 further developed the capabilities of the `polarPlot` function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the `polarPlot` function can provide enhanced information. The pairwise statistics that can be considered include:
 
--  The Pearson correlation coefficient, $r$;
+-  The Pearson or Spearman correlation coefficient, $r$;
   
 -  The robust slope (gradient) resulting from a linear regressions
   between two pollutants.
@@ -627,8 +623,7 @@ similar concentrations but different source origins.
 `polarCluster` can be thought of as the 'local' version of
 clustering of back trajectories. Rather than using air mass origins,
 wind speed, wind direction and concentration are used to group similar
-conditions together. \@ref(sec:trajCluster) provides the details of
-clustering back trajectories in **openair**. A fuller description of the
+conditions together. Section \@ref(sec:trajCluster) provides the details of clustering back trajectories in **openair**. A fuller description of the
 clustering approach is described in @CarslawClust2013.
 
 The use of the `polarCluster` is very similar to the use of all
@@ -644,7 +639,7 @@ run. The basic idea is to calculate the solution to several cluster
 levels and then choose one that offers the most appropriate solution
 for post-processing.
 
-The example given below is for concentrations of SO~2~, shown in
+The example given below is for concentrations of SO~2~, shown in Figure
 \@ref(fig:polarPlot3) and the aim is to identify features in that
 plot. A range of numbers of clusters will be calculated --- in this
 case from two to ten.
@@ -676,7 +671,7 @@ The results are here:
 head(results[["data"]])
 ```
 
-Note that there is an additional column `cluster} that gives the
+Note that there is an additional column `cluster` that gives the
 cluster a particular row belongs to and that this is a
 *character* variable. It might be easier to read these results
 into a new data frame:
@@ -703,9 +698,9 @@ timeVariation(results, pollutant = "so2", group = "cluster",
 
 Or if we just want to plot a couple of clusters (5 and 6) *using the same colours* as in Figure \@ref(fig:polarClustn6):
 
-```{r clustTV, eval=FALSE}
-timeVariation(subset(results, cluster %in% c("C5", "C6")),
-              pollutant="so2",
+```{r clustTV,fig.width=9,fig.height=7,fig.cap='Temporal variation in SO~2~ split by cluster --- showing only two clusters.'}
+timeVariation(filter(results, cluster %in% c("5", "6")),
+              pollutant = "so2",
               group = "cluster",  
               col = openColours("Set2", 8)[5:6], lwd = 3)
 ```
