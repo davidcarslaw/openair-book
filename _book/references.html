@@ -4,24 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | A Minimal Book Example</title>
+  <title>References | openair</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | A Minimal Book Example" />
+  <meta property="og:title" content="References | openair" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | A Minimal Book Example" />
+  <meta name="twitter:title" content="References | openair" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="Yihui Xie" />
+<meta name="author" content="David Carslaw" />
 
 
 <meta name="date" content="2020-07-18" />
@@ -130,19 +130,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">The openair book</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
+<li class="chapter" data-level="4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html"><i class="fa fa-check"></i><b>4</b> The <code>polarPlot</code> and <code>polarCluster</code> functions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.2</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.3</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.4</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -156,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
           </h1>
         </div>
 
@@ -169,10 +171,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="refs" class="references hanging-indent">
 <div>
+<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
+</div>
+<div>
+<p>Carslaw, D. C., and S. D. Beevers. 2013. “Characterising and Understanding Emission Sources Using Bivariate Polar Plots and K-Means Clustering.” <em>Environmental Modelling &amp; Software</em> 40 (0): 325–29. <a href="https://doi.org/10.1016/j.envsoft.2012.09.005">https://doi.org/10.1016/j.envsoft.2012.09.005</a>.</p>
+</div>
+<div>
+<p>Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. “Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.” <em>Atmospheric Environment</em> 40 (28): 5424–34.</p>
+</div>
+<div>
+<p>Grange, Stuart K, Alastair C Lewis, and David C Carslaw. 2016. “Source Apportionment Advances Using Polar Plots of Bivariate Correlation and Regression Statistics.” <em>Atmospheric Environment</em> 145: 128–34.</p>
+</div>
+<div>
+<p>Hastie, T. J., and R. J. Tibshirani. 1990. <em>Generalized Additive Models</em>. London: Chapman; Hall.</p>
+</div>
+<div>
+<p>Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. “Source Region Identification Using Kernel Smoothing.” Article. <em>Environmental Science &amp; Technology</em> 43 (11): 4090–7. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.</p>
+</div>
+<div>
+<p>Uria-Tellaetxe, I, and D. C. Carslaw. 2014. “Conditional Bivariate Probability Function for Source Identification.” <em>Environmental Modelling &amp; Software</em> 59: 1–9. <a href="https://doi.org/10.1016/j.envsoft.2014.05.002">https://doi.org/10.1016/j.envsoft.2014.05.002</a>.</p>
+</div>
+<div>
+<p>Westmoreland, E. J., N Carslaw, D. C. Carslaw, A. Gillah, and E. Bates. 2007. “Analysis of Air Quality Within a Street Canyon Using Statistical and Dispersion Modelling Techniques.” <em>Atmospheric Environment</em> 41 (39): 9195–9205.</p>
+</div>
+<div>
+<p>Wood, S. N. 2006. <em>Generalized Additive Models: An Introduction with R</em>. Chapman; Hall/CRC.</p>
+</div>
+<div>
 <p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
 </div>
 <div>
 <p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+<div>
+<p>Yu, K. N., Y. P. Cheung, T. Cheung, and R. C. Henry. 2004. “Identifying the Impact of Large Urban Airports on Local Air Quality by Nonparametric Regression.” <em>Atmospheric Environment</em> 38 (27): 4501–7.</p>
 </div>
 </div>
 </div>
@@ -224,7 +256,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["openair.pdf", "openair.epub"],
 "toc": {
 "collapse": "subsection"
 }

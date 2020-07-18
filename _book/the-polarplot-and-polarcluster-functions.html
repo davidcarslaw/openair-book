@@ -138,10 +138,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
 <li class="chapter" data-level="4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html"><i class="fa fa-check"></i><b>4</b> The <code>polarPlot</code> and <code>polarCluster</code> functions</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.1</b> Nonparametric Wind Regression, NWR</a></li>
-<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.2</b> Conditional Probability Function (CPF) plot</a></li>
-<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.3</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.4</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
+<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.2</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.3</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.4</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -167,6 +168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="the-polarplot-and-polarcluster-functions" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> The <code>polarPlot</code> and <code>polarCluster</code> functions</h1>
+<div id="introduction" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
 <p>The <code>polarPlot</code> function plots a <em>bivariate polar plot</em> of
 concentrations. Concentrations are shown to vary by wind speed and
 wind direction. In many respects they are similar to the plots shown
@@ -285,7 +288,7 @@ further complexities.</p>
 NO<sub>x</sub>. The code is very simple as shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot">4.1</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-polarplot-and-polarcluster-functions.html#cb3-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot"></span>
-<img src="openair_files/figure-html/polarPlot-1.png" alt="Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations." width="480" />
+<img src="openair_files/figure-html/polarPlot-1.png" alt="Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations." width="50%" />
 <p class="caption">
 Figure 4.1: Default use of the <code>polarPlot</code> function applied to Marylebone Road NO<sub>x</sub> concentrations.
 </p>
@@ -444,8 +447,9 @@ will depend on the specific circumstances e.g. the prevalence of wind
 speeds and directions from the direction of interest. When used to
 produce many plots (e.g. <code>type = "hour"</code>), the run time can be quite
 long.</p>
-<div id="nonparametric-wind-regression-nwr" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Nonparametric Wind Regression, NWR</h2>
+</div>
+<div id="nonparametric-wind-regression-nwr" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Nonparametric Wind Regression, NWR</h2>
 <p>An alternative approach to modelling the surface concentrations with a
 GAM is to use kernel smoothers, as described by
 <span class="citation">Henry et al. (<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>. In NWR, smoothing is achieved using
@@ -469,8 +473,8 @@ Figure 4.6: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebon
 </p>
 </div>
 </div>
-<div id="conditional-probability-function-cpf-plot" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Conditional Probability Function (CPF) plot</h2>
+<div id="conditional-probability-function-cpf-plot" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Conditional Probability Function (CPF) plot</h2>
 <p>The conditional probability functions (CPF) was described on
  in the context of the <code>percentileRose</code>
 function. The CPF was originally used to show the wind directions that
@@ -572,16 +576,14 @@ approach see <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Ur
 <p>Note that it is easy to work out what the concentration intervals are
 for the percentiles shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlotCPFInt">4.8</a>:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-polarplot-and-polarcluster-functions.html#cb16-1" aria-hidden="true"></a><span class="kw">quantile</span>(mydata<span class="op">$</span>so2, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>##      0%     10%     20%     30%     40%     50%     60%     70%     80%     90% 
-##  0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 
-##    100% 
-## 63.2050</code></pre>
+<pre><code>##      0%     10%     20%     30%     40%     50%     60%     70%     80%     90%    100% 
+##  0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 63.2050</code></pre>
 <p>To plot the Figures on one page it is necessary to make the plot
 objects first and then decide how to plot them. To plot the Figures in
 a particular layout see .</p>
 </div>
-<div id="pairwise-statistics" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Pairwise statistics</h2>
+<div id="pairwise-statistics" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Pairwise statistics</h2>
 <p><span class="citation">Grange, Lewis, and Carslaw (<a href="#ref-grange2016" role="doc-biblioref">2016</a>)</span> further developed the capabilities of the <code>polarPlot</code> function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the <code>polarPlot</code> function can provide enhanced information. The pairwise statistics that can be considered include:</p>
 <ul>
 <li><p>The Pearson correlation coefficient, <span class="math inline">\(r\)</span>;</p></li>
@@ -654,8 +656,8 @@ Figure 4.9: Use of the <code>polarPlot</code> function to investigate the linear
 </p>
 </div>
 </div>
-<div id="the-polarcluster-function-for-feature-identification-and-extraction" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> The <code>polarCluster</code> function for feature identification and extraction</h2>
+<div id="the-polarcluster-function-for-feature-identification-and-extraction" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> The <code>polarCluster</code> function for feature identification and extraction</h2>
 <p>The <code>polarPlot</code> function will often identify interesting features
 that would be useful to analyse further. It is possible to select
 areas of interest based only on a consideration of a plot. Such a

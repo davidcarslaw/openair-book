@@ -138,17 +138,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
 <li class="chapter" data-level="4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html"><i class="fa fa-check"></i><b>4</b> The <code>polarPlot</code> and <code>polarCluster</code> functions</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.1</b> Nonparametric Wind Regression, NWR</a></li>
-<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.2</b> Conditional Probability Function (CPF) plot</a></li>
-<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.3</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.4</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
+<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.2</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.3</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.4</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -231,6 +227,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

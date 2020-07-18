@@ -12,6 +12,8 @@ knit_hooks$set(crop = hook_pdfcrop)
 opts_chunk$set(fig.show='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
 ```
 
+## Introduction
+
 The `polarPlot` function plots a *bivariate polar plot* of
 concentrations. Concentrations are shown to vary by wind speed and
 wind direction. In many respects they are similar to the plots shown
@@ -152,7 +154,7 @@ library(openair)
 ```
 
 
-```{r polarPlot,fig.width=5,fig.height=4.5,cache=TRUE,fig.cap='Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations.'}
+```{r polarPlot,fig.width=5,fig.height=4.5,out.width='50%',fig.cap='Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations.'}
 polarPlot(mydata, pollutant = "nox")
 ```
 
