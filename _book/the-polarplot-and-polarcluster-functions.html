@@ -181,7 +181,7 @@ considered the joint wind speed-direction dependence of concentrations
 (see for example <span class="citation">Yu et al. (<a href="#ref-Yu2004" role="doc-biblioref">2004</a>)</span>). However, plotting the data in
 polar coordinates and for the purposes of source identification is
 new. Furthermore, the basic polar plot is since been enhanced in many
-ways as described below. Recent publications that describe or use the
+ways as described below. Publications that describe or use the
 technique are <span class="citation">Carslaw et al. (<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> and
 <span class="citation">Westmoreland et al. (<a href="#ref-Westmoreland2007" role="doc-biblioref">2007</a>)</span>. These plots have proved to be useful for
 quickly gaining a graphical impression of potential sources influences
@@ -233,12 +233,10 @@ these other variables could be very insightful.</p>
 wind speed, wind direction and concentration data are partitioned into
 wind speed-direction bins and the mean concentration calculated for
 each bin. Testing on a wide range of data suggests that wind direction
-intervals at 10<span class="math inline">\(^\circ\)</span> and 40 wind speed intervals capture sufficient
+intervals at 5–10<span class="math inline">\(^\circ\)</span> and 40 wind speed intervals capture sufficient
 detail of the concentration distribution. The wind direction data
 typically available are generally rounded to 10<span class="math inline">\(^\circ\)</span> and for
-typical surface measurements of wind speed in the range 0 to 20 to
-30 m s<sup>-1</sup>, intervals greater than 30 would be difficult to justify based
-on a consideration of the accuracy of the instruments. Binning the
+typical surface measurements. Binning the
 data in this way is not strictly necessary but acts as an effective
 data reduction technique without affecting the fidelity of the plot
 itself. Furthermore, because of the inherent wind direction
@@ -305,8 +303,7 @@ plots using different defaults and for other pollutants. In the first
 (Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot2">4.2</a>, a different colour scheme is used and some
 adjustments are made to the key. In Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot3">4.3</a>, SO<sub>2</sub>
 concentrations are shown. What is interesting about this plot compared
-with either Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot2">4.2</a> or Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot">4.1</a> is
-that the concentration pattern is very different i.e. high
+with either Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot2">4.2</a> or Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot">4.1</a> is that the concentration pattern is very different i.e. high
 concentrations with high wind speeds from the east. The most likely
 source of this SO<sub>2</sub> are industrial sources to the east of
 London. The plot does still however show evidence of a source to the
@@ -383,7 +380,7 @@ calculate ratios.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-polarplot-and-polarcluster-functions.html#cb7-1" aria-hidden="true"></a><span class="kw">summary</span>(mydata<span class="op">$</span>ratio)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   0.000   0.018   0.024     Inf   0.034     Inf   11782</code></pre>
-<p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in
+<p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in Figure
 <a href="the-polarplot-and-polarcluster-functions.html#fig:polarRatio">4.4</a>. The plot highlights some new features not
 seen before. First, to the north there seems to be evidence that the
 air tends to have a higher SO<sub>2</sub>/NO<sub>x</sub> ratio. Also, the source to the
@@ -404,8 +401,7 @@ Figure 4.4: Bivariate polar plot of the ratio of SO<sub>2</sub>/NO<sub>x</sub>.
 <p>Sometimes when considering ratios it might be necessary to limit the
 values in some way; perhaps due to some unusually low value
 denominator data resulting in a few very high values for the
-ratio. This is easy to do with the <code>filter</code> command. The code below
-selects ratios less than 0.1.</p>
+ratio. This is easy to do with the <strong>dplyr</strong> <code>filter</code> command. The code below selects ratios less than 0.1.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-polarplot-and-polarcluster-functions.html#cb10-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">filter</span>(mydata, ratio <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.1</span>), <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>)</span></code></pre></div>
 <p>The uncertainties in the surface can be calculated by setting the
 option <code>uncertainty = TRUE</code>. The details are described above and
@@ -484,7 +480,7 @@ probability of such concentrations occurring by wind direction
 applied to bivariate polar plots. In this case the CPF is defined as
 CPF = <span class="math inline">\(m_{\theta,j}/n_{\theta,j}\)</span>, where <span class="math inline">\(m_{\theta,j}\)</span> is the number
 of samples in the wind sector <span class="math inline">\(\theta\)</span> and wind speed interval <span class="math inline">\(j\)</span>
-with mixing ratios greater than some `high’ concentration, and
+with mixing ratios greater than some ‘high’ concentration, and
 <span class="math inline">\(n_{\theta, j}\)</span> is the total number of samples in the same wind
 direction-speed interval. Note that <span class="math inline">\(j\)</span> does not have to be wind speed
 but could be any numeric variable e.g. ambient temperature. CPF
@@ -571,7 +567,7 @@ analysis. However, there is no reason to believe that the potential
 sources shown in the percentile ranges 0 to 50 are artefacts. They
 could for example be signals from more distant point sources whose
 plumes have diluted more over longer distances. Such sources would be
-`washed out’ in an ordinary polar plot. For a fuller example of this
+‘washed out’ in an ordinary polar plot. For a fuller example of this
 approach see <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>Note that it is easy to work out what the concentration intervals are
 for the percentiles shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlotCPFInt">4.8</a>:</p>
@@ -580,13 +576,13 @@ for the percentiles shown in Figure <a href="the-polarplot-and-polarcluster-func
 ##  0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 63.2050</code></pre>
 <p>To plot the Figures on one page it is necessary to make the plot
 objects first and then decide how to plot them. To plot the Figures in
-a particular layout see .</p>
+a particular layout see <a href="#sec:multiple-plots-page"><strong>??</strong></a>.</p>
 </div>
 <div id="pairwise-statistics" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Pairwise statistics</h2>
 <p><span class="citation">Grange, Lewis, and Carslaw (<a href="#ref-grange2016" role="doc-biblioref">2016</a>)</span> further developed the capabilities of the <code>polarPlot</code> function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the <code>polarPlot</code> function can provide enhanced information. The pairwise statistics that can be considered include:</p>
 <ul>
-<li><p>The Pearson correlation coefficient, <span class="math inline">\(r\)</span>;</p></li>
+<li><p>The Pearson or Spearman correlation coefficient, <span class="math inline">\(r\)</span>;</p></li>
 <li><p>The robust slope (gradient) resulting from a linear regressions
 between two pollutants.</p></li>
 <li><p>The quantile slope from a quantile regression applied to two
@@ -727,8 +723,7 @@ similar concentrations but different source origins.</p>
 <p><code>polarCluster</code> can be thought of as the ‘local’ version of
 clustering of back trajectories. Rather than using air mass origins,
 wind speed, wind direction and concentration are used to group similar
-conditions together. <a href="#sec:trajCluster"><strong>??</strong></a> provides the details of
-clustering back trajectories in <strong>openair</strong>. A fuller description of the
+conditions together. Section <a href="#sec:trajCluster"><strong>??</strong></a> provides the details of clustering back trajectories in <strong>openair</strong>. A fuller description of the
 clustering approach is described in <span class="citation">Carslaw and Beevers (<a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span>.</p>
 <p>The use of the <code>polarCluster</code> is very similar to the use of all
 <strong>openair</strong> functions. While there are many techniques available to try
@@ -741,7 +736,7 @@ of solutions that covers a number of clusters.</p>
 run. The basic idea is to calculate the solution to several cluster
 levels and then choose one that offers the most appropriate solution
 for post-processing.</p>
-<p>The example given below is for concentrations of SO<sub>2</sub>, shown in
+<p>The example given below is for concentrations of SO<sub>2</sub>, shown in Figure
 <a href="the-polarplot-and-polarcluster-functions.html#fig:polarPlot3">4.3</a> and the aim is to identify features in that
 plot. A range of numbers of clusters will be calculated — in this
 case from two to ten.</p>
@@ -786,7 +781,7 @@ strongly represent the road contribution.</p>
 ## 4 0.02310484       4
 ## 5 0.03693662       7
 ## 6 0.03376471       7</code></pre>
-<p>Note that there is an additional column `cluster} that gives the
+<p>Note that there is an additional column <code>cluster</code> that gives the
 cluster a particular row belongs to and that this is a
 <em>character</em> variable. It might be easier to read these results
 into a new data frame:</p>
@@ -808,10 +803,16 @@ Figure 4.12: Temporal variation in SO<sub>2</sub> split by cluster.
 </p>
 </div>
 <p>Or if we just want to plot a couple of clusters (5 and 6) <em>using the same colours</em> as in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:polarClustn6">4.11</a>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-polarplot-and-polarcluster-functions.html#cb29-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">subset</span>(results, cluster <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;C5&quot;</span>, <span class="st">&quot;C6&quot;</span>)),</span>
-<span id="cb29-2"><a href="the-polarplot-and-polarcluster-functions.html#cb29-2" aria-hidden="true"></a>              <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>,</span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="the-polarplot-and-polarcluster-functions.html#cb29-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(results, cluster <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;5&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
+<span id="cb29-2"><a href="the-polarplot-and-polarcluster-functions.html#cb29-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
 <span id="cb29-3"><a href="the-polarplot-and-polarcluster-functions.html#cb29-3" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,  </span>
 <span id="cb29-4"><a href="the-polarplot-and-polarcluster-functions.html#cb29-4" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="kw">openColours</span>(<span class="st">&quot;Set2&quot;</span>, <span class="dv">8</span>)[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:clustTV"></span>
+<img src="openair_files/figure-html/clustTV-1.png" alt="Temporal variation in SO~2~ split by cluster --- showing only two clusters." width="864" />
+<p class="caption">
+Figure 4.13: Temporal variation in SO<sub>2</sub> split by cluster — showing only two clusters.
+</p>
+</div>
 <p><code>polarCluster</code> will work on any surface that can be plotted by
 <code>polarPlot</code> e.g. the radial variable does not have to be wind speed
 but could be another variable such as temperature. While it is not
@@ -823,7 +824,7 @@ using other <strong>openair</strong> functions or indeed other analyses altogeth
 split by a categorical variable (in this case the cluster). In this
 case it is useful to plot the time series of SO<sub>2</sub> <em>and</em> show
 how much of the concentration is contributed to by each cluster. Such
-a plot is shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:timePropPolar">4.13</a>. It is now easy to see
+a plot is shown in Figure <a href="the-polarplot-and-polarcluster-functions.html#fig:timePropPolar">4.14</a>. It is now easy to see
 for example that many of the peaks in SO<sub>2</sub> are associated with
 cluster 6 (power station sources from the east), seen in Figure
 <a href="the-polarplot-and-polarcluster-functions.html#fig:polarClustn6">4.11</a>. Cluster~6 is particularly prominent
@@ -838,7 +839,7 @@ through the whole year.</p>
 <div class="figure"><span id="fig:timePropPolar"></span>
 <img src="openair_files/figure-html/timePropPolar-1.png" alt="Temporal variation in daily SO~2~ concentration at the Marylebone Road site show by contribution of each cluster for 2003." width="1440" />
 <p class="caption">
-Figure 4.13: Temporal variation in daily SO<sub>2</sub> concentration at the Marylebone Road site show by contribution of each cluster for 2003.
+Figure 4.14: Temporal variation in daily SO<sub>2</sub> concentration at the Marylebone Road site show by contribution of each cluster for 2003.
 </p>
 </div>
 
