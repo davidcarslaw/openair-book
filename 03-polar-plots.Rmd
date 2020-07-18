@@ -732,4 +732,3 @@ timeProp(selectByDate(results, year = 2003),
          key.columns = 8, date.breaks = 10, 
          ylab = "so2 (ug/m3)")
 ```
-
