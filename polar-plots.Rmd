@@ -146,6 +146,8 @@ further complexities.
   \sqrt{C_i} = s(u, v) + e_i (\#eq:gam-2)
 \end{equation}
 
+## Examples
+
 We first use the function in its simplest form to make a polar plot of
 NO~x~. The code is very simple as shown in Figure \@ref(fig:polarPlot).
 
@@ -539,7 +541,7 @@ polarPlot(har, poll = c("pm2.5", "pm10"),
 ```
 
 
-## The `polarCluster` function for feature identification and extraction
+## Clustering
 
 The `polarPlot` function will often identify interesting features
 that would be useful to analyse further. It is possible to select

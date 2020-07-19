@@ -7,4 +7,5 @@ rmd_files: ["index.Rmd",
 "intro.Rmd",
 "UK-air-quality-data.Rmd",
 "wind-roses.Rmd",
+"percentile-roses.Rmd",
 "polar-plots.Rmd"]
