@@ -167,8 +167,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>6</b> Polar plots</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="percentile-roses.html"><a href="percentile-roses.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="percentile-roses.html"><a href="percentile-roses.html#examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a></li>
+<li class="chapter" data-level="6.1" data-path="polarPlot.html"><a href="polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>6.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="6.2" data-path="polarPlot.html"><a href="polarPlot.html#polarplot-examples"><i class="fa fa-check"></i><b>6.2</b> <code>polarPlot</code> examples</a></li>
 <li class="chapter" data-level="6.3" data-path="polarPlot.html"><a href="polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>6.3</b> Nonparametric Wind Regression, NWR</a></li>
 <li class="chapter" data-level="6.4" data-path="polarPlot.html"><a href="polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>6.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="6.5" data-path="polarPlot.html"><a href="polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>6.5</b> Pairwise statistics</a></li>
@@ -197,8 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="polarPlot" class="section level1" number="6">
 <h1><span class="header-section-number">Section 6</span> Polar plots</h1>
 <p>This Sections considers the flexible <code>polarPlot</code> function that is used to provide information about source characteritics. The clustering of polar plots is also considered using <code>polarCluster</code>.</p>
-<div id="introduction" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Introduction</h2>
+<div id="introduction-to-polar-plots" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction to polar plots</h2>
 <p>The <code>polarPlot</code> function plots a <em>bivariate polar plot</em> of
 concentrations. Concentrations are shown to vary by wind speed and
 wind direction. In many respects they are similar to the plots shown
@@ -312,8 +312,8 @@ further complexities.</p>
   \sqrt{C_i} = s(u, v) + e_i \tag{6.3}
 \end{equation}\]</span></p>
 </div>
-<div id="examples" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Examples</h2>
+<div id="polarplot-examples" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> <code>polarPlot</code> examples</h2>
 <p>We first use the function in its simplest form to make a polar plot of
 NO<sub>x</sub>. The code is very simple as shown in Figure <a href="polarPlot.html#fig:polarPlot">6.1</a>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="polarPlot.html#cb32-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
