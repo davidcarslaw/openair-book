@@ -1,5 +1,10 @@
 book_filename: "openair"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Section "
 delete_merged_file: true
+rmd_files: ["index.Rmd", 
+"intro.Rmd",
+"UK-air-quality-data.Rmd",
+"wind-roses.Rmd",
+"polar-plots.Rmd"]

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 3 Accessing UK Air Quality Data | openair</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 3 Accessing UK Air Quality Data | openair" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 3 Accessing UK Air Quality Data | openair" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="David Carslaw" />
+
+
+<meta name="date" content="2020-07-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="polarPlot.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The openair book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#acessing-data"><i class="fa fa-check"></i><b>3.1</b> Acessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>4</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="polarPlot.html"><a href="polarPlot.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="polarPlot.html"><a href="polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.2</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="4.3" data-path="polarPlot.html"><a href="polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.3</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="4.4" data-path="polarPlot.html"><a href="polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.4</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="4.5" data-path="polarPlot.html"><a href="polarPlot.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="accessing-uk-air-quality-data" class="section level1" number="3">
+<h1><span class="header-section-number">Section 3</span> Accessing UK Air Quality Data</h1>
+<p>The UK has a surprisingly large amount of air quality data that is publicly accessible. The main UK AURN archive and regional (England, Scotland, Wales and Northern Ireland) together with
+Imperial College London’s London Air Quality Network (LAQN) are
+important and large databases of information that allow free public
+access. Storing and managing data in this way has many advantages
+including consistent data format, and underlying high quality methods
+to process and store the data.</p>
+<div id="acessing-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Acessing data</h2>
+<p><strong>openair</strong> has a family of functions that provide users with extensive
+access to UK air quality data. Ricardo Energy &amp; Environment have
+provided .RData files (R workspaces) for several important air quality
+networks in the UK. These files are updated on a daily basis. This
+approach requires a link to the Internet to work. The networks include:</p>
+<ul>
+<li><p><code>importAURN</code> For importing data from the UK national
+network called
+<a href="https://uk-air.defra.gov.uk/networks/network-info?view=aurn">Automatic Urban and Rural Network}</a>. This is the main UK network.</p></li>
+<li><p><code>importSAQN</code> For accessing data from
+<a href="http://www.scottishairquality.scot/">Air Quality Scotland</a>
+network.</p></li>
+<li><p><code>importWAQN</code> For accessing data from the
+<a href="https://airquality.gov.wales/">Air Quality Wales</a> network.</p></li>
+<li><p><code>importAQE</code> For accessing data from the
+<a href="https://www.airqualityengland.co.uk/">Air Quality England</a>
+network of sites.</p></li>
+<li><p><code>importNI</code> For accessing data from the
+<a href="https://www.airqualityni.co.uk">Northern Ireland</a>
+network of sites.</p></li>
+<li><p><code>importEurope</code> A simplified version of a function to give
+basic access to hourly European data based on Stuart Grange’s
+ package — see
+<a href="https://github.com/skgrange/saqgetr" class="uri">https://github.com/skgrange/saqgetr</a>. The <strong>openair</strong> function has
+a similar approach to other <strong>openair</strong> import functions i.e. requires
+a site code(s) and year(s) to be supplied.</p></li>
+<li><p><code>importKCL</code> For accessing data from the sites operated by
+King’s College London, primarily including the
+<a href="https://www.londonair.org.uk/LondonAir/Default.aspx">The London Air Quality Network</a>.</p></li>
+</ul>
+<p>Many users download hourly data from the air quality archive at
+<a href="http://www.airquality.co.uk" class="uri">http://www.airquality.co.uk</a>. Most commonly, the data are emailed
+to the user as .csv files and have a fixed format as shown below. This
+is a useful facility but does have some limitations and frustrations,
+many of which have been overcome using a new way of storing and
+downloading the data described below.</p>
+<p>There are several advantages over the web portal approach where .csv
+files are downloaded. First, it is quick to select a range of sites,
+pollutants and periods (see examples below). Second, storing the data
+as .RData objects is very efficient as they are about four times
+smaller than .csv files (which are already small) — which means the
+data downloads quickly and saves bandwidth. Third, the function
+completely avoids any need for data manipulation or setting time
+formats, time zones etc. Finally, it is easy to import many years of
+data. The final point makes it possible to download several long time
+series in one go.</p>
+<p>The site codes and pollutant names can be upper or lower case. The
+function will issue a warning when data less than six months old is
+downloaded, which may not be ratified. Type ?importAURN for a full
+listing of sites and their codes.</p>
+<p>Some examples of usage are shown below. First load the packages we need.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="accessing-uk-air-quality-data.html#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb3-2"><a href="accessing-uk-air-quality-data.html#cb3-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="accessing-uk-air-quality-data.html#cb4-1" aria-hidden="true"></a><span class="co">## import all pollutants from Marylebone Rd from 1990:2009</span></span>
+<span id="cb4-2"><a href="accessing-uk-air-quality-data.html#cb4-2" aria-hidden="true"></a>mary &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;my1&quot;</span>, <span class="dt">year =</span> <span class="dv">2000</span><span class="op">:</span><span class="dv">2009</span>)</span>
+<span id="cb4-3"><a href="accessing-uk-air-quality-data.html#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="accessing-uk-air-quality-data.html#cb4-4" aria-hidden="true"></a><span class="co">## import nox, no2, o3 from Marylebone Road and Nottingham Centre for 2000</span></span>
+<span id="cb4-5"><a href="accessing-uk-air-quality-data.html#cb4-5" aria-hidden="true"></a>thedata &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="kw">c</span>(<span class="st">&quot;my1&quot;</span>, <span class="st">&quot;nott&quot;</span>), <span class="dt">year =</span> <span class="dv">2000</span>,</span>
+<span id="cb4-6"><a href="accessing-uk-air-quality-data.html#cb4-6" aria-hidden="true"></a>                      <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;no2&quot;</span>, <span class="st">&quot;o3&quot;</span>))</span>
+<span id="cb4-7"><a href="accessing-uk-air-quality-data.html#cb4-7" aria-hidden="true"></a></span>
+<span id="cb4-8"><a href="accessing-uk-air-quality-data.html#cb4-8" aria-hidden="true"></a><span class="co">## import over 20 years of Mace Head O3 data!</span></span>
+<span id="cb4-9"><a href="accessing-uk-air-quality-data.html#cb4-9" aria-hidden="true"></a>o3 &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;mh&quot;</span>, <span class="dt">year =</span> <span class="dv">1987</span><span class="op">:</span><span class="dv">2009</span>)</span>
+<span id="cb4-10"><a href="accessing-uk-air-quality-data.html#cb4-10" aria-hidden="true"></a><span class="co">## import hydrocarbon data from Marylebone Road</span></span>
+<span id="cb4-11"><a href="accessing-uk-air-quality-data.html#cb4-11" aria-hidden="true"></a>hc &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;my1&quot;</span>, <span class="dt">year =</span> <span class="dv">2008</span>, <span class="dt">hc =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>By default, the function returns data where each pollutant is in a
+separate column. However, it is possible to return the data in a
+<em>tidy</em> format (column for pollutant name, column for value) by
+using the option <code>to_narrow</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="accessing-uk-air-quality-data.html#cb5-1" aria-hidden="true"></a>my1 &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="st">&quot;my1&quot;</span>, <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">to_narrow =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="site-meta-data" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Site Meta Data</h2>
+<p>Users can access the details of air pollution monitoring sites using
+the <code>importMeta</code> function. The user only needs to provide the
+network name and (optionally) whether all data should be returned. By
+default only site type, latitude and longitude are returned.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="accessing-uk-air-quality-data.html#cb6-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse) </span>
+<span id="cb6-2"><a href="accessing-uk-air-quality-data.html#cb6-2" aria-hidden="true"></a>aurn_meta &lt;-<span class="st"> </span><span class="kw">importMeta</span>(<span class="dt">source =</span> <span class="st">&quot;aurn&quot;</span>)</span>
+<span id="cb6-3"><a href="accessing-uk-air-quality-data.html#cb6-3" aria-hidden="true"></a>aurn_meta</span></code></pre></div>
+<pre><code>## # A tibble: 273 x 5
+##    site                           code  latitude longitude site_type       
+##    &lt;chr&gt;                          &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;           
+##  1 Aberdeen                       ABD       57.2     -2.09 Urban Background
+##  2 Aberdeen Union Street Roadside ABD7      57.1     -2.11 Urban Traffic   
+##  3 Aberdeen Wellington Road       ABD8      57.1     -2.09 Urban Traffic   
+##  4 Armagh Roadside                ARM6      54.4     -6.65 Urban Traffic   
+##  5 Aston Hill                     AH        52.5     -3.03 Rural Background
+##  6 Auchencorth Moss               ACTH      55.8     -3.24 Rural Background
+##  7 Ballymena Antrim Road          BAAR      54.9     -6.27 Urban Traffic   
+##  8 Ballymena Ballykeel            BALM      54.9     -6.25 Urban Background
+##  9 Barnsley                       BARN      53.6     -1.48 Urban Background
+## 10 Barnsley 12                    BAR2      53.6     -1.49 Urban Background
+## # … with 263 more rows</code></pre>
+<p>Or return much more detailed data:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="accessing-uk-air-quality-data.html#cb8-1" aria-hidden="true"></a>aurn_meta &lt;-<span class="st"> </span><span class="kw">importMeta</span>(<span class="dt">source =</span> <span class="st">&quot;aurn&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>) </span>
+<span id="cb8-2"><a href="accessing-uk-air-quality-data.html#cb8-2" aria-hidden="true"></a>aurn_meta</span></code></pre></div>
+<p>And to include basic meta data when importing air pollution data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="accessing-uk-air-quality-data.html#cb9-1" aria-hidden="true"></a>kc1 &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;kc1&quot;</span>, <span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">meta =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb9-2"><a href="accessing-uk-air-quality-data.html#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="accessing-uk-air-quality-data.html#cb9-3" aria-hidden="true"></a><span class="kw">glimpse</span>(kc1)</span></code></pre></div>
+<pre><code>## Rows: 8,760
+## Columns: 17
+## $ site      &lt;chr&gt; &quot;London N. Kensington&quot;, &quot;London N. Kensington&quot;, &quot;London N. …
+## $ code      &lt;chr&gt; &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC1&quot;, &quot;KC…
+## $ date      &lt;dttm&gt; 2018-01-01 00:00:00, 2018-01-01 01:00:00, 2018-01-01 02:00…
+## $ co        &lt;dbl&gt; 0.114872, 0.111043, 0.112000, 0.100512, 0.091897, 0.100512,…
+## $ nox       &lt;dbl&gt; 8.32519, 8.89934, 9.41967, 9.36584, 7.21277, 7.64339, 10.17…
+## $ no2       &lt;dbl&gt; 8.11153, 8.54325, 8.99235, 8.93852, 6.94570, 7.26948, 10.01…
+## $ no        &lt;dbl&gt; 0.13935, 0.23224, 0.27869, 0.27869, 0.17418, 0.24386, 0.104…
+## $ o3        &lt;dbl&gt; 70.98040, 67.52118, 69.69982, 70.49810, 71.74542, 70.49810,…
+## $ so2       &lt;dbl&gt; NA, 2.40953, 2.49812, 2.12606, 2.39181, 2.28551, 2.23236, 2…
+## $ pm10      &lt;dbl&gt; 12.425, 7.375, 5.625, 3.200, 3.875, 5.050, 9.400, 12.400, 1…
+## $ pm2.5     &lt;dbl&gt; 8.892, 4.363, 3.137, 1.792, 2.146, 2.618, 4.575, 6.109, 7.0…
+## $ ws        &lt;dbl&gt; 5.5, 5.0, 4.8, 4.8, 5.3, 5.3, 4.4, 3.0, 2.6, 1.6, 1.6, 1.1,…
+## $ wd        &lt;dbl&gt; 263.3, 256.4, 251.0, 246.8, 248.4, 248.0, 245.8, 239.5, 232…
+## $ air_temp  &lt;dbl&gt; 5.5, 5.1, 4.9, 4.7, 4.9, 5.0, 5.0, 4.6, 4.2, 3.7, 5.4, 5.7,…
+## $ latitude  &lt;dbl&gt; 51.52105, 51.52105, 51.52105, 51.52105, 51.52105, 51.52105,…
+## $ longitude &lt;dbl&gt; -0.213492, -0.213492, -0.213492, -0.213492, -0.213492, -0.2…
+## $ site_type &lt;chr&gt; &quot;Urban Background&quot;, &quot;Urban Background&quot;, &quot;Urban Background&quot;,…</code></pre>
+</div>
+<div id="plot-sites-on-a-map" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Plot Sites on a Map</h2>
+<p>The example below uses sites on the AURN that measure NO<sub>2</sub>, but can easily be extended to the other data sources.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="accessing-uk-air-quality-data.html#cb11-1" aria-hidden="true"></a>aurn_detailed &lt;-<span class="st"> </span><span class="kw">importMeta</span>(<span class="dt">source =</span> <span class="st">&quot;aurn&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb11-2"><a href="accessing-uk-air-quality-data.html#cb11-2" aria-hidden="true"></a></span>
+<span id="cb11-3"><a href="accessing-uk-air-quality-data.html#cb11-3" aria-hidden="true"></a>no2_sites &lt;-<span class="st"> </span><span class="kw">filter</span>(</span>
+<span id="cb11-4"><a href="accessing-uk-air-quality-data.html#cb11-4" aria-hidden="true"></a>  aurn_detailed,</span>
+<span id="cb11-5"><a href="accessing-uk-air-quality-data.html#cb11-5" aria-hidden="true"></a>  variable <span class="op">==</span><span class="st"> &quot;NO2&quot;</span>,</span>
+<span id="cb11-6"><a href="accessing-uk-air-quality-data.html#cb11-6" aria-hidden="true"></a>  site_type <span class="op">==</span><span class="st"> &quot;Urban Traffic&quot;</span></span>
+<span id="cb11-7"><a href="accessing-uk-air-quality-data.html#cb11-7" aria-hidden="true"></a>)</span>
+<span id="cb11-8"><a href="accessing-uk-air-quality-data.html#cb11-8" aria-hidden="true"></a></span>
+<span id="cb11-9"><a href="accessing-uk-air-quality-data.html#cb11-9" aria-hidden="true"></a><span class="kw">nrow</span>(no2_sites)</span></code></pre></div>
+<pre><code>## [1] 89</code></pre>
+<p>In the example below the unique sites are selected from
+<code>aurn_detailed</code> because the <code>site</code> repeats the number of pollutants
+that are measured. Information is also collected for the map popups
+and then the map is plotted.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="accessing-uk-air-quality-data.html#cb13-1" aria-hidden="true"></a><span class="kw">library</span>(leaflet)</span>
+<span id="cb13-2"><a href="accessing-uk-air-quality-data.html#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="accessing-uk-air-quality-data.html#cb13-3" aria-hidden="true"></a>aurn_unique &lt;-<span class="st"> </span><span class="kw">distinct</span>(aurn_detailed, site, <span class="dt">.keep_all =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb13-4"><a href="accessing-uk-air-quality-data.html#cb13-4" aria-hidden="true"></a></span>
+<span id="cb13-5"><a href="accessing-uk-air-quality-data.html#cb13-5" aria-hidden="true"></a><span class="co"># information for map markers</span></span>
+<span id="cb13-6"><a href="accessing-uk-air-quality-data.html#cb13-6" aria-hidden="true"></a>content &lt;-<span class="st"> </span><span class="kw">paste</span>(</span>
+<span id="cb13-7"><a href="accessing-uk-air-quality-data.html#cb13-7" aria-hidden="true"></a>  <span class="kw">paste</span>(</span>
+<span id="cb13-8"><a href="accessing-uk-air-quality-data.html#cb13-8" aria-hidden="true"></a>    aurn_unique<span class="op">$</span>site,</span>
+<span id="cb13-9"><a href="accessing-uk-air-quality-data.html#cb13-9" aria-hidden="true"></a>    <span class="kw">paste</span>(<span class="st">&quot;Code:&quot;</span>, aurn_unique<span class="op">$</span>code),</span>
+<span id="cb13-10"><a href="accessing-uk-air-quality-data.html#cb13-10" aria-hidden="true"></a>    <span class="kw">paste</span>(<span class="st">&quot;Start:&quot;</span>, aurn_unique<span class="op">$</span>start_date),</span>
+<span id="cb13-11"><a href="accessing-uk-air-quality-data.html#cb13-11" aria-hidden="true"></a>    <span class="kw">paste</span>(<span class="st">&quot;End:&quot;</span>, aurn_unique<span class="op">$</span>end_date),</span>
+<span id="cb13-12"><a href="accessing-uk-air-quality-data.html#cb13-12" aria-hidden="true"></a>    <span class="kw">paste</span>(<span class="st">&quot;Site Type:&quot;</span>, aurn_unique<span class="op">$</span>site_type),</span>
+<span id="cb13-13"><a href="accessing-uk-air-quality-data.html#cb13-13" aria-hidden="true"></a>    <span class="dt">sep =</span> <span class="st">&quot;&lt;br/&gt;&quot;</span></span>
+<span id="cb13-14"><a href="accessing-uk-air-quality-data.html#cb13-14" aria-hidden="true"></a>  )</span>
+<span id="cb13-15"><a href="accessing-uk-air-quality-data.html#cb13-15" aria-hidden="true"></a>)</span>
+<span id="cb13-16"><a href="accessing-uk-air-quality-data.html#cb13-16" aria-hidden="true"></a></span>
+<span id="cb13-17"><a href="accessing-uk-air-quality-data.html#cb13-17" aria-hidden="true"></a></span>
+<span id="cb13-18"><a href="accessing-uk-air-quality-data.html#cb13-18" aria-hidden="true"></a><span class="co"># plot map</span></span>
+<span id="cb13-19"><a href="accessing-uk-air-quality-data.html#cb13-19" aria-hidden="true"></a><span class="kw">leaflet</span>(aurn_unique) <span class="op">%&gt;%</span></span>
+<span id="cb13-20"><a href="accessing-uk-air-quality-data.html#cb13-20" aria-hidden="true"></a><span class="st">  </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-21"><a href="accessing-uk-air-quality-data.html#cb13-21" aria-hidden="true"></a><span class="st">  </span><span class="kw">addMarkers</span>(<span class="op">~</span><span class="st"> </span>longitude, <span class="op">~</span><span class="st"> </span>latitude, <span class="dt">popup =</span> content,</span>
+<span id="cb13-22"><a href="accessing-uk-air-quality-data.html#cb13-22" aria-hidden="true"></a>             <span class="dt">clusterOptions =</span> <span class="kw">markerClusterOptions</span>())</span></code></pre></div>
+<div id="htmlwidget-0e8577c4029e033c2a1a" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0e8577c4029e033c2a1a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[57.15736,57.144555,57.133888,54.353728,52.50385,55.79216,54.851491,54.861595,53.580045,53.55593,53.56292,51.074793,51.390922,51.391127,54.59965,54.591256,54.59653,54.59918,54.572586,54.60537,53.422855,53.388511,52.47609,52.437165,52.479724,52.49763,52.328057,52.481346,52.511722,52.512194,53.747751,53.715504,53.79046,53.80489,53.57232,51.661229,52.93028,50.73957,53.79339,53.771245,51.489448,50.840836,50.82354,51.45718,51.45365,51.45603,51.462839,51.457968,51.4071,52.82105,53.53911,53.559029,55.862281,51.995804,52.20237,51.54421,52.687298,51.27399,51.48178,51.48887,51.482431,51.49096,54.894834,51.494722,51.05625,51.374264,51.638094,53.230583,53.244131,53.231722,51.149617,50.962706,50.735454,52.411563,52.407708,52.41345,53.115941,51.6538,52.922983,55.001225,55.002818,53.693104,53.51824,55.943197,55.070033,56.475434,51.51895,55.754737,50.805778,55.95197,55.94427,55.94476,55.945589,55.31531,50.725083,53.670222,56.82266,55.85773,55.860414,55.872038,55.860936,55.858317,55.85917,55.865782,53.46008,56.010319,56.013142,54.684233,55.944079,51.680579,51.5993,54.683242,51.571078,54.334944,50.792287,51.165865,51.48965,50.82778,53.74479,53.74878,53.758971,53.619241,57.481308,53.40337,52.28881,52.294884,53.80378,53.819972,53.82568,52.638677,52.631348,52.619823,52.22174,60.13922,53.221373,53.22889,53.40845,53.446944,53.34633,51.37348,51.46603,51.52229,51.589769,51.49521,51.40555,51.53308,51.49492,51.495483,51.45258,51.55877,51.58603,51.584128,51.48879,51.57389,51.617333,51.49633,51.449674,51.531362,51.44541,51.52253,51.52105,51.49055,51.36789,51.42099,51.425286,51.52378,51.45696,51.49467,54.43951,50.7937,51.892293,53.48152,53.371306,53.369026,53.4785,52.554444,54.569297,53.162306,51.781784,54.97825,54.986405,51.601203,52.27349,52.271886,52.272257,52.63203,52.62817,52.614193,52.622,52.95473,52.969377,52.502436,51.751745,51.744806,55.657472,50.37167,50.411058,51.5798,51.58395,50.82881,50.798339,53.76559,51.45352,51.454896,51.45309,54.610735,51.45617,53.43186,52.753297,53.48481,50.411463,50.4131,52.50431,52.52062,52.132417,53.58499,53.58634,53.579283,53.40495,53.37772,53.378622,53.41058,52.2944,51.03572,50.920265,50.90814,51.544206,51.480499,51.48199,53.451826,51.77798,51.518167,51.886944,52.071944,53.40994,53.40306,54.565819,54.516667,54.50918,52.980436,53.02821,50.916932,57.734456,54.906106,54.88361,54.91839,51.36636,51.62114,51.632696,51.558061,52.673471,51.47707,51.52253,52.58167,52.60821,52.605621,53.38928,52.508337,51.4938,52.95049,54.616238,52.2985,53.365391,53.54914,53.49422,53.37287,52.58818,50.832947,54.104666,53.04222,50.5976,53.967513,53.951889],[-2.094278,-2.106472,-2.094198,-6.654558,-3.034178,-3.2429,-6.274961,-6.250873,-1.475865,-1.485153,-1.510436,-4.041924,-2.35503,-2.354155,-5.928833,-5.89546,-5.901667,-5.912416,-5.974944,-1.275039,-1.054946,-3.025014,-1.875024,-1.829999,-1.908078,-1.831498,-1.907512,-1.918235,-1.830583,-1.830861,-2.452724,-2.483815,-3.029283,-3.007175,-2.439583,-0.270671,-0.814722,-1.826744,-1.748694,-1.759774,-0.310121,-0.147572,-0.137281,-2.585622,-2.578496,-2.583519,-2.584482,-2.583975,0.020128,-1.635718,-2.289611,-2.293772,-3.205782,0.037756,0.124456,-0.175269,-1.980821,1.098061,-3.17625,-3.163711,-3.17794,-3.152305,-2.945307,-0.138333,-2.68345,0.54797,-2.678731,-1.433611,-1.454946,-1.456944,-1.438228,-1.424677,-1.780888,-1.560228,-1.490082,-1.522133,-2.453492,-3.006953,-1.469507,-7.329115,-7.331179,-1.637111,-1.138057,-4.55973,-3.614233,-2.959861,-0.265617,-4.171789,0.271611,-3.195775,-3.191183,-3.183991,-3.182186,-3.206111,-3.532465,-1.352146,-5.101102,-4.255161,-4.245959,-4.270936,-4.238214,-4.259062,-4.258889,-4.243631,-2.472056,-3.704399,-3.710833,-2.450799,-4.734421,-3.133508,-0.068218,-1.203838,-1.325283,-0.80855,-3.196702,-0.167734,-0.308975,-0.170294,-0.338322,-0.341222,-0.305749,-0.213324,-4.241451,-1.752006,-1.533119,-1.542911,-1.546472,-1.576361,-1.535098,-1.124228,-1.133006,-1.127311,-2.736665,-1.185319,-0.534189,-0.537895,-2.980249,-2.9625,-2.844333,-0.291853,0.184806,-0.125889,-0.276223,-0.141655,0.018869,0.567837,-0.180564,-0.178709,0.070766,-0.056592,-0.126486,-0.125254,-0.441614,-0.352051,-0.298777,-0.460861,-0.037418,-0.096954,-0.020139,-0.154611,-0.213492,-0.096667,-0.165489,-0.339647,-0.345606,-0.128958,-0.191164,-0.131931,-7.900328,0.18125,-0.46211,-2.237881,-2.239218,-2.24328,-2.2448,-0.772222,-1.220874,-3.144889,-4.691462,-1.610528,-1.595362,-2.977281,-0.885933,-0.879898,-0.916605,1.295019,1.291714,1.301976,1.299064,-1.146447,-1.188851,-2.003497,-1.257463,-1.260278,-3.196527,-4.142361,-4.130288,-3.76169,-3.770822,-1.068583,-1.095558,-2.680353,-0.95518,-0.940382,-0.944067,-1.0733,0.634889,-1.354444,-1.93773,-2.334139,-4.227678,-4.2303,-2.017629,-1.995556,-0.300306,-0.633015,-0.636811,-2.093786,-1.455815,-1.473306,-1.478096,-1.396139,1.463497,-2.735253,-1.463484,-1.395778,0.678408,-0.05955,-0.0623,-2.742134,1.049031,0.439548,-0.200833,-0.511111,-2.1582,-2.161111,-1.3159,-1.358547,-1.354319,-2.111898,-2.175133,-0.449548,-4.776583,-1.380081,-1.406878,-1.408391,-0.182789,-3.943329,-3.947374,-1.765678,-2.436692,0.317969,-0.042155,-2.010483,-2.033144,-2.030523,-2.615358,-1.986008,-0.200361,1.122017,-2.468931,0.290917,-2.73168,-2.638139,-2.506899,-3.022722,-2.129008,-0.379916,-2.584182,-3.002778,-3.71651,-1.086514,-1.075861],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Aberdeen<br/>Code: ABD<br/>Start: 2003-08-01<br/>End: ongoing<br/>Site Type: Urban Background","Aberdeen Union Street Roadside<br/>Code: ABD7<br/>Start: 2008-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Aberdeen Wellington Road<br/>Code: ABD8<br/>Start: 2016-02-09<br/>End: ongoing<br/>Site Type: Urban Traffic","Armagh Roadside<br/>Code: ARM6<br/>Start: 2009-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Aston Hill<br/>Code: AH<br/>Start: 1986-06-26<br/>End: ongoing<br/>Site Type: Rural Background","Auchencorth Moss<br/>Code: ACTH<br/>Start: 2006-11-01<br/>End: ongoing<br/>Site Type: Rural Background","Ballymena Antrim Road<br/>Code: BAAR<br/>Start: 2017-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Ballymena Ballykeel<br/>Code: BALM<br/>Start: 2016-05-01<br/>End: ongoing<br/>Site Type: Urban Background","Barnsley<br/>Code: BARN<br/>Start: 1991-03-14<br/>End: 1994-03-21<br/>Site Type: Urban Background","Barnsley 12<br/>Code: BAR2<br/>Start: 1994-03-21<br/>End: 2012-07-17<br/>Site Type: Urban Background","Barnsley Gawber<br/>Code: BAR3<br/>Start: 1997-07-07<br/>End: ongoing<br/>Site Type: Urban Background","Barnstaple A39<br/>Code: BPLE<br/>Start: 2013-11-14<br/>End: ongoing<br/>Site Type: Urban Traffic","Bath A4 Roadside<br/>Code: BHA4<br/>Start: 2019-10-24<br/>End: ongoing<br/>Site Type: Urban Traffic","Bath Roadside<br/>Code: BATH<br/>Start: 1996-11-18<br/>End: 2019-06-11<br/>Site Type: Urban Traffic","Belfast Centre<br/>Code: BEL2<br/>Start: 1992-03-08<br/>End: ongoing<br/>Site Type: Urban Background","Belfast Clara St<br/>Code: BEL4<br/>Start: 1998-06-01<br/>End: 2007-09-30<br/>Site Type: Suburban Background","Belfast East<br/>Code: BEL<br/>Start: 1989-09-06<br/>End: 2007-09-30<br/>Site Type: Urban Background","Belfast South<br/>Code: BEL3<br/>Start: 1993-08-01<br/>End: 2000-12-31<br/>Site Type: Urban Background","Belfast Stockman's Lane<br/>Code: BEL1<br/>Start: 2014-06-07<br/>End: ongoing<br/>Site Type: Urban Traffic","Billingham<br/>Code: BIL<br/>Start: 1987-01-01<br/>End: ongoing<br/>Site Type: Urban Industrial","Bircotes<br/>Code: BIR<br/>Start: 1989-09-14<br/>End: 1991-03-11<br/>Site Type: Urban Background","Birkenhead Borough Road<br/>Code: BBRD<br/>Start: 2016-08-18<br/>End: ongoing<br/>Site Type: Urban Traffic","Birmingham A4540 Roadside<br/>Code: BIRR<br/>Start: 2016-09-09<br/>End: ongoing<br/>Site Type: Urban Traffic","Birmingham Acocks Green<br/>Code: AGRN<br/>Start: 2011-03-18<br/>End: ongoing<br/>Site Type: Urban Background","Birmingham Centre<br/>Code: BIRM<br/>Start: 1992-03-18<br/>End: 2009-01-14<br/>Site Type: Urban Background","Birmingham East<br/>Code: BIR2<br/>Start: 1993-12-01<br/>End: 2004-08-04<br/>Site Type: Urban Background","Birmingham Kerbside<br/>Code: BHAM<br/>Start: 1974-03-13<br/>End: 1978-01-17<br/>Site Type: Urban Traffic","Birmingham Ladywood<br/>Code: BMLD<br/>Start: 2019-10-09<br/>End: ongoing<br/>Site Type: Urban Background","Birmingham Tyburn<br/>Code: BIR1<br/>Start: 2004-08-16<br/>End: 2016-12-31<br/>Site Type: Urban Background","Birmingham Tyburn Roadside<br/>Code: BIRT<br/>Start: 2009-02-11<br/>End: 2016-09-07<br/>Site Type: Urban Traffic","Blackburn Accrington Road<br/>Code: BLAR<br/>Start: 2014-05-12<br/>End: ongoing<br/>Site Type: Urban Traffic","Blackburn Darwen Roadside<br/>Code: BLCB<br/>Start: 2009-06-15<br/>End: 2014-03-17<br/>Site Type: Urban Traffic","Blackpool<br/>Code: BLAC<br/>Start: 2000-08-08<br/>End: 2004-11-11<br/>Site Type: Urban Background","Blackpool Marton<br/>Code: BLC2<br/>Start: 2005-06-14<br/>End: ongoing<br/>Site Type: Urban Background","Bolton<br/>Code: BOLT<br/>Start: 1997-02-03<br/>End: 2008-06-30<br/>Site Type: Urban Background","Borehamwood Meadow Park<br/>Code: BDMP<br/>Start: 2017-10-01<br/>End: ongoing<br/>Site Type: Urban Background","Bottesford<br/>Code: BOT<br/>Start: 1977-10-01<br/>End: 2016-10-17<br/>Site Type: Rural Background","Bournemouth<br/>Code: BORN<br/>Start: 2003-02-27<br/>End: ongoing<br/>Site Type: Urban Background","Bradford Centre<br/>Code: BRAD<br/>Start: 1997-11-28<br/>End: 2007-09-30<br/>Site Type: Urban Background","Bradford Mayo Avenue<br/>Code: BDMA<br/>Start: 2015-04-24<br/>End: ongoing<br/>Site Type: Urban Traffic","Brentford Roadside<br/>Code: BRN<br/>Start: 2003-06-20<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","Brighton Preston Park<br/>Code: BRT3<br/>Start: 2004-11-03<br/>End: ongoing<br/>Site Type: Urban Background","Brighton Roadside<br/>Code: BRIT<br/>Start: 1998-02-10<br/>End: 2010-12-31<br/>Site Type: Urban Traffic","Bristol Centre<br/>Code: BRIS<br/>Start: 1993-01-04<br/>End: 2005-09-15<br/>Site Type: Urban Background","Bristol East<br/>Code: BRS<br/>Start: 1994-05-01<br/>End: 2000-12-31<br/>Site Type: Urban Background","Bristol Old Market<br/>Code: BRS2<br/>Start: 1996-07-01<br/>End: 2012-08-31<br/>Site Type: Urban Traffic","Bristol St Paul's<br/>Code: BRS8<br/>Start: 2006-06-15<br/>End: ongoing<br/>Site Type: Urban Background","Bristol Temple Way<br/>Code: BR11<br/>Start: 2017-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Bromley Roadside<br/>Code: BY1<br/>Start: 1997-05-02<br/>End: 1998-07-06<br/>Site Type: Urban Traffic","Burton-on-Trent Horninglow<br/>Code: BOTR<br/>Start: 2018-02-01<br/>End: ongoing<br/>Site Type: Urban Background","Bury Roadside<br/>Code: BURY<br/>Start: 1997-01-20<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","Bury Whitefield Roadside<br/>Code: BURW<br/>Start: 2015-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Bush Estate<br/>Code: BUSH<br/>Start: 1986-04-01<br/>End: ongoing<br/>Site Type: Rural Background","Cambridge<br/>Code: CAMB<br/>Start: 1974-11-01<br/>End: 1978-03-01<br/>Site Type: Urban Traffic","Cambridge Roadside<br/>Code: CAM<br/>Start: 1999-06-26<br/>End: ongoing<br/>Site Type: Urban Traffic","Camden Kerbside<br/>Code: CA1<br/>Start: 1996-05-16<br/>End: ongoing<br/>Site Type: Urban Traffic","Cannock A5190 Roadside<br/>Code: CANK<br/>Start: 2016-08-10<br/>End: ongoing<br/>Site Type: Urban Traffic","Canterbury<br/>Code: CANT<br/>Start: 2011-03-15<br/>End: ongoing<br/>Site Type: Urban Background","Cardiff Centre<br/>Code: CARD<br/>Start: 1992-05-12<br/>End: ongoing<br/>Site Type: Urban Background","Cardiff East<br/>Code: CAR2<br/>Start: 1994-01-01<br/>End: 2001-12-31<br/>Site Type: Urban Background","Cardiff Kerbside<br/>Code: CAR<br/>Start: 1974-06-02<br/>End: 1974-12-13<br/>Site Type: Urban Traffic","Cardiff Newport Road<br/>Code: CNPR<br/>Start: 2018-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Carlisle Roadside<br/>Code: CARL<br/>Start: 2008-02-14<br/>End: ongoing<br/>Site Type: Urban Traffic","Central London<br/>Code: CLL<br/>Start: 1972-07-01<br/>End: 1990-08-20<br/>Site Type: Urban Background","Charlton Mackrell<br/>Code: MACK<br/>Start: 2008-09-03<br/>End: ongoing<br/>Site Type: Rural Background","Chatham Roadside<br/>Code: CHAT<br/>Start: 2010-07-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Chepstow A48<br/>Code: CHP<br/>Start: 2008-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Chesterfield<br/>Code: CHS6<br/>Start: 2008-03-13<br/>End: 2014-05-20<br/>Site Type: Urban Background","Chesterfield Loundsley Green<br/>Code: CHLG<br/>Start: 2015-03-01<br/>End: ongoing<br/>Site Type: Urban Background","Chesterfield Roadside<br/>Code: CHS7<br/>Start: 2008-03-11<br/>End: ongoing<br/>Site Type: Urban Traffic","Chilbolton Observatory<br/>Code: CHBO<br/>Start: 2016-01-11<br/>End: ongoing<br/>Site Type: Rural Background","Chilworth<br/>Code: CHIL<br/>Start: 1975-04-18<br/>End: 1975-10-10<br/>Site Type: Suburban Background","Christchurch Barrack Road<br/>Code: CHBR<br/>Start: 2016-09-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Coventry Allesley<br/>Code: COAL<br/>Start: 2014-06-17<br/>End: ongoing<br/>Site Type: Urban Background","Coventry Binley Road<br/>Code: COBR<br/>Start: 2017-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Coventry Centre<br/>Code: COV2<br/>Start: 1997-02-18<br/>End: 2000-12-31<br/>Site Type: Urban Background","Crewe Coppenhall<br/>Code: COPP<br/>Start: 2019-10-15<br/>End: ongoing<br/>Site Type: Urban Background","Cwmbran<br/>Code: CWMB<br/>Start: 2003-04-29<br/>End: ongoing<br/>Site Type: Urban Background","Derby St Alkmund's Way<br/>Code: DESA<br/>Start: 2017-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Derry<br/>Code: DERY<br/>Start: 1997-04-29<br/>End: 2016-02-29<br/>Site Type: Urban Background","Derry Rosemount<br/>Code: DERR<br/>Start: 2016-03-21<br/>End: ongoing<br/>Site Type: Urban Background","Dewsbury Ashworth Grove<br/>Code: DYAG<br/>Start: 2018-04-01<br/>End: ongoing<br/>Site Type: Urban Background","Doncaster A630 Cleveland Street<br/>Code: DCST<br/>Start: 2015-05-07<br/>End: ongoing<br/>Site Type: Urban Traffic","Dumbarton Roadside<br/>Code: DUMB<br/>Start: 2010-09-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Dumfries<br/>Code: DUMF<br/>Start: 2001-03-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Dundee Mains Loan<br/>Code: DCC1<br/>Start: 2017-10-01<br/>End: ongoing<br/>Site Type: Urban Background","Ealing Horn Lane<br/>Code: EA8<br/>Start: 2014-05-21<br/>End: ongoing<br/>Site Type: Urban Traffic","East Kilbride<br/>Code: EK<br/>Start: 1975-05-08<br/>End: 1975-10-09<br/>Site Type: Suburban Background","Eastbourne<br/>Code: EB<br/>Start: 2010-11-01<br/>End: ongoing<br/>Site Type: Urban Background","Edinburgh Centre<br/>Code: ED<br/>Start: 1992-10-04<br/>End: 2003-10-13<br/>Site Type: Urban Background","Edinburgh Med. Sch.<br/>Code: ED2<br/>Start: 1993-05-13<br/>End: 2001-12-31<br/>Site Type: Urban Background","Edinburgh Nicolson Street<br/>Code: EDNS<br/>Start: 2017-12-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Edinburgh St Leonards<br/>Code: ED3<br/>Start: 2003-11-24<br/>End: ongoing<br/>Site Type: Urban Background","Eskdalemuir<br/>Code: ESK<br/>Start: 1986-04-23<br/>End: ongoing<br/>Site Type: Rural Background","Exeter Roadside<br/>Code: EX<br/>Start: 1996-07-02<br/>End: ongoing<br/>Site Type: Urban Traffic","Featherstone<br/>Code: FEA<br/>Start: 1989-09-14<br/>End: 1991-03-13<br/>Site Type: Urban Background","Fort William<br/>Code: FW<br/>Start: 2006-06-22<br/>End: ongoing<br/>Site Type: Suburban Background","Glasgow Centre<br/>Code: GLA3<br/>Start: 1996-07-26<br/>End: 2012-08-16<br/>Site Type: Urban Background","Glasgow City Chambers<br/>Code: GLA<br/>Start: 1987-01-06<br/>End: 2011-03-16<br/>Site Type: Urban Background","Glasgow Great Western Road<br/>Code: GGWR<br/>Start: 2014-06-05<br/>End: ongoing<br/>Site Type: Urban Traffic","Glasgow High Street<br/>Code: GHSR<br/>Start: 2015-01-27<br/>End: ongoing<br/>Site Type: Urban Traffic","Glasgow Hope St<br/>Code: GLAS<br/>Start: 1979-01-01<br/>End: 1982-10-21<br/>Site Type: Urban Traffic","Glasgow Kerbside<br/>Code: GLA4<br/>Start: 1997-03-10<br/>End: ongoing<br/>Site Type: Urban Traffic","Glasgow Townhead<br/>Code: GLKP<br/>Start: 2013-10-07<br/>End: ongoing<br/>Site Type: Urban Background","Glazebury<br/>Code: GLAZ<br/>Start: 1988-04-01<br/>End: ongoing<br/>Site Type: Rural Background","Grangemouth<br/>Code: GRAN<br/>Start: 2001-01-01<br/>End: ongoing<br/>Site Type: Urban Industrial","Grangemouth Moray<br/>Code: GRA2<br/>Start: 2009-06-01<br/>End: ongoing<br/>Site Type: Urban Industrial","Great Dun Fell<br/>Code: GDF<br/>Start: 1986-05-09<br/>End: 2016-10-18<br/>Site Type: Rural Background","Greenock A8 Roadside<br/>Code: GKA8<br/>Start: 2016-05-04<br/>End: ongoing<br/>Site Type: Urban Traffic","Hafod-yr-ynys Roadside<br/>Code: CAE6<br/>Start: 2014-10-14<br/>End: ongoing<br/>Site Type: Urban Traffic","Haringey Roadside<br/>Code: HG1<br/>Start: 1996-05-16<br/>End: ongoing<br/>Site Type: Urban Traffic","Hartlepool St Abbs Walk<br/>Code: HSAW<br/>Start: 2017-10-17<br/>End: ongoing<br/>Site Type: Urban Background","Harwell<br/>Code: HAR<br/>Start: 1976-06-22<br/>End: 2015-12-31<br/>Site Type: Rural Background","High Muffles<br/>Code: HM<br/>Start: 1987-07-16<br/>End: ongoing<br/>Site Type: Rural Background","Honiton<br/>Code: HONI<br/>Start: 2012-06-21<br/>End: ongoing<br/>Site Type: Urban Background","Horley<br/>Code: HORE<br/>Start: 2007-11-21<br/>End: ongoing<br/>Site Type: Suburban Industrial","Hounslow Roadside<br/>Code: HS1<br/>Start: 1997-09-16<br/>End: 2002-11-16<br/>Site Type: Urban Traffic","Hove Roadside<br/>Code: HOVE<br/>Start: 1997-09-16<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","Hull Centre<br/>Code: HULL<br/>Start: 1994-01-04<br/>End: 2002-01-17<br/>Site Type: Urban Background","Hull Freetown<br/>Code: HUL2<br/>Start: 2002-11-06<br/>End: ongoing<br/>Site Type: Urban Background","Hull Holderness Road<br/>Code: HULR<br/>Start: 2015-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Immingham Woodlands Avenue<br/>Code: IMGM<br/>Start: 2017-11-01<br/>End: ongoing<br/>Site Type: Urban Background","Inverness<br/>Code: INV2<br/>Start: 2001-07-17<br/>End: ongoing<br/>Site Type: Urban Traffic","Ladybower<br/>Code: LB<br/>Start: 1988-07-15<br/>End: ongoing<br/>Site Type: Rural Background","Leamington Spa<br/>Code: LEAM<br/>Start: 1996-07-26<br/>End: ongoing<br/>Site Type: Urban Background","Leamington Spa Rugby Road<br/>Code: LEAR<br/>Start: 2012-06-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Leeds Centre<br/>Code: LEED<br/>Start: 1993-01-04<br/>End: ongoing<br/>Site Type: Urban Background","Leeds Headingley Kerbside<br/>Code: LED6<br/>Start: 2008-02-17<br/>End: ongoing<br/>Site Type: Urban Traffic","Leeds Potternewton<br/>Code: LDS<br/>Start: 1995-01-01<br/>End: 2000-12-31<br/>Site Type: Urban Background","Leicester A594 Roadside<br/>Code: LEIR<br/>Start: 2015-06-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Leicester Centre<br/>Code: LEIC<br/>Start: 1994-01-04<br/>End: 2013-09-23<br/>Site Type: Urban Background","Leicester University<br/>Code: LECU<br/>Start: 2013-10-01<br/>End: ongoing<br/>Site Type: Urban Background","Leominster<br/>Code: LEOM<br/>Start: 2005-07-18<br/>End: ongoing<br/>Site Type: Suburban Background","Lerwick<br/>Code: LERW<br/>Start: 2005-05-25<br/>End: ongoing<br/>Site Type: Rural Background","Lincoln Canwick Road<br/>Code: LIN3<br/>Start: 2011-07-27<br/>End: ongoing<br/>Site Type: Urban Traffic","Lincoln Roadside<br/>Code: LINC<br/>Start: 1997-05-06<br/>End: 1999-12-22<br/>Site Type: Urban Traffic","Liverpool Centre<br/>Code: LIVR<br/>Start: 1993-04-23<br/>End: 2002-09-23<br/>Site Type: Urban Background","Liverpool Queen's Drive Roadside<br/>Code: LV6<br/>Start: 2008-01-01<br/>End: 2016-11-07<br/>Site Type: Urban Traffic","Liverpool Speke<br/>Code: LVP<br/>Start: 2003-05-21<br/>End: ongoing<br/>Site Type: Urban Industrial","London A3 Roadside<br/>Code: A3<br/>Start: 1997-03-20<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","London Bexley<br/>Code: BEX<br/>Start: 1994-05-01<br/>End: 2007-09-30<br/>Site Type: Suburban Background","London Bloomsbury<br/>Code: CLL2<br/>Start: 1992-01-23<br/>End: ongoing<br/>Site Type: Urban Background","London Brent<br/>Code: BREN<br/>Start: 1996-01-26<br/>End: 2007-09-30<br/>Site Type: Urban Background","London Bridge Place<br/>Code: BRI<br/>Start: 1990-07-03<br/>End: 1999-11-30<br/>Site Type: Urban Background","London Bromley<br/>Code: BY2<br/>Start: 1998-08-11<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","London Canvey<br/>Code: CAN<br/>Start: 1977-05-10<br/>End: 1980-10-01<br/>Site Type: Urban Industrial","London Cromwell Road<br/>Code: CRD<br/>Start: 1973-02-22<br/>End: 1974-07-11<br/>Site Type: Urban Traffic","London Cromwell Road 2<br/>Code: CRD2<br/>Start: 1998-05-20<br/>End: 2012-09-30<br/>Site Type: Urban Traffic","London Eltham<br/>Code: LON6<br/>Start: 1996-04-01<br/>End: ongoing<br/>Site Type: Suburban Background","London Hackney<br/>Code: HK4<br/>Start: 1997-01-06<br/>End: 2007-09-30<br/>Site Type: Urban Background","London Haringey<br/>Code: HG2<br/>Start: 1996-05-16<br/>End: 2012-10-24<br/>Site Type: Urban Background","London Haringey Priory Park South<br/>Code: HG4<br/>Start: 2012-10-26<br/>End: ongoing<br/>Site Type: Urban Background","London Harlington<br/>Code: HRL<br/>Start: 2004-01-01<br/>End: ongoing<br/>Site Type: Urban Industrial","London Harrow<br/>Code: HARR<br/>Start: 1979-08-17<br/>End: 1980-08-28<br/>Site Type: Suburban Background","London Harrow Stanmore<br/>Code: HR3<br/>Start: 2008-12-16<br/>End: 2017-04-28<br/>Site Type: Urban Background","London Hillingdon<br/>Code: HIL<br/>Start: 1996-08-02<br/>End: ongoing<br/>Site Type: Urban Background","London Honor Oak Park<br/>Code: HP1<br/>Start: 2019-01-01<br/>End: ongoing<br/>Site Type: Urban Background","London Islington<br/>Code: ISL<br/>Start: 1976-07-09<br/>End: 1978-08-01<br/>Site Type: Urban Background","London Lewisham<br/>Code: LW1<br/>Start: 1997-04-16<br/>End: 2007-09-30<br/>Site Type: Urban Background","London Marylebone Road<br/>Code: MY1<br/>Start: 1997-07-17<br/>End: ongoing<br/>Site Type: Urban Traffic","London N. Kensington<br/>Code: KC1<br/>Start: 1996-04-01<br/>End: ongoing<br/>Site Type: Urban Background","London Southwark<br/>Code: SK1<br/>Start: 1997-02-28<br/>End: 2007-09-30<br/>Site Type: Urban Background","London Sutton<br/>Code: SUT3<br/>Start: 1996-04-01<br/>End: 2002-05-02<br/>Site Type: Suburban Background","London Teddington<br/>Code: TED<br/>Start: 1996-08-08<br/>End: 2016-09-21<br/>Site Type: Urban Background","London Teddington Bushy Park<br/>Code: TED2<br/>Start: 2020-01-01<br/>End: ongoing<br/>Site Type: Urban Background","London UCL<br/>Code: LON5<br/>Start: 1993-02-08<br/>End: 2000-12-31<br/>Site Type: Urban Background","London Wandsworth<br/>Code: WA2<br/>Start: 1996-04-01<br/>End: 2007-09-30<br/>Site Type: Urban Background","London Westminster<br/>Code: HORS<br/>Start: 2001-07-17<br/>End: 2013-12-31<br/>Site Type: Urban Background","Lough Navar<br/>Code: LN<br/>Start: 1987-04-02<br/>End: ongoing<br/>Site Type: Rural Background","Lullington Heath<br/>Code: LH<br/>Start: 1986-10-04<br/>End: ongoing<br/>Site Type: Rural Background","Luton A505 Roadside<br/>Code: LUTR<br/>Start: 2015-03-11<br/>End: ongoing<br/>Site Type: Urban Traffic","Manchester Piccadilly<br/>Code: MAN3<br/>Start: 1995-12-18<br/>End: ongoing<br/>Site Type: Urban Background","Manchester Sharston<br/>Code: MAHG<br/>Start: 2016-01-27<br/>End: ongoing<br/>Site Type: Suburban Industrial","Manchester South<br/>Code: MAN4<br/>Start: 1996-12-06<br/>End: 2016-01-25<br/>Site Type: Suburban Industrial","Manchester Town Hall<br/>Code: MAN<br/>Start: 1987-01-22<br/>End: 2007-09-30<br/>Site Type: Urban Background","Market Harborough<br/>Code: MKTH<br/>Start: 2003-12-10<br/>End: 2019-03-27<br/>Site Type: Rural Background","Middlesbrough<br/>Code: MID<br/>Start: 1995-04-21<br/>End: ongoing<br/>Site Type: Urban Industrial","Mold<br/>Code: MOLD<br/>Start: 2009-12-02<br/>End: 2013-12-31<br/>Site Type: Suburban Background","Narberth<br/>Code: PEMB<br/>Start: 1997-01-20<br/>End: ongoing<br/>Site Type: Rural Background","Newcastle Centre<br/>Code: NEWC<br/>Start: 1992-03-08<br/>End: ongoing<br/>Site Type: Urban Background","Newcastle Cradlewell Roadside<br/>Code: NCA3<br/>Start: 2008-03-10<br/>End: ongoing<br/>Site Type: Urban Traffic","Newport<br/>Code: NPT3<br/>Start: 2008-01-01<br/>End: ongoing<br/>Site Type: Urban Background","Northampton<br/>Code: NTON<br/>Start: 2003-03-13<br/>End: 2012-07-09<br/>Site Type: Urban Background","Northampton Kingsthorpe<br/>Code: NTN3<br/>Start: 2012-07-09<br/>End: 2017-03-27<br/>Site Type: Urban Background","Northampton Spring Park<br/>Code: NTN4<br/>Start: 2017-04-01<br/>End: ongoing<br/>Site Type: Urban Background","Norwich Centre<br/>Code: NOR2<br/>Start: 1997-07-24<br/>End: 2008-05-13<br/>Site Type: Urban Background","Norwich Forum Roadside<br/>Code: NO10<br/>Start: 2005-04-08<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","Norwich Lakenfields<br/>Code: NO12<br/>Start: 2009-09-01<br/>End: ongoing<br/>Site Type: Urban Background","Norwich Roadside<br/>Code: NOR1<br/>Start: 1997-06-21<br/>End: 2005-02-14<br/>Site Type: Urban Traffic","Nottingham Centre<br/>Code: NOTT<br/>Start: 1996-09-02<br/>End: ongoing<br/>Site Type: Urban Background","Nottingham Western Boulevard<br/>Code: NWBV<br/>Start: 2016-03-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Oldbury Birmingham Road<br/>Code: BOLD<br/>Start: 2014-09-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Oxford Centre Roadside<br/>Code: OX<br/>Start: 1996-04-15<br/>End: ongoing<br/>Site Type: Urban Traffic","Oxford St Ebbes<br/>Code: OX8<br/>Start: 2008-01-01<br/>End: ongoing<br/>Site Type: Urban Background","Peebles<br/>Code: PEEB<br/>Start: 2009-11-06<br/>End: ongoing<br/>Site Type: Urban Background","Plymouth Centre<br/>Code: PLYM<br/>Start: 1997-09-29<br/>End: ongoing<br/>Site Type: Urban Background","Plymouth Tavistock Road<br/>Code: PLYR<br/>Start: 2017-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Port Talbot<br/>Code: PT<br/>Start: 1997-01-09<br/>End: 2007-07-24<br/>Site Type: Urban Industrial","Port Talbot Margam<br/>Code: PT4<br/>Start: 2007-07-24<br/>End: ongoing<br/>Site Type: Urban Industrial","Portsmouth<br/>Code: PMTH<br/>Start: 2003-04-15<br/>End: ongoing<br/>Site Type: Urban Background","Portsmouth Anglesea Road<br/>Code: POAR<br/>Start: 2018-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Preston<br/>Code: PRES<br/>Start: 2000-06-06<br/>End: ongoing<br/>Site Type: Urban Background","Reading<br/>Code: READ<br/>Start: 1997-07-17<br/>End: 2003-02-06<br/>Site Type: Urban Background","Reading London Road<br/>Code: REA5<br/>Start: 2016-03-04<br/>End: ongoing<br/>Site Type: Urban Traffic","Reading New Town<br/>Code: REA1<br/>Start: 2003-10-17<br/>End: ongoing<br/>Site Type: Urban Background","Redcar<br/>Code: REDC<br/>Start: 1997-06-25<br/>End: 2007-09-30<br/>Site Type: Suburban Background","Rochester Stoke<br/>Code: ROCH<br/>Start: 1996-01-26<br/>End: ongoing<br/>Site Type: Rural Background","Rotherham Centre<br/>Code: ROTH<br/>Start: 1997-06-20<br/>End: 2007-09-30<br/>Site Type: Urban Background","Rugeley<br/>Code: RUGE<br/>Start: 1991-03-21<br/>End: 1992-09-17<br/>Site Type: Urban Background","Salford Eccles<br/>Code: ECCL<br/>Start: 1997-03-20<br/>End: 2013-12-31<br/>Site Type: Urban Background","Saltash Callington Road<br/>Code: SASH<br/>Start: 2013-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Saltash Roadside<br/>Code: SALT<br/>Start: 2008-07-30<br/>End: 2010-08-31<br/>Site Type: Urban Traffic","Sandwell Oldbury<br/>Code: OLDB<br/>Start: 1997-06-27<br/>End: 1998-09-21<br/>Site Type: Urban Background","Sandwell West Bromwich<br/>Code: WBRO<br/>Start: 1998-11-04<br/>End: 2011-12-31<br/>Site Type: Urban Background","Sandy Roadside<br/>Code: SDY<br/>Start: 2008-07-28<br/>End: ongoing<br/>Site Type: Urban Traffic","Scunthorpe<br/>Code: SCUN<br/>Start: 1997-12-15<br/>End: 2004-03-18<br/>Site Type: Urban Industrial","Scunthorpe Town<br/>Code: SCN2<br/>Start: 2008-01-10<br/>End: ongoing<br/>Site Type: Urban Industrial","Shaw Crompton Way<br/>Code: CW<br/>Start: 2014-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Sheffield Barnsley Road<br/>Code: SHBR<br/>Start: 2016-08-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Sheffield Centre<br/>Code: SHE2<br/>Start: 1995-12-22<br/>End: 2013-08-30<br/>Site Type: Urban Background","Sheffield Devonshire Green<br/>Code: SHDG<br/>Start: 2013-10-31<br/>End: ongoing<br/>Site Type: Urban Background","Sheffield Tinsley<br/>Code: SHE<br/>Start: 1990-11-28<br/>End: ongoing<br/>Site Type: Urban Background","Sibton<br/>Code: SIB<br/>Start: 1973-07-01<br/>End: ongoing<br/>Site Type: Rural Background","Somerton<br/>Code: SOM<br/>Start: 1996-01-26<br/>End: 2008-03-05<br/>Site Type: Rural Background","Southampton A33<br/>Code: SA33<br/>Start: 2016-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Southampton Centre<br/>Code: SOUT<br/>Start: 1994-01-04<br/>End: ongoing<br/>Site Type: Urban Background","Southend-on-Sea<br/>Code: SEND<br/>Start: 2000-07-24<br/>End: ongoing<br/>Site Type: Urban Background","Southwark A2 Old Kent Road<br/>Code: SK5<br/>Start: 2011-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Southwark Roadside<br/>Code: SK2<br/>Start: 1997-04-01<br/>End: 2006-02-21<br/>Site Type: Urban Traffic","St Helens Linkway<br/>Code: SHLW<br/>Start: 2016-09-27<br/>End: ongoing<br/>Site Type: Urban Traffic","St Osyth<br/>Code: OSY<br/>Start: 2002-05-11<br/>End: ongoing<br/>Site Type: Rural Background","Stanford-le-Hope Roadside<br/>Code: HOPE<br/>Start: 2008-01-22<br/>End: ongoing<br/>Site Type: Urban Traffic","Stevenage<br/>Code: STE<br/>Start: 1976-06-22<br/>End: 1994-04-29<br/>Site Type: Suburban Background","Stewartby<br/>Code: STEW<br/>Start: 2007-11-26<br/>End: 2008-12-31<br/>Site Type: Urban Industrial","Stockport<br/>Code: STOC<br/>Start: 1996-11-25<br/>End: 2002-10-03<br/>Site Type: Urban Background","Stockport Shaw Heath<br/>Code: STK4<br/>Start: 2002-10-09<br/>End: 2007-09-30<br/>Site Type: Urban Background","Stockton-on-Tees A1305 Roadside<br/>Code: SOTR<br/>Start: 2015-05-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Stockton-on-Tees Eaglescliffe<br/>Code: EAGL<br/>Start: 2009-01-21<br/>End: ongoing<br/>Site Type: Urban Traffic","Stockton-on-Tees Yarm<br/>Code: YARM<br/>Start: 2001-01-01<br/>End: 2008-09-02<br/>Site Type: Urban Traffic","Stoke-on-Trent A50 Roadside<br/>Code: STKR<br/>Start: 2015-05-22<br/>End: ongoing<br/>Site Type: Urban Traffic","Stoke-on-Trent Centre<br/>Code: STOK<br/>Start: 1997-03-11<br/>End: ongoing<br/>Site Type: Urban Background","Storrington Roadside<br/>Code: STOR<br/>Start: 2009-08-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Strathvaich<br/>Code: SV<br/>Start: 1987-03-18<br/>End: ongoing<br/>Site Type: Rural Background","Sunderland<br/>Code: SUND<br/>Start: 1992-10-06<br/>End: 2007-09-30<br/>Site Type: Urban Background","Sunderland Silksworth<br/>Code: SUN2<br/>Start: 2004-12-09<br/>End: ongoing<br/>Site Type: Urban Background","Sunderland Wessington Way<br/>Code: SUNR<br/>Start: 2015-01-15<br/>End: ongoing<br/>Site Type: Urban Traffic","Sutton Roadside<br/>Code: SUT1<br/>Start: 1996-04-01<br/>End: 2002-05-02<br/>Site Type: Urban Traffic","Swansea<br/>Code: SWAN<br/>Start: 1994-12-01<br/>End: 2006-08-07<br/>Site Type: Urban Background","Swansea Roadside<br/>Code: SWA1<br/>Start: 2006-09-20<br/>End: 2007-09-30<br/>Site Type: Urban Traffic","Swindon Walcot<br/>Code: SWHO<br/>Start: 2018-01-01<br/>End: ongoing<br/>Site Type: Urban Background","Telford Hollinswood<br/>Code: TDHD<br/>Start: 2017-11-01<br/>End: ongoing<br/>Site Type: Urban Background","Thurrock<br/>Code: THUR<br/>Start: 1996-09-01<br/>End: ongoing<br/>Site Type: Urban Background","Tower Hamlets Roadside<br/>Code: TH2<br/>Start: 1996-04-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Walsall Alumwell<br/>Code: WAL<br/>Start: 1987-03-05<br/>End: 2007-09-30<br/>Site Type: Urban Background","Walsall Willenhall<br/>Code: WAL2<br/>Start: 1997-04-29<br/>End: 2010-02-03<br/>Site Type: Urban Background","Walsall Woodlands<br/>Code: WAL4<br/>Start: 2012-06-19<br/>End: ongoing<br/>Site Type: Urban Background","Warrington<br/>Code: WAR<br/>Start: 2008-10-21<br/>End: ongoing<br/>Site Type: Urban Industrial","West Bromwich Kenrick Park<br/>Code: WBKP<br/>Start: 2019-04-01<br/>End: ongoing<br/>Site Type: Urban Background","West London<br/>Code: WL<br/>Start: 1987-01-01<br/>End: 2007-09-30<br/>Site Type: Urban Background","Weybourne<br/>Code: WEYB<br/>Start: 2001-05-30<br/>End: ongoing<br/>Site Type: Rural Background","Wharleycroft<br/>Code: WC<br/>Start: 1985-05-08<br/>End: 1995-11-28<br/>Site Type: Rural Background","Wicken Fen<br/>Code: WFEN<br/>Start: 1997-10-15<br/>End: ongoing<br/>Site Type: Rural Background","Widnes Milton Road<br/>Code: WSMR<br/>Start: 2015-03-09<br/>End: ongoing<br/>Site Type: Urban Traffic","Wigan Centre<br/>Code: WIG5<br/>Start: 2004-10-08<br/>End: ongoing<br/>Site Type: Urban Background","Wigan Leigh<br/>Code: WIG3<br/>Start: 2002-05-15<br/>End: 2004-09-28<br/>Site Type: Urban Background","Wirral Tranmere<br/>Code: TRAN<br/>Start: 2000-05-14<br/>End: ongoing<br/>Site Type: Urban Background","Wolverhampton Centre<br/>Code: WOLV<br/>Start: 1995-12-19<br/>End: 2007-09-30<br/>Site Type: Urban Background","Worthing A27 Roadside<br/>Code: WTHG<br/>Start: 2016-10-01<br/>End: ongoing<br/>Site Type: Urban Traffic","Wray<br/>Code: WRAY<br/>Start: 1985-04-01<br/>End: 1988-02-29<br/>Site Type: Rural Background","Wrexham<br/>Code: WREX<br/>Start: 2002-03-06<br/>End: ongoing<br/>Site Type: Urban Traffic","Yarner Wood<br/>Code: YW<br/>Start: 1987-06-26<br/>End: ongoing<br/>Site Type: Rural Background","York Bootham<br/>Code: YK10<br/>Start: 2016-08-16<br/>End: ongoing<br/>Site Type: Urban Background","York Fishergate<br/>Code: YK11<br/>Start: 2008-01-01<br/>End: ongoing<br/>Site Type: Urban Traffic"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[50.37167,60.13922],"lng":[-7.900328,1.463497]}},"evals":[],"jsHooks":[]}</script>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="polarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/UK-air-quality-data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["openair.pdf", "openair.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

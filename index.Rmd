@@ -6,6 +6,7 @@ site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib, DCC-refs.bib]
+before_chapter_script: ["load-packages.R"]
 biblio-style: apalike
 link-citations: yes
 #github-repo: rstudio/bookdown-demo
