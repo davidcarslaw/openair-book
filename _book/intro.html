@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Introduction | openair</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>Section 2 Introduction | openair</title>
+  <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Introduction | openair" />
+  <meta property="og:title" content="Section 2 Introduction | openair" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="This will eventually form a book related to the openair R package." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Introduction | openair" />
+  <meta name="twitter:title" content="Section 2 Introduction | openair" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
 
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-18" />
+<meta name="date" content="2020-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="literature.html"/>
+<link rel="next" href="accessing-uk-air-quality-data.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,6 +51,19 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
 
 
 <style type="text/css">
@@ -135,17 +148,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html"><i class="fa fa-check"></i><b>4</b> The <code>polarPlot</code> and <code>polarCluster</code> functions</a>
+<li class="chapter" data-level="3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>4.2</b> Nonparametric Wind Regression, NWR</a></li>
-<li class="chapter" data-level="4.3" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>4.3</b> Conditional Probability Function (CPF) plot</a></li>
-<li class="chapter" data-level="4.4" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#pairwise-statistics"><i class="fa fa-check"></i><b>4.4</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="4.5" data-path="the-polarplot-and-polarcluster-functions.html"><a href="the-polarplot-and-polarcluster-functions.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>4.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
+<li class="chapter" data-level="3.1" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#acessing-data"><i class="fa fa-check"></i><b>3.1</b> Acessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="4" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html"><i class="fa fa-check"></i><b>4</b> Wind and Pollution Roses</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#example-of-use"><i class="fa fa-check"></i><b>4.1</b> Example of use</a></li>
+<li class="chapter" data-level="4.2" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#sec:comp-met"><i class="fa fa-check"></i><b>4.2</b> Comparing two meteorological data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>5</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="polarPlot.html"><a href="polarPlot.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="polarPlot.html"><a href="polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>5.2</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="5.3" data-path="polarPlot.html"><a href="polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>5.3</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="5.4" data-path="polarPlot.html"><a href="polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>5.4</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="5.5" data-path="polarPlot.html"><a href="polarPlot.html#the-polarcluster-function-for-feature-identification-and-extraction"><i class="fa fa-check"></i><b>5.5</b> The <code>polarCluster</code> function for feature identification and extraction</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -167,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="intro" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<h1><span class="header-section-number">Section 2</span> Introduction</h1>
 <p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="intro.html#intro">2</a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="#methods"><strong>??</strong></a>.</p>
 <p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</span>
@@ -358,7 +379,7 @@ Figure 2.1: Here is a nice figure!
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="accessing-uk-air-quality-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -389,7 +410,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/intro.Rmd",
 "text": "Edit"
 },
 "history": {
