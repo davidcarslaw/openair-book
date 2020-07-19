@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 7 Calendar plots | openair</title>
+  <meta name="description" content="This will eventually form a book related to the openair R package." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 7 Calendar plots | openair" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will eventually form a book related to the openair R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 7 Calendar plots | openair" />
+  
+  <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
+  
+
+<meta name="author" content="David Carslaw" />
+
+
+<meta name="date" content="2020-07-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="polarPlot.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The openair book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#acessing-data"><i class="fa fa-check"></i><b>3.1</b> Acessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html"><i class="fa fa-check"></i><b>4</b> Wind and Pollution Roses</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#example-of-use"><i class="fa fa-check"></i><b>4.1</b> Example of use</a></li>
+<li class="chapter" data-level="4.2" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#sec:comp-met"><i class="fa fa-check"></i><b>4.2</b> Comparing two meteorological data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="percentile-roses.html"><a href="percentile-roses.html"><i class="fa fa-check"></i><b>5</b> Percentile roses</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="percentile-roses.html"><a href="percentile-roses.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="percentile-roses.html"><a href="percentile-roses.html#examples"><i class="fa fa-check"></i><b>5.2</b> Examples</a></li>
+<li class="chapter" data-level="5.3" data-path="percentile-roses.html"><a href="percentile-roses.html#sec:CPF"><i class="fa fa-check"></i><b>5.3</b> Condtional probability function</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>6</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="polarPlot.html"><a href="polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>6.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="6.2" data-path="polarPlot.html"><a href="polarPlot.html#polarplot-examples"><i class="fa fa-check"></i><b>6.2</b> <code>polarPlot</code> examples</a></li>
+<li class="chapter" data-level="6.3" data-path="polarPlot.html"><a href="polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>6.3</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="6.4" data-path="polarPlot.html"><a href="polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>6.4</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="6.5" data-path="polarPlot.html"><a href="polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>6.5</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="6.6" data-path="polarPlot.html"><a href="polarPlot.html#clustering"><i class="fa fa-check"></i><b>6.6</b> Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>7</b> Calendar plots</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>7.2</b> Calendar examples</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:calendarPlot" class="section level1" number="7">
+<h1><span class="header-section-number">Section 7</span> Calendar plots</h1>
+<div id="purpose" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Purpose</h2>
+<p>Sometimes it is useful to visualise data in a familiar way. Calendars
+are the obvious way to represent data for data on the time scale of
+days or months. The <code>calendarPlot</code> function provides an effective
+way to visualise data in this way by showing daily concentrations laid
+out in a calendar format. The concentration of a species is shown by
+its colour. The data can be shown in different ways. By default,
+<code>calendarPlot</code> overlays the day of the month. However, if wind
+speed and wind direction are available then an arrow can be shown for
+each day giving the vector-averaged wind direction. In addition, the
+arrow can be scaled according to the wind speed to highlight both the
+direction and strength of the wind on a particular day, which can help
+show the influence of meteorology on pollutant concentrations.</p>
+<p><code>calendarPlot</code> can also show the daily mean concentration as a
+number on each day and can be extended to highlight those conditions
+where daily mean (or maximum etc.) concentrations are above a
+particular threshold. This approach is useful for highlighting daily
+air quality limits e.g. when the daily mean concentration is greater
+than 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+<p>The <code>calendarPlot</code> function can also be used to plot categorical
+scales. This is useful for plotting concentrations expressed as an air
+quality index i.e. intervals of concentrations that are expressed in
+ways like ‘very good’, ‘good’, ‘poor’ and so on.</p>
+</div>
+<div id="calendar-examples" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Calendar examples</h2>
+<p>The function is called in the usual way. As a minimum, a data frame,
+pollutant and year is required. So to show O<sub>3</sub> concentrations for
+each day in 2003 (Figure <a href="sec-calendarPlot.html#fig:calendarPlot">7.1</a>). Note that if <code>year</code>
+is not supplied the full data set will be used.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sec-calendarPlot.html#cb60-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb60-2"><a href="sec-calendarPlot.html#cb60-2" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:calendarPlot"></span>
+<img src="openair_files/figure-html/calendarPlot-1.png" alt="`calendarPlot` for O~3~ concentrations in 2003." width="576" />
+<p class="caption">
+Figure 7.1: <code>calendarPlot</code> for O<sub>3</sub> concentrations in 2003.
+</p>
+</div>
+<p>It is sometimes useful to annotate the plots with other
+information. It is possible to show the daily mean
+wind angle, which can also be scaled to wind speed. The idea here
+being to provide some information on meteorological conditions on each
+day. Another useful option is to set <code>annotate = "value"</code> in
+which case the daily concentration will be shown on each
+day. Furthermore, it is sometimes useful to highlight particular
+values more clearly. For example, to highlight daily mean PM<sub>10</sub>
+concentrations above 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>. This is where setting <code>lim</code> (a
+concentration limit) is useful. In setting <code>lim</code> the user can then
+differentiate the values below and above <code>lim</code> by colour of text,
+size of text and type of text e.g. plain and bold.</p>
+<p>Figure <a href="sec-calendarPlot.html#fig:calendarPlotExceed">7.2</a> highlights those days where PM<sub>10</sub>
+concentrations exceed 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup> by making the annotation for those days
+bigger, bold and orange. Plotting the data in this way clearly shows
+the days where PM<sub>10</sub> &gt; 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+<p>Other <strong>openair</strong> functions can be used to plot other statistics. For
+example, <code>rollingMean</code> could be used to calculate rolling 8-hour
+mean O<sub>3</sub> concentrations. Then, <code>calendarPlot</code> could be used with
+<code>statistic = "max"</code> to show days where the maximum daily rolling
+8-hour mean O<sub>3</sub> concentration is greater than a certain threshold
+e.g. 100 or 120~<span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sec-calendarPlot.html#cb61-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>, </span>
+<span id="cb61-2"><a href="sec-calendarPlot.html#cb61-2" aria-hidden="true"></a>             <span class="dt">annotate =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb61-3"><a href="sec-calendarPlot.html#cb61-3" aria-hidden="true"></a>             <span class="dt">lim =</span><span class="dv">50</span>, </span>
+<span id="cb61-4"><a href="sec-calendarPlot.html#cb61-4" aria-hidden="true"></a>             <span class="dt">cols =</span> <span class="st">&quot;Purples&quot;</span>, </span>
+<span id="cb61-5"><a href="sec-calendarPlot.html#cb61-5" aria-hidden="true"></a>             <span class="dt">col.lim =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,  <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb61-6"><a href="sec-calendarPlot.html#cb61-6" aria-hidden="true"></a>             <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:calendarPlotExceed"></span>
+<img src="openair_files/figure-html/calendarPlotExceed-1.png" alt="calendarPlot for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM10 &gt;50~\(\mu\)g m-3. The numbers show the PM10 concentration in \(\mu\)g m-3." width="768" />
+<p class="caption">
+Figure 7.2: <code>calendarPlot</code> for PM<sub>10</sub> concentrations in 2003 with annotations highlighting those days where the concentration of PM<sub>10</sub> &gt;50~<span class="math inline">\(\mu\)</span>g m<sup>-3</sup>. The numbers show the PM<sub>10</sub> concentration in <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.
+</p>
+</div>
+<p>To show wind angle, scaled to wind speed (Figure <a href="sec-calendarPlot.html#fig:calendarPlot2">7.3</a>).</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sec-calendarPlot.html#cb62-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>, </span>
+<span id="cb62-2"><a href="sec-calendarPlot.html#cb62-2" aria-hidden="true"></a>             <span class="dt">annotate =</span> <span class="st">&quot;ws&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:calendarPlot2"></span>
+<img src="openair_files/figure-html/calendarPlot2-1.png" alt="`calendarPlot` for O~3~ concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O~3~ concentrations on the 17 and 18th of April were associated with strong north-easterly winds" width="80%" />
+<p class="caption">
+Figure 7.3: <code>calendarPlot</code> for O<sub>3</sub> concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O<sub>3</sub> concentrations on the 17 and 18th of April were associated with strong north-easterly winds
+</p>
+</div>
+<p>Note again that <code>selectByDate</code> can be useful. For example, to
+plot select months:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="sec-calendarPlot.html#cb63-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>, </span>
+<span id="cb63-2"><a href="sec-calendarPlot.html#cb63-2" aria-hidden="true"></a>                          <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&quot;jun&quot;</span>, <span class="st">&quot;jul&quot;</span>, <span class="st">&quot;aug&quot;</span>)),</span>
+<span id="cb63-3"><a href="sec-calendarPlot.html#cb63-3" aria-hidden="true"></a>             <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>)</span></code></pre></div>
+<p>Figure <a href="sec-calendarPlot.html#fig:calendarPlotCategor">7.4</a> shows an example of plotting data
+with a categorical scale. In this case the options <code>labels</code> and
+<code>breaks</code> have been used to define concentration intervals and their
+descriptions. Note that <code>breaks</code> needs to be one longer than
+<code>labels</code>. In the example in Figure <a href="sec-calendarPlot.html#fig:calendarPlotCategor">7.4</a> the
+first interval (‘Very low’) is defined as concentrations from 0 to
+50 (ppb), ‘Low’ is 50 to 100 and so on. Note that the upper value of
+<code>breaks</code> should be a number greater than the maximum value
+contained in the data to ensure that it is encompassed. In the example
+given in Figure <a href="sec-calendarPlot.html#fig:calendarPlotCategor">7.4</a> the maximum daily
+concentration is plotted. These types of plots are very useful for
+considering national or international air quality indexes.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sec-calendarPlot.html#cb64-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>,</span>
+<span id="cb64-2"><a href="sec-calendarPlot.html#cb64-2" aria-hidden="true"></a>  <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">1000</span>),</span>
+<span id="cb64-3"><a href="sec-calendarPlot.html#cb64-3" aria-hidden="true"></a>  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Very low&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Very High&quot;</span>),</span>
+<span id="cb64-4"><a href="sec-calendarPlot.html#cb64-4" aria-hidden="true"></a>  <span class="dt">cols =</span> <span class="st">&quot;increment&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:calendarPlotCategor"></span>
+<img src="openair_files/figure-html/calendarPlotCategor-1.png" alt="`calendarPlot` for NO~2~ concentrations in 2003 with a user-defined categorical scale." width="768" />
+<p class="caption">
+Figure 7.4: <code>calendarPlot</code> for NO<sub>2</sub> concentrations in 2003 with a user-defined categorical scale.
+</p>
+</div>
+<p>The user can explicitly set each colour interval:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="sec-calendarPlot.html#cb65-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>,</span>
+<span id="cb65-2"><a href="sec-calendarPlot.html#cb65-2" aria-hidden="true"></a>  <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">1000</span>),</span>
+<span id="cb65-3"><a href="sec-calendarPlot.html#cb65-3" aria-hidden="true"></a>  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Very low&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Very High&quot;</span>),</span>
+<span id="cb65-4"><a href="sec-calendarPlot.html#cb65-4" aria-hidden="true"></a>  <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;forestgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>,  <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb65-5"><a href="sec-calendarPlot.html#cb65-5" aria-hidden="true"></a>  <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>)</span></code></pre></div>
+<p>Note that in the case of categorical scales it is possible to define
+the breaks and labels first and then make the plot. For example:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-calendarPlot.html#cb66-1" aria-hidden="true"></a>breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">34</span>, <span class="dv">66</span>, <span class="dv">100</span>, <span class="dv">121</span>, <span class="dv">141</span>, <span class="dv">160</span>, <span class="dv">188</span>, <span class="dv">214</span>, <span class="dv">240</span>, <span class="dv">500</span>)</span>
+<span id="cb66-2"><a href="sec-calendarPlot.html#cb66-2" aria-hidden="true"></a>labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Low.1&quot;</span>, <span class="st">&quot;Low.2&quot;</span>, <span class="st">&quot;Low.3&quot;</span>, <span class="st">&quot;Moderate.4&quot;</span>, <span class="st">&quot;Moderate.5&quot;</span>, <span class="st">&quot;Moderate.6&quot;</span>,</span>
+<span id="cb66-3"><a href="sec-calendarPlot.html#cb66-3" aria-hidden="true"></a>            <span class="st">&quot;High.7&quot;</span>, <span class="st">&quot;High.8&quot;</span>, <span class="st">&quot;High.9&quot;</span>, <span class="st">&quot;Very High.10&quot;</span>)</span>
+<span id="cb66-4"><a href="sec-calendarPlot.html#cb66-4" aria-hidden="true"></a></span>
+<span id="cb66-5"><a href="sec-calendarPlot.html#cb66-5" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>,</span>
+<span id="cb66-6"><a href="sec-calendarPlot.html#cb66-6" aria-hidden="true"></a>  <span class="dt">breaks =</span> breaks, <span class="dt">labels =</span> labels,</span>
+<span id="cb66-7"><a href="sec-calendarPlot.html#cb66-7" aria-hidden="true"></a>  <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>)</span></code></pre></div>
+<p>It is also possible to first use <code>rollingMean</code> to calculate
+statistics. For example, if one was interested in plotting the maximum
+daily rolling 8-hour mean concentration, the data could be prepared
+and plotted as follows.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="sec-calendarPlot.html#cb67-1" aria-hidden="true"></a><span class="co">## makes a new field &#39;rolling8o3&#39;</span></span>
+<span id="cb67-2"><a href="sec-calendarPlot.html#cb67-2" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">rollingMean</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">hours =</span> <span class="dv">8</span>)</span>
+<span id="cb67-3"><a href="sec-calendarPlot.html#cb67-3" aria-hidden="true"></a>breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">34</span>, <span class="dv">66</span>, <span class="dv">100</span>, <span class="dv">121</span>, <span class="dv">141</span>, <span class="dv">160</span>, <span class="dv">188</span>, <span class="dv">214</span>, <span class="dv">240</span>, <span class="dv">500</span>)</span>
+<span id="cb67-4"><a href="sec-calendarPlot.html#cb67-4" aria-hidden="true"></a>labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Low.1&quot;</span>, <span class="st">&quot;Low.2&quot;</span>, <span class="st">&quot;Low.3&quot;</span>, <span class="st">&quot;Moderate.4&quot;</span>, <span class="st">&quot;Moderate.5&quot;</span>, <span class="st">&quot;Moderate.6&quot;</span>,</span>
+<span id="cb67-5"><a href="sec-calendarPlot.html#cb67-5" aria-hidden="true"></a>            <span class="st">&quot;High.7&quot;</span>, <span class="st">&quot;High.8&quot;</span>, <span class="st">&quot;High.9&quot;</span>, <span class="st">&quot;Very High.10&quot;</span>)</span>
+<span id="cb67-6"><a href="sec-calendarPlot.html#cb67-6" aria-hidden="true"></a></span>
+<span id="cb67-7"><a href="sec-calendarPlot.html#cb67-7" aria-hidden="true"></a><span class="kw">calendarPlot</span>(dat, <span class="dt">pollutant =</span> <span class="st">&quot;rolling8o3&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>,</span>
+<span id="cb67-8"><a href="sec-calendarPlot.html#cb67-8" aria-hidden="true"></a>  <span class="dt">breaks =</span> breaks, <span class="dt">labels =</span> labels,</span>
+<span id="cb67-9"><a href="sec-calendarPlot.html#cb67-9" aria-hidden="true"></a>  <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>)</span></code></pre></div>
+<p>The UK has an air quality index for O<sub>3</sub>, NO<sub>2</sub>, PM<sub>10</sub> and 
+described in detail at
+(<a href="http://uk-air.defra.gov.uk/air-pollution/daqi" class="uri">http://uk-air.defra.gov.uk/air-pollution/daqi</a>) and
+<span class="citation">COMEAP (<a href="#ref-COMEAP2011" role="doc-biblioref">2011</a>)</span>. The index is most relevant to air quality
+forecasting, but is used widely for public information. Most other
+countries have similar indexes. Note that the indexes are calculated
+for different averaging times dependent on the pollutant: rolling
+8-hour mean for O<sub>3</sub>, hourly means for NO<sub>2</sub> and a fixed 24-hour
+mean for PM<sub>10</sub> and PM<sub>2.5</sub>.</p>
+<p>In the code below the labels and breaks are defined for each pollutant
+to make it easier to use the index in the
+<code>calendarPlot</code> function.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="sec-calendarPlot.html#cb68-1" aria-hidden="true"></a><span class="co">## the labels - same for all species</span></span>
+<span id="cb68-2"><a href="sec-calendarPlot.html#cb68-2" aria-hidden="true"></a>labels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1 - Low&quot;</span>, <span class="st">&quot;2 - Low&quot;</span>, <span class="st">&quot;3 - Low&quot;</span>, <span class="st">&quot;4 - Moderate&quot;</span>, <span class="st">&quot;5 - Moderate&quot;</span>,</span>
+<span id="cb68-3"><a href="sec-calendarPlot.html#cb68-3" aria-hidden="true"></a>            <span class="st">&quot;6 - Moderate&quot;</span>, <span class="st">&quot;7 - High&quot;</span>, <span class="st">&quot;8 - High&quot;</span>, <span class="st">&quot;9 - High&quot;</span>, <span class="st">&quot;10 - Very High&quot;</span>)</span>
+<span id="cb68-4"><a href="sec-calendarPlot.html#cb68-4" aria-hidden="true"></a>o3.breaks &lt;-<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">34</span>, <span class="dv">66</span>, <span class="dv">100</span>, <span class="dv">121</span>, <span class="dv">141</span>, <span class="dv">160</span>, <span class="dv">188</span>, <span class="dv">214</span>, <span class="dv">240</span>, <span class="dv">500</span>)</span>
+<span id="cb68-5"><a href="sec-calendarPlot.html#cb68-5" aria-hidden="true"></a>no2.breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">67</span>, <span class="dv">134</span>, <span class="dv">200</span>, <span class="dv">268</span>, <span class="dv">335</span>, <span class="dv">400</span>, <span class="dv">468</span>, <span class="dv">535</span>, <span class="dv">600</span>, <span class="dv">1000</span>)</span>
+<span id="cb68-6"><a href="sec-calendarPlot.html#cb68-6" aria-hidden="true"></a>pm10.breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">34</span>, <span class="dv">50</span>, <span class="dv">59</span>, <span class="dv">67</span>, <span class="dv">75</span>, <span class="dv">84</span>, <span class="dv">92</span>, <span class="dv">100</span>, <span class="dv">1000</span>)</span>
+<span id="cb68-7"><a href="sec-calendarPlot.html#cb68-7" aria-hidden="true"></a>pm25.breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">35</span>, <span class="dv">42</span>, <span class="dv">47</span>, <span class="dv">53</span>, <span class="dv">59</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">1000</span>)</span></code></pre></div>
+<p>Remember it is necessary to use the correct averaging time. Assuming
+data are imported using <code>importAURN</code> or similar, then the
+units will be in <span class="math inline">\(\mu\)</span>g m<sup>-3</sup> — if not the user should ensure this is the
+case. Note that rather than showing the day of the month (the default), <code>annotate = "value"</code> can be used to show the actual numeric value
+on each day. In this way, the colours represent the categorical
+interval the concentration on a day corresponds to <em>and</em> the
+actual value itself is shown.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="sec-calendarPlot.html#cb69-1" aria-hidden="true"></a><span class="co">## import test data</span></span>
+<span id="cb69-2"><a href="sec-calendarPlot.html#cb69-2" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;kc1&quot;</span>, <span class="dt">year =</span> <span class="dv">2010</span>)</span>
+<span id="cb69-3"><a href="sec-calendarPlot.html#cb69-3" aria-hidden="true"></a></span>
+<span id="cb69-4"><a href="sec-calendarPlot.html#cb69-4" aria-hidden="true"></a><span class="co">## no2 index example</span></span>
+<span id="cb69-5"><a href="sec-calendarPlot.html#cb69-5" aria-hidden="true"></a><span class="kw">calendarPlot</span>(dat, <span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">labels =</span> labels,</span>
+<span id="cb69-6"><a href="sec-calendarPlot.html#cb69-6" aria-hidden="true"></a>             <span class="dt">breaks =</span> no2.breaks, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span>
+<span id="cb69-7"><a href="sec-calendarPlot.html#cb69-7" aria-hidden="true"></a></span>
+<span id="cb69-8"><a href="sec-calendarPlot.html#cb69-8" aria-hidden="true"></a><span class="co">## for PM10 or PM2.5 we need the daily mean concentration</span></span>
+<span id="cb69-9"><a href="sec-calendarPlot.html#cb69-9" aria-hidden="true"></a><span class="kw">calendarPlot</span>(dat, <span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">labels =</span> labels,</span>
+<span id="cb69-10"><a href="sec-calendarPlot.html#cb69-10" aria-hidden="true"></a>             <span class="dt">breaks =</span> pm10.breaks, <span class="dt">statistic =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span>
+<span id="cb69-11"><a href="sec-calendarPlot.html#cb69-11" aria-hidden="true"></a></span>
+<span id="cb69-12"><a href="sec-calendarPlot.html#cb69-12" aria-hidden="true"></a><span class="co">## for ozone, need the rolling 8-hour mean</span></span>
+<span id="cb69-13"><a href="sec-calendarPlot.html#cb69-13" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">rollingMean</span>(dat, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">hours =</span> <span class="dv">8</span>)</span>
+<span id="cb69-14"><a href="sec-calendarPlot.html#cb69-14" aria-hidden="true"></a><span class="kw">calendarPlot</span>(dat, <span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">pollutant =</span> <span class="st">&quot;rolling8o3&quot;</span>, <span class="dt">labels =</span> labels,</span>
+<span id="cb69-15"><a href="sec-calendarPlot.html#cb69-15" aria-hidden="true"></a>             <span class="dt">breaks =</span> o3.breaks, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Applequist, Scott. 2012. “Wind Rose Bias Correction.” <em>Journal of Applied Meteorology and Climatology</em> 51 (7): 1305–9.</p>
+</div>
+<div>
+<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
+</div>
+<div>
+<p>Carslaw, D. C., and S. D. Beevers. 2013. “Characterising and Understanding Emission Sources Using Bivariate Polar Plots and K-Means Clustering.” <em>Environmental Modelling &amp; Software</em> 40 (0): 325–29. <a href="https://doi.org/10.1016/j.envsoft.2012.09.005">https://doi.org/10.1016/j.envsoft.2012.09.005</a>.</p>
+</div>
+<div>
+<p>Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. “Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.” <em>Atmospheric Environment</em> 40 (28): 5424–34.</p>
+</div>
+<div>
+<p>COMEAP. 2011. “Review of the Uk Air Quality Index: A Report by the Committee on the Medical Effects of Air Pollutants.” <a href="http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html">http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html</a>.</p>
+</div>
+<div>
+<p>Droppo, James G, and Bruce A Napier. 2008. “Wind Direction Bias in Generating Wind Roses and Conducting Sector-Based Air Dispersion Modeling.” <em>Journal of the Air &amp; Waste Management Association</em> 58 (7): 913–18.</p>
+</div>
+<div>
+<p>Grange, Stuart K, Alastair C Lewis, and David C Carslaw. 2016. “Source Apportionment Advances Using Polar Plots of Bivariate Correlation and Regression Statistics.” <em>Atmospheric Environment</em> 145: 128–34.</p>
+</div>
+<div>
+<p>Hastie, T. J., and R. J. Tibshirani. 1990. <em>Generalized Additive Models</em>. London: Chapman; Hall.</p>
+</div>
+<div>
+<p>Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. “Source Region Identification Using Kernel Smoothing.” Article. <em>Environmental Science &amp; Technology</em> 43 (11): 4090–7. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.</p>
+</div>
+<div>
+<p>Uria-Tellaetxe, I, and D. C. Carslaw. 2014. “Conditional Bivariate Probability Function for Source Identification.” <em>Environmental Modelling &amp; Software</em> 59: 1–9. <a href="https://doi.org/10.1016/j.envsoft.2014.05.002">https://doi.org/10.1016/j.envsoft.2014.05.002</a>.</p>
+</div>
+<div>
+<p>Westmoreland, E. J., N Carslaw, D. C. Carslaw, A. Gillah, and E. Bates. 2007. “Analysis of Air Quality Within a Street Canyon Using Statistical and Dispersion Modelling Techniques.” <em>Atmospheric Environment</em> 41 (39): 9195–9205.</p>
+</div>
+<div>
+<p>Wood, S. N. 2006. <em>Generalized Additive Models: An Introduction with R</em>. Chapman; Hall/CRC.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+<div>
+<p>Yu, K. N., Y. P. Cheung, T. Cheung, and R. C. Henry. 2004. “Identifying the Impact of Large Urban Airports on Local Air Quality by Nonparametric Regression.” <em>Atmospheric Environment</em> 38 (27): 4501–7.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-COMEAP2011">
+<p>COMEAP. 2011. “Review of the Uk Air Quality Index: A Report by the Committee on the Medical Effects of Air Pollutants.” <a href="http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html">http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="polarPlot.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/calendar-plot.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["openair.pdf", "openair.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
