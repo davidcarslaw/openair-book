@@ -144,6 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html"><i class="fa fa-check"></i><b>4</b> Wind and Pollution Roses</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#example-of-use"><i class="fa fa-check"></i><b>4.1</b> Example of use</a></li>
+<li class="chapter" data-level="4.2" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#sec:comp-met"><i class="fa fa-check"></i><b>4.2</b> Comparing two meteorological data sets</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>5</b> Polar plots</a>
 <ul>
@@ -190,11 +191,10 @@ from a certain angle and wind speed range.</p>
 <p>The <code>windRose</code> function also calculates the percentage of
 ‘calms’ i.e. when the wind speed is zero. UK Met Office data assigns
 these periods to 0 degrees wind direction with valid northerly winds
-being assigned to 360 degrees.</p>
+being assigned to 360<span class="math inline">\(^\circ\)</span>.</p>
 <p>The <code>windRose</code> function will also correct for bias when wind
 directions are rounded to the nearest 10 degrees but are displayed at
-angles that 10 degrees is not exactly divisible into e.g. 22.5
-degrees. When such data are binned, some angles i.e. N, E, S, W will
+angles that 10 degrees is not exactly divisible into e.g. 22.5<span class="math inline">\(^\circ\)</span>. When such data are binned, some angles i.e. N, E, S, W will
 comprise three intervals whereas others will comprise two, which can
 lead to significant bias. This issue and its solution is discussed by
 <span class="citation">Droppo and Napier (<a href="#ref-droppo2008" role="doc-biblioref">2008</a>)</span> and <span class="citation">Applequist (<a href="#ref-applequist2012" role="doc-biblioref">2012</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>
@@ -206,7 +206,8 @@ four directions are each reduced by a factor of 0.75 and the remaining
 <div id="example-of-use" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Example of use</h2>
 <p>First we load the packages:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="wind-and-pollution-roses.html#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="wind-and-pollution-roses.html#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb3-2"><a href="wind-and-pollution-roses.html#cb3-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>The function is very simply called as shown for Figure
 <a href="wind-and-pollution-roses.html#fig:windrose">4.1</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="wind-and-pollution-roses.html#cb4-1" aria-hidden="true"></a><span class="kw">windRose</span>(mydata)</span></code></pre></div>
@@ -216,132 +217,156 @@ four directions are each reduced by a factor of 0.75 and the remaining
 Figure 4.1: Use of <code>windRose</code> function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.
 </p>
 </div>
-<p> highlights some interesting differences
+<p>Figure <a href="wind-and-pollution-roses.html#fig:windRoseyear">4.2</a> highlights some interesting differences
 between the years. In 2000, for example, there were numerous occasions
 when the wind was from the SSW and 2003 clearly had more occasions
-when the wind was easterly. It can also be useful to use `type =
-“month”} to get an idea of how wind speed and direction vary
+when the wind was easterly. It can also be useful to use <code>type = "month"</code> to get an idea of how wind speed and direction vary
 seasonally.</p>
-<p>\begin{figure}</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wind-and-pollution-roses.html#cb5-1" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>))</span></code></pre></div>
-<img src="openair_files/figure-html/windRoseyear-1.png" width="1\textwidth" />
-<p>function to plot wind
-speed/direction frequencies by year. Wind speeds are split into
-the intervals shown by the scale in each panel. The grey circles
-show the 10 and 20 % frequencies.}
-{#fig:windroseyear}
-\end{figure}</p>
-<p>The <code>type} option is very flexible in **openair** and can be used to quickly consider the dependencies between variables. \autoref{sec:cutData} describes the basis of this option in **openair** plot. As an example, consider the question: what are the meteorological conditions that control high and low concentrations of \pmten? By setting</code>type = “pm10”}, <strong>openair</strong> will split the 
+<div class="figure"><span id="fig:windRoseyear"></span>
+<img src="openair_files/figure-html/windRoseyear-1.png" alt="Use of `windRose` function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies." width="960" />
+<p class="caption">
+Figure 4.2: Use of <code>windRose</code> function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies.
+</p>
+</div>
+<p>The <code>type</code> option is very flexible in <strong>openair</strong> and can be used to
+quickly consider the dependencies between
+variables. Section <a href="#sec:cutData"><strong>??</strong></a> describes the basis of this option in
+<strong>openair</strong> plot. As an example, consider the question: what are the
+meteorological conditions that control high and low concentrations of
+PM<sub>10</sub>? By setting <code>type = "pm10"</code>, <strong>openair</strong> will split the PM<sub>10</sub>
 concentrations into four <em>quantiles</em> i.e. roughly equal numbers
 of points in each level. The plot will then show four different wind
 roses for each quantile level, although the default number of levels
-can be set by the user — see <code>?cutData} for more details. \autoref{fig:windRsPM10} shows the results of setting</code>type = “pm10”}. For the lowest concentrations of the wind
+can be set by the user — see <code>?cutData</code> for more
+details. Figure <a href="wind-and-pollution-roses.html#fig:windRsPM10">4.3</a> shows the results of setting
+<code>type = "pm10"</code>. For the lowest concentrations of PM<sub>10</sub> the wind
 direction is dominated by northerly winds, and relatively low wind
 speeds. By contrast, the highest concentrations (plot furthest right)
 are dominated by relatively strong winds from the south-west. It is
 therefore very easy to obtain a good idea about the conditions that
 tend to lead to high (or low) concentrations of a
-pollutant. Furthermore, the `type} option is available in almost
+pollutant. Furthermore, the <code>type</code> option is available in almost
 all <strong>openair</strong> functions.</p>
-<p>\begin{figure}</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="wind-and-pollution-roses.html#cb6-1" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span></code></pre></div>
-<img src="openair_files/figure-html/windRsPM10-1.png" width="1\textwidth" />
-<p>{#fig:windRsPM10}
-\end{figure}</p>
+<div class="figure"><span id="fig:windRsPM10"></span>
+<img src="openair_files/figure-html/windRsPM10-1.png" alt="Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels." width="960" />
+<p class="caption">
+Figure 4.3: Wind rose for four different levels of PM<sub>10</sub> concentration. The levels are defined as the four <em>quantiles</em> of PM<sub>10</sub> concentration and the ranges are shown on each of the plot labels.
+</p>
+</div>
 <p>A comparison of the effect that bias has can be seen by plotting the
 following. Note the prominent frequencies for W, E and N in particular
-that are due to the bias issue discussed by .</p>
+that are due to the bias issue discussed by <span class="citation">Applequist (<a href="#ref-applequist2012" role="doc-biblioref">2012</a>)</span>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="wind-and-pollution-roses.html#cb7-1" aria-hidden="true"></a><span class="co">## no bias correction</span></span>
 <span id="cb7-2"><a href="wind-and-pollution-roses.html#cb7-2" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">angle =</span> <span class="fl">22.5</span>, <span class="dt">bias.corr =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb7-3"><a href="wind-and-pollution-roses.html#cb7-3" aria-hidden="true"></a></span>
 <span id="cb7-4"><a href="wind-and-pollution-roses.html#cb7-4" aria-hidden="true"></a><span class="co">## bias correction (the default)</span></span>
 <span id="cb7-5"><a href="wind-and-pollution-roses.html#cb7-5" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">angle =</span> <span class="fl">22.5</span>)</span></code></pre></div>
-<p><code>pollutionRose} is a variant of</code>windRose} that is useful for
+<p><code>pollutionRose</code> is a variant of <code>windRose</code> that is useful for
 considering pollutant concentrations by wind direction, or more
 specifically the percentage time the concentration is in a particular
 range. This type of approach can be very informative for air
-pollutant species, as demonstrated by Ronald Henry and co-authors in .</p>
-<p>You can produce similar pollution roses using the `pollutionRose}
-function in recent versions of <strong>openair</strong>, e.g. as in
-:</p>
-<p>\begin{figure}</p>
+pollutant species, as demonstrated by Ronald Henry and co-authors in <span class="citation">Henry et al. (<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>You can produce similar pollution roses using the <code>pollutionRose</code>
+function in recent versions of <strong>openair</strong>, e.g. as in Figure
+<a href="wind-and-pollution-roses.html#fig:pollutionrose1">4.4</a>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="wind-and-pollution-roses.html#cb8-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
-<img src="openair_files/figure-html/pollutionRose1-1.png" width=".45\textwidth" />
-<p>and default `pollutionRose} settings.}
-{#fig:pollutionrose1}
-\end{figure}</p>
-<p><code>pollutionRose} is *wrapper* for</code>windRose}. It simply
+<div class="figure"><span id="fig:pollutionrose1"></span>
+<img src="openair_files/figure-html/pollutionRose1-1.png" alt="NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings." width="50%" />
+<p class="caption">
+Figure 4.4: NO<sub>x</sub> pollution rose produced using <code>pollutionRose</code> and default <code>pollutionRose</code> settings.
+</p>
+</div>
+<p><code>pollutionRose</code> is <em>wrapper</em> for <code>windRose</code>. It simply
 replaces the wind speed data series in the supplied data set with
-another variable using the argument <code>pollutant} before passing that on to</code>windRose}. It also modifies <code>breaks} to estimate a sensible set of break points for that pollutant and uses a slightly different set of default options (key to right, wedge style plot) but otherwise handles arguments just like the parent</code>windRose}
+another variable using the argument <code>pollutant</code> before passing
+that on to <code>windRose</code>. It also modifies <code>breaks</code> to estimate a
+sensible set of break points for that pollutant and uses a slightly
+different set of default options (key to right, wedge style plot) but
+otherwise handles arguments just like the parent <code>windRose</code>
 function.</p>
-<p>While  indicates that higher 
+<p>While Figure <a href="wind-and-pollution-roses.html#fig:pollutionrose1">4.4</a> indicates that higher NO<sub>x</sub>
 concentrations are also associated with the SW, conditioning allows
-you to be much informative. For example, conditioning by 
-() demonstrates that higher 
+you to be much informative. For example, conditioning by SO<sub>2</sub>
+(Figure <a href="wind-and-pollution-roses.html#fig:pollutionrose2">4.5</a> demonstrates that higher NO<sub>x</sub>
 concentrations are associated with the SW and much of the higher
-concentrations. However, it also highlights a notable 
-contribution from the E, most apparent at highest 
-concentrations that is obscured in  by a
-relatively high background ().</p>
-<p>\begin{figure}</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wind-and-pollution-roses.html#cb9-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span></code></pre></div>
-<img src="openair_files/figure-html/pollutionRose2-1.png" width="1\textwidth" />
-<p>{#fig:pollutionrose2}
-\end{figure}</p>
-<p><code>pollutionRose} can also usefully be used to show which wind directions dominate the overall concentrations. By supplying the option</code>statistic = “prop.mean”} (proportion contribution to the
+SO<sub>2</sub> concentrations. However, it also highlights a notable NO<sub>x</sub>
+contribution from the E, most apparent at highest SO<sub>2</sub>
+concentrations that is obscured in Figure <a href="wind-and-pollution-roses.html#fig:pollutionrose1">4.4</a> by a
+relatively high NO<sub>x</sub> background (Figure <a href="wind-and-pollution-roses.html#fig:pollutionrose2">4.5</a>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wind-and-pollution-roses.html#cb9-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, </span>
+<span id="cb9-2"><a href="wind-and-pollution-roses.html#cb9-2" aria-hidden="true"></a>              <span class="dt">type =</span> <span class="st">&quot;so2&quot;</span>, </span>
+<span id="cb9-3"><a href="wind-and-pollution-roses.html#cb9-3" aria-hidden="true"></a>              <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:pollutionrose2"></span>
+<img src="openair_files/figure-html/pollutionRose2-1.png" alt="NO~x~ pollution rose conditioned by SO~2~ concentration." width="960" />
+<p class="caption">
+Figure 4.5: NO<sub>x</sub> pollution rose conditioned by SO<sub>2</sub> concentration.
+</p>
+</div>
+<p><code>pollutionRose</code> can also usefully be used to show which wind
+directions dominate the overall concentrations. By supplying the
+option <code>statistic = "prop.mean"</code> (proportion contribution to the
 mean), a good idea can be gained as to which wind directions
 contribute most to overall concentrations, as well as providing
 information on the different concentration levels. A simple plot is
-shown in , which clearly shows the dominance
-of south-westerly winds controlling the overall mean 
-concentrations at this site. Indeed, almost half the overall 
+shown in Figure <a href="wind-and-pollution-roses.html#fig:pollRoseAttr">4.6</a>, which clearly shows the dominance
+of south-westerly winds controlling the overall mean NO<sub>x</sub>
+concentrations at this site. Indeed, almost half the overall NO<sub>x</sub>
 concentration is contributed by two wind sectors to the
-south-west. The `polarFreq} function can also show this sort of
+south-west. The <code>polarFreq</code> function can also show this sort of
 information, but the pollution rose is more effective because both
 length and colour are used to show the contribution. These plots are
 very useful for understanding which wind directions control the
 overall mean concentrations.</p>
-<p>\begin{figure}</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="wind-and-pollution-roses.html#cb10-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;prop.mean&quot;</span>)</span></code></pre></div>
-<img src="openair_files/figure-html/pollRoseAttr-1.png" width=".45\textwidth" />
-<p>{#fig:pollRoseAttr}
-\end{figure}</p>
+<div class="figure"><span id="fig:pollRoseAttr"></span>
+<img src="openair_files/figure-html/pollRoseAttr-1.png" alt="Pollution rose showing which wind directions contribute mostto overall mean concentrations." width="50%" />
+<p class="caption">
+Figure 4.6: Pollution rose showing which wind directions contribute mostto overall mean concentrations.
+</p>
+</div>
 <p>It is sometimes useful to more clearly understand the contributions
 from wind directions that have low frequencies. For example, for a
-pollution rose of there are few occurrences of easterly winds
+pollution rose of SO<sub>2</sub> there are few occurrences of easterly winds
 making it difficult to see how the concentration intervals are made
 up. Try:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="wind-and-pollution-roses.html#cb11-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">seg =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>However, each wind sector can be normalised to give a probability
 between 0 and 1 to help show the variation within each wind sector
-more clearly. An example is shown in 
+more clearly. An example is shown in Figure <a href="wind-and-pollution-roses.html#fig:pollutionroseNorm">4.7</a>
 where for easterly winds it is now clearer that a greater proportion
-of the time the concentration is made up of high 
+of the time the concentration is made up of high SO<sub>2</sub>
 concentrations. In this plot each wind sector is scaled between 0 and
 1. Also shown with a black like is an indication of the wind direction
 frequency to remind us that winds from the east occur with a low
 frequency.</p>
-<p>\begin{figure}</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="wind-and-pollution-roses.html#cb12-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">normalise =</span> <span class="ot">TRUE</span>, <span class="dt">seg =</span> <span class="dv">1</span>)</span></code></pre></div>
-<img src="openair_files/figure-html/pollutionRoseNorm-1.png" width=".45\textwidth" />
-<p>normalised by each wind sector.}
-{#fig:pollutionroseNorm}
-\end{figure}</p>
-<p>{#sec:comp-met}</p>
-<p>The <code>pollutionRose} function is also useful for comparing two meteorological data sets. In this case a</code>reference’ data set is
+<div class="figure"><span id="fig:pollutionroseNorm"></span>
+<img src="openair_files/figure-html/pollutionRoseNorm-1.png" alt="SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector." width="50%" />
+<p class="caption">
+Figure 4.7: SO<sub>2</sub> pollution rose produced using <code>pollutionRose</code> normalised by each wind sector.
+</p>
+</div>
+</div>
+<div id="sec:comp-met" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Comparing two meteorological data sets</h2>
+<p>The <code>pollutionRose</code> function is also useful for comparing two
+meteorological data sets. In this case a ‘reference’ data set is
 compared with a second data set. There are many reasons for doing so
 e.g. to see how one site compares with another or for meteorological
 model evaluation (more on that in later sections). In this case,
-<code>ws} and</code>wd} are considered to the the reference data sets
+<code>ws</code> and <code>wd</code> are considered to the the reference data sets
 with which a second set of wind speed and wind directions are to be
-compared (<code>ws2} and</code>wd2}). The first set of values is
+compared (<code>ws2</code> and <code>wd2</code>). The first set of values is
 subtracted from the second and the differences compared. If for
-example, <code>wd2} was biased positive compared with</code>wd} then
-`pollutionRose} will show the bias in polar coordinates. In its
+example, <code>wd2</code> was biased positive compared with <code>wd</code> then
+<code>pollutionRose</code> will show the bias in polar coordinates. In its
 default use, wind direction bias is colour-coded to show negative bias
 in one colour and positive bias in another.</p>
 <p>Note that this plot is mostly aimed at showing wind direction
-biases. It does also show the wind speed bias . However, in most practical
+biases. It does also show the wind speed bias <em>but only if there
+is a wind direction bias also</em>. However, in most practical
 situations the plot should show both wind speed and direction biases
 together. An example of a situation where no wind speed bias would be
 shown would be for westerly winds where there was absolutely no bias
@@ -350,23 +375,24 @@ was a difference in wind speed. Users should be aware of this limitation.</p>
 <p>In the next example, some artificial wind direction data are generated
 by adding a positive bias of 30~degrees with some normally distributed
 scatter. Also, the wind speed data are given a positive bias. The
-results are shown in . The Figure clearly
+results are shown in Figure <a href="wind-and-pollution-roses.html#fig:pollRoseComp">4.8</a>. The Figure clearly
 shows the mean positive bias in wind direction i.e. the direction is
 displaced from north (no bias). The colour scale also shows the extent
 to which wind speeds are biased i.e. there is a higher proportion of
 positively biased wind speeds shown by the red colour compared with the
-negatively biased shown in blue. Also shown in
- is the mean wind speed and direction bias
+negatively biased shown in blue. Also shown in Figure
+<a href="wind-and-pollution-roses.html#fig:pollRoseComp">4.8</a> is the mean wind speed and direction bias
 as numerical values.</p>
-<p>Note that the <code>type} option can be used in \autoref{fig:pollRoseComp} e.g.</code>type = “month”} to split the
+<p>Note that the <code>type</code> option can be used in Figure
+<a href="wind-and-pollution-roses.html#fig:pollRoseComp">4.8</a> e.g. <code>type = "month"</code> to split the
 analysis in useful ways. This is useful if one wanted to see whether a
 site or the output from a model was biased for different periods. For
-example, `type = “daylight”} would show whether there are biases
+example, <code>type = "daylight"</code> would show whether there are biases
 between nighttime and daytime conditions.</p>
 <p>\begin{figure}</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="wind-and-pollution-roses.html#cb13-1" aria-hidden="true"></a><span class="co">## $example of comparing 2 met sites</span></span>
 <span id="cb13-2"><a href="wind-and-pollution-roses.html#cb13-2" aria-hidden="true"></a><span class="co">## first we will make some new ws/wd data with a postive bias</span></span>
-<span id="cb13-3"><a href="wind-and-pollution-roses.html#cb13-3" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">transform</span>(mydata,</span>
+<span id="cb13-3"><a href="wind-and-pollution-roses.html#cb13-3" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata,</span>
 <span id="cb13-4"><a href="wind-and-pollution-roses.html#cb13-4" aria-hidden="true"></a>                    <span class="dt">ws2 =</span> ws <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">nrow</span>(mydata)) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>,</span>
 <span id="cb13-5"><a href="wind-and-pollution-roses.html#cb13-5" aria-hidden="true"></a>                    <span class="dt">wd2 =</span> wd <span class="op">+</span><span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">nrow</span>(mydata)) <span class="op">+</span><span class="st"> </span><span class="dv">30</span>)</span>
 <span id="cb13-6"><a href="wind-and-pollution-roses.html#cb13-6" aria-hidden="true"></a></span>
@@ -375,15 +401,22 @@ between nighttime and daytime conditions.</p>
 <span id="cb13-9"><a href="wind-and-pollution-roses.html#cb13-9" aria-hidden="true"></a>mydata<span class="op">$</span>wd2[id] &lt;-<span class="st"> </span>mydata<span class="op">$</span>wd2[id] <span class="op">+</span><span class="st"> </span><span class="dv">360</span></span>
 <span id="cb13-10"><a href="wind-and-pollution-roses.html#cb13-10" aria-hidden="true"></a></span>
 <span id="cb13-11"><a href="wind-and-pollution-roses.html#cb13-11" aria-hidden="true"></a><span class="co">## results show postive bias in wd and ws</span></span>
-<span id="cb13-12"><a href="wind-and-pollution-roses.html#cb13-12" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">ws =</span> <span class="st">&quot;ws&quot;</span>, <span class="dt">wd =</span> <span class="st">&quot;wd&quot;</span>, <span class="dt">ws2 =</span> <span class="st">&quot;ws2&quot;</span>, <span class="dt">wd2 =</span> <span class="st">&quot;wd2&quot;</span>, <span class="dt">grid.line =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="openair_files/figure-html/pollutionRoseComp-1.png" width=".45\textwidth" /></p>
-<p>{#fig:pollRoseComp}
-\end{figure}</p>
-<p>An example of using user-supplied breaks is shown in
-. In this case six intervals are chosen
-including one that spans $-$0.5 to $+$0.5 that is useful to show wind
+<span id="cb13-12"><a href="wind-and-pollution-roses.html#cb13-12" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, </span>
+<span id="cb13-13"><a href="wind-and-pollution-roses.html#cb13-13" aria-hidden="true"></a>              <span class="dt">ws =</span> <span class="st">&quot;ws&quot;</span>, </span>
+<span id="cb13-14"><a href="wind-and-pollution-roses.html#cb13-14" aria-hidden="true"></a>              <span class="dt">wd =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb13-15"><a href="wind-and-pollution-roses.html#cb13-15" aria-hidden="true"></a>              <span class="dt">ws2 =</span> <span class="st">&quot;ws2&quot;</span>, </span>
+<span id="cb13-16"><a href="wind-and-pollution-roses.html#cb13-16" aria-hidden="true"></a>              <span class="dt">wd2 =</span> <span class="st">&quot;wd2&quot;</span>, </span>
+<span id="cb13-17"><a href="wind-and-pollution-roses.html#cb13-17" aria-hidden="true"></a>              <span class="dt">grid.line =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:pollRoseComp"></span>
+<img src="openair_files/figure-html/pollRoseComp-1.png" alt="Pollution rose showing the difference between two  meteorological data sets. The colours are used to show whether data tend to be positively or negatively biased with respect to the reference data set." width="50%" />
+<p class="caption">
+Figure 4.8: Pollution rose showing the difference between two meteorological data sets. The colours are used to show whether data tend to be positively or negatively biased with respect to the reference data set.
+</p>
+</div>
+<p>An example of using user-supplied breaks is shown in Figure
+<a href="wind-and-pollution-roses.html#fig:pollRoseComp2">4.9</a>. In this case six intervals are chosen
+including one that spans -0.5 to +0.5 that is useful to show wind
 speeds that do not change.</p>
-<p>\begin{figure}</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="wind-and-pollution-roses.html#cb14-1" aria-hidden="true"></a><span class="co">## add some wd bias to some nighttime hours</span></span>
 <span id="cb14-2"><a href="wind-and-pollution-roses.html#cb14-2" aria-hidden="true"></a>id &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">as.numeric</span>(<span class="kw">format</span>(mydata<span class="op">$</span>date, <span class="st">&quot;%H&quot;</span>)) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
 <span id="cb14-3"><a href="wind-and-pollution-roses.html#cb14-3" aria-hidden="true"></a>mydata<span class="op">$</span>wd2[id] &lt;-<span class="st"> </span>mydata<span class="op">$</span>wd[id] <span class="op">+</span><span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">length</span>(id)) <span class="op">+</span><span class="st"> </span><span class="dv">120</span></span>
@@ -394,9 +427,12 @@ speeds that do not change.</p>
 <span id="cb14-8"><a href="wind-and-pollution-roses.html#cb14-8" aria-hidden="true"></a>              <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">11</span>, <span class="dv">-2</span>, <span class="dv">-1</span>, <span class="fl">-0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">11</span>),</span>
 <span id="cb14-9"><a href="wind-and-pollution-roses.html#cb14-9" aria-hidden="true"></a>              <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue4&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;firebrick&quot;</span>),</span>
 <span id="cb14-10"><a href="wind-and-pollution-roses.html#cb14-10" aria-hidden="true"></a>              <span class="dt">grid.line =</span> <span class="dv">5</span>, <span class="dt">type =</span> <span class="st">&quot;daylight&quot;</span>)</span></code></pre></div>
-<p><img src="openair_files/figure-html/pollutionRoseComp2-1.png" width=".8\textwidth" /></p>
-<p>{#fig:pollRoseComp2}
-\end{figure}</p>
+<div class="figure"><span id="fig:pollRoseComp2"></span>
+<img src="openair_files/figure-html/pollRoseComp2-1.png" alt="Pollution rose showing the difference between two meteorological data sets. The colours are used to show whether data tend to be positively or negatively biased with respect to the reference data set. In this case the example shows how to use user-defined breaks and split the data by day/night for a latitude assumed to be London." width="80%" />
+<p class="caption">
+Figure 4.9: Pollution rose showing the difference between two meteorological data sets. The colours are used to show whether data tend to be positively or negatively biased with respect to the reference data set. In this case the example shows how to use user-defined breaks and split the data by day/night for a latitude assumed to be London.
+</p>
+</div>
 
 </div>
 </div>
@@ -408,12 +444,15 @@ speeds that do not change.</p>
 <div id="ref-droppo2008">
 <p>Droppo, James G, and Bruce A Napier. 2008. “Wind Direction Bias in Generating Wind Roses and Conducting Sector-Based Air Dispersion Modeling.” <em>Journal of the Air &amp; Waste Management Association</em> 58 (7): 913–18.</p>
 </div>
+<div id="ref-henry2009">
+<p>Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. “Source Region Identification Using Kernel Smoothing.” Article. <em>Environmental Science &amp; Technology</em> 43 (11): 4090–7. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.</p>
+</div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="1">
 <li id="fn1"><p>Thanks to Philippe
-Barn'eoud of Environment Canada for pointing this issue out.<a href="wind-and-pollution-roses.html#fnref1" class="footnote-back">↩︎</a></p></li>
+Barneoud of Environment Canada for pointing this issue out.<a href="wind-and-pollution-roses.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
