@@ -1,11 +1,5 @@
 # Percentile roses
 
-```{r include=FALSE}
-library(knitr)
-knit_hooks$set(crop = hook_pdfcrop)
-opts_chunk$set(fig.shofig.width='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
-```
-
 ## Introduction
 
 `percentileRose` calculates percentile levels of a pollutant and

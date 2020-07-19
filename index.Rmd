@@ -39,5 +39,5 @@ knitr::write_bib(c(
 library(knitr)
 library(tidyverse)
 knit_hooks$set(crop = hook_pdfcrop)
-opts_chunk$set(fig.align='center',fig.show='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
+opts_chunk$set(fig.show='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
 ```

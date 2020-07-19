@@ -1,11 +1,5 @@
 # Accessing UK Air Quality Data
 
-```{r include=FALSE}
-library(knitr)
-knit_hooks$set(crop = hook_pdfcrop)
-opts_chunk$set(fig.show='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
-```
-
 The UK has a surprisingly large amount of air quality data that is publicly accessible. The main UK AURN archive and regional (England, Scotland, Wales and Northern Ireland) together with
 Imperial College London's London Air Quality Network (LAQN) are 
 important and large databases of information that allow free public
