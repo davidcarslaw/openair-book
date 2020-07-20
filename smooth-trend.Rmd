@@ -17,14 +17,14 @@ features) nor too variable (perhaps fitting 'noise' rather than real
 effects). Some background information on the use of this approach in
 an air quality setting can be found in @Carslaw2007a.
 
-Section \#ref(sec:trends-gamm} considers smooth trends in more detail and
+Section \@ref(sec:trends-gam) considers smooth trends in more detail and
 considers how different models can be developed that can be quite
 sophisticated. Readers should consider this section if they are
 considering trend analysis in more depth.
 
 The user can select to deseasonalise the data first to provide a
 clearer indication of the overall trend on a monthly basis. The data
-are deseasonalised using the `stl} function. The user may also
+are deseasonalised using the `stl` function. The user may also
 select to use bootstrap simulations to provide an alternative method
 of estimating the uncertainties in the trend. In addition, the
 simulated estimates of uncertainty can account for autocorrelation in
@@ -64,25 +64,11 @@ smoothTrend(mydata, pollutant = "no2", deseason = TRUE, simulate =TRUE,
             main = "monthly mean deseasonalised no2 (bootstrap uncertainties)")
 ```
 
-If the interest is in considering seasonal trends, it makes sense to set the averaging time to 'season' and also show each season in a separate panel. In Figure \@ref(smoothTrendSeason) some data is imported for O~3~ from Lullington Heath on the south coast of England. This plot shows there is strongest evidence for an increase in O~3~ concentrations during springtime from about 2012 onwards. A probable reason for this increase is a general reduction in NO~x~ concentrations.
-
-```{r importLul}
-lh <- importAURN(site = "lh", year = 2000:2019)
-```
-
-```{r smoothTrendSeason,fig.width=6,fig.height=5,fig.cap='Trends in O~3~ by season at the Lullington Heath site with a seasonal averaging time and panel for each season.'}
-smoothTrend(lh, pollutant = "o3",
-            avg.time = "season",
-            type = "season",
-            date.breaks =4)
-```
-
 
 The `smoothTrend` function share many of the functionalities of
-the `TheilSen` function. Figure \#ref(fig:smoothwd) shows the
+the `TheilSen` function. Figure \@ref(fig:smoothwd) shows the
 result of applying this function to O~3~ concentrations. The code
-that produced Figure \#ref(fig:smoothwd) was:
-
+that produced Figure \@ref(fig:smoothwd) was:
 
 ```{r smoothwd,fig.width=10,fig.height=10,fig.cap='Trends in O~3~ using the `smoothTrend` function applied to Marylebone Road. The shading shows the estimated 95% confidence intervals.'}
 smoothTrend(mydata, pollutant = "o3", deseason = TRUE,
@@ -93,7 +79,7 @@ The `smoothTrend` function can easily be used to gain a large
 amount of information on trends easily. For example, how do trends in
 NO~2~, O~3~ and PM~10~ vary by season and wind sector. There are 8
 wind sectors and four seasons i.e. 32 plots. In Figure
-\#ref(fig:smoothwdSeason) all three pollutants are chosen and two
+\@ref(fig:smoothwdSeason) all three pollutants are chosen and two
 types (season and wind direction). We also reduce the number of axis
 labels and the line to improve clarity. There are numerous
 combinations of analyses that could be produced here and it is very
@@ -105,3 +91,17 @@ smoothTrend(mydata, pollutant = c("no2", "pm10", "o3"),
             date.breaks = 3, lty = 0)
 ```
 
+## Seasonal averages
+
+If the interest is in considering seasonal trends, it makes sense to set the averaging time to 'season' and also show each season in a separate panel. In Figure \@ref(fig:smoothTrendSeason) some data is imported for O~3~ from Lullington Heath on the south coast of England. This plot shows there is strongest evidence for an increase in O~3~ concentrations during springtime from about 2012 onwards. A probable reason for this increase is a general reduction in NO~x~ concentrations.
+
+```{r importLul}
+lh <- importAURN(site = "lh", year = 2000:2019)
+```
+
+```{r smoothTrendSeason,fig.width=6,fig.height=5,fig.cap='Trends in O~3~ by season at the Lullington Heath site with a seasonal averaging time and panel for each season.'}
+smoothTrend(lh, pollutant = "o3",
+            avg.time = "season",
+            type = "season",
+            date.breaks = 4)
+```
