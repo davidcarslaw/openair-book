@@ -1,4 +1,4 @@
-# Polar plots {#polarPlot}
+# Polar plots {#sec:polarPlot}
 
 This Sections considers the flexible  `polarPlot` function that is used to provide information about source characteritics. The clustering of polar plots is also considered using `polarCluster`.
 
@@ -134,7 +134,7 @@ further complexities.
   \sqrt{C_i} = s(u, v) + e_i (\#eq:gam-2)
 \end{equation}
 
-## `polarPlot` examples
+## Examples {#polar-plot-examples}
 
 We first use the function in its simplest form to make a polar plot of
 NO~x~. The code is very simple as shown in Figure \@ref(fig:polarPlot).

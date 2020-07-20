@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 7 Temporal variations | openair</title>
+  <meta name="description" content="This will eventually form a book related to the openair R package." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 7 Temporal variations | openair" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will eventually form a book related to the openair R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 7 Temporal variations | openair" />
+  
+  <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
+  
+
+<meta name="author" content="David Carslaw" />
+
+
+<meta name="date" content="2020-07-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sec-polarPlot.html"/>
+<link rel="next" href="sec-calendarPlot.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The openair book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#acessing-data"><i class="fa fa-check"></i><b>3.1</b> Acessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="accessing-uk-air-quality-data.html"><a href="accessing-uk-air-quality-data.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html"><i class="fa fa-check"></i><b>4</b> Wind and Pollution Roses</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#example-of-use"><i class="fa fa-check"></i><b>4.1</b> Example of use</a></li>
+<li class="chapter" data-level="4.2" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#sec:comp-met"><i class="fa fa-check"></i><b>4.2</b> Comparing two meteorological data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="percentile-roses.html"><a href="percentile-roses.html"><i class="fa fa-check"></i><b>5</b> Percentile roses</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="percentile-roses.html"><a href="percentile-roses.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="percentile-roses.html"><a href="percentile-roses.html#examples"><i class="fa fa-check"></i><b>5.2</b> Examples</a></li>
+<li class="chapter" data-level="5.3" data-path="percentile-roses.html"><a href="percentile-roses.html#sec:CPF"><i class="fa fa-check"></i><b>5.3</b> Condtional probability function</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>6</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>6.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="6.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>6.3</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="6.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>6.4</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="6.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>6.5</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="6.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#clustering"><i class="fa fa-check"></i><b>6.6</b> Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>7</b> Temporal variations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
+<li class="chapter" data-level="7.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>7.2</b> Applications</a></li>
+<li class="chapter" data-level="7.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>7.3</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>8</b> Calendar plots</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>8.1</b> Purpose</a></li>
+<li class="chapter" data-level="8.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>8.2</b> Calendar examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>9</b> Theil-Sen trends</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>9.1</b> Trend estimates</a></li>
+<li class="chapter" data-level="9.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>9.2</b> Example trend analysis</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>9.2.1</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:timeVariation" class="section level1" number="7">
+<h1><span class="header-section-number">Section 7</span> Temporal variations</h1>
+<div id="sec:purpose-time-var" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Purpose</h2>
+<p>In air pollution, the variation of a pollutant by time of day and day
+of week can reveal useful information concerning the likely
+sources. For example, road vehicle emissions tend to follow very
+regular patterns both on a daily and weekly basis. By contrast some
+industrial emissions or pollutants from natural sources (e.g. sea salt
+aerosol) may well have very different patterns.</p>
+<p>The <code>timeVariation</code> function produces four plots: day of the week
+variation, mean hour of day variation and a combined hour of day –
+day of week plot and a monthly plot. Also shown on the plots is the 95% confidence interval in the mean. These uncertainty limits can be
+helpful when trying to determine whether one candidate source is
+different from another. The uncertainty intervals are calculated
+through bootstrap re-sampling, which will provide better estimates than
+the application of assumptions based on normality, particularly when
+there are few data available. The function can consider one or two
+input variables. In addition, there is the option of ‘normalising’
+concentrations (or other quantities). Normalising is very useful for
+comparing the patterns of two different pollutants, which often cover
+very different ranges in concentration. Normalising is achieved by
+dividing the concentration of a pollutant by its mean value. Note also
+that any other variables besides pollutant concentrations can be
+considered e.g. meteorological or traffic data.</p>
+<p>There is also an option <code>difference</code> which is very useful for
+considering the difference in two time series and how they vary over
+different temporal resolutions. Again, bootstrap re-sampling methods
+are used to estimate the uncertainty of the difference in two means.</p>
+<div class="rmdcomment">
+<p>
+Care has been taken to ensure that wind direction (<code>wd</code>) is vector-averaged. Less obvious though is the uncertainty in wind direction. A pragmatic approach has been adopted here that considers how wind direction <em>changes</em>. For example, consider the following wind directions: 10, 10, 10, 180, 180, 180<span class="math inline"><span class="math inline">\(^\circ\)</span></span> The standard deviation of these numbers is 93<span class="math inline"><span class="math inline">\(^\circ\)</span></span>. However, what actually occurs is the wind direction is constant at 10<span class="math inline"><span class="math inline">\(^\circ\)</span></span> then switches to 180<span class="math inline"><span class="math inline">\(^\circ\)</span></span>. In terms of changes there is a sequence of numbers: 0, 0, 170, 0, 0 with a standard deviation of 76<span class="math inline"><span class="math inline">\(^\circ\)</span></span>. We use the latter method as a basis of calculating the 95% confidence intervals in the mean.
+</p>
+<p>
+There are also problems with simple averaging—for example, what is the average of 20 and 200<span class="math inline"><span class="math inline">\(^\circ\)</span></span>. It can’t be known. In some situations where the wind direction is bi-modal with differences around 180<span class="math inline"><span class="math inline">\(^\circ\)</span></span>, the mean can be ‘unstable’. For example, wind that is funnelled along a valley forcing it to be either easterly or westerly. Consider for example the mean of 0<span class="math inline"><span class="math inline">\(^\circ\)</span></span> and 179<span class="math inline"><span class="math inline">\(^\circ\)</span></span> (89.5<span class="math inline"><span class="math inline">\(^\circ\)</span></span>), but a small change in wind direction to 181<span class="math inline"><span class="math inline">\(^\circ\)</span></span> gives a mean of 270.5<span class="math inline"><span class="math inline">\(^\circ\)</span></span>. Some care should be exercised therefore when averaging wind direction. It is always a good idea to use the<code>windRose</code>function with type set to ‘month’ or ‘hour’.
+</p>
+</div>
+<p>The <code>timeVariation</code> function is probably one of the most useful
+functions that can be used for the analysis of air pollution. Here
+are a few uses/advantages:</p>
+<ul>
+<li><p>Variations in time are one of the most useful ways of
+characterising air pollution for a very wide range of pollutants
+including local urban pollutants and tropospheric background
+concentrations of ozone and the like.</p></li>
+<li><p>The function works well in conjunction with other functions
+such as <code>polarPlot</code> (see Section <a href="sec-polarPlot.html#sec:polarPlot">6</a>), where the latter may identify conditions
+of interest (say a wind speed/direction range). By sub-setting for
+those conditions in <code>timeVariation</code> the temporal
+characteristics of a particular source could be characterised and
+perhaps contrasted with another subset of conditions.</p></li>
+<li><p>The function can be used to compare a wide range of variables,
+if available. Suggestions include meteorological e.g. boundary
+layer height and traffic flows.</p></li>
+<li><p>The function can be used for comparing pollutants over
+different sites. See Section (<a href="#sec:data-prep-site"><strong>??</strong></a>) for examples
+of how to do this.</p></li>
+<li><p>The function can be used to compare one part of a time series
+with another. This is often a very powerful thing to do,
+particularly if concentrations are normalised. For example, there is
+often interest in knowing how diurnal/weekday/seasonal patterns vary
+with time. If a pollutant showed signs of an increase in recent
+years, then splitting the data set and comparing each part together
+can provide information on what is driving the change. Is there, for
+example, evidence that morning rush hour concentrations have become
+more important, or Sundays have become relatively more important? An
+example is given below using the <code>splitByDate</code> function.</p></li>
+<li><p><code>timeVariation</code> can be used to consider the differences
+between two time series, which will have multiple benefits. For
+example, for model evaluation it can be very revealing to consider
+the difference between observations and modelled values over
+different time scales. Considering such differences can help reveal
+the character and some reasons for why a model departs from
+reality.</p></li>
+</ul>
+</div>
+<div id="applications" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Applications</h2>
+<p>We apply the <code>timeVariation</code> function to PM<sub>10</sub> concentrations and
+take the opportunity to filter the data to maximise the signal from
+the road. The <code>polarPlot</code> function described in Section
+(Section <a href="sec-polarPlot.html#sec:polarPlot">6</a>) is very useful in this respect in highlighting
+the conditions under which different sources have their greatest
+impact. A subset of data is used filtering for wind speeds &gt; 3 m s<sup>-1</sup> and
+wind directions from 100–270 degrees. The code used is:</p>
+<p>The results are shown in Figure <a href="sec-timeVariation.html#fig:timeVar1">7.1</a>. The plot shown at
+the top-left shows the diurnal variation of concentrations for all
+days. It shows for example that PM<sub>10</sub> concentrations tend to peak
+around 9 am. The shading shows the 95% confidence intervals of the
+mean. The plot at the top-right shows how PM<sub>10</sub> concentrations vary
+by day of the week. Here there is strong evidence that PM<sub>10</sub> is much
+lower at the weekends and that there is a significant difference
+compared with weekdays. It also shows that concentrations tend to
+increase during the weekdays. Finally, the plot at the bottom shows
+both sets of information together to provide an overview of how
+concentrations vary.</p>
+<p>Note that the plot need not just consider pollutant
+concentrations. Other useful variables (if available) are
+meteorological and traffic flow or speed data. Often, the combination
+of several sets of data can be very revealing.</p>
+<p>The <code>filter</code> function is extremely useful in this respect. For
+example, if it were believed that a source had an effect under
+specific conditions; they can be isolated with the <code>filter</code>
+function. It is also useful if it is suspected that two or more
+sources are important that they can be isolated to some degree and
+compared. This is where the uncertainty intervals help — they provide
+an indication whether the behaviour of one source differs
+significantly from another.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sec-timeVariation.html#cb60-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb60-2"><a href="sec-timeVariation.html#cb60-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb60-3"><a href="sec-timeVariation.html#cb60-3" aria-hidden="true"></a></span>
+<span id="cb60-4"><a href="sec-timeVariation.html#cb60-4" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>,  wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>, wd <span class="op">&lt;</span><span class="st"> </span><span class="dv">270</span>),</span>
+<span id="cb60-5"><a href="sec-timeVariation.html#cb60-5" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;pm10 (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeVar1"></span>
+<img src="openair_files/figure-html/timeVar1-1.png" alt="Example plot using the `timeVariation` function to plot PM~10~ concentrations at Marylebone Road." width="1152" />
+<p class="caption">
+Figure 7.1: Example plot using the <code>timeVariation</code> function to plot PM<sub>10</sub> concentrations at Marylebone Road.
+</p>
+</div>
+<p>Figure <a href="sec-timeVariation.html#fig:timeVar2">7.2</a> shows the function applied to
+concentrations of NO<sub>x</sub>, CO, NO<sub>2</sub> and O<sub>3</sub> concentrations. In this
+case the concentrations have been normalised. The plot clearly shows
+the markedly different temporal trends in concentration. For CO, there
+is a very pronounced increase in concentrations during the peak pm
+rush hour. The other important difference is on Sundays when CO
+concentrations are relatively much higher than NO<sub>x</sub>. This is because
+flows of cars (mostly petrol) do not change that much by day of the
+week, but flows of vans and HGVs (diesel vehicles) are much less on
+Sundays. Note, however, that the monthly trend is very similar in each
+case — which indicates very similar source origins. Taken together,
+the plots highlight that traffic emissions dominate this site for CO
+and NO<sub>x</sub>, but there are important difference in how these emissions
+vary by hour of day and day of week.</p>
+<p>Also shown in the very different behaviour of O<sub>3</sub>. Because O<sub>3</sub>
+reacts with NO, concentrations of NO<sub>x</sub> and O<sub>3</sub> tend to be
+anti-correlated. Note also the clear peak in O<sub>3</sub> in April/May,
+which is due to higher northern hemispheric background concentrations
+in the spring. Even at a busy roadside site in central London this
+influence is clear to see.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sec-timeVariation.html#cb61-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, </span>
+<span id="cb61-2"><a href="sec-timeVariation.html#cb61-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;no2&quot;</span>, <span class="st">&quot;o3&quot;</span>), </span>
+<span id="cb61-3"><a href="sec-timeVariation.html#cb61-3" aria-hidden="true"></a>              <span class="dt">normalise =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeVar2"></span>
+<img src="openair_files/figure-html/timeVar2-1.png" alt="Example plot using the `timeVariation` function to plot NO~x~, CO, NO~2~ and O~3~ concentrations at Marylebone Road. In this plot, the concentrations are normalised." width="1152" />
+<p class="caption">
+Figure 7.2: Example plot using the <code>timeVariation</code> function to plot NO<sub>x</sub>, CO, NO<sub>2</sub> and O<sub>3</sub> concentrations at Marylebone Road. In this plot, the concentrations are normalised.
+</p>
+</div>
+<p>Another example is splitting the data set by time. We use the
+<code>splitByDate</code> function to divide up the data into dates before
+January 2003 and after January 2003. This time the option
+<code>difference</code> is used to highlight how NO<sub>2</sub> concentrations have
+changed over these two periods. The results are shown in Figure
+<a href="sec-timeVariation.html#fig:timeVar3">7.3</a>. There is some indication in this plot
+that data after 2003 seem to show more of a double peak in the diurnal
+plots; particularly in the morning rush hour. Also, the difference
+line does more clearly highlight a more substantial change over
+weekdays and weekends. Given that cars are approximately constant at
+this site each day, the change may indicate a change in vehicle
+emissions from other vehicle types. Given that it is known that
+primary NO<sub>2</sub> emissions are known to have increased sharply from the
+beginning of 2003 onwards, this perhaps provides clues as to the
+principal cause.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sec-timeVariation.html#cb62-1" aria-hidden="true"></a><span class="co">## split data into two periods (see Utlities section for more details)</span></span>
+<span id="cb62-2"><a href="sec-timeVariation.html#cb62-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">splitByDate</span>(mydata, <span class="dt">dates=</span> <span class="st">&quot;1/1/2003&quot;</span>,</span>
+<span id="cb62-3"><a href="sec-timeVariation.html#cb62-3" aria-hidden="true"></a>                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;before Jan. 2003&quot;</span>, <span class="st">&quot;After Jan. 2003&quot;</span>))</span>
+<span id="cb62-4"><a href="sec-timeVariation.html#cb62-4" aria-hidden="true"></a></span>
+<span id="cb62-5"><a href="sec-timeVariation.html#cb62-5" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb62-6"><a href="sec-timeVariation.html#cb62-6" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;split.by&quot;</span>, </span>
+<span id="cb62-7"><a href="sec-timeVariation.html#cb62-7" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeVar3"></span>
+<img src="openair_files/figure-html/timeVar3-1.png" alt="Example plot using the `timeVariation` function to plot NO~2~ concentrations at Marylebone Road. In this    plot, the concentrations are shown before and after January 2003." width="1152" />
+<p class="caption">
+Figure 7.3: Example plot using the <code>timeVariation</code> function to plot NO<sub>2</sub> concentrations at Marylebone Road. In this plot, the concentrations are shown before and after January 2003.
+</p>
+</div>
+<p>In the next example it is shown how to compare one subset of data of
+interest with another. Again, there can be many reasons for wanting to
+do this and perhaps the data set at Marylebone Road is not the most
+interesting to consider. Nevertheless, the code below shows how to
+approach such a problem. The scenario would be that one is interested
+in a specific set of conditions and it would be useful to compare that
+set, with another set. A good example would be from an analysis using
+the <code>polarPlot</code> function where a ‘feature’ of interest has been
+identified—maybe an indication of a different source. But does this
+potentially different source behave differently in terms of temporal
+variation? If it does, then maybe that provides evidence to support
+that it is a different source. In a wider context, this approach could
+be used in many different ways depending on available data. A good
+example is the analysis of model output where many diagnostic
+meteorological data are available. This is an area that will be
+developed.</p>
+<p>The approach here is to first make a new variable called <code>feature' and fill it with the value</code>other’. A subset of data is defined and the
+associated locations in the data frame identified. The subset of data
+is then used to update the `feature’ field with a new description. This
+approach could be extended to some quite complex situations.</p>
+<p>There are a couple of things to note in Figure
+<a href="sec-timeVariation.html#fig:timeVar2">7.2</a>. There seems to be evidence that for
+easterly winds &gt; 4 m s<sup>-1</sup> that concentrations of SO<sub>2</sub> are lower at
+night. Also, there is some evidence that concentrations for these
+conditions are also lower at weekends. This <em>might</em> reflect that
+SO<sub>2</sub> concentrations for these conditions tend to be dominated by
+tall stack emissions that have different activities to road transport
+sources. This technique will be returned to with different data sets
+in future.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="sec-timeVariation.html#cb63-1" aria-hidden="true"></a><span class="co">## make a field called &quot;site&quot; and fill: make all values = &quot;other&quot;</span></span>
+<span id="cb63-2"><a href="sec-timeVariation.html#cb63-2" aria-hidden="true"></a>mydata<span class="op">$</span>feature &lt;-<span class="st"> &quot;other&quot;</span></span>
+<span id="cb63-3"><a href="sec-timeVariation.html#cb63-3" aria-hidden="true"></a></span>
+<span id="cb63-4"><a href="sec-timeVariation.html#cb63-4" aria-hidden="true"></a><span class="co">## now find which indexes correspond to easterly conditions &gt; 4m/s ws</span></span>
+<span id="cb63-5"><a href="sec-timeVariation.html#cb63-5" aria-hidden="true"></a>id &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">with</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">180</span> ))</span>
+<span id="cb63-6"><a href="sec-timeVariation.html#cb63-6" aria-hidden="true"></a></span>
+<span id="cb63-7"><a href="sec-timeVariation.html#cb63-7" aria-hidden="true"></a><span class="co">## use the ids to update the site column</span></span>
+<span id="cb63-8"><a href="sec-timeVariation.html#cb63-8" aria-hidden="true"></a><span class="co">## there are now two values in site: &quot;other&quot; and &quot;easterly&quot;</span></span>
+<span id="cb63-9"><a href="sec-timeVariation.html#cb63-9" aria-hidden="true"></a>mydata<span class="op">$</span>feature[id] &lt;-<span class="st"> &quot;easterly&quot;</span></span>
+<span id="cb63-10"><a href="sec-timeVariation.html#cb63-10" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span><span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;feature&quot;</span>,  <span class="dt">ylab =</span> <span class="st">&quot;so2 (ppb)&quot;</span>,</span>
+<span id="cb63-11"><a href="sec-timeVariation.html#cb63-11" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeVar4"></span>
+<img src="openair_files/figure-html/timeVar4-1.png" alt="Example plot using the `timeVariation` function to plot SO~2~ concentrations at Marylebone Road. In this plot, the concentrations are shown for a subset of easterly conditions and everything else. Note that the uncertainty in the mean values for easterly winds is greater than *other*. This is mostly because the sample size is much lower for *easterly* compared  with *other*." width="1152" />
+<p class="caption">
+Figure 7.4: Example plot using the <code>timeVariation</code> function to plot SO<sub>2</sub> concentrations at Marylebone Road. In this plot, the concentrations are shown for a subset of easterly conditions and everything else. Note that the uncertainty in the mean values for easterly winds is greater than <em>other</em>. This is mostly because the sample size is much lower for <em>easterly</em> compared with <em>other</em>.
+</p>
+</div>
+<p>By default <code>timeVariation</code> shows the mean variation in different
+temporal components and the 95% confidence interval in the
+mean. However, it is also possible to show how the data are
+distributed by using a different option for <code>statistic</code>. When
+<code>statistic = "median"</code> the median line is shown together with the
+25/75th and 5/95th quantile values. Users can control the quantile
+values shown be setting the <code>conf.int</code>. For example, <code>conf.int =   c(0.25, 0.99)</code> will show the median, 25/75th and 1/99th quantile
+values. The <code>statistic = "median"</code> option is therefore very useful
+for showing how the data are distributed — somewhat similar to a box
+and whisker plot. Note that it is expected that only one pollutant
+should be shown when <code>statistic = "median"</code> is used due to
+potential over-plotting; although the function will display several
+species of required. An example is shown in Figure
+<a href="sec-timeVariation.html#fig:timeVarMedian">7.5</a> for PM<sub>10</sub> concentrations.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sec-timeVariation.html#cb64-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb64-2"><a href="sec-timeVariation.html#cb64-2" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeVarMedian"></span>
+<img src="openair_files/figure-html/timeVarMedian-1.png" alt="Example plot using the `timeVariation` function to show the variation in the median, 25/75th and 5/95th quantile values for PM~10~. The shading shows the extent to the 25/75th and 5/95th  quantiles." width="1152" />
+<p class="caption">
+Figure 7.5: Example plot using the <code>timeVariation</code> function to show the variation in the median, 25/75th and 5/95th quantile values for PM<sub>10</sub>. The shading shows the extent to the 25/75th and 5/95th quantiles.
+</p>
+</div>
+</div>
+<div id="output" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Output</h2>
+<p>The <code>timeVariation</code> function produces several outputs that can be
+used for further analysis or plotting. It is necessary to read the
+output into a variable for further processing. The code below shows
+the different objects that are returned and the code shows how to
+access them.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="sec-timeVariation.html#cb65-1" aria-hidden="true"></a>myOutput &lt;-<span class="st"> </span><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span>
+<span id="cb65-2"><a href="sec-timeVariation.html#cb65-2" aria-hidden="true"></a><span class="co">## show the first part of the day/hour variation</span></span>
+<span id="cb65-3"><a href="sec-timeVariation.html#cb65-3" aria-hidden="true"></a><span class="co">## note that value = mean, and Upper/Lower the 95% confid. intervals</span></span>
+<span id="cb65-4"><a href="sec-timeVariation.html#cb65-4" aria-hidden="true"></a><span class="kw">head</span>(myOutput<span class="op">$</span>data<span class="op">$</span>day.hour)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+## # Groups:   ci [1]
+##   variable wkday      hour default                        Mean Lower Upper    ci
+##   &lt;fct&gt;    &lt;ord&gt;     &lt;int&gt; &lt;fct&gt;                         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.63  3.19  0.95
+## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  3.02  3.46  0.95
+## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.09  3.59  0.95
+## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.98  3.56  0.95
+## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.39  3.90  0.95
+## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  4.01  4.58  0.95</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="sec-timeVariation.html#cb67-1" aria-hidden="true"></a><span class="co">## can make a new data frame of this data e.g.</span></span>
+<span id="cb67-2"><a href="sec-timeVariation.html#cb67-2" aria-hidden="true"></a>day.hour &lt;-<span class="st"> </span>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour</span>
+<span id="cb67-3"><a href="sec-timeVariation.html#cb67-3" aria-hidden="true"></a><span class="kw">head</span>(day.hour)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+## # Groups:   ci [1]
+##   variable wkday      hour default                        Mean Lower Upper    ci
+##   &lt;fct&gt;    &lt;ord&gt;     &lt;int&gt; &lt;fct&gt;                         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.63  3.19  0.95
+## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  3.02  3.46  0.95
+## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.09  3.59  0.95
+## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.98  3.56  0.95
+## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.39  3.90  0.95
+## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  4.01  4.58  0.95</code></pre>
+<p>All the numerical results are given by:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="sec-timeVariation.html#cb69-1" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour <span class="co">## are the weekday and hour results</span></span>
+<span id="cb69-2"><a href="sec-timeVariation.html#cb69-2" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>hour <span class="co">## are the diurnal results</span></span>
+<span id="cb69-3"><a href="sec-timeVariation.html#cb69-3" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day <span class="co">## are the weekday results</span></span>
+<span id="cb69-4"><a href="sec-timeVariation.html#cb69-4" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>month <span class="co">## are the monthly results</span></span></code></pre></div>
+<p>It is also possible to plot the individual plots that make up the
+(four) plots produced by <code>timeVariation</code>:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="sec-timeVariation.html#cb70-1" aria-hidden="true"></a><span class="co">## just the diurnal variation</span></span>
+<span id="cb70-2"><a href="sec-timeVariation.html#cb70-2" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;hour&quot;</span>)</span>
+<span id="cb70-3"><a href="sec-timeVariation.html#cb70-3" aria-hidden="true"></a><span class="co">## day and hour</span></span>
+<span id="cb70-4"><a href="sec-timeVariation.html#cb70-4" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day.hour&quot;</span>)</span>
+<span id="cb70-5"><a href="sec-timeVariation.html#cb70-5" aria-hidden="true"></a><span class="co">## weekday variation</span></span>
+<span id="cb70-6"><a href="sec-timeVariation.html#cb70-6" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day&quot;</span>)</span>
+<span id="cb70-7"><a href="sec-timeVariation.html#cb70-7" aria-hidden="true"></a><span class="co">## monthly variation</span></span>
+<span id="cb70-8"><a href="sec-timeVariation.html#cb70-8" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sec-polarPlot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-calendarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/time-variation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["openair.pdf", "openair.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

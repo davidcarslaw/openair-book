@@ -220,8 +220,6 @@ site or the output from a model was biased for different periods. For
 example, `type = "daylight"` would show whether there are biases
 between nighttime and daytime conditions.
 
-
-\begin{figure}
 ```{r pollRoseComp, fig.width=5,fig.height=5,out.width='50%',fig.cap='Pollution rose showing the difference between two  meteorological data sets. The colours are used to show whether data tend to be positively or negatively biased with respect to the reference data set.'}
 ## $example of comparing 2 met sites
 ## first we will make some new ws/wd data with a postive bias

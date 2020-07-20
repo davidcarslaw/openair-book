@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-19" />
+<meta name="date" content="2020-07-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="percentile-roses.html"/>
-<link rel="next" href="sec-calendarPlot.html"/>
+<link rel="next" href="sec-timeVariation.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -168,16 +168,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="polarPlot.html"><a href="polarPlot.html"><i class="fa fa-check"></i><b>6</b> Polar plots</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="polarPlot.html"><a href="polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>6.1</b> Introduction to polar plots</a></li>
-<li class="chapter" data-level="6.2" data-path="polarPlot.html"><a href="polarPlot.html#polarplot-examples"><i class="fa fa-check"></i><b>6.2</b> <code>polarPlot</code> examples</a></li>
+<li class="chapter" data-level="6.2" data-path="polarPlot.html"><a href="polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a></li>
 <li class="chapter" data-level="6.3" data-path="polarPlot.html"><a href="polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>6.3</b> Nonparametric Wind Regression, NWR</a></li>
 <li class="chapter" data-level="6.4" data-path="polarPlot.html"><a href="polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>6.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="6.5" data-path="polarPlot.html"><a href="polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>6.5</b> Pairwise statistics</a></li>
 <li class="chapter" data-level="6.6" data-path="polarPlot.html"><a href="polarPlot.html#clustering"><i class="fa fa-check"></i><b>6.6</b> Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>7</b> Calendar plots</a>
+<li class="chapter" data-level="7" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>7</b> Temporal variation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>7.1</b> Purpose</a></li>
-<li class="chapter" data-level="7.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>7.2</b> Calendar examples</a></li>
+<li class="chapter" data-level="7.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>7.1</b> Purpose</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#options-available"><i class="fa fa-check"></i><b>7.1.1</b> Options available</a></li>
+<li class="chapter" data-level="7.1.2" data-path="wind-and-pollution-roses.html"><a href="wind-and-pollution-roses.html#example-of-use"><i class="fa fa-check"></i><b>7.1.2</b> Example of use</a></li>
+<li class="chapter" data-level="7.1.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>7.1.3</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>8</b> Calendar plots</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>8.1</b> Purpose</a></li>
+<li class="chapter" data-level="8.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>8.2</b> Calendar examples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="theil-sen.html"><a href="theil-sen.html"><i class="fa fa-check"></i><b>9</b> Theil-Sen trends</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="theil-sen.html"><a href="theil-sen.html#sec:TheilSen"><i class="fa fa-check"></i><b>9.1</b> Trend estimates</a></li>
+<li class="chapter" data-level="9.2" data-path="theil-sen.html"><a href="theil-sen.html#example-trend-analysis"><i class="fa fa-check"></i><b>9.2</b> Example trend analysis</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>9.2.1</b> Output</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -317,8 +334,8 @@ further complexities.</p>
   \sqrt{C_i} = s(u, v) + e_i \tag{6.3}
 \end{equation}\]</span></p>
 </div>
-<div id="polarplot-examples" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> <code>polarPlot</code> examples</h2>
+<div id="polar-plot-examples" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Examples</h2>
 <p>We first use the function in its simplest form to make a polar plot of
 NO<sub>x</sub>. The code is very simple as shown in Figure <a href="polarPlot.html#fig:polarPlot">6.1</a>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="polarPlot.html#cb32-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
@@ -923,7 +940,7 @@ Figure 6.14: Temporal variation in daily SO<sub>2</sub> concentration at the Mar
         </div>
       </div>
 <a href="percentile-roses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-calendarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sec-timeVariation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

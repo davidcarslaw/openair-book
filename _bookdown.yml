@@ -9,4 +9,6 @@ rmd_files: ["index.Rmd",
 "wind-roses.Rmd",
 "percentile-roses.Rmd",
 "polar-plots.Rmd",
-"calendar-plot.Rmd"]
+"time-variation.Rmd",
+"calendar-plot.Rmd",
+"theil-sen.Rmd"]
