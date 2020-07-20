@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>openair</title>
+  <title>Section 9 Time proportion plots | openair</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="openair" />
+  <meta property="og:title" content="Section 9 Time proportion plots | openair" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="openair" />
+  <meta name="twitter:title" content="Section 9 Time proportion plots | openair" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="sec-timeVariation.html"/>
+<link rel="next" href="sec-calendarPlot.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -222,29 +222,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">openair</h1>
-<p class="author"><em>David Carslaw</em></p>
-<p class="date"><em>2020-07-20</em></p>
+<div id="sec:timeProp" class="section level1" number="9">
+<h1><span class="header-section-number">Section 9</span> Time proportion plots</h1>
+<div id="sec:timePropBack" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Background</h2>
+<p>The <code>timeProp</code> (‘time proportion’) function shows time series plots
+as stacked bar charts. For a particular time, proportions of a chosen
+variable are shown as a stacked bar chart. The different categories in
+the bar chart are made up from a character or factor variable in a
+data frame. The function is primarily developed to support the
+plotting of cluster analysis output from <code>polarCluster</code> (see Section
+<a href="sec-polarPlot.html#sec:polarCluster">7.6</a> and <code>trajCluster</code> (see Section
+<a href="#sec:trajCluster"><strong>??</strong></a> that consider local and regional (back
+trajectory) cluster analysis respectively. However, the function has
+more general use for understanding time series data. In order to plot
+time series in this way, some sort of time aggregation is needed,
+which is controlled by the option <code>avg.time</code>.</p>
+<p>The plot shows the value of <code>pollutant</code> on the y-axis (averaged
+according to <code>avg.time</code>). The time intervals are made up of bars
+split according to <code>proportion</code>. The bars therefore show how the
+total value of `pollutant} is made up for any time interval.</p>
 </div>
-<div id="prerequisites" class="section level1" number="1">
-<h1><span class="header-section-number">Section 1</span> Prerequisites</h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="sec:timePropEx" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Examples</h2>
+<p>An example of the <code>timeProp</code> function is shown in Figure
+<a href="sec-timeProp.html#fig:timeProp">9.1</a>. In this example SO<sub>2</sub> concentrations are
+considered for 2003 (using the <code>selectByDate</code> function). The
+averaging period is set to 3~days and the mean concentration is
+plotted and the proportion contribution by wind sector is given. Other
+options are chosen to place the key at the top and choose the number
+of columns used in the key. It is apparent from Figure <a href="sec-timeProp.html#fig:timeProp">9.1</a>
+that the highest SO<sub>2</sub> concentrations are dominated by winds from an
+easterly sector, but actually occur throughout the year.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="sec-timeProp.html#cb78-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb78-2"><a href="sec-timeProp.html#cb78-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
+<span id="cb78-3"><a href="sec-timeProp.html#cb78-3" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;wd&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>, <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb78-4"><a href="sec-timeProp.html#cb78-4" aria-hidden="true"></a>         <span class="dt">key.columns =</span> <span class="dv">8</span>, <span class="dt">ylab =</span> <span class="st">&quot;so2 (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timeProp"></span>
+<img src="openair_files/figure-html/timeProp-1.png" alt="`timeProp` plot for SO~2~ concentrations in 2003. The data are categorised into 8 wind sectors for 3-day averages." width="1440" />
+<p class="caption">
+Figure 9.1: <code>timeProp</code> plot for SO<sub>2</sub> concentrations in 2003. The data are categorised into 8 wind sectors for 3-day averages.
+</p>
+</div>
+<p>Note that <code>proportion</code> can be an existing categorical (i.e. factor
+or character) variable in a data frame. If a numeric variable is
+supplied, then it is typically cut into four quantile levels. So, for
+example, the plot below would show four intervals of wind speed, which
+would help show the wind speed conditions that control high SO<sub>2</sub>
+concentration — and importantly, when they occur.</p>
+<p>An example of using <code>timeProp</code> with a continuous variable is shown in Figure <a href="sec-timeProp.html#fig:timePropws">9.2</a>. In this case the wind speed values are split into 3 quantile levels. The number of quantiles used is determined by the option <code>n.levels</code>. This approach can be used for any numeric variables.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sec-timeProp.html#cb79-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb79-2"><a href="sec-timeProp.html#cb79-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb79-3"><a href="sec-timeProp.html#cb79-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
+<span id="cb79-4"><a href="sec-timeProp.html#cb79-4" aria-hidden="true"></a>         <span class="dt">n.levels =</span> <span class="dv">3</span>,</span>
+<span id="cb79-5"><a href="sec-timeProp.html#cb79-5" aria-hidden="true"></a>         <span class="dt">cols =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb79-6"><a href="sec-timeProp.html#cb79-6" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;ws&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>,</span>
+<span id="cb79-7"><a href="sec-timeProp.html#cb79-7" aria-hidden="true"></a>         <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">key.columns =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timePropws"></span>
+<img src="openair_files/figure-html/timePropws-1.png" alt="`timeProp` plot for SO~2~ concentrations in 2003. The data are categorised into 4 wind speed categories for 3-day averages." width="1440" />
+<p class="caption">
+Figure 9.2: <code>timeProp</code> plot for SO<sub>2</sub> concentrations in 2003. The data are categorised into 4 wind speed categories for 3-day averages.
+</p>
+</div>
+<p>One of the key uses of <code>timeProp</code> is to post-process cluster
+analysis data. Users should consider the uses of <code>timeProp</code> for
+cluster analysis shown in Section <a href="sec-polarPlot.html#sec:polarCluster">7.6</a> and Section
+<a href="#sec:trajCluster"><strong>??</strong></a>. In both these cases the cluster analysis
+yields a categorical output directly i.e. cluster, which lends itself
+to analysis using <code>timeProp</code>.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sec-timeVariation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-calendarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +330,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/time-proportion.Rmd",
 "text": "Edit"
 },
 "history": {
