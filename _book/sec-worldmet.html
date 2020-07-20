@@ -221,7 +221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Section 4</span> Access meteorological data</h1>
 <div id="the-worldmet-package" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> The <code>worldmet</code> package</h2>
-<p><span class="pkg">worldmet</span> provides an easy way in which to access surface
+<p>Most of the import functions described in Section <a href="sec-importAURN.html#sec:importAURN">3</a> return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.</p>
+<p>Alternatively it may be advantageous to used surface measurements. <span class="pkg">worldmet</span> provides an easy way in which to access surface
 meteorological data from &gt;30,000 sites across the world. The package
 accesses the NOAA webservers to download hourly data. Access to
 surface meteorological data is very useful in general but is
@@ -247,7 +248,7 @@ will load the <strong>worldmet</strong> package:</p>
 Figure 4.1: Map of returned area of interest. The user can interactively select a site of interest and find its code to import data.
 </p>
 </div>
-<p>Note that it is just as easy to access all the site information at once because it is easy to use the map to select the site and it’s code i.e.</p>
+<p>Note that it is just as easy to access all the site information at once because it is quick to use the map to select the site and its code i.e.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="sec-worldmet.html#cb18-1" aria-hidden="true"></a><span class="kw">getMeta</span>()</span></code></pre></div>
 <p>We can use the map that is produced to select a site of interest and
 import the data. For example, to import data for Dublin Airport and look at some of the data:</p>
