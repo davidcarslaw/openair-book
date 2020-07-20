@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 2 Introduction | openair</title>
+  <title>Section 5 Percentile roses | openair</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 2 Introduction | openair" />
+  <meta property="og:title" content="Section 5 Percentile roses | openair" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 2 Introduction | openair" />
+  <meta name="twitter:title" content="Section 5 Percentile roses | openair" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="sec-importAURN.html"/>
+<link rel="prev" href="sec-windRose.html"/>
+<link rel="next" href="sec-polarPlot.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -213,199 +213,147 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1" number="2">
-<h1><span class="header-section-number">Section 2</span> Introduction</h1>
-<p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="intro.html#intro">2</a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="#methods"><strong>??</strong></a>.</p>
-<p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro.html#cb2-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))</span>
-<span id="cb2-2"><a href="intro.html#cb2-2" aria-hidden="true"></a><span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
-<img src="openair_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
+<div id="sec:percentileRose" class="section level1" number="5">
+<h1><span class="header-section-number">Section 5</span> Percentile roses</h1>
+<div id="introduction" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction</h2>
+<p><code>percentileRose</code> calculates percentile levels of a pollutant and
+plots them by wind direction. One or more percentile levels can be
+calculated and these are displayed as either filled areas or as lines.</p>
+<p>By default, the function plots percentile concentrations in 10 degree
+segments. Alternatively, the levels by wind direction are calculated
+using a cyclic smooth cubic spline. The wind directions are rounded to
+the nearest 10 degrees, consistent with surface data from the UK Met
+Office before a smooth is fitted.</p>
+<p>The <code>percentileRose</code> function compliments other similar functions
+including <code>windRose</code>, <code>pollutionRose</code>, <code>polarFreq</code> or
+<code>polarPlot</code>. It is most useful for showing the distribution of
+concentrations by wind direction and often can reveal different
+sources e.g. those that only affect high percentile concentrations
+such as a chimney stack.</p>
+<p>Similar to other functions, flexible conditioning is available through
+the `type} option. It is easy for example to consider multiple
+percentile values for a pollutant by season, year and so on. See
+examples below.</p>
+</div>
+<div id="examples" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Examples</h2>
+<p>The first example is a basic plot of percentiles of O<sub>3</sub> shown in Figure
+<a href="sec-percentileRose.html#fig:percentileRose1">5.1</a>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="sec-percentileRose.html#cb27-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:percentileRose1"></span>
+<img src="openair_files/figure-html/percentileRose1-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. It shows for example that higher concentrations occur for northerly winds, as expected at this location. However, it also shows, for example the actual value of the 95th percentile O~3~ concentration." width="50%" />
 <p class="caption">
-Figure 2.1: Here is a nice figure!
+Figure 5.1: A <code>percentileRose</code> plot of O<sub>3</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. It shows for example that higher concentrations occur for northerly winds, as expected at this location. However, it also shows, for example the actual value of the 95th percentile O<sub>3</sub> concentration.
 </p>
 </div>
-<p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="intro.html#fig:nice-fig">2.1</a>. Similarly, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="intro.html#tab:nice-tab">2.1</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(</span>
-<span id="cb3-2"><a href="intro.html#cb3-2" aria-hidden="true"></a>  <span class="kw">head</span>(iris, <span class="dv">20</span>), <span class="dt">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb3-3"><a href="intro.html#cb3-3" aria-hidden="true"></a>  <span class="dt">booktabs =</span> <span class="ot">TRUE</span></span>
-<span id="cb3-4"><a href="intro.html#cb3-4" aria-hidden="true"></a>)</span></code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Table 2.1: </span>Here is a nice table!</caption>
-<thead>
-<tr class="header">
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.7</td>
-<td align="right">3.2</td>
-<td align="right">1.3</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.6</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.0</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.7</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.6</td>
-<td align="right">3.4</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.0</td>
-<td align="right">3.4</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.4</td>
-<td align="right">2.9</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.7</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.8</td>
-<td align="right">3.4</td>
-<td align="right">1.6</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.8</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.3</td>
-<td align="right">3.0</td>
-<td align="right">1.1</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.8</td>
-<td align="right">4.0</td>
-<td align="right">1.2</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.7</td>
-<td align="right">4.4</td>
-<td align="right">1.5</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.3</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.7</td>
-<td align="right">3.8</td>
-<td align="right">1.7</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.8</td>
-<td align="right">1.5</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-</tbody>
-</table>
-<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown" role="doc-biblioref">2020</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015" role="doc-biblioref">2015</a>)</span>. See <span class="citation">(Carslaw et al. <a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span></p>
+<p>A slightly more interesting plot is shown in Figure
+<a href="sec-percentileRose.html#fig:percentileRoseSO2">5.2</a> for SO<sub>2</sub> concentrations. We also
+take the opportunity of changing some default options. In this case it
+can be clearly seen that the highest concentrations of SO<sub>2</sub> are
+dominated by east and south-easterly winds; likely reflecting the
+influence of stack emissions in those directions.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="sec-percentileRose.html#cb28-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb28-2"><a href="sec-percentileRose.html#cb28-2" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">99</span>, <span class="fl">99.9</span>),</span>
+<span id="cb28-3"><a href="sec-percentileRose.html#cb28-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;brewer1&quot;</span>, <span class="dt">key.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:percentileRoseSO2"></span>
+<img src="openair_files/figure-html/percentileRoseSO2-1.png" alt="A `percentileRose` plot of SO~2~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. This plot sets some user-defined percentile levels to consider the higher SO~2~ concentrations, moves the key to the right and uses an alternative colour scheme." width="50%" />
+<p class="caption">
+Figure 5.2: A <code>percentileRose</code> plot of SO<sub>2</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. This plot sets some user-defined percentile levels to consider the higher SO<sub>2</sub> concentrations, moves the key to the right and uses an alternative colour scheme.
+</p>
+</div>
+<p>Lots more insight can be gained by considering how percentile values
+vary by other factors i.e. conditioning. For example, what do O<sub>3</sub>
+concentrations look like split by season and whether it is daylight or
+nighttime hours? We can set the type to consider season <em>and</em>
+whether it is daylight or nighttime.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> This Figure reveals
+some interesting features. First, O<sub>3</sub> concentrations are higher in
+the spring and summer and when the wind is from the north. O<sub>3</sub>
+concentrations are higher on average at this site in spring due to the
+peak of northern hemispheric O<sub>3</sub> and to some extent local
+production. This may also explain why O<sub>3</sub> concentrations are
+somewhat higher at nighttime in spring compared with summer. Second,
+peak O<sub>3</sub> concentrations are higher during daylight hours in summer
+when the wind is from the south-east. This will be due to more local
+(UK/European) production that is photochemically driven — and hence
+more important during daylight hours.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="sec-percentileRose.html#cb29-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>), <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb29-2"><a href="sec-percentileRose.html#cb29-2" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;Set3&quot;</span>, <span class="dt">mean.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:percentileRoseO3"></span>
+<img src="openair_files/figure-html/percentileRoseO3-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction.The plot shows the variation by season and whether  it is nighttime or daylight hours." width="960" />
+<p class="caption">
+Figure 5.3: A <code>percentileRose</code> plot of O<sub>3</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction.The plot shows the variation by season and whether it is nighttime or daylight hours.
+</p>
+</div>
+</div>
+<div id="sec:CPF" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Condtional probability function</h2>
+<p>The <code>percentileRose</code> function can also plot conditional probability
+functions (CPF) <span class="citation">(Ashbaugh, Malm, and Sadeh <a href="#ref-Ashbaugh1985" role="doc-biblioref">1985</a>)</span>. The CPF is defined as CPF =
+<span class="math inline">\(m_\theta/n_\theta\)</span>, where <span class="math inline">\(m_\theta\)</span> is the number of samples in the
+wind sector <span class="math inline">\(\theta\)</span> with mixing ratios greater than some `high’
+concentration, and <span class="math inline">\(n_\theta\)</span> is the total number of samples in the
+same wind sector. CPF analysis is very useful for showing which wind
+directions are dominated by high concentrations and give the
+probability of doing so. In <span class="pkg">openair</span>, a CPF plot can be produced as
+shown in <a href="sec-percentileRose.html#fig:percentileRoseCPF">5.4</a>. Note that in these plots
+only one percentile is provided and the method must be supplied. In
+<a href="sec-percentileRose.html#fig:percentileRoseCPF">5.4</a> it is clear that the high
+concentrations (greater than the 95th percentile of <em>all</em>
+observations) is dominated by easterly wind directions. There are very
+low conditional probabilities of these concentrations being
+experienced for other wind directions.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sec-percentileRose.html#cb30-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">poll=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">percentile =</span> <span class="dv">95</span>, </span>
+<span id="cb30-2"><a href="sec-percentileRose.html#cb30-2" aria-hidden="true"></a>               <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>,</span>
+<span id="cb30-3"><a href="sec-percentileRose.html#cb30-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:percentileRoseCPF"></span>
+<img src="openair_files/figure-html/percentileRoseCPF-1.png" alt="A CPF plot of SO~2~ concentrations at Marylebone Road." width="50%" />
+<p class="caption">
+Figure 5.4: A CPF plot of SO<sub>2</sub> concentrations at Marylebone Road.
+</p>
+</div>
+<p>It is easy to plot several species on the same plot and this works
+well because they all have the same probability scale (i.e. 0 to
+1). In the example below (not shown) it is easy to see for each
+pollutant the wind directions that dominate the contributions to the
+highest (95th percentile) concentrations. For example, the highest CO
+and concentrations are totally dominated by south/south-westerly
+winds and the probability of their being such high concentrations from
+other wind directions is effectively zero.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sec-percentileRose.html#cb31-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, </span>
+<span id="cb31-2"><a href="sec-percentileRose.html#cb31-2" aria-hidden="true"></a>               <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;so2&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;pm25&quot;</span>),</span>
+<span id="cb31-3"><a href="sec-percentileRose.html#cb31-3" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="dv">95</span>, <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
+<span id="cb31-4"><a href="sec-percentileRose.html#cb31-4" aria-hidden="true"></a>               <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:CPFExample"></span>
+<img src="openair_files/figure-html/CPFExample-1.png" alt="A CPF plot of many pollutants  at Marylebone Road." width="672" />
+<p class="caption">
+Figure 5.5: A CPF plot of many pollutants at Marylebone Road.
+</p>
+</div>
 
+</div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-Carslaw2006a">
-<p>Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. “Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.” <em>Atmospheric Environment</em> 40 (28): 5424–34.</p>
+<div id="ref-Ashbaugh1985">
+<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
 </div>
-<div id="ref-xie2015">
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
 </div>
-<div id="ref-R-bookdown">
-<p>Xie, Yihui. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
-</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>In choosing <code>type = "daylight"</code> the default is to consider a latitude of central
+London (or close to). Users can set the latitude in the function
+call if working in other parts of the world.<a href="sec-percentileRose.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-importAURN.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sec-windRose.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-polarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -436,7 +384,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/percentile-roses.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -57,7 +57,7 @@ concentrations exceed 50 $\mu$g m^-3^ by making the annotation for those days
 bigger, bold and orange. Plotting the data in this way clearly shows
 the days where PM~10~ > 50 $\mu$g m^-3^.
 
-Other **openair** functions can be used to plot other statistics. For
+Other [openair]{.pkg} functions can be used to plot other statistics. For
 example, `rollingMean` could be used to calculate rolling 8-hour
 mean O~3~ concentrations. Then, `calendarPlot` could be used with
 `statistic = "max"` to show days where the maximum daily rolling

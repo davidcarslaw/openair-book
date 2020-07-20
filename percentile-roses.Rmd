@@ -1,4 +1,4 @@
-# Percentile roses
+# Percentile roses {#sec:percentileRose}
 
 ## Introduction
 
@@ -78,7 +78,7 @@ wind sector $\theta$ with mixing ratios greater than some `high'
 concentration, and $n_\theta$ is the total number of samples in the
 same wind sector. CPF analysis is very useful for showing which wind
 directions are dominated by high concentrations and give the
-probability of doing so. In **openair**, a CPF plot can be produced as
+probability of doing so. In [openair]{.pkg}, a CPF plot can be produced as
 shown in \@ref(fig:percentileRoseCPF). Note that in these plots
 only one percentile is provided and the method must be supplied. In
 \@ref(fig:percentileRoseCPF) it is clear that the high

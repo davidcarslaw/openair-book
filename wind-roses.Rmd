@@ -1,4 +1,4 @@
-# Wind and Pollution Roses
+# Wind and Pollution Roses  {#sec:windRose} 
 
 The wind rose is a very useful way of summarising meteorological
 data. It is particularly useful for showing how wind speed and wind
@@ -26,7 +26,7 @@ comprise three intervals whereas others will comprise two, which can
 lead to significant bias. This issue and its solution is discussed by
 @droppo2008 and @applequist2012.^[Thanks to Philippe
   Barneoud of Environment Canada for pointing this issue out.]
-**openair** uses a simple method to correct for the bias by globally
+[openair]{.pkg} uses a simple method to correct for the bias by globally
 rescaling the count in each wind direction bin by the number of
 directions it represents relative to the average. Thus, the primary
 four directions are each reduced by a factor of 0.75 and the remaining
@@ -58,12 +58,12 @@ seasonally.
 windRose(mydata, type = "year", layout = c(4, 2))
 ```
 
-The `type` option is very flexible in **openair** and can be used to
+The `type` option is very flexible in [openair]{.pkg} and can be used to
 quickly consider the dependencies between
 variables. Section \@ref(sec:cutData) describes the basis of this option in
-**openair** plot. As an example, consider the question: what are the
+[openair]{.pkg} plot. As an example, consider the question: what are the
 meteorological conditions that control high and low concentrations of
-PM~10~? By setting `type = "pm10"`, **openair** will split the PM~10~
+PM~10~? By setting `type = "pm10"`, [openair]{.pkg} will split the PM~10~
 concentrations into four *quantiles* i.e. roughly equal numbers
 of points in each level. The plot will then show four different wind
 roses for each quantile level, although the default number of levels
@@ -76,7 +76,7 @@ are dominated by relatively strong winds from the south-west. It is
 therefore very easy to obtain a good idea about the conditions that
 tend to lead to high (or low) concentrations of a
 pollutant. Furthermore, the `type` option is available in almost
-all **openair** functions.
+all [openair]{.pkg} functions.
 
 ```{r windRsPM10,fig.width=10,fig.height=4,fig.cap='Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels.'}
 windRose(mydata, type = "pm10", layout = c(4, 1))
@@ -101,7 +101,7 @@ range.  This type of approach can be very informative for air
 pollutant species, as demonstrated by Ronald Henry and co-authors in @henry2009.
 
 You can produce similar pollution roses using the `pollutionRose`
-function in recent versions of **openair**, e.g. as in Figure
+function in recent versions of [openair]{.pkg}, e.g. as in Figure
 \@ref(fig:pollutionrose1):
 
 ```{r pollutionrose1,fig.width=5,fig.height=4,out.width='50%',fig.cap='NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings.'}
@@ -149,7 +149,7 @@ length and colour are used to show the contribution. These plots are
 very useful for understanding which wind directions control the
 overall mean concentrations.
 
-```{r pollRoseAttr,fig.width=5,h=5,out.width='50%',fig.cap='Pollution rose showing which wind directions contribute mostto overall mean concentrations.'}
+```{r pollRoseAttr,fig.width=5,h=5,out.width='50%',fig.cap='Pollution rose showing which wind directions contribute most to overall mean concentrations.'}
 pollutionRose(mydata, pollutant = "nox", statistic = "prop.mean")
 ```
 It is sometimes useful to more clearly understand the contributions

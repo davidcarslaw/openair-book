@@ -31,7 +31,7 @@ considering the difference in two time series and how they vary over
 different temporal resolutions. Again, bootstrap re-sampling methods
 are used to estimate the uncertainty of the difference in two means.
 
-```{block, type='rmdcomment'}
+```{block, type='question'}
 Care has been taken to ensure that wind direction (`wd`) is
 vector-averaged. Less obvious though is the uncertainty in wind
 direction. A pragmatic approach has been adopted here that considers

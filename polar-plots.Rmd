@@ -234,7 +234,7 @@ This makes a new variable called `ratio`. Sometimes it can be
 problematic if there are values equal to zero on the denominator, as
 is the case here. The mean and maximum value of the ratio is infinite,
 as shown by the `Inf` in the statistics below. Luckily, R can deal
-with infinity and the **openair** functions will remove these values
+with infinity and the [openair]{.pkg} functions will remove these values
 before performing calculations. It is very simple therefore to
 calculate ratios.
 
@@ -320,11 +320,11 @@ GAM is to use kernel smoothers, as described by
 @henry2009. In NWR, smoothing is achieved using
 nonparametric kernel smoothers that weight concentrations on a surface
 according to their proximity to defined wind speed and direction
-intervals. In the approach adopted in **openair** (which is not identical
+intervals. In the approach adopted in [openair]{.pkg} (which is not identical
 to @henry2009), Gaussian smoothers are used for both wind
-direction and wind speed. Unlike the default GAM approach in **openair**,
+direction and wind speed. Unlike the default GAM approach in [openair]{.pkg},
 the NWR technique works directly with the raw (often hourly) data. It
-tends to provide similar results to **openair** but may have advantages
+tends to provide similar results to [openair]{.pkg} but may have advantages
 in certain situations e.g. when there is insufficient data available
 to use a GAM. The width of the Gaussian kernels ($\sigma$) is
 controlled by the options `wd_spread` and `ws_spread`.
@@ -529,7 +529,7 @@ polarPlot(har, poll = c("pm2.5", "pm10"),
 ```
 
 
-## Clustering
+## Clustering {#sec:polarCluster}
 
 The `polarPlot` function will often identify interesting features
 that would be useful to analyse further. It is possible to select
@@ -552,7 +552,7 @@ into convenient intervals of other variables such as wind speed and
 direction.
 
 A better approach is to use a method that can select group similar
-features together. One such approach is to use *cluster analysis*. **openair** uses k-means clustering as a way in which
+features together. One such approach is to use *cluster analysis*. [openair]{.pkg} uses k-means clustering as a way in which
 bivariate polar plot features can be identified and grouped. The main
 purpose of grouping data in this way is to identify records in the
 original time series data by cluster to enable post-processing to
@@ -615,11 +615,11 @@ similar concentrations but different source origins.
 `polarCluster` can be thought of as the 'local' version of
 clustering of back trajectories. Rather than using air mass origins,
 wind speed, wind direction and concentration are used to group similar
-conditions together. Section \@ref(sec:trajCluster) provides the details of clustering back trajectories in **openair**. A fuller description of the
+conditions together. Section \@ref(sec:trajCluster) provides the details of clustering back trajectories in [openair]{.pkg}. A fuller description of the
 clustering approach is described in @CarslawClust2013.
 
 The use of the `polarCluster` is very similar to the use of all
-**openair** functions. While there are many techniques available to try
+[openair]{.pkg} functions. While there are many techniques available to try
 and find the optimum number of clusters, it is difficult for these
 approaches to work in a consistent way for identifying features in
 bivariate polar plots. For this reason it is best to consider a range
@@ -679,7 +679,7 @@ table(results[["cluster"]])
 ```
 
 
-Now other **openair** analysis functions can be used to analyse the
+Now other [openair]{.pkg} analysis functions can be used to analyse the
 results. For example, to consider the temporal variations by cluster:
 
 ```{r tempEvalClust,fig.width=9,fig.height=7,fig.cap='Temporal variation in SO~2~ split by cluster.'}
@@ -702,7 +702,7 @@ timeVariation(filter(results, cluster %in% c("5", "6")),
 but could be another variable such as temperature. While it is not
 always possible for `polarCluster` to identify all features in a
 surface it certainly makes it easier to post-process `polarPlot`s
-using other **openair** functions or indeed other analyses altogether.
+using other [openair]{.pkg} functions or indeed other analyses altogether.
 
 Another useful way of understanding the clusters is to use the
 `timeProp` function, which can display a time series as a bar chart

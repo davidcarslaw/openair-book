@@ -51,7 +51,7 @@ independent. Ignoring this dependence would tend to give an overly
 optimistic impression of uncertainties. However, taking account of it
 is far from simple. A discussion of these issues is beyond the aims of
 this report and readers are referred to standard statistical texts on
-the issue. In **openair** we follow the suggestion of @Kunsch1989
+the issue. In [openair]{.pkg} we follow the suggestion of @Kunsch1989
 of setting the block length to $n^{1/3}$ where n is the length of the
 time series.
 
@@ -68,7 +68,7 @@ useful for understanding how concentrations have changed through time
 and for comparison with air quality limits and regulations. However,
 if one is interested in *understanding* why trends are as they
 are, it can be helpful to consider how concentrations vary in other
-ways. The trend functions in **openair** do just this. Trends can be
+ways. The trend functions in [openair]{.pkg} do just this. Trends can be
 plotted by day of the week, month, hour of the day, by wind direction
 sector and by different wind speed ranges. All these capabilities are
 easy to use and their effectiveness will depend on the situation in
