@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 9 Time series plots | openair</title>
+  <meta name="description" content="This will eventually form a book related to the openair R package." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 9 Time series plots | openair" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will eventually form a book related to the openair R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 9 Time series plots | openair" />
+  
+  <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
+  
+
+<meta name="author" content="David Carslaw" />
+
+
+<meta name="date" content="2020-07-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sec-polarAnnulus.html"/>
+<link rel="next" href="sec-timeVariation.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The openair book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-importAURN.html"><a href="sec-importAURN.html#accessing-data"><i class="fa fa-check"></i><b>3.1</b> Accessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-importAURN.html"><a href="sec-importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="sec-importAURN.html"><a href="sec-importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The <code>worldmet</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sec-windRose.html"><a href="sec-windRose.html#example-of-use"><i class="fa fa-check"></i><b>5.1</b> Example of use</a></li>
+<li class="chapter" data-level="5.2" data-path="sec-windRose.html"><a href="sec-windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>5.2</b> Comparing two meteorological data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html"><i class="fa fa-check"></i><b>6</b> Percentile roses</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>6.3</b> Condtional probability function</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>7</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>7.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="7.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
+<li class="chapter" data-level="7.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>7.3</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="7.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>7.4</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="7.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>7.5</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>7.6</b> Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>8</b> Polar annulus</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>8.1</b> Purpose</a></li>
+<li class="chapter" data-level="8.2" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>8.2</b> Example of use</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sec-timePlot.html"><a href="sec-timePlot.html"><i class="fa fa-check"></i><b>9</b> Time series plots</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sec-timePlot.html"><a href="sec-timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="sec-timePlot.html"><a href="sec-timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>9.2</b> Examples of time series plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>10</b> Temporal variations</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>10.1</b> Purpose</a></li>
+<li class="chapter" data-level="10.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>10.2</b> Applications</a></li>
+<li class="chapter" data-level="10.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>10.3</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="sec-timeProp.html"><a href="sec-timeProp.html"><i class="fa fa-check"></i><b>11</b> Time proportion plots</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>11.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>12</b> Calendar plots</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>12.1</b> Purpose</a></li>
+<li class="chapter" data-level="12.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>12.2</b> Calendar examples</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>13</b> Theil-Sen trends</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>13.1</b> Trend estimates</a></li>
+<li class="chapter" data-level="13.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>13.2</b> Example trend analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>13.2.1</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>14</b> Smooth trends</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>14.1</b> Background</a></li>
+<li class="chapter" data-level="14.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>14.2</b> Examples of trend analysis</a></li>
+<li class="chapter" data-level="14.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>14.3</b> Seasonal averages</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:timePlot" class="section level1" number="9">
+<h1><span class="header-section-number">Section 9</span> Time series plots</h1>
+<div id="sec:timePlotBack" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Background</h2>
+<p>The <code>timePlot</code> function is designed to quickly plot time series of
+data, perhaps for several pollutants or variables. This is, or should
+be, a very common task in the analysis of air pollution. In doing so,
+it is helpful to be able to plot several pollutants at the same time
+(and maybe other variables) and quickly choose the time periods of
+interest. It will plot time series of type <code>Date</code> and hourly and
+high time resolution data.</p>
+<p>With packages such as <span class="pkg">ggplot2</span> it is very easy to plot time series. However, there are a few enhancements in <code>timePlot</code> such as flexible time-averaging and adding annotations for wind speed and direction that make it useful in some situations.</p>
+<p>The function offers fine control over many of the plot settings such
+as line type, colour and width. If more than one pollutant is
+selected, then the time series are shown compactly in different panels
+with different scales. Sometimes it is useful to get and idea of
+whether different variables ‘go up and down’ together. Such
+comparisons in <code>timePlot</code> are made easy by setting <code>group =   TRUE</code>, and maybe also <code>normalise = "mean"</code>. The latter setting
+divides each variable by its mean value, thus enabling several
+variables to be plotted together using <em>the same scale</em>. The
+<code>normalise</code> option will also take a date as a string (in British
+format dd/mm/YYYY), in which case all data are normalise to equal 100
+at that time. Normalising data like this makes it easy to compare time
+series on different scales e.g. emissions and ambient measurements.</p>
+<p><code>timePlot</code> works very well in conjunction with
+<code>selectByDate</code>, which makes it easy to select specific time
+series intervals. See (Section <a href="#sec:selecting-data-date"><strong>??</strong></a>) for examples
+of how to select parts of a data frame based on the date.</p>
+<p>Another useful feature of <code>timePlot</code> is the ability to average the
+data in several ways. This makes it easy, for example, to plot daily
+or monthly means from hourly data, or hourly means from 15-minute
+data. See the option <code>avg.time</code> for more details and
+(Section <a href="#sec:timeAverage"><strong>??</strong></a>) where a full description of time
+averaging of data frames is given.</p>
+</div>
+<div id="examples-of-time-series-plotting" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Examples of time series plotting</h2>
+<p>A full set of examples is shown in the help pages — see <code>?timePlot</code>
+for details. At the basic level, concentrations are shown using a
+simple call e.g. to plot time series of NO<sub>x</sub> and O<sub>3</sub> in separate
+panels with their own scales.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="sec-timePlot.html#cb69-1" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>), <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p>Often it is necessary to only consider part of a time series and using
+the function <code>selectByDate</code> makes it easy to do
+this. Some examples are shown below.</p>
+<p>To plot data only for 2003:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="sec-timePlot.html#cb70-1" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>), </span>
+<span id="cb70-2"><a href="sec-timePlot.html#cb70-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>), </span>
+<span id="cb70-3"><a href="sec-timePlot.html#cb70-3" aria-hidden="true"></a>         <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p>Plots for several pollutants for August 2003, are shown in Figure
+<a href="sec-timePlot.html#fig:timePlot">9.1</a>.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="sec-timePlot.html#cb71-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb71-2"><a href="sec-timePlot.html#cb71-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb71-3"><a href="sec-timePlot.html#cb71-3" aria-hidden="true"></a></span>
+<span id="cb71-4"><a href="sec-timePlot.html#cb71-4" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>, <span class="dt">month =</span> <span class="st">&quot;aug&quot;</span>),</span>
+<span id="cb71-5"><a href="sec-timePlot.html#cb71-5" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;pm25&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;ws&quot;</span>),</span>
+<span id="cb71-6"><a href="sec-timePlot.html#cb71-6" aria-hidden="true"></a>         <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timePlot"></span>
+<img src="openair_files/figure-html/timePlot-1.png" alt="Time series for several variables using the `timePlot` and the `selectByDate` functions. The data shown are for August 2003." width="768" />
+<p class="caption">
+Figure 9.1: Time series for several variables using the <code>timePlot</code> and the <code>selectByDate</code> functions. The data shown are for August 2003.
+</p>
+</div>
+<p>Some other examples (not plotted) are:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="sec-timePlot.html#cb72-1" aria-hidden="true"></a><span class="co">## plot monthly means of ozone and no2</span></span>
+<span id="cb72-2"><a href="sec-timePlot.html#cb72-2" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;o3&quot;</span>, <span class="st">&quot;no2&quot;</span>), <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb72-3"><a href="sec-timePlot.html#cb72-3" aria-hidden="true"></a>         <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span>
+<span id="cb72-4"><a href="sec-timePlot.html#cb72-4" aria-hidden="true"></a></span>
+<span id="cb72-5"><a href="sec-timePlot.html#cb72-5" aria-hidden="true"></a><span class="co">## plor 95th percentile monthly concentrations</span></span>
+<span id="cb72-6"><a href="sec-timePlot.html#cb72-6" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;o3&quot;</span>, <span class="st">&quot;no2&quot;</span>), <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb72-7"><a href="sec-timePlot.html#cb72-7" aria-hidden="true"></a>         <span class="dt">statistic =</span> <span class="st">&quot;percentile&quot;</span>, <span class="dt">percentile =</span> <span class="dv">95</span>,</span>
+<span id="cb72-8"><a href="sec-timePlot.html#cb72-8" aria-hidden="true"></a>         <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span>
+<span id="cb72-9"><a href="sec-timePlot.html#cb72-9" aria-hidden="true"></a></span>
+<span id="cb72-10"><a href="sec-timePlot.html#cb72-10" aria-hidden="true"></a><span class="co">## plot the number of valid records in each 2-week period</span></span>
+<span id="cb72-11"><a href="sec-timePlot.html#cb72-11" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;o3&quot;</span>, <span class="st">&quot;no2&quot;</span>), <span class="dt">avg.time =</span> <span class="st">&quot;2 week&quot;</span>,</span>
+<span id="cb72-12"><a href="sec-timePlot.html#cb72-12" aria-hidden="true"></a>         <span class="dt">statistic =</span> <span class="st">&quot;frequency&quot;</span>, <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p>An example of normalising data is shown in Figure
+<a href="#fig:timePlotnorm"><strong>??</strong></a>. In this plot we have:</p>
+<ul>
+<li><p>Averaged the data to annual means;</p></li>
+<li><p>Chosen to normalise to the beginning of 2008;</p></li>
+<li><p>Set the line width to 4 and the line type to 1 (continuous line);</p></li>
+<li><p>Chosen to group the data in one panel.</p></li>
+</ul>
+<p>Figure <a href="sec-timePlot.html#fig:timePlotNorm">9.2</a> shows that concentrations of NO<sub>2</sub> and
+O<sub>3</sub> have increased over the period 1998–2005; SO<sub>2</sub> and CO have
+shown the greatest reductions (by about 60%), whereas NO<sub>x</sub>
+concentrations have decreased by about 20%.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="sec-timePlot.html#cb73-1" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, </span>
+<span id="cb73-2"><a href="sec-timePlot.html#cb73-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;no2&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;so2&quot;</span>, <span class="st">&quot;pm10&quot;</span>),</span>
+<span id="cb73-3"><a href="sec-timePlot.html#cb73-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">normalise =</span> <span class="st">&quot;1/1/1998&quot;</span>, </span>
+<span id="cb73-4"><a href="sec-timePlot.html#cb73-4" aria-hidden="true"></a>         <span class="dt">lwd =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb73-5"><a href="sec-timePlot.html#cb73-5" aria-hidden="true"></a>         <span class="dt">group =</span> <span class="ot">TRUE</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">120</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:timePlotNorm"></span>
+<img src="openair_files/figure-html/timePlotNorm-1.png" alt="An example of normalising time series data to fix values to equal 100 at the beginning of 1998." width="70%" />
+<p class="caption">
+Figure 9.2: An example of normalising time series data to fix values to equal 100 at the beginning of 1998.
+</p>
+</div>
+<p>Another example is grouping pollutants from <em>several sites</em> on
+one plot. It is easy to import data from several sites and to plot the
+data in separate panels e.g.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="sec-timePlot.html#cb74-1" aria-hidden="true"></a><span class="co">## import data from 3 sites</span></span>
+<span id="cb74-2"><a href="sec-timePlot.html#cb74-2" aria-hidden="true"></a>aq &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="kw">c</span>(<span class="st">&quot;kc1&quot;</span>, <span class="st">&quot;my1&quot;</span>, <span class="st">&quot;nott&quot;</span>), </span>
+<span id="cb74-3"><a href="sec-timePlot.html#cb74-3" aria-hidden="true"></a>                      <span class="dt">year =</span> <span class="dv">2005</span><span class="op">:</span><span class="dv">2010</span>)</span>
+<span id="cb74-4"><a href="sec-timePlot.html#cb74-4" aria-hidden="true"></a></span>
+<span id="cb74-5"><a href="sec-timePlot.html#cb74-5" aria-hidden="true"></a><span class="co">## plot it</span></span>
+<span id="cb74-6"><a href="sec-timePlot.html#cb74-6" aria-hidden="true"></a><span class="kw">timePlot</span>(aq, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, </span>
+<span id="cb74-7"><a href="sec-timePlot.html#cb74-7" aria-hidden="true"></a>         <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>, </span>
+<span id="cb74-8"><a href="sec-timePlot.html#cb74-8" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:importAQdata"></span>
+<img src="openair_files/figure-html/importAQdata-1.png" alt="Plot of NO~x~ xconcentrations from three sites in separate panels." width="672" />
+<p class="caption">
+Figure 9.3: Plot of NO<sub>x</sub> xconcentrations from three sites in separate panels.
+</p>
+</div>
+<p>Using the code above it is also possible to include several
+species. But what if we wanted to plot NO<sub>x</sub> concentrations across all
+sites in one panel? An example of how to do
+this is shown below. Note, in order to make referring to the columns
+easier, we will drop the full (long) site name and use the site code
+instead.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="sec-timePlot.html#cb75-1" aria-hidden="true"></a><span class="co">## first drop site name</span></span>
+<span id="cb75-2"><a href="sec-timePlot.html#cb75-2" aria-hidden="true"></a>aq &lt;-<span class="st"> </span><span class="kw">select</span>(aq, <span class="op">-</span>site)</span>
+<span id="cb75-3"><a href="sec-timePlot.html#cb75-3" aria-hidden="true"></a></span>
+<span id="cb75-4"><a href="sec-timePlot.html#cb75-4" aria-hidden="true"></a><span class="co">## now reshape the data using the tidyr package</span></span>
+<span id="cb75-5"><a href="sec-timePlot.html#cb75-5" aria-hidden="true"></a>aq &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(aq, <span class="dt">id_cols =</span> date, </span>
+<span id="cb75-6"><a href="sec-timePlot.html#cb75-6" aria-hidden="true"></a>                       <span class="dt">names_from =</span> code, </span>
+<span id="cb75-7"><a href="sec-timePlot.html#cb75-7" aria-hidden="true"></a>                       <span class="dt">values_from =</span> co<span class="op">:</span>air_temp)</span>
+<span id="cb75-8"><a href="sec-timePlot.html#cb75-8" aria-hidden="true"></a></span>
+<span id="cb75-9"><a href="sec-timePlot.html#cb75-9" aria-hidden="true"></a><span class="kw">names</span>(aq)</span></code></pre></div>
+<pre><code>##  [1] &quot;date&quot;          &quot;co_KC1&quot;        &quot;co_MY1&quot;        &quot;co_NOTT&quot;      
+##  [5] &quot;nox_KC1&quot;       &quot;nox_MY1&quot;       &quot;nox_NOTT&quot;      &quot;no2_KC1&quot;      
+##  [9] &quot;no2_MY1&quot;       &quot;no2_NOTT&quot;      &quot;no_KC1&quot;        &quot;no_MY1&quot;       
+## [13] &quot;no_NOTT&quot;       &quot;o3_KC1&quot;        &quot;o3_MY1&quot;        &quot;o3_NOTT&quot;      
+## [17] &quot;so2_KC1&quot;       &quot;so2_MY1&quot;       &quot;so2_NOTT&quot;      &quot;pm10_KC1&quot;     
+## [21] &quot;pm10_MY1&quot;      &quot;pm10_NOTT&quot;     &quot;pm2.5_KC1&quot;     &quot;pm2.5_MY1&quot;    
+## [25] &quot;pm2.5_NOTT&quot;    &quot;v10_KC1&quot;       &quot;v10_MY1&quot;       &quot;v10_NOTT&quot;     
+## [29] &quot;v2.5_KC1&quot;      &quot;v2.5_MY1&quot;      &quot;v2.5_NOTT&quot;     &quot;nv10_KC1&quot;     
+## [33] &quot;nv10_MY1&quot;      &quot;nv10_NOTT&quot;     &quot;nv2.5_KC1&quot;     &quot;nv2.5_MY1&quot;    
+## [37] &quot;nv2.5_NOTT&quot;    &quot;ws_KC1&quot;        &quot;ws_MY1&quot;        &quot;ws_NOTT&quot;      
+## [41] &quot;wd_KC1&quot;        &quot;wd_MY1&quot;        &quot;wd_NOTT&quot;       &quot;air_temp_KC1&quot; 
+## [45] &quot;air_temp_MY1&quot;  &quot;air_temp_NOTT&quot;</code></pre>
+<p>The final step will make columns of each site/pollutant combination
+e.g. <code>nox_KC1</code>, <code>pm10_KC1</code> and so on. It is then easy to use any of
+these names to make the plot (with a few plotting option enhancements):</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="sec-timePlot.html#cb77-1" aria-hidden="true"></a><span class="kw">timePlot</span>(aq, </span>
+<span id="cb77-2"><a href="sec-timePlot.html#cb77-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox_KC1&quot;</span>, <span class="st">&quot;nox_MY1&quot;</span>, <span class="st">&quot;nox_NOTT&quot;</span>),</span>
+<span id="cb77-3"><a href="sec-timePlot.html#cb77-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb77-4"><a href="sec-timePlot.html#cb77-4" aria-hidden="true"></a>         <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb77-5"><a href="sec-timePlot.html#cb77-5" aria-hidden="true"></a>         )</span></code></pre></div>
+<div class="figure"><span id="fig:plotGroup"></span>
+<img src="openair_files/figure-html/plotGroup-1.png" alt="Plot of NO~x~ xconcentrations from three sites grouped in a single plot." width="672" />
+<p class="caption">
+Figure 9.4: Plot of NO<sub>x</sub> xconcentrations from three sites grouped in a single plot.
+</p>
+</div>
+<p>An alternative way of selecting all columns containing the character
+‘nox’ is to use the <code>grep</code> command. For example:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="sec-timePlot.html#cb78-1" aria-hidden="true"></a><span class="kw">timePlot</span>(thedata, <span class="dt">pollutant =</span> <span class="kw">names</span>(thedata)[<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;nox&quot;</span>, </span>
+<span id="cb78-2"><a href="sec-timePlot.html#cb78-2" aria-hidden="true"></a>                                                  <span class="kw">names</span>(thedata))],</span>
+<span id="cb78-3"><a href="sec-timePlot.html#cb78-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>If wind speed <code>ws</code> and wind direction <code>wd</code> are available
+they can be used in plots and shown as ‘wind vectors’. Plotting data
+in this way conveys more information in an easy-to-understand way,
+which works best for relatively short time periods e.g. a pollution
+episode lasting a few days. As an example Figure <a href="sec-timePlot.html#fig:timePlotwswd">9.5</a>
+shows the first 48 hours of NO<sub>x</sub> and NO<sub>2</sub> data with wind arrows
+shown. The arrows are controlled by a list of option that control the
+length, shape and colour of the arrows. The maximum length of the
+arrow plotted is a fraction of the plot dimension with the longest
+arrow being <code>scale</code> of the plot x-y dimension. Note, if the plot
+size is adjusted manually by the user it should be re-plotted to
+ensure the correct wind angle. The list may contain other options to
+<code>panel.arrows</code> in the <span class="pkg">lattice</span> package. Other useful options
+include <code>length</code>, which controls the length of the arrow head and
+<code>angle</code>, which controls the angle of the arrow head. Wind vector
+arrows can also be used with the <code>scatterPlot</code> function.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sec-timePlot.html#cb79-1" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">head</span>(mydata, <span class="dv">48</span>), <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;no2&quot;</span>), </span>
+<span id="cb79-2"><a href="sec-timePlot.html#cb79-2" aria-hidden="true"></a>         <span class="dt">windflow =</span> <span class="kw">list</span>(<span class="dt">scale =</span> <span class="fl">0.1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;turquoise4&quot;</span>), </span>
+<span id="cb79-3"><a href="sec-timePlot.html#cb79-3" aria-hidden="true"></a>         <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">group =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb79-4"><a href="sec-timePlot.html#cb79-4" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;concentration (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:timePlotwswd"></span>
+<img src="openair_files/figure-html/timePlotwswd-1.png" alt="An example of using the `windflow` option in `timePlot`." width="90%" />
+<p class="caption">
+Figure 9.5: An example of using the <code>windflow</code> option in <code>timePlot</code>.
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sec-polarAnnulus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-timeVariation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/time-plot.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["openair.pdf", "openair.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
