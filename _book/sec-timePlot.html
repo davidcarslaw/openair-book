@@ -281,7 +281,7 @@ simple call e.g. to plot time series of NO<sub>x</sub> and O<sub>3</sub> in sep
 panels with their own scales.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="sec-timePlot.html#cb69-1" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>), <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p>Often it is necessary to only consider part of a time series and using
-the function <code>selectByDate</code> makes it easy to do
+the <span class="pkg">openair</span> function <code>selectByDate</code> makes it easy to do
 this. Some examples are shown below.</p>
 <p>To plot data only for 2003:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="sec-timePlot.html#cb70-1" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>), </span>
@@ -315,7 +315,7 @@ Figure 9.1: Time series for several variables using the <code>timePlot</code> an
 <span id="cb72-11"><a href="sec-timePlot.html#cb72-11" aria-hidden="true"></a><span class="kw">timePlot</span>(mydata, <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;o3&quot;</span>, <span class="st">&quot;no2&quot;</span>), <span class="dt">avg.time =</span> <span class="st">&quot;2 week&quot;</span>,</span>
 <span id="cb72-12"><a href="sec-timePlot.html#cb72-12" aria-hidden="true"></a>         <span class="dt">statistic =</span> <span class="st">&quot;frequency&quot;</span>, <span class="dt">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p>An example of normalising data is shown in Figure
-<a href="#fig:timePlotnorm"><strong>??</strong></a>. In this plot we have:</p>
+<a href="sec-timePlot.html#fig:timePlotNorm">9.2</a>. In this plot we have:</p>
 <ul>
 <li><p>Averaged the data to annual means;</p></li>
 <li><p>Chosen to normalise to the beginning of 2008;</p></li>
@@ -387,10 +387,11 @@ these names to make the plot (with a few plotting option enhancements):</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="sec-timePlot.html#cb77-1" aria-hidden="true"></a><span class="kw">timePlot</span>(aq, </span>
 <span id="cb77-2"><a href="sec-timePlot.html#cb77-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox_KC1&quot;</span>, <span class="st">&quot;nox_MY1&quot;</span>, <span class="st">&quot;nox_NOTT&quot;</span>),</span>
 <span id="cb77-3"><a href="sec-timePlot.html#cb77-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb77-4"><a href="sec-timePlot.html#cb77-4" aria-hidden="true"></a>         <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb77-5"><a href="sec-timePlot.html#cb77-5" aria-hidden="true"></a>         )</span></code></pre></div>
+<span id="cb77-4"><a href="sec-timePlot.html#cb77-4" aria-hidden="true"></a>         <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb77-5"><a href="sec-timePlot.html#cb77-5" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;nox (ug/m3)&quot;</span></span>
+<span id="cb77-6"><a href="sec-timePlot.html#cb77-6" aria-hidden="true"></a>         )</span></code></pre></div>
 <div class="figure"><span id="fig:plotGroup"></span>
-<img src="openair_files/figure-html/plotGroup-1.png" alt="Plot of NO~x~ xconcentrations from three sites grouped in a single plot." width="672" />
+<img src="openair_files/figure-html/plotGroup-1.png" alt="Plot of NO~x~ xconcentrations from three sites grouped in a single plot." width="70%" />
 <p class="caption">
 Figure 9.4: Plot of NO<sub>x</sub> xconcentrations from three sites grouped in a single plot.
 </p>

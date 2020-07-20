@@ -50,7 +50,7 @@ timePlot(mydata, pollutant = c("nox", "o3"), y.relation = "free")
 ```
 
 Often it is necessary to only consider part of a time series and using
-the \openair function `selectByDate` makes it easy to do
+the [openair]{.pkg} function `selectByDate` makes it easy to do
 this. Some examples are shown below.
 
 To plot data only for 2003:
@@ -92,7 +92,7 @@ timePlot(mydata, pollutant = c("o3", "no2"), avg.time = "2 week",
 ```
 
 An example of normalising data is shown in Figure
-\@ref(fig:timePlotnorm). In this plot we have:
+\@ref(fig:timePlotNorm). In this plot we have:
 
 -  Averaged the data to annual means;
 
@@ -154,11 +154,12 @@ The final step will make columns of each site/pollutant combination
 e.g. `nox_KC1`, `pm10_KC1` and so on. It is then easy to use any of
 these names to make the plot (with a few plotting option enhancements):
 
-```{r plotGroup,fig.width=7,fig.height=5,fig.cap='Plot of NO~x~ xconcentrations from three sites grouped in a single plot.'}
+```{r plotGroup,fig.width=7,fig.height=5,out.width='70%',fig.cap='Plot of NO~x~ xconcentrations from three sites grouped in a single plot.'}
 timePlot(aq, 
          pollutant = c("nox_KC1", "nox_MY1", "nox_NOTT"),
          avg.time = "month", group = TRUE,
-         lty = 1, lwd = c(1, 3, 5)
+         lty = 1, lwd = c(1, 3, 5),
+         ylab = "nox (ug/m3)"
          )
 ```
 
