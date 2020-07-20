@@ -6,6 +6,7 @@ delete_merged_file: true
 rmd_files: ["index.Rmd", 
 "intro.Rmd",
 "UK-air-quality-data.Rmd",
+"access-met-data.Rmd",
 "wind-roses.Rmd",
 "percentile-roses.Rmd",
 "polar-plots.Rmd",

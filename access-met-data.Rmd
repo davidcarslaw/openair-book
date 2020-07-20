@@ -1,0 +1,62 @@
+# Access meteorological data  {#sec:worldmet} 
+
+## The `worldmet` package
+
+[worldmet]{.pkg} provides an easy way in which to access surface
+meteorological data from >30,000 sites across the world. The package
+accesses the NOAA webservers to download hourly data. Access to
+surface meteorological data is very useful in general but is
+especially useful when using [openair]{.pkg} and the `polarPlot`
+function. To install the package, type:
+
+```{r install_worldmet,eval=FALSE}
+install.packages("worldmet")
+```
+
+There are two main functions in the package: `getMeta` and
+`importNOAA`. The former helps the user find meteorological sites by
+name, country and proximity to a location based on the latitude and
+longitude. `getMeta` will also return a code that can be supplied to
+`importNOAA`, which then imports the data.
+
+Probably the most common use of `getMeta` is to search around a
+location of interest based on its latitude and longitude. First we
+will load the **worldmet** package:
+
+```{r}
+library(worldmet)
+```
+
+Now we can do a search for the 10 nearest sites to Dublin (latitude =
+53.3, longitude = -6.3)^[Note that `returnMap` was only used to display the map in this document and would not normally be needed.]:
+
+```{r fig.cap='Map of returned area of interest. The user can interactively select a site of interest and find its code to import data.'}
+getMeta(lat = 53.3, lon = -6.3, returnMap = TRUE)
+```
+
+Note that it is just as easy to access all the site information at once because it is easy to use the map to select the site and it's code i.e.
+
+```{r eval = FALSE}
+getMeta()
+```
+
+
+We can use the map that is produced to select a site of interest and
+import the data. For example, to import data for Dublin Airport and look at some of the data:
+
+```{r }
+dublin_met <- importNOAA(code = "039690-99999", year = 2019)
+
+# first few lines of data
+dublin_met
+```
+
+
+
+Plot a wind rose.
+
+```{r out.width='50%'}
+windRose(dublin_met)
+```
+
+

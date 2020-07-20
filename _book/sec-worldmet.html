@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 6 Percentile roses | openair</title>
+  <title>Section 4 Access meteorological data | openair</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 6 Percentile roses | openair" />
+  <meta property="og:title" content="Section 4 Access meteorological data | openair" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 6 Percentile roses | openair" />
+  <meta name="twitter:title" content="Section 4 Access meteorological data | openair" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sec-windRose.html"/>
-<link rel="next" href="sec-polarPlot.html"/>
+<link rel="prev" href="sec-importAURN.html"/>
+<link rel="next" href="sec-windRose.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,138 +217,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sec:percentileRose" class="section level1" number="6">
-<h1><span class="header-section-number">Section 6</span> Percentile roses</h1>
-<div id="introduction" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Introduction</h2>
-<p><code>percentileRose</code> calculates percentile levels of a pollutant and
-plots them by wind direction. One or more percentile levels can be
-calculated and these are displayed as either filled areas or as lines.</p>
-<p>By default, the function plots percentile concentrations in 10 degree
-segments. Alternatively, the levels by wind direction are calculated
-using a cyclic smooth cubic spline. The wind directions are rounded to
-the nearest 10 degrees, consistent with surface data from the UK Met
-Office before a smooth is fitted.</p>
-<p>The <code>percentileRose</code> function compliments other similar functions
-including <code>windRose</code>, <code>pollutionRose</code>, <code>polarFreq</code> or
-<code>polarPlot</code>. It is most useful for showing the distribution of
-concentrations by wind direction and often can reveal different
-sources e.g. those that only affect high percentile concentrations
-such as a chimney stack.</p>
-<p>Similar to other functions, flexible conditioning is available through
-the `type} option. It is easy for example to consider multiple
-percentile values for a pollutant by season, year and so on. See
-examples below.</p>
-</div>
-<div id="examples" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Examples</h2>
-<p>The first example is a basic plot of percentiles of O<sub>3</sub> shown in Figure
-<a href="sec-percentileRose.html#fig:percentileRose1">6.1</a>.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sec-percentileRose.html#cb34-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:percentileRose1"></span>
-<img src="openair_files/figure-html/percentileRose1-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. It shows for example that higher concentrations occur for northerly winds, as expected at this location. However, it also shows, for example the actual value of the 95th percentile O~3~ concentration." width="50%" />
+<div id="sec:worldmet" class="section level1" number="4">
+<h1><span class="header-section-number">Section 4</span> Access meteorological data</h1>
+<div id="the-worldmet-package" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> The <code>worldmet</code> package</h2>
+<p><span class="pkg">worldmet</span> provides an easy way in which to access surface
+meteorological data from &gt;30,000 sites across the world. The package
+accesses the NOAA webservers to download hourly data. Access to
+surface meteorological data is very useful in general but is
+especially useful when using <span class="pkg">openair</span> and the <code>polarPlot</code>
+function. To install the package, type:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="sec-worldmet.html#cb15-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;worldmet&quot;</span>)</span></code></pre></div>
+<p>There are two main functions in the package: <code>getMeta</code> and
+<code>importNOAA</code>. The former helps the user find meteorological sites by
+name, country and proximity to a location based on the latitude and
+longitude. <code>getMeta</code> will also return a code that can be supplied to
+<code>importNOAA</code>, which then imports the data.</p>
+<p>Probably the most common use of <code>getMeta</code> is to search around a
+location of interest based on its latitude and longitude. First we
+will load the <strong>worldmet</strong> package:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="sec-worldmet.html#cb16-1" aria-hidden="true"></a><span class="kw">library</span>(worldmet)</span></code></pre></div>
+<p>Now we can do a search for the 10 nearest sites to Dublin (latitude =
+53.3, longitude = -6.3)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="sec-worldmet.html#cb17-1" aria-hidden="true"></a><span class="kw">getMeta</span>(<span class="dt">lat =</span> <span class="fl">53.3</span>, <span class="dt">lon =</span> <span class="fl">-6.3</span>, <span class="dt">returnMap =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<div id="htmlwidget-2cb238e67ba7f9350f1d" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2cb238e67ba7f9350f1d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[53.302,53.421,52.85,53.533,54.233,54.05,52.283,53.248,53.017,52.783],[-6.451,-6.27,-6.9,-7.367,-6.5,-7.3,-6.483,-4.535,-8,-4.733],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["CASEMENT<br/>Code: 039670-99999<br/>Start: 1987-02-01<br/>End: 2020-07-17<br/>Distance (km) 10","DUBLIN<br/>Code: 039690-99999<br/>Start: 1973-01-01<br/>End: 2020-07-17<br/>Distance (km) 13.6","OAK PARK - CARLOW<br/>Code: 039610-99999<br/>Start: 2008-07-21<br/>End: 2020-07-09<br/>Distance (km) 64.1","MULLINGAR<br/>Code: 039710-99999<br/>Start: 1973-01-01<br/>End: 2020-07-17<br/>Distance (km) 75.3","GLENANNE NO2<br/>Code: 039230-99999<br/>Start: 1985-02-07<br/>End: 2020-07-17<br/>Distance (km) 104.6","BALLYHAISE<br/>Code: 039790-99999<br/>Start: 2008-07-21<br/>End: 2020-07-08<br/>Distance (km) 106.3","JOHNSTOWN CASTLE<br/>Code: 039560-99999<br/>Start: 2007-08-06<br/>End: 2020-07-17<br/>Distance (km) 113.8","VALLEY<br/>Code: 033020-99999<br/>Start: 1926-06-06<br/>End: 2020-07-17<br/>Distance (km) 117.5","GURTEEN<br/>Code: 039660-99999<br/>Start: 1929-10-01<br/>End: 2020-07-17<br/>Distance (km) 117.6","ABERDARON<br/>Code: 034050-99999<br/>Start: 1994-10-01<br/>End: 2020-07-17<br/>Distance (km) 119.5"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[53.3,-6.3,200,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":20,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},["Search location<br/>Lat = 53.302<br/>Lon = -6.451","Search location<br/>Lat = 53.421<br/>Lon = -6.27","Search location<br/>Lat = 52.85<br/>Lon = -6.9","Search location<br/>Lat = 53.533<br/>Lon = -7.367","Search location<br/>Lat = 54.233<br/>Lon = -6.5","Search location<br/>Lat = 54.05<br/>Lon = -7.3","Search location<br/>Lat = 52.283<br/>Lon = -6.483","Search location<br/>Lat = 53.248<br/>Lon = -4.535","Search location<br/>Lat = 53.017<br/>Lon = -8","Search location<br/>Lat = 52.783<br/>Lon = -4.733"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[52.283,54.233],"lng":[-8,-4.535]}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 6.1: A <code>percentileRose</code> plot of O<sub>3</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. It shows for example that higher concentrations occur for northerly winds, as expected at this location. However, it also shows, for example the actual value of the 95th percentile O<sub>3</sub> concentration.
+Figure 4.1: Map of returned area of interest. The user can interactively select a site of interest and find its code to import data.
 </p>
 </div>
-<p>A slightly more interesting plot is shown in Figure
-<a href="sec-percentileRose.html#fig:percentileRoseSO2">6.2</a> for SO<sub>2</sub> concentrations. We also
-take the opportunity of changing some default options. In this case it
-can be clearly seen that the highest concentrations of SO<sub>2</sub> are
-dominated by east and south-easterly winds; likely reflecting the
-influence of stack emissions in those directions.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="sec-percentileRose.html#cb35-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb35-2"><a href="sec-percentileRose.html#cb35-2" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">99</span>, <span class="fl">99.9</span>),</span>
-<span id="cb35-3"><a href="sec-percentileRose.html#cb35-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;brewer1&quot;</span>, <span class="dt">key.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:percentileRoseSO2"></span>
-<img src="openair_files/figure-html/percentileRoseSO2-1.png" alt="A `percentileRose` plot of SO~2~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. This plot sets some user-defined percentile levels to consider the higher SO~2~ concentrations, moves the key to the right and uses an alternative colour scheme." width="50%" />
-<p class="caption">
-Figure 6.2: A <code>percentileRose</code> plot of SO<sub>2</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. This plot sets some user-defined percentile levels to consider the higher SO<sub>2</sub> concentrations, moves the key to the right and uses an alternative colour scheme.
-</p>
-</div>
-<p>Lots more insight can be gained by considering how percentile values
-vary by other factors i.e. conditioning. For example, what do O<sub>3</sub>
-concentrations look like split by season and whether it is daylight or
-nighttime hours? We can set the type to consider season <em>and</em>
-whether it is daylight or nighttime.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> This Figure reveals
-some interesting features. First, O<sub>3</sub> concentrations are higher in
-the spring and summer and when the wind is from the north. O<sub>3</sub>
-concentrations are higher on average at this site in spring due to the
-peak of northern hemispheric O<sub>3</sub> and to some extent local
-production. This may also explain why O<sub>3</sub> concentrations are
-somewhat higher at nighttime in spring compared with summer. Second,
-peak O<sub>3</sub> concentrations are higher during daylight hours in summer
-when the wind is from the south-east. This will be due to more local
-(UK/European) production that is photochemically driven — and hence
-more important during daylight hours.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sec-percentileRose.html#cb36-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>), <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb36-2"><a href="sec-percentileRose.html#cb36-2" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;Set3&quot;</span>, <span class="dt">mean.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:percentileRoseO3"></span>
-<img src="openair_files/figure-html/percentileRoseO3-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction.The plot shows the variation by season and whether  it is nighttime or daylight hours." width="960" />
-<p class="caption">
-Figure 6.3: A <code>percentileRose</code> plot of O<sub>3</sub> concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction.The plot shows the variation by season and whether it is nighttime or daylight hours.
-</p>
-</div>
-</div>
-<div id="sec:CPF" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Condtional probability function</h2>
-<p>The <code>percentileRose</code> function can also plot conditional probability
-functions (CPF) <span class="citation">(Ashbaugh, Malm, and Sadeh <a href="#ref-Ashbaugh1985" role="doc-biblioref">1985</a>)</span>. The CPF is defined as CPF =
-<span class="math inline">\(m_\theta/n_\theta\)</span>, where <span class="math inline">\(m_\theta\)</span> is the number of samples in the
-wind sector <span class="math inline">\(\theta\)</span> with mixing ratios greater than some `high’
-concentration, and <span class="math inline">\(n_\theta\)</span> is the total number of samples in the
-same wind sector. CPF analysis is very useful for showing which wind
-directions are dominated by high concentrations and give the
-probability of doing so. In <span class="pkg">openair</span>, a CPF plot can be produced as
-shown in <a href="sec-percentileRose.html#fig:percentileRoseCPF">6.4</a>. Note that in these plots
-only one percentile is provided and the method must be supplied. In
-<a href="sec-percentileRose.html#fig:percentileRoseCPF">6.4</a> it is clear that the high
-concentrations (greater than the 95th percentile of <em>all</em>
-observations) is dominated by easterly wind directions. There are very
-low conditional probabilities of these concentrations being
-experienced for other wind directions.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="sec-percentileRose.html#cb37-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">poll=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">percentile =</span> <span class="dv">95</span>, </span>
-<span id="cb37-2"><a href="sec-percentileRose.html#cb37-2" aria-hidden="true"></a>               <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>,</span>
-<span id="cb37-3"><a href="sec-percentileRose.html#cb37-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:percentileRoseCPF"></span>
-<img src="openair_files/figure-html/percentileRoseCPF-1.png" alt="A CPF plot of SO~2~ concentrations at Marylebone Road." width="50%" />
-<p class="caption">
-Figure 6.4: A CPF plot of SO<sub>2</sub> concentrations at Marylebone Road.
-</p>
-</div>
-<p>It is easy to plot several species on the same plot and this works
-well because they all have the same probability scale (i.e. 0 to
-1). In the example below (not shown) it is easy to see for each
-pollutant the wind directions that dominate the contributions to the
-highest (95th percentile) concentrations. For example, the highest CO
-and concentrations are totally dominated by south/south-westerly
-winds and the probability of their being such high concentrations from
-other wind directions is effectively zero.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="sec-percentileRose.html#cb38-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, </span>
-<span id="cb38-2"><a href="sec-percentileRose.html#cb38-2" aria-hidden="true"></a>               <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;so2&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;pm25&quot;</span>),</span>
-<span id="cb38-3"><a href="sec-percentileRose.html#cb38-3" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="dv">95</span>, <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
-<span id="cb38-4"><a href="sec-percentileRose.html#cb38-4" aria-hidden="true"></a>               <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:CPFExample"></span>
-<img src="openair_files/figure-html/CPFExample-1.png" alt="A CPF plot of many pollutants  at Marylebone Road." width="672" />
-<p class="caption">
-Figure 6.5: A CPF plot of many pollutants at Marylebone Road.
-</p>
-</div>
+<p>Note that it is just as easy to access all the site information at once because it is easy to use the map to select the site and it’s code i.e.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="sec-worldmet.html#cb18-1" aria-hidden="true"></a><span class="kw">getMeta</span>()</span></code></pre></div>
+<p>We can use the map that is produced to select a site of interest and
+import the data. For example, to import data for Dublin Airport and look at some of the data:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="sec-worldmet.html#cb19-1" aria-hidden="true"></a>dublin_met &lt;-<span class="st"> </span><span class="kw">importNOAA</span>(<span class="dt">code =</span> <span class="st">&quot;039690-99999&quot;</span>, <span class="dt">year =</span> <span class="dv">2019</span>)</span>
+<span id="cb19-2"><a href="sec-worldmet.html#cb19-2" aria-hidden="true"></a></span>
+<span id="cb19-3"><a href="sec-worldmet.html#cb19-3" aria-hidden="true"></a><span class="co"># first few lines of data</span></span>
+<span id="cb19-4"><a href="sec-worldmet.html#cb19-4" aria-hidden="true"></a>dublin_met</span></code></pre></div>
+<pre><code>## # A tibble: 8,760 x 24
+##    code  station date                latitude longitude  elev    ws    wd
+##    &lt;fct&gt; &lt;fct&gt;   &lt;dttm&gt;                 &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 0396… DUBLIN… 2019-01-01 00:00:00     53.4     -6.27  73.8  5.07  250.
+##  2 0396… DUBLIN… 2019-01-01 01:00:00     53.4     -6.27  73.8  4.73  247.
+##  3 0396… DUBLIN… 2019-01-01 02:00:00     53.4     -6.27  73.8  4.07  250.
+##  4 0396… DUBLIN… 2019-01-01 03:00:00     53.4     -6.27  73.8  4.40  250.
+##  5 0396… DUBLIN… 2019-01-01 04:00:00     53.4     -6.27  73.8  5.47  257.
+##  6 0396… DUBLIN… 2019-01-01 05:00:00     53.4     -6.27  73.8  4.90  260 
+##  7 0396… DUBLIN… 2019-01-01 06:00:00     53.4     -6.27  73.8  4.90  260 
+##  8 0396… DUBLIN… 2019-01-01 07:00:00     53.4     -6.27  73.8  4.40  254.
+##  9 0396… DUBLIN… 2019-01-01 08:00:00     53.4     -6.27  73.8  5.27  270 
+## 10 0396… DUBLIN… 2019-01-01 09:00:00     53.4     -6.27  73.8  4.73  263.
+## # … with 8,750 more rows, and 16 more variables: air_temp &lt;dbl&gt;,
+## #   atmos_pres &lt;dbl&gt;, visibility &lt;dbl&gt;, dew_point &lt;dbl&gt;, RH &lt;dbl&gt;,
+## #   ceil_hgt &lt;dbl&gt;, cl_1 &lt;dbl&gt;, cl_2 &lt;dbl&gt;, cl_3 &lt;dbl&gt;, cl &lt;dbl&gt;,
+## #   cl_1_height &lt;dbl&gt;, cl_2_height &lt;dbl&gt;, cl_3_height &lt;dbl&gt;, precip_12 &lt;dbl&gt;,
+## #   precip_6 &lt;dbl&gt;, precip &lt;dbl&gt;</code></pre>
+<p>Plot a wind rose.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="sec-worldmet.html#cb21-1" aria-hidden="true"></a><span class="kw">windRose</span>(dublin_met)</span></code></pre></div>
+<p><img src="openair_files/figure-html/unnamed-chunk-12-1.png" width="50%" /></p>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Ashbaugh1985">
-<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="3">
-<li id="fn3"><p>In choosing <code>type = "daylight"</code> the default is to consider a latitude of central
-London (or close to). Users can set the latitude in the function
-call if working in other parts of the world.<a href="sec-percentileRose.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Note that <code>returnMap</code> was only used to display the map in this document and would not normally be needed.<a href="sec-worldmet.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -356,8 +290,8 @@ call if working in other parts of the world.<a href="sec-percentileRose.html#fnr
           </div>
         </div>
       </div>
-<a href="sec-windRose.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-polarPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sec-importAURN.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-windRose.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -388,7 +322,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/percentile-roses.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/access-met-data.Rmd",
 "text": "Edit"
 },
 "history": {
