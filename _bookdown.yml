@@ -14,4 +14,5 @@ rmd_files: ["index.Rmd",
 "time-variation.Rmd",
 "time-proportion.Rmd",
 "calendar-plot.Rmd",
-"theil-sen.Rmd"]
+"theil-sen.Rmd",
+"smooth-trend.Rmd"]
