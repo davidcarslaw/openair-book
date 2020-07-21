@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -222,6 +222,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
 <li class="chapter" data-level="15.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Examples of trend analysis</a></li>
 <li class="chapter" data-level="15.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>15.3</b> Seasonal averages</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>16</b> Trajectory analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>16.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>16.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="16.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>16.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>16.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="16.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>16.3.2</b> Allocating trajectories to different wind sectors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>16.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="16.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>16.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="16.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>16.6</b> Trajectory clustering</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -423,7 +436,7 @@ this approach is that no data are actually removed (which is what
 happens when using <code>min.bin</code>). This approach should be robust in a
 very wide range of situations and is also similar to the approaches
 used when trying to locate sources when using back trajectories as
-described in Section <a href="#sec:trajPlot"><strong>??</strong></a>. Users can ignore the automatic
+described in Section <a href="sec-trajPlot.html#sec:trajPlot">16</a>. Users can ignore the automatic
 weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sec-polarPlot.html#cb40-1" aria-hidden="true"></a><span class="co">## NOx plot</span></span>
 <span id="cb40-2"><a href="sec-polarPlot.html#cb40-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, </span>
@@ -806,7 +819,7 @@ similar concentrations but different source origins.</p>
 <p><code>polarCluster</code> can be thought of as the ‘local’ version of
 clustering of back trajectories. Rather than using air mass origins,
 wind speed, wind direction and concentration are used to group similar
-conditions together. Section <a href="#sec:trajCluster"><strong>??</strong></a> provides the details of clustering back trajectories in <span class="pkg">openair</span>. A fuller description of the
+conditions together. Section <a href="sec-trajPlot.html#sec:trajCluster">16.6</a> provides the details of clustering back trajectories in <span class="pkg">openair</span>. A fuller description of the
 clustering approach is described in <span class="citation">Carslaw and Beevers (<a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span>.</p>
 <p>The use of the <code>polarCluster</code> is very similar to the use of all
 <span class="pkg">openair</span> functions. While there are many techniques available to try

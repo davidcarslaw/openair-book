@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="sec-TheilSen.html"/>
-
+<link rel="next" href="sec-trajPlot.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -223,6 +223,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Examples of trend analysis</a></li>
 <li class="chapter" data-level="15.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>15.3</b> Seasonal averages</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>16</b> Trajectory analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>16.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>16.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="16.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>16.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>16.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="16.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>16.3.2</b> Allocating trajectories to different wind sectors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>16.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="16.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>16.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="16.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>16.6</b> Trajectory clustering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -356,84 +369,8 @@ Figure 15.4: Trends in O<sub>3</sub> by season at the Lullington Heath site with
 </p>
 </div>
 
-<div id="refs" class="references hanging-indent">
-<div>
-<p>Applequist, Scott. 2012. “Wind Rose Bias Correction.” <em>Journal of Applied Meteorology and Climatology</em> 51 (7): 1305–9.</p>
-</div>
-<div>
-<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
-</div>
-<div>
-<p>Carslaw, D. C., and S. D. Beevers. 2013. “Characterising and Understanding Emission Sources Using Bivariate Polar Plots and K-Means Clustering.” <em>Environmental Modelling &amp; Software</em> 40 (0): 325–29. <a href="https://doi.org/10.1016/j.envsoft.2012.09.005">https://doi.org/10.1016/j.envsoft.2012.09.005</a>.</p>
-</div>
-<div>
-<p>Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. “Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.” <em>Atmospheric Environment</em> 40 (28): 5424–34.</p>
-</div>
-<div>
-<p>Carslaw, D. C., S. D. Beevers, and J. E. Tate. 2007. “Modelling and Assessing Trends in Traffic-Related Emissions Using a Generalised Additive Modelling Approach.” <em>Atmospheric Environment</em> 41 (26): 5289–99.</p>
-</div>
-<div>
-<p>COMEAP. 2011. “Review of the Uk Air Quality Index: A Report by the Committee on the Medical Effects of Air Pollutants.” <a href="http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html">http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html</a>.</p>
-</div>
-<div>
-<p>Droppo, James G, and Bruce A Napier. 2008. “Wind Direction Bias in Generating Wind Roses and Conducting Sector-Based Air Dispersion Modeling.” <em>Journal of the Air &amp; Waste Management Association</em> 58 (7): 913–18.</p>
-</div>
-<div>
-<p>Grange, Stuart K, Alastair C Lewis, and David C Carslaw. 2016. “Source Apportionment Advances Using Polar Plots of Bivariate Correlation and Regression Statistics.” <em>Atmospheric Environment</em> 145: 128–34.</p>
-</div>
-<div>
-<p>Hastie, T. J., and R. J. Tibshirani. 1990. <em>Generalized Additive Models</em>. London: Chapman; Hall.</p>
-</div>
-<div>
-<p>Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. “Source Region Identification Using Kernel Smoothing.” Article. <em>Environmental Science &amp; Technology</em> 43 (11): 4090–7. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.</p>
-</div>
-<div>
-<p>Hirsch, R. M., J. R. Slack, and R. A. Smith. 1982. “Techniques of Trend Analysis for Monthly Water-Quality Data.” <em>Water Resources Research</em> 18 (1): 107–21.</p>
-</div>
-<div>
-<p>Kunsch, H. R. 1989. “The Jackknife and the Bootstrap for General Stationary Observations.” <em>Annals of Statistics</em> 17 (3): 1217–41.</p>
-</div>
-<div>
-<p>Sen, P. K. 1968. “Estimates of Regression Coefficient Based on Kendall’s Tau.” <em>Journal of the American Statistical Association</em> 63(324): 1379–89.</p>
-</div>
-<div>
-<p>Theil, H. 1950. “A Rank Invariant Method of Linear and Polynomial Regression Analysis, I, Ii, Iii.” <em>Proceedings of the Koninklijke Nederlandse Akademie Wetenschappen, Series A – Mathematical Sciences</em> 53: 386–92, 521–25, 1397–1412.</p>
-</div>
-<div>
-<p>Uria-Tellaetxe, I, and D. C. Carslaw. 2014. “Conditional Bivariate Probability Function for Source Identification.” <em>Environmental Modelling &amp; Software</em> 59: 1–9. <a href="https://doi.org/10.1016/j.envsoft.2014.05.002">https://doi.org/10.1016/j.envsoft.2014.05.002</a>.</p>
-</div>
-<div>
-<p>Westmoreland, E. J., N Carslaw, D. C. Carslaw, A. Gillah, and E. Bates. 2007. “Analysis of Air Quality Within a Street Canyon Using Statistical and Dispersion Modelling Techniques.” <em>Atmospheric Environment</em> 41 (39): 9195–9205.</p>
-</div>
-<div>
-<p>Wilcox, Rand R. 2010. <em>Fundamentals of Modern Statistical Methods: Substantially Improving Power and Accuracy</em>. 2nd ed. Springer New York. <a href="http://www.springerlink.com/content/978-1-4419-5524-1">http://www.springerlink.com/content/978-1-4419-5524-1</a>.</p>
-</div>
-<div>
-<p>Wood, S. N. 2006. <em>Generalized Additive Models: An Introduction with R</em>. Chapman; Hall/CRC.</p>
-</div>
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
-</div>
-<div>
-<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
-</div>
-<div>
-<p>Yu, K. N., Y. P. Cheung, T. Cheung, and R. C. Henry. 2004. “Identifying the Impact of Large Urban Airports on Local Air Quality by Nonparametric Regression.” <em>Atmospheric Environment</em> 38 (27): 4501–7.</p>
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-Carslaw2007a">
@@ -445,8 +382,8 @@ Figure 15.4: Trends in O<sub>3</sub> by season at the Lullington Heath site with
           </div>
         </div>
       </div>
-<a href="sec-TheilSen.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="sec-TheilSen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec-trajPlot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

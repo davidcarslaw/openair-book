@@ -97,10 +97,10 @@ command below makes it a bit easier to see that it is the higher
 quantiles of NO~2~ that are associated with higher O~3~
 concentration (as well as low NO~x~ and NO~2~ concentrations).
 
-```{r trendLevelEx3, eval=FALSE}
+```{r trendLevelNO2NOx,w=8,h=8,fig.cap='`trendLevel` showing NO~x~ against NO~2~, coloured by the concentration of O~3~.'}
 trendLevel(mydata, x = "nox", y = "no2", pollutant = "o3", 
            border = "white",
-           n.levels = 10, statistic = "max", 
+           n.levels = 30, statistic = "max", 
            limits = c(0, 50))
 ```
 

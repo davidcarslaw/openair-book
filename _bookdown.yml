@@ -17,4 +17,5 @@ rmd_files: ["index.Rmd",
 "trend-level.Rmd",
 "calendar-plot.Rmd",
 "theil-sen.Rmd",
-"smooth-trend.Rmd"]
+"smooth-trend.Rmd",
+"trajectory-analysis.Rmd"]

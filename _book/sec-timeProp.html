@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -223,6 +223,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Examples of trend analysis</a></li>
 <li class="chapter" data-level="15.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>15.3</b> Seasonal averages</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>16</b> Trajectory analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>16.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>16.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="16.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>16.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>16.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="16.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>16.3.2</b> Allocating trajectories to different wind sectors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>16.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="16.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>16.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="16.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>16.6</b> Trajectory clustering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -254,7 +267,7 @@ the bar chart are made up from a character or factor variable in a
 data frame. The function is primarily developed to support the
 plotting of cluster analysis output from <code>polarCluster</code> (see Section
 <a href="sec-polarPlot.html#sec:polarCluster">7.6</a> and <code>trajCluster</code> (see Section
-<a href="#sec:trajCluster"><strong>??</strong></a> that consider local and regional (back
+<a href="sec-trajPlot.html#sec:trajCluster">16.6</a> that consider local and regional (back
 trajectory) cluster analysis respectively. However, the function has
 more general use for understanding time series data. In order to plot
 time series in this way, some sort of time aggregation is needed,
@@ -308,7 +321,7 @@ Figure 11.2: <code>timeProp</code> plot for SO<sub>2</sub> concentrations in 200
 <p>One of the key uses of <code>timeProp</code> is to post-process cluster
 analysis data. Users should consider the uses of <code>timeProp</code> for
 cluster analysis shown in Section <a href="sec-polarPlot.html#sec:polarCluster">7.6</a> and Section
-<a href="#sec:trajCluster"><strong>??</strong></a>. In both these cases the cluster analysis
+<a href="sec-trajPlot.html#sec:trajCluster">16.6</a>. In both these cases the cluster analysis
 yields a categorical output directly i.e. cluster, which lends itself
 to analysis using <code>timeProp</code>.</p>
 

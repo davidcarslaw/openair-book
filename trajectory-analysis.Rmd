@@ -1,0 +1,754 @@
+# Trajectory analysis {#sec:trajPlot} 
+
+Back trajectories are extremely useful in air pollution and can
+provide important information on air mass origins. Despite the clear
+usefulness of back trajectories, their use tends to be restricted to
+the research community. Back trajectories are used for many purposes
+from understanding the origins of air masses over a few days to
+undertaking longer term analyses. They are often used to filter air
+mass origins to allow for more refined analyses of air pollution ---
+for example trends in concentration by air mass origin. They are often
+also combined with more sophisticated analyses such as cluster analysis
+to help group similar type of air mass by origin.
+
+Perhaps one of the reasons why back trajectory analysis is not carried
+out more often is that it can be time consuming to do. This is
+particularly so if one wants to consider several years at several
+sites. It can also be difficult to access back trajectory data. In an
+attempt to overcome some of these issues and expand the possibilities
+for data analysis, [openair]{.pkg} makes several functions
+available to access and analyse pre-calculated back trajectories.
+
+Currently these functions allow for the import of pre-calculated back
+trajectories are several pre-define locations and some trajectory
+plotting functions. In time all of these functions will be developed
+to allow more sophisticated analyses to be undertaken. Also it should
+be recognised that these functions are in their early stages of
+development and will may continue to change and be refined.
+
+The `importTraj` function imports pre-calculated back trajectories
+using the Hysplit trajectory model [Hybrid Single Particle
+Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php). Trajectories are run at
+3-hour intervals and stored in yearly files (see below). The
+trajectories are started at ground-level (10m) and propagated
+backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#sec:importAURN), which makes it very easy
+to import pre-processed trajectory data for a range of locations and
+years. ^[Note --- the back trajectories have been pre-calculated
+  for specific locations and stored as .RData objects. Users should
+  contact David Carslaw to request the addition of other locations.]
+
+Users may for various reasons wish to run Hysplit themselves
+e.g. for different starting heights, longer periods or more
+locations. Code and instructions have been provided in Section
+\@ref(sec:prod-hyspl-traj) for users wishing to do this. Users
+can also use different means of calculating back trajectories
+e.g. ECMWF and plot them in [openair]{.pkg} provided a few basic fields are
+present: `date` (POSIXct), `lat` (decimal latitude), `lon`
+(decimal longitude) and `hour.inc` the hour offset from the arrival
+date (i.e. from zero decreasing to the length of the back
+trajectories). See `?importTraj` for more details.
+
+These trajectories have been calculated using the Global
+NOAA-NCEP/NCAR reanalysis data archives. The global data are
+on a latitude-longitude grid (2.5 degree). Note that there are many
+meteorological data sets that can be used to run Hysplit
+e.g. including ECMWF data. However, in order to make it
+practicable to run and store trajectories for many years and sites,
+the NOAA-NCEP/NCAR reanalysis data is most useful. In
+addition, these archives are available for use widely, which is not
+the case for many other data sets
+e.g. ECMWF. Hysplit calculated trajectories based on
+archive data may be distributed without permission (see
+https://ready.arl.noaa.gov/HYSPLIT_agreement.php). For those
+wanting, for example, to consider higher resolution meteorological
+data sets it may be better to run the trajectories separately.
+
+[openair]{.pkg} uses the [mapproj]{.pkg} package to allow users to user
+different map projections. By default, the projection used is Lambert
+conformal, which is a conic projection best used for mid-latitude
+areas. The Hysplit model itself will use any one of three
+different projections depending on the latitude of the origin. If the
+latitude greater than 55.0 (or less than -55.0) then a polar
+stereographic projection is used, if the latitude greater than -25.0
+and less than 25.0 the mercator projection is used and elsewhere (the
+mid-latitudes) the Lambert projection. All these projections (and many
+others) are available in the [mapproj]{.pkg} package.
+
+Users should see the help file for `importTraj` to get an up to
+date list of receptors where back trajectories have been calculated. First, the packages are loaded that are needed.
+
+
+```{r warning=FALSE,message=FALSE}
+library(openair)
+library(tidyverse)
+library(lubridate)
+```
+
+As an example, we will import trajectories for London in
+2010. Importing them is easy:
+
+```{r loadTraj, echo=FALSE}
+## load from file
+load("~/My Drive/openair/Data/londonTraj.RData")
+```
+
+
+```{r eval=FALSE}
+traj <- importTraj(site = "london", year = 2010)
+```
+
+The file itself contains lots of information that is of use for
+plotting back trajectories:
+
+```{r headTraj}
+head(traj)
+```
+
+The `traj` data frame contains among other things the latitude and
+longitude of the back trajectory, the height (m) and pressure (Pa) of
+the trajectory. The `date` field is the *arrival* time of the
+air-mass and is useful for linking with ambient measurement data.
+
+The `trajPlot` function is used for plotting back trajectory lines
+and density plots and has the following options:
+
+## Plotting trajectories 
+
+Next, we consider how to plot back trajectories with a few simple
+examples. The first example will consider a potentially interesting
+period when the Icelandic volcano, Eyjafjallajokull erupted in
+April 2010. The eruption of Eyjafjallajokull resulted in a
+flight-ban that lasted six days across many European airports. In Figure
+\@ref(fig:traj1) `selectByDate` is used to consider the 7 days
+of interest and we choose to plot the back trajectories as lines
+rather than points (the default). Figure \@ref(fig:traj1) does indeed show
+that many of the back trajectories originated from Iceland over this
+period. Note also the plot automatically includes a world base
+map. The base map itself is not at very high resolution by default but
+is useful for the sorts of spatial scales that back trajectories exist
+over. The base map is also global, so provided that there are
+pre-calculated back trajectories, these maps can be generated anywhere
+in the world. By default the function uses the 'world' map from the
+[maps]{.pkg} package. If `map.res = "hires"` then the (much) more
+detailed base map `worldHires` from the [mapdata]{.pkg} package is
+used.^[You will need to load the [mapdata]{.pkg} package
+  i.e. `library(mapdata)`.]
+
+```{r traj1,w=6,h=6,out.width='70%',fig.cap='96-hour Hysplit back trajectories centred on London for 7 days in April 2010. Note the additional option to vary the country colours using `map.cols`. By default the map colours for all countries are grey.'}
+trajPlot(selectByDate(traj, start = "15/4/2010", end ="21/4/2010"),
+         map.cols = openColours("hue", 10), 
+         col = "grey30")
+```
+
+Note that `trajPlot` will only plot *full length*
+trajectories. This can be important when plotting something like a
+single month e.g. by using `selectByDate` when on partial sections
+of some trajectories may be selected.
+
+There are a few other ways of representing the data shown in Figure
+\@ref(fig:traj1). For example, it might be useful to plot the
+trajectories for each day. To do this we need to make a new column
+`day` which can be used in the plotting. The first example considers
+plotting the back trajectories in separate panels Figure
+(\@ref(fig:traj2).
+
+```{r traj2,fig.width=15,fig.height=4,fig.cap='96-hour Hysplit back trajectories centred on London for 7 days in April 2010, shown separately for each day.'}
+## make a day column
+traj$day <- as.Date(traj$date)
+
+## plot it choosing a specfic layout
+trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),
+         type = "day", layout = c(7, 1))
+```
+
+Another way of plotting the data is to group the trajectories by day
+and colour them. This time we also set a few other options to get the
+layout we want --- shown in Figure \@ref(fig:traj3).
+
+```{r traj3,w=6,h=6,out.width='75%',fig.cap='96-hour Hysplit back trajectories centred on London for 7 days in April 2010, shown grouped for each day and coloured accordingly.'}
+trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),
+         group = "day", col = "jet", lwd = 2, key.pos = "top", 
+         key.col = 4)
+```
+
+So far the plots have provided information on where the back
+trajectories come from, grouped or split by day. It is also possible,
+in common with most other [openair]{.pkg} functions to split the trajectories
+by many other variables e.g. month, season and so on. However, perhaps
+one of the most useful approaches is to link the back trajectories
+with the concentrations of a pollutant. As mentioned previously, the
+back trajectory data has a column `date` representing the arrival time
+of the air mass that can be used to link with concentration
+measurements. A couple of steps are required to do this using the
+`left_join` function.
+
+```{r mergeTraj}
+## import data for North Kensington
+kc1 <- importAURN("kc1", year = 2010)
+# now merge with trajectory data by 'date'
+traj <- left_join(traj, kc1, by = "date")
+## look at first few lines
+head(traj)
+```
+
+This time we can use the option `pollutant` in the function
+`trajPlot`, which will plot the back trajectories coloured by the
+concentration of a pollutant. Figure \@ref(fig:traj4) does seem to show
+elevated PM~10~ concentrations originating from Iceland over the
+period of interest. In fact, these elevated concentrations occur on
+two days as shown in Figure \@ref(fig:traj2). However, care is needed when
+interpreting such data because other analysis would need to rule out
+other reasons why PM~10~ could be elevated; in particular due to local
+sources of PM~10~. There are lots of [openair]{.pkg} functions that can help
+here e.g. `timeVariation` or `timePlot` to see if NO~x~
+concentrations were also elevated (which they seem to be). It would
+also be worth considering other sites for back trajectories that could
+be less influenced by local emissions.
+
+(ref:Traj4) 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM~10~ in $\mu$g m^-3^.
+
+```{r traj4,w=6,h=6,out.width='75%',fig.cap='(ref:Traj4)'}
+trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),
+         pollutant = "pm10", col = "jet", lwd =2)
+```
+
+However, it is possible to account for the PM that is local to some
+extent by considering the relationship between NO~x~ and PM~10~ (or
+PM~2.5~). For example, using `scatterPlot` (not shown):
+
+```{r eval=FALSE}
+scatterPlot(kc1, x = "nox", y = "pm2.5", avg = "day", linear = TRUE)
+```
+
+which suggests a gradient of 0.084. Therefore, we can remove the PM~10~
+that is associated NO~x~ in `kc1` data, making a new column
+`pm.new`:
+
+```{r eval=FALSE}
+kc1 <- mutate(kc1, pm.new = pm10 - 0.084 * nox)
+```
+
+We have already merged `kc1` with `traj`, so to keep things
+simple we import `traj` again and merge it with `kc1`. Note that
+if we had thought of this initially, `pm.new` would have been
+calculated first before merging with `traj`.
+
+```{r eval=FALSE}
+traj <- importTraj(site = "london", year = 2010)
+traj <- left_join(traj, kc1, by = "date")
+```
+
+Now it is possible to plot the trajectories:
+
+```{r eval=FALSE}
+trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),
+          pollutant = "pm.new", col = "jet", lwd = 2)
+```
+
+Which, interestingly still clearly shows elevated PM~10~
+concentrations for those two days that cross Iceland. The same is also
+true for PM~2.5~. However, as mentioned previously, checking other
+sites in more rural areas would be a good idea.
+
+## Trajectory gridded frequencies {#sec:trajLevel}
+
+The Hysplit model itself contains various analysis options
+for gridding trajectory data. Similar capabilities are also available
+in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg}
+capabilities. It is useful to gain an idea of where trajectories come
+from. Over the course of a year representing trajectories as lines or
+points results in a lot of over-plotting. Therefore it is useful to
+grid the trajectory data and calculate various statistics by
+considering latitude-longitude intervals.
+
+The first analysis considers the number of unique trajectories in a
+particular grid square. This is achieved by using the `trajLevel`
+function and setting the `statistic` option to
+"frequency". Figure \@ref(fig:trajFreq) shows the frequency of back
+trajectory crossings for the North Kensington data. In this case it
+highlights that most trajectory origins are from the west and north
+for 2010 at this site. Note that in this case, `pollutant` can just
+be the trajectory height (or another numeric field) rather than an
+actual pollutant because only the frequencies are considered.
+
+```{r trajFreq,w=8,h=8,out.width='65%',fig.cap='Gridded back trajectory frequencies. The `border = NA` option removes the border around each grid cell.'}
+trajLevel(traj, statistic = "frequency")
+```
+
+It is also possible to use hexagonal binning to gain an idea about
+trajectory frequencies. In this case each 3-hour point along each
+trajectory is used in the counting. The code below focuses more on
+Europe and uses the hexagonal binning method. Note that the effect of
+the very few high number of points at the origin has been diminished
+by plotting the data on a log scale --- see Section \@ref(sec:hexbin)
+for details.
+
+```{r trajHex,w=8,h=5,out.width='75%',fig.cap='Gridded back trajectory frequencies with hexagonal binning.'}
+trajLevel(subset(traj, lat > 30 & lat < 70 & lon > -30 & lon < 20),
+          method = "hexbin", col = "jet",
+          xbin = 40)
+```
+
+## Trajectory source contribution functions
+
+Back trajectories offer the possibility to undertake receptor
+modelling to identify the location of major emission sources. When
+many back trajectories (over months to years) are analysed in specific
+ways they begin to show the geographic origin most associated with
+elevated concentrations. With enough (dissimilar) trajectories those
+locations leading to the highest concentrations begin to be
+revealed. When a whole year of back trajectory data is plotted the
+individual back trajectories can extend 1000s of km. There are many
+approaches using back trajectories in this way and @Fleming2012
+provide a good overview of the methods available. [openair]{.pkg} has
+implemented a few of these techniques and over time these will be
+refined and extended.
+
+### Identifying the contribution of high concentration back trajectories
+
+A useful analysis to undertake is to consider the pattern of
+frequencies for two different conditions. In particular, there is
+often interest in the origin of high concentrations for different
+pollutants. For example, compared with data over a whole year, how do
+the frequencies of occurrence differ? Figure \@ref(fig:trajDiff) shows an
+example of such an analysis for PM~10~ concentrations. By default the
+function will compare concentrations $>$90th percentile with the full
+year. The percentile level is controlled by the option
+`percentile`. Note also there is an option `min.bin` that will
+exclude grid cells where there are fewer than `min.bin` data
+points. The analysis compares the percentage of time the air masses
+are in particular grid squares for all data and a subset of data where
+the concentrations are greater than the given percentile. The graph
+shows the absolute percentage difference between the two cases
+i.e. high minus base.
+
+Figure \@ref(fig:trajDiff) shows that compared with the whole year, high
+PM~10~ concentrations ($>$90th percentile) are more prevalent when the
+trajectories originate from the east, which is seen by the positive
+values in the plot. Similarly there are relatively fewer occurrences
+of these high concentration back trajectories when they originate from
+the west. This analysis is in keeping with the highest PM~10~
+concentrations being largely controlled by secondary aerosol formation
+from air-masses originating during anticyclonic conditions from
+mainland Europe.
+
+```{r trajDiff,fig.width=10,fig.height=6,out.width='80%',fig.cap='Gridded back trajectory frequencies showing the percentage difference in occurrence for high PM~10~ concentrations (90th percentile) compared with conditions over the full year.'}
+trajLevel(traj, pollutant = "pm10", statistic = "difference",
+          col = c("skyblue", "white", "tomato"), min.bin = 50, border = NA, 
+          xlim = c(-20, 20), ylim = c(40, 70))
+```
+
+Note that it is also possible to use conditioning with these
+plots. For example to split the frequency results by season:
+
+```{r trajFreq2,eval=FALSE}
+trajLevel(traj, pollutant = "pm10", 
+          statistic = "frequency", 
+          col = "heat",
+          type = "season")
+```
+
+### Allocating trajectories to different wind sectors
+
+One of the key aspects of trajectory analysis is knowing something
+about where air masses have come from. Cluster analysis can be used to
+group trajectories based on their origins and this is discussed in Section
+\@ref(sec:trajCluster). A simple approach is to consider different
+wind sectors e.g. N, NE, E and calculate the proportion of time a
+particular back trajectory resides in a specific sector. It is then
+possible to allocate a particular trajectory to a sector based on some
+assumption about the proportion of time it is in that sector --- for
+example, assume a trajectory is from the west sector if it spends at
+least 50% of its time in that sector or otherwise record the
+allocation as `unallocated'. The code below can be used as the basis
+of such an approach.
+
+```{r echo=FALSE}
+## load from file
+load("~/My Drive/openair/Data/londonTraj.RData")
+```
+
+First we import the trajectories, which in this case are for London in 2010:
+
+```{r eval=FALSE}
+traj <- importTraj(site = "london", year = 2010)
+```
+
+```{r allocateTraj}
+## need start/end lat and lon to work out angles
+id <- which(traj$hour.inc == 0)
+y0 <- traj$lat[id[1]]
+x0 <- traj$lon[id[1]]
+
+## calculate angle and then assign sector
+traj <- mutate(traj, angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi)
+ids <- which(traj$angle < 0)
+traj$angle[ids] <- traj$angle[ids] + 360
+
+traj$sector <- cut(traj$angle, breaks = seq(22.5, 382.5, 45),
+                              labels = c("NE", "E", "SE", "S", "SW", "W",
+                              "NW", "N"))
+traj[ , "sector"][is.na(traj[ , "sector"])] <- "N" # for wd < 22.5
+
+## count frequencies of sectors for each trajectory and the maximum
+alloc <- tapply(traj$sector, traj$date, table)
+alloc <- as.data.frame(do.call(rbind, alloc))
+alloc$max <- apply(alloc, 1, max)
+
+## identify the most frequent sector
+alloc$sec <- sapply(1:nrow(alloc),
+                    function(x) colnames(alloc)[which.max(alloc[x, ])])
+
+## assign to most frequent sector, or label unallocated
+## below assumes at least 50 out of 96 hours for assignment
+alloc$sec <- ifelse(alloc$max > 50, alloc$sec, "unallocated")
+alloc$date <- ymd_hms(rownames(alloc))
+
+alloc <- alloc[, c("date", "sec")]
+
+## merge with orginal data
+traj <- merge(traj, alloc, by = "date", all = TRUE)
+```
+
+Now it is possible to post-process the data. `traj` now has the
+angle, sector and allocation (`sec`).
+
+```{r headTraj2}
+head(traj)
+```
+
+First, merge the air quality data from North Kensington:
+
+```{r mergeNK}
+traj <- left_join(traj, kc1, by = "date")
+```
+
+We can work out the mean concentration by allocation, which shows the
+clear importance for the east and south-east sectors.
+
+```{r meanAlloc}
+tapply(traj$pm2.5, traj$sec, mean, na.rm = TRUE)
+```
+
+Finally, the percentage of the year in each sector can be calculated
+as follows:
+
+```{r percentAlloc}
+100 * prop.table(table(traj$sec))
+```
+
+## Potential Source Contribution Function (PSCF)
+
+If `statistic = "pscf"` then the Potential Source Contribution
+Function (PSCF) is plotted. The PSCF calculates the probability that a
+source is located at latitude $i$ and longitude $j$
+[@Fleming2012; @Pekney2006]. The PSCF is somewhat analogous to the
+CPF function described on Section \@ref(sec:CPF) that considers local
+wind direction probabilities. In fact, the two approaches have been
+shown to work well together [@Pekney2006]. The PSCF approach has
+been widely used in the analysis of air mass back
+trajectories. @AraBegum2005 for example assessed the method
+against the known locations of wildfires and found it performed well
+for PM~2.5~, EC (elemental carbon) and OC (organic carbon) and that
+other (non-fire related) species such as sulphate had different source
+origins. The basis of PSCF is that if a source is located at ($i$,
+$j$), an air parcel back trajectory passing through that location
+indicates that material from the source can be collected and
+transported along the trajectory to the receptor site. PSCF solves
+
+\begin{equation}
+PSCF = \frac{m_{ij}}{n_{ij}} (#eq:PSCF)
+\end{equation}
+
+where $n_{ij}$ is the number of times that the trajectories passed
+through the cell ($i$, $j$) and $m_{ij}$ is the number of times that a
+source concentration was high when the trajectories passed through the
+cell ($i$, $j$). The criterion for determining $m_{ij}$ is controlled by
+`percentile}, which by default is 90. Note also that cells with few
+data have a weighting factor applied to reduce their effect.
+
+An example of a PSCF plot is shown in Figure \@ref(fig:PSCF) for PM~2.5~
+for concentrations >90th percentile. This Figure gives a very clear
+indication that the principal (high) sources are dominated by source
+origins in mainland Europe --- particularly around the Benelux
+countries.
+
+```{r PSCF,fig.width=10,fig.height=6,out.width='80%',fig.cap='PSCF probabilities for PM~2.5~ concentrations (90th percentile).'}
+trajLevel(filter(traj, lon > -20, lon < 20, lat > 45, lat < 60),
+          pollutant = "pm2.5", statistic = "pscf", 
+          col = "increment",
+          border = NA)
+```
+
+## Concentration Weighted Trajectory (CWT)
+
+A limitation of the PSCF method is that grid cells can have the same
+PSCF value when sample concentrations are either only slightly higher
+or much higher than the criterion [@Hsu2003]. As a result, it can
+be difficult to distinguish moderate sources from strong
+ones. @seibert1994 computed concentration fields to identify
+source areas of pollutants. This approach is sometimes referred to as
+the CWT or CF (concentration field). A grid domain was used as in the
+PSCF method. For each grid cell, the mean (CWT) or logarithmic mean
+(used in the Residence Time Weighted Concentration (RTWC) method)
+concentration of a pollutant species was calculated as follows:
+
+\begin{equation}
+  ln(\overline{C}_{ij}) = \frac{1}{\sum_{k=1}^{N}\tau_{ijk}}\sum_{k=1}^{N}ln(c_k)\tau_{ijk} (#eq:RTWC)
+\end{equation}
+
+where $i$ and $j$ are the indices of grid, $k$ the index of
+trajectory, $N$ the total number of trajectories used in analysis,
+$c_k$ the pollutant concentration measured upon arrival of trajectory
+$k$, and $\tau_{ijk}$ the residence time of trajectory $k$ in grid
+cell ($i$, $j$). A high value of $\overline{C}_{ij}$ means that, air
+parcels passing over cell ($i$, $j$) would, on average, cause high
+concentrations at the receptor site.
+
+Figure \@ref(fig:traj5) shows the situation for PM~2.5~ concentrations. It
+was calculated by recording the associated PM~2.5~ concentration for
+each point on the back trajectory based on the arrival time
+concentration using 2010 data. The plot shows the geographic areas
+most strongly associated with high PM~2.5~ concentrations i.e. to the
+east in continental Europe. Both the CWT and PSCF methods have been
+shown to give similar results and each have their advantages and
+disadvantages [@Lupu2002;@Hsu2003]. Figure \@ref(fig:traj5) can be
+compared with Figure \@ref(fig:PSCF) to compare the overall identification
+of source regions using the CWT and PSCF techniques. Overall the
+agreement is good in that similar geographic locations are identified
+as being important for PM~2.5~.
+
+```{r traj5,fig.width=10,fig.height=6,out.width='80%',fig.cap='Gridded back trajectory concentrations showing mean PM~2.5~ concentrations using the CWT approach.'}
+trajLevel(filter(traj,lon > -20, lon < 20, lat > 45, lat < 60),
+          pollutant = "pm2.5", statistic="cwt", 
+          col = "increment",
+          border = "white")
+```
+
+Figure \@ref(fig:traj5) is useful, but it can be clearer if the trajectory
+surface is smoothed, which has been done for PM~2.5~ concentrations
+shown in Figure \@ref(fig:traj6).
+
+```{r traj6,fig.width=10,fig.height=6,out.width='80%',fig.cap='Gridded and smoothed back trajectory concentrations showing mean PM~2.5~ concentrations using the CWT approach.'}
+trajLevel(subset(traj, lat > 45 & lat < 60 & lon >-20 & lon <20),
+          pollutant ="pm2.5", statistic = "cwt", smooth = TRUE,
+          col = "increment")
+```
+
+In common with most other [openair]{.pkg} functions, the flexible `type`
+option can be used to split the data in different ways. For example, to
+plot the smoothed back trajectories for PM~2.5~ concentrations by
+season.
+
+```{r traj7,eval=FALSE}
+trajLevel(subset(traj, lat > 40 & lat < 70 & lon >-20 & lon <20),
+          pollutant = "pm2.5", type = "season", statistic = "pscf",
+          layout = c(4, 1))
+```
+
+
+It should be noted that it makes sense to analyse back trajectories
+for pollutants that have a large regional component --- such as
+particles or \ozone. It makes little sense to analyse pollutants that
+are known to have local impacts e.g. \nox. However, a species such as
+\nox can be helpful to exclude `fresh' emissions from the analysis.
+
+## Trajectory clustering {#sec:trajCluster}
+
+Often it is useful to use cluster analysis on back trajectories to
+group similar air mass origins together. The principal purpose of
+clustering back trajectories is to post-process data according to
+cluster origin. By grouping data with similar geographic origins it is
+possible to gain information on pollutant species with similar
+chemical histories. There are several ways in which clustering can be
+carried out and several measures of the similarity of different
+clusters. A key issue is how the *distance matrix* is calculated,
+which determines the similarity (or dissimilarity) of different back
+trajectories. The simplest measure is the Euclidean distance. However,
+an angle-based measure is also often used. The two distance measures
+are defined below. In [openair]{.pkg} the distance matrices are calculated
+using C$++$ code because their calculation is computationally
+intensive. Note that these calculations can also be performed directly
+in the Hysplit model itself.
+
+The Euclidean distance between two trajectories is given by Equation
+\@ref(eq:Euclid). Where $X_1$, $Y_1$ and $X_2$, $Y_2$ are the
+latitude and longitude coordinates of back trajectories $1$ and $2$,
+respectively. $n$ is the number of back trajectory points (96 hours in
+this case).
+
+\begin{equation}
+d_{1, 2} = \left({\sum_{i=1}^{n} ((X_{1i} - X_{2i}) ^ 2 + (Y_{1i} - Y_{2i})) ^ 2}\right)^{1/2} (#eq:Euclid)
+\end{equation}
+
+The *angle* distance matrix is a measure of how similar two back
+trajectory points are in terms of their angle from the origin i.e. the
+starting location of the back trajectories. The angle-based measure
+will often capture some of the important circulatory features in the
+atmosphere e.g. situations where there is a high pressure located to
+the east of the UK. However, the most appropriate distance measure
+will be application dependent and is probably best tested by the
+extent to which they are able to differentiate different air-mass
+characteristics, which can be tested through post-processing. The
+angle-based distance measure is defined as:
+
+\begin{equation}
+d_{1, 2} = \frac{1}{n}\sum_{i=1}^{n}cos^{-1} \left(0.5\frac{A_i + B_i + C_i}{\sqrt{A_iB_i}}\right)  (#eq:Angle)
+\end{equation}
+
+where
+
+\begin{equation}
+  (#eq:A)
+  A_i = (X_1(i) - X_0)^2 + (Y_1(i) - Y_0)^2
+\end{equation}
+
+\begin{equation}
+  (#eq:B)
+  B_i = (X_2(i) - X_0)^2 + (Y_2(i) - Y_0)^2
+\end{equation}
+
+\begin{equation}
+  (#eq:C)
+  C_i = (X_2(i) - X_1(i))^2 + (Y_2(i) - Y_1(i))^2
+\end{equation}
+
+where $X_0$ and $Y_0$ are the coordinates of the location being
+studied i.e. the starting location of the trajectories.
+
+As an example we will consider back trajectories for London in 2011.
+
+```{r echo=FALSE}
+## load pre-calculated cluster data for kc1
+## provides traj and kc1
+load("~/My Drive/openair/Data/clusterData.RData")
+```
+
+First, the back trajectory data for London is imported together with
+the air pollution data for the North Kensington site (KC1).
+
+```{r importTrajKC1}
+traj <- importTraj(site = "london", year = 2011)
+kc1 <- importAURN(site = "kc1", year = 2011)
+```
+
+The clusters are straightforward to calculate. In this case the back
+trajectory data (`traj`) is supplied and the angle-based distance
+matrix is used. Furthermore, we choose to calculate 6 clusters and
+choose a specific colour scheme. In this case we read the output from
+`trajCluster` into a variable `clust` so that the results can be
+post-processed.
+
+```{r calcClusterTraj, fig.width=6, fig.height=5, out.width='80%',fig.cap='The 6-cluster solution to back trajectories calculated for the London North Kensington site for 2011 showing the mean trajectory for each cluster. '}
+clust <- trajCluster(traj, method = "Angle", 
+                     n.cluster = 6, 
+                     col = "Set2",
+                     map.cols = openColours("Paired", 10))
+```
+
+`clust` returns all the back trajectory information together with
+the cluster (as a character). This data can now be used together with
+other data to analyse results further. However, first it is possible
+to show all trajectories coloured by cluster, although for a year of
+data there is significant overlap and it is difficult to tell them
+apart.
+
+```{r eval=FALSE}
+trajPlot(clust$data, group = "cluster")
+```
+
+A useful way in which to see where these air masses come from by
+trajectory is to produce a frequency plot by cluster. Such a plot (not
+shown, but code below) provides a good indication of the spread of the
+different trajectory clusters as well as providing an indication of
+where air masses spend most of their time. For the London 2011 data it
+can be seen cluster 1 is dominated by air from the European mainland
+to the south.
+
+```{r eval=FALSE}
+trajLevel(clust$data, type = "cluster", col = "increment", border = NA)
+```
+
+Perhaps more useful is to merge the cluster data with measurement
+data. In this case the data at North Kensington site are used. Note
+that in merging these two data frames it is not necessary to retain
+all 96 back trajectory hours and for this reason we extract only the
+first hour.
+
+```{r mergeClustTraj}
+kc1 <- left_join(kc1, filter(clust$data, hour.inc == 0), by = "date")
+```
+
+Now `kc1` contains air pollution data identified by cluster. The
+size of this data frame is about a third of the original size because
+back trajectories are only run every 3~hours.
+
+The numbers of each cluster are given by:
+
+```{r numClust}
+table(kc1[["cluster"]])
+```
+
+i.e. is dominated by clusters 3 and 2 from west and south-west (Atlantic).
+
+Now it is possible to analyse the concentration data according to the
+cluster. There are numerous types of analysis that can be carried out
+with these results, which will depend on what the aims of the analysis
+are in the first place. However, perhaps one of the first things to
+consider is how the concentrations vary by cluster. As the summary
+results below show, there are distinctly different mean concentrations
+of most pollutants by cluster. For example, clusters 1 and 6 are
+associated with much higher concentrations of PM~10~ --- approximately
+double that of other clusters. Both of these clusters originate from
+continental Europe. Cluster 5 is also relatively high, which tends to
+come from the rest of the UK. Other clues concerning the types of
+air-mass can be gained from the mean pressure. For example, cluster~5
+is associated with the highest pressure (1014~kPa), and as is seen in Figure
+\@ref(fig:calcClusterTraj) the shape of the line for cluster~5 is
+consistent with air-masses associated with a high pressure system (a
+clockwise-type sweep).
+
+```{r clustMeans}
+group_by(kc1, cluster) %>% 
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+```
+
+Simple plots can be generated from these results too. For example, it
+is easy to consider the temporal nature of the volatile component of
+PM~2.5~ concentrations (`v2.5` in the `kc1` data
+frame). Figure \@ref(fig:calcClusterLevel) for example shows how the
+concentration of the volatile component of PM~2.5~ concentrations
+varies by cluster by plotting the hour of day-month variation. It is
+clear from Figure \@ref(fig:calcClusterLevel) that the clusters associated
+with the highest volatile PM~2.5~ concentrations are clusters 1 and 6
+(European origin) and that these concentrations peak during
+spring. There is less data to see clearly what is going on with
+cluster~5. Nevertheless, the cluster analysis has clearly separated
+different air mass characteristics which allows for more refined
+analysis of different air-mass types.
+
+```{r calcClusterLevel, fig.width=13, fig.height=3,fig.cap='Some of the temporal characteristics of the volatile PM~2.5~ component plotted by month and hour of the day and by cluster for the London North Kensington site for 2011.'}
+trendLevel(kc1, pollutant = "v2.5", type = "cluster", 
+           layout = c(6, 1),
+               cols = "increment")
+```
+
+Similarly, as considered in Figure \@ref(sec:polarCluster), the
+`timeVariation` function can also be used to consider the temporal
+components.
+
+Another useful plot to consider is `timeProp` (see Section \@ref(sec:timeProp)), which can show how
+the concentration of a pollutant is comprised. In this case it is
+useful to plot the time series of PM~2.5~ *and* show how much of
+the concentration is contributed to by each cluster. Such a plot is
+shown in Figure \@ref(fig:timePropTraj). It is now easy to see for example
+that during the spring months many of the high concentration events
+were due to clusters 1 and 6, which correspond to European origin
+air-masses as shown in Figure \@ref(fig:calcClusterTraj).
+
+```{r timePropTraj, fig.width=15, fig.height=5,fig.cap='Temporal variation in daily PM~2.5~ concentrations at the North Kensington site show by contribution of each cluster.'}
+timeProp(kc1, pollutant = "pm2.5", 
+         avg.time = "day", proportion = "cluster",
+         cols = "Set2", 
+         key.position = "top", key.columns = 6)
+```

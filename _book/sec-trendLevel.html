@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-20" />
+<meta name="date" content="2020-07-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -223,6 +223,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Examples of trend analysis</a></li>
 <li class="chapter" data-level="15.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>15.3</b> Seasonal averages</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>16</b> Trajectory analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>16.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>16.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="16.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>16.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>16.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="16.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>16.3.2</b> Allocating trajectories to different wind sectors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>16.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="16.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>16.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="16.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>16.6</b> Trajectory clustering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -338,8 +351,14 @@ quantiles of NO<sub>2</sub> that are associated with higher O<sub>3</sub>
 concentration (as well as low NO<sub>x</sub> and NO<sub>2</sub> concentrations).</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="sec-trendLevel.html#cb98-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
 <span id="cb98-2"><a href="sec-trendLevel.html#cb98-2" aria-hidden="true"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb98-3"><a href="sec-trendLevel.html#cb98-3" aria-hidden="true"></a>           <span class="dt">n.levels =</span> <span class="dv">10</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, </span>
+<span id="cb98-3"><a href="sec-trendLevel.html#cb98-3" aria-hidden="true"></a>           <span class="dt">n.levels =</span> <span class="dv">30</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, </span>
 <span id="cb98-4"><a href="sec-trendLevel.html#cb98-4" aria-hidden="true"></a>           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:trendLevelNO2NOx"></span>
+<img src="openair_files/figure-html/trendLevelNO2NOx-1.png" alt="`trendLevel` showing NO~x~ against NO~2~, coloured by the concentration of O~3~." width="672" />
+<p class="caption">
+Figure 12.4: <code>trendLevel</code> showing NO<sub>x</sub> against NO<sub>2</sub>, coloured by the concentration of O<sub>3</sub>.
+</p>
+</div>
 <p>The plot can also be shown by wind direction sector, this time showing
 how O<sub>3</sub> varies by weekday, wind direction sector and NO<sub>x</sub> quantile.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="sec-trendLevel.html#cb99-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
@@ -354,7 +373,7 @@ may also use their own statistic function.</p>
 <p>As a simple example, consider the above plot which summarises by mean.
 This tells us about average concentrations. It might also be useful to
 consider a particular percentile of concentrations. This can be done
-by defining one’s own function as shown in Figure <a href="sec-trendLevel.html#fig:trendlevel4">12.4</a>.</p>
+by defining one’s own function as shown in Figure <a href="sec-trendLevel.html#fig:trendlevel4">12.5</a>.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="sec-trendLevel.html#cb100-1" aria-hidden="true"></a><span class="co">## function to estimate 95th percentile</span></span>
 <span id="cb100-2"><a href="sec-trendLevel.html#cb100-2" aria-hidden="true"></a>percentile &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">quantile</span>(x, <span class="dt">probs =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb100-3"><a href="sec-trendLevel.html#cb100-3" aria-hidden="true"></a></span>
@@ -366,7 +385,7 @@ by defining one’s own function as shown in Figure <a href="sec-trendLevel.html
 <div class="figure"><span id="fig:trendlevel4"></span>
 <img src="openair_files/figure-html/trendlevel4-1.png" alt="`trendLevel` using locally defined    `statistic`." width="80%" />
 <p class="caption">
-Figure 12.4: <code>trendLevel</code> using locally defined <code>statistic</code>.
+Figure 12.5: <code>trendLevel</code> using locally defined <code>statistic</code>.
 </p>
 </div>
 <p>This type of flexibility really opens up the potential of the function
@@ -396,7 +415,7 @@ default <span class="math inline">\(x\)</span> and <span class="math inline">\(y
 <div class="figure"><span id="fig:trendLevelDiscete"></span>
 <img src="openair_files/figure-html/trendLevelDiscete-1.png" alt="`trendLevel` plot for maximum NO~2~ concentrations using a user-defined discrete colour scale." width="672" />
 <p class="caption">
-Figure 12.5: <code>trendLevel</code> plot for maximum NO<sub>2</sub> concentrations using a user-defined discrete colour scale.
+Figure 12.6: <code>trendLevel</code> plot for maximum NO<sub>2</sub> concentrations using a user-defined discrete colour scale.
 </p>
 </div>
 
