@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> The <code>worldmet</code> package</h2>
 <p>Most of the import functions described in Section <a href="sec-importAURN.html#sec:importAURN">3</a> return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.</p>
 <p>Alternatively it may be advantageous to used surface measurements. <span class="pkg">worldmet</span> provides an easy way in which to access surface
-meteorological data from &gt;30,000 sites across the world. The package
+meteorological data from &gt;30,000 sites across the world <span class="citation">(Carslaw <a href="#ref-R-worldmet" role="doc-biblioref">2020</a>)</span>. The package
 accesses the NOAA webservers to download hourly data. Access to
 surface meteorological data is very useful in general but is
 especially useful when using <span class="pkg">openair</span> and the <code>polarPlot</code>
@@ -318,6 +318,12 @@ import the data. For example, to import data for Dublin Airport and look at some
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="sec-worldmet.html#cb18-1" aria-hidden="true"></a><span class="kw">windRose</span>(dublin_met)</span></code></pre></div>
 <p><img src="openair_files/figure-html/unnamed-chunk-11-1.png" width="50%" /></p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-worldmet">
+<p>Carslaw, David. 2020. <em>Worldmet: Import Surface Meteorological Data from Noaa Integrated Surface Database (Isd)</em>. <a href="http://github.com/davidcarslaw/worldmet">http://github.com/davidcarslaw/worldmet</a>.</p>
 </div>
 </div>
 <div class="footnotes">
