@@ -378,7 +378,7 @@ further complexities.</p>
 <h2><span class="header-section-number">7.2</span> Examples</h2>
 <p>We first use the function in its simplest form to make a polar plot of
 NO<sub>x</sub>. The code is very simple as shown in Figure <a href="sec-polarPlot.html#fig:polarPlot">7.1</a>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sec-polarPlot.html#cb39-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sec-polarPlot.html#cb36-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot"></span>
 <img src="openair_files/figure-html/polarPlot-1.png" alt="Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations." width="50%" />
 <p class="caption">
@@ -438,18 +438,18 @@ very wide range of situations and is also similar to the approaches
 used when trying to locate sources when using back trajectories as
 described in Section <a href="sec-trajPlot.html#sec:trajPlot">16</a>. Users can ignore the automatic
 weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sec-polarPlot.html#cb40-1" aria-hidden="true"></a><span class="co">## NOx plot</span></span>
-<span id="cb40-2"><a href="sec-polarPlot.html#cb40-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, </span>
-<span id="cb40-3"><a href="sec-polarPlot.html#cb40-3" aria-hidden="true"></a>          <span class="dt">key.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb40-4"><a href="sec-polarPlot.html#cb40-4" aria-hidden="true"></a>          <span class="dt">key.header =</span> <span class="st">&quot;mean nox (ug/m3)&quot;</span>, </span>
-<span id="cb40-5"><a href="sec-polarPlot.html#cb40-5" aria-hidden="true"></a>          <span class="dt">key.footer =</span> <span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="sec-polarPlot.html#cb37-1" aria-hidden="true"></a><span class="co">## NOx plot</span></span>
+<span id="cb37-2"><a href="sec-polarPlot.html#cb37-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, </span>
+<span id="cb37-3"><a href="sec-polarPlot.html#cb37-3" aria-hidden="true"></a>          <span class="dt">key.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb37-4"><a href="sec-polarPlot.html#cb37-4" aria-hidden="true"></a>          <span class="dt">key.header =</span> <span class="st">&quot;mean nox (ug/m3)&quot;</span>, </span>
+<span id="cb37-5"><a href="sec-polarPlot.html#cb37-5" aria-hidden="true"></a>          <span class="dt">key.footer =</span> <span class="ot">NULL</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot2"></span>
 <img src="openair_files/figure-html/polarPlot2-1.png" alt="Example plots using the `polarPlot` function with different options for the mean concentration of NO~x~." width="50%" />
 <p class="caption">
 Figure 7.2: Example plots using the <code>polarPlot</code> function with different options for the mean concentration of NO<sub>x</sub>.
 </p>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="sec-polarPlot.html#cb41-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="sec-polarPlot.html#cb38-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot3"></span>
 <img src="openair_files/figure-html/polarPlot3-1.png" alt="Example plots using the `polarPlot` function for the mean concentration of SO~2~." width="50%" />
 <p class="caption">
@@ -462,8 +462,8 @@ largely independent of meteorological variation. In many circumstances
 it is possible to gain a lot of insight into sources if pollutant
 ratios are considered. First, it is necessary to calculate a ratio,
 which is easy in R. In this example we consider the ratio of SO<sub>2</sub>/NO<sub>x</sub>:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sec-polarPlot.html#cb42-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb42-2"><a href="sec-polarPlot.html#cb42-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, <span class="dt">ratio =</span> so2 <span class="op">/</span><span class="st"> </span>nox)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sec-polarPlot.html#cb39-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb39-2"><a href="sec-polarPlot.html#cb39-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, <span class="dt">ratio =</span> so2 <span class="op">/</span><span class="st"> </span>nox)</span></code></pre></div>
 <p>This makes a new variable called <code>ratio</code>. Sometimes it can be
 problematic if there are values equal to zero on the denominator, as
 is the case here. The mean and maximum value of the ratio is infinite,
@@ -471,7 +471,7 @@ as shown by the <code>Inf</code> in the statistics below. Luckily, R can deal
 with infinity and the <span class="pkg">openair</span> functions will remove these values
 before performing calculations. It is very simple therefore to
 calculate ratios.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sec-polarPlot.html#cb43-1" aria-hidden="true"></a><span class="kw">summary</span>(mydata<span class="op">$</span>ratio)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sec-polarPlot.html#cb40-1" aria-hidden="true"></a><span class="kw">summary</span>(mydata<span class="op">$</span>ratio)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   0.000   0.018   0.024     Inf   0.034     Inf   11782</code></pre>
 <p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in Figure
@@ -485,7 +485,7 @@ industrial sources have a different SO<sub>2</sub>/NO<sub>x</sub> ratio compared
 road sources. This is a very simple analysis, but ratios can be used
 effectively in many functions and are particularly useful in the
 presence of high source complexity.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sec-polarPlot.html#cb45-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;so2/nox ratio&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sec-polarPlot.html#cb42-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;so2/nox ratio&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarRatio"></span>
 <img src="openair_files/figure-html/polarRatio-1.png" alt="Bivariate polar plot of the ratio of SO~2~/NO~x~." width="50%" />
 <p class="caption">
@@ -496,7 +496,7 @@ Figure 7.4: Bivariate polar plot of the ratio of SO<sub>2</sub>/NO<sub>x</sub>.
 values in some way; perhaps due to some unusually low value
 denominator data resulting in a few very high values for the
 ratio. This is easy to do with the <strong>dplyr</strong> <code>filter</code> command. The code below selects ratios less than 0.1.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sec-polarPlot.html#cb46-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">filter</span>(mydata, ratio <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.1</span>), <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sec-polarPlot.html#cb43-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">filter</span>(mydata, ratio <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.1</span>), <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>)</span></code></pre></div>
 <p>The uncertainties in the surface can be calculated by setting the
 option <code>uncertainty = TRUE</code>. The details are described above and
 here we show the example of SO<sub>2</sub> concentrations
@@ -506,7 +506,7 @@ fewer data. However, the magnitude depends on both the frequency and
 magnitude of the concentration close to the points of interest. The
 pattern of uncertainty is not always obvious and it can differ
 markedly for different pollutants.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sec-polarPlot.html#cb47-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">uncertainty =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sec-polarPlot.html#cb44-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">uncertainty =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarUncer"></span>
 <img src="openair_files/figure-html/polarUncer-1.png" alt="Bivariate polar plot of SO~2~ concentrations at Marylebone Road. Three surfaces are shown: the central prediction (middle) and the lower and upper 95% estimated uncertainties. These plots help to show that in this particular case, some of the concentrations for strong easterly and south-easterly winds are rather uncertain. However, the central feature to the east remains, suggesting this feature is real and not an artifact of there being too few data." width="768" />
 <p class="caption">
@@ -519,7 +519,7 @@ variation of SO<sub>2</sub> concentrations at Marylebone Road by hour of the
 day in the code below. The function was called as shown in below, and
 in this case the minimum number of points in each wind speed/direction
 was set to 2.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sec-polarPlot.html#cb48-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sec-polarPlot.html#cb45-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>This plot shows that concentrations of SO<sub>2</sub> tend to be highest from
 the east (as also shown in Figure <a href="sec-polarPlot.html#fig:polarPlot3">7.3</a>) and for hours in
 the morning. Together these plots can help better understand different
@@ -555,7 +555,7 @@ to use a GAM. The width of the Gaussian kernels (<span class="math inline">\(\si
 controlled by the options <code>wd_spread</code> and <code>ws_spread</code>.</p>
 <p>An example for SO<sub>2</sub> concentrations is shown in Figure
 <a href="sec-polarPlot.html#fig:polarNWR">7.6</a>, which can be compared with Figure <a href="sec-polarPlot.html#fig:polarPlot3">7.3</a>.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="sec-polarPlot.html#cb49-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;nwr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sec-polarPlot.html#cb46-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;nwr&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarNWR"></span>
 <img src="openair_files/figure-html/polarNWR-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach." width="50%" />
 <p class="caption">
@@ -583,10 +583,10 @@ intervals are dominated by high concentrations and give the
 probability of doing so. A full explanation of the development and use
 of the bivariate case of the CPF is described in <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>
 where it is applied to monitoring data close to steelworks.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sec-polarPlot.html#cb50-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, </span>
-<span id="cb50-2"><a href="sec-polarPlot.html#cb50-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb50-3"><a href="sec-polarPlot.html#cb50-3" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;cpf&quot;</span>, </span>
-<span id="cb50-4"><a href="sec-polarPlot.html#cb50-4" aria-hidden="true"></a>          <span class="dt">percentile =</span> <span class="dv">90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sec-polarPlot.html#cb47-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, </span>
+<span id="cb47-2"><a href="sec-polarPlot.html#cb47-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
+<span id="cb47-3"><a href="sec-polarPlot.html#cb47-3" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;cpf&quot;</span>, </span>
+<span id="cb47-4"><a href="sec-polarPlot.html#cb47-4" aria-hidden="true"></a>          <span class="dt">percentile =</span> <span class="dv">90</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlotCPF"></span>
 <img src="openair_files/figure-html/polarPlotCPF-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function." width="50%" />
 <p class="caption">
@@ -623,16 +623,16 @@ from the east (likely tall stacks), which again are not as clear in
 the standard bivariate polar plot. Considering a range of percentile
 values can therefore help to build up a more complete understanding of
 source contributions.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sec-polarPlot.html#cb51-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span>
-<span id="cb51-2"><a href="sec-polarPlot.html#cb51-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
-<span id="cb51-3"><a href="sec-polarPlot.html#cb51-3" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">30</span>))</span>
-<span id="cb51-4"><a href="sec-polarPlot.html#cb51-4" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">40</span>))</span>
-<span id="cb51-5"><a href="sec-polarPlot.html#cb51-5" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">40</span>, <span class="dv">50</span>))</span>
-<span id="cb51-6"><a href="sec-polarPlot.html#cb51-6" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>))</span>
-<span id="cb51-7"><a href="sec-polarPlot.html#cb51-7" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">60</span>, <span class="dv">70</span>))</span>
-<span id="cb51-8"><a href="sec-polarPlot.html#cb51-8" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">80</span>))</span>
-<span id="cb51-9"><a href="sec-polarPlot.html#cb51-9" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">90</span>))</span>
-<span id="cb51-10"><a href="sec-polarPlot.html#cb51-10" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">100</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sec-polarPlot.html#cb48-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span>
+<span id="cb48-2"><a href="sec-polarPlot.html#cb48-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
+<span id="cb48-3"><a href="sec-polarPlot.html#cb48-3" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">30</span>))</span>
+<span id="cb48-4"><a href="sec-polarPlot.html#cb48-4" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">40</span>))</span>
+<span id="cb48-5"><a href="sec-polarPlot.html#cb48-5" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">40</span>, <span class="dv">50</span>))</span>
+<span id="cb48-6"><a href="sec-polarPlot.html#cb48-6" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>))</span>
+<span id="cb48-7"><a href="sec-polarPlot.html#cb48-7" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">60</span>, <span class="dv">70</span>))</span>
+<span id="cb48-8"><a href="sec-polarPlot.html#cb48-8" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">80</span>))</span>
+<span id="cb48-9"><a href="sec-polarPlot.html#cb48-9" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">90</span>))</span>
+<span id="cb48-10"><a href="sec-polarPlot.html#cb48-10" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">90</span>, <span class="dv">100</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlotCPFInt"></span>
 <img src="openair_files/figure-html/polarPlotCPFInt-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-2.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-3.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-4.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-5.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-6.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-7.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-8.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-9.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" /><img src="openair_files/figure-html/polarPlotCPFInt-10.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0--10, 10--20, ... , 90--100." width="33%" />
 <p class="caption">
@@ -665,7 +665,7 @@ plumes have diluted more over longer distances. Such sources would be
 approach see <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>Note that it is easy to work out what the concentration intervals are
 for the percentiles shown in Figure <a href="sec-polarPlot.html#fig:polarPlotCPFInt">7.8</a>:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sec-polarPlot.html#cb52-1" aria-hidden="true"></a><span class="kw">quantile</span>(mydata<span class="op">$</span>so2, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="sec-polarPlot.html#cb49-1" aria-hidden="true"></a><span class="kw">quantile</span>(mydata<span class="op">$</span>so2, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##      0%     10%     20%     30%     40%     50%     60%     70%     80%     90% 
 ##  0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 
 ##    100% 
@@ -713,20 +713,20 @@ PM<sub>2.5</sub> and PM<sub>10</sub> at the rural Harwell site in
 Oxfordshire. Additionally, we will use meteorological data from a
 nearby site rather than rely on modelled values that are provided in
 <code>importAURN</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sec-polarPlot.html#cb54-1" aria-hidden="true"></a><span class="kw">library</span>(worldmet) <span class="co"># to access met data</span></span>
-<span id="cb54-2"><a href="sec-polarPlot.html#cb54-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse) </span>
-<span id="cb54-3"><a href="sec-polarPlot.html#cb54-3" aria-hidden="true"></a></span>
-<span id="cb54-4"><a href="sec-polarPlot.html#cb54-4" aria-hidden="true"></a>har &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="st">&quot;har&quot;</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</span>
-<span id="cb54-5"><a href="sec-polarPlot.html#cb54-5" aria-hidden="true"></a></span>
-<span id="cb54-6"><a href="sec-polarPlot.html#cb54-6" aria-hidden="true"></a><span class="co"># import met data from nearby site (Benson)</span></span>
-<span id="cb54-7"><a href="sec-polarPlot.html#cb54-7" aria-hidden="true"></a>met &lt;-<span class="st"> </span><span class="kw">importNOAA</span>(<span class="dt">code =</span> <span class="st">&quot;036580-99999&quot;</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</span>
-<span id="cb54-8"><a href="sec-polarPlot.html#cb54-8" aria-hidden="true"></a></span>
-<span id="cb54-9"><a href="sec-polarPlot.html#cb54-9" aria-hidden="true"></a><span class="co"># merge AQ and met but don&#39;t use modelled ws and wd</span></span>
-<span id="cb54-10"><a href="sec-polarPlot.html#cb54-10" aria-hidden="true"></a>har &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</span>
-<span id="cb54-11"><a href="sec-polarPlot.html#cb54-11" aria-hidden="true"></a>  <span class="kw">select</span>(har, <span class="op">-</span>ws, <span class="op">-</span>wd, <span class="op">-</span>air_temp),</span>
-<span id="cb54-12"><a href="sec-polarPlot.html#cb54-12" aria-hidden="true"></a>  met,</span>
-<span id="cb54-13"><a href="sec-polarPlot.html#cb54-13" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span></span>
-<span id="cb54-14"><a href="sec-polarPlot.html#cb54-14" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sec-polarPlot.html#cb51-1" aria-hidden="true"></a><span class="kw">library</span>(worldmet) <span class="co"># to access met data</span></span>
+<span id="cb51-2"><a href="sec-polarPlot.html#cb51-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse) </span>
+<span id="cb51-3"><a href="sec-polarPlot.html#cb51-3" aria-hidden="true"></a></span>
+<span id="cb51-4"><a href="sec-polarPlot.html#cb51-4" aria-hidden="true"></a>har &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="st">&quot;har&quot;</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</span>
+<span id="cb51-5"><a href="sec-polarPlot.html#cb51-5" aria-hidden="true"></a></span>
+<span id="cb51-6"><a href="sec-polarPlot.html#cb51-6" aria-hidden="true"></a><span class="co"># import met data from nearby site (Benson)</span></span>
+<span id="cb51-7"><a href="sec-polarPlot.html#cb51-7" aria-hidden="true"></a>met &lt;-<span class="st"> </span><span class="kw">importNOAA</span>(<span class="dt">code =</span> <span class="st">&quot;036580-99999&quot;</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</span>
+<span id="cb51-8"><a href="sec-polarPlot.html#cb51-8" aria-hidden="true"></a></span>
+<span id="cb51-9"><a href="sec-polarPlot.html#cb51-9" aria-hidden="true"></a><span class="co"># merge AQ and met but don&#39;t use modelled ws and wd</span></span>
+<span id="cb51-10"><a href="sec-polarPlot.html#cb51-10" aria-hidden="true"></a>har &lt;-<span class="st"> </span><span class="kw">inner_join</span>(</span>
+<span id="cb51-11"><a href="sec-polarPlot.html#cb51-11" aria-hidden="true"></a>  <span class="kw">select</span>(har, <span class="op">-</span>ws, <span class="op">-</span>wd, <span class="op">-</span>air_temp),</span>
+<span id="cb51-12"><a href="sec-polarPlot.html#cb51-12" aria-hidden="true"></a>  met,</span>
+<span id="cb51-13"><a href="sec-polarPlot.html#cb51-13" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span></span>
+<span id="cb51-14"><a href="sec-polarPlot.html#cb51-14" aria-hidden="true"></a>)</span></code></pre></div>
 <p>An example pairwise regression surface relationship relating PM<sub>2.5</sub>
 and PM<sub>10</sub> is shown in Figure <a href="sec-polarPlot.html#fig:polarPair">7.9</a>. This plot reveals that
 almost all the PM<sub>10</sub> is in the form of PM<sub>2.5</sub> when the wind has an
@@ -735,12 +735,12 @@ contribution likely dominated by ammonium nitrate.</p>
 <p>A simple scatter plot between PM<sub>2.5</sub> and PM<sub>10</sub> strongly suggests a
 1:1 relationship and it is not obvious that there is a higher
 PM<sub>2.5</sub>/PM<sub>10</sub> ratio when the wind is from the east.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="sec-polarPlot.html#cb55-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(har, <span class="dt">poll =</span> <span class="kw">c</span>(<span class="st">&quot;pm2.5&quot;</span>, <span class="st">&quot;pm10&quot;</span>), </span>
-<span id="cb55-2"><a href="sec-polarPlot.html#cb55-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;robust_slope&quot;</span>,</span>
-<span id="cb55-3"><a href="sec-polarPlot.html#cb55-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
-<span id="cb55-4"><a href="sec-polarPlot.html#cb55-4" aria-hidden="true"></a>          <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb55-5"><a href="sec-polarPlot.html#cb55-5" aria-hidden="true"></a>          <span class="dt">ws_spread =</span> <span class="fl">1.5</span>,</span>
-<span id="cb55-6"><a href="sec-polarPlot.html#cb55-6" aria-hidden="true"></a>          <span class="dt">wd_spread =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sec-polarPlot.html#cb52-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(har, <span class="dt">poll =</span> <span class="kw">c</span>(<span class="st">&quot;pm2.5&quot;</span>, <span class="st">&quot;pm10&quot;</span>), </span>
+<span id="cb52-2"><a href="sec-polarPlot.html#cb52-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;robust_slope&quot;</span>,</span>
+<span id="cb52-3"><a href="sec-polarPlot.html#cb52-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
+<span id="cb52-4"><a href="sec-polarPlot.html#cb52-4" aria-hidden="true"></a>          <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb52-5"><a href="sec-polarPlot.html#cb52-5" aria-hidden="true"></a>          <span class="dt">ws_spread =</span> <span class="fl">1.5</span>,</span>
+<span id="cb52-6"><a href="sec-polarPlot.html#cb52-6" aria-hidden="true"></a>          <span class="dt">wd_spread =</span> <span class="dv">10</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPair"></span>
 <img src="openair_files/figure-html/polarPair-1.png" alt="Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated." width="50%" />
 <p class="caption">
@@ -755,7 +755,7 @@ that would be useful to analyse further. It is possible to select
 areas of interest based only on a consideration of a plot. Such a
 selection could be based on wind direction and wind speed intervals
 for example e.g.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sec-polarPlot.html#cb56-1" aria-hidden="true"></a>subdata &lt;-<span class="st"> </span><span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, wd <span class="op">&gt;=</span><span class="st"> </span><span class="dv">180</span>, wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">270</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="sec-polarPlot.html#cb53-1" aria-hidden="true"></a>subdata &lt;-<span class="st"> </span><span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, wd <span class="op">&gt;=</span><span class="st"> </span><span class="dv">180</span>, wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">270</span>)</span></code></pre></div>
 <p>which would select wind speeds &gt;3 m s<sup>-1</sup> and wind directions from 180
 to 270 degrees from <code>mydata</code>. That subset of data, <code>subdata</code>,
 could then be analysed using other functions. While this approach may
@@ -836,16 +836,16 @@ for post-processing.</p>
 <a href="sec-polarPlot.html#fig:polarPlot3">7.3</a> and the aim is to identify features in that
 plot. A range of numbers of clusters will be calculated — in this
 case from two to ten.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="sec-polarPlot.html#cb57-1" aria-hidden="true"></a><span class="kw">polarCluster</span>(mydata, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">n.clusters=</span><span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cols=</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sec-polarPlot.html#cb54-1" aria-hidden="true"></a><span class="kw">polarCluster</span>(mydata, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">n.clusters=</span><span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cols=</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarClust"></span>
 <img src="openair_files/figure-html/polarClust-1.png" alt="Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 2 to 10 clusters have been chosen." width="672" />
 <p class="caption">
 Figure 7.10: Use of the <code>polarCluster</code> function applied to SO<sub>2</sub> concentrations at Marylebone Road. In this case 2 to 10 clusters have been chosen.
 </p>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sec-polarPlot.html#cb58-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">polarCluster</span>(mydata, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb58-2"><a href="sec-polarPlot.html#cb58-2" aria-hidden="true"></a>                        <span class="dt">n.clusters =</span> <span class="dv">8</span>, </span>
-<span id="cb58-3"><a href="sec-polarPlot.html#cb58-3" aria-hidden="true"></a>                        <span class="dt">cols =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="sec-polarPlot.html#cb55-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">polarCluster</span>(mydata, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, </span>
+<span id="cb55-2"><a href="sec-polarPlot.html#cb55-2" aria-hidden="true"></a>                        <span class="dt">n.clusters =</span> <span class="dv">8</span>, </span>
+<span id="cb55-3"><a href="sec-polarPlot.html#cb55-3" aria-hidden="true"></a>                        <span class="dt">cols =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarClustn6"></span>
 <img src="openair_files/figure-html/polarClustn6-1.png" alt="Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 8 clusters have been chosen." width="50%" />
 <p class="caption">
@@ -862,7 +862,7 @@ seems to capture the elevated SO<sub>2</sub> concentrations to the east well
 (see Figure <a href="sec-polarPlot.html#fig:polarPlot3">7.3</a> for comparison), while cluster 5 will
 strongly represent the road contribution.</p>
 <p>The results are here:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sec-polarPlot.html#cb59-1" aria-hidden="true"></a><span class="kw">head</span>(results[[<span class="st">&quot;data&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sec-polarPlot.html#cb56-1" aria-hidden="true"></a><span class="kw">head</span>(results[[<span class="st">&quot;data&quot;</span>]])</span></code></pre></div>
 <pre><code>##     .id                date   ws  wd nox no2 o3 pm10    so2     co pm25
 ## 1     1 1998-01-01 00:00:00 0.60 280 285  39  1   29 4.7225 3.3725   NA
 ## 2    10 1998-01-01 09:00:00 3.96 170 113  39  2   12 2.9225 1.2050   NA
@@ -881,17 +881,17 @@ strongly represent the road contribution.</p>
 cluster a particular row belongs to and that this is a
 <em>character</em> variable. It might be easier to read these results
 into a new data frame:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sec-polarPlot.html#cb61-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span>results[[<span class="st">&quot;data&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sec-polarPlot.html#cb58-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span>results[[<span class="st">&quot;data&quot;</span>]]</span></code></pre></div>
 <p>It is easy to find out how many points are in each cluster:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sec-polarPlot.html#cb62-1" aria-hidden="true"></a><span class="kw">table</span>(results[[<span class="st">&quot;cluster&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sec-polarPlot.html#cb59-1" aria-hidden="true"></a><span class="kw">table</span>(results[[<span class="st">&quot;cluster&quot;</span>]])</span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     4     5     6     7     8 
 ##   206   412   160 24133 16049  2590  7925  2832</code></pre>
 <p>Now other <span class="pkg">openair</span> analysis functions can be used to analyse the
 results. For example, to consider the temporal variations by cluster:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sec-polarPlot.html#cb64-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(results, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,</span>
-<span id="cb64-2"><a href="sec-polarPlot.html#cb64-2" aria-hidden="true"></a>              <span class="dt">key.columns =</span> <span class="dv">4</span>,</span>
-<span id="cb64-3"><a href="sec-polarPlot.html#cb64-3" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, <span class="dt">ci =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sec-polarPlot.html#cb61-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(results, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,</span>
+<span id="cb61-2"><a href="sec-polarPlot.html#cb61-2" aria-hidden="true"></a>              <span class="dt">key.columns =</span> <span class="dv">4</span>,</span>
+<span id="cb61-3"><a href="sec-polarPlot.html#cb61-3" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, <span class="dt">ci =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:tempEvalClust"></span>
 <img src="openair_files/figure-html/tempEvalClust-1.png" alt="Temporal variation in SO~2~ split by cluster." width="864" />
 <p class="caption">
@@ -899,10 +899,10 @@ Figure 7.12: Temporal variation in SO<sub>2</sub> split by cluster.
 </p>
 </div>
 <p>Or if we just want to plot a couple of clusters (5 and 6) <em>using the same colours</em> as in Figure <a href="sec-polarPlot.html#fig:polarClustn6">7.11</a>:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="sec-polarPlot.html#cb65-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(results, cluster <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;5&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
-<span id="cb65-2"><a href="sec-polarPlot.html#cb65-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb65-3"><a href="sec-polarPlot.html#cb65-3" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,  </span>
-<span id="cb65-4"><a href="sec-polarPlot.html#cb65-4" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="kw">openColours</span>(<span class="st">&quot;Set2&quot;</span>, <span class="dv">8</span>)[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sec-polarPlot.html#cb62-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(results, cluster <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;5&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
+<span id="cb62-2"><a href="sec-polarPlot.html#cb62-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb62-3"><a href="sec-polarPlot.html#cb62-3" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,  </span>
+<span id="cb62-4"><a href="sec-polarPlot.html#cb62-4" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="kw">openColours</span>(<span class="st">&quot;Set2&quot;</span>, <span class="dv">8</span>)[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:clustTV"></span>
 <img src="openair_files/figure-html/clustTV-1.png" alt="Temporal variation in SO~2~ split by cluster --- showing only two clusters." width="864" />
 <p class="caption">
@@ -926,12 +926,12 @@ cluster 6 (power station sources from the east), seen in Figure
 <a href="sec-polarPlot.html#fig:polarClustn6">7.11</a>. Cluster~6 is particularly prominent
 during springtime, but those sources also make important contributions
 through the whole year.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-polarPlot.html#cb66-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(results, <span class="dt">year =</span> <span class="dv">2003</span>), </span>
-<span id="cb66-2"><a href="sec-polarPlot.html#cb66-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>,</span>
-<span id="cb66-3"><a href="sec-polarPlot.html#cb66-3" aria-hidden="true"></a>         <span class="dt">proportion=</span> <span class="st">&quot;cluster&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, </span>
-<span id="cb66-4"><a href="sec-polarPlot.html#cb66-4" aria-hidden="true"></a>         <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>,</span>
-<span id="cb66-5"><a href="sec-polarPlot.html#cb66-5" aria-hidden="true"></a>         <span class="dt">key.columns =</span> <span class="dv">8</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>, </span>
-<span id="cb66-6"><a href="sec-polarPlot.html#cb66-6" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;so2 (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="sec-polarPlot.html#cb63-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(results, <span class="dt">year =</span> <span class="dv">2003</span>), </span>
+<span id="cb63-2"><a href="sec-polarPlot.html#cb63-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>,</span>
+<span id="cb63-3"><a href="sec-polarPlot.html#cb63-3" aria-hidden="true"></a>         <span class="dt">proportion=</span> <span class="st">&quot;cluster&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, </span>
+<span id="cb63-4"><a href="sec-polarPlot.html#cb63-4" aria-hidden="true"></a>         <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb63-5"><a href="sec-polarPlot.html#cb63-5" aria-hidden="true"></a>         <span class="dt">key.columns =</span> <span class="dv">8</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>, </span>
+<span id="cb63-6"><a href="sec-polarPlot.html#cb63-6" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;so2 (ug/m3)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timePropPolar"></span>
 <img src="openair_files/figure-html/timePropPolar-1.png" alt="Temporal variation in daily SO~2~ concentration at the Marylebone Road site show by contribution of each cluster for 2003." width="1440" />
 <p class="caption">

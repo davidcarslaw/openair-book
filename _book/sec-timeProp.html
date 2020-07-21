@@ -288,10 +288,10 @@ options are chosen to place the key at the top and choose the number
 of columns used in the key. It is apparent from Figure <a href="sec-timeProp.html#fig:timeProp">11.1</a>
 that the highest SO<sub>2</sub> concentrations are dominated by winds from an
 easterly sector, but actually occur throughout the year.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="sec-timeProp.html#cb91-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
-<span id="cb91-2"><a href="sec-timeProp.html#cb91-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
-<span id="cb91-3"><a href="sec-timeProp.html#cb91-3" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;wd&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>, <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>,</span>
-<span id="cb91-4"><a href="sec-timeProp.html#cb91-4" aria-hidden="true"></a>         <span class="dt">key.columns =</span> <span class="dv">8</span>, <span class="dt">ylab =</span> <span class="st">&quot;so2 (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="sec-timeProp.html#cb88-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb88-2"><a href="sec-timeProp.html#cb88-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
+<span id="cb88-3"><a href="sec-timeProp.html#cb88-3" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;wd&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>, <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb88-4"><a href="sec-timeProp.html#cb88-4" aria-hidden="true"></a>         <span class="dt">key.columns =</span> <span class="dv">8</span>, <span class="dt">ylab =</span> <span class="st">&quot;so2 (ug/m3)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeProp"></span>
 <img src="openair_files/figure-html/timeProp-1.png" alt="`timeProp` plot for SO~2~ concentrations in 2003. The data are categorised into 8 wind sectors for 3-day averages." width="1440" />
 <p class="caption">
@@ -305,13 +305,13 @@ example, the plot below would show four intervals of wind speed, which
 would help show the wind speed conditions that control high SO<sub>2</sub>
 concentration — and importantly, when they occur.</p>
 <p>An example of using <code>timeProp</code> with a continuous variable is shown in Figure <a href="sec-timeProp.html#fig:timePropws">11.2</a>. In this case the wind speed values are split into 3 quantile levels. The number of quantiles used is determined by the option <code>n.levels</code>. This approach can be used for any numeric variables.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="sec-timeProp.html#cb92-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
-<span id="cb92-2"><a href="sec-timeProp.html#cb92-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb92-3"><a href="sec-timeProp.html#cb92-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
-<span id="cb92-4"><a href="sec-timeProp.html#cb92-4" aria-hidden="true"></a>         <span class="dt">n.levels =</span> <span class="dv">3</span>,</span>
-<span id="cb92-5"><a href="sec-timeProp.html#cb92-5" aria-hidden="true"></a>         <span class="dt">cols =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb92-6"><a href="sec-timeProp.html#cb92-6" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;ws&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>,</span>
-<span id="cb92-7"><a href="sec-timeProp.html#cb92-7" aria-hidden="true"></a>         <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">key.columns =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="sec-timeProp.html#cb89-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb89-2"><a href="sec-timeProp.html#cb89-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb89-3"><a href="sec-timeProp.html#cb89-3" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;3 day&quot;</span>,</span>
+<span id="cb89-4"><a href="sec-timeProp.html#cb89-4" aria-hidden="true"></a>         <span class="dt">n.levels =</span> <span class="dv">3</span>,</span>
+<span id="cb89-5"><a href="sec-timeProp.html#cb89-5" aria-hidden="true"></a>         <span class="dt">cols =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb89-6"><a href="sec-timeProp.html#cb89-6" aria-hidden="true"></a>         <span class="dt">proportion =</span> <span class="st">&quot;ws&quot;</span>, <span class="dt">date.breaks =</span> <span class="dv">10</span>,</span>
+<span id="cb89-7"><a href="sec-timeProp.html#cb89-7" aria-hidden="true"></a>         <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>, <span class="dt">key.columns =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timePropws"></span>
 <img src="openair_files/figure-html/timePropws-1.png" alt="`timeProp` plot for SO~2~ concentrations in 2003. The data are categorised into 4 wind speed categories for 3-day averages." width="1440" />
 <p class="caption">
