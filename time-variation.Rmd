@@ -233,15 +233,10 @@ sources. This technique will be returned to with different data sets
 in future.
 
 ```{r timeVar4,fig.width=12,fig.height=7,fig.cap='Example plot using the `timeVariation` function to plot SO~2~ concentrations at Marylebone Road. In this plot, the concentrations are shown for a subset of easterly conditions and everything else. Note that the uncertainty in the mean values for easterly winds is greater than *other*. This is mostly because the sample size is much lower for *easterly* compared  with *other*.'}
-## make a field called "site" and fill: make all values = "other"
-mydata$feature <- "other"
+## make a field called "feature" and fill: make all values = "other"
+mydata <- mutate(mydata, 
+                 feature = ifelse(ws > 4 & wd > 0 & wd <= 180, "easterly", "other"))
 
-## now find which indexes correspond to easterly conditions > 4m/s ws
-id <- which(with(mydata, ws > 4 & wd > 0 & wd <= 180 ))
-
-## use the ids to update the site column
-## there are now two values in site: "other" and "easterly"
-mydata$feature[id] <- "easterly"
 timeVariation(mydata, pollutant ="so2", group = "feature",  ylab = "so2 (ppb)",
               difference = TRUE)
 ```
