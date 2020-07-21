@@ -2,7 +2,7 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
-      collapse: section
+      collapse: subsection
       before: |
         <li><a href="./">The openair book</a></li>
       after: |

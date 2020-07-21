@@ -1,7 +1,7 @@
 book_filename: "openair"
 language:
   ui:
-    chapter_name: "Section "
+    chapter_name: "Section"
 delete_merged_file: true
 rmd_files: ["index.Rmd", 
 "intro.Rmd",
