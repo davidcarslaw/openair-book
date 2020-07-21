@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section17 Utility functions | openair</title>
+  <meta name="description" content="This will eventually form a book related to the openair R package." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section17 Utility functions | openair" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will eventually form a book related to the openair R package." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section17 Utility functions | openair" />
+  
+  <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
+  
+
+<meta name="author" content="David Carslaw" />
+
+
+<meta name="date" content="2020-07-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sec-trajPlot.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The openair book</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="sec-importAURN.html"><a href="sec-importAURN.html#accessing-data"><i class="fa fa-check"></i><b>3.1</b> Accessing data</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-importAURN.html"><a href="sec-importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="3.3" data-path="sec-importAURN.html"><a href="sec-importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The <code>worldmet</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sec-windRose.html"><a href="sec-windRose.html#example-of-use"><i class="fa fa-check"></i><b>5.1</b> Example of use</a></li>
+<li class="chapter" data-level="5.2" data-path="sec-windRose.html"><a href="sec-windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>5.2</b> Comparing two meteorological data sets</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html"><i class="fa fa-check"></i><b>6</b> Percentile roses</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#examples"><i class="fa fa-check"></i><b>6.2</b> Examples</a></li>
+<li class="chapter" data-level="6.3" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>6.3</b> Condtional probability function</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>7</b> Polar plots</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>7.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="7.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
+<li class="chapter" data-level="7.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>7.3</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="7.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>7.4</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="7.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>7.5</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="7.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>7.6</b> Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>8</b> Polar annulus</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>8.1</b> Purpose</a></li>
+<li class="chapter" data-level="8.2" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>8.2</b> Example of use</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sec-timePlot.html"><a href="sec-timePlot.html"><i class="fa fa-check"></i><b>9</b> Time series plots</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sec-timePlot.html"><a href="sec-timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
+<li class="chapter" data-level="9.2" data-path="sec-timePlot.html"><a href="sec-timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>9.2</b> Examples of time series plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>10</b> Temporal variations</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>10.1</b> Purpose</a></li>
+<li class="chapter" data-level="10.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>10.2</b> Applications</a></li>
+<li class="chapter" data-level="10.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>10.3</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="sec-timeProp.html"><a href="sec-timeProp.html"><i class="fa fa-check"></i><b>11</b> Time proportion plots</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>11.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html"><i class="fa fa-check"></i><b>12</b> Trend heat maps</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#another-way-of-representing-trends"><i class="fa fa-check"></i><b>12.1</b> Another way of representing trends</a></li>
+<li class="chapter" data-level="12.2" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#sec:TrendLevelEx"><i class="fa fa-check"></i><b>12.2</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>13</b> Calendar plots</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>13.1</b> Purpose</a></li>
+<li class="chapter" data-level="13.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>13.2</b> Calendar examples</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>14</b> Theil-Sen trends</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>14.1</b> Trend estimates</a></li>
+<li class="chapter" data-level="14.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>14.2</b> Example trend analysis</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>14.2.1</b> Output</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>15</b> Smooth trends</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>15.1</b> Background</a></li>
+<li class="chapter" data-level="15.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Examples of trend analysis</a></li>
+<li class="chapter" data-level="15.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>15.3</b> Seasonal averages</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>16</b> Trajectory analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>16.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>16.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="16.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>16.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>16.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="16.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>16.3.2</b> Allocating trajectories to different wind sectors</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>16.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="16.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>16.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="16.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>16.6</b> Trajectory clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="sec-utility.html"><a href="sec-utility.html"><i class="fa fa-check"></i><b>17</b> Utility functions</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>17.1</b> Selecting data by date</a></li>
+<li class="chapter" data-level="17.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>17.2</b> Making intervals — <code>cutData</code></a></li>
+<li class="chapter" data-level="17.3" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>17.3</b> Selecting run lengths of values above a threshold — pollution episodes</a></li>
+<li class="chapter" data-level="17.4" data-path="sec-utility.html"><a href="sec-utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>17.4</b> Calculating rolling means</a></li>
+<li class="chapter" data-level="17.5" data-path="sec-utility.html"><a href="sec-utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>17.5</b> Aggregating data by different time intervals</a></li>
+<li class="chapter" data-level="17.6" data-path="sec-utility.html"><a href="sec-utility.html#sec:calcPercentile"><i class="fa fa-check"></i><b>17.6</b> Calculating percentiles</a></li>
+<li class="chapter" data-level="17.7" data-path="sec-utility.html"><a href="sec-utility.html#sec:corPlot"><i class="fa fa-check"></i><b>17.7</b> Correlation matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">openair</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sec:utility" class="section level1" number="17">
+<h1><span class="header-section-number">Section17</span> Utility functions</h1>
+<div id="sec:selectByDate" class="section level2" number="17.1">
+<h2><span class="header-section-number">17.1</span> Selecting data by date</h2>
+<p>Selecting by date/time in R can be intimidating for new users—and
+time-consuming for all users. The <code>selectByDate</code> function aims to
+make this easier by allowing users to select data based on the British
+way of expressing date i.e. d/m/y. This function should be very useful
+in circumstances where it is necessary to select only part of a data frame.</p>
+<p>First load the packages we need.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="sec-utility.html#cb176-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb176-2"><a href="sec-utility.html#cb176-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="sec-utility.html#cb177-1" aria-hidden="true"></a><span class="co">## select all of 1999</span></span>
+<span id="cb177-2"><a href="sec-utility.html#cb177-2" aria-hidden="true"></a>data<span class="fl">.1999</span> &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/1/1999&quot;</span>, <span class="dt">end =</span> <span class="st">&quot;31/12/1999&quot;</span>)</span>
+<span id="cb177-3"><a href="sec-utility.html#cb177-3" aria-hidden="true"></a><span class="kw">head</span>(data<span class="fl">.1999</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 15
+##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 1999-01-01 00:00:00  5.04   140    88    35     4    21  3.84 1.02     18
+## 2 1999-01-01 01:00:00  4.08   160   132    41     3    17  5.24 2.7      11
+## 3 1999-01-01 02:00:00  4.8    160   168    40     4    17  6.51 2.87      8
+## 4 1999-01-01 03:00:00  4.92   150    85    36     3    15  4.18 1.62     10
+## 5 1999-01-01 04:00:00  4.68   150    93    37     3    16  4.25 1.02     11
+## 6 1999-01-01 05:00:00  3.96   160    74    29     5    14  3.88 0.725    NA
+## # … with 5 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
+## #   feature &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="sec-utility.html#cb179-1" aria-hidden="true"></a><span class="kw">tail</span>(data<span class="fl">.1999</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 15
+##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 1999-12-31 18:00:00  4.68   190   226    39    NA    29  5.46  2.38    23
+## 2 1999-12-31 19:00:00  3.96   180   202    37    NA    27  4.78  2.15    23
+## 3 1999-12-31 20:00:00  3.36   190   246    44    NA    30  5.88  2.45    23
+## 4 1999-12-31 21:00:00  3.72   220   231    35    NA    28  5.28  2.22    23
+## 5 1999-12-31 22:00:00  4.08   200   217    41    NA    31  4.79  2.17    26
+## 6 1999-12-31 23:00:00  3.24   200   181    37    NA    28  3.48  1.78    22
+## # … with 5 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
+## #   feature &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="sec-utility.html#cb181-1" aria-hidden="true"></a><span class="co">## easier way</span></span>
+<span id="cb181-2"><a href="sec-utility.html#cb181-2" aria-hidden="true"></a>data<span class="fl">.1999</span> &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">1999</span>)</span>
+<span id="cb181-3"><a href="sec-utility.html#cb181-3" aria-hidden="true"></a></span>
+<span id="cb181-4"><a href="sec-utility.html#cb181-4" aria-hidden="true"></a><span class="co">## more complex use: select weekdays between the hours of 7 am to 7 pm</span></span>
+<span id="cb181-5"><a href="sec-utility.html#cb181-5" aria-hidden="true"></a>sub.data &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">day =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">hour =</span> <span class="dv">7</span><span class="op">:</span><span class="dv">19</span>)</span>
+<span id="cb181-6"><a href="sec-utility.html#cb181-6" aria-hidden="true"></a></span>
+<span id="cb181-7"><a href="sec-utility.html#cb181-7" aria-hidden="true"></a><span class="co">## select weekends between the hours of 7 am to 7 pm in winter (Dec, Jan, Feb)</span></span>
+<span id="cb181-8"><a href="sec-utility.html#cb181-8" aria-hidden="true"></a>sub.data &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">day =</span> <span class="st">&quot;weekend&quot;</span>, <span class="dt">hour =</span> <span class="dv">7</span><span class="op">:</span><span class="dv">19</span>,</span>
+<span id="cb181-9"><a href="sec-utility.html#cb181-9" aria-hidden="true"></a>                           <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&quot;dec&quot;</span>, <span class="st">&quot;jan&quot;</span>, <span class="st">&quot;feb&quot;</span>))</span></code></pre></div>
+<p>The function can be used directly in other functions. For example, to
+make a polar plot using year 2000 data:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="sec-utility.html#cb182-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2000</span>), <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span></code></pre></div>
+</div>
+<div id="sec:cutData" class="section level2" number="17.2">
+<h2><span class="header-section-number">17.2</span> Making intervals — <code>cutData</code></h2>
+<p>The <code>cutData</code> function is a utility function that is called by most
+other functions but is useful in its own right. Its main use is to
+partition data in many ways, many of which are built-in to <span class="pkg">openair</span></p>
+<p>Note that all the date-based types e.g. month/year are derived from a
+column <code>date</code>. If a user already has a column with a name of one
+of the date-based types it will not be used.</p>
+<p>For example, to cut data into seasons:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="sec-utility.html#cb183-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">cutData</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span>
+<span id="cb183-2"><a href="sec-utility.html#cb183-2" aria-hidden="true"></a><span class="kw">head</span>(mydata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 16
+##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
+## 2 1998-01-01 01:00:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+## 3 1998-01-01 02:00:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 4 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 5 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## 6 1998-01-01 05:00:00  3      190   264    42     0    16  5.50  3.05    NA
+## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
+## #   feature &lt;chr&gt;, season &lt;ord&gt;</code></pre>
+<p>This adds a new field <code>season</code> that is split into four seasons. There
+is an option <code>hemisphere</code> that can be used to use southern
+hemisphere seasons when set as <code>hemisphere = "southern"</code>.</p>
+<p>The <code>type</code> can also be another field in a data frame e.g.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="sec-utility.html#cb185-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">cutData</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;pm10&quot;</span>)</span>
+<span id="cb185-2"><a href="sec-utility.html#cb185-2" aria-hidden="true"></a><span class="kw">head</span>(mydata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 16
+##   date                   ws    wd   nox   no2    o3 pm10    so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 1998-01-01 00:00:00  0.6    280   285    39     1 pm10…  4.72  3.37    NA
+## 2 1998-01-01 01:00:00  2.16   230    NA    NA    NA pm10… NA    NA       NA
+## 3 1998-01-01 02:00:00  2.76   190    NA    NA     3 pm10…  6.83  9.60    NA
+## 4 1998-01-01 03:00:00  2.16   170   493    52     3 pm10…  7.66 10.2     NA
+## 5 1998-01-01 04:00:00  2.4    180   468    78     2 pm10…  8.07  8.91    NA
+## 6 1998-01-01 05:00:00  3      190   264    42     0 pm10…  5.50  3.05    NA
+## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
+## #   feature &lt;chr&gt;, season &lt;ord&gt;</code></pre>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="sec-utility.html#cb187-1" aria-hidden="true"></a><span class="kw">data</span>(mydata) <span class="co">## re-load mydata fresh</span></span></code></pre></div>
+<p>This divides PM<sub>10</sub> concentrations into four <em>quantiles</em> —
+roughly equal numbers of <sub>PM10</sub> concentrations in four levels.</p>
+<p>Most of the time users do not have to call  directly
+because most functions have a  option that is used to call
+<code>cutData</code> directly e.g.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="sec-utility.html#cb188-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<p>However, it can be useful to call <code>cutData</code> <em>before</em> supplying
+the data to a function in a few cases. First, if one wants to set
+seasons to the southern hemisphere as above. Second, it is possible to
+override the division of a numeric variable into four quantiles by
+using the option <code>n.levels</code>. More details can be found in the
+ help file.</p>
+</div>
+<div id="sec:selectRunning" class="section level2" number="17.3">
+<h2><span class="header-section-number">17.3</span> Selecting run lengths of values above a threshold — pollution episodes</h2>
+<p>A seemingly easy thing to do that has relevance to air pollution
+episodes is to select run lengths of contiguous values of a pollutant
+above a certain threshold. For example, one might be interested in
+selecting O<sub>3</sub> concentrations where there are at least 8 consecutive
+hours above 90~ppb. In other words, a selection that combines both a
+threshold and <em>persistence</em>. These periods can be very important
+from a health perspective and it can be useful to study the conditions
+under which they occur. But how do you select such periods easily? The
+<code>selectRunning</code> utility function has been written to do this. It
+could be useful for all sorts of situations e.g.</p>
+<ul>
+<li><p>Selecting hours when primary pollutant concentrations are
+persistently high — and then applying other <span class="pkg">openair</span> functions to
+analyse the data in more depth.</p></li>
+<li><p>In the study of particle suspension or deposition etc. it might be
+useful to select hours when wind speeds remain high or rainfall
+persists for several hours to see how these conditions affect
+particle concentrations.</p></li>
+<li><p>It could be useful in health impact studies to select blocks of
+data where pollutant concentrations remain above a certain threshold.</p></li>
+</ul>
+<p>As an example we are going to consider O<sub>3</sub> concentrations at a
+semi-rural site in south-west London (Teddington). The data can be
+downloaded as follows:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="sec-utility.html#cb189-1" aria-hidden="true"></a>ted &lt;-<span class="st"> </span><span class="kw">importKCL</span>(<span class="dt">site =</span> <span class="st">&quot;td0&quot;</span>, <span class="dt">year =</span> <span class="dv">2005</span><span class="op">:</span><span class="dv">2009</span>, <span class="dt">met =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## NOTE - mass units are used 
+## ug/m3 for NOx, NO2, SO2, O3; mg/m3 for CO
+## PM10_raw is raw data multiplied by 1.3</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="sec-utility.html#cb191-1" aria-hidden="true"></a><span class="co">## see how many rows there are</span></span>
+<span id="cb191-2"><a href="sec-utility.html#cb191-2" aria-hidden="true"></a><span class="kw">nrow</span>(ted)</span></code></pre></div>
+<pre><code>## [1] 43824</code></pre>
+<p>We are going to contrast two polar plots of O<sub>3</sub> concentration. The
+first uses all hours in the data set, and the second uses a subset of
+hours. The subset of hours is defined by O<sub>3</sub> concentrations above
+90~ppb for periods of at least 8-hours i.e. what might be considered
+as ozone episode conditions.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="sec-utility.html#cb193-1" aria-hidden="true"></a>episode &lt;-<span class="st"> </span><span class="kw">selectRunning</span>(ted, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb193-2"><a href="sec-utility.html#cb193-2" aria-hidden="true"></a>                         <span class="dt">threshold =</span> <span class="dv">90</span>, </span>
+<span id="cb193-3"><a href="sec-utility.html#cb193-3" aria-hidden="true"></a>                         <span class="dt">run.len =</span> <span class="dv">8</span>)</span>
+<span id="cb193-4"><a href="sec-utility.html#cb193-4" aria-hidden="true"></a><span class="co">## see how many rows there are</span></span>
+<span id="cb193-5"><a href="sec-utility.html#cb193-5" aria-hidden="true"></a><span class="kw">nrow</span>(episode)</span></code></pre></div>
+<pre><code>## [1] 1399</code></pre>
+<p>Now we are going to produce two bivariate polar plots shown in Figure
+<a href="sec-utility.html#fig:RunningRes">17.1</a>.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="sec-utility.html#cb195-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(ted, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span>
+<span id="cb195-2"><a href="sec-utility.html#cb195-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(episode, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:RunningRes"></span>
+<img src="openair_files/figure-html/RunningRes-1.png" alt="Example of using the `selectRunning` function to select episode hours to produce bivariate polar plots of O~3~ concentration." width="50%" /><img src="openair_files/figure-html/RunningRes-2.png" alt="Example of using the `selectRunning` function to select episode hours to produce bivariate polar plots of O~3~ concentration." width="50%" />
+<p class="caption">
+Figure 17.1: Example of using the <code>selectRunning</code> function to select episode hours to produce bivariate polar plots of O<sub>3</sub> concentration.
+</p>
+</div>
+<p>The results are shown in Figure <a href="sec-utility.html#fig:RunningRes">17.1</a>. The polar plot
+for all data (left plot of Figure <a href="sec-utility.html#fig:RunningRes">17.1</a>) shows that the
+highest O<sub>3</sub> concentrations tend to occur for high wind speed
+conditions from almost every direction. Lower concentrations are
+observed for low wind speeds because concentrations of NO<sub>x</sub> are
+higher, resulting in O<sub>3</sub> destruction. By contrast, a polar plot of
+the episode conditions (right plot of Figure <a href="sec-utility.html#fig:RunningRes">17.1</a>) is
+very different. In this case there is a clear set of conditions where
+these criteria are met i.e. lengths of at least 8-hours where the
+O<sub>3</sub> concentration is at least 90~ppb. It is clear the highest
+concentrations are dominated by south-easterly conditions
+i.e. corresponding to easterly flow from continental Europe where
+there has been time to the O<sub>3</sub> chemistry to take place.</p>
+<p>Another interesting test plot is to consider NO<sub>x</sub> concentrations at
+Marylebone Road — see Figure <a href="sec-polarPlot.html#fig:polarPlot">7.1</a>, which shows that
+high concentrations are dominated by a swathe of south-westerly wind
+conditions (even for high wind speeds). However, if a selection is
+made of episode conditions (defined here as NO<sub>x</sub> concentrations &gt;500 ppb for at least 5-hours), then it can be seen that it is
+actually the low wind speed conditions that dominate. These conditions
+correspond to low in-canyon wind speeds and low wind speeds across
+London, which tend to elevate local and background NO<sub>x</sub>
+concentrations. Even though high concentrations of NO<sub>x</sub> are observed
+at high wind speeds, it does not seem that these conditions are as
+important for episode conditions. Users can run the code below to
+verify these observations.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="sec-utility.html#cb196-1" aria-hidden="true"></a>episode &lt;-<span class="st"> </span><span class="kw">selectRunning</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, </span>
+<span id="cb196-2"><a href="sec-utility.html#cb196-2" aria-hidden="true"></a>                         <span class="dt">threshold =</span> <span class="dv">800</span>, </span>
+<span id="cb196-3"><a href="sec-utility.html#cb196-3" aria-hidden="true"></a>                         <span class="dt">run.len =</span> <span class="dv">5</span>)</span>
+<span id="cb196-4"><a href="sec-utility.html#cb196-4" aria-hidden="true"></a></span>
+<span id="cb196-5"><a href="sec-utility.html#cb196-5" aria-hidden="true"></a><span class="kw">polarPlot</span>(episode, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="sec:rollingMean" class="section level2" number="17.4">
+<h2><span class="header-section-number">17.4</span> Calculating rolling means</h2>
+<p>Some air pollution statistics such as for O<sub>3</sub> and particulate
+matter are expressed as rolling means and it is useful to be able to
+calculate these. It can also be useful to help smooth-out data for
+clearer plotting. The <code>rollingMean</code> function makes these
+calculations. One detail that can be important is that for some
+statistics a mean is only considered valid if there are a sufficient
+number of valid readings over the averaging period. Often there is a
+requirement for at least 75% data capture. For example, with an
+averaging period of 8 hours and a data capture threshold of 75%, at
+least 6 hours are required to calculate the mean.</p>
+<p>The function is called as follows; in this case to calculate 8-hour
+rolling mean concentrations of O<sub>3</sub>.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="sec-utility.html#cb197-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">rollingMean</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">hours =</span> <span class="dv">8</span>,</span>
+<span id="cb197-2"><a href="sec-utility.html#cb197-2" aria-hidden="true"></a>                       <span class="dt">new.name =</span> <span class="st">&quot;rollingo3&quot;</span>, <span class="dt">data.thresh =</span> <span class="dv">75</span>)</span>
+<span id="cb197-3"><a href="sec-utility.html#cb197-3" aria-hidden="true"></a><span class="kw">tail</span>(mydata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 16
+##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 2005-06-23 07:00:00   1.5   250   404   156     4    49    NA  1.81    28
+## 2 2005-06-23 08:00:00   1.5   260   388   145     6    48    NA  1.64    26
+## 3 2005-06-23 09:00:00   1.5   210   404   168     7    58    NA  1.29    34
+## 4 2005-06-23 10:00:00   2.6   240   387   175    10    55    NA  1.29    34
+## 5 2005-06-23 11:00:00   3.1   220   312   125    15    52    NA  1.29    33
+## 6 2005-06-23 12:00:00   3.1   220   287   119    17    55    NA  1.29    35
+## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
+## #   feature &lt;chr&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+<p>Note that calculating rolling means shortens the length of the data
+set. In the case of O<sub>3</sub>, no calculations are made for the last 7
+hours.</p>
+<p>Type <code>?rollingMean</code> into R for more details. Note that the
+function currently only works with a single site.</p>
+</div>
+<div id="sec:timeAverage" class="section level2" number="17.5">
+<h2><span class="header-section-number">17.5</span> Aggregating data by different time intervals</h2>
+<p>Aggregating data by different averaging periods is a common and
+important task. There are many reasons for aggregating data in this way:</p>
+<ul>
+<li><p>Data sets may have different averaging periods and there is a
+need to combine them. For example, the task of combining an hourly
+air quality data set with a 15-minute average meteorological data
+set. The need here would be to aggregate the 15-minute data to
+1-hour before merging.</p></li>
+<li><p>It is extremely useful to consider data with different averaging
+times straightforwardly. Plotting a very long time series of hourly
+or higher resolution data can hide the main features and it would be
+useful to apply a specific (but flexible) averaging period to the
+data for plotting.</p></li>
+<li><p>Those who make measurements during field campaigns (particularly
+for academic research) may have many instruments with a range of
+different time resolutions. It can be useful to re-calculate time
+series with a common averaging period; or maybe help reduce noise.</p></li>
+<li><p>It is useful to calculate statistics other than means when
+aggregating e.g. percentile values, maximums etc.</p></li>
+<li><p>For statistical analysis there can be short-term autocorrelation
+present. Being able to choose a longer averaging period is sometimes
+a useful strategy for minimising autocorrelation.</p></li>
+</ul>
+<p>In aggregating data in this way, there are a couple of other issues
+that can be useful to deal with at the same time. First, the
+calculation of proper vector-averaged wind direction is
+essential. Second, sometimes it is useful to set a minimum number
+of data points that must be present before the averaging is done. For
+example, in calculating monthly averages, it may be unwise to not
+account for data capture if some months only have a few valid points.</p>
+<p>When a data capture threshold is set through <code>data.thresh</code> it is
+necessary for <code>timeAverage</code> to know what the original time interval
+of the input time series is. The function will try and calculate this
+interval based on the most common time gap (and will print the assumed
+time gap to the screen). This works fine most of the time but there
+are occasions where it may not e.g. when very few data exist in a data
+frame. In this case the user can explicitly specify the interval
+through <code>interval</code> in the same format as <code>avg.time</code>
+e.g. <code>interval = "month"</code>. It may also be useful to set
+<code>start.date</code> and <code>end.date</code> if the time series do not span the
+entire period of interest. For example, if a time series ended in
+October and annual means are required, setting <code>end.date</code> to the
+end of the year will ensure that the whole period is covered and that
+<code>data.thresh</code> is correctly calculated. The same also goes for a
+time series that starts later in the year where <code>start.date</code> should
+be set to the beginning of the year.</p>
+<p>All these issues are (hopefully) dealt with by the <code>timeAverage</code>
+function. The options are shown below, but as ever it is best to check
+the help that comes with the <span class="pkg">openair</span> package.</p>
+<p>To calculate daily means from hourly (or higher resolution) data:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="sec-utility.html#cb199-1" aria-hidden="true"></a>daily &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>)</span>
+<span id="cb199-2"><a href="sec-utility.html#cb199-2" aria-hidden="true"></a>daily</span></code></pre></div>
+<pre><code>## # A tibble: 2,731 x 14
+##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 1998-01-01 00:00:00  6.84  188.  154.  39.4 6.87   18.2  3.15  2.70   NaN
+##  2 1998-01-02 00:00:00  7.07  223.  132.  39.5 6.48   27.8  3.94  1.77   NaN
+##  3 1998-01-03 00:00:00 11.0   226.  120.  38.0 8.41   20.2  3.20  1.74   NaN
+##  4 1998-01-04 00:00:00 11.5   223.  105.  35.3 9.61   21.0  2.96  1.62   NaN
+##  5 1998-01-05 00:00:00  6.61  237.  175.  46.0 4.96   24.2  4.52  2.13   NaN
+##  6 1998-01-06 00:00:00  4.38  197.  214.  45.3 1.35   34.6  5.70  2.53   NaN
+##  7 1998-01-07 00:00:00  7.61  219.  193.  44.9 4.42   31.0  5.67  2.48   NaN
+##  8 1998-01-08 00:00:00  8.58  216.  161.  43.1 4.96   36    4.68  2.10   NaN
+##  9 1998-01-09 00:00:00  6.7   206.  163.  38   3.62   38.0  5.13  2.36   NaN
+## 10 1998-01-10 00:00:00  2.98  167.  219.  44.9 0.375  37.0  4.91  2.23   NaN
+## # … with 2,721 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;,
+## #   ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+<p>Monthly 95th percentile values:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="sec-utility.html#cb201-1" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>, </span>
+<span id="cb201-2"><a href="sec-utility.html#cb201-2" aria-hidden="true"></a>                       <span class="dt">statistic =</span> <span class="st">&quot;percentile&quot;</span>,</span>
+<span id="cb201-3"><a href="sec-utility.html#cb201-3" aria-hidden="true"></a>                       <span class="dt">percentile =</span> <span class="dv">95</span>)</span>
+<span id="cb201-4"><a href="sec-utility.html#cb201-4" aria-hidden="true"></a>monthly</span></code></pre></div>
+<pre><code>## # A tibble: 90 x 14
+##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 1998-01-01 00:00:00 11.2   45.   371.  68.6  14    53    11.1  3.99  NA  
+##  2 1998-02-01 00:00:00  8.16  16.7  524.  92     7    68.9  17.5  5.63  NA  
+##  3 1998-03-01 00:00:00 10.6   37.6  417.  85    15    61    18.4  4.85  NA  
+##  4 1998-04-01 00:00:00  8.16  44.4  384   81.5  20    52    14.6  4.17  NA  
+##  5 1998-05-01 00:00:00  7.56  40.6  300   80    25    61    12.7  3.55  40  
+##  6 1998-06-01 00:00:00  8.47  50.7  377   74.2  15    53    12.2  4.28  33.9
+##  7 1998-07-01 00:00:00  9.22  36.7  386.  80.0  NA    52.4  13.9  4.52  32  
+##  8 1998-08-01 00:00:00  7.92  48.4  337.  87.0  16    58.2  13.0  3.78  38  
+##  9 1998-09-01 00:00:00  6     66.7  334.  81.3  14    64    18.2  4.25  47  
+## 10 1998-10-01 00:00:00 12     33.9  439.  84    15.1  54    12.0  4.81  33  
+## # … with 80 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;,
+## #   rollingo3 &lt;dbl&gt;</code></pre>
+<p>2-week averages but only calculate if at least 75% of the data are available:</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="sec-utility.html#cb203-1" aria-hidden="true"></a>twoweek &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;2 week&quot;</span>, </span>
+<span id="cb203-2"><a href="sec-utility.html#cb203-2" aria-hidden="true"></a>                       <span class="dt">data.thresh =</span> <span class="dv">75</span>)</span>
+<span id="cb203-3"><a href="sec-utility.html#cb203-3" aria-hidden="true"></a>twoweek</span></code></pre></div>
+<pre><code>## # A tibble: 196 x 14
+##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 1997-12-29 00:00:00  6.98  212.  167.  41.4  4.63  29.3  4.47  2.17  NA  
+##  2 1998-01-12 00:00:00  4.91  221.  173.  42.1  4.70  28.8  5.07  1.86  NA  
+##  3 1998-01-26 00:00:00  2.78  242.  233.  51.4  2.30  34.9  8.07  2.45  NA  
+##  4 1998-02-09 00:00:00  4.43  215.  276.  57.1  2.63  43.7  8.98  2.94  NA  
+##  5 1998-02-23 00:00:00  6.89  237.  248.  56.7  4.99  28.8  9.79  2.57  NA  
+##  6 1998-03-09 00:00:00  2.97  288.  160.  44.8  5.64  32.7  8.65  1.62  NA  
+##  7 1998-03-23 00:00:00  4.87  192.  224.  53.6  5.52  35.9 10.2   2.34  NA  
+##  8 1998-04-06 00:00:00  3.24  294.  144.  43.4 10.1   23.8  5.48  1.40  NA  
+##  9 1998-04-20 00:00:00  4.38  195.  177.  47.6 10.5   31.4  5.54  1.73  NA  
+## 10 1998-05-04 00:00:00  3.97  285.  134.  45.5 10.2   38.6  5.49  1.41  24.6
+## # … with 186 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;,
+## #   ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+<p>Note that <code>timeAverage</code> has a <code>type</code> option to allow for the splitting of variables by a grouping variable. The most common use for <code>type</code> is when data are available for different sites and the averaging needs to be done on a per site basis.</p>
+<p>First, retaining by site averages:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="sec-utility.html#cb205-1" aria-hidden="true"></a><span class="co"># import some data for two sites</span></span>
+<span id="cb205-2"><a href="sec-utility.html#cb205-2" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="kw">c</span>(<span class="st">&quot;kc1&quot;</span>, <span class="st">&quot;my1&quot;</span>), <span class="dt">year =</span> <span class="dv">2011</span><span class="op">:</span><span class="dv">2013</span>)</span>
+<span id="cb205-3"><a href="sec-utility.html#cb205-3" aria-hidden="true"></a></span>
+<span id="cb205-4"><a href="sec-utility.html#cb205-4" aria-hidden="true"></a><span class="co"># annual averages by site</span></span>
+<span id="cb205-5"><a href="sec-utility.html#cb205-5" aria-hidden="true"></a><span class="kw">timeAverage</span>(dat, <span class="dt">avg.time =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 17
+## # Groups:   site [2]
+##   site  date                   co   nox   no2    no    o3   so2  pm10 pm2.5
+##   &lt;fct&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Lond… 2011-01-01 00:00:00 0.656 306.   97.2 137.   18.5  6.86  38.4  24.5
+## 2 Lond… 2012-01-01 00:00:00 0.589 313.   94.0 143.   15.0  8.13  30.8  21.5
+## 3 Lond… 2013-01-01 00:00:00 0.506 281.   84.7 128.   17.7  5.98  29.1  20.1
+## 4 Lond… 2011-01-01 00:00:00 0.225  53.8  36.1  11.6  39.4  2.06  23.7  16.3
+## 5 Lond… 2012-01-01 00:00:00 0.266  57.4  36.7  13.3  38.5  2.03  20.2  14.6
+## 6 Lond… 2013-01-01 00:00:00 0.250  57.9  36.9  13.7  38.4  2.01  23.1  14.7
+## # … with 7 more variables: v10 &lt;dbl&gt;, v2.5 &lt;dbl&gt;, nv10 &lt;dbl&gt;, nv2.5 &lt;dbl&gt;,
+## #   ws &lt;dbl&gt;, wd &lt;dbl&gt;, air_temp &lt;dbl&gt;</code></pre>
+<p>Retain site name and site code:</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="sec-utility.html#cb207-1" aria-hidden="true"></a><span class="co"># can also retain site code</span></span>
+<span id="cb207-2"><a href="sec-utility.html#cb207-2" aria-hidden="true"></a><span class="kw">timeAverage</span>(dat, <span class="dt">avg.time =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;code&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 18
+## # Groups:   site, code [2]
+##   site  code  date                   co   nox   no2    no    o3   so2  pm10
+##   &lt;fct&gt; &lt;fct&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Lond… MY1   2011-01-01 00:00:00 0.656 306.   97.2 137.   18.5  6.86  38.4
+## 2 Lond… MY1   2012-01-01 00:00:00 0.589 313.   94.0 143.   15.0  8.13  30.8
+## 3 Lond… MY1   2013-01-01 00:00:00 0.506 281.   84.7 128.   17.7  5.98  29.1
+## 4 Lond… KC1   2011-01-01 00:00:00 0.225  53.8  36.1  11.6  39.4  2.06  23.7
+## 5 Lond… KC1   2012-01-01 00:00:00 0.266  57.4  36.7  13.3  38.5  2.03  20.2
+## 6 Lond… KC1   2013-01-01 00:00:00 0.250  57.9  36.9  13.7  38.4  2.01  23.1
+## # … with 8 more variables: pm2.5 &lt;dbl&gt;, v10 &lt;dbl&gt;, v2.5 &lt;dbl&gt;, nv10 &lt;dbl&gt;,
+## #   nv2.5 &lt;dbl&gt;, ws &lt;dbl&gt;, wd &lt;dbl&gt;, air_temp &lt;dbl&gt;</code></pre>
+<p>Average all data across sites (drops site and code):</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="sec-utility.html#cb209-1" aria-hidden="true"></a><span class="kw">timeAverage</span>(dat, <span class="dt">avg.time =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 16
+##   date                   co   nox   no2    no    o3   so2  pm10 pm2.5   v10
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 2011-01-01 00:00:00 0.439  181.  67.1  74.9  31.5  4.31  31.4  20.5  5.40
+## 2 2012-01-01 00:00:00 0.424  182.  64.7  76.7  26.9  5.08  25.6  18.1  4.23
+## 3 2013-01-01 00:00:00 0.378  169.  60.7  70.7  28.0  3.79  26.8  17.4  4.29
+## # … with 6 more variables: v2.5 &lt;dbl&gt;, nv10 &lt;dbl&gt;, nv2.5 &lt;dbl&gt;, ws &lt;dbl&gt;,
+## #   wd &lt;dbl&gt;, air_temp &lt;dbl&gt;</code></pre>
+<p><code>timeAverage</code> also works the other way in that it can be used to
+derive higher temporal resolution data e.g. hourly from daily data or
+15-minute from hourly data. An example of usage would be the combining
+of daily mean particle data with hourly meteorological data. There are
+two ways these two data sets can be combined: either average the
+meteorological data to daily means or calculate hourly means from the
+particle data. The <code>timeAverage</code> function when used to ‘expand’
+data in this way will repeat the original values the number of times
+required to fill the new time scale. In the example below we calculate
+15-minute data from hourly data. As it can be seen, the first line is
+repeated four times and so on.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="sec-utility.html#cb211-1" aria-hidden="true"></a>data15 &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, </span>
+<span id="cb211-2"><a href="sec-utility.html#cb211-2" aria-hidden="true"></a>                      <span class="dt">avg.time =</span> <span class="st">&quot;15 min&quot;</span>, </span>
+<span id="cb211-3"><a href="sec-utility.html#cb211-3" aria-hidden="true"></a>                      <span class="dt">fill =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb211-4"><a href="sec-utility.html#cb211-4" aria-hidden="true"></a><span class="kw">head</span>(data15, <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 14
+##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
+##  2 1998-01-01 00:15:00  0.6    280   285    39     1    29  4.72  3.37    NA
+##  3 1998-01-01 00:30:00  0.6    280   285    39     1    29  4.72  3.37    NA
+##  4 1998-01-01 00:45:00  0.6    280   285    39     1    29  4.72  3.37    NA
+##  5 1998-01-01 01:00:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+##  6 1998-01-01 01:15:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+##  7 1998-01-01 01:30:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+##  8 1998-01-01 01:45:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+##  9 1998-01-01 02:00:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 10 1998-01-01 02:15:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 11 1998-01-01 02:30:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 12 1998-01-01 02:45:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 13 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 14 1998-01-01 03:15:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 15 1998-01-01 03:30:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 16 1998-01-01 03:45:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 17 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## 18 1998-01-01 04:15:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## 19 1998-01-01 04:30:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## 20 1998-01-01 04:45:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## # … with 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+<p>The <code>timePlot</code> can apply this function directly to make it very
+easy to plot data with different averaging times and statistics.</p>
+</div>
+<div id="sec:calcPercentile" class="section level2" number="17.6">
+<h2><span class="header-section-number">17.6</span> Calculating percentiles</h2>
+<p><code>calcPercentile</code> makes it straightforward to calculate percentiles
+for a single pollutant. It can take account of different averaging
+periods, data capture thresholds — see Section <a href="sec-utility.html#sec:timeAverage">17.5</a> for
+more details.</p>
+<p>For example, to calculate the 25, 50, 75 and 95th percentiles of
+O<sub>3</sub> concentration by year:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="sec-utility.html#cb213-1" aria-hidden="true"></a><span class="kw">calcPercentile</span>(mydata, <span class="dt">pollutant  =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb213-2"><a href="sec-utility.html#cb213-2" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">95</span>),</span>
+<span id="cb213-3"><a href="sec-utility.html#cb213-3" aria-hidden="true"></a>               <span class="dt">avg.time =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<pre><code>##         date percentile.25 percentile.50 percentile.75 percentile.95
+## 1 1998-01-01             2             4             7            16
+## 2 1999-01-01             2             4             9            21
+## 3 2000-01-01             2             4             9            22
+## 4 2001-01-01             2             4            10            24
+## 5 2002-01-01             2             4            10            24
+## 6 2003-01-01             2             4            11            24
+## 7 2004-01-01             2             5            11            23
+## 8 2005-01-01             3             7            16            28</code></pre>
+</div>
+<div id="sec:corPlot" class="section level2" number="17.7">
+<h2><span class="header-section-number">17.7</span> Correlation matrices</h2>
+<p>Understanding how different variables are related to one another is
+always important. However, it can be difficult to easily develop an
+understanding of the relationships when many different variables are
+present. One of the useful techniques used is to plot a
+<em>correlation matrix</em>, which provides the correlation between all
+pairs of data. The basic idea of a correlation matrix has been
+extended to help visualise relationships between variables by
+<span class="citation">Friendly (<a href="#ref-friendly2002" role="doc-biblioref">2002</a>)</span> and <span class="citation">Sarkar (<a href="#ref-Sarkar2008" role="doc-biblioref">2007</a>)</span>.</p>
+<p>The <code>corPlot</code> shows the correlation coded in three ways: by shape
+(ellipses), colour and the numeric value. The ellipses can be thought
+of as visual representations of scatter plot. With a perfect positive
+correlation a line at 45 degrees positive slope is drawn. For zero
+correlation the shape becomes a circle — imagine a ‘fuzz’ of points
+with no relationship between them.</p>
+<p>With many variables it can be difficult to see relationships
+between variables i.e. which variables tend to behave most like one
+another. For this reason hierarchical clustering is applied to the
+correlation matrices to group variables that are most similar to one
+another (if <code>cluster = TRUE</code>.)</p>
+<p>It is also possible to use the <span class="pkg">openair</span> type option to condition
+the data in many flexible ways, although this may become difficult to
+visualise with too many panels.</p>
+<p>An example of the <code>corPlot</code> function is shown in Figure
+<a href="sec-utility.html#fig:corPlot">17.2</a>. In this Figure it can be seen the highest
+correlation coefficient is between PM<sub>10</sub> and PM<sub>2.5</sub> (r = 0. 84) and
+that the correlations between SO<sub>2</sub>, NO<sub>2</sub> and NO<sub>x</sub> are also
+high. O<sub>3</sub> has a negative correlation with most pollutants, which is
+expected due to the reaction between NO and O<sub>3</sub>. It is not that
+apparent in Figure <a href="sec-utility.html#fig:corPlot">17.2</a> that the order the variables appear
+is due to their similarity with one another, through hierarchical
+cluster analysis. In this case we have chosen to also plot a
+<em>dendrogram</em> that appears on the right of the plot. Dendrograms
+provide additional information to help with visualising how groups of
+variables are related to one another. Note that dendrograms can only be
+plotted for <code>type = "default"</code> i.e. for a single panel plot.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="sec-utility.html#cb215-1" aria-hidden="true"></a><span class="kw">corPlot</span>(mydata, <span class="dt">dendrogram =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:corPlot"></span>
+<img src="openair_files/figure-html/corPlot-1.png" alt="Example of a correlation matrix showing the relationships between variables." width="75%" />
+<p class="caption">
+Figure 17.2: Example of a correlation matrix showing the relationships between variables.
+</p>
+</div>
+<p>Note also that the <code>corPlot</code> accepts a <code>type</code> option, so it
+possible to condition the data in many flexible ways, although this
+may become difficult to visualise with too many panels. For example:</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="sec-utility.html#cb216-1" aria-hidden="true"></a><span class="kw">corPlot</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<p>When there are a very large number of variables present, the
+<code>corPlot</code> is a very effective way of quickly gaining an idea of how
+variables are related. As an example (not plotted) it is useful to
+consider the hydrocarbons measured at Marylebone Road. There is a lot
+of information in the hydrocarbon plot (about 40 species), but due to
+the hierarchical clustering it is possible to see that isoprene,
+ethane and propane behave differently to most of the other
+hydrocarbons. This is because they have different (non-vehicle
+exhaust) origins. Ethane and propane results from natural gas leakage
+whereas isoprene is biogenic in origin (although some is from vehicle
+exhaust too). It is also worth considering how the relationships
+change between the species over the years as hydrocarbon emissions are
+increasingly controlled, or maybe the difference between summer and
+winter blends of fuels and so on.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sec-utility.html#cb217-1" aria-hidden="true"></a>hc &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;my1&quot;</span>, <span class="dt">year =</span> <span class="dv">2005</span>, <span class="dt">hc =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb217-2"><a href="sec-utility.html#cb217-2" aria-hidden="true"></a><span class="co">## now it is possible to see the hydrocarbons that behave most</span></span>
+<span id="cb217-3"><a href="sec-utility.html#cb217-3" aria-hidden="true"></a><span class="co">## similarly to one another</span></span>
+<span id="cb217-4"><a href="sec-utility.html#cb217-4" aria-hidden="true"></a><span class="kw">corPlot</span>(hc)</span></code></pre></div>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-friendly2002">
+<p>Friendly, M. 2002. “Corrgrams: Exploratory Displays for Correlation Matrices.” <em>The American Statistician</em> 56 (4): 316–25.</p>
+</div>
+<div id="ref-Sarkar2008">
+<p>Sarkar, Deepayan. 2007. <em>Lattice Multivariate Data Visualization with R</em>. New York: Springer.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sec-trajPlot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/utility-functions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["openair.pdf", "openair.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
