@@ -1,0 +1,299 @@
+# Conditional quantiles {#sec:conditionalQuantile}
+
+## Background {#sec:conditionalQuantileBack}
+
+Conditional quantiles are a very useful way of considering model
+performance against observations for continuous measurements
+[@Wilks2005]. The conditional quantile plot splits the data into
+evenly spaced bins. For each predicted value bin e.g. from 0 to 10 ppb
+the *corresponding* values of the observations are identified and
+the median, 25/75th and 10/90 percentile (quantile) calculated for
+that bin. The data are plotted to show how these values vary across
+all bins. For a time series of observations and predictions that agree
+precisely the median value of the predictions will equal that for the
+observations for each bin.
+
+The conditional quantile plot differs from the quantile-quantile plot
+(Q-Q plot) that is often used to compare observations and
+predictions. A Q-Q~plot separately considers the distributions of
+observations and predictions, whereas the conditional quantile uses
+the corresponding observations for a particular interval in the
+predictions. Take as an example two time series, the first a series of
+real observations and the second a lagged time series of the same
+observations representing the predictions. These two time series will
+have identical (or very nearly identical) distributions (e.g. same
+median, minimum and maximum). A Q-Q plot would show a straight line
+showing perfect agreement, whereas the conditional quantile will
+not. This is because in any interval of the predictions the
+corresponding observations now have different values.
+
+Plotting the data in this way shows how well predictions agree with
+observations and can help reveal many useful characteristics of how
+well model predictions agree with observations --- across the full
+distribution of values. A single plot can therefore convey a
+considerable amount of information concerning model performance. The
+basic function is considerably enhanced by allowing flexible
+conditioning easily e.g. to evaluate model performance by season, day
+of the week and so on, as in other [openair]{.pkg} functions.
+
+To make things more interesting we will use data from a model
+evaluation exercise organised by Defra in 2010/2011. Many models were
+evaluated but we only consider hourly ozone predictions from the CMAQ
+model being used at King's College London.
+
+First the data are loaded:
+
+```{r loadCMAQ}
+load("~/My Drive/openair/Data/CMAQozone.RData")
+class(CMAQ.KCL$date) <- c("POSIXct", "POSIXt")
+head(CMAQ.KCL)
+```
+
+The data consists of hourly observations of O~3~ in $\mu$g m^-3^ at 15 rural
+O~3~ sites in the UK together with predicted values.^[We
+  thank Dr Sean Beevers and Dr Nutthida Kitwiroon for access to these
+  data.] First, we consider O~3~ predictions across all sites to
+help illustrate the purpose of the function. The results are shown in Figure \@ref(fig:conditionalQ1). An explanation of the Figure is given in its caption.
+
+(ref:condEval1) Example of the use of conditional quantiles applied to the KCL CMAQ model for 15 rural O~3~ monitoring sites in 2006, for  hourly data. The blue line shows the results for a perfect model. In this case the observations cover a range from 0 to 270  $\mu$g m^-3^. The red line shows the median values of the predictions and corresponding observations. The maximum predicted value is 125  $\mu$g m^-3^, somewhat less than the maximum observed value. The shading shows the predicted quantile intervals i.e. the 25/75th and the 10/90th. A perfect model would lie on the blue line and have a very narrow spread. There is  still some spread because even for a perfect model a specific quantile interval will contain a range of values. However, for the number of bins used in this plot the spread will be very narrow. Finally, the histogram shows the counts of predicted values.
+
+```{r conditionaQ1,fig.width=5,fig.height=5,out.width='50%',fig.cap='(ref:condEval1)'}
+conditionalQuantile(CMAQ.KCL, obs = "o3", mod = "mod")
+```
+
+A more informative analysis can be undertaken by considering
+conditional quantiles separately by site, which is easily done using
+the `type` option. The results are shown in Figure
+\@ref(fig:condQall). It is now easier to see where the model
+performs best and how it varies by site type. For example, at a remote
+site in Scotland like Strath Vaich it is clear that the model does not
+capture either the lowest or highest O~3~ concentrations very well.
+
+```{r condQall,fig.width=12,fig.height=12,fig.cap='Conditional quantiles by site for 15 O~3~ monitoring sites in the UK.'}
+conditionalQuantile(CMAQ.KCL, obs = "o3", mod = "mod", type = "site")
+```
+
+As with other [openair]{.pkg} functions, the ability to consider conditioning
+can really help with interpretation. For example, what do the
+conditional quantiles at Lullington Heath (in south-east England) look
+like by season? This is easily done by subsetting the data to select
+that site and setting `type = "season"`, as shown in Figure
+\@ref(fig:conditionalSeas). These results show that winter
+predictions have good coverage i.e. with width of the blue `perfect
+model' line is the same as the observations. However, the predictions
+tend to be somewhat lower than observations for most concentrations
+(the median line is below the blue line) --- and the width of the
+10/75th and 10/90th percentiles is quite broad. However, the area
+where the model is less good is in summer and autumn because the
+predictions have low coverage (the red line only covers less than half
+of the observation line and the width of the percentiles is wide).
+
+Of course, it is also easy to plot by hour of the day, day of the week,
+by daylight/nighttime and so on --- easily. All these approaches can
+help better understand *why* a model does not perform very well
+rather than just quantifying its performance. Also, these types of
+analysis are particularly useful when more than one model is involved
+in a comparison as in the recent Defra model evaluation exercise,
+which we will come back to later when some results are
+published.
+
+
+```{r conditionalSeas,fig.width=8,fig.height=8,out.width='75%',fig.cap='Conditional quantiles at Lullington Heath conditioned by season.'}
+conditionalQuantile(subset(CMAQ.KCL, site == "Lullington.Heath"), 
+                    obs = "o3",
+                    mod = "mod", type = "season")
+```
+
+## Conditional evaluation {#sec:conditionalEval}
+
+There are numerous ways in which model performance can be assessed,
+including the use of common statistical measures described in Section
+\@ref(sec:modStats). These approaches are very useful for comparing
+models against observations and other models. However, model
+developers would generally like to know *why* a model may have
+poor performance under some situations. This is a much more
+challenging issue to address. However, useful information can be
+gained by considering how other variables vary simultaneously.
+
+The `conditionalEval` function provides information on how other
+variables vary across the *same* intervals as shown on the
+conditional quantile plot. There are two types of variable that can be
+considered by setting the value of `statistic`. First,
+`statistic` can be another variable in the data frame. In this case
+the plot will show the different proportions of `statistic` across
+the range of predictions. For example `statistic = "season"` will
+show for each interval of `mod` the proportion of predictions that
+were spring, summer, autumn or winter. This is useful because if model
+performance is worse for example at high concentrations of `mod`
+then knowing that these tend to occur during a particular season
+etc. can be very helpful when trying to understand *why* a model
+fails. See Section \@ref(sec:cutData) for more details on the types of
+variable that can be `statistic`. Another example would be
+`statistic = "ws"` (if wind speed were available in the data
+frame), which would then split wind speed into four quantiles and plot
+the proportions of each. Again, this would help show whether model
+performance in predicting concentrations of O~3~ for example is
+related to low to high wind speed conditions.
+
+`conditionalEval` can also simultaneously plot the model
+performance of other observed/predicted variable *pairs*
+according to different model evaluation statistics. These statistics
+derive from the Section \@ref(sec:modStats) function and include *MB*,
+*NMB*, *r*, *COE*, *MGE*, *NMGE*, *RMSE*
+and *FAC2*. More than one statistic can be supplied
+e.g. `statistic = c("NMB", "COE")`. Bootstrap samples are taken
+from the corresponding values of other variables to be plotted and
+their statistics with 95% confidence intervals calculated. In this
+case, the model *performance* of other variables is shown across
+the same intervals of `mod`, rather than just the values of single
+variables. In this second case the model would need to provide
+observed/predicted pairs of other variables.
+
+For example, a model may provide predictions of NO~x~ and wind speed
+(for which there are also observations available). The
+`conditionalEval` function will show how well these other variables
+are predicted for the *same prediction intervals* of the main
+variable assessed in the conditional quantile plot e.g. ozone. In this
+case, values are supplied to `var.obs` (observed values for other
+variables) and `var.mod` (modelled values for other variables). For
+example, to consider how well the model predicts NO~x~ and wind speed
+`var.obs = c("nox.obs", "ws.obs")` and `var.mod = c("nox.mod",  "ws.mod")` would be supplied (assuming `nox.obs, nox.mod, ws.obs,  ws.mod` are present in the data frame). The analysis could show for
+example, when ozone concentrations are under-predicted, the model may
+also be shown to over-predict concentrations of NO~x~ at the same time,
+or under-predict wind speeds. Such information can thus help identify
+the underlying causes of poor model performance. For example, an
+under-prediction in wind speed could result in higher surface NO~x~
+concentrations and lower ozone concentrations. Similarly if wind speed
+predictions were good and NO~x~ was over predicted it might suggest an
+over-estimate of NO~x~ emissions. One or more additional variables can
+be plotted.
+
+A special case is `statistic = "cluster"`. In this case a data
+frame is provided that contains the cluster calculated by
+`trajCluster` and `importTraj`. Alternatively users could supply
+their own pre-calculated clusters. These calculations can be very
+useful in showing whether certain back trajectory clusters are
+associated with poor (or good) model performance. Note that in the
+case of `statistic = "cluster"` there will be fewer data points
+used in the analysis compared with the ordinary statistics above
+because the trajectories are available for every three hours. Also
+note that `statistic = "cluster"` cannot be used together with the
+ordinary model evaluation statistics such as *MB*. The output
+will be a bar chart showing the proportion of each interval of
+`mod` by cluster number.
+
+Far more insight can be gained into model performance through
+conditioning using `type`. For example, `type =
+"season"` will plot conditional quantiles and the associated model
+performance statistics of other variables by each
+season. `type` can also be a factor or character field
+e.g. representing different models used.
+
+As an example, similar data to that described above from CMAQ have
+been used as an example.
+
+```{r echo=FALSE}
+load("~/My Drive/openair/Data/condDat.RData")
+```
+
+A subset of the data for the North Kensington site can be imported as
+shown below.
+
+```{r eval=FALSE}
+condDat <- readRDS(url("https://davidcarslaw.github.io/data/openair/condDat.rds"))
+```
+
+The file contains observed and modelled hourly values for O~3~,
+NO~x~, wind speed, wind direction, temperature and relative humidity.
+
+```{r headcondDat}
+head(condDat)
+```
+
+The `conditionalEval` function can be used straightforwardly to
+provide information on how predictions depend on another variable in
+general. In this case the option `statistic` can refer to another
+variable in the data frame to see how the quality of predictions
+depend on values of that variable. For example, in Figure
+\@ref(fig:condDatWS) it can be seen how wind speed varies across the
+O~3~ prediction intervals. At low predicted concentrations of O~3~
+there is a high proportion of low wind speed conditions (0 to 2.57
+m s^-1^). When O~3~ is predicted to be around 40 ppb the wind speed
+tends to be higher --- and finally at higher predicted concentrations
+of O~3~ the wind speed tends to decrease again. The important aspect
+of plotting data in this way is that it can directly relate the
+prediction performance to values of other variables, which should help
+develop a much better idea of the conditions that matter most. The
+user can therefore develop a good feel for the types of conditions
+where a model performs well or poorly and this might provide clues as
+to the underlying reasons for specific model behaviour.
+
+```{r condDatWS,fig.width=15,fig.height=5,fig.keep='last',fig.cap='Conditional quantiles at for O~3~ concentrations (left plot). On the right is a plot showing how the wind speed varies across the O~3~ prediction intervals.'}
+conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
+                statistic = "ws.obs",
+                col.var = "Set3")
+```
+
+In an extension to Figure\@ref(fig:condDatWS) it is possible to derive
+information on the simultaneous model performance of other
+variables. Figure \@ref(fig:condDat) shows the conditional quantile plot
+for hourly O~3~ predictions. This shows among other things that
+concentrations of O~3~ tend to be under-predicted for concentrations
+less than about 20 ppb. The Figure on the right shows the simultaneous
+*model performance* for wind speed and NO~x~ for the *same*
+prediction intervals as shown in the conditional quantile plot. The
+plot on the right shows that for low concentrations of predicted
+O~3~ there is a tendency for NO~x~ concentrations to be overestimated
+(NMB$\approx$0.2 to 0.4) and wind speeds to be underestimated
+(NMB$\approx-$0.2 to $-$0.3). One possible explanation for this behaviour
+is that the meteorological model tends to produce wind speeds that are
+too low, which would result in higher concentrations of NO~x~, which in
+turn would result in lower concentrations of O~3~. Note that it is
+possible to include more than one statistic, which would be plotted in
+a new panel e.g. `statistic = c("NMB", "r")`.
+
+In essence the `conditionalEval` function provides more information
+on model performance that can help better diagnose potential
+problems. Clearly, there are many other ways in which the results can
+be analysed, which will depend on the data available.
+
+```{r condDat,fig.width=15,fig.height=7,fig.keep='last',fig.cap='Conditional quantiles at for O~3~ concentrations (left plot). On the right is the model performance for wind speed and NO~x~ predictions, which in this case is for the Normalised Mean Bias.'}
+conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
+                var.obs = c("NOx.obs", "ws.obs"),
+                var.mod = c("NOx.mod", "ws.mod"),
+                statistic = "NMB",
+                var.names = c("nox", "wind speed"))
+```
+
+A plot using temperature predictions shows that for most of the range
+in O~3~ predictions there is very little bias in temperature
+(although there is some negative bias in temperature for very low
+concentration O~3~ predictions):
+
+```{r condDatTemp, eval=FALSE}
+ conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
+                var.obs = c("temp.obs", "ws.obs"),
+                var.mod = c("temp.mod", "ws.mod"),
+                statistic = "NMB", var.names = c("temperature", "wind speed"))
+```
+
+Finally, (but not shown) it can be very useful to consider model
+performance in terms of air mass origin. In the example below,
+trajectories are imported, a cluster analysis undertaken and then
+evaluated using `conditionalEval`.
+
+```{r evalClust, eval=FALSE}
+## import trajectories for 2006
+traj <- importTraj("london", 2006)
+
+## carry out a cluster analysis
+cl <- trajCluster(traj, method = "Angle", n.cluster = 5)
+
+## merge with orginal model eval data
+condDat <- merge(condDat, cl, by = "date")
+
+## plot it
+conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
+                statistic = "cluster",
+                col.var = "Set3")
+```

@@ -20,5 +20,6 @@ rmd_files: ["index.Rmd",
 "theil-sen.Rmd",
 "smooth-trend.Rmd",
 "trajectory-analysis.Rmd",
+"conditional-quantiles.Rmd",
 "utility-functions.Rmd",
 "references.Rmd"]
