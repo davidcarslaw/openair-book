@@ -21,5 +21,7 @@ rmd_files: ["index.Rmd",
 "smooth-trend.Rmd",
 "trajectory-analysis.Rmd",
 "conditional-quantiles.Rmd",
+"mod-stats.Rmd",
+"taylor-diagram.Rmd",
 "utility-functions.Rmd",
 "references.Rmd"]
