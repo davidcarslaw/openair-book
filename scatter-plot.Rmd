@@ -78,7 +78,7 @@ necessary to install the [hexbin]{.pkg} package:
 
 Now it should be possible to make the plot by setting the method
 option to `method = "hexbin"`, as shown in Figure
-\@ref(fig:scatterplot2). The benefit of hexagonal binning is that
+\@ref(fig:scatterPlot2). The benefit of hexagonal binning is that
 it works equally well with enormous data sets e.g. several million
 records. In this case Figure \@ref(fig:scatterPlot2) provides a clearer
 indication of the relationship between NO~x~ and NO~2~ than Figure
@@ -152,7 +152,7 @@ subdat <- pivot_longer(subdat, cols = c(pm10, pm25),
 head(subdat)
 ```
 
-Now we will plot weekly NO~x~ versus PM~10~ and PM~2.5~ and fit a linear equation to both --- and adjust some of the symbols (shown in Figure \@ref(fig:scatterplotTwo).
+Now we will plot weekly NO~x~ versus PM~10~ and PM~2.5~ and fit a linear equation to both --- and adjust some of the symbols (shown in Figure \@ref(fig:scatterPlotTwo).
 
 ```{r scatterPlotTwo,fig.width=6,fig.height=4.5,out.width='67%',fig.cap='Scatter plot of weekly NO~x~ vs. PM~10~ *and* PM~2.5~ at Marylebone Road with linear equations shown and plot symbols modified.'}
 scatterPlot(subdat, x = "nox", y = "value", group = "pollutant", 
@@ -210,7 +210,7 @@ hours where NO~2~ is $>$100~ppb at quite low concentrations of NO~x~
 O~3~ concentrations from Marylebone Road to use O~3~ from a
 background site.
 
-Figure \@ref(fig:scatterplot4) was very easily produced
+Figure \@ref(fig:scatterPlot4) was very easily produced
 but contains a huge amount of useful information showing the
 relationship between NO~x~ and NO~2~ dependent upon the concentration
 of O~3~, the season and the day of the week. There are of course

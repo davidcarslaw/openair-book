@@ -28,7 +28,7 @@ series on different scales e.g. emissions and ambient measurements.
 
 `timePlot` works very well in conjunction with
 `selectByDate`, which makes it easy to select specific time
-series intervals. See (Section \@ref(sec:selecting-data-date)) for examples
+series intervals. See (Section \@ref(sec:selectByDate)) for examples
 of how to select parts of a data frame based on the date.
 
 Another useful feature of `timePlot` is the ability to average the
