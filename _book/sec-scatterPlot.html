@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section14 Scatter plots | openair</title>
+  <title>Section15 Scatter plots | openair</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section14 Scatter plots | openair" />
+  <meta property="og:title" content="Section15 Scatter plots | openair" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section14 Scatter plots | openair" />
+  <meta name="twitter:title" content="Section15 Scatter plots | openair" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -148,132 +148,156 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<li class="chapter" data-level="3" data-path="sec-openair-package.html"><a href="sec-openair-package.html"><i class="fa fa-check"></i><b>3</b> The openair package</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="sec-importAURN.html"><a href="sec-importAURN.html#accessing-data"><i class="fa fa-check"></i><b>3.1</b> Accessing data</a></li>
-<li class="chapter" data-level="3.2" data-path="sec-importAURN.html"><a href="sec-importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
-<li class="chapter" data-level="3.3" data-path="sec-importAURN.html"><a href="sec-importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+<li class="chapter" data-level="3.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#access-to-source-code"><i class="fa fa-check"></i><b>3.1</b> Access to source code</a></li>
+<li class="chapter" data-level="3.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>3.2</b> Input data requirements</a></li>
+<li class="chapter" data-level="3.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>3.3</b> Brief overview of <code>openair</code></a></li>
+<li class="chapter" data-level="3.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>3.4</b> The <code>type</code> option</a></li>
+<li class="chapter" data-level="3.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>3.5</b> Controlling font size</a></li>
+<li class="chapter" data-level="3.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>3.6</b> Using colours</a></li>
+<li class="chapter" data-level="3.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>3.7</b> Automatic text formatting</a></li>
+<li class="chapter" data-level="3.8" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:plotting-more-than"><i class="fa fa-check"></i><b>3.8</b> Multiple plots on a page</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
+<li class="chapter" data-level="4" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>4</b> Accessing UK Air Quality Data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The <code>worldmet</code> package</a></li>
+<li class="chapter" data-level="4.1" data-path="sec-importAURN.html"><a href="sec-importAURN.html#accessing-data"><i class="fa fa-check"></i><b>4.1</b> Accessing data</a></li>
+<li class="chapter" data-level="4.2" data-path="sec-importAURN.html"><a href="sec-importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>4.2</b> Site Meta Data</a></li>
+<li class="chapter" data-level="4.3" data-path="sec-importAURN.html"><a href="sec-importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>4.3</b> Plot Sites on a Map</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
+<li class="chapter" data-level="5" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>5</b> Access meteorological data</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="sec-windRose.html"><a href="sec-windRose.html#example-of-use"><i class="fa fa-check"></i><b>5.1</b> Example of use</a></li>
-<li class="chapter" data-level="5.2" data-path="sec-windRose.html"><a href="sec-windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>5.2</b> Comparing two meteorological data sets</a></li>
+<li class="chapter" data-level="5.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>5.1</b> The <code>worldmet</code> package</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html"><i class="fa fa-check"></i><b>6</b> Polar frequencies</a>
+<li class="chapter" data-level="6" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>6</b> Wind and Pollution Roses</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html#sec:polarFreqBack"><i class="fa fa-check"></i><b>6.1</b> Background and examples</a></li>
+<li class="chapter" data-level="6.1" data-path="sec-windRose.html"><a href="sec-windRose.html#example-of-use"><i class="fa fa-check"></i><b>6.1</b> Example of use</a></li>
+<li class="chapter" data-level="6.2" data-path="sec-windRose.html"><a href="sec-windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>6.2</b> Comparing two meteorological data sets</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html"><i class="fa fa-check"></i><b>7</b> Percentile roses</a>
+<li class="chapter" data-level="7" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html"><i class="fa fa-check"></i><b>7</b> Polar frequencies</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
-<li class="chapter" data-level="7.3" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>7.3</b> Condtional probability function</a></li>
+<li class="chapter" data-level="7.1" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html#sec:polarFreqBack"><i class="fa fa-check"></i><b>7.1</b> Background and examples</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>8</b> Polar plots</a>
+<li class="chapter" data-level="8" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html"><i class="fa fa-check"></i><b>8</b> Percentile roses</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>8.1</b> Introduction to polar plots</a></li>
-<li class="chapter" data-level="8.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>8.2</b> Examples</a></li>
-<li class="chapter" data-level="8.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR</a></li>
-<li class="chapter" data-level="8.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot</a></li>
-<li class="chapter" data-level="8.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.6</b> Clustering</a></li>
+<li class="chapter" data-level="8.1" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#examples"><i class="fa fa-check"></i><b>8.2</b> Examples</a></li>
+<li class="chapter" data-level="8.3" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>8.3</b> Condtional probability function</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus</a>
+<li class="chapter" data-level="9" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>9</b> Polar plots</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>9.1</b> Purpose</a></li>
-<li class="chapter" data-level="9.2" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>9.2</b> Example of use</a></li>
+<li class="chapter" data-level="9.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>9.1</b> Introduction to polar plots</a></li>
+<li class="chapter" data-level="9.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>9.2</b> Examples</a></li>
+<li class="chapter" data-level="9.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>9.3</b> Nonparametric Wind Regression, NWR</a></li>
+<li class="chapter" data-level="9.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>9.4</b> Conditional Probability Function (CPF) plot</a></li>
+<li class="chapter" data-level="9.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>9.5</b> Pairwise statistics</a></li>
+<li class="chapter" data-level="9.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>9.6</b> Clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="sec-timePlot.html"><a href="sec-timePlot.html"><i class="fa fa-check"></i><b>10</b> Time series plots</a>
+<li class="chapter" data-level="10" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>10</b> Polar annulus</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="sec-timePlot.html"><a href="sec-timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="sec-timePlot.html"><a href="sec-timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>10.2</b> Examples of time series plotting</a></li>
+<li class="chapter" data-level="10.1" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>10.1</b> Purpose</a></li>
+<li class="chapter" data-level="10.2" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>10.2</b> Example of use</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>11</b> Temporal variations</a>
+<li class="chapter" data-level="11" data-path="sec-timePlot.html"><a href="sec-timePlot.html"><i class="fa fa-check"></i><b>11</b> Time series plots</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>11.1</b> Purpose</a></li>
-<li class="chapter" data-level="11.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>11.2</b> Applications</a></li>
-<li class="chapter" data-level="11.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>11.3</b> Output</a></li>
+<li class="chapter" data-level="11.1" data-path="sec-timePlot.html"><a href="sec-timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>11.1</b> Background</a></li>
+<li class="chapter" data-level="11.2" data-path="sec-timePlot.html"><a href="sec-timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>11.2</b> Examples of time series plotting</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="sec-timeProp.html"><a href="sec-timeProp.html"><i class="fa fa-check"></i><b>12</b> Time proportion plots</a>
+<li class="chapter" data-level="12" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>12</b> Temporal variations</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>12.2</b> Examples</a></li>
+<li class="chapter" data-level="12.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>12.1</b> Purpose</a></li>
+<li class="chapter" data-level="12.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>12.2</b> Applications</a></li>
+<li class="chapter" data-level="12.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>12.3</b> Output</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html"><i class="fa fa-check"></i><b>13</b> Trend heat maps</a>
+<li class="chapter" data-level="13" data-path="sec-timeProp.html"><a href="sec-timeProp.html"><i class="fa fa-check"></i><b>13</b> Time proportion plots</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#another-way-of-representing-trends"><i class="fa fa-check"></i><b>13.1</b> Another way of representing trends</a></li>
-<li class="chapter" data-level="13.2" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#sec:TrendLevelEx"><i class="fa fa-check"></i><b>13.2</b> Examples</a></li>
+<li class="chapter" data-level="13.1" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>13.1</b> Background</a></li>
+<li class="chapter" data-level="13.2" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>13.2</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html"><i class="fa fa-check"></i><b>14</b> Scatter plots</a>
+<li class="chapter" data-level="14" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html"><i class="fa fa-check"></i><b>14</b> Trend heat maps</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterPurpose"><i class="fa fa-check"></i><b>14.1</b> Purpose</a></li>
-<li class="chapter" data-level="14.2" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterEx"><i class="fa fa-check"></i><b>14.2</b> Examples</a>
-<ul>
-<li class="chapter" data-level="14.2.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:hexbin"><i class="fa fa-check"></i><b>14.2.1</b> Hexaganol binning</a></li>
+<li class="chapter" data-level="14.1" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#another-way-of-representing-trends"><i class="fa fa-check"></i><b>14.1</b> Another way of representing trends</a></li>
+<li class="chapter" data-level="14.2" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#sec:TrendLevelEx"><i class="fa fa-check"></i><b>14.2</b> Examples</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>15</b> Calendar plots</a>
+<li class="chapter" data-level="15" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html"><i class="fa fa-check"></i><b>15</b> Scatter plots</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>15.1</b> Purpose</a></li>
-<li class="chapter" data-level="15.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>15.2</b> Calendar examples</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>16</b> Theil-Sen trends</a>
+<li class="chapter" data-level="15.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterPurpose"><i class="fa fa-check"></i><b>15.1</b> Purpose</a></li>
+<li class="chapter" data-level="15.2" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterEx"><i class="fa fa-check"></i><b>15.2</b> Examples</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>16.1</b> Trend estimates</a></li>
-<li class="chapter" data-level="16.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>16.2</b> Example trend analysis</a>
-<ul>
-<li class="chapter" data-level="16.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>16.2.1</b> Output</a></li>
+<li class="chapter" data-level="15.2.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:hexbin"><i class="fa fa-check"></i><b>15.2.1</b> Hexaganol binning</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>17</b> Smooth trends</a>
+<li class="chapter" data-level="16" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>16</b> Calendar plots</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>17.1</b> Background</a></li>
-<li class="chapter" data-level="17.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>17.2</b> Examples of trend analysis</a></li>
-<li class="chapter" data-level="17.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>17.3</b> Seasonal averages</a></li>
+<li class="chapter" data-level="16.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>16.1</b> Purpose</a></li>
+<li class="chapter" data-level="16.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>16.2</b> Calendar examples</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>18</b> Trajectory analysis</a>
+<li class="chapter" data-level="17" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>17</b> Theil-Sen trends</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>18.1</b> Plotting trajectories</a></li>
-<li class="chapter" data-level="18.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>18.2</b> Trajectory gridded frequencies</a></li>
-<li class="chapter" data-level="18.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>18.3</b> Trajectory source contribution functions</a>
+<li class="chapter" data-level="17.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>17.1</b> Trend estimates</a></li>
+<li class="chapter" data-level="17.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>17.2</b> Example trend analysis</a>
 <ul>
-<li class="chapter" data-level="18.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>18.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
-<li class="chapter" data-level="18.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>18.3.2</b> Allocating trajectories to different wind sectors</a></li>
+<li class="chapter" data-level="17.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>17.2.1</b> Output</a></li>
 </ul></li>
-<li class="chapter" data-level="18.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>18.4</b> Potential Source Contribution Function (PSCF)</a></li>
-<li class="chapter" data-level="18.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>18.5</b> Concentration Weighted Trajectory (CWT)</a></li>
-<li class="chapter" data-level="18.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>18.6</b> Trajectory clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html"><i class="fa fa-check"></i><b>19</b> Conditional quantiles</a>
+<li class="chapter" data-level="18" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>18</b> Smooth trends</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalQuantileBack"><i class="fa fa-check"></i><b>19.1</b> Background</a></li>
-<li class="chapter" data-level="19.2" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalEval"><i class="fa fa-check"></i><b>19.2</b> Conditional evaluation</a></li>
+<li class="chapter" data-level="18.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>18.1</b> Background</a></li>
+<li class="chapter" data-level="18.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>18.2</b> Examples of trend analysis</a></li>
+<li class="chapter" data-level="18.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>18.3</b> Seasonal averages</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="sec-modStats.html"><a href="sec-modStats.html"><i class="fa fa-check"></i><b>20</b> Model evaluation</a>
+<li class="chapter" data-level="19" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>19</b> Trajectory analysis</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModBack"><i class="fa fa-check"></i><b>20.1</b> Background</a></li>
-<li class="chapter" data-level="20.2" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModEx"><i class="fa fa-check"></i><b>20.2</b> Example of use</a></li>
+<li class="chapter" data-level="19.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>19.1</b> Plotting trajectories</a></li>
+<li class="chapter" data-level="19.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>19.2</b> Trajectory gridded frequencies</a></li>
+<li class="chapter" data-level="19.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>19.3</b> Trajectory source contribution functions</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>19.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
+<li class="chapter" data-level="19.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>19.3.2</b> Allocating trajectories to different wind sectors</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html"><i class="fa fa-check"></i><b>21</b> Taylor Diagam</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#sec:TaylorBack"><i class="fa fa-check"></i><b>21.1</b> Background</a></li>
-<li class="chapter" data-level="21.2" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#examples-of-taylor-diagrams"><i class="fa fa-check"></i><b>21.2</b> Examples of Taylor Diagrams</a></li>
+<li class="chapter" data-level="19.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>19.4</b> Potential Source Contribution Function (PSCF)</a></li>
+<li class="chapter" data-level="19.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>19.5</b> Concentration Weighted Trajectory (CWT)</a></li>
+<li class="chapter" data-level="19.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>19.6</b> Trajectory clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="sec-utility.html"><a href="sec-utility.html"><i class="fa fa-check"></i><b>22</b> Utility functions</a>
+<li class="chapter" data-level="20" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html"><i class="fa fa-check"></i><b>20</b> Conditional quantiles</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>22.1</b> Selecting data by date</a></li>
-<li class="chapter" data-level="22.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>22.2</b> Making intervals — <code>cutData</code></a></li>
-<li class="chapter" data-level="22.3" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>22.3</b> Selecting run lengths of values above a threshold — pollution episodes</a></li>
-<li class="chapter" data-level="22.4" data-path="sec-utility.html"><a href="sec-utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>22.4</b> Calculating rolling means</a></li>
-<li class="chapter" data-level="22.5" data-path="sec-utility.html"><a href="sec-utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>22.5</b> Aggregating data by different time intervals</a></li>
-<li class="chapter" data-level="22.6" data-path="sec-utility.html"><a href="sec-utility.html#sec:calcPercentile"><i class="fa fa-check"></i><b>22.6</b> Calculating percentiles</a></li>
-<li class="chapter" data-level="22.7" data-path="sec-utility.html"><a href="sec-utility.html#sec:corPlot"><i class="fa fa-check"></i><b>22.7</b> Correlation matrices</a></li>
+<li class="chapter" data-level="20.1" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalQuantileBack"><i class="fa fa-check"></i><b>20.1</b> Background</a></li>
+<li class="chapter" data-level="20.2" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalEval"><i class="fa fa-check"></i><b>20.2</b> Conditional evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="sec-modStats.html"><a href="sec-modStats.html"><i class="fa fa-check"></i><b>21</b> Model evaluation</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModBack"><i class="fa fa-check"></i><b>21.1</b> Background</a></li>
+<li class="chapter" data-level="21.2" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModEx"><i class="fa fa-check"></i><b>21.2</b> Example of use</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html"><i class="fa fa-check"></i><b>22</b> Taylor Diagam</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#sec:TaylorBack"><i class="fa fa-check"></i><b>22.1</b> Background</a></li>
+<li class="chapter" data-level="22.2" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#examples-of-taylor-diagrams"><i class="fa fa-check"></i><b>22.2</b> Examples of Taylor Diagrams</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="sec-utility.html"><a href="sec-utility.html"><i class="fa fa-check"></i><b>23</b> Utility functions</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>23.1</b> Selecting data by date</a></li>
+<li class="chapter" data-level="23.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>23.2</b> Making intervals — <code>cutData</code></a></li>
+<li class="chapter" data-level="23.3" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>23.3</b> Selecting run lengths of values above a threshold — pollution episodes</a></li>
+<li class="chapter" data-level="23.4" data-path="sec-utility.html"><a href="sec-utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>23.4</b> Calculating rolling means</a></li>
+<li class="chapter" data-level="23.5" data-path="sec-utility.html"><a href="sec-utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>23.5</b> Aggregating data by different time intervals</a></li>
+<li class="chapter" data-level="23.6" data-path="sec-utility.html"><a href="sec-utility.html#sec:calcPercentile"><i class="fa fa-check"></i><b>23.6</b> Calculating percentiles</a></li>
+<li class="chapter" data-level="23.7" data-path="sec-utility.html"><a href="sec-utility.html#sec:corPlot"><i class="fa fa-check"></i><b>23.7</b> Correlation matrices</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html"><i class="fa fa-check"></i><b>A</b> Annotating openair plots</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text"><i class="fa fa-check"></i><b>A.1</b> Adding text</a></li>
+<li class="chapter" data-level="A.2" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text-and-a-shaded-area"><i class="fa fa-check"></i><b>A.2</b> Adding text and a shaded area</a></li>
+<li class="chapter" data-level="A.3" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-an-arrow"><i class="fa fa-check"></i><b>A.3</b> Adding an arrow</a></li>
+<li class="chapter" data-level="A.4" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-a-reference-line-and-text"><i class="fa fa-check"></i><b>A.4</b> Adding a reference line and text</a></li>
+<li class="chapter" data-level="A.5" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#highlight-a-specific-point"><i class="fa fa-check"></i><b>A.5</b> Highlight a specific point</a></li>
+<li class="chapter" data-level="A.6" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-a-filled-polygon"><i class="fa fa-check"></i><b>A.6</b> Add a filled polygon</a></li>
+<li class="chapter" data-level="A.7" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons"><i class="fa fa-check"></i><b>A.7</b> Add air quality bands as polygons</a></li>
+<li class="chapter" data-level="A.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
+<li class="chapter" data-level="A.9" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively"><i class="fa fa-check"></i><b>A.9</b> Using grid graphics — identify locations interactively</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -294,10 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sec:scatterPlot" class="section level1" number="14">
-<h1><span class="header-section-number">Section14</span> Scatter plots</h1>
-<div id="sec:ScatterPurpose" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> Purpose</h2>
+<div id="sec:scatterPlot" class="section level1" number="15">
+<h1><span class="header-section-number">Section15</span> Scatter plots</h1>
+<div id="sec:ScatterPurpose" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Purpose</h2>
 <p>Scatter plots are extremely useful and a very commonly used analysis
 technique for considering how variables relate to one another. R does
 of course have many capabilities for plotting data in this
@@ -339,19 +363,19 @@ understanding show variables relate to one another. Furthermore, there
 are many options to make it easy to explore data in an interactive way
 without worrying about processing data or formatting plots.</p>
 </div>
-<div id="sec:ScatterEx" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> Examples</h2>
+<div id="sec:ScatterEx" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Examples</h2>
 <p>We provide a few examples of use and as usual, users are directed
 towards the help pages (type <code>?scatterPlot</code>) for more extensive examples.</p>
 <p>First we select a subset of data (2003) using the <span class="pkg">openair</span>
 <code>selectByDate</code> function and plot NO<sub>x</sub> vs. NO<sub>2</sub> Figure
-(<a href="sec-scatterPlot.html#fig:scatterPlot1">14.1</a>).</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="sec-scatterPlot.html#cb105-1" aria-hidden="true"></a>data2003 &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>)</span>
-<span id="cb105-2"><a href="sec-scatterPlot.html#cb105-2" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>)</span></code></pre></div>
+(<a href="sec-scatterPlot.html#fig:scatterPlot1">15.1</a>).</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sec-scatterPlot.html#cb116-1" aria-hidden="true"></a>data2003 &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>)</span>
+<span id="cb116-2"><a href="sec-scatterPlot.html#cb116-2" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot1"></span>
 <img src="openair_files/figure-html/scatterPlot1-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road for 2003." width="50%" />
 <p class="caption">
-Figure 14.1: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road for 2003.
+Figure 15.1: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road for 2003.
 </p>
 </div>
 <p>Often with several years of data, points are over-plotted and it can
@@ -360,18 +384,18 @@ like. One very effective method to use in these situations is to ‘bin’
 the data and to colour the intervals by the number of counts of
 occurrences in each bin. There are various ways of doing this, but
 `hexagonal binning’ is particularly effective because of the way
-hexagons can be placed next to one another.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> To use hexagonal binning it will be
+hexagons can be placed next to one another.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> To use hexagonal binning it will be
 necessary to install the <span class="pkg">hexbin</span> package:</p>
-<div id="sec:hexbin" class="section level3" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> Hexaganol binning</h3>
+<div id="sec:hexbin" class="section level3" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Hexaganol binning</h3>
 <p>Now it should be possible to make the plot by setting the method
 option to <code>method = "hexbin"</code>, as shown in Figure
-<a href="sec-scatterPlot.html#fig:scatterPlot2">14.2</a>. The benefit of hexagonal binning is that
+<a href="sec-scatterPlot.html#fig:scatterPlot2">15.2</a>. The benefit of hexagonal binning is that
 it works equally well with enormous data sets e.g. several million
-records. In this case Figure <a href="sec-scatterPlot.html#fig:scatterPlot2">14.2</a> provides a clearer
+records. In this case Figure <a href="sec-scatterPlot.html#fig:scatterPlot2">15.2</a> provides a clearer
 indication of the relationship between NO<sub>x</sub> and NO<sub>2</sub> than Figure
-<a href="sec-scatterPlot.html#fig:scatterPlot1">14.1</a> because it reveals where most of the points
-lie, which is not apparent from Figure <a href="sec-scatterPlot.html#fig:scatterPlot1">14.1</a>. Note that
+<a href="sec-scatterPlot.html#fig:scatterPlot1">15.1</a> because it reveals where most of the points
+lie, which is not apparent from Figure <a href="sec-scatterPlot.html#fig:scatterPlot1">15.1</a>. Note that
 For <code>method = "hexbin"</code> it can be useful to transform the scale if
 it is dominated by a few very high values. This is possible by
 supplying two functions: one that that applies the transformation and
@@ -379,34 +403,34 @@ the other that inverses it. For log scaling for example (the default),
 <code>trans = function(x) log(x)</code> and <code>inv = function(x) exp(x)</code>. For
 a square root transform use <code>trans = sqrt</code> and <code>inv =  function(x) x\^2</code>. To not apply any transformation <code>trans = NULL</code>
 and <code>inv = NULL</code> should be used.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sec-scatterPlot.html#cb106-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sec-scatterPlot.html#cb117-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot2"></span>
 <img src="openair_files/figure-html/scatterPlot2-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road using hexagonal binning. The number of occurrences in each bin is colour-coded (not on a linear scale). It is now possible to see where most of the data lie and a better indication of the relationship between NO~x~ and NO~2~ is revealed." width="50%" />
 <p class="caption">
-Figure 14.2: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road using hexagonal binning. The number of occurrences in each bin is colour-coded (not on a linear scale). It is now possible to see where most of the data lie and a better indication of the relationship between NO<sub>x</sub> and NO<sub>2</sub> is revealed.
+Figure 15.2: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road using hexagonal binning. The number of occurrences in each bin is colour-coded (not on a linear scale). It is now possible to see where most of the data lie and a better indication of the relationship between NO<sub>x</sub> and NO<sub>2</sub> is revealed.
 </p>
 </div>
 <p>Note that when <code>method = "hexbin"</code> there are various options that
 are useful e.g. a border around each bin and the number of bins. For
 example, to place a grey border around each bin and set the bin size
 try:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="sec-scatterPlot.html#cb107-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
-<span id="cb107-2"><a href="sec-scatterPlot.html#cb107-2" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
-<span id="cb107-3"><a href="sec-scatterPlot.html#cb107-3" aria-hidden="true"></a>            <span class="dt">border =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">xbin =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sec-scatterPlot.html#cb118-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb118-2"><a href="sec-scatterPlot.html#cb118-2" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
+<span id="cb118-3"><a href="sec-scatterPlot.html#cb118-3" aria-hidden="true"></a>            <span class="dt">border =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">xbin =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p>The hexagonal binning and other binning methods are useful but often
 the choice of bin size is somewhat arbitrary. Another useful approach
 is to use a kernel density estimate to show where most points
 lie. This is possible in <code>scatterPlot</code> with the <code>method =   "density"</code> option. Such a plot is shown in Figure
-<a href="sec-scatterPlot.html#fig:scatterPlotDens">14.3</a>.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sec-scatterPlot.html#cb108-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
-<span id="cb108-2"><a href="sec-scatterPlot.html#cb108-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>,</span>
-<span id="cb108-3"><a href="sec-scatterPlot.html#cb108-3" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;density&quot;</span>, </span>
-<span id="cb108-4"><a href="sec-scatterPlot.html#cb108-4" aria-hidden="true"></a>            <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+<a href="sec-scatterPlot.html#fig:scatterPlotDens">15.3</a>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="sec-scatterPlot.html#cb119-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb119-2"><a href="sec-scatterPlot.html#cb119-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>,</span>
+<span id="cb119-3"><a href="sec-scatterPlot.html#cb119-3" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;density&quot;</span>, </span>
+<span id="cb119-4"><a href="sec-scatterPlot.html#cb119-4" aria-hidden="true"></a>            <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <pre><code>## (loaded the KernSmooth namespace)</code></pre>
 <div class="figure"><span id="fig:scatterPlotDens"></span>
 <img src="openair_files/figure-html/scatterPlotDens-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road using a kernel density estimate to show where most of the points lie. The *intensity* is a measure of how many points lie in a unit area of NO~x~ and NO~2~ concentration." width="55%" />
 <p class="caption">
-Figure 14.3: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road using a kernel density estimate to show where most of the points lie. The <em>intensity</em> is a measure of how many points lie in a unit area of NO<sub>x</sub> and NO<sub>2</sub> concentration.
+Figure 15.3: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road using a kernel density estimate to show where most of the points lie. The <em>intensity</em> is a measure of how many points lie in a unit area of NO<sub>x</sub> and NO<sub>2</sub> concentration.
 </p>
 </div>
 <p>Sometimes it is useful to consider how the relationship between two
@@ -417,27 +441,27 @@ that variable. We illustrate this point by considering how the
 relationship between NO<sub>x</sub> and NO<sub>2</sub> varies with different levels of
 O<sub>3</sub>. We also take the opportunity to not plot the smooth line, but
 plot a linear fit instead and force the layout to be a 2 by 2 grid.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="sec-scatterPlot.html#cb110-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
-<span id="cb110-2"><a href="sec-scatterPlot.html#cb110-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">smooth =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb110-3"><a href="sec-scatterPlot.html#cb110-3" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="sec-scatterPlot.html#cb121-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb121-2"><a href="sec-scatterPlot.html#cb121-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">smooth =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb121-3"><a href="sec-scatterPlot.html#cb121-3" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot3"></span>
 <img src="openair_files/figure-html/scatterPlot3-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road by different levels of O~3~." width="65%" />
 <p class="caption">
-Figure 14.4: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road by different levels of O<sub>3</sub>.
+Figure 15.4: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road by different levels of O<sub>3</sub>.
 </p>
 </div>
 <p>Below is an extended example that brings together data manipulation, refined plot options and linear fitting of two variables with NO<sub>x</sub>. The aim is to plot the weekly concentration of NO<sub>x</sub> against PM<sub>10</sub> and PM<sub>2.5</sub> and fit linear equations to both relationships. To do this we need the <span class="math inline">\(x\)</span> variable as NO<sub>x</sub> and the <span class="math inline">\(y\)</span> variable as PM<sub>10</sub> or PM<sub>2.5</sub>, which means we also need a column that will act as a grouping column i.e. identifies whether the <span class="math inline">\(y\)</span> is PM<sub>10</sub> or PM<sub>2.5</sub>.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="sec-scatterPlot.html#cb111-1" aria-hidden="true"></a><span class="co"># load the packages we need</span></span>
-<span id="cb111-2"><a href="sec-scatterPlot.html#cb111-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb111-3"><a href="sec-scatterPlot.html#cb111-3" aria-hidden="true"></a></span>
-<span id="cb111-4"><a href="sec-scatterPlot.html#cb111-4" aria-hidden="true"></a><span class="co"># select the variables of interest</span></span>
-<span id="cb111-5"><a href="sec-scatterPlot.html#cb111-5" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">select</span>(mydata, date, nox, pm10, pm25) <span class="co"># calculate weekly averages</span></span>
-<span id="cb111-6"><a href="sec-scatterPlot.html#cb111-6" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(subdat, <span class="dt">avg.time =</span> <span class="st">&quot;week&quot;</span>)</span>
-<span id="cb111-7"><a href="sec-scatterPlot.html#cb111-7" aria-hidden="true"></a></span>
-<span id="cb111-8"><a href="sec-scatterPlot.html#cb111-8" aria-hidden="true"></a><span class="co"># reshape so we have two variable columns</span></span>
-<span id="cb111-9"><a href="sec-scatterPlot.html#cb111-9" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(subdat, <span class="dt">cols =</span> <span class="kw">c</span>(pm10, pm25), </span>
-<span id="cb111-10"><a href="sec-scatterPlot.html#cb111-10" aria-hidden="true"></a>                       <span class="dt">names_to =</span> <span class="st">&quot;pollutant&quot;</span>)</span>
-<span id="cb111-11"><a href="sec-scatterPlot.html#cb111-11" aria-hidden="true"></a><span class="kw">head</span>(subdat)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="sec-scatterPlot.html#cb122-1" aria-hidden="true"></a><span class="co"># load the packages we need</span></span>
+<span id="cb122-2"><a href="sec-scatterPlot.html#cb122-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb122-3"><a href="sec-scatterPlot.html#cb122-3" aria-hidden="true"></a></span>
+<span id="cb122-4"><a href="sec-scatterPlot.html#cb122-4" aria-hidden="true"></a><span class="co"># select the variables of interest</span></span>
+<span id="cb122-5"><a href="sec-scatterPlot.html#cb122-5" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">select</span>(mydata, date, nox, pm10, pm25) <span class="co"># calculate weekly averages</span></span>
+<span id="cb122-6"><a href="sec-scatterPlot.html#cb122-6" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(subdat, <span class="dt">avg.time =</span> <span class="st">&quot;week&quot;</span>)</span>
+<span id="cb122-7"><a href="sec-scatterPlot.html#cb122-7" aria-hidden="true"></a></span>
+<span id="cb122-8"><a href="sec-scatterPlot.html#cb122-8" aria-hidden="true"></a><span class="co"># reshape so we have two variable columns</span></span>
+<span id="cb122-9"><a href="sec-scatterPlot.html#cb122-9" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(subdat, <span class="dt">cols =</span> <span class="kw">c</span>(pm10, pm25), </span>
+<span id="cb122-10"><a href="sec-scatterPlot.html#cb122-10" aria-hidden="true"></a>                       <span class="dt">names_to =</span> <span class="st">&quot;pollutant&quot;</span>)</span>
+<span id="cb122-11"><a href="sec-scatterPlot.html#cb122-11" aria-hidden="true"></a><span class="kw">head</span>(subdat)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   date                  nox pollutant value
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -447,41 +471,41 @@ Figure 14.4: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Maryle
 ## 4 1998-01-05 00:00:00  189. pm25      NaN  
 ## 5 1998-01-12 00:00:00  203. pm10       29.1
 ## 6 1998-01-12 00:00:00  203. pm25      NaN</code></pre>
-<p>Now we will plot weekly NO<sub>x</sub> versus PM<sub>10</sub> and PM<sub>2.5</sub> and fit a linear equation to both — and adjust some of the symbols (shown in Figure <a href="sec-scatterPlot.html#fig:scatterPlotTwo">14.5</a>.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="sec-scatterPlot.html#cb113-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;pollutant&quot;</span>, </span>
-<span id="cb113-2"><a href="sec-scatterPlot.html#cb113-2" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb113-3"><a href="sec-scatterPlot.html#cb113-3" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb113-4"><a href="sec-scatterPlot.html#cb113-4" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb113-5"><a href="sec-scatterPlot.html#cb113-5" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb113-6"><a href="sec-scatterPlot.html#cb113-6" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>)</span></code></pre></div>
+<p>Now we will plot weekly NO<sub>x</sub> versus PM<sub>10</sub> and PM<sub>2.5</sub> and fit a linear equation to both — and adjust some of the symbols (shown in Figure <a href="sec-scatterPlot.html#fig:scatterPlotTwo">15.5</a>.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="sec-scatterPlot.html#cb124-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;pollutant&quot;</span>, </span>
+<span id="cb124-2"><a href="sec-scatterPlot.html#cb124-2" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb124-3"><a href="sec-scatterPlot.html#cb124-3" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb124-4"><a href="sec-scatterPlot.html#cb124-4" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb124-5"><a href="sec-scatterPlot.html#cb124-5" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb124-6"><a href="sec-scatterPlot.html#cb124-6" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlotTwo"></span>
 <img src="openair_files/figure-html/scatterPlotTwo-1.png" alt="Scatter plot of weekly NO~x~ vs. PM~10~ *and* PM~2.5~ at Marylebone Road with linear equations shown and plot symbols modified." width="67%" />
 <p class="caption">
-Figure 14.5: Scatter plot of weekly NO<sub>x</sub> vs. PM<sub>10</sub> <em>and</em> PM<sub>2.5</sub> at Marylebone Road with linear equations shown and plot symbols modified.
+Figure 15.5: Scatter plot of weekly NO<sub>x</sub> vs. PM<sub>10</sub> <em>and</em> PM<sub>2.5</sub> at Marylebone Road with linear equations shown and plot symbols modified.
 </p>
 </div>
 <p>To gain a better idea of where the data lie and the linear fits, adding some transparency helps:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sec-scatterPlot.html#cb114-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb114-2"><a href="sec-scatterPlot.html#cb114-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
-<span id="cb114-3"><a href="sec-scatterPlot.html#cb114-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, </span>
-<span id="cb114-4"><a href="sec-scatterPlot.html#cb114-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb114-5"><a href="sec-scatterPlot.html#cb114-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb114-6"><a href="sec-scatterPlot.html#cb114-6" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb114-7"><a href="sec-scatterPlot.html#cb114-7" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb114-8"><a href="sec-scatterPlot.html#cb114-8" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>,</span>
-<span id="cb114-9"><a href="sec-scatterPlot.html#cb114-9" aria-hidden="true"></a>            <span class="dt">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="sec-scatterPlot.html#cb125-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb125-2"><a href="sec-scatterPlot.html#cb125-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
+<span id="cb125-3"><a href="sec-scatterPlot.html#cb125-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, </span>
+<span id="cb125-4"><a href="sec-scatterPlot.html#cb125-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb125-5"><a href="sec-scatterPlot.html#cb125-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb125-6"><a href="sec-scatterPlot.html#cb125-6" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb125-7"><a href="sec-scatterPlot.html#cb125-7" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb125-8"><a href="sec-scatterPlot.html#cb125-8" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>,</span>
+<span id="cb125-9"><a href="sec-scatterPlot.html#cb125-9" aria-hidden="true"></a>            <span class="dt">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p>The above example will also work with <code>type</code>. For example, to consider how NO<sub>x</sub> againts PM<sub>10</sub> and PM<sub>2.5</sub> varies by season:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="sec-scatterPlot.html#cb115-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb115-2"><a href="sec-scatterPlot.html#cb115-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
-<span id="cb115-3"><a href="sec-scatterPlot.html#cb115-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
-<span id="cb115-4"><a href="sec-scatterPlot.html#cb115-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb115-5"><a href="sec-scatterPlot.html#cb115-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb115-6"><a href="sec-scatterPlot.html#cb115-6" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb115-7"><a href="sec-scatterPlot.html#cb115-7" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>, </span>
-<span id="cb115-8"><a href="sec-scatterPlot.html#cb115-8" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="sec-scatterPlot.html#cb126-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb126-2"><a href="sec-scatterPlot.html#cb126-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
+<span id="cb126-3"><a href="sec-scatterPlot.html#cb126-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
+<span id="cb126-4"><a href="sec-scatterPlot.html#cb126-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb126-5"><a href="sec-scatterPlot.html#cb126-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb126-6"><a href="sec-scatterPlot.html#cb126-6" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb126-7"><a href="sec-scatterPlot.html#cb126-7" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>, </span>
+<span id="cb126-8"><a href="sec-scatterPlot.html#cb126-8" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
 <p>Finally, we show how to plot a continuous colour scale for a third
 <em>numeric</em> variable setting the value of <code>z</code> to the third
-variable. Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">14.6</a> shows again the relationship
+variable. Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">15.6</a> shows again the relationship
 between NO<sub>x</sub> and NO<sub>2</sub> but this time colour-coded by the
 concentration of O<sub>3</sub>. We also take the opportunity to split the
 data into seasons and weekday/weekend by setting <code>type =   c("season", "weekend")</code>. There is an enormous amount of information
@@ -496,54 +520,54 @@ associated with high O<sub>3</sub> concentrations. Indeed there are some
 hours where NO<sub>2</sub> is $&gt;<span class="math inline">\(100~ppb at quite low concentrations of NO~x~ (\)</span>$200 ppb). It would also be interesting instead of using
 O<sub>3</sub> concentrations from Marylebone Road to use O<sub>3</sub> from a
 background site.</p>
-<p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">14.6</a> was very easily produced
+<p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">15.6</a> was very easily produced
 but contains a huge amount of useful information showing the
 relationship between NO<sub>x</sub> and NO<sub>2</sub> dependent upon the concentration
 of O<sub>3</sub>, the season and the day of the week. There are of course
 numerous other plots that are equally easily produced.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sec-scatterPlot.html#cb116-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, </span>
-<span id="cb116-2"><a href="sec-scatterPlot.html#cb116-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb116-3"><a href="sec-scatterPlot.html#cb116-3" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;weekend&quot;</span>),</span>
-<span id="cb116-4"><a href="sec-scatterPlot.html#cb116-4" aria-hidden="true"></a>            <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="sec-scatterPlot.html#cb127-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, </span>
+<span id="cb127-2"><a href="sec-scatterPlot.html#cb127-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb127-3"><a href="sec-scatterPlot.html#cb127-3" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;weekend&quot;</span>),</span>
+<span id="cb127-4"><a href="sec-scatterPlot.html#cb127-4" aria-hidden="true"></a>            <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot4"></span>
 <img src="openair_files/figure-html/scatterPlot4-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road by different levels of O~3~ split by season and weekday-weekend." width="960" />
 <p class="caption">
-Figure 14.6: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road by different levels of O<sub>3</sub> split by season and weekday-weekend.
+Figure 15.6: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Marylebone Road by different levels of O<sub>3</sub> split by season and weekday-weekend.
 </p>
 </div>
-<p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot5">14.7</a> shows that <code>scatterPlot</code> can also
+<p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot5">15.7</a> shows that <code>scatterPlot</code> can also
 handles dates on the x-axis; in this case shown for SO<sub>2</sub>
 concentrations coloured by wind direction for August 2003.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sec-scatterPlot.html#cb117-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(data2003, <span class="dt">month =</span> <span class="dv">8</span>), </span>
-<span id="cb117-2"><a href="sec-scatterPlot.html#cb117-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb117-3"><a href="sec-scatterPlot.html#cb117-3" aria-hidden="true"></a>             <span class="dt">z =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="sec-scatterPlot.html#cb128-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(data2003, <span class="dt">month =</span> <span class="dv">8</span>), </span>
+<span id="cb128-2"><a href="sec-scatterPlot.html#cb128-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb128-3"><a href="sec-scatterPlot.html#cb128-3" aria-hidden="true"></a>             <span class="dt">z =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot5"></span>
 <img src="openair_files/figure-html/scatterPlot5-1.png" alt="Scatter plot of date vs. SO~2~- at Marylebone Road by different levels of wind direction for August 2003." width="65%" />
 <p class="caption">
-Figure 14.7: Scatter plot of date vs. SO<sub>2</sub>- at Marylebone Road by different levels of wind direction for August 2003.
+Figure 15.7: Scatter plot of date vs. SO<sub>2</sub>- at Marylebone Road by different levels of wind direction for August 2003.
 </p>
 </div>
-<p>Similar to Section <a href="sec-timePlot.html#sec:timePlot">10</a>, <code>scatterPlot</code> can
+<p>Similar to Section <a href="sec-timePlot.html#sec:timePlot">11</a>, <code>scatterPlot</code> can
 also plot wind vector arrows if wind speed and wind direction are
-available in the data frame. Figure <a href="sec-scatterPlot.html#fig:scatterPlotwswd">14.8</a> shows an
+available in the data frame. Figure <a href="sec-scatterPlot.html#fig:scatterPlotwswd">15.8</a> shows an
 example of using the <code>windflow</code> option. The Figure also sets many
 other options including showing the concentration of O<sub>3</sub> as a
 colour, setting the colour scale used and selecting a few days of
 interest using the <code>selectByDate</code>
-function. Figure <a href="sec-scatterPlot.html#fig:scatterPlotwswd">14.8</a> shows that when the wind
+function. Figure <a href="sec-scatterPlot.html#fig:scatterPlotwswd">15.8</a> shows that when the wind
 direction changes to northerly, the concentration of NO<sub>2</sub> decreases
 and that of O<sub>3</sub> increases.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sec-scatterPlot.html#cb118-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/6/2001&quot;</span>, </span>
-<span id="cb118-2"><a href="sec-scatterPlot.html#cb118-2" aria-hidden="true"></a>                         <span class="dt">end =</span> <span class="st">&quot;5/6/2001&quot;</span>), </span>
-<span id="cb118-3"><a href="sec-scatterPlot.html#cb118-3" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb118-4"><a href="sec-scatterPlot.html#cb118-4" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>, </span>
-<span id="cb118-5"><a href="sec-scatterPlot.html#cb118-5" aria-hidden="true"></a>            <span class="dt">windflow =</span> <span class="kw">list</span>(<span class="dt">scale =</span> <span class="fl">0.15</span>), </span>
-<span id="cb118-6"><a href="sec-scatterPlot.html#cb118-6" aria-hidden="true"></a>            <span class="dt">key.footer =</span> <span class="st">&quot;o3</span><span class="ch">\n</span><span class="st"> (ppb)&quot;</span>, </span>
-<span id="cb118-7"><a href="sec-scatterPlot.html#cb118-7" aria-hidden="true"></a>            <span class="dt">main =</span> <span class="ot">NULL</span>, <span class="dt">ylab =</span> <span class="st">&quot;no2 (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="sec-scatterPlot.html#cb129-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/6/2001&quot;</span>, </span>
+<span id="cb129-2"><a href="sec-scatterPlot.html#cb129-2" aria-hidden="true"></a>                         <span class="dt">end =</span> <span class="st">&quot;5/6/2001&quot;</span>), </span>
+<span id="cb129-3"><a href="sec-scatterPlot.html#cb129-3" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb129-4"><a href="sec-scatterPlot.html#cb129-4" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>, </span>
+<span id="cb129-5"><a href="sec-scatterPlot.html#cb129-5" aria-hidden="true"></a>            <span class="dt">windflow =</span> <span class="kw">list</span>(<span class="dt">scale =</span> <span class="fl">0.15</span>), </span>
+<span id="cb129-6"><a href="sec-scatterPlot.html#cb129-6" aria-hidden="true"></a>            <span class="dt">key.footer =</span> <span class="st">&quot;o3</span><span class="ch">\n</span><span class="st"> (ppb)&quot;</span>, </span>
+<span id="cb129-7"><a href="sec-scatterPlot.html#cb129-7" aria-hidden="true"></a>            <span class="dt">main =</span> <span class="ot">NULL</span>, <span class="dt">ylab =</span> <span class="st">&quot;no2 (ppb)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlotwswd"></span>
 <img src="openair_files/figure-html/scatterPlotwswd-1.png" alt="Scatter plot of date vs. NO~2~ with the colour scale representing O~3~. The wind flow vectors are also shown." width="65%" />
 <p class="caption">
-Figure 14.8: Scatter plot of date vs. NO<sub>2</sub> with the colour scale representing O<sub>3</sub>. The wind flow vectors are also shown.
+Figure 15.8: Scatter plot of date vs. NO<sub>2</sub> with the colour scale representing O<sub>3</sub>. The wind flow vectors are also shown.
 </p>
 </div>
 
@@ -552,10 +576,10 @@ Figure 14.8: Scatter plot of date vs. NO<sub>2</sub> with the colour scale repr
 </div>
 <div class="footnotes">
 <hr />
-<ol start="4">
-<li id="fn4"><p>In fact it is not
+<ol start="5">
+<li id="fn5"><p>In fact it is not
 possible to have a shape with more than 6 sides that can be used to
-forma a lattice without gaps.<a href="sec-scatterPlot.html#fnref4" class="footnote-back">↩︎</a></p></li>
+forma a lattice without gaps.<a href="sec-scatterPlot.html#fnref5" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

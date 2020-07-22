@@ -5,6 +5,7 @@ language:
 delete_merged_file: true
 rmd_files: ["index.Rmd", 
 "intro.Rmd",
+"openair-package.Rmd",
 "UK-air-quality-data.Rmd",
 "access-met-data.Rmd",
 "wind-roses.Rmd",
@@ -25,4 +26,5 @@ rmd_files: ["index.Rmd",
 "mod-stats.Rmd",
 "taylor-diagram.Rmd",
 "utility-functions.Rmd",
-"references.Rmd"]
+"references.Rmd",
+"appendix-annotate.Rmd"]
