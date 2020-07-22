@@ -360,7 +360,7 @@ possible to allocate a particular trajectory to a sector based on some
 assumption about the proportion of time it is in that sector --- for
 example, assume a trajectory is from the west sector if it spends at
 least 50% of its time in that sector or otherwise record the
-allocation as `unallocated'. The code below can be used as the basis
+allocation as 'unallocated'. The code below can be used as the basis
 of such an approach.
 
 ```{r echo=FALSE}
