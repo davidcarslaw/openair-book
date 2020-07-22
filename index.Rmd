@@ -16,7 +16,16 @@ description: "This will eventually form a book related to the openair R package.
 
 # Prerequisites
 
-To be written
+This document has been a long time coming. The openair project started with funding from the UK Natural Environment Environment Research Council (NERC) over 10 years ago. The main aim was to fill a perceived gap in that there was a lack of a dedicated set of *easily accessible, open source* tools for analysing air quality data. At that time R was beginning to become increasingly popular but far, far less than it is today.
+
+[openair]{.pkg} is a product of the time it was started and used the highly capable [lattice]{.pkg} package for plotting. This was a time before [ggplot2]{.pkg} and the 'tidyverse'. Nevertheless, the package is used extensively around the world (see downloads [here](https://davidcarslaw.github.io/openair/)) and if anything, growing in popularity and use. The original aims of the project have been met in providing tools for academia, the private and public sectors --- all of which continue to use the software.
+
+At some point there will need to be a transition to [ggplot2]{.pkg}; in particular to capitalise on the many extensions available and which openair can benefit from.
+
+To cite [openair]{.pkg} please use @Carslaw2012 and for the specific package @R-openair.
+
+ This document was produced using R version `r getRversion()` and
+     [openair]{.pkg} version `r packageDescription("openair", field = "Version")`.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
