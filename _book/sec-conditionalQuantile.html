@@ -64,6 +64,8 @@
 <script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
 <script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
 <script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -192,6 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>9.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="9.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>9.5</b> Pairwise statistics</a></li>
 <li class="chapter" data-level="9.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>9.6</b> Clustering</a></li>
+<li class="chapter" data-level="9.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>9.7</b> Polar plots on an interactive map</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>10</b> Polar annulus</a>
 <ul>
@@ -358,9 +361,9 @@ evaluation exercise organised by Defra in 2010/2011. Many models were
 evaluated but we only consider hourly ozone predictions from the CMAQ
 model being used at King’s College London.</p>
 <p>First the data are loaded:</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="sec-conditionalQuantile.html#cb207-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;~/My Drive/openair/Data/CMAQozone.RData&quot;</span>)</span>
-<span id="cb207-2"><a href="sec-conditionalQuantile.html#cb207-2" aria-hidden="true"></a><span class="kw">class</span>(CMAQ.KCL<span class="op">$</span>date) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;POSIXct&quot;</span>, <span class="st">&quot;POSIXt&quot;</span>)</span>
-<span id="cb207-3"><a href="sec-conditionalQuantile.html#cb207-3" aria-hidden="true"></a><span class="kw">head</span>(CMAQ.KCL)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="sec-conditionalQuantile.html#cb212-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;~/My Drive/openair/Data/CMAQozone.RData&quot;</span>)</span>
+<span id="cb212-2"><a href="sec-conditionalQuantile.html#cb212-2" aria-hidden="true"></a><span class="kw">class</span>(CMAQ.KCL<span class="op">$</span>date) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;POSIXct&quot;</span>, <span class="st">&quot;POSIXt&quot;</span>)</span>
+<span id="cb212-3"><a href="sec-conditionalQuantile.html#cb212-3" aria-hidden="true"></a><span class="kw">head</span>(CMAQ.KCL)</span></code></pre></div>
 <pre><code>##         site                date o3 rollingO3Meas   mod rollingO3Mod    group
 ## 1 Aston.Hill 2006-01-01 00:00:00 NA            NA 92.80           NA CMAQ.KCL
 ## 2 Aston.Hill 2006-01-01 01:00:00 74            NA 92.18           NA CMAQ.KCL
@@ -372,7 +375,7 @@ model being used at King’s College London.</p>
 O<sub>3</sub> sites in the UK together with predicted values.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> First, we consider O<sub>3</sub> predictions across all sites to
 help illustrate the purpose of the function. The results are shown in Figure <a href="#fig:conditionalQ1"><strong>??</strong></a>. An explanation of the Figure is given in its caption.</p>
 
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="sec-conditionalQuantile.html#cb209-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(CMAQ.KCL, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="sec-conditionalQuantile.html#cb214-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(CMAQ.KCL, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:conditionaQ1"></span>
 <img src="openair_files/figure-html/conditionaQ1-1.png" alt="Example of the use of conditional quantiles applied to the KCL CMAQ model for 15 rural O3 monitoring sites in 2006, for hourly data. The blue line shows the results for a perfect model. In this case the observations cover a range from 0 to 270 \(\mu\)g m-3. The red line shows the median values of the predictions and corresponding observations. The maximum predicted value is 125 \(\mu\)g m-3, somewhat less than the maximum observed value. The shading shows the predicted quantile intervals i.e. the 25/75th and the 10/90th. A perfect model would lie on the blue line and have a very narrow spread. There is still some spread because even for a perfect model a specific quantile interval will contain a range of values. However, for the number of bins used in this plot the spread will be very narrow. Finally, the histogram shows the counts of predicted values." width="50%" />
 <p class="caption">
@@ -386,7 +389,7 @@ the <code>type</code> option. The results are shown in Figure
 performs best and how it varies by site type. For example, at a remote
 site in Scotland like Strath Vaich it is clear that the model does not
 capture either the lowest or highest O<sub>3</sub> concentrations very well.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="sec-conditionalQuantile.html#cb210-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(CMAQ.KCL, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="sec-conditionalQuantile.html#cb215-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(CMAQ.KCL, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:condQall"></span>
 <img src="openair_files/figure-html/condQall-1.png" alt="Conditional quantiles by site for 15 O~3~ monitoring sites in the UK." width="1152" />
 <p class="caption">
@@ -415,9 +418,9 @@ analysis are particularly useful when more than one model is involved
 in a comparison as in the recent Defra model evaluation exercise,
 which we will come back to later when some results are
 published.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="sec-conditionalQuantile.html#cb211-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(<span class="kw">subset</span>(CMAQ.KCL, site <span class="op">==</span><span class="st"> &quot;Lullington.Heath&quot;</span>), </span>
-<span id="cb211-2"><a href="sec-conditionalQuantile.html#cb211-2" aria-hidden="true"></a>                    <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb211-3"><a href="sec-conditionalQuantile.html#cb211-3" aria-hidden="true"></a>                    <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="sec-conditionalQuantile.html#cb216-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(<span class="kw">subset</span>(CMAQ.KCL, site <span class="op">==</span><span class="st"> &quot;Lullington.Heath&quot;</span>), </span>
+<span id="cb216-2"><a href="sec-conditionalQuantile.html#cb216-2" aria-hidden="true"></a>                    <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb216-3"><a href="sec-conditionalQuantile.html#cb216-3" aria-hidden="true"></a>                    <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:conditionalSeas"></span>
 <img src="openair_files/figure-html/conditionalSeas-1.png" alt="Conditional quantiles at Lullington Heath conditioned by season." width="75%" />
 <p class="caption">
@@ -507,10 +510,10 @@ e.g. representing different models used.</p>
 been used as an example.</p>
 <p>A subset of the data for the North Kensington site can be imported as
 shown below.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="sec-conditionalQuantile.html#cb212-1" aria-hidden="true"></a>condDat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">url</span>(<span class="st">&quot;https://davidcarslaw.github.io/data/openair/condDat.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sec-conditionalQuantile.html#cb217-1" aria-hidden="true"></a>condDat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">url</span>(<span class="st">&quot;https://davidcarslaw.github.io/data/openair/condDat.rds&quot;</span>))</span></code></pre></div>
 <p>The file contains observed and modelled hourly values for O<sub>3</sub>,
 NO<sub>x</sub>, wind speed, wind direction, temperature and relative humidity.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="sec-conditionalQuantile.html#cb213-1" aria-hidden="true"></a><span class="kw">head</span>(condDat)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="sec-conditionalQuantile.html#cb218-1" aria-hidden="true"></a><span class="kw">head</span>(condDat)</span></code></pre></div>
 <pre><code>##                   date O3.obs  NOx.obs ws.obs wd.obs temp.obs rh.obs O3.mod
 ## 5  2006-01-01 00:00:00     10 29.43665 4.6296    190      4.9     89  14.80
 ## 10 2006-01-01 01:00:00     15 17.55393     NA    210      5.1     90  17.46
@@ -542,9 +545,9 @@ develop a much better idea of the conditions that matter most. The
 user can therefore develop a good feel for the types of conditions
 where a model performs well or poorly and this might provide clues as
 to the underlying reasons for specific model behaviour.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="sec-conditionalQuantile.html#cb215-1" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
-<span id="cb215-2"><a href="sec-conditionalQuantile.html#cb215-2" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;ws.obs&quot;</span>,</span>
-<span id="cb215-3"><a href="sec-conditionalQuantile.html#cb215-3" aria-hidden="true"></a>                <span class="dt">col.var =</span> <span class="st">&quot;Set3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="sec-conditionalQuantile.html#cb220-1" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
+<span id="cb220-2"><a href="sec-conditionalQuantile.html#cb220-2" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;ws.obs&quot;</span>,</span>
+<span id="cb220-3"><a href="sec-conditionalQuantile.html#cb220-3" aria-hidden="true"></a>                <span class="dt">col.var =</span> <span class="st">&quot;Set3&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:condDatWS"></span>
 <img src="openair_files/figure-html/condDatWS-1.png" alt="Conditional quantiles at for O~3~ concentrations (left plot). On the right is a plot showing how the wind speed varies across the O~3~ prediction intervals." width="1440" />
 <p class="caption">
@@ -572,11 +575,11 @@ a new panel e.g. <code>statistic = c("NMB", "r")</code>.</p>
 on model performance that can help better diagnose potential
 problems. Clearly, there are many other ways in which the results can
 be analysed, which will depend on the data available.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="sec-conditionalQuantile.html#cb216-1" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
-<span id="cb216-2"><a href="sec-conditionalQuantile.html#cb216-2" aria-hidden="true"></a>                <span class="dt">var.obs =</span> <span class="kw">c</span>(<span class="st">&quot;NOx.obs&quot;</span>, <span class="st">&quot;ws.obs&quot;</span>),</span>
-<span id="cb216-3"><a href="sec-conditionalQuantile.html#cb216-3" aria-hidden="true"></a>                <span class="dt">var.mod =</span> <span class="kw">c</span>(<span class="st">&quot;NOx.mod&quot;</span>, <span class="st">&quot;ws.mod&quot;</span>),</span>
-<span id="cb216-4"><a href="sec-conditionalQuantile.html#cb216-4" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;NMB&quot;</span>,</span>
-<span id="cb216-5"><a href="sec-conditionalQuantile.html#cb216-5" aria-hidden="true"></a>                <span class="dt">var.names =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;wind speed&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="sec-conditionalQuantile.html#cb221-1" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
+<span id="cb221-2"><a href="sec-conditionalQuantile.html#cb221-2" aria-hidden="true"></a>                <span class="dt">var.obs =</span> <span class="kw">c</span>(<span class="st">&quot;NOx.obs&quot;</span>, <span class="st">&quot;ws.obs&quot;</span>),</span>
+<span id="cb221-3"><a href="sec-conditionalQuantile.html#cb221-3" aria-hidden="true"></a>                <span class="dt">var.mod =</span> <span class="kw">c</span>(<span class="st">&quot;NOx.mod&quot;</span>, <span class="st">&quot;ws.mod&quot;</span>),</span>
+<span id="cb221-4"><a href="sec-conditionalQuantile.html#cb221-4" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;NMB&quot;</span>,</span>
+<span id="cb221-5"><a href="sec-conditionalQuantile.html#cb221-5" aria-hidden="true"></a>                <span class="dt">var.names =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;wind speed&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:condDat"></span>
 <img src="openair_files/figure-html/condDat-1.png" alt="Conditional quantiles at for O~3~ concentrations (left plot). On the right is the model performance for wind speed and NO~x~ predictions, which in this case is for the Normalised Mean Bias." width="1440" />
 <p class="caption">
@@ -587,27 +590,27 @@ Figure 20.5: Conditional quantiles at for O<sub>3</sub> concentrations (left plo
 in O<sub>3</sub> predictions there is very little bias in temperature
 (although there is some negative bias in temperature for very low
 concentration O<sub>3</sub> predictions):</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sec-conditionalQuantile.html#cb217-1" aria-hidden="true"></a> <span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
-<span id="cb217-2"><a href="sec-conditionalQuantile.html#cb217-2" aria-hidden="true"></a>                <span class="dt">var.obs =</span> <span class="kw">c</span>(<span class="st">&quot;temp.obs&quot;</span>, <span class="st">&quot;ws.obs&quot;</span>),</span>
-<span id="cb217-3"><a href="sec-conditionalQuantile.html#cb217-3" aria-hidden="true"></a>                <span class="dt">var.mod =</span> <span class="kw">c</span>(<span class="st">&quot;temp.mod&quot;</span>, <span class="st">&quot;ws.mod&quot;</span>),</span>
-<span id="cb217-4"><a href="sec-conditionalQuantile.html#cb217-4" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;NMB&quot;</span>, <span class="dt">var.names =</span> <span class="kw">c</span>(<span class="st">&quot;temperature&quot;</span>, <span class="st">&quot;wind speed&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="sec-conditionalQuantile.html#cb222-1" aria-hidden="true"></a> <span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
+<span id="cb222-2"><a href="sec-conditionalQuantile.html#cb222-2" aria-hidden="true"></a>                <span class="dt">var.obs =</span> <span class="kw">c</span>(<span class="st">&quot;temp.obs&quot;</span>, <span class="st">&quot;ws.obs&quot;</span>),</span>
+<span id="cb222-3"><a href="sec-conditionalQuantile.html#cb222-3" aria-hidden="true"></a>                <span class="dt">var.mod =</span> <span class="kw">c</span>(<span class="st">&quot;temp.mod&quot;</span>, <span class="st">&quot;ws.mod&quot;</span>),</span>
+<span id="cb222-4"><a href="sec-conditionalQuantile.html#cb222-4" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;NMB&quot;</span>, <span class="dt">var.names =</span> <span class="kw">c</span>(<span class="st">&quot;temperature&quot;</span>, <span class="st">&quot;wind speed&quot;</span>))</span></code></pre></div>
 <p>Finally, (but not shown) it can be very useful to consider model
 performance in terms of air mass origin. In the example below,
 trajectories are imported, a cluster analysis undertaken and then
 evaluated using <code>conditionalEval</code>.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="sec-conditionalQuantile.html#cb218-1" aria-hidden="true"></a><span class="co">## import trajectories for 2006</span></span>
-<span id="cb218-2"><a href="sec-conditionalQuantile.html#cb218-2" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="st">&quot;london&quot;</span>, <span class="dv">2006</span>)</span>
-<span id="cb218-3"><a href="sec-conditionalQuantile.html#cb218-3" aria-hidden="true"></a></span>
-<span id="cb218-4"><a href="sec-conditionalQuantile.html#cb218-4" aria-hidden="true"></a><span class="co">## carry out a cluster analysis</span></span>
-<span id="cb218-5"><a href="sec-conditionalQuantile.html#cb218-5" aria-hidden="true"></a>cl &lt;-<span class="st"> </span><span class="kw">trajCluster</span>(traj, <span class="dt">method =</span> <span class="st">&quot;Angle&quot;</span>, <span class="dt">n.cluster =</span> <span class="dv">5</span>)</span>
-<span id="cb218-6"><a href="sec-conditionalQuantile.html#cb218-6" aria-hidden="true"></a></span>
-<span id="cb218-7"><a href="sec-conditionalQuantile.html#cb218-7" aria-hidden="true"></a><span class="co">## merge with orginal model eval data</span></span>
-<span id="cb218-8"><a href="sec-conditionalQuantile.html#cb218-8" aria-hidden="true"></a>condDat &lt;-<span class="st"> </span><span class="kw">merge</span>(condDat, cl, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb218-9"><a href="sec-conditionalQuantile.html#cb218-9" aria-hidden="true"></a></span>
-<span id="cb218-10"><a href="sec-conditionalQuantile.html#cb218-10" aria-hidden="true"></a><span class="co">## plot it</span></span>
-<span id="cb218-11"><a href="sec-conditionalQuantile.html#cb218-11" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
-<span id="cb218-12"><a href="sec-conditionalQuantile.html#cb218-12" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;cluster&quot;</span>,</span>
-<span id="cb218-13"><a href="sec-conditionalQuantile.html#cb218-13" aria-hidden="true"></a>                <span class="dt">col.var =</span> <span class="st">&quot;Set3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="sec-conditionalQuantile.html#cb223-1" aria-hidden="true"></a><span class="co">## import trajectories for 2006</span></span>
+<span id="cb223-2"><a href="sec-conditionalQuantile.html#cb223-2" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="st">&quot;london&quot;</span>, <span class="dv">2006</span>)</span>
+<span id="cb223-3"><a href="sec-conditionalQuantile.html#cb223-3" aria-hidden="true"></a></span>
+<span id="cb223-4"><a href="sec-conditionalQuantile.html#cb223-4" aria-hidden="true"></a><span class="co">## carry out a cluster analysis</span></span>
+<span id="cb223-5"><a href="sec-conditionalQuantile.html#cb223-5" aria-hidden="true"></a>cl &lt;-<span class="st"> </span><span class="kw">trajCluster</span>(traj, <span class="dt">method =</span> <span class="st">&quot;Angle&quot;</span>, <span class="dt">n.cluster =</span> <span class="dv">5</span>)</span>
+<span id="cb223-6"><a href="sec-conditionalQuantile.html#cb223-6" aria-hidden="true"></a></span>
+<span id="cb223-7"><a href="sec-conditionalQuantile.html#cb223-7" aria-hidden="true"></a><span class="co">## merge with orginal model eval data</span></span>
+<span id="cb223-8"><a href="sec-conditionalQuantile.html#cb223-8" aria-hidden="true"></a>condDat &lt;-<span class="st"> </span><span class="kw">merge</span>(condDat, cl, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb223-9"><a href="sec-conditionalQuantile.html#cb223-9" aria-hidden="true"></a></span>
+<span id="cb223-10"><a href="sec-conditionalQuantile.html#cb223-10" aria-hidden="true"></a><span class="co">## plot it</span></span>
+<span id="cb223-11"><a href="sec-conditionalQuantile.html#cb223-11" aria-hidden="true"></a><span class="kw">conditionalEval</span>(condDat, <span class="dt">obs =</span> <span class="st">&quot;O3.obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;O3.mod&quot;</span>,</span>
+<span id="cb223-12"><a href="sec-conditionalQuantile.html#cb223-12" aria-hidden="true"></a>                <span class="dt">statistic =</span> <span class="st">&quot;cluster&quot;</span>,</span>
+<span id="cb223-13"><a href="sec-conditionalQuantile.html#cb223-13" aria-hidden="true"></a>                <span class="dt">col.var =</span> <span class="st">&quot;Set3&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

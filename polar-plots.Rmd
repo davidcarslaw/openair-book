@@ -724,3 +724,49 @@ timeProp(selectByDate(results, year = 2003),
          key.columns = 8, date.breaks = 10, 
          ylab = "so2 (ug/m3)")
 ```
+
+## Polar plots on an interactive map
+
+A developmental R package called [openairmaps{.pkg} has been developed to
+plot bivariate polar plots on an interactive leaflet map. This package
+is not on CRAN but can be installed from GitHub:
+
+```{r eval=FALSE}
+library(devtools)
+install_github("davidcarslaw/openairmaps")
+```
+
+The function `polarMap` requires information on the site (anme or code), latitude and
+longitude in addition to the usual information required by the
+`polarPlot` function. The package comes with some example data
+(`polar_data`) that can be used as a template for using different
+data.
+
+The function can plot *any* type of polar plot e.g. with different options for `statistic`.
+
+First, load the package and check out the data format.
+
+```{r}
+library(openairmaps)
+
+glimpse(polar_data)
+```
+
+Plot an interactive map.
+
+```{r interMap}
+polarMap(polar_data, 
+         latitude = "latitude", 
+         longitude = "longitude",
+         type = "site")
+```
+
+Or with a different base map (there are many!). See the help file for `polarMap` on how to find out about and use different base maps. Note that if you are using the `importAURN` family of functions it is useful to add the option `meta = TRUE`, which will return the latitude and logitude of the site together with the air quality data.
+
+```{r interMap2}
+polarMap(polar_data, 
+         latitude = "latitude", 
+         longitude = "longitude",
+         type = "site", 
+         provider = "Stamen.Toner")
+```
