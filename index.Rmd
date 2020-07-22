@@ -14,7 +14,9 @@ link-citations: yes
 description: "This will eventually form a book related to the openair R package."
 ---
 
-# Hello
+# Preface {-}
+
+## Hello and welcome {-}
 
 <img src="images/plume.png" width="304" height="250" alt="Cover image" align="right" style="margin: 0 0 1em 1em; border-width: 1px; border-style: solid; border-color: white;" /></a>
 
@@ -23,6 +25,8 @@ This document has been a long time coming. The openair project started with fund
 [openair]{.pkg} is a product of the time it was started and used the highly capable [lattice]{.pkg} package for plotting. This was a time before [ggplot2]{.pkg} and the 'tidyverse'. Nevertheless, the package is used extensively around the world (see downloads [here](https://davidcarslaw.github.io/openair/)) and if anything, growing in popularity and use. The original aims of the project have been met in providing tools for academia, the private and public sectors --- all of which continue to use the software.
 
 At some point there will need to be a transition to [ggplot2]{.pkg}; in particular to capitalise on the many extensions available and which openair can benefit from.
+
+The reason for writing this book (or manual) in this form i.e. a website rather than a pdf or Word document is convenience for all involved. For me it makes it much easier to keep the information up to date and ensure that the information is reproducible. For the reader it is something that can easily be read and navigated in a browser. Where code is involved --- as it is heavily in this book --- it is very easy to use the copy icon at the top right of each code block to make it easy to copy into R. Finally, it is increasingly the case that information can be plotted interactively, which is not something that can easily be done in a pdf or Word document
 
 To cite [openair]{.pkg} please use @Carslaw2012 and for the specific package @R-openair.
 

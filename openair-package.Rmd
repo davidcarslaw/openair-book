@@ -17,7 +17,7 @@ produced using R version `r getRversion()` and [openair]{.pkg} version
 
 ## Access to source code
 All R code is accessible. On CRAN, you will see there are various
-versions of packages: Package source, MacOS X binary and Windows
+versions of packages: Package source, MacOS binary and Windows
 binary. The source code is contained in the Package source, which is a
 tar.gz (compressed file). 
 

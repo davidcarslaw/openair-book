@@ -746,7 +746,7 @@ The function can plot *any* type of polar plot e.g. with different options for `
 
 First, load the package and check out the data format.
 
-```{r}
+```{r cache=FALSE}
 library(openairmaps)
 
 glimpse(polar_data)
@@ -754,7 +754,7 @@ glimpse(polar_data)
 
 Plot an interactive map.
 
-```{r interMap}
+```{r interMap,cache=FALSE}
 polarMap(polar_data, 
          latitude = "latitude", 
          longitude = "longitude",
@@ -763,7 +763,7 @@ polarMap(polar_data,
 
 Or with a different base map (there are many!). See the help file for `polarMap` on how to find out about and use different base maps. Note that if you are using the `importAURN` family of functions it is useful to add the option `meta = TRUE`, which will return the latitude and logitude of the site together with the air quality data.
 
-```{r interMap2}
+```{r interMap2,cache=FALSE}
 polarMap(polar_data, 
          latitude = "latitude", 
          longitude = "longitude",

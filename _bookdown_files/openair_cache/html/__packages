@@ -9,11 +9,5 @@ purrr
 dplyr
 stringr
 forcats
-openair
-lubridate
-maps
-leaflet
-worldmet
-lattice
-latticeExtra
 openairmaps
+openair

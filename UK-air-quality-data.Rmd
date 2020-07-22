@@ -71,45 +71,19 @@ listing of sites and their codes.
 
 Some examples of usage are shown below. First load the packages we need.
 
-```{r warning=FALSE,message=FALSE}
+```{r warning=FALSE,message=FALSE,cache=FALSE}
 library(openair)
 library(tidyverse)
 ```
 
-
-```{r eval=FALSE}
-## import all pollutants from Marylebone Rd from 1990:2009
-mary <- importAURN(site = "my1", year = 2000:2009)
-
-## import nox, no2, o3 from Marylebone Road and Nottingham Centre for 2000
-thedata <- importAURN(site = c("my1", "nott"), year = 2000,
-                      pollutant = c("nox", "no2", "o3"))
-
-## import over 20 years of Mace Head O3 data!
-o3 <- importAURN(site = "mh", year = 1987:2009)
-## import hydrocarbon data from Marylebone Road
-hc <- importAURN(site = "my1", year = 2008, hc = TRUE)
-```
-
-By default, the function returns data where each pollutant is in a
-separate column. However, it is possible to return the data in a
-*tidy* format (column for pollutant name, column for value) by
-using the option `to_narrow`:
-
-```{r eval=FALSE}
-my1 <- importAURN("my1", year = 2018, to_narrow = TRUE)
-``` 
-
-
 ## Site Meta Data
 
-Users can access the details of air pollution monitoring sites using
+The first question is, what sites are available and what do they measure? Users can access the details of air pollution monitoring sites using
 the `importMeta` function. The user only needs to provide the
 network name and (optionally) whether all data should be returned. By
 default only site type, latitude and longitude are returned.
 
 ```{r importMeta,warning=FALSE,message=FALSE}
-library(tidyverse) 
 aurn_meta <- importMeta(source = "aurn")
 aurn_meta
 ```
@@ -121,18 +95,9 @@ aurn_meta <- importMeta(source = "aurn", all = TRUE)
 aurn_meta
 ```
 
-And to include basic meta data when importing air pollution data:
-
-```{r importWithMeta}
-kc1 <- importAURN(site = "kc1", year = 2018, meta = TRUE)
-
-glimpse(kc1)
-``` 
-
-## Plot Sites on a Map
-
 The example below uses sites on the AURN that measure NO~2~, but can easily be extended to the other data sources.
 
+To see how many sites measure NO~2~ in the AURN that are 'urban traffic':
 ```{r warning=FALSE,message=FALSE}
 aurn_detailed <- importMeta(source = "aurn", all = TRUE)
 
@@ -144,6 +109,48 @@ no2_sites <- filter(
 
 nrow(no2_sites)
 ```
+
+To import data, you can use the different versions of `importAURN`. Some examples are below.
+
+```{r eval=FALSE}
+## import all pollutants from Marylebone Rd from 2000:2005
+mary <- importAURN(site = "my1", year = 2000:2005)
+
+## import nox, no2, o3 from Marylebone Road and Nottingham Centre for 2000
+thedata <- importAURN(site = c("my1", "nott"), year = 2000,
+                      pollutant = c("nox", "no2", "o3"))
+
+## import over 30 years of Mace Head O3 data!
+o3 <- importAURN(site = "mh", year = 1987:2019)
+## import hydrocarbon data from Marylebone Road
+hc <- importAURN(site = "my1", year = 2008, hc = TRUE)
+
+## Import data from the AQE network (York data in this case)
+yk13 <- importAQE(site = "yk13", year = 2018)
+```
+
+And to include basic meta data when importing air pollution data:
+
+```{r importWithMeta}
+kc1 <- importAURN(site = "kc1", year = 2018, meta = TRUE)
+
+glimpse(kc1)
+``` 
+
+The latter is useful if you then want to plot the sites on a map, as shown below.
+
+By default, the function returns data where each pollutant is in a
+separate column. However, it is possible to return the data in a
+*tidy* format (column for pollutant name, column for value) by
+using the option `to_narrow`:
+
+```{r eval=FALSE}
+my1 <- importAURN("my1", year = 2018, to_narrow = TRUE)
+``` 
+
+It is also possible to return information on whether the data have been ratifed or not using the option `ratified` (`FALSE` by default). So, add the option `ratified = TRUE` if you want this information.
+
+## Plot Sites on a Map
 
 In the example below the unique sites are selected from
 `aurn_detailed` because the `site` repeats the number of pollutants
