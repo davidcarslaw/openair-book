@@ -8,11 +8,11 @@ to allow annotations to be made, this would make the functions
 cumbersome and reduce flexibility. Nevertheless, it is useful to be
 able to annotate plots in lots of different ways. Fortunately there
 are existing functions in packages such as [lattice]{.pkg} and
-[latticeExtra{.pkg} that allow for plots to be updated. An example of
+[latticeExtra]{.pkg} that allow for plots to be updated. An example of
 the sorts of annotation that are possible is shown in Figure
 \@ref(fig:timePlotAnnotate), which is an enhanced version of Figure
 \@ref(fig:timePlot). These annotations have been subsequently added
-to Figure \@ref(fig:timePlot} and built up in layers. This section
+to Figure \@ref(fig:timePlot) and built up in layers. This section
 considers how to annotate [openair]{.pkg} plots more generally and uses Figure
 \@ref(fig:timePlotAnnotate) as an example of the types of
 annotation possible. Also considered specifically is the annotation of
@@ -27,12 +27,13 @@ this section will apply to all [openair]{.pkg} plot, the only difference
 being the coordinate system used in each case.
 
 The basis of [openair]{.pkg} annotations is through the use of the
-`latticeExtra} package, which should already be installed as part
-of [openair]{.pkg}. In that package there is a function called `layer}
+[latticeExtra]{.pkg} package, which should already be installed as part
+of [openair]{.pkg}. In that package there is a function called `layer`
 that effectively allows annotations to be built up 'layer by layer'.
 
-```{r timePlotAnnotate,fig.keep='last',echo=FALSE, fig.width=10, fig.height=8}
+```{r timePlotAnnotate,fig.keep='last',echo=FALSE, fig.width=10, fig.height=8,fig.cap='Annotations added to the `timePlot` output.'}
 library(openair)
+library(lubridate)
 poly.na <- function(x1, y1, x2, y2, col = "black", alpha= 0.2) {
   for(i in seq(2, length(x1)))
     if (!any(is.na(y2[c(i - 1, i)])))
@@ -130,12 +131,14 @@ First, a plot should be produced to which we wish to add some text.
 
 ```{r annotatePbase, eval=FALSE}
 ## make sure latticeExtra is loaded
+library(openair)
+library(lubridate)
 library(latticeExtra)
 timePlot(selectByDate(mydata, year = 2003, month = "aug"),
          pollutant = c("nox", "o3", "pm25", "pm10", "ws"))
 ```
 
-So, considering \@ref(fig:timePlotAnnotate`, this is how the text
+So, considering \@ref(fig:timePlotAnnotate), this is how the text
 `some missing data' was added to the top panel.
 
 ```{r annotateP1, eval=FALSE}
@@ -144,7 +147,7 @@ trellis.last.object() +
                 labels = "some missing data"), rows = 1)
 ```
 
-So what does this do? First, the `trellis.last.object()} is simply
+So what does this do? First, the `trellis.last.object()` is simply
 the last plot that was plotted. Next the `layer` function is used
 to add some text. The text itself is added using the `ltext`
 [lattice]{.pkg} function. It is worth having a look at the help for
@@ -158,7 +161,7 @@ of the specified coordinates
 ## Adding text and a shaded area
 
 This time we will highlight an interval in row 2 (O~3~) and write
-some text on top. Note that this time we use the `lpolygon}
+some text on top. Note that this time we use the `lpolygon`
 function and choose to put it under everything else on the plot. For
 the text, we have chosen a colour (yellow) font type 2 (bold) and made
 it a bit bigger (`cex = 1.5`). Note also the `y` values extend
@@ -199,8 +202,8 @@ plt <- plt +
 ## Adding an arrow
 
 The arrow shown on the first panel of Figure \@ref(fig:timePlotAnnotate)
-was added as follows. Note the `code = 3} placed arrows at both
-ends. Note that `angle} is the angle from the shaft of the arrow to
+was added as follows. Note the `code = 3` placed arrows at both
+ends. Note that `angle` is the angle from the shaft of the arrow to
 the edge of the arrow head.
 
 ```{r annotateP3, eval=FALSE}
@@ -364,7 +367,7 @@ arc <- function(theta1 = 30, theta2 = 60, theta3 = theta1, theta4 = theta2,
 ```
 
 
-```{r annonatePolar, fig.keep='last', fig.width=5,fig.height=5,out.width='50%', echo = FALSE}
+```{r annonatePolar,fig.keep='last',fig.width=5,fig.height=5,out.width='50%', echo =FALSE,fig.cap='Annotations on a polar plot.'}
 arc <- function(theta1 = 30, theta2 = 60, theta3 =theta1, theta4 = theta2,
                 lower = 1, upper = 10){
   ## function to work out coordinates for an arc sector
@@ -404,7 +407,7 @@ plt
 
 Following on from the previous examples, some annotations have been
 added to the basic polar plor for SO~2~ as shown in Figure
-\@ref(fig:annotatePolar). Note that in these plots (0, 0) is the
+\@ref(fig:annonatePolar). Note that in these plots (0, 0) is the
 middle of the plot and the radial distance will be determined by the
 wind speed --- or whatever the radial variable is. This way of
 plotting arcs can also be applied to other functions that show
@@ -429,7 +432,7 @@ The examples above provide a precise way of annotating plots for
 single or multi-panels [openair]{.pkg} displays. However, these methods won't
 work for plots that consist of completely separate plots such as the
 four plots in `timeVariation`. There are however other methods that
-can be used to annotate such plots using the package `grid}, which
+can be used to annotate such plots using the package `grid`, which
 forms the basis of [lattice]{.pkg} graphics. There is enormous capability
 for annotating plots using the `grid` package and only a few simple
 examples are given here.
@@ -437,7 +440,7 @@ examples are given here.
 Given a plot such as Figure \@ref(fig:timeVar1), how could texts be added
 at any location --- say in the middle monthly plot? One very useful
 function for this type of annotation that allows the user to
-interactively choose a location is the `grid.locator()} function in
+interactively choose a location is the `grid.locator()` function in
 the `grid` package. That function can be called with different
 coordinate systems --- but the one we want defines the bottom-left
 corner as (0, 0) and the top right as (1, 1).
@@ -460,7 +463,7 @@ grid.locator(unit = "npc")
 What should happen is that in the R console the coordinates are given
 for that point. In my case these were x = 0.503 and y = 0.338. These
 coordinates can now be used as the basis of adding some text or other
-annotation. In the example below, the `grid.text} function is used
+annotation. In the example below, the `grid.text` function is used
 to add some text for these coordinates making the font bigger (`cex
 = 2`), bold (`font = 2`) and blue (`col = "blue"`).
 
@@ -475,7 +478,7 @@ that can be used from the grid package that would allow for polygons,
 segments and other features to be drawn is a similar way to the
 examples earlier in this section. Continuing with the same example,
 here is how to add an arrow pointing to the maximum \nox concentration
-shown on the top plot for Saturday (again using the `grid.locator}
+shown on the top plot for Saturday (again using the `grid.locator`
 function).
 
 ```{r addGridArrow, eval=FALSE}
