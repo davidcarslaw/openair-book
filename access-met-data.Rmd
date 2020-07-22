@@ -1,6 +1,6 @@
 # Access meteorological data  {#sec:worldmet} 
 
-## The `worldmet` package
+## The worldmet package
 
 Most of the import functions described in Section \@ref(sec:importAURN) return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data. 
 

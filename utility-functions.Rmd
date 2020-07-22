@@ -40,7 +40,7 @@ make a polar plot using year 2000 data:
 polarPlot(selectByDate(mydata, year = 2000), pollutant = "so2")
 ```
 
-## Making intervals --- `cutData` {#sec:cutData}
+## Making intervals --- cutData {#sec:cutData}
 
 The `cutData` function is a utility function that is called by most
 other functions but is useful in its own right. Its main use is to

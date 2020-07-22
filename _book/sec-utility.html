@@ -157,8 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#access-to-source-code"><i class="fa fa-check"></i><b>2.1</b> Access to source code</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of <code>openair</code></a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The <code>type</code> option</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The <code>worldmet</code> package</a></li>
+<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The worldmet package</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
 <ul>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22" data-path="sec-utility.html"><a href="sec-utility.html"><i class="fa fa-check"></i><b>22</b> Utility functions</a>
 <ul>
 <li class="chapter" data-level="22.1" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>22.1</b> Selecting data by date</a></li>
-<li class="chapter" data-level="22.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>22.2</b> Making intervals — <code>cutData</code></a></li>
+<li class="chapter" data-level="22.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>22.2</b> Making intervals — cutData</a></li>
 <li class="chapter" data-level="22.3" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>22.3</b> Selecting run lengths of values above a threshold — pollution episodes</a></li>
 <li class="chapter" data-level="22.4" data-path="sec-utility.html"><a href="sec-utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>22.4</b> Calculating rolling means</a></li>
 <li class="chapter" data-level="22.5" data-path="sec-utility.html"><a href="sec-utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>22.5</b> Aggregating data by different time intervals</a></li>
@@ -376,7 +376,7 @@ make a polar plot using year 2000 data:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="sec-utility.html#cb249-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2000</span>), <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span></code></pre></div>
 </div>
 <div id="sec:cutData" class="section level2" number="22.2">
-<h2><span class="header-section-number">22.2</span> Making intervals — <code>cutData</code></h2>
+<h2><span class="header-section-number">22.2</span> Making intervals — cutData</h2>
 <p>The <code>cutData</code> function is a utility function that is called by most
 other functions but is useful in its own right. Its main use is to
 partition data in many ways, many of which are built-in to <span class="pkg">openair</span></p>

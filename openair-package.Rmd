@@ -53,7 +53,7 @@ code for a more limited set of conditions.
   field name is perfectly acceptable, it is a pain to type it
   in---better just to use `pm25` ([openair]{.pkg} will recognise pollutant names like this and automatically format them as PM~2.5~ in plots).
 
-## Brief overview of `openair` {#sec:brief-intr-open}
+## Brief overview of openair {#sec:brief-intr-open}
 
 This section gives a brief overview of the functions in [openair]{.pkg}. 
 Having read some data into a data frame it is then straightforward to
@@ -118,7 +118,7 @@ knitr::kable(
 )
 ```
 
-## The `type` option
+## The type option
 
 One of the central themes in [openair]{.pkg} is the idea of
 *conditioning*. Rather than plot $x$ against $y$,
