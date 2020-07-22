@@ -375,39 +375,34 @@ traj <- importTraj(site = "london", year = 2010)
 ```
 
 ```{r allocateTraj}
-## need start/end lat and lon to work out angles
-id <- which(traj$hour.inc == 0)
-y0 <- traj$lat[id[1]]
-x0 <- traj$lon[id[1]]
+alloc <- traj
+
+id <- which(alloc$hour.inc == 0) 
+y0 <- alloc$lat[id[1]]
+x0 <- alloc$lon[id[1]]
 
 ## calculate angle and then assign sector
-traj <- mutate(traj, angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi)
-ids <- which(traj$angle < 0)
-traj$angle[ids] <- traj$angle[ids] + 360
+alloc <- mutate(alloc, 
+               angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi,
+               angle = ifelse(angle < 0, angle + 360 , angle))
 
-traj$sector <- cut(traj$angle, breaks = seq(22.5, 382.5, 45),
-                              labels = c("NE", "E", "SE", "S", "SW", "W",
-                              "NW", "N"))
-traj[ , "sector"][is.na(traj[ , "sector"])] <- "N" # for wd < 22.5
+alloc$sector <- as.character(cut(alloc$angle, 
+                                 breaks = seq(22.5, 382.5, 45),
+                   labels = c("NE", "E", "SE", "S", "SW", "W",
+                              "NW", "N")))
+alloc <- mutate(alloc, sector = ifelse(is.na(sector), "N", sector))  # for wd < 22.5
+## count frequencies of sectors and take the maximum
 
-## count frequencies of sectors for each trajectory and the maximum
-alloc <- tapply(traj$sector, traj$date, table)
-alloc <- as.data.frame(do.call(rbind, alloc))
-alloc$max <- apply(alloc, 1, max)
+alloc <- group_by(alloc, date, sector) %>% 
+  mutate(n = n()) %>% 
+  group_by(date) %>% 
+  arrange(date, n) %>% 
+  slice_tail(1) %>% 
+  mutate(sector = ifelse(n > 50, sector, "unallocated")) %>% 
+  select(date, sector, n)
 
-## identify the most frequent sector
-alloc$sec <- sapply(1:nrow(alloc),
-                    function(x) colnames(alloc)[which.max(alloc[x, ])])
-
-## assign to most frequent sector, or label unallocated
-## below assumes at least 50 out of 96 hours for assignment
-alloc$sec <- ifelse(alloc$max > 50, alloc$sec, "unallocated")
-alloc$date <- ymd_hms(rownames(alloc))
-
-alloc <- alloc[, c("date", "sec")]
-
-## merge with orginal data
-traj <- merge(traj, alloc, by = "date", all = TRUE)
+# join with trajectory data
+traj <- left_join(traj, alloc, by = "date")
 ```
 
 Now it is possible to post-process the data. `traj` now has the
@@ -427,14 +422,17 @@ We can work out the mean concentration by allocation, which shows the
 clear importance for the east and south-east sectors.
 
 ```{r meanAlloc}
-tapply(traj$pm2.5, traj$sec, mean, na.rm = TRUE)
+group_by(traj, sector) %>% 
+  summarise(PM2.5 = mean(pm2.5, na.rm = TRUE))
 ```
 
 Finally, the percentage of the year in each sector can be calculated
 as follows:
 
 ```{r percentAlloc}
-100 * prop.table(table(traj$sec))
+group_by(traj, sector) %>% 
+  summarise(n = n()) %>% 
+  mutate(percent = 100 * n / nrow(traj))
 ```
 
 ## Potential Source Contribution Function (PSCF)
@@ -676,7 +674,8 @@ all 96 back trajectory hours and for this reason we extract only the
 first hour.
 
 ```{r mergeClustTraj}
-kc1 <- left_join(kc1, filter(clust$data, hour.inc == 0), by = "date")
+# use inner join - so only where we have data in each
+kc1 <- inner_join(kc1, filter(clust$data, hour.inc == 0), by = "date")
 ```
 
 Now `kc1` contains air pollution data identified by cluster. The
