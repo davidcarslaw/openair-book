@@ -53,7 +53,7 @@ The data consists of hourly observations of O~3~ in $\mu$g m^-3^ at 15 rural
 O~3~ sites in the UK together with predicted values.^[We
   thank Dr Sean Beevers and Dr Nutthida Kitwiroon for access to these
   data.] First, we consider O~3~ predictions across all sites to
-help illustrate the purpose of the function. The results are shown in Figure \@ref(fig:conditionalQ1). An explanation of the Figure is given in its caption.
+help illustrate the purpose of the function. The results are shown in Figure \@ref(fig:conditionaQ1). An explanation of the Figure is given in its caption.
 
 (ref:condEval1) Example of the use of conditional quantiles applied to the KCL CMAQ model for 15 rural O~3~ monitoring sites in 2006, for  hourly data. The blue line shows the results for a perfect model. In this case the observations cover a range from 0 to 270  $\mu$g m^-3^. The red line shows the median values of the predictions and corresponding observations. The maximum predicted value is 125  $\mu$g m^-3^, somewhat less than the maximum observed value. The shading shows the predicted quantile intervals i.e. the 25/75th and the 10/90th. A perfect model would lie on the blue line and have a very narrow spread. There is  still some spread because even for a perfect model a specific quantile interval will contain a range of values. However, for the number of bins used in this plot the spread will be very narrow. Finally, the histogram shows the counts of predicted values.
 

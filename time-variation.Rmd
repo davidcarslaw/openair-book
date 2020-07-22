@@ -78,8 +78,7 @@ are a few uses/advantages:
   layer height and traffic flows.
 
 -  The function can be used for comparing pollutants over
-  different sites. See Section (\@ref(sec:data-prep-site)) for examples
-  of how to do this.
+  different sites. 
 
 -  The function can be used to compare one part of a time series
   with another. This is often a very powerful thing to do,

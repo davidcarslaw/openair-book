@@ -152,7 +152,7 @@ incorporation of novel parameters in this type of highly flexible function
 provides a means of developing new data visualisation and analysis methods.
 
 `trendLevel` can also be used with user defined discrete colour
-scales as shown in Figure \@ref(fig:trendLevelDiscrete). In this case the
+scales as shown in Figure \@ref(fig:trendLevelDiscete). In this case the
 default $x$ and $y$ variables are chosen (month and hour) split by
 `type` (year).
 

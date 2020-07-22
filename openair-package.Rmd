@@ -285,7 +285,7 @@ such as NO~x~ ($\mu$g m^-3^) it will only be necessary to type `ylab = "nox (ug/
 Users can override this option by setting it to FALSE.
 
 
-## Multiple plots on a page {#sec:plotting-more-than}
+## Multiple plots on a page {#sec:multiple-plots-page}
 
 We often get asked how to combine multiple plots on one page. Recent
 changes to [openair]{.pkg} makes this a bit easier. Note that because

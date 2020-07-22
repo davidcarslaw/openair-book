@@ -28,7 +28,7 @@ At some point there will need to be a transition to [ggplot2]{.pkg}; in particul
 
 The reason for writing this book (or manual) in this form i.e. a website rather than a pdf or Word document is convenience for all involved. For me it makes it much easier to keep the information up to date and ensure that the information is reproducible. For the reader it is something that can easily be read and navigated in a browser. Where code is involved --- as it is heavily in this book --- it is very easy to use the copy icon at the top right of each code block to make it easy to copy into R. Finally, it is increasingly the case that information can be plotted interactively, which is not something that can easily be done in a pdf or Word document
 
-To cite [openair]{.pkg} please use @Carslaw2012 and for the specific package @R-openair.
+To cite [openair]{.pkg} please use @Carslaw2012.
 
  This document was produced using R version `r getRversion()` and
      [openair]{.pkg} version `r packageDescription("openair", field = "Version")`.

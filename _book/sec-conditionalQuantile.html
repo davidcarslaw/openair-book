@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
-<li class="chapter" data-level="2.8" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:plotting-more-than"><i class="fa fa-check"></i><b>2.8</b> Multiple plots on a page</a></li>
+<li class="chapter" data-level="2.8" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:multiple-plots-page"><i class="fa fa-check"></i><b>2.8</b> Multiple plots on a page</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
 <ul>
@@ -376,7 +376,7 @@ model being used at King’s College London.</p>
 ## 6 Aston.Hill 2006-01-01 05:00:00 66            NA 92.28           NA CMAQ.KCL</code></pre>
 <p>The data consists of hourly observations of O<sub>3</sub> in <span class="math inline">\(\mu\)</span>g m<sup>-3</sup> at 15 rural
 O<sub>3</sub> sites in the UK together with predicted values.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> First, we consider O<sub>3</sub> predictions across all sites to
-help illustrate the purpose of the function. The results are shown in Figure <a href="#fig:conditionalQ1"><strong>??</strong></a>. An explanation of the Figure is given in its caption.</p>
+help illustrate the purpose of the function. The results are shown in Figure <a href="sec-conditionalQuantile.html#fig:conditionaQ1">19.1</a>. An explanation of the Figure is given in its caption.</p>
 
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="sec-conditionalQuantile.html#cb214-1" aria-hidden="true"></a><span class="kw">conditionalQuantile</span>(CMAQ.KCL, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:conditionaQ1"></span>

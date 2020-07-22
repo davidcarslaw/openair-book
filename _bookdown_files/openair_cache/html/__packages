@@ -11,3 +11,7 @@ stringr
 forcats
 openairmaps
 openair
+usethis
+devtools
+leaflet
+worldmet
