@@ -14,7 +14,7 @@ link-citations: yes
 description: "This will eventually form a book related to the openair R package."
 ---
 
-# Prerequisites
+# Hello
 
 This document has been a long time coming. The openair project started with funding from the UK Natural Environment Environment Research Council (NERC) over 10 years ago. The main aim was to fill a perceived gap in that there was a lack of a dedicated set of *easily accessible, open source* tools for analysing air quality data. At that time R was beginning to become increasingly popular but far, far less than it is today.
 
