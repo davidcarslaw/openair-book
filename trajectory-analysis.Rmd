@@ -382,16 +382,17 @@ y0 <- alloc$lat[id[1]]
 x0 <- alloc$lon[id[1]]
 
 ## calculate angle and then assign sector
-alloc <- mutate(alloc, 
-               angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi,
-               angle = ifelse(angle < 0, angle + 360 , angle))
-
-alloc$sector <- as.character(cut(alloc$angle, 
-                                 breaks = seq(22.5, 382.5, 45),
-                   labels = c("NE", "E", "SE", "S", "SW", "W",
-                              "NW", "N")))
-alloc <- mutate(alloc, sector = ifelse(is.na(sector), "N", sector))  # for wd < 22.5
-## count frequencies of sectors and take the maximum
+alloc <- mutate(
+  alloc, 
+  angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi,
+  angle = ifelse(angle < 0, angle + 360 , angle),
+  sector = as.character(cut(angle, 
+                            breaks = seq(22.5, 382.5, 45),
+                            labels = c("NE", "E", "SE", 
+                                       "S", "SW", "W",
+                                       "NW", "N"))),
+  sector = ifelse(is.na(sector), "N", sector)
+)  
 
 alloc <- group_by(alloc, date, sector) %>% 
   mutate(n = n()) %>% 
@@ -401,12 +402,12 @@ alloc <- group_by(alloc, date, sector) %>%
   mutate(sector = ifelse(n > 50, sector, "unallocated")) %>% 
   select(date, sector, n)
 
-# join with trajectory data
+# combine with trajectories
 traj <- left_join(traj, alloc, by = "date")
 ```
 
 Now it is possible to post-process the data. `traj` now has the
-angle, sector and allocation (`sec`).
+angle, sector and allocation (`sector`).
 
 ```{r headTraj2}
 head(traj)
