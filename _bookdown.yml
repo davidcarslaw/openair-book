@@ -27,4 +27,5 @@ rmd_files: ["index.Rmd",
 "taylor-diagram.Rmd",
 "utility-functions.Rmd",
 "references.Rmd",
-"appendix-annotate.Rmd"]
+"appendix-annotate.Rmd",
+"appendix-hysplit.Rmd"]

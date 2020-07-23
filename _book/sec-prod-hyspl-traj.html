@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section6 Polar frequencies | openair</title>
+  <title>B Production of HYSPLIT trajectory files | openair</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section6 Polar frequencies | openair" />
+  <meta property="og:title" content="B Production of HYSPLIT trajectory files | openair" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section6 Polar frequencies | openair" />
+  <meta name="twitter:title" content="B Production of HYSPLIT trajectory files | openair" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sec-windRose.html"/>
-<link rel="next" href="sec-percentileRose.html"/>
+<link rel="prev" href="annotating-openair-plots.html"/>
+
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -325,136 +325,215 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sec:polarFreq" class="section level1" number="6">
-<h1><span class="header-section-number">Section6</span> Polar frequencies</h1>
-<div id="sec:polarFreqBack" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Background and examples</h2>
-<p>This compactly shows the distribution of wind
-speeds and directions from meteorological measurements. It is similar
-to the traditional wind rose, but includes a number of enhancements to
-also show how concentrations of pollutants and other variables
-vary. It can summarise all available data, or show it by different
-time periods e.g. by year, month, day of the week. It can also
-consider a wide range of statistics.</p>
-<p>This section shows an example output and use, using our data frame
-<code>mydata</code>. The function is very simply run as shown in Figure
-<a href="sec-polarFreq.html#fig:polarFreqa">6.1</a>.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sec-polarFreq.html#cb42-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata)</span></code></pre></div>
-<div class="figure"><span id="fig:polarFreqa"></span>
-<img src="openair_files/figure-html/polarFreqa-1.png" alt="Use of `polarFreq` function to plot wind speed/directions. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. The date range  covered by the data is shown in the strip." width="50%" />
-<p class="caption">
-Figure 6.1: Use of <code>polarFreq</code> function to plot wind speed/directions. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. The date range covered by the data is shown in the strip.
-</p>
+<div id="sec:prod-hyspl-traj" class="section level1" number="24">
+<h1><span class="header-section-number">B</span> Production of HYSPLIT trajectory files</h1>
+<p>As discussed in Section <a href="sec-trajPlot.html#sec:trajPlot">18</a>, <span class="pkg">openair</span> can import
+pre-calculated trajectory data for specified locations. The data are
+stored on a Ricardo webserver to make it easy to import
+96-hour back trajectory data. Several users have requested how they
+can run HYSPLIT themselves e.g. for different trajectory start heights
+or for many locations. This section provides the code necessary to run
+the HYSPLIT model. The code below assumes that full years are run, but
+it could be adopted for shorter periods. There are three main parts to
+producing trajectory files:</p>
+<p>1 Download and install the NOAA Hysplit model, somewhere with
+write access (see below).</p>
+<p>1 Download the monthly meteorological (.gbl) files also from the
+NOAA website.</p>
+<p>3 Obtain the code to run Hysplit.</p>
+<p>To run back trajectories it is necessary to download the
+meteorological data files. The easiest way to download the
+meteorological files is using the function below.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="sec-prod-hyspl-traj.html#cb304-1" aria-hidden="true"></a>getMet &lt;-<span class="st"> </span><span class="cf">function</span> (<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span>, </span>
+<span id="cb304-2"><a href="sec-prod-hyspl-traj.html#cb304-2" aria-hidden="true"></a>                    <span class="dt">path_met =</span> <span class="st">&quot;~/TrajData/&quot;</span>) {</span>
+<span id="cb304-3"><a href="sec-prod-hyspl-traj.html#cb304-3" aria-hidden="true"></a></span>
+<span id="cb304-4"><a href="sec-prod-hyspl-traj.html#cb304-4" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(year)) {</span>
+<span id="cb304-5"><a href="sec-prod-hyspl-traj.html#cb304-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(month)) {</span>
+<span id="cb304-6"><a href="sec-prod-hyspl-traj.html#cb304-6" aria-hidden="true"></a>            <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="kw">paste0</span>(<span class="st">&quot;ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP&quot;</span>,</span>
+<span id="cb304-7"><a href="sec-prod-hyspl-traj.html#cb304-7" aria-hidden="true"></a>                              year[i], <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>),</span>
+<span id="cb304-8"><a href="sec-prod-hyspl-traj.html#cb304-8" aria-hidden="true"></a>                          <span class="dt">destfile =</span> <span class="kw">paste0</span>(path_met, <span class="st">&quot;RP&quot;</span>, year[i],</span>
+<span id="cb304-9"><a href="sec-prod-hyspl-traj.html#cb304-9" aria-hidden="true"></a>                              <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>), <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb304-10"><a href="sec-prod-hyspl-traj.html#cb304-10" aria-hidden="true"></a>        }</span>
+<span id="cb304-11"><a href="sec-prod-hyspl-traj.html#cb304-11" aria-hidden="true"></a>    }</span>
+<span id="cb304-12"><a href="sec-prod-hyspl-traj.html#cb304-12" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The function will download monthly met files (each about 120 MB) to
+the chosen directory. Note that the met data files only need be
+downloaded once. For example, to download files for 2013:</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="sec-prod-hyspl-traj.html#cb305-1" aria-hidden="true"></a><span class="kw">getMet</span>(<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</span></code></pre></div>
+<p>The original functions have been modified by Stuart Grange (PhD
+student at the University of York). It is first necessary on ensure
+that the <span class="pkg">stringr</span> and <span class="pkg">devtools</span> packages are installed. The
+latter is needed to load some R functions stored as a <em>GitHub
+gist</em> (some code that can be shared publicly).</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="sec-prod-hyspl-traj.html#cb306-1" aria-hidden="true"></a><span class="kw">library</span>(devtools)</span>
+<span id="cb306-2"><a href="sec-prod-hyspl-traj.html#cb306-2" aria-hidden="true"></a><span class="kw">source_gist</span>(<span class="st">&quot;https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5&quot;</span>,</span>
+<span id="cb306-3"><a href="sec-prod-hyspl-traj.html#cb306-3" aria-hidden="true"></a>            <span class="dt">filename =</span> <span class="st">&quot;run_hysplit.R&quot;</span>)</span></code></pre></div>
+<pre><code>## Sourcing https://gist.githubusercontent.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5/raw/1eb36e223725308934bfa189c30969014e979198/run_hysplit.R</code></pre>
+<pre><code>## SHA-1 hash of file is e1d37c75528ac18924fd0c6902318702301fa591</code></pre>
+<p>Now there should be several loaded functions, including
+<code>run\_hysplit</code>. To run Hysplit, have a look at the examples here <a href="https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5" class="uri">https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5</a>.</p>
+<p>On my Windows machine it is run as follows:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="sec-prod-hyspl-traj.html#cb309-1" aria-hidden="true"></a>data_out &lt;-<span class="st"> </span><span class="kw">run_hysplit</span>(</span>
+<span id="cb309-2"><a href="sec-prod-hyspl-traj.html#cb309-2" aria-hidden="true"></a><span class="dt">latitude =</span> <span class="fl">36.134</span>, </span>
+<span id="cb309-3"><a href="sec-prod-hyspl-traj.html#cb309-3" aria-hidden="true"></a> <span class="dt">longitude =</span> <span class="fl">-5.347</span>, </span>
+<span id="cb309-4"><a href="sec-prod-hyspl-traj.html#cb309-4" aria-hidden="true"></a>  <span class="dt">runtime =</span> <span class="dv">-96</span>, </span>
+<span id="cb309-5"><a href="sec-prod-hyspl-traj.html#cb309-5" aria-hidden="true"></a>  <span class="dt">start_height =</span> <span class="dv">10</span>, </span>
+<span id="cb309-6"><a href="sec-prod-hyspl-traj.html#cb309-6" aria-hidden="true"></a>  <span class="dt">model_height =</span> <span class="dv">10000</span>, </span>
+<span id="cb309-7"><a href="sec-prod-hyspl-traj.html#cb309-7" aria-hidden="true"></a>  <span class="dt">start =</span> <span class="dv">2015</span>,</span>
+<span id="cb309-8"><a href="sec-prod-hyspl-traj.html#cb309-8" aria-hidden="true"></a>  <span class="dt">end =</span> <span class="st">&quot;2015-01-10&quot;</span>,</span>
+<span id="cb309-9"><a href="sec-prod-hyspl-traj.html#cb309-9" aria-hidden="true"></a>  <span class="dt">hysplit_exec =</span> <span class="st">&quot;~/hysplit4/exec&quot;</span>, </span>
+<span id="cb309-10"><a href="sec-prod-hyspl-traj.html#cb309-10" aria-hidden="true"></a>  <span class="dt">hysplit_input =</span> <span class="st">&quot;~/trajData&quot;</span>, </span>
+<span id="cb309-11"><a href="sec-prod-hyspl-traj.html#cb309-11" aria-hidden="true"></a>  <span class="dt">hysplit_output =</span> <span class="st">&quot;~/temp&quot;</span>,</span>
+<span id="cb309-12"><a href="sec-prod-hyspl-traj.html#cb309-12" aria-hidden="true"></a>  <span class="dt">site =</span> <span class="st">&quot;gibraltar&quot;</span>)</span></code></pre></div>
+<p>The <code>data_out</code> can then be used directly in <span class="pkg">openair</span> trajectory
+functions.</p>
+<p>Most of the options should be self-explanatory but <code>hysplit_exec</code>
+is the path to the Hysplit executable, <code>hysplit_input</code> is the path
+to the meteorological files (downloaded as described above) and
+<code>hysplit_output</code> is the directory where Hysplit will write its
+temporary files.</p>
+<p>Once run it is then advisable to store the data somewhere. Save it
+like:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="sec-prod-hyspl-traj.html#cb310-1" aria-hidden="true"></a><span class="kw">saveRDS</span>(data_out, <span class="dt">file =</span> <span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
+<p>Then it is easy to read in later and use e.g.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="sec-prod-hyspl-traj.html#cb311-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
+
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Applequist, Scott. 2012. “Wind Rose Bias Correction.” <em>Journal of Applied Meteorology and Climatology</em> 51 (7): 1305–9.</p>
 </div>
-<p>By setting <code>type = "year"</code>, the frequencies are shown separately by
-year as shown in Figure <a href="sec-polarFreq.html#fig:polarFreqYear">6.2</a>, which shows that most of the
-time the wind is from a south-westerly direction with wind speeds most
-commonly between 2–6 m s<sup>-1</sup>. In 2000 there seemed to be a lot of
-conditions where the wind was from the south-west (leading to high
-pollutant concentrations at this location). The data for 2003 also
-stand out due to the relatively large number of occasions where the
-wind was from the east. Note the default colour scale, which has had a
-square-root transform applied, is used to provide a better visual
-distribution of the data.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sec-polarFreq.html#cb43-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:polarFreqYear"></span>
-<img src="openair_files/figure-html/polarFreqYear-1.png" alt="Use of `polarFreq` function to plot wind speed/directions by year. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale." width="768" />
-<p class="caption">
-Figure 6.2: Use of <code>polarFreq</code> function to plot wind speed/directions by year. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale.
-</p>
+<div>
+<p>Ara Begum, Bilkis, Eugene Kim, Cheol-Heon Jeong, Doh-Won Lee, and Philip K. Hopke. 2005. “Evaluation of the potential source contribution function using the 2002 Quebec forest fire episode.” <em>Atmospheric Environment</em> 39 (20): 3719–24. <a href="https://doi.org/10.1016/j.atmosenv.2005.03.008">https://doi.org/10.1016/j.atmosenv.2005.03.008</a>.</p>
 </div>
-<p>The <code>polarFreq</code> function can also usefully consider pollutant
-concentrations. Figure <a href="sec-polarFreq.html#fig:polarFreqMean">6.3</a> shows the mean
-concentration of SO<sub>2</sub> by wind speed and wind direction and clearly
-highlights that SO<sub>2</sub> concentrations tend to be highest for easterly
-winds and for 1998 in particular.</p>
-<p>By weighting the concentrations by the frequency of occasions the wind
-is from a certain direction and has a certain speed, gives a better
-indication of the conditions that dominate the overall mean
-concentrations. Figure <a href="sec-polarFreq.html#fig:polarFreqWeightedMean">6.4</a> shows the weighted
-mean concentration of SO<sub>2</sub> and highlights that annual mean
-concentrations are dominated by south-westerly winds
-i.e. contributions from the road itself — and not by the fewer higher
-hours of concentrations when the wind is easterly. However, 2003 looks
-interesting because for that year, significant contributions to the
-overall mean were due to easterly wind conditions.</p>
-<p>These plots when applied to other locations can reveal some useful
-features about different sources. For example, it may be that the
-highest concentrations measured only occur infrequently, and the
-weighted mean plot can help show this.</p>
-<p>The code required to make Figure <a href="sec-polarFreq.html#fig:polarFreqMean">6.3</a> and Figure
-<a href="sec-polarFreq.html#fig:polarFreqWeightedMean">6.4</a> is shown below.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sec-polarFreq.html#cb44-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb44-2"><a href="sec-polarFreq.html#cb44-2" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb44-3"><a href="sec-polarFreq.html#cb44-3" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;mean&quot;</span>, </span>
-<span id="cb44-4"><a href="sec-polarFreq.html#cb44-4" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:polarFreqMean"></span>
-<img src="openair_files/figure-html/polarFreqMean-1.png" alt="Use of `polarFre`} function to plot mean SO~2~ concentrations (ppb) by wind speed/directions and year." width="768" />
-<p class="caption">
-Figure 6.3: Use of <code>polarFre</code>} function to plot mean SO<sub>2</sub> concentrations (ppb) by wind speed/directions and year.
-</p>
+<div>
+<p>Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. “A residence time probability analysis of sulfur concentrations at grand Canyon National Park.” <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.</p>
 </div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sec-polarFreq.html#cb45-1" aria-hidden="true"></a><span class="co"># weighted mean SO2 concentrations</span></span>
-<span id="cb45-2"><a href="sec-polarFreq.html#cb45-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb45-3"><a href="sec-polarFreq.html#cb45-3" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb45-4"><a href="sec-polarFreq.html#cb45-4" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>, </span>
-<span id="cb45-5"><a href="sec-polarFreq.html#cb45-5" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:polarFreqWeightedMean"></span>
-<img src="openair_files/figure-html/polarFreqWeightedMean-1.png" alt="Use of `polarFreq} function to plot weighted mean SO~2~ concentrations (ppb) by wind speed/directions and year" width="768" />
-<p class="caption">
-Figure 6.4: Use of `polarFreq} function to plot weighted mean SO<sub>2</sub> concentrations (ppb) by wind speed/directions and year
-</p>
+<div>
+<p>Carslaw, David. 2020. <em>Worldmet: Import Surface Meteorological Data from Noaa Integrated Surface Database (Isd)</em>. <a href="http://github.com/davidcarslaw/worldmet">http://github.com/davidcarslaw/worldmet</a>.</p>
 </div>
-<p>Users are encouraged to try out other plot options. However, one
-potentially useful plot is to select a few specific years of user
-interest. For example, what if you just wanted to compare two years
-e.g. 2000 and 2003? This is easy to do by sending a subset of data to
-the function. Use here can be made of the <span class="pkg">openair</span> <code>selectByDate</code>
-function (see Section <a href="sec-utility.html#sec:selectByDate">22.1</a>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sec-polarFreq.html#cb46-1" aria-hidden="true"></a><span class="co"># wind rose for just 2000 and 2003</span></span>
-<span id="cb46-2"><a href="sec-polarFreq.html#cb46-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">2003</span>)),</span>
-<span id="cb46-3"><a href="sec-polarFreq.html#cb46-3" aria-hidden="true"></a>          <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>,</span>
-<span id="cb46-4"><a href="sec-polarFreq.html#cb46-4" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
-<p>The <code>polarFreq</code> function can also be used to gain an idea about the
-wind directions that contribute most to the overall mean
-concentrations. As already shown, use of the option <code>statistic =   "weighted.mean"</code> will show the percentage contribution by wind
-direction and wind speed bin. However, often it is unnecessary to
-consider different wind speed intervals. To make the plot more
-effective, a few options are set as shown in Figure
-<a href="sec-polarFreq.html#fig:polarFreqAttr">6.5</a>. First, the <code>statistic =   "weighted.mean"</code> is chosen to ensure that the plot shows
-concentrations weighted by their frequency of occurrence of wind
-direction. For this plot, we are mostly interested in just the
-contribution by wind direction and not wind speed. Setting the
-<code>ws.int</code> to be above the maximum wind speed in the data set ensures
-that all data are shown in one interval. Rather than having a
-square-root transform applied to the colour scale, we choose to have a
-linear scale by setting <code>trans = FALSE</code>. Finally, to show a ‘disk’,
-the <code>offset</code> is set at 80. Increasing the value of the offset will
-narrow the disk.</p>
-<p>While Figure <a href="sec-polarFreq.html#fig:polarFreqAttr">6.5</a> is useful — e.g. it clearly shows
-that concentrations of NO<sub>x</sub> at this site are totally dominated by
-south-westerly winds, the use of <code>pollutionRose</code> for this type of
-plot is more effective, as shown in Section <a href="sec-windRose.html#sec:windRose">5</a>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sec-polarFreq.html#cb47-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">ws.int =</span> <span class="dv">30</span>, </span>
-<span id="cb47-2"><a href="sec-polarFreq.html#cb47-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>,</span>
-<span id="cb47-3"><a href="sec-polarFreq.html#cb47-3" aria-hidden="true"></a>          <span class="dt">offset =</span> <span class="dv">80</span>, <span class="dt">trans =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb47-4"><a href="sec-polarFreq.html#cb47-4" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;heat&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:polarFreqAttr"></span>
-<img src="openair_files/figure-html/polarFreqAttr-1.png" alt="The percentage contribution to overall mean concentrations of NO~x~ at Marylebone Road." width="50%" />
-<p class="caption">
-Figure 6.5: The percentage contribution to overall mean concentrations of NO<sub>x</sub> at Marylebone Road.
-</p>
+<div>
+<p>Carslaw, D. C., and S. D. Beevers. 2013. “Characterising and Understanding Emission Sources Using Bivariate Polar Plots and K-Means Clustering.” <em>Environmental Modelling &amp; Software</em> 40 (0): 325–29. <a href="https://doi.org/10.1016/j.envsoft.2012.09.005">https://doi.org/10.1016/j.envsoft.2012.09.005</a>.</p>
+</div>
+<div>
+<p>Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. “Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.” <em>Atmospheric Environment</em> 40 (28): 5424–34.</p>
+</div>
+<div>
+<p>Carslaw, D. C., S. D. Beevers, and J. E. Tate. 2007. “Modelling and Assessing Trends in Traffic-Related Emissions Using a Generalised Additive Modelling Approach.” <em>Atmospheric Environment</em> 41 (26): 5289–99.</p>
+</div>
+<div>
+<p>Carslaw, D. C., and K. Ropkins. 2012. “openair — An R package for air quality data analysis.” <em>Environmental Modelling &amp; Software</em> 27–28 (0): 52–61. <a href="https://doi.org/10.1016/j.envsoft.2011.09.008">https://doi.org/10.1016/j.envsoft.2011.09.008</a>.</p>
+</div>
+<div>
+<p>COMEAP. 2011. “Review of the Uk Air Quality Index: A Report by the Committee on the Medical Effects of Air Pollutants.” <a href="http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html">http://comeap.org.uk/documents/reports/130-review-of-the-uk-air-quality-index.html</a>.</p>
+</div>
+<div>
+<p>Droppo, James G, and Bruce A Napier. 2008. “Wind Direction Bias in Generating Wind Roses and Conducting Sector-Based Air Dispersion Modeling.” <em>Journal of the Air &amp; Waste Management Association</em> 58 (7): 913–18.</p>
+</div>
+<div>
+<p>Fleming, Z. L., P. S. Monks, and A. J. Manning. 2012. “Review: Untangling the influence of air-mass history in interpreting observed atmospheric composition.” <em>Atmospheric Research</em> 104-105: 1–39. <a href="https://doi.org/10.1016/j.atmosres.2011.09.009">https://doi.org/10.1016/j.atmosres.2011.09.009</a>.</p>
+</div>
+<div>
+<p>Friendly, M. 2002. “Corrgrams: Exploratory Displays for Correlation Matrices.” <em>The American Statistician</em> 56 (4): 316–25.</p>
+</div>
+<div>
+<p>Grange, Stuart K, Alastair C Lewis, and David C Carslaw. 2016. “Source Apportionment Advances Using Polar Plots of Bivariate Correlation and Regression Statistics.” <em>Atmospheric Environment</em> 145: 128–34.</p>
+</div>
+<div>
+<p>Hastie, T. J., and R. J. Tibshirani. 1990. <em>Generalized Additive Models</em>. London: Chapman; Hall.</p>
+</div>
+<div>
+<p>Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. “Source Region Identification Using Kernel Smoothing.” Article. <em>Environmental Science &amp; Technology</em> 43 (11): 4090–7. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.</p>
+</div>
+<div>
+<p>Hirsch, R. M., J. R. Slack, and R. A. Smith. 1982. “Techniques of Trend Analysis for Monthly Water-Quality Data.” <em>Water Resources Research</em> 18 (1): 107–21.</p>
+</div>
+<div>
+<p>Hsu, Ying-Kuang, Thomas M. Holsen, and Philip K. Hopke. 2003. “Comparison of hybrid receptor models to locate PCB sources in Chicago.” <em>Atmospheric Environment</em> 37 (4): 545–62. <a href="https://doi.org/10.1016/S1352-2310(02)00886-5">https://doi.org/10.1016/S1352-2310(02)00886-5</a>.</p>
+</div>
+<div>
+<p>Kunsch, H. R. 1989. “The Jackknife and the Bootstrap for General Stationary Observations.” <em>Annals of Statistics</em> 17 (3): 1217–41.</p>
+</div>
+<div>
+<p>Legates, D. R., and G. J. McCabe. 2012. “A Refined Index of Model Performance: A Rejoinder.” <em>International Journal of Climatology</em>.</p>
+</div>
+<div>
+<p>Legates, D. R., and G. J. McCabe Jr. 1999. “Evaluating the Use of ‘Goodness-of-Fit’ Measures in Hydrologic and Hydroclimatic Model Validation.” <em>Water Resources Research</em> 35 (1): 233–41.</p>
+</div>
+<div>
+<p>Lupu, Alexandru, and Willy Maenhaut. 2002. “Application and comparison of two statistical trajectory techniques for identification of source regions of atmospheric aerosol species.” <em>Atmospheric Environment</em> 36: 5607–18.</p>
+</div>
+<div>
+<p>Pekney, Natalie J., Cliff I. Davidson, Liming Zhou, and Philip K. Hopke. 2006. “Application of PSCF and CPF to PMF-Modeled Sources of PM 2.5 in Pittsburgh.” <em>Aerosol Science and Technology</em> 40 (10): 952–61. <a href="https://doi.org/10.1080/02786820500543324">https://doi.org/10.1080/02786820500543324</a>.</p>
+</div>
+<div>
+<p>Sarkar, Deepayan. 2007. <em>Lattice Multivariate Data Visualization with R</em>. New York: Springer.</p>
+</div>
+<div>
+<p>Seibert, P, H Kromp-Kolb, U Baltensperger, and DT Jost. 1994. “Trajectory Analysis of High-Alpine Air Pollution Data.” <em>NATO Challenges of Modern Society</em> 18: 595–95.</p>
+</div>
+<div>
+<p>Sen, P. K. 1968. “Estimates of Regression Coefficient Based on Kendall’s Tau.” <em>Journal of the American Statistical Association</em> 63(324): 1379–89.</p>
+</div>
+<div>
+<p>Taylor, K. E. 2001. “Summarizing Multiple Aspects of Model Performance in a Single Diagram.” <em>Journal of Geophysical Research</em> 106 (D7): 7183–92.</p>
+</div>
+<div>
+<p>Theil, H. 1950. “A Rank Invariant Method of Linear and Polynomial Regression Analysis, I, Ii, Iii.” <em>Proceedings of the Koninklijke Nederlandse Akademie Wetenschappen, Series A – Mathematical Sciences</em> 53: 386–92, 521–25, 1397–1412.</p>
+</div>
+<div>
+<p>Uria-Tellaetxe, I, and D. C. Carslaw. 2014. “Conditional Bivariate Probability Function for Source Identification.” <em>Environmental Modelling &amp; Software</em> 59: 1–9. <a href="https://doi.org/10.1016/j.envsoft.2014.05.002">https://doi.org/10.1016/j.envsoft.2014.05.002</a>.</p>
+</div>
+<div>
+<p>Westmoreland, E. J., N Carslaw, D. C. Carslaw, A. Gillah, and E. Bates. 2007. “Analysis of Air Quality Within a Street Canyon Using Statistical and Dispersion Modelling Techniques.” <em>Atmospheric Environment</em> 41 (39): 9195–9205.</p>
+</div>
+<div>
+<p>Wilcox, Rand R. 2010. <em>Fundamentals of Modern Statistical Methods: Substantially Improving Power and Accuracy</em>. 2nd ed. Springer New York. <a href="http://www.springerlink.com/content/978-1-4419-5524-1">http://www.springerlink.com/content/978-1-4419-5524-1</a>.</p>
+</div>
+<div>
+<p>Wilks, Daniel S. 2005. <em>Statistical Methods in the Atmospheric Sciences, Volume 91, Second Edition (International Geophysics)</em>. 2nd ed. Hardcover; Academic Press.</p>
+</div>
+<div>
+<p>Willmott, Cort J, Scott M Robeson, and Kenji Matsuura. 2011. “A Refined Index of Model Performance.” <em>International Journal of Climatology</em>.</p>
+</div>
+<div>
+<p>Wood, S. N. 2006. <em>Generalized Additive Models: An Introduction with R</em>. Chapman; Hall/CRC.</p>
+</div>
+<div>
+<p>Yu, K. N., Y. P. Cheung, T. Cheung, and R. C. Henry. 2004. “Identifying the Impact of Large Urban Airports on Local Air Quality by Nonparametric Regression.” <em>Atmospheric Environment</em> 38 (27): 4501–7.</p>
+</div>
+</div>
 </div>
 
-</div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="sec-windRose.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-percentileRose.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="annotating-openair-plots.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -485,7 +564,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/polar-freq.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/appendix-hysplit.Rmd",
 "text": "Edit"
 },
 "history": {
