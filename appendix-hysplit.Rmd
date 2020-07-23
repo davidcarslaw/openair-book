@@ -10,13 +10,13 @@ the HYSPLIT model. The code below assumes that full years are run, but
 it could be adopted for shorter periods. There are three main parts to
 producing trajectory files:
 
-1  Download and install the NOAA Hysplit model, somewhere with
+1.  Download and install the NOAA Hysplit model, somewhere with
   write access (see below).
 
-1  Download the monthly meteorological (.gbl) files also from the
+1.  Download the monthly meteorological (.gbl) files also from the
   NOAA website.
 
-3  Obtain the code to run Hysplit.
+1.  Obtain the code to run Hysplit.
 
 
 To run back trajectories it is necessary to download the
@@ -59,7 +59,7 @@ source_gist("https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bd
 ``` 
 
 Now there should be several loaded functions, including
-`run\_hysplit`. To run Hysplit, have a look at the examples here https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5.
+`run_hysplit`. To run Hysplit, have a look at the examples here https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5.
 
 On my Windows machine it is run as follows:
 
