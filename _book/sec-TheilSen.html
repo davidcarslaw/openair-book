@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-07-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -430,11 +431,11 @@ how statistically significant the trend estimate is: <span class="math inline">\
 concentrations of O<sub>3</sub>. The function is called as shown in Figure
 <a href="sec-TheilSen.html#fig:TheilSen1">16.1</a>.</p>
 
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="sec-TheilSen.html#cb145-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb145-2"><a href="sec-TheilSen.html#cb145-2" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb145-3"><a href="sec-TheilSen.html#cb145-3" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, </span>
-<span id="cb145-4"><a href="sec-TheilSen.html#cb145-4" aria-hidden="true"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb145-5"><a href="sec-TheilSen.html#cb145-5" aria-hidden="true"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="sec-TheilSen.html#cb145-1"></a><span class="kw">library</span>(openair)</span>
+<span id="cb145-2"><a href="sec-TheilSen.html#cb145-2"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb145-3"><a href="sec-TheilSen.html#cb145-3"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, </span>
+<span id="cb145-4"><a href="sec-TheilSen.html#cb145-4"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb145-5"><a href="sec-TheilSen.html#cb145-5"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;</code></pre>
 <div class="figure"><span id="fig:TheilSen1"></span>
 <img src="openair_files/figure-html/TheilSen1-1.png" alt="Trends in ozone at Marylebone Road. The plot shows the deseasonalised monthly mean concentrations of O3. The solid red line shows the trend estimate and the dashed red lines show the 95% confidence intervals for the trend based on resampling methods. The overall trend is shown at the top-left as 0.38 (ppb) per year and the 95% confidence intervals in the slope from 0.21–0.51 ppb/year. The \(\ast\ast\ast\) show that the trend is significant to the 0.001 level." width="70%" />
@@ -454,14 +455,14 @@ with the summary results is shown in Figure <a href="sec-TheilSen.html#fig:Theil
 that if one wanted to display the confidence intervals in the slope at
 the 99% confidence intervals, the code would be Figure
 <a href="sec-TheilSen.html#fig:TheilSen2">16.2</a>.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sec-TheilSen.html#cb147-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sec-TheilSen.html#cb147-1"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
 <p>Sometimes it is useful to consider a subset of data, perhaps by
 excluding some years. This is easy with the <code>filter</code> function. The
 following code calculates trends for years greater than 1999 i.e. from
 2000 onward.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="sec-TheilSen.html#cb148-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(<span class="kw">filter</span>(mydata, <span class="kw">format</span>(date, <span class="st">&quot;%Y&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1999</span>), </span>
-<span id="cb148-2"><a href="sec-TheilSen.html#cb148-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb148-3"><a href="sec-TheilSen.html#cb148-3" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="sec-TheilSen.html#cb148-1"></a><span class="kw">TheilSen</span>(<span class="kw">filter</span>(mydata, <span class="kw">format</span>(date, <span class="st">&quot;%Y&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1999</span>), </span>
+<span id="cb148-2"><a href="sec-TheilSen.html#cb148-2"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb148-3"><a href="sec-TheilSen.html#cb148-3"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
 <p>It is also possible to calculate trends in many other ways e.g. by
 wind direction. Considering how trends vary by wind direction can be
 extremely useful because the influence of different sources invariably
@@ -483,10 +484,10 @@ NO<sub>2</sub>. At this particular location it will probably take many more
 years before O<sub>3</sub> concentrations start to increase when the wind
 direction is southerly. Nevertheless, there will always be <em>some</em>
 hours that do not have such high concentrations of NO.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sec-TheilSen.html#cb149-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>, </span>
-<span id="cb149-2"><a href="sec-TheilSen.html#cb149-2" aria-hidden="true"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb149-3"><a href="sec-TheilSen.html#cb149-3" aria-hidden="true"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
-<span id="cb149-4"><a href="sec-TheilSen.html#cb149-4" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sec-TheilSen.html#cb149-1"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb149-2"><a href="sec-TheilSen.html#cb149-2"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb149-3"><a href="sec-TheilSen.html#cb149-3"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
+<span id="cb149-4"><a href="sec-TheilSen.html#cb149-4"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
@@ -515,8 +516,8 @@ T [\%.yr^{-1}] = 100.\left(\frac{C_{End}}{C_{Start}}
 <p>where <span class="math inline">\(C_{End}\)</span> and <span class="math inline">\(C_{Start}\)</span> are the mean concentrations for the
 end and start date, respectfully. <span class="math inline">\(N_{years}\)</span> is the
 number of years (or fractions of) the time series spans.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sec-TheilSen.html#cb151-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb151-2"><a href="sec-TheilSen.html#cb151-2" aria-hidden="true"></a>            <span class="dt">slope.percent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sec-TheilSen.html#cb151-1"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb151-2"><a href="sec-TheilSen.html#cb151-2"></a>            <span class="dt">slope.percent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The <code>TheilSen</code> function was written to work with hourly data,
 which is then averaged into monthly or annual data. However, it is
 realised that users may already have data that is monthly or
@@ -530,18 +531,18 @@ data were available, get the dates in formats like ‘2005-01-01’,
 <code>as.Date</code>. Note that if dates are pre-formatted as YYYY-mm-dd,
 then it is sufficient to use <code>as.Date</code> without providing any
 format information because it is already in the correct format.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="sec-TheilSen.html#cb152-1" aria-hidden="true"></a>mydata<span class="op">$</span>date =<span class="st"> </span><span class="kw">as.Date</span>(mydata<span class="op">$</span>date, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="sec-TheilSen.html#cb152-1"></a>mydata<span class="op">$</span>date =<span class="st"> </span><span class="kw">as.Date</span>(mydata<span class="op">$</span>date, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
 <p>Finally, the <code>TheilSen</code> function can consider trends at
 different sites, provided the input data are correctly formatted. For
 input, a data frame with three columns is required: date, pollutant
 and <em>site</em>. The call would then be, for example:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="sec-TheilSen.html#cb153-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="sec-TheilSen.html#cb153-1"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
 <div id="output" class="section level3" number="16.2.1">
 <h3><span class="header-section-number">16.2.1</span> Output</h3>
 <p>The <code>TheilSen</code> function provides lots of output data for further
 analysis or adding to a report. To obtain it, it is necessary to read
 it into a variable:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sec-TheilSen.html#cb154-1" aria-hidden="true"></a>MKresults &lt;-<span class="st">  </span><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sec-TheilSen.html#cb154-1"></a>MKresults &lt;-<span class="st">  </span><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
@@ -552,7 +553,7 @@ it into a variable:</p>
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;</code></pre>
 <p>This returns a list of two data frames containing all the monthly mean values and
 trend statistics and an aggregated summary. The first 6 lines are shown next:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sec-TheilSen.html#cb156-1" aria-hidden="true"></a><span class="kw">head</span>(MKresults<span class="op">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sec-TheilSen.html#cb156-1"></a><span class="kw">head</span>(MKresults<span class="op">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>##   wd       date      conc         a            b   upper.a     upper.b  lower.a
 ## 1  E 1998-01-01  5.552253 -2.825001 0.0007185124 -8.826666 0.001230109 3.848278
 ## 2  E 1998-02-01  2.919639 -2.825001 0.0007185124 -8.826666 0.001230109 3.848278
@@ -583,7 +584,7 @@ trend statistics and an aggregated summary. The first 6 lines are shown next:</p
 ## 6       11.9614</code></pre>
 <p>Often only the trend statistics are required and not all the monthly
 values. These can be obtained by:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="sec-TheilSen.html#cb158-1" aria-hidden="true"></a>MKresults<span class="op">$</span>data[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="sec-TheilSen.html#cb158-1"></a>MKresults<span class="op">$</span>data[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##   wd p.stars       date     conc          a            b     upper.a
 ## 1  E       * 2001-09-15 5.989974  -2.825001 7.185124e-04  -8.8266663
 ## 2  N     *** 2001-09-15 9.786267 -19.142102 2.485907e-03 -28.7157702

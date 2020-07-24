@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-07-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -354,19 +355,19 @@ splitting the data into quantiles (using <code>cutData</code>). Furthermore, the
 <p>The standard output from <code>trendLevel</code> is shown in Figure
 <a href="sec-trendLevel.html#fig:trendLevel1">13.1</a>, which shows the variation in NO<sub>x</sub>
 concentrations by year and hour of the day. By default the function will use “month” for the x-axis and “hour” for the y-axis.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sec-trendLevel.html#cb112-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb112-2"><a href="sec-trendLevel.html#cb112-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb112-3"><a href="sec-trendLevel.html#cb112-3" aria-hidden="true"></a></span>
-<span id="cb112-4"><a href="sec-trendLevel.html#cb112-4" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sec-trendLevel.html#cb112-1"></a><span class="kw">library</span>(openair)</span>
+<span id="cb112-2"><a href="sec-trendLevel.html#cb112-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb112-3"><a href="sec-trendLevel.html#cb112-3"></a></span>
+<span id="cb112-4"><a href="sec-trendLevel.html#cb112-4"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:trendLevel1"></span>
 <img src="openair_files/figure-html/trendLevel1-1.png" alt="Example output from `trendLevel`" width="90%" />
 <p class="caption">
 Figure 13.1: Example output from <code>trendLevel</code>
 </p>
 </div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="sec-trendLevel.html#cb113-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
-<span id="cb113-2"><a href="sec-trendLevel.html#cb113-2" aria-hidden="true"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb113-3"><a href="sec-trendLevel.html#cb113-3" aria-hidden="true"></a>           <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="sec-trendLevel.html#cb113-1"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb113-2"><a href="sec-trendLevel.html#cb113-2"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb113-3"><a href="sec-trendLevel.html#cb113-3"></a>           <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:trendLevel2"></span>
 <img src="openair_files/figure-html/trendLevel2-1.png" alt="`trendLevel` output with wind direction as `y`." width=".8\textwidth" />
 <p class="caption">
@@ -385,13 +386,13 @@ interpretations. The use of this type of ‘over pollutant’ ratio
 reduces this blurring by focusing conditioning on cases when NO<sub>x</sub>
 concentrations (be they high or low) associate with relatively high or
 low SO<sub>2</sub> concentrations.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sec-trendLevel.html#cb114-1" aria-hidden="true"></a><span class="co">## new field: so2/nox ratio</span></span>
-<span id="cb114-2"><a href="sec-trendLevel.html#cb114-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, <span class="dt">ratio =</span>  so2 <span class="op">/</span><span class="st"> </span>nox)</span>
-<span id="cb114-3"><a href="sec-trendLevel.html#cb114-3" aria-hidden="true"></a></span>
-<span id="cb114-4"><a href="sec-trendLevel.html#cb114-4" aria-hidden="true"></a><span class="co">## condition by mydata$new</span></span>
-<span id="cb114-5"><a href="sec-trendLevel.html#cb114-5" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="st">&quot;nox&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
-<span id="cb114-6"><a href="sec-trendLevel.html#cb114-6" aria-hidden="true"></a>           <span class="dt">type =</span> <span class="st">&quot;ratio&quot;</span>,</span>
-<span id="cb114-7"><a href="sec-trendLevel.html#cb114-7" aria-hidden="true"></a>           <span class="dt">cols =</span> <span class="st">&quot;inferno&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sec-trendLevel.html#cb114-1"></a><span class="co">## new field: so2/nox ratio</span></span>
+<span id="cb114-2"><a href="sec-trendLevel.html#cb114-2"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, <span class="dt">ratio =</span>  so2 <span class="op">/</span><span class="st"> </span>nox)</span>
+<span id="cb114-3"><a href="sec-trendLevel.html#cb114-3"></a></span>
+<span id="cb114-4"><a href="sec-trendLevel.html#cb114-4"></a><span class="co">## condition by mydata$new</span></span>
+<span id="cb114-5"><a href="sec-trendLevel.html#cb114-5"></a><span class="kw">trendLevel</span>(mydata, <span class="st">&quot;nox&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb114-6"><a href="sec-trendLevel.html#cb114-6"></a>           <span class="dt">type =</span> <span class="st">&quot;ratio&quot;</span>,</span>
+<span id="cb114-7"><a href="sec-trendLevel.html#cb114-7"></a>           <span class="dt">cols =</span> <span class="st">&quot;inferno&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:trendLevel3"></span>
 <img src="openair_files/figure-html/trendLevel3-1.png" alt="`trendLevel` output with SO~2~ : NO~x~ ratio `type` conditioning." width="80%" />
 <p class="caption">
@@ -402,11 +403,11 @@ Figure 13.3: <code>trendLevel</code> output with SO<sub>2</sub> : NO<sub>x</sub>
 examples (not plotted):</p>
 <p>A plot of mean O<sub>3</sub> concentration shown by season and by
 daylight/nighttime hours.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="sec-trendLevel.html#cb115-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;daylight&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="sec-trendLevel.html#cb115-1"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;daylight&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
 <p>Or by season and hour of the day:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sec-trendLevel.html#cb116-1" aria-hidden="true"></a>    <span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;hour&quot;</span>, </span>
-<span id="cb116-2"><a href="sec-trendLevel.html#cb116-2" aria-hidden="true"></a>               <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb116-3"><a href="sec-trendLevel.html#cb116-3" aria-hidden="true"></a>               <span class="dt">cols =</span> <span class="st">&quot;increment&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sec-trendLevel.html#cb116-1"></a>    <span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;hour&quot;</span>, </span>
+<span id="cb116-2"><a href="sec-trendLevel.html#cb116-2"></a>               <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb116-3"><a href="sec-trendLevel.html#cb116-3"></a>               <span class="dt">cols =</span> <span class="st">&quot;increment&quot;</span>)</span></code></pre></div>
 <p>How about NO<sub>x</sub> versus NO<sub>2</sub> coloured by the concentration of O<sub>3</sub>?
 <code>scatterPlot</code> could also be used to produce such a plot. However,
 one interesting difference with using <code>trendLevel</code> is that the data
@@ -418,10 +419,10 @@ that make it harder to see what is going on. The plot generated by the
 command below makes it a bit easier to see that it is the higher
 quantiles of NO<sub>2</sub> that are associated with higher O<sub>3</sub>
 concentration (as well as low NO<sub>x</sub> and NO<sub>2</sub> concentrations).</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sec-trendLevel.html#cb117-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb117-2"><a href="sec-trendLevel.html#cb117-2" aria-hidden="true"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb117-3"><a href="sec-trendLevel.html#cb117-3" aria-hidden="true"></a>           <span class="dt">n.levels =</span> <span class="dv">30</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, </span>
-<span id="cb117-4"><a href="sec-trendLevel.html#cb117-4" aria-hidden="true"></a>           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sec-trendLevel.html#cb117-1"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb117-2"><a href="sec-trendLevel.html#cb117-2"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb117-3"><a href="sec-trendLevel.html#cb117-3"></a>           <span class="dt">n.levels =</span> <span class="dv">30</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>, </span>
+<span id="cb117-4"><a href="sec-trendLevel.html#cb117-4"></a>           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:trendLevelNO2NOx"></span>
 <img src="openair_files/figure-html/trendLevelNO2NOx-1.png" alt="`trendLevel` showing NO~x~ against NO~2~, coloured by the concentration of O~3~." width="672" />
 <p class="caption">
@@ -430,9 +431,9 @@ Figure 13.4: <code>trendLevel</code> showing NO<sub>x</sub> against NO<sub>2</su
 </div>
 <p>The plot can also be shown by wind direction sector, this time showing
 how O<sub>3</sub> varies by weekday, wind direction sector and NO<sub>x</sub> quantile.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sec-trendLevel.html#cb118-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb118-2"><a href="sec-trendLevel.html#cb118-2" aria-hidden="true"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">n.levels =</span> <span class="dv">10</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>,</span>
-<span id="cb118-3"><a href="sec-trendLevel.html#cb118-3" aria-hidden="true"></a>           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>), <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sec-trendLevel.html#cb118-1"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb118-2"><a href="sec-trendLevel.html#cb118-2"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">n.levels =</span> <span class="dv">10</span>, <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>,</span>
+<span id="cb118-3"><a href="sec-trendLevel.html#cb118-3"></a>           <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>), <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
 <p>By default <code>trendLevel</code> subsamples the plotted <code>pollutant</code> data
 by the supplied <code>x</code>, <code>y</code> and <code>type</code> parameters and in each
 case calculates the mean. The option <code>statistic</code> has always let
@@ -443,14 +444,14 @@ may also use their own statistic function.</p>
 This tells us about average concentrations. It might also be useful to
 consider a particular percentile of concentrations. This can be done
 by defining one’s own function as shown in Figure <a href="sec-trendLevel.html#fig:trendlevel4">13.5</a>.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="sec-trendLevel.html#cb119-1" aria-hidden="true"></a><span class="co">## function to estimate 95th percentile</span></span>
-<span id="cb119-2"><a href="sec-trendLevel.html#cb119-2" aria-hidden="true"></a>percentile &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">quantile</span>(x, <span class="dt">probs =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb119-3"><a href="sec-trendLevel.html#cb119-3" aria-hidden="true"></a></span>
-<span id="cb119-4"><a href="sec-trendLevel.html#cb119-4" aria-hidden="true"></a><span class="co">## apply to present plot</span></span>
-<span id="cb119-5"><a href="sec-trendLevel.html#cb119-5" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="st">&quot;nox&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
-<span id="cb119-6"><a href="sec-trendLevel.html#cb119-6" aria-hidden="true"></a>           <span class="dt">type =</span> <span class="st">&quot;ratio&quot;</span>,</span>
-<span id="cb119-7"><a href="sec-trendLevel.html#cb119-7" aria-hidden="true"></a>           <span class="dt">cols =</span> <span class="st">&quot;viridis&quot;</span>,</span>
-<span id="cb119-8"><a href="sec-trendLevel.html#cb119-8" aria-hidden="true"></a>           <span class="dt">statistic =</span> percentile)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="sec-trendLevel.html#cb119-1"></a><span class="co">## function to estimate 95th percentile</span></span>
+<span id="cb119-2"><a href="sec-trendLevel.html#cb119-2"></a>percentile &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">quantile</span>(x, <span class="dt">probs =</span> <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb119-3"><a href="sec-trendLevel.html#cb119-3"></a></span>
+<span id="cb119-4"><a href="sec-trendLevel.html#cb119-4"></a><span class="co">## apply to present plot</span></span>
+<span id="cb119-5"><a href="sec-trendLevel.html#cb119-5"></a><span class="kw">trendLevel</span>(mydata, <span class="st">&quot;nox&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb119-6"><a href="sec-trendLevel.html#cb119-6"></a>           <span class="dt">type =</span> <span class="st">&quot;ratio&quot;</span>,</span>
+<span id="cb119-7"><a href="sec-trendLevel.html#cb119-7"></a>           <span class="dt">cols =</span> <span class="st">&quot;viridis&quot;</span>,</span>
+<span id="cb119-8"><a href="sec-trendLevel.html#cb119-8"></a>           <span class="dt">statistic =</span> percentile)</span></code></pre></div>
 <div class="figure"><span id="fig:trendlevel4"></span>
 <img src="openair_files/figure-html/trendlevel4-1.png" alt="`trendLevel` using locally defined    `statistic`." width="80%" />
 <p class="caption">
@@ -474,13 +475,13 @@ provides a means of developing new data visualisation and analysis methods.</p>
 scales as shown in Figure <a href="sec-trendLevel.html#fig:trendLevelDiscete">13.6</a>. In this case the
 default <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables are chosen (month and hour) split by
 <code>type</code> (year).</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="sec-trendLevel.html#cb120-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>,</span>
-<span id="cb120-2"><a href="sec-trendLevel.html#cb120-2" aria-hidden="true"></a>           <span class="dt">x =</span> <span class="st">&quot;week&quot;</span>,</span>
-<span id="cb120-3"><a href="sec-trendLevel.html#cb120-3" aria-hidden="true"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,  <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>,</span>
-<span id="cb120-4"><a href="sec-trendLevel.html#cb120-4" aria-hidden="true"></a>           <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">500</span>),</span>
-<span id="cb120-5"><a href="sec-trendLevel.html#cb120-5" aria-hidden="true"></a>           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>),</span>
-<span id="cb120-6"><a href="sec-trendLevel.html#cb120-6" aria-hidden="true"></a>           <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;forestgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb120-7"><a href="sec-trendLevel.html#cb120-7" aria-hidden="true"></a>           <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="sec-trendLevel.html#cb120-1"></a><span class="kw">trendLevel</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>,</span>
+<span id="cb120-2"><a href="sec-trendLevel.html#cb120-2"></a>           <span class="dt">x =</span> <span class="st">&quot;week&quot;</span>,</span>
+<span id="cb120-3"><a href="sec-trendLevel.html#cb120-3"></a>           <span class="dt">border =</span> <span class="st">&quot;white&quot;</span>,  <span class="dt">statistic =</span> <span class="st">&quot;max&quot;</span>,</span>
+<span id="cb120-4"><a href="sec-trendLevel.html#cb120-4"></a>           <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">500</span>),</span>
+<span id="cb120-5"><a href="sec-trendLevel.html#cb120-5"></a>           <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>),</span>
+<span id="cb120-6"><a href="sec-trendLevel.html#cb120-6"></a>           <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;forestgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb120-7"><a href="sec-trendLevel.html#cb120-7"></a>           <span class="dt">key.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:trendLevelDiscete"></span>
 <img src="openair_files/figure-html/trendLevelDiscete-1.png" alt="`trendLevel` plot for maximum NO~2~ concentrations using a user-defined discrete colour scale." width="672" />
 <p class="caption">

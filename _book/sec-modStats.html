@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-23" />
+<meta name="date" content="2020-07-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -440,16 +441,16 @@ IOA = \left\{
 <p>The function can be called very simply and only requires two numeric
 fields to compare. To show how the function works, some synthetic data
 will be generated for 5 models.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="sec-modStats.html#cb226-1" aria-hidden="true"></a><span class="co">## observations; 100 random numbers</span></span>
-<span id="cb226-2"><a href="sec-modStats.html#cb226-2" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb226-3"><a href="sec-modStats.html#cb226-3" aria-hidden="true"></a>obs &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)</span>
-<span id="cb226-4"><a href="sec-modStats.html#cb226-4" aria-hidden="true"></a>mod1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">+</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">model =</span> <span class="st">&quot;model 1&quot;</span>)</span>
-<span id="cb226-5"><a href="sec-modStats.html#cb226-5" aria-hidden="true"></a>mod2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">+</span><span class="st"> </span><span class="dv">20</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 2&quot;</span>)</span>
-<span id="cb226-6"><a href="sec-modStats.html#cb226-6" aria-hidden="true"></a>mod3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">-</span><span class="st"> </span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 3&quot;</span>)</span>
-<span id="cb226-7"><a href="sec-modStats.html#cb226-7" aria-hidden="true"></a>mod4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 4&quot;</span>)</span>
-<span id="cb226-8"><a href="sec-modStats.html#cb226-8" aria-hidden="true"></a>mod5 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">*</span><span class="st"> </span><span class="fl">1.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 5&quot;</span>)</span>
-<span id="cb226-9"><a href="sec-modStats.html#cb226-9" aria-hidden="true"></a>modData &lt;-<span class="st"> </span><span class="kw">rbind</span>(mod1, mod2, mod3, mod4, mod5)</span>
-<span id="cb226-10"><a href="sec-modStats.html#cb226-10" aria-hidden="true"></a><span class="kw">head</span>(modData)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="sec-modStats.html#cb226-1"></a><span class="co">## observations; 100 random numbers</span></span>
+<span id="cb226-2"><a href="sec-modStats.html#cb226-2"></a><span class="kw">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb226-3"><a href="sec-modStats.html#cb226-3"></a>obs &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)</span>
+<span id="cb226-4"><a href="sec-modStats.html#cb226-4"></a>mod1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">+</span><span class="st"> </span><span class="dv">10</span>, <span class="dt">model =</span> <span class="st">&quot;model 1&quot;</span>)</span>
+<span id="cb226-5"><a href="sec-modStats.html#cb226-5"></a>mod2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">+</span><span class="st"> </span><span class="dv">20</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 2&quot;</span>)</span>
+<span id="cb226-6"><a href="sec-modStats.html#cb226-6"></a>mod3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">-</span><span class="st"> </span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 3&quot;</span>)</span>
+<span id="cb226-7"><a href="sec-modStats.html#cb226-7"></a>mod4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">/</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 4&quot;</span>)</span>
+<span id="cb226-8"><a href="sec-modStats.html#cb226-8"></a>mod5 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(obs, <span class="dt">mod =</span> obs <span class="op">*</span><span class="st"> </span><span class="fl">1.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">model =</span> <span class="st">&quot;model 5&quot;</span>)</span>
+<span id="cb226-9"><a href="sec-modStats.html#cb226-9"></a>modData &lt;-<span class="st"> </span><span class="kw">rbind</span>(mod1, mod2, mod3, mod4, mod5)</span>
+<span id="cb226-10"><a href="sec-modStats.html#cb226-10"></a><span class="kw">head</span>(modData)</span></code></pre></div>
 <pre><code>##         obs      mod   model
 ## 1 50.747820 60.74782 model 1
 ## 2 30.676851 40.67685 model 1
@@ -459,7 +460,7 @@ will be generated for 5 models.</p>
 ## 6 22.543662 32.54366 model 1</code></pre>
 <p>We now have a data frame with observations and predictions for 5
 models. The evaluation of the statistics is given by:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="sec-modStats.html#cb228-1" aria-hidden="true"></a><span class="kw">modStats</span>(modData, <span class="dt">obs =</span> <span class="st">&quot;obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="sec-modStats.html#cb228-1"></a><span class="kw">modStats</span>(modData, <span class="dt">obs =</span> <span class="st">&quot;obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;model&quot;</span>)</span></code></pre></div>
 <pre><code>##     model   n FAC2         MB       MGE         NMB      NMGE      RMSE
 ## 1 model 1 100 0.89  10.000000 10.000000  0.22455508 0.2245551 10.000000
 ## 2 model 2 100 0.79   0.922391 16.592192  0.02071276 0.3725861 19.318041
@@ -473,8 +474,8 @@ models. The evaluation of the statistics is given by:</p>
 ## 4 0.8142735 -0.009329173 0.4953354
 ## 5 0.9963753 -0.042044773 0.4789776</code></pre>
 <p>It is possible to rank the statistics based on the , which is a good general indicator of model performance.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="sec-modStats.html#cb230-1" aria-hidden="true"></a><span class="kw">modStats</span>(modData, <span class="dt">obs =</span> <span class="st">&quot;obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;model&quot;</span>, </span>
-<span id="cb230-2"><a href="sec-modStats.html#cb230-2" aria-hidden="true"></a>         <span class="dt">rank.name =</span> <span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="sec-modStats.html#cb230-1"></a><span class="kw">modStats</span>(modData, <span class="dt">obs =</span> <span class="st">&quot;obs&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;model&quot;</span>, </span>
+<span id="cb230-2"><a href="sec-modStats.html#cb230-2"></a>         <span class="dt">rank.name =</span> <span class="st">&quot;model&quot;</span>)</span></code></pre></div>
 <pre><code>##     model   n FAC2         MB       MGE         NMB      NMGE      RMSE
 ## 3 model 3 100 0.88   1.013647  7.887325  0.02276196 0.1771139  9.451354
 ## 1 model 1 100 0.89  10.000000 10.000000  0.22455508 0.2245551 10.000000
@@ -497,8 +498,8 @@ UK for 2006. The aim here is not to identify a particular model that
 is ‘best’ and for this reason the models are simply referred to as
 <code>model 1</code>, <code>model 2</code> and so on. We will aim to make the data more
 widely available. However, data set has this form:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="sec-modStats.html#cb232-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;~/My Drive/openair/Data/modelData.RData&quot;</span>)</span>
-<span id="cb232-2"><a href="sec-modStats.html#cb232-2" aria-hidden="true"></a><span class="kw">head</span>(modTest)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="sec-modStats.html#cb232-1"></a><span class="kw">load</span>(<span class="st">&quot;~/My Drive/openair/Data/modelData.RData&quot;</span>)</span>
+<span id="cb232-2"><a href="sec-modStats.html#cb232-2"></a><span class="kw">head</span>(modTest)</span></code></pre></div>
 <pre><code>##         site                date o3   mod   group
 ## 1 Aston.Hill 2006-01-01 00:00:00 NA    NA model 1
 ## 2 Aston.Hill 2006-01-01 01:00:00 74 65.28 model 1
@@ -519,10 +520,10 @@ the calculations by season and model. Finally, the statistics are
 grouped by the <span class="math inline">\(IOA\)</span> for each season. It is now very easy how model
 performance changes by season and which models perform best in each
 season.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="sec-modStats.html#cb234-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">2</span>) <span class="co">## don&#39;t display too many decimal places</span></span>
-<span id="cb234-2"><a href="sec-modStats.html#cb234-2" aria-hidden="true"></a><span class="kw">modStats</span>(<span class="kw">subset</span>(modTest, site <span class="op">==</span><span class="st"> &quot;Harwell&quot;</span>), </span>
-<span id="cb234-3"><a href="sec-modStats.html#cb234-3" aria-hidden="true"></a>         <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
-<span id="cb234-4"><a href="sec-modStats.html#cb234-4" aria-hidden="true"></a>         <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;group&quot;</span>), <span class="dt">rank =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="sec-modStats.html#cb234-1"></a><span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">2</span>) <span class="co">## don&#39;t display too many decimal places</span></span>
+<span id="cb234-2"><a href="sec-modStats.html#cb234-2"></a><span class="kw">modStats</span>(<span class="kw">subset</span>(modTest, site <span class="op">==</span><span class="st"> &quot;Harwell&quot;</span>), </span>
+<span id="cb234-3"><a href="sec-modStats.html#cb234-3"></a>         <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
+<span id="cb234-4"><a href="sec-modStats.html#cb234-4"></a>         <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;group&quot;</span>), <span class="dt">rank =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 36 x 12
 ## # Groups:   season [4]
 ##    season group     n  FAC2     MB   MGE     NMB  NMGE  RMSE     r      COE
@@ -546,9 +547,9 @@ data to consider and plots will convey the information better.</p>
 and can be used in lots of interesting ways. The <code>type</code> option in
 particular makes it possible to split the statistics in numerous
 ways. For example, to summarise the performance of models by site, model and day of the week:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="sec-modStats.html#cb236-1" aria-hidden="true"></a><span class="kw">modStats</span>(modStats, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
-<span id="cb236-2"><a href="sec-modStats.html#cb236-2" aria-hidden="true"></a>         <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;weekday&quot;</span>, <span class="st">&quot;group&quot;</span>), </span>
-<span id="cb236-3"><a href="sec-modStats.html#cb236-3" aria-hidden="true"></a>         <span class="dt">rank =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="sec-modStats.html#cb236-1"></a><span class="kw">modStats</span>(modStats, <span class="dt">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
+<span id="cb236-2"><a href="sec-modStats.html#cb236-2"></a>         <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;site&quot;</span>, <span class="st">&quot;weekday&quot;</span>, <span class="st">&quot;group&quot;</span>), </span>
+<span id="cb236-3"><a href="sec-modStats.html#cb236-3"></a>         <span class="dt">rank =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
 <p>Similarly, if other data are available e.g. meteorological data or
 other pollutant species then these variables can also be used to test
 models against ranges in their values. This capability is potentially
