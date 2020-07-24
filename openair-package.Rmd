@@ -209,7 +209,7 @@ easily possible.
 Many of the functions described require that colour scales are used;
 particularly for plots showing surfaces. It is only necessary to
 consider using other colours if the user does not wish to use the
-default scheme, shown at the top of \autoref{fig:colours}. The choice
+default scheme, shown at the top of Figure \@ref(fig:colours). The choice
 of colours does seem to be a vexing issue as well as something that
 depends on what one is trying to show in the first place. For this
 reason, the colour schemes used in [openair]{.pkg} are very flexible: if you
@@ -222,14 +222,11 @@ plot data. In fact, for most situations the default colour schemes
 should be adequate. The choice of colours can easily be set; either by
 using one of the pre-defined schemes or through a user-defined
 scheme. More details can be found in the [openair]{.pkg} `openColours`
-function. Some defined colours are shown in \autoref{fig:colours},
+function. Some defined colours are shown in Figure \@ref(fig:colours),
 together with an example of a user defined scale that provides a
-smooth transition from yellow to blue. The code that produced this
-plot is shown for \autoref{fig:colours}:^[This is given for
-  interest, the user does not need to know this to use the colours.]
+smooth transition from yellow to blue. 
 
-\begin{figure}
-```{r Colours,w=5,h=5,out.width='.6\\textwidth'}
+```{r colours,fig.width=5,fig.height=5,out.width='60%',echo=FALSE,fig.cap='Selected pre-defined colour scales in. The top colour scheme is a user-defined one.'}
 library(openair)
 ## small function for plotting
 printCols <- function(col, y) {
@@ -250,13 +247,9 @@ printCols("brewer1", 1.0)
 printCols("greyscale", 1.2)
 printCols(c("tomato", "white", "forestgreen" ), 1.4)
 ```
-\caption{Pre-defined colour scales in [openair]{.pkg}. The top colour
-      scheme is a user-defined one.}
-    {#fig:colours}
-\end{figure}
 
 The user-defined scheme is very flexible and the following provides
-examples of its use. In the examples shown next, the `polarPlot}
+examples of its use. In the examples shown next, the `polarPlot`
 function is used as a demonstration of their use.
 
 ```{r eval=FALSE}
@@ -272,6 +265,17 @@ polarPlot(mydata, cols = c("yellow", "green"))
 # define own colours going from red to white to blue
 polarPlot(mydata, cols = c("red", "white", "blue"))
 ```
+
+For more detailed information on using appropriate colours, have a look at the [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html) package. [colorspace]{.pkg} provides the definitive, comprehensive approach to using colours effectively. You will need to install the package, `install.packages("colorspace")`. To use the palettes with [openair]{.pkg}, you can for example do:
+
+```{r,fig.width=4.5,fig.height=4.5,out.width='50%',fig.cap='Example of using a [colorspace]{.pkg} palette with an [openair]{.pkg} function.'}
+library(colorspace)
+library(openair)
+windRose(mydata, cols = qualitative_hcl(4, palette = "Dark 3"))
+```
+
+
+
 
 ## Automatic text formatting {#sec:quickText}
 
