@@ -282,10 +282,10 @@ windRose(mydata, cols = qualitative_hcl(4, palette = "Dark 3"))
 
 [openair]{.pkg} tries to automate the process of annotating
 plots. It can be time-consuming (and tricky) to repetitively type in
-text to represent $\mu$g m^-3^ or PM~10~ ($\mu$g m^-3^) etc. in R. For this reason, an
+text to represent μg m^-3^ or PM~10 (μg m^-3^) etc. in R. For this reason, an
 attempt is made to automatically detect strings such as `nox` or
 `NOx` and format them correctly.  Where a user needs a y-axis label
-such as NO~x~ ($\mu$g m^-3^) it will only be necessary to type `ylab = "nox (ug/m3)"`. The same is also true for plot titles.
+such as NO~x~ (μg m^-3^) it will only be necessary to type `ylab = "nox (ug/m3)"`. The same is also true for plot titles.
 
 Users can override this option by setting it to FALSE.
 

@@ -205,7 +205,7 @@ concentrations were also elevated (which they seem to be). It would
 also be worth considering other sites for back trajectories that could
 be less influenced by local emissions.
 
-(ref:Traj4) 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM~10~ in $\mu$g m^-3^.
+(ref:Traj4) 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM~10~ in μg m^-3^.
 
 ```{r traj4,w=6,h=6,out.width='75%',fig.cap='(ref:Traj4)'}
 trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),

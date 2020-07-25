@@ -346,7 +346,7 @@ number on each day and can be extended to highlight those conditions
 where daily mean (or maximum etc.) concentrations are above a
 particular threshold. This approach is useful for highlighting daily
 air quality limits e.g. when the daily mean concentration is greater
-than 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+than 50 μg m<sup>-3</sup>.</p>
 <p>The <code>calendarPlot</code> function can also be used to plot categorical
 scales. This is useful for plotting concentrations expressed as an air
 quality index i.e. intervals of concentrations that are expressed in
@@ -374,20 +374,20 @@ day. Another useful option is to set <code>annotate = "value"</code> in
 which case the daily concentration will be shown on each
 day. Furthermore, it is sometimes useful to highlight particular
 values more clearly. For example, to highlight daily mean PM<sub>10</sub>
-concentrations above 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>. This is where setting <code>lim</code> (a
+concentrations above 50 μg m<sup>-3</sup>. This is where setting <code>lim</code> (a
 concentration limit) is useful. In setting <code>lim</code> the user can then
 differentiate the values below and above <code>lim</code> by colour of text,
 size of text and type of text e.g. plain and bold.</p>
 <p>Figure <a href="sec-calendarPlot.html#fig:calendarPlotExceed">14.2</a> highlights those days where PM<sub>10</sub>
-concentrations exceed 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup> by making the annotation for those days
+concentrations exceed 50 μg m<sup>-3</sup> by making the annotation for those days
 bigger, bold and orange. Plotting the data in this way clearly shows
-the days where PM<sub>10</sub> &gt; 50 <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+the days where PM<sub>10</sub> &gt; 50 μg m<sup>-3</sup>.</p>
 <p>Other <span class="pkg">openair</span> functions can be used to plot other statistics. For
 example, <code>rollingMean</code> could be used to calculate rolling 8-hour
 mean O<sub>3</sub> concentrations. Then, <code>calendarPlot</code> could be used with
 <code>statistic = "max"</code> to show days where the maximum daily rolling
 8-hour mean O<sub>3</sub> concentration is greater than a certain threshold
-e.g. 100 or 120~<span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
+e.g. 100 or 120 μg m<sup>-3</sup>.</p>
 
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="sec-calendarPlot.html#cb122-1" aria-hidden="true"></a><span class="kw">calendarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">year =</span> <span class="dv">2003</span>, </span>
 <span id="cb122-2"><a href="sec-calendarPlot.html#cb122-2" aria-hidden="true"></a>             <span class="dt">annotate =</span> <span class="st">&quot;value&quot;</span>, </span>
@@ -396,9 +396,9 @@ e.g. 100 or 120~<span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.</p>
 <span id="cb122-5"><a href="sec-calendarPlot.html#cb122-5" aria-hidden="true"></a>             <span class="dt">col.lim =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,  <span class="st">&quot;orange&quot;</span>),</span>
 <span id="cb122-6"><a href="sec-calendarPlot.html#cb122-6" aria-hidden="true"></a>             <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:calendarPlotExceed"></span>
-<img src="openair_files/figure-html/calendarPlotExceed-1.png" alt="calendarPlot for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM10 &gt;50~\(\mu\)g m-3. The numbers show the PM10 concentration in \(\mu\)g m-3." width="768" />
+<img src="openair_files/figure-html/calendarPlotExceed-1.png" alt="calendarPlot for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM10 &gt;50 μg m-3. The numbers show the PM10 concentration in μg m-3." width="768" />
 <p class="caption">
-Figure 14.2: <code>calendarPlot</code> for PM<sub>10</sub> concentrations in 2003 with annotations highlighting those days where the concentration of PM<sub>10</sub> &gt;50~<span class="math inline">\(\mu\)</span>g m<sup>-3</sup>. The numbers show the PM<sub>10</sub> concentration in <span class="math inline">\(\mu\)</span>g m<sup>-3</sup>.
+Figure 14.2: <code>calendarPlot</code> for PM<sub>10</sub> concentrations in 2003 with annotations highlighting those days where the concentration of PM<sub>10</sub> &gt;50 μg m<sup>-3</sup>. The numbers show the PM<sub>10</sub> concentration in μg m<sup>-3</sup>.
 </p>
 </div>
 <p>To show wind angle, scaled to wind speed (Figure <a href="sec-calendarPlot.html#fig:calendarPlot2">14.3</a>).</p>
@@ -486,7 +486,7 @@ to make it easier to use the index in the
 <span id="cb129-7"><a href="sec-calendarPlot.html#cb129-7" aria-hidden="true"></a>pm25.breaks &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">35</span>, <span class="dv">42</span>, <span class="dv">47</span>, <span class="dv">53</span>, <span class="dv">59</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">1000</span>)</span></code></pre></div>
 <p>Remember it is necessary to use the correct averaging time. Assuming
 data are imported using <code>importAURN</code> or similar, then the
-units will be in <span class="math inline">\(\mu\)</span>g m<sup>-3</sup> — if not the user should ensure this is the
+units will be in μg m<sup>-3</sup> — if not the user should ensure this is the
 case. Note that rather than showing the day of the month (the default), <code>annotate = "value"</code> can be used to show the actual numeric value
 on each day. In this way, the colours represent the categorical
 interval the concentration on a day corresponds to <em>and</em> the

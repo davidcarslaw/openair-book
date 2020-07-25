@@ -47,10 +47,10 @@ highlights the comparison of variability in for each model compared
 with the measurements. The variability is represented by the standard
 deviation of the observed and modelled values. The plot shows that the
 observed variability (given by the standard deviation) is about 27
-($\mu$g m^-3^) and is marked as 'observed' on the x-axis. The magnitude of
+(μg m^-3^) and is marked as 'observed' on the x-axis. The magnitude of
 the variability is measured as the **radial** distance from the
 origin of the plot (the red line with the arrow shows the standard
-deviation for model $g$, which is about 25~$\mu$g m^-3^). To aid interpretation
+deviation for model $g$, which is about 25~μg m^-3^). To aid interpretation
 the radial dashed line is shown from the 'observed' point. Each
 model is shown in this case by the position of the letters a to i. On
 this basis it can be seen that models 1, $a$, $b$ have more
@@ -77,8 +77,8 @@ first. The concentric dashed lines emanating from the `observed'
 point show the value of the RMS error --- so points furthest from the
 'observed' value are the worst performing models because they have
 the highest RMS errors. On this basis, model $g$ has the lowest error
-of about 20~$\mu$g m^-3^, shown again by the red line. Models $e$ and $i$ are
-considerably worse because they have RMS errors of around 30~$\mu$g m^-3^.
+of about 20~μg m^-3^, shown again by the red line. Models $e$ and $i$ are
+considerably worse because they have RMS errors of around 30 μg m^-3^.
 
 So which model is best? Taken as a whole it is probably model $g$
 because it has reasonably similar variability compared with the
@@ -123,7 +123,7 @@ variability for summer conditions might reflect that the models do not
 adequately capture regional O~3~ episodes when concentrations are
 high. Models 7 and 8 do best in terms of high correlation with the
 measurements (around 0.8) and lowest RMS error (around
-20--22~$\mu$g m^-3^). Models 3, 5 and 6 tend to do worse on all three
+20--22 μg m^-3^). Models 3, 5 and 6 tend to do worse on all three
 statistics during the summer.
 
 By contrast, during wintertime conditions models 1 and 3 are clearly

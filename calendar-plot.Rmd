@@ -20,7 +20,7 @@ number on each day and can be extended to highlight those conditions
 where daily mean (or maximum etc.) concentrations are above a
 particular threshold. This approach is useful for highlighting daily
 air quality limits e.g. when the daily mean concentration is greater
-than 50 $\mu$g m^-3^.
+than 50 μg m^-3^.
 
 The `calendarPlot` function can also be used to plot categorical
 scales. This is useful for plotting concentrations expressed as an air
@@ -47,24 +47,24 @@ day. Another useful option is to set `annotate = "value"` in
 which case the daily concentration will be shown on each
 day. Furthermore, it is sometimes useful to highlight particular
 values more clearly. For example, to highlight daily mean PM~10~
-concentrations above 50 $\mu$g m^-3^. This is where setting `lim` (a
+concentrations above 50 μg m^-3^. This is where setting `lim` (a
 concentration limit) is useful. In setting `lim` the user can then
 differentiate the values below and above `lim` by colour of text,
 size of text and type of text e.g. plain and bold.
 
 Figure \@ref(fig:calendarPlotExceed) highlights those days where PM~10~
-concentrations exceed 50 $\mu$g m^-3^ by making the annotation for those days
+concentrations exceed 50 μg m^-3^ by making the annotation for those days
 bigger, bold and orange. Plotting the data in this way clearly shows
-the days where PM~10~ > 50 $\mu$g m^-3^.
+the days where PM~10~ > 50 μg m^-3^.
 
 Other [openair]{.pkg} functions can be used to plot other statistics. For
 example, `rollingMean` could be used to calculate rolling 8-hour
 mean O~3~ concentrations. Then, `calendarPlot` could be used with
 `statistic = "max"` to show days where the maximum daily rolling
 8-hour mean O~3~ concentration is greater than a certain threshold
-e.g. 100 or 120~$\mu$g m^-3^.
+e.g. 100 or 120 μg m^-3^.
 
-(ref:CalExceed) `calendarPlot` for PM~10~ concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ >50~$\mu$g m^-3^. The numbers show the PM~10~ concentration in $\mu$g m^-3^.
+(ref:CalExceed) `calendarPlot` for PM~10~ concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ >50 μg m^-3^. The numbers show the PM~10~ concentration in μg m^-3^.
 
 ```{r calendarPlotExceed,fig.width=8,fig.height=6,fig.cap='(ref:CalExceed)'}
 calendarPlot(mydata, pollutant = "pm10", year = 2003, 
@@ -178,7 +178,7 @@ pm25.breaks <- c(0, 12, 24, 35, 42, 47, 53, 59, 65, 70, 1000)
 
 Remember it is necessary to use the correct averaging time. Assuming
 data are imported using `importAURN` or similar, then the
-units will be in $\mu$g m^-3^ --- if not the user should ensure this is the
+units will be in μg m^-3^ --- if not the user should ensure this is the
 case. Note that rather than showing the day of the month (the default), `annotate = "value"` can be used to show the actual numeric value
 on each day. In this way, the colours represent the categorical
 interval the concentration on a day corresponds to *and* the
