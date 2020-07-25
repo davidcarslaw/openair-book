@@ -417,9 +417,9 @@ hemisphere seasons when set as <code>hemisphere = "southern"</code>.</p>
 ## #   feature &lt;chr&gt;, season &lt;ord&gt;</code></pre>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="sec-utility.html#cb254-1" aria-hidden="true"></a><span class="kw">data</span>(mydata) <span class="co">## re-load mydata fresh</span></span></code></pre></div>
 <p>This divides PM<sub>10</sub> concentrations into four <em>quantiles</em> —
-roughly equal numbers of <sub>PM10</sub> concentrations in four levels.</p>
-<p>Most of the time users do not have to call  directly
-because most functions have a  option that is used to call
+roughly equal numbers of PM_10~ concentrations in four levels.</p>
+<p>Most of the time users do not have to call <code>cutData</code> directly
+because most functions have a <code>type</code> option that is used to call
 <code>cutData</code> directly e.g.</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="sec-utility.html#cb255-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
 <p>However, it can be useful to call <code>cutData</code> <em>before</em> supplying
@@ -427,7 +427,7 @@ the data to a function in a few cases. First, if one wants to set
 seasons to the southern hemisphere as above. Second, it is possible to
 override the division of a numeric variable into four quantiles by
 using the option <code>n.levels</code>. More details can be found in the
- help file.</p>
+<code>cutData</code> help file.</p>
 </div>
 <div id="sec:selectRunning" class="section level2" number="22.3">
 <h2><span class="header-section-number">22.3</span> Selecting run lengths of values above a threshold — pollution episodes</h2>

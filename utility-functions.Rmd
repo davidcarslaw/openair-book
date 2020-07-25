@@ -71,10 +71,10 @@ data(mydata) ## re-load mydata fresh
 ```
 
 This divides PM~10~ concentrations into four *quantiles* ---
-roughly equal numbers of ~PM10~ concentrations in four levels.
+roughly equal numbers of PM_10~ concentrations in four levels.
 
-Most of the time users do not have to call \cd{cutData} directly
-because most functions have a \cd{type} option that is used to call
+Most of the time users do not have to call `cutData` directly
+because most functions have a `type` option that is used to call
 `cutData` directly e.g.
 
 ```{r eval=FALSE}
@@ -86,7 +86,7 @@ the data to a function in a few cases. First, if one wants to set
 seasons to the southern hemisphere as above. Second, it is possible to
 override the division of a numeric variable into four quantiles by
 using the option `n.levels`. More details can be found in the
-\cd{cutData} help file.
+`cutData` help file.
 
 ## Selecting run lengths of values above a threshold --- pollution episodes {#sec:selectRunning}
 
