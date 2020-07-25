@@ -47,6 +47,17 @@ pre code {
   white-space: inherit;
 }
 
+  /* all TOC list items, basically */
+
+.book .book-summary ul.summary li a, 
+.book .book-summary ul.summary li span {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #2f5175;
+}
+
 .rmdcomment {
   padding: 1em 1em 1em 4em;
   margin-bottom: 10px;
