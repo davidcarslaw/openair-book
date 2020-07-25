@@ -25,8 +25,7 @@ Sometimes it might be useful to install the development version of [openair]{.pk
 ## Input data requirements
 
 The [openair]{.pkg} package applies certain constraints on input data
-requirements. **It is important to adhere to these requirements
-  to ensure that data are correctly formatted for use in [openair]{.pkg}.**
+requirements. **It is important to adhere to these requirements to ensure that data are correctly formatted for use in** [openair]{.pkg}.
 The principal reason for insisting on specific input data format is
 that there will be less that can go wrong and it is easier to write
 code for a more limited set of conditions.
