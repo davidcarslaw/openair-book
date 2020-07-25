@@ -26,6 +26,6 @@ rmd_files: ["index.Rmd",
 "mod-stats.Rmd",
 "taylor-diagram.Rmd",
 "utility-functions.Rmd",
-"references.Rmd",
 "appendix-annotate.Rmd",
-"appendix-hysplit.Rmd"]
+"appendix-hysplit.Rmd",
+"references.Rmd"]
