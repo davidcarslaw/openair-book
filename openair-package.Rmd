@@ -1,7 +1,5 @@
 # The openair package {#sec:openair-package}
 
-SECTION NEEDS UPDATING
-
 In this book two packages are frequently used and it is a good idea
 to load both.
 
