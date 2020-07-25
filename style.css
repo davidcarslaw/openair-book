@@ -59,9 +59,9 @@ pre code {
 }
 
 .book .book-summary ul.summary li.active>a { /*active TOC links*/
-  color: #900C3F !important;
+  color: #0fa1e0 !important;
   border-left: solid 4px;
-  border-color: #900C3F;
+  border-color: #0fa1e0;
   padding-left: 11px !important;
 }  
 
