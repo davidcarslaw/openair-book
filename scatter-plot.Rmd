@@ -68,7 +68,7 @@ be very difficult to see what the underlying relationship looks
 like. One very effective method to use in these situations is to 'bin'
 the data and to colour the intervals by the number of counts of
 occurrences in each bin. There are various ways of doing this, but
-`hexagonal binning' is particularly effective because of the way
+'hexagonal binning' is particularly effective because of the way
 hexagons can be placed next to one another.^[In fact it is not
   possible to have a shape with more than 6 sides that can be used to
   forma a lattice without gaps.] To use hexagonal binning it will be
@@ -89,7 +89,7 @@ it is dominated by a few very high values. This is possible by
 supplying two functions: one that that applies the transformation and
 the other that inverses it. For log scaling for example (the default),
 `trans = function(x) log(x)` and `inv = function(x) exp(x)`. For
-a square root transform use `trans = sqrt` and `inv =  function(x) x\^2`. To not apply any transformation `trans = NULL`
+a square root transform use `trans = sqrt` and `inv =  function(x) x^2`. To not apply any transformation `trans = NULL`
 and `inv = NULL` should be used.
 
 ```{r scatterPlot2,fig.width=5,fig.height=5,out.width='50%',fig.cap='Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road using hexagonal binning. The number of occurrences in each bin is colour-coded (not on a linear scale). It is now possible to see where most of the data lie and a better indication of the relationship between NO~x~ and NO~2~ is revealed.'}
@@ -205,7 +205,7 @@ O~3~ helps to show how O~3~ concentrations affect NO~2~
 concentrations. For example, consider the summertime-weekday panel
 where it clearly shows that the higher NO~2~ concentrations are
 associated with high O~3~ concentrations. Indeed there are some
-hours where NO~2~ is $>$100~ppb at quite low concentrations of NO~x~
+hours where NO~2~ is >100 ppb at quite low concentrations of NO~x~
 ($\approx$200 ppb). It would also be interesting instead of using
 O~3~ concentrations from Marylebone Road to use O~3~ from a
 background site.

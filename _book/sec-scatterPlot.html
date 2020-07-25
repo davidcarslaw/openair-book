@@ -390,7 +390,7 @@ be very difficult to see what the underlying relationship looks
 like. One very effective method to use in these situations is to ‘bin’
 the data and to colour the intervals by the number of counts of
 occurrences in each bin. There are various ways of doing this, but
-`hexagonal binning’ is particularly effective because of the way
+‘hexagonal binning’ is particularly effective because of the way
 hexagons can be placed next to one another.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> To use hexagonal binning it will be
 necessary to install the <span class="pkg">hexbin</span> package:</p>
 <div id="sec:hexbin" class="section level3" number="17.2.1">
@@ -408,7 +408,7 @@ it is dominated by a few very high values. This is possible by
 supplying two functions: one that that applies the transformation and
 the other that inverses it. For log scaling for example (the default),
 <code>trans = function(x) log(x)</code> and <code>inv = function(x) exp(x)</code>. For
-a square root transform use <code>trans = sqrt</code> and <code>inv =  function(x) x\^2</code>. To not apply any transformation <code>trans = NULL</code>
+a square root transform use <code>trans = sqrt</code> and <code>inv =  function(x) x^2</code>. To not apply any transformation <code>trans = NULL</code>
 and <code>inv = NULL</code> should be used.</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="sec-scatterPlot.html#cb155-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot2"></span>
@@ -524,7 +524,8 @@ O<sub>3</sub> helps to show how O<sub>3</sub> concentrations affect NO<sub>2</su
 concentrations. For example, consider the summertime-weekday panel
 where it clearly shows that the higher NO<sub>2</sub> concentrations are
 associated with high O<sub>3</sub> concentrations. Indeed there are some
-hours where NO<sub>2</sub> is $&gt;<span class="math inline">\(100~ppb at quite low concentrations of NO~x~ (\)</span>$200 ppb). It would also be interesting instead of using
+hours where NO<sub>2</sub> is &gt;100 ppb at quite low concentrations of NO<sub>x</sub>
+($$200 ppb). It would also be interesting instead of using
 O<sub>3</sub> concentrations from Marylebone Road to use O<sub>3</sub> from a
 background site.</p>
 <p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">17.6</a> was very easily produced
