@@ -235,7 +235,7 @@ function. Some defined colours are shown in Figure \@ref(fig:colours),
 together with an example of a user defined scale that provides a
 smooth transition from yellow to blue. 
 
-```{r colours,fig.width=5,fig.height=5,out.width='60%',echo=FALSE,fig.cap='Selected pre-defined colour scales in. The top colour scheme is a user-defined one.'}
+```{r colours,fig.width=5,fig.height=7,out.width='70%',echo=FALSE,fig.cap='Selected pre-defined colour scales in. The top colour scheme is a user-defined one.'}
 library(openair)
 ## small function for plotting
 printCols <- function(col, y) {
@@ -251,8 +251,8 @@ printCols("default", 0)
 printCols("increment", 0.2)
 printCols("heat", 0.4)
 printCols("jet", 0.6)
-printCols("hue", 0.8)
-printCols("brewer1", 1.0)
+printCols("viridis", 0.8)
+printCols("inferno", 1.0)
 printCols("greyscale", 1.2)
 printCols(c("tomato", "white", "forestgreen" ), 1.4)
 ```
@@ -282,9 +282,6 @@ library(colorspace)
 library(openair)
 windRose(mydata, cols = qualitative_hcl(4, palette = "Dark 3"))
 ```
-
-
-
 
 ## Automatic text formatting {#sec:quickText}
 
