@@ -80,8 +80,8 @@ concentration, and $n_\theta$ is the total number of samples in the
 same wind sector. CPF analysis is very useful for showing which wind
 directions are dominated by high concentrations and give the
 probability of doing so. In [openair]{.pkg}, a CPF plot can be produced as
-shown in \@ref(fig:percentileRoseCPF). Note that in these plots
-only one percentile is provided and the method must be supplied. In
+shown in Figure \@ref(fig:percentileRoseCPF). Note that in these plots
+only one percentile is provided and the method must be supplied. In Figure
 \@ref(fig:percentileRoseCPF) it is clear that the high
 concentrations (greater than the 95th percentile of *all*
 observations) is dominated by easterly wind directions. There are very

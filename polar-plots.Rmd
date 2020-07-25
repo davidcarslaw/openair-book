@@ -122,7 +122,7 @@ transformed as the transformation generally produces better model
 diagnostics e.g. normally distributed residuals.
 
 The model chosen for the estimate of the concentration surface is
-given by \@ref(eq:mod}. In this model the square root-transformed
+given by Equation \@ref(eq:mod}. In this model the square root-transformed
 concentration is a smooth function of the bivariate wind components
 $u$ and $v$. Note that the smooth function used is *isotropic*
 because $u$ and $v$ are on the same scales. The isotropic smooth
