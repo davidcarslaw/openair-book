@@ -1,7 +1,8 @@
 --- 
-title: "openair"
-author: "David Carslaw"
-date: "`r Sys.Date()`"
+title: "The openair book"
+subtitle: "Tools for air quality data analysis"
+author: "David C. Carslaw"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
