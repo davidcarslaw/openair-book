@@ -150,7 +150,7 @@ data are split into 8 wind sectors (N, NE, E, ...) and plots are
 organised by points of the compass.
 
 There are a series of pre-defined values that `type` can take
-related to the temporal components of the data. To use these there
+related to the temporal components of the data as summarised in Table \@ref(tab:openairType). To use these there
 *must* be a `date` field so that it can be calculated. These
 pre-defined values of `type` are shown below are both useful and convenient. Given a
 data frame containing several years of data it is easy to analyse the
@@ -163,8 +163,6 @@ given. When `type = "daylight"` is used the data are split between
 nighttime and daylight hours. In this case the user can also supply
 the options `latitude` and `longitude` for their location (the
 default is London).
-
-And a brief summary of in-built types are shown in Table \@ref(tab:openairType)
 
 
 ```{r echo=FALSE}
@@ -192,7 +190,7 @@ tab_type <- tibble(
 ```{r openairType,echo=FALSE}
 knitr::kable(
   tab_type, booktabs = TRUE,
-  caption = 'Built-in ways of splitting data in [openair]{.pkg} using the `type` options that is available for most functions.'
+  caption = 'Built-in ways of splitting data in [openair]{.pkg} using the `type` option that is available for most functions.'
 )
 ```
 
