@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Mono|PT+Sans+Narrow:400,700|PT+Serif:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=PT+Mono|Source+Serif+Pro:400,400i,700,700i|Source+Sans+Pro:400,700|PT+Sans+Narrow:400,700|Source+Code+Pro:400,700,400i,700i|PT+Serif:400,400i,700,700i');
 
 * {
   -webkit-box-sizing: border-box;
@@ -16,17 +16,17 @@
 }
 
 p, div {
-  font-family: 'PT Serif', serif;
+  font-family: 'Source Serif Pro', serif;
   font-size: 1.6rem;
 }
 
 li, h1, h2, h3 {
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.6rem;
 }
 
 code, kbd, pre, samp, .sourceLine, .sourceCode {
-  font-family: 'PT Mono', monospace;
+  font-family: 'Source Code Pro', monospace;
   font-size: 1em;
 }
 
