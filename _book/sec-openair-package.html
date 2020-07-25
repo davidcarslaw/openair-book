@@ -24,7 +24,7 @@
 <meta name="author" content="David Carslaw" />
 
 
-<meta name="date" content="2020-07-24" />
+<meta name="date" content="2020-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -484,29 +484,66 @@ given. When <code>type = "daylight"</code> is used the data are split between
 nighttime and daylight hours. In this case the user can also supply
 the options <code>latitude</code> and <code>longitude</code> for their location (the
 default is London).</p>
-<p>And a brief summary of in-built types:</p>
-<ul>
-<li><strong>“year”</strong> splits data by year</li>
-<li><strong>“month”</strong> splits variables by month of the year</li>
-<li><strong>“week”</strong> splits variables by week of the year</li>
-<li><strong>“monthyear”</strong> splits data by year <em>and</em> month</li>
-<li><strong>“season”</strong> splits variables by season. Note in this case the user can
-also supply a <code>hemisphere</code> option that can be either “northern”
-(default) or “southern”</li>
-<li><strong>“weekday”</strong> splits variables by day of the week</li>
-<li><strong>“weekend”</strong> splits variables by Saturday, Sunday, weekday</li>
-<li><strong>“daylight”</strong> splits variables by nighttime/daytime. Note the user must supply a <code>longitude</code> and <code>latitude</code></li>
-<li><strong>“dst”</strong> splits variables by daylight saving time and non-daylight
-saving time (see manual for more details)</li>
-<li><strong>“wd”</strong> if wind direction (<code>wd</code>) is available <code>type = "wd"</code> will split
-the data up into 8 sectors: N, NE, E, SE, S, SW, W, NW.</li>
-<li><strong>“seasonyear”</strong> (or <strong>“yearseason”</strong>) will split the data into
-year-season intervals, keeping the months of a season together. For
-example, December 2010 is considered as part of winter 2011 (with
-January and February 2011). This makes it easier to consider
-contiguous seasons. In contrast, <code>type = "season"</code> will just split
-the data into four seasons regardless of the year.</li>
-</ul>
+<p>And a brief summary of in-built types are shown in Table <a href="sec-openair-package.html#tab:openairType">2.2</a></p>
+<table>
+<caption><span id="tab:openairType">Table 2.2: </span>Built-in ways of splitting data in <span class="pkg">openair</span> using the <code>type</code> options that is available for most functions.</caption>
+<colgroup>
+<col width="3%" />
+<col width="96%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">option</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">‘year’</td>
+<td align="left">splits data by year</td>
+</tr>
+<tr class="even">
+<td align="left">‘month’</td>
+<td align="left">splits data by month of the year</td>
+</tr>
+<tr class="odd">
+<td align="left">‘week’</td>
+<td align="left">splits data by week of the year</td>
+</tr>
+<tr class="even">
+<td align="left">‘monthyear’</td>
+<td align="left">splits data by year <em>and</em> month</td>
+</tr>
+<tr class="odd">
+<td align="left">‘season’</td>
+<td align="left">splits data by season. Note in this case the user can also supply a <code>hemisphere</code> option that can be either ‘northern’ (default) or ‘southern’</td>
+</tr>
+<tr class="even">
+<td align="left">‘weekday’</td>
+<td align="left">splits data by day of the week</td>
+</tr>
+<tr class="odd">
+<td align="left">‘weekend’</td>
+<td align="left">splits data by Saturday, Sunday, weekday</td>
+</tr>
+<tr class="even">
+<td align="left">‘daylight’</td>
+<td align="left">splits data by nighttime/daytime. Note the user must supply a <code>longitude</code> and <code>latitude</code></td>
+</tr>
+<tr class="odd">
+<td align="left">‘dst’</td>
+<td align="left">splits data by daylight saving time and non-daylight saving time</td>
+</tr>
+<tr class="even">
+<td align="left">‘wd’</td>
+<td align="left">if wind direction (<code>wd</code>) is available <code>type = 'wd'</code> will split the data into 8 sectors: N, NE, E, SE, S, SW, W, NW</td>
+</tr>
+<tr class="odd">
+<td align="left">‘seasonyear’</td>
+<td align="left">will split the data into year-season intervals, keeping the months of a season together. For example, December 2010 is considered as part of winter 2011 (with January and February 2011). This makes it easier to consider contiguous seasons. In contrast, <code>type = 'season'</code> will just split the data into four seasons regardless of the year.</td>
+</tr>
+</tbody>
+</table>
 <p>If a categorical variable is present in a data frame e.g. <code>site</code> then
 that variables can be used directly e.g. <code>type = "site"</code>.</p>
 </div>
@@ -563,8 +600,8 @@ function is used as a demonstration of their use.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sec-openair-package.html#cb7-1" aria-hidden="true"></a><span class="kw">library</span>(colorspace)</span>
 <span id="cb7-2"><a href="sec-openair-package.html#cb7-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
 <span id="cb7-3"><a href="sec-openair-package.html#cb7-3" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">cols =</span> <span class="kw">qualitative_hcl</span>(<span class="dv">4</span>, <span class="dt">palette =</span> <span class="st">&quot;Dark 3&quot;</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-10"></span>
-<img src="openair_files/figure-html/unnamed-chunk-10-1.png" alt="Example of using a [colorspace]{.pkg} palette with an [openair]{.pkg} function." width="50%" />
+<div class="figure"><span id="fig:unnamed-chunk-11"></span>
+<img src="openair_files/figure-html/unnamed-chunk-11-1.png" alt="Example of using a [colorspace]{.pkg} palette with an [openair]{.pkg} function." width="50%" />
 <p class="caption">
 Figure 2.2: Example of using a <span class="pkg">colorspace</span> palette with an <span class="pkg">openair</span> function.
 </p>

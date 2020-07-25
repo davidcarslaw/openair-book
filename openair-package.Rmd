@@ -164,28 +164,37 @@ nighttime and daylight hours. In this case the user can also supply
 the options `latitude` and `longitude` for their location (the
 default is London).
 
-And a brief summary of in-built types:
+And a brief summary of in-built types are shown in Table \@ref(tab:openairType)
 
-* **"year"** splits data by year
-* **"month"** splits variables by month of the year
-* **"week"** splits variables by week of the year
-* **"monthyear"** splits data by year *and* month
-* **"season"** splits variables by season. Note in this case the user can
-  also supply a `hemisphere` option that can be either "northern"
-  (default) or "southern"
-* **"weekday"** splits variables by day of the week
-* **"weekend"** splits variables by Saturday, Sunday, weekday
-* **"daylight"** splits variables by nighttime/daytime. Note the user must supply a `longitude` and `latitude`
-* **"dst"** splits variables by daylight saving time and non-daylight
-  saving time (see manual for more details)
-* **"wd"** if wind direction (`wd`) is available `type = "wd"` will split
-  the data up into 8 sectors: N, NE, E, SE, S, SW, W, NW.
-* **"seasonyear"** (or **"yearseason"**) will split the data into
-  year-season intervals, keeping the months of a season together. For
-  example, December 2010 is considered as part of winter 2011 (with
-  January and February 2011). This makes it easier to consider
-  contiguous seasons. In contrast, `type = "season"` will just split
-  the data into four seasons regardless of the year.
+
+```{r echo=FALSE}
+
+tab_type <- tibble(
+  option = c("'year'", "'month'", "'week'", "'monthyear'", "'season'", 
+             "'weekday'", "'weekend'", "'daylight'", "'dst'", "'wd'", "'seasonyear'"
+             ),
+  description = c("splits data by year", 
+                  "splits data by month of the year", 
+                  "splits data by week of the year",
+                  "splits data by year *and* month",
+                  "splits data by season. Note in this case the user can also supply a `hemisphere` option that can be either 'northern' (default) or 'southern'",
+                  "splits data by day of the week",
+                  "splits data by Saturday, Sunday, weekday",
+                  " splits data by nighttime/daytime. Note the user must supply a `longitude` and `latitude`",
+  "splits data by daylight saving time and non-daylight saving time",
+  "if wind direction (`wd`) is available `type = 'wd'` will split the data into 8 sectors: N, NE, E, SE, S, SW, W, NW",
+  " will split the data into year-season intervals, keeping the months of a season together. For example, December 2010 is considered as part of winter 2011 (with January and February 2011). This makes it easier to consider contiguous seasons. In contrast, `type = 'season'` will just split  the data into four seasons regardless of the year."
+                  )
+)
+```
+
+
+```{r openairType,echo=FALSE}
+knitr::kable(
+  tab_type, booktabs = TRUE,
+  caption = 'Built-in ways of splitting data in [openair]{.pkg} using the `type` options that is available for most functions.'
+)
+```
 
 If a categorical variable is present in a data frame e.g. `site` then
 that variables can be used directly e.g. `type = "site"`.
