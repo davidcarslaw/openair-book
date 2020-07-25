@@ -58,6 +58,13 @@ pre code {
   color: #2f5175;
 }
 
+.book .book-summary ul.summary li.active>a { /*active TOC links*/
+  color: #900C3F !important;
+  border-left: solid 4px;
+  border-color: #900C3F;
+  padding-left: 11px !important;
+}  
+
 .rmdcomment {
   padding: 1em 1em 1em 4em;
   margin-bottom: 10px;
