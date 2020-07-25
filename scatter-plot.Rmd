@@ -206,7 +206,7 @@ concentrations. For example, consider the summertime-weekday panel
 where it clearly shows that the higher NO~2~ concentrations are
 associated with high O~3~ concentrations. Indeed there are some
 hours where NO~2~ is >100 ppb at quite low concentrations of NO~x~
-($\approx$200 ppb). It would also be interesting instead of using
+($\approx$ 200 ppb). It would also be interesting instead of using
 O~3~ concentrations from Marylebone Road to use O~3~ from a
 background site.
 

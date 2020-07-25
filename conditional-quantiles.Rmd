@@ -245,7 +245,7 @@ prediction intervals as shown in the conditional quantile plot. The
 plot on the right shows that for low concentrations of predicted
 O~3~ there is a tendency for NO~x~ concentrations to be overestimated
 (NMB $\approx$ 0.2 to 0.4) and wind speeds to be underestimated
-(NMB $\approx$-0.2 to -0.3). One possible explanation for this behaviour
+(NMB $\approx$ -0.2 to -0.3). One possible explanation for this behaviour
 is that the meteorological model tends to produce wind speeds that are
 too low, which would result in higher concentrations of NO~x~, which in
 turn would result in lower concentrations of O~3~. Note that it is
