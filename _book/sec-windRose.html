@@ -360,10 +360,10 @@ four directions are each reduced by a factor of 0.75 and the remaining
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sec-windRose.html#cb30-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
 <span id="cb30-2"><a href="sec-windRose.html#cb30-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <p>The function is very simply called as shown for Figure
-<a href="sec-windRose.html#fig:windrose">5.1</a>.</p>
+<a href="sec-windRose.html#fig:windroseBasic">5.1</a>.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sec-windRose.html#cb31-1" aria-hidden="true"></a><span class="kw">windRose</span>(mydata)</span></code></pre></div>
-<div class="figure"><span id="fig:windrose"></span>
-<img src="openair_files/figure-html/windrose-1.png" alt="Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies." width="50%" />
+<div class="figure"><span id="fig:windroseBasic"></span>
+<img src="openair_files/figure-html/windroseBasic-1.png" alt="Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies." width="50%" />
 <p class="caption">
 Figure 5.1: Use of <code>windRose</code> function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.
 </p>
@@ -421,10 +421,10 @@ range. This type of approach can be very informative for air
 pollutant species, as demonstrated by Ronald Henry and co-authors in <span class="citation">Henry et al. (<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>.</p>
 <p>You can produce similar pollution roses using the <code>pollutionRose</code>
 function in recent versions of <span class="pkg">openair</span>, e.g. as in Figure
-<a href="sec-windRose.html#fig:pollutionrose1">5.4</a>:</p>
+<a href="sec-windRose.html#fig:pollutionRoseBasic">5.4</a>:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="sec-windRose.html#cb35-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:pollutionrose1"></span>
-<img src="openair_files/figure-html/pollutionrose1-1.png" alt="NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings." width="50%" />
+<div class="figure"><span id="fig:pollutionRoseBasic"></span>
+<img src="openair_files/figure-html/pollutionRoseBasic-1.png" alt="NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings." width="50%" />
 <p class="caption">
 Figure 5.4: NO<sub>x</sub> pollution rose produced using <code>pollutionRose</code> and default <code>pollutionRose</code> settings.
 </p>
@@ -437,20 +437,20 @@ sensible set of break points for that pollutant and uses a slightly
 different set of default options (key to right, wedge style plot) but
 otherwise handles arguments just like the parent <code>windRose</code>
 function.</p>
-<p>While Figure <a href="sec-windRose.html#fig:pollutionrose1">5.4</a> indicates that higher NO<sub>x</sub>
+<p>While Figure <a href="sec-windRose.html#fig:pollutionRoseBasic">5.4</a> indicates that higher NO<sub>x</sub>
 concentrations are also associated with the SW, conditioning allows
 you to be much informative. For example, conditioning by SO<sub>2</sub>
-(Figure <a href="sec-windRose.html#fig:pollutionrose2">5.5</a> demonstrates that higher NO<sub>x</sub>
+(Figure <a href="sec-windRose.html#fig:pollRoseNOxO2">5.5</a> demonstrates that higher NO<sub>x</sub>
 concentrations are associated with the SW and much of the higher
 SO<sub>2</sub> concentrations. However, it also highlights a notable NO<sub>x</sub>
 contribution from the E, most apparent at highest SO<sub>2</sub>
-concentrations that is obscured in Figure <a href="sec-windRose.html#fig:pollutionrose1">5.4</a> by a
-relatively high NO<sub>x</sub> background (Figure <a href="sec-windRose.html#fig:pollutionrose2">5.5</a>.</p>
+concentrations that is obscured in Figure <a href="sec-windRose.html#fig:pollutionRoseBasic">5.4</a> by a
+relatively high NO<sub>x</sub> background (Figure <a href="sec-windRose.html#fig:pollRoseNOxO2">5.5</a>.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sec-windRose.html#cb36-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, </span>
 <span id="cb36-2"><a href="sec-windRose.html#cb36-2" aria-hidden="true"></a>              <span class="dt">type =</span> <span class="st">&quot;so2&quot;</span>, </span>
 <span id="cb36-3"><a href="sec-windRose.html#cb36-3" aria-hidden="true"></a>              <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:pollutionrose2"></span>
-<img src="openair_files/figure-html/pollutionrose2-1.png" alt="NO~x~ pollution rose conditioned by SO~2~ concentration." width="960" />
+<div class="figure"><span id="fig:pollRoseNOxO2"></span>
+<img src="openair_files/figure-html/pollRoseNOxO2-1.png" alt="NO~x~ pollution rose conditioned by SO~2~ concentration." width="960" />
 <p class="caption">
 Figure 5.5: NO<sub>x</sub> pollution rose conditioned by SO<sub>2</sub> concentration.
 </p>
@@ -485,7 +485,7 @@ up. Try:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="sec-windRose.html#cb38-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">seg =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>However, each wind sector can be normalised to give a probability
 between 0 and 1 to help show the variation within each wind sector
-more clearly. An example is shown in Figure <a href="sec-windRose.html#fig:pollutionroseNorm">5.7</a>
+more clearly. An example is shown in Figure <a href="sec-windRose.html#fig:pollRoseNorm">5.7</a>
 where for easterly winds it is now clearer that a greater proportion
 of the time the concentration is made up of high SO<sub>2</sub>
 concentrations. In this plot each wind sector is scaled between 0 and
@@ -493,8 +493,8 @@ concentrations. In this plot each wind sector is scaled between 0 and
 frequency to remind us that winds from the east occur with a low
 frequency.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sec-windRose.html#cb39-1" aria-hidden="true"></a><span class="kw">pollutionRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">normalise =</span> <span class="ot">TRUE</span>, <span class="dt">seg =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:pollutionroseNorm"></span>
-<img src="openair_files/figure-html/pollutionroseNorm-1.png" alt="SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector." width="50%" />
+<div class="figure"><span id="fig:pollRoseNorm"></span>
+<img src="openair_files/figure-html/pollRoseNorm-1.png" alt="SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector." width="50%" />
 <p class="caption">
 Figure 5.7: SO<sub>2</sub> pollution rose produced using <code>pollutionRose</code> normalised by each wind sector.
 </p>

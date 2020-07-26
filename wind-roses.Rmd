@@ -42,9 +42,9 @@ library(tidyverse)
 ```
 
 The function is very simply called as shown for Figure
-\@ref(fig:windrose).
+\@ref(fig:windroseBasic).
 
-```{r windrose,fig.width=5,fig.height=5,out.width='50%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.'}
+```{r windroseBasic,fig.width=5,fig.height=5,out.width='50%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.'}
 windRose(mydata)
 ```
 
@@ -102,9 +102,9 @@ pollutant species, as demonstrated by Ronald Henry and co-authors in @henry2009.
 
 You can produce similar pollution roses using the `pollutionRose`
 function in recent versions of [openair]{.pkg}, e.g. as in Figure
-\@ref(fig:pollutionrose1):
+\@ref(fig:pollutionRoseBasic):
 
-```{r pollutionrose1,fig.width=5,fig.height=4,out.width='50%',fig.cap='NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings.'}
+```{r pollutionRoseBasic,fig.width=5,fig.height=4,out.width='50%',fig.cap='NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings.'}
 pollutionRose(mydata, pollutant = "nox")
 ```
 
@@ -117,17 +117,17 @@ different set of default options (key to right, wedge style plot) but
 otherwise handles arguments just like the parent `windRose`
 function.
 
-While Figure \@ref(fig:pollutionrose1) indicates that higher NO~x~
+While Figure \@ref(fig:pollutionRoseBasic) indicates that higher NO~x~
 concentrations are also associated with the SW, conditioning allows
 you to be much informative. For example, conditioning by SO~2~
-(Figure \@ref(fig:pollutionrose2) demonstrates that higher NO~x~
+(Figure \@ref(fig:pollRoseNOxO2) demonstrates that higher NO~x~
 concentrations are associated with the SW and much of the higher
 SO~2~ concentrations. However, it also highlights a notable NO~x~
 contribution from the E, most apparent at highest SO~2~
-concentrations that is obscured in Figure \@ref(fig:pollutionrose1) by a
-relatively high NO~x~ background (Figure \@ref(fig:pollutionrose2).
+concentrations that is obscured in Figure \@ref(fig:pollutionRoseBasic) by a
+relatively high NO~x~ background (Figure \@ref(fig:pollRoseNOxO2).
 
-```{r pollutionrose2,fig.width=10,fig.height=5,fig.cap='NO~x~ pollution rose conditioned by SO~2~ concentration.'}
+```{r pollRoseNOxO2,fig.width=10,fig.height=5,fig.cap='NO~x~ pollution rose conditioned by SO~2~ concentration.'}
 pollutionRose(mydata, pollutant = "nox", 
               type = "so2", 
               layout = c(4, 1))
@@ -164,7 +164,7 @@ pollutionRose(mydata, pollutant = "so2", seg = 1)
 
 However, each wind sector can be normalised to give a probability
 between 0 and 1 to help show the variation within each wind sector
-more clearly. An example is shown in Figure \@ref(fig:pollutionroseNorm)
+more clearly. An example is shown in Figure \@ref(fig:pollRoseNorm)
 where for easterly winds it is now clearer that a greater proportion
 of the time the concentration is made up of high SO~2~
 concentrations. In this plot each wind sector is scaled between 0 and
@@ -172,7 +172,7 @@ concentrations. In this plot each wind sector is scaled between 0 and
 frequency to remind us that winds from the east occur with a low
 frequency.
 
-```{r pollutionroseNorm,fig.width=5,h=4,out.width='50%',fig.cap='SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector.'}
+```{r pollRoseNorm,fig.width=5,h=4,out.width='50%',fig.cap='SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector.'}
 pollutionRose(mydata, pollutant = "so2", normalise = TRUE, seg = 1)
 ```
 
