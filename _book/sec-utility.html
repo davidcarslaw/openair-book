@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section22 Utility functions | The openair book</title>
+  <title>Section 22 Utility functions | The openair book</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section22 Utility functions | The openair book" />
+  <meta property="og:title" content="Section 22 Utility functions | The openair book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="davidcarslaw/openair-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section22 Utility functions | The openair book" />
+  <meta name="twitter:title" content="Section 22 Utility functions | The openair book" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-25" />
+<meta name="date" content="2020-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="sec:utility" class="section level1" number="22">
-<h1><span class="header-section-number">Section22</span> Utility functions</h1>
+<h1><span class="header-section-number">Section 22</span> Utility functions</h1>
 <div id="sec:selectByDate" class="section level2" number="22.1">
 <h2><span class="header-section-number">22.1</span> Selecting data by date</h2>
 <p>Selecting by date/time in R can be intimidating for new users—and time-consuming for all users. The <code>selectByDate</code> function aims to make this easier by allowing users to select data based on the British way of expressing date i.e. d/m/y. This function should be very useful in circumstances where it is necessary to select only part of a data frame.</p>
@@ -336,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="sec-utility.html#cb244-1" aria-hidden="true"></a><span class="co">## select all of 1999</span></span>
 <span id="cb244-2"><a href="sec-utility.html#cb244-2" aria-hidden="true"></a>data<span class="fl">.1999</span> &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/1/1999&quot;</span>, <span class="dt">end =</span> <span class="st">&quot;31/12/1999&quot;</span>)</span>
 <span id="cb244-3"><a href="sec-utility.html#cb244-3" aria-hidden="true"></a><span class="kw">head</span>(data<span class="fl">.1999</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 15
+<pre><code>## # A tibble: 6 x 13
 ##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ## 1 1999-01-01 00:00:00  5.04   140    88    35     4    21  3.84 1.02     18
@@ -345,10 +345,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 1999-01-01 03:00:00  4.92   150    85    36     3    15  4.18 1.62     10
 ## 5 1999-01-01 04:00:00  4.68   150    93    37     3    16  4.25 1.02     11
 ## 6 1999-01-01 05:00:00  3.96   160    74    29     5    14  3.88 0.725    NA
-## # … with 5 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
-## #   feature &lt;chr&gt;</code></pre>
+## # … with 3 more variables: split.by &lt;ord&gt;, feature &lt;chr&gt;, ratio &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="sec-utility.html#cb246-1" aria-hidden="true"></a><span class="kw">tail</span>(data<span class="fl">.1999</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 15
+<pre><code>## # A tibble: 6 x 13
 ##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ## 1 1999-12-31 18:00:00  4.68   190   226    39    NA    29  5.46  2.38    23
@@ -357,8 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 1999-12-31 21:00:00  3.72   220   231    35    NA    28  5.28  2.22    23
 ## 5 1999-12-31 22:00:00  4.08   200   217    41    NA    31  4.79  2.17    26
 ## 6 1999-12-31 23:00:00  3.24   200   181    37    NA    28  3.48  1.78    22
-## # … with 5 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
-## #   feature &lt;chr&gt;</code></pre>
+## # … with 3 more variables: split.by &lt;ord&gt;, feature &lt;chr&gt;, ratio &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="sec-utility.html#cb248-1" aria-hidden="true"></a><span class="co">## easier way</span></span>
 <span id="cb248-2"><a href="sec-utility.html#cb248-2" aria-hidden="true"></a>data<span class="fl">.1999</span> &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">1999</span>)</span>
 <span id="cb248-3"><a href="sec-utility.html#cb248-3" aria-hidden="true"></a></span>
@@ -378,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For example, to cut data into seasons:</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="sec-utility.html#cb250-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">cutData</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span>
 <span id="cb250-2"><a href="sec-utility.html#cb250-2" aria-hidden="true"></a><span class="kw">head</span>(mydata)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 16
+<pre><code>## # A tibble: 6 x 14
 ##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ## 1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
@@ -387,13 +385,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
 ## 5 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
 ## 6 1998-01-01 05:00:00  3      190   264    42     0    16  5.50  3.05    NA
-## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
-## #   feature &lt;chr&gt;, season &lt;ord&gt;</code></pre>
+## # … with 4 more variables: split.by &lt;ord&gt;, feature &lt;chr&gt;, ratio &lt;dbl&gt;,
+## #   season &lt;ord&gt;</code></pre>
 <p>This adds a new field <code>season</code> that is split into four seasons. There is an option <code>hemisphere</code> that can be used to use southern hemisphere seasons when set as <code>hemisphere = "southern"</code>.</p>
 <p>The <code>type</code> can also be another field in a data frame e.g.</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="sec-utility.html#cb252-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">cutData</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;pm10&quot;</span>)</span>
 <span id="cb252-2"><a href="sec-utility.html#cb252-2" aria-hidden="true"></a><span class="kw">head</span>(mydata)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 16
+<pre><code>## # A tibble: 6 x 14
 ##   date                   ws    wd   nox   no2    o3 pm10    so2    co  pm25
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ## 1 1998-01-01 00:00:00  0.6    280   285    39     1 pm10…  4.72  3.37    NA
@@ -402,8 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 1998-01-01 03:00:00  2.16   170   493    52     3 pm10…  7.66 10.2     NA
 ## 5 1998-01-01 04:00:00  2.4    180   468    78     2 pm10…  8.07  8.91    NA
 ## 6 1998-01-01 05:00:00  3      190   264    42     0 pm10…  5.50  3.05    NA
-## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
-## #   feature &lt;chr&gt;, season &lt;ord&gt;</code></pre>
+## # … with 4 more variables: split.by &lt;ord&gt;, feature &lt;chr&gt;, ratio &lt;dbl&gt;,
+## #   season &lt;ord&gt;</code></pre>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="sec-utility.html#cb254-1" aria-hidden="true"></a><span class="kw">data</span>(mydata) <span class="co">## re-load mydata fresh</span></span></code></pre></div>
 <p>This divides PM<sub>10</sub> concentrations into four <em>quantiles</em> — roughly equal numbers of PM_10~ concentrations in four levels.</p>
 <p>Most of the time users do not have to call <code>cutData</code> directly because most functions have a <code>type</code> option that is used to call <code>cutData</code> directly e.g.</p>
@@ -457,7 +455,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="sec-utility.html#cb264-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">rollingMean</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">hours =</span> <span class="dv">8</span>,</span>
 <span id="cb264-2"><a href="sec-utility.html#cb264-2" aria-hidden="true"></a>                       <span class="dt">new.name =</span> <span class="st">&quot;rollingo3&quot;</span>, <span class="dt">data.thresh =</span> <span class="dv">75</span>)</span>
 <span id="cb264-3"><a href="sec-utility.html#cb264-3" aria-hidden="true"></a><span class="kw">tail</span>(mydata)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 16
+<pre><code>## # A tibble: 6 x 11
 ##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ## 1 2005-06-23 07:00:00   1.5   250   404   156     4    49    NA  1.81    28
@@ -466,8 +464,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 ## 4 2005-06-23 10:00:00   2.6   240   387   175    10    55    NA  1.29    34
 ## 5 2005-06-23 11:00:00   3.1   220   312   125    15    52    NA  1.29    33
 ## 6 2005-06-23 12:00:00   3.1   220   287   119    17    55    NA  1.29    35
-## # … with 6 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, split.by &lt;ord&gt;,
-## #   feature &lt;chr&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+## # … with 1 more variable: rollingo3 &lt;dbl&gt;</code></pre>
 <p>Note that calculating rolling means shortens the length of the data set. In the case of O<sub>3</sub>, no calculations are made for the last 7 hours.</p>
 <p>Type <code>?rollingMean</code> into R for more details. Note that the function currently only works with a single site.</p>
 </div>
@@ -487,7 +484,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 <p>To calculate daily means from hourly (or higher resolution) data:</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="sec-utility.html#cb266-1" aria-hidden="true"></a>daily &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>)</span>
 <span id="cb266-2"><a href="sec-utility.html#cb266-2" aria-hidden="true"></a>daily</span></code></pre></div>
-<pre><code>## # A tibble: 2,731 x 14
+<pre><code>## # A tibble: 2,731 x 11
 ##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1 1998-01-01 00:00:00  6.84  188.  154.  39.4 6.87   18.2  3.15  2.70   NaN
@@ -500,14 +497,13 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 ##  8 1998-01-08 00:00:00  8.58  216.  161.  43.1 4.96   36    4.68  2.10   NaN
 ##  9 1998-01-09 00:00:00  6.7   206.  163.  38   3.62   38.0  5.13  2.36   NaN
 ## 10 1998-01-10 00:00:00  2.98  167.  219.  44.9 0.375  37.0  4.91  2.23   NaN
-## # … with 2,721 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;,
-## #   ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+## # … with 2,721 more rows, and 1 more variable: rollingo3 &lt;dbl&gt;</code></pre>
 <p>Monthly 95th percentile values:</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="sec-utility.html#cb268-1" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>, </span>
 <span id="cb268-2"><a href="sec-utility.html#cb268-2" aria-hidden="true"></a>                       <span class="dt">statistic =</span> <span class="st">&quot;percentile&quot;</span>,</span>
 <span id="cb268-3"><a href="sec-utility.html#cb268-3" aria-hidden="true"></a>                       <span class="dt">percentile =</span> <span class="dv">95</span>)</span>
 <span id="cb268-4"><a href="sec-utility.html#cb268-4" aria-hidden="true"></a>monthly</span></code></pre></div>
-<pre><code>## # A tibble: 90 x 14
+<pre><code>## # A tibble: 90 x 11
 ##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1 1998-01-01 00:00:00 11.2   45.   371.  68.6  14    53    11.1  3.99  NA  
@@ -520,13 +516,12 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 ##  8 1998-08-01 00:00:00  7.92  48.4  337.  87.0  16    58.2  13.0  3.78  38  
 ##  9 1998-09-01 00:00:00  6     66.7  334.  81.3  14    64    18.2  4.25  47  
 ## 10 1998-10-01 00:00:00 12     33.9  439.  84    15.1  54    12.0  4.81  33  
-## # … with 80 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;,
-## #   rollingo3 &lt;dbl&gt;</code></pre>
+## # … with 80 more rows, and 1 more variable: rollingo3 &lt;dbl&gt;</code></pre>
 <p>2-week averages but only calculate if at least 75% of the data are available:</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="sec-utility.html#cb270-1" aria-hidden="true"></a>twoweek &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(mydata, <span class="dt">avg.time =</span> <span class="st">&quot;2 week&quot;</span>, </span>
 <span id="cb270-2"><a href="sec-utility.html#cb270-2" aria-hidden="true"></a>                       <span class="dt">data.thresh =</span> <span class="dv">75</span>)</span>
 <span id="cb270-3"><a href="sec-utility.html#cb270-3" aria-hidden="true"></a>twoweek</span></code></pre></div>
-<pre><code>## # A tibble: 196 x 14
+<pre><code>## # A tibble: 196 x 11
 ##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##    &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1 1997-12-29 00:00:00  6.98  212.  167.  41.4  4.63  29.3  4.47  2.17  NA  
@@ -539,8 +534,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 ##  8 1998-04-06 00:00:00  3.24  294.  144.  43.4 10.1   23.8  5.48  1.40  NA  
 ##  9 1998-04-20 00:00:00  4.38  195.  177.  47.6 10.5   31.4  5.54  1.73  NA  
 ## 10 1998-05-04 00:00:00  3.97  285.  134.  45.5 10.2   38.6  5.49  1.41  24.6
-## # … with 186 more rows, and 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;,
-## #   ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+## # … with 186 more rows, and 1 more variable: rollingo3 &lt;dbl&gt;</code></pre>
 <p>Note that <code>timeAverage</code> has a <code>type</code> option to allow for the splitting of variables by a grouping variable. The most common use for <code>type</code> is when data are available for different sites and the averaging needs to be done on a per site basis.</p>
 <p>First, retaining by site averages:</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="sec-utility.html#cb272-1" aria-hidden="true"></a><span class="co"># import some data for two sites</span></span>
@@ -590,7 +584,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 <span id="cb278-2"><a href="sec-utility.html#cb278-2" aria-hidden="true"></a>                      <span class="dt">avg.time =</span> <span class="st">&quot;15 min&quot;</span>, </span>
 <span id="cb278-3"><a href="sec-utility.html#cb278-3" aria-hidden="true"></a>                      <span class="dt">fill =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb278-4"><a href="sec-utility.html#cb278-4" aria-hidden="true"></a><span class="kw">head</span>(data15, <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 20 x 14
+<pre><code>## # A tibble: 20 x 11
 ##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
 ##    &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
 ##  1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
@@ -613,7 +607,7 @@ Figure 22.1: Example of using the <code>selectRunning</code> function to select 
 ## 18 1998-01-01 04:15:00  2.4    180   468    78     2    34  8.07  8.91    NA
 ## 19 1998-01-01 04:30:00  2.4    180   468    78     2    34  8.07  8.91    NA
 ## 20 1998-01-01 04:45:00  2.4    180   468    78     2    34  8.07  8.91    NA
-## # … with 4 more variables: ws2 &lt;dbl&gt;, wd2 &lt;dbl&gt;, ratio &lt;dbl&gt;, rollingo3 &lt;dbl&gt;</code></pre>
+## # … with 1 more variable: rollingo3 &lt;dbl&gt;</code></pre>
 <p>The <code>timePlot</code> can apply this function directly to make it very easy to plot data with different averaging times and statistics.</p>
 </div>
 <div id="sec:calcPercentile" class="section level2" number="22.6">

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section18 Trajectory analysis | The openair book</title>
+  <title>Section 18 Trajectory analysis | The openair book</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section18 Trajectory analysis | The openair book" />
+  <meta property="og:title" content="Section 18 Trajectory analysis | The openair book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="davidcarslaw/openair-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section18 Trajectory analysis | The openair book" />
+  <meta name="twitter:title" content="Section 18 Trajectory analysis | The openair book" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-25" />
+<meta name="date" content="2020-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="sec:trajPlot" class="section level1" number="18">
-<h1><span class="header-section-number">Section18</span> Trajectory analysis</h1>
+<h1><span class="header-section-number">Section 18</span> Trajectory analysis</h1>
 <p>Back trajectories are extremely useful in air pollution and can
 provide important information on air mass origins. Despite the clear
 usefulness of back trajectories, their use tends to be restricted to
@@ -719,20 +719,20 @@ of such an approach.</p>
 <p>Now it is possible to post-process the data. <code>traj</code> now has the
 angle, sector and allocation (<code>sector</code>).</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="sec-trajPlot.html#cb190-1" aria-hidden="true"></a><span class="kw">head</span>(traj)</span></code></pre></div>
-<pre><code>##                  date receptor year month day hour hour.inc    lat    lon
-## 1 2010-01-01 09:00:00        1 2010     1   1    9        0 51.500 -0.100
-## 2 2010-01-01 09:00:00        1 2010     1   1    8       -1 51.766  0.057
-## 3 2010-01-01 09:00:00        1 2010     1   1    7       -2 52.030  0.250
-## 4 2010-01-01 09:00:00        1 2010     1   1    6       -3 52.295  0.488
-## 5 2010-01-01 09:00:00        1 2010     1   1    5       -4 52.554  0.767
-## 6 2010-01-01 09:00:00        1 2010     1   1    4       -5 52.797  1.065
-##   height pressure               date2    angle sector         sec
-## 1   10.0    994.7 2010-01-01 09:00:00  0.00000      N unallocated
-## 2   10.3    994.9 2010-01-01 08:00:00 30.55019     NE unallocated
-## 3   10.5    995.0 2010-01-01 07:00:00 33.43987     NE unallocated
-## 4   10.8    995.0 2010-01-01 06:00:00 36.48747     NE unallocated
-## 5   11.0    995.4 2010-01-01 05:00:00 39.44005     NE unallocated
-## 6   11.3    995.6 2010-01-01 04:00:00 41.93103     NE unallocated</code></pre>
+<pre><code>##   receptor year month day hour hour.inc    lat    lon height pressure
+## 1        1 2010     1   1    9        0 51.500 -0.100   10.0    994.7
+## 2        1 2010     1   1    8       -1 51.766  0.057   10.3    994.9
+## 3        1 2010     1   1    7       -2 52.030  0.250   10.5    995.0
+## 4        1 2010     1   1    6       -3 52.295  0.488   10.8    995.0
+## 5        1 2010     1   1    5       -4 52.554  0.767   11.0    995.4
+## 6        1 2010     1   1    4       -5 52.797  1.065   11.3    995.6
+##                 date2                date      sector n
+## 1 2010-01-01 09:00:00 2010-01-01 09:00:00 unallocated 9
+## 2 2010-01-01 08:00:00 2010-01-01 09:00:00 unallocated 9
+## 3 2010-01-01 07:00:00 2010-01-01 09:00:00 unallocated 9
+## 4 2010-01-01 06:00:00 2010-01-01 09:00:00 unallocated 9
+## 5 2010-01-01 05:00:00 2010-01-01 09:00:00 unallocated 9
+## 6 2010-01-01 04:00:00 2010-01-01 09:00:00 unallocated 9</code></pre>
 <p>First, merge the air quality data from North Kensington:</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="sec-trajPlot.html#cb192-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">left_join</span>(traj, kc1, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span></code></pre></div>
 <p>We can work out the mean concentration by allocation, which shows the
@@ -740,34 +740,36 @@ clear importance for the east and south-east sectors.</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="sec-trajPlot.html#cb193-1" aria-hidden="true"></a><span class="kw">group_by</span>(traj, sector) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb193-2"><a href="sec-trajPlot.html#cb193-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">PM2.5 =</span> <span class="kw">mean</span>(pm2<span class="fl">.5</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 8 x 2
-##   sector PM2.5
-##   &lt;fct&gt;  &lt;dbl&gt;
-## 1 NE      14.0
-## 2 E       20.8
-## 3 SE      22.8
-## 4 S       14.9
-## 5 SW      11.9
-## 6 W       12.1
-## 7 NW      13.8
-## 8 N       13.6</code></pre>
+<pre><code>## # A tibble: 9 x 2
+##   sector      PM2.5
+##   &lt;chr&gt;       &lt;dbl&gt;
+## 1 E            21.6
+## 2 N            11.8
+## 3 NE           12.6
+## 4 NW           13.6
+## 5 S            14.5
+## 6 SE           28.7
+## 7 SW           10.8
+## 8 unallocated  15.5
+## 9 W            11.8</code></pre>
 <p>Finally, the percentage of the year in each sector can be calculated
 as follows:</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="sec-trajPlot.html#cb196-1" aria-hidden="true"></a><span class="kw">group_by</span>(traj, sector) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb196-2"><a href="sec-trajPlot.html#cb196-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb196-3"><a href="sec-trajPlot.html#cb196-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(traj))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<pre><code>## # A tibble: 8 x 3
-##   sector     n percent
-##   &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt;
-## 1 NE     40700   14.5 
-## 2 E      24947    8.86
-## 3 SE     10900    3.87
-## 4 S      12599    4.47
-## 5 SW     36183   12.9 
-## 6 W      83535   29.7 
-## 7 NW     40308   14.3 
-## 8 N      32375   11.5</code></pre>
+<pre><code>## # A tibble: 9 x 3
+##   sector          n percent
+##   &lt;chr&gt;       &lt;int&gt;   &lt;dbl&gt;
+## 1 E           18898    6.71
+## 2 N           15520    5.51
+## 3 NE          28867   10.3 
+## 4 NW          25802    9.16
+## 5 S            6111    2.17
+## 6 SE           5820    2.07
+## 7 SW          24638    8.75
+## 8 unallocated 83141   29.5 
+## 9 W           72750   25.8</code></pre>
 </div>
 </div>
 <div id="potential-source-contribution-function-pscf" class="section level2" number="18.4">
@@ -1005,7 +1007,7 @@ consistent with air-masses associated with a high pressure system (a
 clockwise-type sweep).</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="sec-trajPlot.html#cb210-1" aria-hidden="true"></a><span class="kw">group_by</span>(kc1, cluster) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb210-2"><a href="sec-trajPlot.html#cb210-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 7 x 28
+<pre><code>## # A tibble: 6 x 28
 ##   cluster    co   nox   no2    no    o3   so2  pm10 pm2.5   v10  v2.5  nv10
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 C1      0.346  89.9  51.4 25.3   32.1  3.12  38.3  31.3  8.79  8.02  29.5
@@ -1014,7 +1016,6 @@ clockwise-type sweep).</p>
 ## 4 C4      0.189  44.1  30.6  8.89  39.7  1.56  17.8  11.0  3.41  2.17  14.4
 ## 5 C5      0.202  57.0  39.2 11.7   41.4  2.31  24.3  16.5  5.06  4.50  19.2
 ## 6 C6      0.267  64.9  42.4 14.8   46.3  2.93  36.6  29.7  7.78  7.57  28.8
-## 7 &lt;NA&gt;    0.225  53.8  36.2 11.6   39.3  2.06  23.7  16.3  5.20  4.14  18.5
 ## # … with 16 more variables: nv2.5 &lt;dbl&gt;, ws &lt;dbl&gt;, wd &lt;dbl&gt;, air_temp &lt;dbl&gt;,
 ## #   receptor &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   hour.inc &lt;dbl&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;, height &lt;dbl&gt;, pressure &lt;dbl&gt;,

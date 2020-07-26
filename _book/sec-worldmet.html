@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section4 Access meteorological data | The openair book</title>
+  <title>Section 4 Access meteorological data | The openair book</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section4 Access meteorological data | The openair book" />
+  <meta property="og:title" content="Section 4 Access meteorological data | The openair book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="davidcarslaw/openair-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section4 Access meteorological data | The openair book" />
+  <meta name="twitter:title" content="Section 4 Access meteorological data | The openair book" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-25" />
+<meta name="date" content="2020-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="sec:worldmet" class="section level1" number="4">
-<h1><span class="header-section-number">Section4</span> Access meteorological data</h1>
+<h1><span class="header-section-number">Section 4</span> Access meteorological data</h1>
 <div id="the-worldmet-package" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> The worldmet package</h2>
 <p>Most of the import functions described in Section <a href="sec-importAURN.html#sec:importAURN">3</a> return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.</p>
@@ -350,8 +350,8 @@ will load the <strong>worldmet</strong> package:</p>
 53.3, longitude = -6.3)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="sec-worldmet.html#cb25-1" aria-hidden="true"></a><span class="kw">getMeta</span>(<span class="dt">lat =</span> <span class="fl">53.3</span>, <span class="dt">lon =</span> <span class="fl">-6.3</span>, <span class="dt">returnMap =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-22"></span>
-<div id="htmlwidget-568f7e8e058ead137983" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-568f7e8e058ead137983">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[53.302,53.421,52.85,53.533,54.233,54.05,52.283,53.248,53.017,52.783],[-6.451,-6.27,-6.9,-7.367,-6.5,-7.3,-6.483,-4.535,-8,-4.733],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["CASEMENT<br/>Code: 039670-99999<br/>Start: 1987-02-01<br/>End: 2020-07-22<br/>Distance (km) 10","DUBLIN<br/>Code: 039690-99999<br/>Start: 1973-01-01<br/>End: 2020-07-22<br/>Distance (km) 13.6","OAK PARK - CARLOW<br/>Code: 039610-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 64.1","MULLINGAR<br/>Code: 039710-99999<br/>Start: 1973-01-01<br/>End: 2020-07-22<br/>Distance (km) 75.3","GLENANNE NO2<br/>Code: 039230-99999<br/>Start: 1985-02-07<br/>End: 2020-07-22<br/>Distance (km) 104.6","BALLYHAISE<br/>Code: 039790-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 106.3","JOHNSTOWN CASTLE<br/>Code: 039560-99999<br/>Start: 2007-08-06<br/>End: 2020-07-22<br/>Distance (km) 113.8","VALLEY<br/>Code: 033020-99999<br/>Start: 1926-06-06<br/>End: 2020-07-22<br/>Distance (km) 117.5","GURTEEN<br/>Code: 039660-99999<br/>Start: 1929-10-01<br/>End: 2020-07-22<br/>Distance (km) 117.6","ABERDARON<br/>Code: 034050-99999<br/>Start: 1994-10-01<br/>End: 2020-07-22<br/>Distance (km) 119.5"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[53.3,-6.3,200,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":20,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},["Search location<br/>Lat = 53.302<br/>Lon = -6.451","Search location<br/>Lat = 53.421<br/>Lon = -6.27","Search location<br/>Lat = 52.85<br/>Lon = -6.9","Search location<br/>Lat = 53.533<br/>Lon = -7.367","Search location<br/>Lat = 54.233<br/>Lon = -6.5","Search location<br/>Lat = 54.05<br/>Lon = -7.3","Search location<br/>Lat = 52.283<br/>Lon = -6.483","Search location<br/>Lat = 53.248<br/>Lon = -4.535","Search location<br/>Lat = 53.017<br/>Lon = -8","Search location<br/>Lat = 52.783<br/>Lon = -4.733"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[52.283,54.233],"lng":[-8,-4.535]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-112456380568bb1e2d4e" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-112456380568bb1e2d4e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[53.302,53.421,52.85,53.533,54.233,54.05,52.283,53.248,53.017,52.783],[-6.451,-6.27,-6.9,-7.367,-6.5,-7.3,-6.483,-4.535,-8,-4.733],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["CASEMENT<br/>Code: 039670-99999<br/>Start: 1987-02-01<br/>End: 2020-07-23<br/>Distance (km) 10","DUBLIN<br/>Code: 039690-99999<br/>Start: 1973-01-01<br/>End: 2020-07-23<br/>Distance (km) 13.6","OAK PARK - CARLOW<br/>Code: 039610-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 64.1","MULLINGAR<br/>Code: 039710-99999<br/>Start: 1973-01-01<br/>End: 2020-07-23<br/>Distance (km) 75.3","GLENANNE NO2<br/>Code: 039230-99999<br/>Start: 1985-02-07<br/>End: 2020-07-23<br/>Distance (km) 104.6","BALLYHAISE<br/>Code: 039790-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 106.3","JOHNSTOWN CASTLE<br/>Code: 039560-99999<br/>Start: 2007-08-06<br/>End: 2020-07-23<br/>Distance (km) 113.8","VALLEY<br/>Code: 033020-99999<br/>Start: 1926-06-06<br/>End: 2020-07-23<br/>Distance (km) 117.5","GURTEEN<br/>Code: 039660-99999<br/>Start: 1929-10-01<br/>End: 2020-07-23<br/>Distance (km) 117.6","ABERDARON<br/>Code: 034050-99999<br/>Start: 1994-10-01<br/>End: 2020-07-23<br/>Distance (km) 119.5"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[53.3,-6.3,200,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":20,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},["Search location<br/>Lat = 53.302<br/>Lon = -6.451","Search location<br/>Lat = 53.421<br/>Lon = -6.27","Search location<br/>Lat = 52.85<br/>Lon = -6.9","Search location<br/>Lat = 53.533<br/>Lon = -7.367","Search location<br/>Lat = 54.233<br/>Lon = -6.5","Search location<br/>Lat = 54.05<br/>Lon = -7.3","Search location<br/>Lat = 52.283<br/>Lon = -6.483","Search location<br/>Lat = 53.248<br/>Lon = -4.535","Search location<br/>Lat = 53.017<br/>Lon = -8","Search location<br/>Lat = 52.783<br/>Lon = -4.733"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[52.283,54.233],"lng":[-8,-4.535]}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 4.1: Map of returned area of interest. The user can interactively select a site of interest and find its code to import data.
 </p>

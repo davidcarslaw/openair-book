@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section11 Temporal variations | The openair book</title>
+  <title>Section 11 Temporal variations | The openair book</title>
   <meta name="description" content="This will eventually form a book related to the openair R package." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section11 Temporal variations | The openair book" />
+  <meta property="og:title" content="Section 11 Temporal variations | The openair book" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="davidcarslaw/openair-book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section11 Temporal variations | The openair book" />
+  <meta name="twitter:title" content="Section 11 Temporal variations | The openair book" />
   
   <meta name="twitter:description" content="This will eventually form a book related to the openair R package." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-25" />
+<meta name="date" content="2020-07-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="sec:timeVariation" class="section level1" number="11">
-<h1><span class="header-section-number">Section11</span> Temporal variations</h1>
+<h1><span class="header-section-number">Section 11</span> Temporal variations</h1>
 <div id="sec:purpose-time-var" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Purpose</h2>
 <p>In air pollution, the variation of a pollutant by time of day and day
@@ -579,12 +579,12 @@ access them.</p>
 ## # Groups:   ci [1]
 ##   variable wkday      hour default                        Mean Lower Upper    ci
 ##   &lt;fct&gt;    &lt;ord&gt;     &lt;int&gt; &lt;fct&gt;                         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.63  3.19  0.95
-## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  3.02  3.46  0.95
-## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.09  3.59  0.95
-## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.98  3.56  0.95
-## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.39  3.90  0.95
-## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  4.01  4.58  0.95</code></pre>
+## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.70  3.19  0.95
+## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  2.91  3.50  0.95
+## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.10  3.58  0.95
+## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.97  3.44  0.95
+## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.37  3.88  0.95
+## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  3.95  4.60  0.95</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sec-timeVariation.html#cb106-1" aria-hidden="true"></a><span class="co">## can make a new data frame of this data e.g.</span></span>
 <span id="cb106-2"><a href="sec-timeVariation.html#cb106-2" aria-hidden="true"></a>day.hour &lt;-<span class="st"> </span>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour</span>
 <span id="cb106-3"><a href="sec-timeVariation.html#cb106-3" aria-hidden="true"></a><span class="kw">head</span>(day.hour)</span></code></pre></div>
@@ -592,12 +592,12 @@ access them.</p>
 ## # Groups:   ci [1]
 ##   variable wkday      hour default                        Mean Lower Upper    ci
 ##   &lt;fct&gt;    &lt;ord&gt;     &lt;int&gt; &lt;fct&gt;                         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.63  3.19  0.95
-## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  3.02  3.46  0.95
-## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.09  3.59  0.95
-## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.98  3.56  0.95
-## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.39  3.90  0.95
-## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  4.01  4.58  0.95</code></pre>
+## 1 so2      Monday        0 01 January 1998 to 23 June 2…  2.93  2.70  3.19  0.95
+## 2 so2      Tuesday       0 01 January 1998 to 23 June 2…  3.21  2.91  3.50  0.95
+## 3 so2      Wednesday     0 01 January 1998 to 23 June 2…  3.35  3.10  3.58  0.95
+## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.97  3.44  0.95
+## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.37  3.88  0.95
+## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  3.95  4.60  0.95</code></pre>
 <p>All the numerical results are given by:</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sec-timeVariation.html#cb108-1" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour <span class="co">## are the weekday and hour results</span></span>
 <span id="cb108-2"><a href="sec-timeVariation.html#cb108-2" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>hour <span class="co">## are the diurnal results</span></span>
