@@ -1,1 +1,1 @@
-This is work in progress to produce a book on the openair R package. It will eventually be published on https://bookdown.org but is available at https://openair-book.netlify.app for now.
+This is work in progress to produce a book on the openair R package. It is published https://bookdown.org/david_carslaw/openair/
