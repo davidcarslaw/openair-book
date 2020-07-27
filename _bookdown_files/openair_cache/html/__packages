@@ -19,3 +19,5 @@ lattice
 latticeExtra
 usethis
 devtools
+nlme
+mgcv

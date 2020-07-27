@@ -28,4 +28,5 @@ rmd_files: ["index.Rmd",
 "utility-functions.Rmd",
 "appendix-annotate.Rmd",
 "appendix-hysplit.Rmd",
+"appendix-trends.Rmd",
 "references.Rmd"]
