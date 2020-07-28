@@ -236,7 +236,7 @@ splitByDate(
 )
 ```
 
-This code adds a new column `scenario` that is labelled `before` and `after` depending on the date. Note that the date is in British format (dd/mm/YYYY). 
+This code adds a new column `scenario` that is labelled `before` and `after` depending on the date. Note that the `dates` input by the user is in British format (dd/mm/YYYY) and that several dates (and labels) can be provided.
 
 
 ## Controlling font size {#sec:font-size}
