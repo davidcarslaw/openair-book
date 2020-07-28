@@ -3,6 +3,9 @@ title: "The openair book"
 subtitle: "Tools for air quality data analysis"
 author: "David C. Carslaw"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
+description: "Analysing air quality data with the openair package"
+github-repo: "davidcarslaw/openair-book"
+cover-image: "images/cover.png"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -11,8 +14,6 @@ before_chapter_script: ["load-packages.R"]
 always_allow_html: true
 biblio-style: apalike
 link-citations: yes
-github-repo: davidcarslaw/openair-book
-description: "This will eventually form a book related to the openair R package."
 ---
 
 # Preface {-}

@@ -1,7 +1,4 @@
 book_filename: "openair"
-description: "Analysing air quality data with the openair package"
-github-repo: "davidcarslaw/openair-book"
-cover-image: "images/cover.png"
 language:
   ui:
     chapter_name: "Section "
