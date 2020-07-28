@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -433,11 +436,11 @@ sources are important that they can be isolated to some degree and
 compared. This is where the uncertainty intervals help — they provide
 an indication whether the behaviour of one source differs
 significantly from another.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="sec-timeVariation.html#cb99-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb99-2"><a href="sec-timeVariation.html#cb99-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb99-3"><a href="sec-timeVariation.html#cb99-3" aria-hidden="true"></a></span>
-<span id="cb99-4"><a href="sec-timeVariation.html#cb99-4" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>,  wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>, wd <span class="op">&lt;</span><span class="st"> </span><span class="dv">270</span>),</span>
-<span id="cb99-5"><a href="sec-timeVariation.html#cb99-5" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;pm10 (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="sec-timeVariation.html#cb103-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb103-2"><a href="sec-timeVariation.html#cb103-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb103-3"><a href="sec-timeVariation.html#cb103-3" aria-hidden="true"></a></span>
+<span id="cb103-4"><a href="sec-timeVariation.html#cb103-4" aria-hidden="true"></a><span class="kw">timeVariation</span>(<span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>,  wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>, wd <span class="op">&lt;</span><span class="st"> </span><span class="dv">270</span>),</span>
+<span id="cb103-5"><a href="sec-timeVariation.html#cb103-5" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;pm10 (ug/m3)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeVar1"></span>
 <img src="openair_files/figure-html/timeVar1-1.png" alt="Example plot using the `timeVariation` function to plot PM~10~ concentrations at Marylebone Road." width="1152" />
 <p class="caption">
@@ -464,9 +467,9 @@ anti-correlated. Note also the clear peak in O<sub>3</sub> in April/May,
 which is due to higher northern hemispheric background concentrations
 in the spring. Even at a busy roadside site in central London this
 influence is clear to see.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="sec-timeVariation.html#cb100-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, </span>
-<span id="cb100-2"><a href="sec-timeVariation.html#cb100-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;no2&quot;</span>, <span class="st">&quot;o3&quot;</span>), </span>
-<span id="cb100-3"><a href="sec-timeVariation.html#cb100-3" aria-hidden="true"></a>              <span class="dt">normalise =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="sec-timeVariation.html#cb104-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, </span>
+<span id="cb104-2"><a href="sec-timeVariation.html#cb104-2" aria-hidden="true"></a>              <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;no2&quot;</span>, <span class="st">&quot;o3&quot;</span>), </span>
+<span id="cb104-3"><a href="sec-timeVariation.html#cb104-3" aria-hidden="true"></a>              <span class="dt">normalise =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeVar2"></span>
 <img src="openair_files/figure-html/timeVar2-1.png" alt="Example plot using the `timeVariation` function to plot NO~x~, CO, NO~2~ and O~3~ concentrations at Marylebone Road. In this plot, the concentrations are normalised." width="1152" />
 <p class="caption">
@@ -488,13 +491,13 @@ emissions from other vehicle types. Given that it is known that
 primary NO<sub>2</sub> emissions are known to have increased sharply from the
 beginning of 2003 onwards, this perhaps provides clues as to the
 principal cause.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="sec-timeVariation.html#cb101-1" aria-hidden="true"></a><span class="co">## split data into two periods (see Utlities section for more details)</span></span>
-<span id="cb101-2"><a href="sec-timeVariation.html#cb101-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">splitByDate</span>(mydata, <span class="dt">dates=</span> <span class="st">&quot;1/1/2003&quot;</span>,</span>
-<span id="cb101-3"><a href="sec-timeVariation.html#cb101-3" aria-hidden="true"></a>                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;before Jan. 2003&quot;</span>, <span class="st">&quot;After Jan. 2003&quot;</span>))</span>
-<span id="cb101-4"><a href="sec-timeVariation.html#cb101-4" aria-hidden="true"></a></span>
-<span id="cb101-5"><a href="sec-timeVariation.html#cb101-5" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, </span>
-<span id="cb101-6"><a href="sec-timeVariation.html#cb101-6" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;split.by&quot;</span>, </span>
-<span id="cb101-7"><a href="sec-timeVariation.html#cb101-7" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="sec-timeVariation.html#cb105-1" aria-hidden="true"></a><span class="co">## split data into two periods (see Utlities section for more details)</span></span>
+<span id="cb105-2"><a href="sec-timeVariation.html#cb105-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">splitByDate</span>(mydata, <span class="dt">dates=</span> <span class="st">&quot;1/1/2003&quot;</span>,</span>
+<span id="cb105-3"><a href="sec-timeVariation.html#cb105-3" aria-hidden="true"></a>                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;before Jan. 2003&quot;</span>, <span class="st">&quot;After Jan. 2003&quot;</span>))</span>
+<span id="cb105-4"><a href="sec-timeVariation.html#cb105-4" aria-hidden="true"></a></span>
+<span id="cb105-5"><a href="sec-timeVariation.html#cb105-5" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb105-6"><a href="sec-timeVariation.html#cb105-6" aria-hidden="true"></a>              <span class="dt">group =</span> <span class="st">&quot;split.by&quot;</span>, </span>
+<span id="cb105-7"><a href="sec-timeVariation.html#cb105-7" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeVar3"></span>
 <img src="openair_files/figure-html/timeVar3-1.png" alt="Example plot using the `timeVariation` function to plot NO~2~ concentrations at Marylebone Road. In this    plot, the concentrations are shown before and after January 2003." width="1152" />
 <p class="caption">
@@ -530,12 +533,12 @@ SO<sub>2</sub> concentrations for these conditions tend to be dominated by
 tall stack emissions that have different activities to road transport
 sources. This technique will be returned to with different data sets
 in future.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="sec-timeVariation.html#cb102-1" aria-hidden="true"></a><span class="co">## make a field called &quot;feature&quot; and fill: make all values = &quot;other&quot;</span></span>
-<span id="cb102-2"><a href="sec-timeVariation.html#cb102-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, </span>
-<span id="cb102-3"><a href="sec-timeVariation.html#cb102-3" aria-hidden="true"></a>                 <span class="dt">feature =</span> <span class="kw">ifelse</span>(ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">180</span>, <span class="st">&quot;easterly&quot;</span>, <span class="st">&quot;other&quot;</span>))</span>
-<span id="cb102-4"><a href="sec-timeVariation.html#cb102-4" aria-hidden="true"></a></span>
-<span id="cb102-5"><a href="sec-timeVariation.html#cb102-5" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span><span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;feature&quot;</span>,  <span class="dt">ylab =</span> <span class="st">&quot;so2 (ppb)&quot;</span>,</span>
-<span id="cb102-6"><a href="sec-timeVariation.html#cb102-6" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sec-timeVariation.html#cb106-1" aria-hidden="true"></a><span class="co">## make a field called &quot;feature&quot; and fill: make all values = &quot;other&quot;</span></span>
+<span id="cb106-2"><a href="sec-timeVariation.html#cb106-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, </span>
+<span id="cb106-3"><a href="sec-timeVariation.html#cb106-3" aria-hidden="true"></a>                 <span class="dt">feature =</span> <span class="kw">ifelse</span>(ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">180</span>, <span class="st">&quot;easterly&quot;</span>, <span class="st">&quot;other&quot;</span>))</span>
+<span id="cb106-4"><a href="sec-timeVariation.html#cb106-4" aria-hidden="true"></a></span>
+<span id="cb106-5"><a href="sec-timeVariation.html#cb106-5" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span><span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;feature&quot;</span>,  <span class="dt">ylab =</span> <span class="st">&quot;so2 (ppb)&quot;</span>,</span>
+<span id="cb106-6"><a href="sec-timeVariation.html#cb106-6" aria-hidden="true"></a>              <span class="dt">difference =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeVar4"></span>
 <img src="openair_files/figure-html/timeVar4-1.png" alt="Example plot using the `timeVariation` function to plot SO~2~ concentrations at Marylebone Road. In this plot, the concentrations are shown for a subset of easterly conditions and everything else. Note that the uncertainty in the mean values for easterly winds is greater than *other*. This is mostly because the sample size is much lower for *easterly* compared  with *other*." width="1152" />
 <p class="caption">
@@ -556,8 +559,8 @@ should be shown when <code>statistic = "median"</code> is used due to
 potential over-plotting; although the function will display several
 species of required. An example is shown in Figure
 <a href="sec-timeVariation.html#fig:timeVarMedian">11.5</a> for PM<sub>10</sub> concentrations.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="sec-timeVariation.html#cb103-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;median&quot;</span>,</span>
-<span id="cb103-2"><a href="sec-timeVariation.html#cb103-2" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="sec-timeVariation.html#cb107-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb107-2"><a href="sec-timeVariation.html#cb107-2" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;firebrick&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:timeVarMedian"></span>
 <img src="openair_files/figure-html/timeVarMedian-1.png" alt="Example plot using the `timeVariation` function to show the variation in the median, 25/75th and 5/95th quantile values for PM~10~. The shading shows the extent to the 25/75th and 5/95th  quantiles." width="1152" />
 <p class="caption">
@@ -572,10 +575,10 @@ used for further analysis or plotting. It is necessary to read the
 output into a variable for further processing. The code below shows
 the different objects that are returned and the code shows how to
 access them.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="sec-timeVariation.html#cb104-1" aria-hidden="true"></a>myOutput &lt;-<span class="st"> </span><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span>
-<span id="cb104-2"><a href="sec-timeVariation.html#cb104-2" aria-hidden="true"></a><span class="co">## show the first part of the day/hour variation</span></span>
-<span id="cb104-3"><a href="sec-timeVariation.html#cb104-3" aria-hidden="true"></a><span class="co">## note that value = mean, and Upper/Lower the 95% confid. intervals</span></span>
-<span id="cb104-4"><a href="sec-timeVariation.html#cb104-4" aria-hidden="true"></a><span class="kw">head</span>(myOutput<span class="op">$</span>data<span class="op">$</span>day.hour)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sec-timeVariation.html#cb108-1" aria-hidden="true"></a>myOutput &lt;-<span class="st"> </span><span class="kw">timeVariation</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>)</span>
+<span id="cb108-2"><a href="sec-timeVariation.html#cb108-2" aria-hidden="true"></a><span class="co">## show the first part of the day/hour variation</span></span>
+<span id="cb108-3"><a href="sec-timeVariation.html#cb108-3" aria-hidden="true"></a><span class="co">## note that value = mean, and Upper/Lower the 95% confid. intervals</span></span>
+<span id="cb108-4"><a href="sec-timeVariation.html#cb108-4" aria-hidden="true"></a><span class="kw">head</span>(myOutput<span class="op">$</span>data<span class="op">$</span>day.hour)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ## # Groups:   ci [1]
 ##   variable wkday      hour default                        Mean Lower Upper    ci
@@ -586,9 +589,9 @@ access them.</p>
 ## 4 so2      Thursday      0 01 January 1998 to 23 June 2…  3.22  2.97  3.44  0.95
 ## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.37  3.88  0.95
 ## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  3.95  4.60  0.95</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sec-timeVariation.html#cb106-1" aria-hidden="true"></a><span class="co">## can make a new data frame of this data e.g.</span></span>
-<span id="cb106-2"><a href="sec-timeVariation.html#cb106-2" aria-hidden="true"></a>day.hour &lt;-<span class="st"> </span>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour</span>
-<span id="cb106-3"><a href="sec-timeVariation.html#cb106-3" aria-hidden="true"></a><span class="kw">head</span>(day.hour)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="sec-timeVariation.html#cb110-1" aria-hidden="true"></a><span class="co">## can make a new data frame of this data e.g.</span></span>
+<span id="cb110-2"><a href="sec-timeVariation.html#cb110-2" aria-hidden="true"></a>day.hour &lt;-<span class="st"> </span>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour</span>
+<span id="cb110-3"><a href="sec-timeVariation.html#cb110-3" aria-hidden="true"></a><span class="kw">head</span>(day.hour)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ## # Groups:   ci [1]
 ##   variable wkday      hour default                        Mean Lower Upper    ci
@@ -600,20 +603,20 @@ access them.</p>
 ## 5 so2      Friday        0 01 January 1998 to 23 June 2…  3.64  3.37  3.88  0.95
 ## 6 so2      Saturday      0 01 January 1998 to 23 June 2…  4.25  3.95  4.60  0.95</code></pre>
 <p>All the numerical results are given by:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sec-timeVariation.html#cb108-1" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour <span class="co">## are the weekday and hour results</span></span>
-<span id="cb108-2"><a href="sec-timeVariation.html#cb108-2" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>hour <span class="co">## are the diurnal results</span></span>
-<span id="cb108-3"><a href="sec-timeVariation.html#cb108-3" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day <span class="co">## are the weekday results</span></span>
-<span id="cb108-4"><a href="sec-timeVariation.html#cb108-4" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>month <span class="co">## are the monthly results</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sec-timeVariation.html#cb112-1" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day.hour <span class="co">## are the weekday and hour results</span></span>
+<span id="cb112-2"><a href="sec-timeVariation.html#cb112-2" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>hour <span class="co">## are the diurnal results</span></span>
+<span id="cb112-3"><a href="sec-timeVariation.html#cb112-3" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>day <span class="co">## are the weekday results</span></span>
+<span id="cb112-4"><a href="sec-timeVariation.html#cb112-4" aria-hidden="true"></a>myOutput<span class="op">$</span>data<span class="op">$</span>month <span class="co">## are the monthly results</span></span></code></pre></div>
 <p>It is also possible to plot the individual plots that make up the
 (four) plots produced by <code>timeVariation</code>:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="sec-timeVariation.html#cb109-1" aria-hidden="true"></a><span class="co">## just the diurnal variation</span></span>
-<span id="cb109-2"><a href="sec-timeVariation.html#cb109-2" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;hour&quot;</span>)</span>
-<span id="cb109-3"><a href="sec-timeVariation.html#cb109-3" aria-hidden="true"></a><span class="co">## day and hour</span></span>
-<span id="cb109-4"><a href="sec-timeVariation.html#cb109-4" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day.hour&quot;</span>)</span>
-<span id="cb109-5"><a href="sec-timeVariation.html#cb109-5" aria-hidden="true"></a><span class="co">## weekday variation</span></span>
-<span id="cb109-6"><a href="sec-timeVariation.html#cb109-6" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day&quot;</span>)</span>
-<span id="cb109-7"><a href="sec-timeVariation.html#cb109-7" aria-hidden="true"></a><span class="co">## monthly variation</span></span>
-<span id="cb109-8"><a href="sec-timeVariation.html#cb109-8" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="sec-timeVariation.html#cb113-1" aria-hidden="true"></a><span class="co">## just the diurnal variation</span></span>
+<span id="cb113-2"><a href="sec-timeVariation.html#cb113-2" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;hour&quot;</span>)</span>
+<span id="cb113-3"><a href="sec-timeVariation.html#cb113-3" aria-hidden="true"></a><span class="co">## day and hour</span></span>
+<span id="cb113-4"><a href="sec-timeVariation.html#cb113-4" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day.hour&quot;</span>)</span>
+<span id="cb113-5"><a href="sec-timeVariation.html#cb113-5" aria-hidden="true"></a><span class="co">## weekday variation</span></span>
+<span id="cb113-6"><a href="sec-timeVariation.html#cb113-6" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;day&quot;</span>)</span>
+<span id="cb113-7"><a href="sec-timeVariation.html#cb113-7" aria-hidden="true"></a><span class="co">## monthly variation</span></span>
+<span id="cb113-8"><a href="sec-timeVariation.html#cb113-8" aria-hidden="true"></a><span class="kw">plot</span>(myOutput, <span class="dt">subset =</span> <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

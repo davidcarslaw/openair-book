@@ -194,6 +194,51 @@ knitr::kable(
 If a categorical variable is present in a data frame e.g. `site` then
 that variables can be used directly e.g. `type = "site"`.
 
+In some cases it is useful to categorise numeric variables according
+to one's own intervals. One example is air quality bands where
+concentrations might be described as "good", "fair", "bad". For this
+situation we can use the `cut` function. In the example below,
+concentrations of NO~2~ are divided into intervals 0-50, 50-100,
+100-150 and >150 using the `breaks` option. Also shown are
+user-defined labels. Note there is 1 more break than label. There are
+a couple of thing sto note here. First, `include.lowest = TRUE`
+ensures that the lowest value is included in the lowest break (in this
+case 0). Second, the maximum value (1000) is set to be more than the
+maximum value in the data to ensure the final break encompasses all
+the data.
+
+### Make your own type
+
+In some cases it is useful to categorise numeric variables according to one's own intervals. One example is air quality bands where concentrations might be described as "good", "fair", "bad". For this situation we can use the `cut` function. In the example below, concentrations of NO~2~ are divided into intervals 0-50, 50-100, 100-150 and >150 using the `breaks` option. Also shown are
+user-defined labels. Note there is 1 more break than label. There are a couple of things to note here. First, `include.lowest = TRUE` ensures that the lowest value is included in the lowest break (in this case 0). Second, the maximum value (1000) is set to be more than the maximum value in the data to ensure the final break encompasses all the data.
+
+```{r}
+mydata$intervals <- cut(mydata$no2, 
+                        breaks = c(0, 50, 100, 150, 1000), 
+                        labels = c("Very low", "Low", "High",
+                                   "Very High"), 
+                        include.lowest = TRUE)
+
+# look at the data
+head(mydata)
+```
+
+Then it is possible to use the new `intervals` variable in most [openair]{.pkg} functions e.g. `windRose(mydata, type = "intervals")`.
+
+A special case is splitting data by date. In this scenario there might be interest in a 'before-after' situation e.g. due to an intervention. The [openair]{.pkg} function `splitByDate` should make this easy. Here is an example:
+
+```{r splitbydate}
+splitByDate(
+  mydata,
+  dates = "1/1/2003",
+  labels = c("before", "after"),
+  name = "scenario"
+)
+```
+
+This code adds a new column `scenario` that is labelled `before` and `after` depending on the date. Note that the date is in British format (dd/mm/YYYY). 
+
+
 ## Controlling font size {#sec:font-size}
 
 All [openair]{.pkg} plot functions have an option `fontsize`. Users can

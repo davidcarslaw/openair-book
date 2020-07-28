@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -542,12 +545,71 @@ default is London).</p>
 </table>
 <p>If a categorical variable is present in a data frame e.g. <code>site</code> then
 that variables can be used directly e.g. <code>type = "site"</code>.</p>
+<p>In some cases it is useful to categorise numeric variables according
+to one’s own intervals. One example is air quality bands where
+concentrations might be described as “good”, “fair”, “bad”. For this
+situation we can use the <code>cut</code> function. In the example below,
+concentrations of NO<sub>2</sub> are divided into intervals 0-50, 50-100,
+100-150 and &gt;150 using the <code>breaks</code> option. Also shown are
+user-defined labels. Note there is 1 more break than label. There are
+a couple of thing sto note here. First, <code>include.lowest = TRUE</code>
+ensures that the lowest value is included in the lowest break (in this
+case 0). Second, the maximum value (1000) is set to be more than the
+maximum value in the data to ensure the final break encompasses all
+the data.</p>
+<div id="make-your-own-type" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Make your own type</h3>
+<p>In some cases it is useful to categorise numeric variables according to one’s own intervals. One example is air quality bands where concentrations might be described as “good”, “fair”, “bad”. For this situation we can use the <code>cut</code> function. In the example below, concentrations of NO<sub>2</sub> are divided into intervals 0-50, 50-100, 100-150 and &gt;150 using the <code>breaks</code> option. Also shown are
+user-defined labels. Note there is 1 more break than label. There are a couple of things to note here. First, <code>include.lowest = TRUE</code> ensures that the lowest value is included in the lowest break (in this case 0). Second, the maximum value (1000) is set to be more than the maximum value in the data to ensure the final break encompasses all the data.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sec-openair-package.html#cb5-1" aria-hidden="true"></a>mydata<span class="op">$</span>intervals &lt;-<span class="st"> </span><span class="kw">cut</span>(mydata<span class="op">$</span>no2, </span>
+<span id="cb5-2"><a href="sec-openair-package.html#cb5-2" aria-hidden="true"></a>                        <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">1000</span>), </span>
+<span id="cb5-3"><a href="sec-openair-package.html#cb5-3" aria-hidden="true"></a>                        <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Very low&quot;</span>, <span class="st">&quot;Low&quot;</span>, <span class="st">&quot;High&quot;</span>,</span>
+<span id="cb5-4"><a href="sec-openair-package.html#cb5-4" aria-hidden="true"></a>                                   <span class="st">&quot;Very High&quot;</span>), </span>
+<span id="cb5-5"><a href="sec-openair-package.html#cb5-5" aria-hidden="true"></a>                        <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb5-6"><a href="sec-openair-package.html#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="sec-openair-package.html#cb5-7" aria-hidden="true"></a><span class="co"># look at the data</span></span>
+<span id="cb5-8"><a href="sec-openair-package.html#cb5-8" aria-hidden="true"></a><span class="kw">head</span>(mydata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 11
+##   date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
+## 2 1998-01-01 01:00:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+## 3 1998-01-01 02:00:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+## 4 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
+## 5 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
+## 6 1998-01-01 05:00:00  3      190   264    42     0    16  5.50  3.05    NA
+## # … with 1 more variable: intervals &lt;fct&gt;</code></pre>
+<p>Then it is possible to use the new <code>intervals</code> variable in most <span class="pkg">openair</span> functions e.g. <code>windRose(mydata, type = "intervals")</code>.</p>
+<p>A special case is splitting data by date. In this scenario there might be interest in a ‘before-after’ situation e.g. due to an intervention. The <span class="pkg">openair</span> function <code>splitByDate</code> should make this easy. Here is an example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sec-openair-package.html#cb7-1" aria-hidden="true"></a><span class="kw">splitByDate</span>(</span>
+<span id="cb7-2"><a href="sec-openair-package.html#cb7-2" aria-hidden="true"></a>  mydata,</span>
+<span id="cb7-3"><a href="sec-openair-package.html#cb7-3" aria-hidden="true"></a>  <span class="dt">dates =</span> <span class="st">&quot;1/1/2003&quot;</span>,</span>
+<span id="cb7-4"><a href="sec-openair-package.html#cb7-4" aria-hidden="true"></a>  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>),</span>
+<span id="cb7-5"><a href="sec-openair-package.html#cb7-5" aria-hidden="true"></a>  <span class="dt">name =</span> <span class="st">&quot;scenario&quot;</span></span>
+<span id="cb7-6"><a href="sec-openair-package.html#cb7-6" aria-hidden="true"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 65,533 x 12
+##    date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+##    &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+##  1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
+##  2 1998-01-01 01:00:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+##  3 1998-01-01 02:00:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+##  4 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
+##  5 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
+##  6 1998-01-01 05:00:00  3      190   264    42     0    16  5.50  3.05    NA
+##  7 1998-01-01 06:00:00  3      140   171    38     0    11  4.23  2.26    NA
+##  8 1998-01-01 07:00:00  3      170   195    51     0    12  3.88  2.00    NA
+##  9 1998-01-01 08:00:00  3.36   170   137    42     1    12  3.35  1.46    NA
+## 10 1998-01-01 09:00:00  3.96   170   113    39     2    12  2.92  1.20    NA
+## # … with 65,523 more rows, and 2 more variables: intervals &lt;fct&gt;,
+## #   scenario &lt;ord&gt;</code></pre>
+<p>This code adds a new column <code>scenario</code> that is labelled <code>before</code> and <code>after</code> depending on the date. Note that the date is in British format (dd/mm/YYYY).</p>
+</div>
 </div>
 <div id="sec:font-size" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Controlling font size</h2>
 <p>All <span class="pkg">openair</span> plot functions have an option <code>fontsize</code>. Users can
 easily vary the size of the font for each plot e.g.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sec-openair-package.html#cb5-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">fontsize =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sec-openair-package.html#cb9-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">fontsize =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p>The font size will be reset to the default sizes once the plot is
 complete. Finer control of individual font sizes is currently not
 easily possible.</p>
@@ -581,23 +643,23 @@ Figure 2.1: Selected pre-defined colour scales in. The top colour scheme is a us
 <p>The user-defined scheme is very flexible and the following provides
 examples of its use. In the examples shown next, the <code>polarPlot</code>
 function is used as a demonstration of their use.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="sec-openair-package.html#cb6-1" aria-hidden="true"></a><span class="co"># use default colours - no need to specify</span></span>
-<span id="cb6-2"><a href="sec-openair-package.html#cb6-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata)</span>
-<span id="cb6-3"><a href="sec-openair-package.html#cb6-3" aria-hidden="true"></a></span>
-<span id="cb6-4"><a href="sec-openair-package.html#cb6-4" aria-hidden="true"></a><span class="co"># use pre-defined &quot;jet&quot; colours</span></span>
-<span id="cb6-5"><a href="sec-openair-package.html#cb6-5" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span>
-<span id="cb6-6"><a href="sec-openair-package.html#cb6-6" aria-hidden="true"></a></span>
-<span id="cb6-7"><a href="sec-openair-package.html#cb6-7" aria-hidden="true"></a><span class="co"># define own colours going from yellow to green</span></span>
-<span id="cb6-8"><a href="sec-openair-package.html#cb6-8" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>))</span>
-<span id="cb6-9"><a href="sec-openair-package.html#cb6-9" aria-hidden="true"></a></span>
-<span id="cb6-10"><a href="sec-openair-package.html#cb6-10" aria-hidden="true"></a><span class="co"># define own colours going from red to white to blue</span></span>
-<span id="cb6-11"><a href="sec-openair-package.html#cb6-11" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sec-openair-package.html#cb10-1" aria-hidden="true"></a><span class="co"># use default colours - no need to specify</span></span>
+<span id="cb10-2"><a href="sec-openair-package.html#cb10-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata)</span>
+<span id="cb10-3"><a href="sec-openair-package.html#cb10-3" aria-hidden="true"></a></span>
+<span id="cb10-4"><a href="sec-openair-package.html#cb10-4" aria-hidden="true"></a><span class="co"># use pre-defined &quot;jet&quot; colours</span></span>
+<span id="cb10-5"><a href="sec-openair-package.html#cb10-5" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span>
+<span id="cb10-6"><a href="sec-openair-package.html#cb10-6" aria-hidden="true"></a></span>
+<span id="cb10-7"><a href="sec-openair-package.html#cb10-7" aria-hidden="true"></a><span class="co"># define own colours going from yellow to green</span></span>
+<span id="cb10-8"><a href="sec-openair-package.html#cb10-8" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>))</span>
+<span id="cb10-9"><a href="sec-openair-package.html#cb10-9" aria-hidden="true"></a></span>
+<span id="cb10-10"><a href="sec-openair-package.html#cb10-10" aria-hidden="true"></a><span class="co"># define own colours going from red to white to blue</span></span>
+<span id="cb10-11"><a href="sec-openair-package.html#cb10-11" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p>For more detailed information on using appropriate colours, have a look at the <a href="https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html">colorspace</a> package. <span class="pkg">colorspace</span> provides the definitive, comprehensive approach to using colours effectively. You will need to install the package, <code>install.packages("colorspace")</code>. To use the palettes with <span class="pkg">openair</span>, you can for example do:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sec-openair-package.html#cb7-1" aria-hidden="true"></a><span class="kw">library</span>(colorspace)</span>
-<span id="cb7-2"><a href="sec-openair-package.html#cb7-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb7-3"><a href="sec-openair-package.html#cb7-3" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">cols =</span> <span class="kw">qualitative_hcl</span>(<span class="dv">4</span>, <span class="dt">palette =</span> <span class="st">&quot;Dark 3&quot;</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-11"></span>
-<img src="openair_files/figure-html/unnamed-chunk-11-1.png" alt="Example of using a [colorspace]{.pkg} palette with an [openair]{.pkg} function." width="50%" />
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="sec-openair-package.html#cb11-1" aria-hidden="true"></a><span class="kw">library</span>(colorspace)</span>
+<span id="cb11-2"><a href="sec-openair-package.html#cb11-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb11-3"><a href="sec-openair-package.html#cb11-3" aria-hidden="true"></a><span class="kw">windRose</span>(mydata, <span class="dt">cols =</span> <span class="kw">qualitative_hcl</span>(<span class="dv">4</span>, <span class="dt">palette =</span> <span class="st">&quot;Dark 3&quot;</span>))</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-12"></span>
+<img src="openair_files/figure-html/unnamed-chunk-12-1.png" alt="Example of using a [colorspace]{.pkg} palette with an [openair]{.pkg} function." width="50%" />
 <p class="caption">
 Figure 2.2: Example of using a <span class="pkg">colorspace</span> palette with an <span class="pkg">openair</span> function.
 </p>
@@ -622,11 +684,11 @@ settings will not work.</p>
 <p>It is possible to arrange plots based on a column <span class="math inline">\(\times\)</span> row
 layout. Let’s put two plots side by side (2 columns, 1 row). First it
 is necessary to assign the plots to a variable:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="sec-openair-package.html#cb8-1" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">windRose</span>(mydata)</span>
-<span id="cb8-2"><a href="sec-openair-package.html#cb8-2" aria-hidden="true"></a>b &lt;-<span class="st"> </span><span class="kw">polarPlot</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sec-openair-package.html#cb12-1" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">windRose</span>(mydata)</span>
+<span id="cb12-2"><a href="sec-openair-package.html#cb12-2" aria-hidden="true"></a>b &lt;-<span class="st"> </span><span class="kw">polarPlot</span>(mydata)</span></code></pre></div>
 <p>Now we can plot them using the split option:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sec-openair-package.html#cb9-1" aria-hidden="true"></a><span class="kw">print</span>(a, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb9-2"><a href="sec-openair-package.html#cb9-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">newpage =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="sec-openair-package.html#cb13-1" aria-hidden="true"></a><span class="kw">print</span>(a, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb13-2"><a href="sec-openair-package.html#cb13-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">newpage =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>In the code above for the <code>split</code> option, the last two numbers give
 the overall layout (2, 1) — 2 columns, 1 row. The first two numbers
 give the column/row index for that particular plot. The last two
@@ -636,9 +698,9 @@ as <code>timeVariation</code> where it is necessary to identify the particular
 plot of interest (see the <code>timeVariation</code> help for
 details). However, say we want a polar plot (<code>b</code> above) and a
 diurnal plot:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sec-openair-package.html#cb10-1" aria-hidden="true"></a>c &lt;-<span class="st"> </span><span class="kw">timeVariation</span>(mydata)</span>
-<span id="cb10-2"><a href="sec-openair-package.html#cb10-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb10-3"><a href="sec-openair-package.html#cb10-3" aria-hidden="true"></a><span class="kw">print</span>(c, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">subset =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">newpage =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="sec-openair-package.html#cb14-1" aria-hidden="true"></a>c &lt;-<span class="st"> </span><span class="kw">timeVariation</span>(mydata)</span>
+<span id="cb14-2"><a href="sec-openair-package.html#cb14-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb14-3"><a href="sec-openair-package.html#cb14-3" aria-hidden="true"></a><span class="kw">print</span>(c, <span class="dt">split =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="dt">subset =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">newpage =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>For more control it is possible to use the <code>position</code>
 argument. <code>position</code> is a vector of 4 numbers, c(xmin, ymin, xmax,
 ymax) that give the lower-left and upper-right corners of a rectangle
@@ -646,8 +708,8 @@ in which the plot is to be positioned. The coordinate system for this
 rectangle is [0–1] in both the x and y directions.</p>
 <p>As an example, consider plotting the first plot in the lower left
 quadrant and the second plot in the upper right quadrant:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="sec-openair-package.html#cb11-1" aria-hidden="true"></a><span class="kw">print</span>(a, <span class="dt">position =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">more =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb11-2"><a href="sec-openair-package.html#cb11-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">position =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="sec-openair-package.html#cb15-1" aria-hidden="true"></a><span class="kw">print</span>(a, <span class="dt">position =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">more =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-2"><a href="sec-openair-package.html#cb15-2" aria-hidden="true"></a><span class="kw">print</span>(b, <span class="dt">position =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p>The position argument gives more fine control over the plot location.</p>
 
 </div>

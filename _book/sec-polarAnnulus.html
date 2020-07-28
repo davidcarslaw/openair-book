@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -371,11 +374,11 @@ may suggest a different, local source of PM<sub>10</sub> that is not the road
 itself. Clearly, a more detailed analysis would be required to confirm
 the patterns shown; but it does highlight the benefit of being able to
 analyse data in different ways.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="sec-polarAnnulus.html#cb86-1" aria-hidden="true"></a><span class="kw">data</span>(mydata)</span>
-<span id="cb86-2"><a href="sec-polarAnnulus.html#cb86-2" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;trend&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Trend&quot;</span>)</span>
-<span id="cb86-3"><a href="sec-polarAnnulus.html#cb86-3" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Season&quot;</span>)</span>
-<span id="cb86-4"><a href="sec-polarAnnulus.html#cb86-4" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Weekday&quot;</span>)</span>
-<span id="cb86-5"><a href="sec-polarAnnulus.html#cb86-5" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>,<span class="dt">period =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Hour&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="sec-polarAnnulus.html#cb90-1" aria-hidden="true"></a><span class="kw">data</span>(mydata)</span>
+<span id="cb90-2"><a href="sec-polarAnnulus.html#cb90-2" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;trend&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Trend&quot;</span>)</span>
+<span id="cb90-3"><a href="sec-polarAnnulus.html#cb90-3" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Season&quot;</span>)</span>
+<span id="cb90-4"><a href="sec-polarAnnulus.html#cb90-4" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">period =</span> <span class="st">&quot;weekday&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Weekday&quot;</span>)</span>
+<span id="cb90-5"><a href="sec-polarAnnulus.html#cb90-5" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;pm10&quot;</span>,<span class="dt">period =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Hour&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarAnnulus"></span>
 <img src="openair_files/figure-html/polarAnnulus-1.png" alt="Examples of the `polarAnnulus` function applied to Marylebone Road." width="50%" /><img src="openair_files/figure-html/polarAnnulus-2.png" alt="Examples of the `polarAnnulus` function applied to Marylebone Road." width="50%" /><img src="openair_files/figure-html/polarAnnulus-3.png" alt="Examples of the `polarAnnulus` function applied to Marylebone Road." width="50%" /><img src="openair_files/figure-html/polarAnnulus-4.png" alt="Examples of the `polarAnnulus` function applied to Marylebone Road." width="50%" />
 <p class="caption">
@@ -394,11 +397,11 @@ way of selecting is quite useful, because it is known how much data
 are selected i.e. in this case 90%. It is worth experimenting with
 different values because it is also important not to lose information
 by ignoring wind speeds that provide useful information.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="sec-polarAnnulus.html#cb87-1" aria-hidden="true"></a><span class="co">## wind speed &gt;2</span></span>
-<span id="cb87-2"><a href="sec-polarAnnulus.html#cb87-2" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(<span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">poll=</span><span class="st">&quot;pm10&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>)</span>
-<span id="cb87-3"><a href="sec-polarAnnulus.html#cb87-3" aria-hidden="true"></a><span class="co">## wind speed &gt; 10th percentile</span></span>
-<span id="cb87-4"><a href="sec-polarAnnulus.html#cb87-4" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(<span class="kw">subset</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="kw">quantile</span>(ws, <span class="dt">probs =</span> <span class="fl">0.1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),</span>
-<span id="cb87-5"><a href="sec-polarAnnulus.html#cb87-5" aria-hidden="true"></a>              <span class="dt">poll=</span><span class="st">&quot;pm10&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="sec-polarAnnulus.html#cb91-1" aria-hidden="true"></a><span class="co">## wind speed &gt;2</span></span>
+<span id="cb91-2"><a href="sec-polarAnnulus.html#cb91-2" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(<span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">poll=</span><span class="st">&quot;pm10&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>)</span>
+<span id="cb91-3"><a href="sec-polarAnnulus.html#cb91-3" aria-hidden="true"></a><span class="co">## wind speed &gt; 10th percentile</span></span>
+<span id="cb91-4"><a href="sec-polarAnnulus.html#cb91-4" aria-hidden="true"></a><span class="kw">polarAnnulus</span>(<span class="kw">subset</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="kw">quantile</span>(ws, <span class="dt">probs =</span> <span class="fl">0.1</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)),</span>
+<span id="cb91-5"><a href="sec-polarAnnulus.html#cb91-5" aria-hidden="true"></a>              <span class="dt">poll=</span><span class="st">&quot;pm10&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

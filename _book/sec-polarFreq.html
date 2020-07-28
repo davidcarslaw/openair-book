@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -340,7 +343,7 @@ consider a wide range of statistics.</p>
 <p>This section shows an example output and use, using our data frame
 <code>mydata</code>. The function is very simply run as shown in Figure
 <a href="sec-polarFreq.html#fig:polarFreqa">6.1</a>.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sec-polarFreq.html#cb42-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sec-polarFreq.html#cb46-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata)</span></code></pre></div>
 <div class="figure"><span id="fig:polarFreqa"></span>
 <img src="openair_files/figure-html/polarFreqa-1.png" alt="Use of `polarFreq` function to plot wind speed/directions. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. The date range  covered by the data is shown in the strip." width="50%" />
 <p class="caption">
@@ -357,7 +360,7 @@ stand out due to the relatively large number of occasions where the
 wind was from the east. Note the default colour scale, which has had a
 square-root transform applied, is used to provide a better visual
 distribution of the data.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sec-polarFreq.html#cb43-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sec-polarFreq.html#cb47-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarFreqYear"></span>
 <img src="openair_files/figure-html/polarFreqYear-1.png" alt="Use of `polarFreq` function to plot wind speed/directions by year. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale." width="768" />
 <p class="caption">
@@ -385,21 +388,21 @@ highest concentrations measured only occur infrequently, and the
 weighted mean plot can help show this.</p>
 <p>The code required to make Figure <a href="sec-polarFreq.html#fig:polarFreqMean">6.3</a> and Figure
 <a href="sec-polarFreq.html#fig:polarFreqWeightedMean">6.4</a> is shown below.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sec-polarFreq.html#cb44-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb44-2"><a href="sec-polarFreq.html#cb44-2" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb44-3"><a href="sec-polarFreq.html#cb44-3" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;mean&quot;</span>, </span>
-<span id="cb44-4"><a href="sec-polarFreq.html#cb44-4" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sec-polarFreq.html#cb48-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
+<span id="cb48-2"><a href="sec-polarFreq.html#cb48-2" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb48-3"><a href="sec-polarFreq.html#cb48-3" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;mean&quot;</span>, </span>
+<span id="cb48-4"><a href="sec-polarFreq.html#cb48-4" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarFreqMean"></span>
 <img src="openair_files/figure-html/polarFreqMean-1.png" alt="Use of `polarFre`} function to plot mean SO~2~ concentrations (ppb) by wind speed/directions and year." width="768" />
 <p class="caption">
 Figure 6.3: Use of <code>polarFre</code>} function to plot mean SO<sub>2</sub> concentrations (ppb) by wind speed/directions and year.
 </p>
 </div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sec-polarFreq.html#cb45-1" aria-hidden="true"></a><span class="co"># weighted mean SO2 concentrations</span></span>
-<span id="cb45-2"><a href="sec-polarFreq.html#cb45-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
-<span id="cb45-3"><a href="sec-polarFreq.html#cb45-3" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb45-4"><a href="sec-polarFreq.html#cb45-4" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>, </span>
-<span id="cb45-5"><a href="sec-polarFreq.html#cb45-5" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="sec-polarFreq.html#cb49-1" aria-hidden="true"></a><span class="co"># weighted mean SO2 concentrations</span></span>
+<span id="cb49-2"><a href="sec-polarFreq.html#cb49-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
+<span id="cb49-3"><a href="sec-polarFreq.html#cb49-3" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb49-4"><a href="sec-polarFreq.html#cb49-4" aria-hidden="true"></a>           <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>, </span>
+<span id="cb49-5"><a href="sec-polarFreq.html#cb49-5" aria-hidden="true"></a>          <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarFreqWeightedMean"></span>
 <img src="openair_files/figure-html/polarFreqWeightedMean-1.png" alt="Use of `polarFreq} function to plot weighted mean SO~2~ concentrations (ppb) by wind speed/directions and year" width="768" />
 <p class="caption">
@@ -412,10 +415,10 @@ interest. For example, what if you just wanted to compare two years
 e.g. 2000 and 2003? This is easy to do by sending a subset of data to
 the function. Use here can be made of the <span class="pkg">openair</span> <code>selectByDate</code>
 function (see Section <a href="sec-utility.html#sec:selectByDate">22.1</a>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sec-polarFreq.html#cb46-1" aria-hidden="true"></a><span class="co"># wind rose for just 2000 and 2003</span></span>
-<span id="cb46-2"><a href="sec-polarFreq.html#cb46-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">2003</span>)),</span>
-<span id="cb46-3"><a href="sec-polarFreq.html#cb46-3" aria-hidden="true"></a>          <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>,</span>
-<span id="cb46-4"><a href="sec-polarFreq.html#cb46-4" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sec-polarFreq.html#cb50-1" aria-hidden="true"></a><span class="co"># wind rose for just 2000 and 2003</span></span>
+<span id="cb50-2"><a href="sec-polarFreq.html#cb50-2" aria-hidden="true"></a><span class="kw">polarFreq</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2000</span>, <span class="dv">2003</span>)),</span>
+<span id="cb50-3"><a href="sec-polarFreq.html#cb50-3" aria-hidden="true"></a>          <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>,</span>
+<span id="cb50-4"><a href="sec-polarFreq.html#cb50-4" aria-hidden="true"></a>          <span class="dt">type =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
 <p>The <code>polarFreq</code> function can also be used to gain an idea about the
 wind directions that contribute most to the overall mean
 concentrations. As already shown, use of the option <code>statistic =   "weighted.mean"</code> will show the percentage contribution by wind
@@ -436,10 +439,10 @@ narrow the disk.</p>
 that concentrations of NO<sub>x</sub> at this site are totally dominated by
 south-westerly winds, the use of <code>pollutionRose</code> for this type of
 plot is more effective, as shown in Section <a href="sec-windRose.html#sec:windRose">5</a>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sec-polarFreq.html#cb47-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">ws.int =</span> <span class="dv">30</span>, </span>
-<span id="cb47-2"><a href="sec-polarFreq.html#cb47-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>,</span>
-<span id="cb47-3"><a href="sec-polarFreq.html#cb47-3" aria-hidden="true"></a>          <span class="dt">offset =</span> <span class="dv">80</span>, <span class="dt">trans =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb47-4"><a href="sec-polarFreq.html#cb47-4" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;heat&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sec-polarFreq.html#cb51-1" aria-hidden="true"></a><span class="kw">polarFreq</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">ws.int =</span> <span class="dv">30</span>, </span>
+<span id="cb51-2"><a href="sec-polarFreq.html#cb51-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;weighted.mean&quot;</span>,</span>
+<span id="cb51-3"><a href="sec-polarFreq.html#cb51-3" aria-hidden="true"></a>          <span class="dt">offset =</span> <span class="dv">80</span>, <span class="dt">trans =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb51-4"><a href="sec-polarFreq.html#cb51-4" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;heat&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarFreqAttr"></span>
 <img src="openair_files/figure-html/polarFreqAttr-1.png" alt="The percentage contribution to overall mean concentrations of NO~x~ at Marylebone Road." width="50%" />
 <p class="caption">

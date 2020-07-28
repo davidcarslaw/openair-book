@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -353,8 +356,8 @@ examples below.</p>
 <h2><span class="header-section-number">7.2</span> Examples</h2>
 <p>The first example is a basic plot of percentiles of O<sub>3</sub> shown in Figure
 <a href="sec-percentileRose.html#fig:percentileRose1">7.1</a>.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sec-percentileRose.html#cb48-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb48-2"><a href="sec-percentileRose.html#cb48-2" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sec-percentileRose.html#cb52-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb52-2"><a href="sec-percentileRose.html#cb52-2" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:percentileRose1"></span>
 <img src="openair_files/figure-html/percentileRose1-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. It shows for example that higher concentrations occur for northerly winds, as expected at this location. However, it also shows, for example the actual value of the 95th percentile O~3~ concentration." width="50%" />
 <p class="caption">
@@ -367,9 +370,9 @@ take the opportunity of changing some default options. In this case it
 can be clearly seen that the highest concentrations of SO<sub>2</sub> are
 dominated by east and south-easterly winds; likely reflecting the
 influence of stack emissions in those directions.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="sec-percentileRose.html#cb49-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb49-2"><a href="sec-percentileRose.html#cb49-2" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">99</span>, <span class="fl">99.9</span>),</span>
-<span id="cb49-3"><a href="sec-percentileRose.html#cb49-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;brewer1&quot;</span>, <span class="dt">key.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="sec-percentileRose.html#cb53-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb53-2"><a href="sec-percentileRose.html#cb53-2" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">99</span>, <span class="fl">99.9</span>),</span>
+<span id="cb53-3"><a href="sec-percentileRose.html#cb53-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;brewer1&quot;</span>, <span class="dt">key.position =</span> <span class="st">&quot;right&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:percentileRoseSO2"></span>
 <img src="openair_files/figure-html/percentileRoseSO2-1.png" alt="A `percentileRose` plot of SO~2~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction. This plot sets some user-defined percentile levels to consider the higher SO~2~ concentrations, moves the key to the right and uses an alternative colour scheme." width="50%" />
 <p class="caption">
@@ -391,8 +394,8 @@ peak O<sub>3</sub> concentrations are higher during daylight hours in summer
 when the wind is from the south-east. This will be due to more local
 (UK/European) production that is photochemically driven — and hence
 more important during daylight hours.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sec-percentileRose.html#cb50-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>), <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb50-2"><a href="sec-percentileRose.html#cb50-2" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;Set3&quot;</span>, <span class="dt">mean.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sec-percentileRose.html#cb54-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>), <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb54-2"><a href="sec-percentileRose.html#cb54-2" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;Set3&quot;</span>, <span class="dt">mean.col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:percentileRoseO3"></span>
 <img src="openair_files/figure-html/percentileRoseO3-1.png" alt="A `percentileRose` plot of O~3~ concentrations at Marylebone Road. The percentile intervals are shaded and are shown by wind direction.The plot shows the variation by season and whether  it is nighttime or daylight hours." width="960" />
 <p class="caption">
@@ -417,9 +420,9 @@ concentrations (greater than the 95th percentile of <em>all</em>
 observations) is dominated by easterly wind directions. There are very
 low conditional probabilities of these concentrations being
 experienced for other wind directions.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sec-percentileRose.html#cb51-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">poll=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">percentile =</span> <span class="dv">95</span>, </span>
-<span id="cb51-2"><a href="sec-percentileRose.html#cb51-2" aria-hidden="true"></a>               <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>,</span>
-<span id="cb51-3"><a href="sec-percentileRose.html#cb51-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="sec-percentileRose.html#cb55-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, <span class="dt">poll=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">percentile =</span> <span class="dv">95</span>, </span>
+<span id="cb55-2"><a href="sec-percentileRose.html#cb55-2" aria-hidden="true"></a>               <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>,</span>
+<span id="cb55-3"><a href="sec-percentileRose.html#cb55-3" aria-hidden="true"></a>               <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:percentileRoseCPF"></span>
 <img src="openair_files/figure-html/percentileRoseCPF-1.png" alt="A CPF plot of SO~2~ concentrations at Marylebone Road." width="50%" />
 <p class="caption">
@@ -434,10 +437,10 @@ highest (95th percentile) concentrations. For example, the highest CO
 and concentrations are totally dominated by south/south-westerly
 winds and the probability of their being such high concentrations from
 other wind directions is effectively zero.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sec-percentileRose.html#cb52-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, </span>
-<span id="cb52-2"><a href="sec-percentileRose.html#cb52-2" aria-hidden="true"></a>               <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;so2&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;pm25&quot;</span>),</span>
-<span id="cb52-3"><a href="sec-percentileRose.html#cb52-3" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="dv">95</span>, <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
-<span id="cb52-4"><a href="sec-percentileRose.html#cb52-4" aria-hidden="true"></a>               <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sec-percentileRose.html#cb56-1" aria-hidden="true"></a><span class="kw">percentileRose</span>(mydata, </span>
+<span id="cb56-2"><a href="sec-percentileRose.html#cb56-2" aria-hidden="true"></a>               <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;so2&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;co&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;pm25&quot;</span>),</span>
+<span id="cb56-3"><a href="sec-percentileRose.html#cb56-3" aria-hidden="true"></a>               <span class="dt">percentile =</span> <span class="dv">95</span>, <span class="dt">method =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>,</span>
+<span id="cb56-4"><a href="sec-percentileRose.html#cb56-4" aria-hidden="true"></a>               <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:CPFExample"></span>
 <img src="openair_files/figure-html/CPFExample-1.png" alt="A CPF plot of many pollutants  at Marylebone Road." width="672" />
 <p class="caption">

@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-27" />
+<meta name="date" content="2020-07-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
 <li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
 <li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a></li>
+<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
 <li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
 <li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
@@ -350,16 +353,16 @@ that might be taken to build a model to explain the trend. The data
 are first imported and then the year, month and <code>trend' estimated. Note that</code>trend’ here is simply a decimal date that can be
 used to construct various explanatory models.</p>
 <p>First we import the data:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="sec-trends-gam.html#cb315-1" aria-hidden="true"></a><span class="kw">library</span>(mgcv)</span>
-<span id="cb315-2"><a href="sec-trends-gam.html#cb315-2" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;mh&quot;</span>, <span class="dt">year =</span> <span class="dv">1988</span><span class="op">:</span><span class="dv">2010</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="sec-trends-gam.html#cb316-1" aria-hidden="true"></a><span class="co">## calculate monthly means</span></span>
-<span id="cb316-2"><a href="sec-trends-gam.html#cb316-2" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(dat, <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>)</span>
-<span id="cb316-3"><a href="sec-trends-gam.html#cb316-3" aria-hidden="true"></a><span class="co">## now calculate components for the models</span></span>
-<span id="cb316-4"><a href="sec-trends-gam.html#cb316-4" aria-hidden="true"></a>monthly<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(monthly<span class="op">$</span>date, <span class="st">&quot;%Y&quot;</span>))</span>
-<span id="cb316-5"><a href="sec-trends-gam.html#cb316-5" aria-hidden="true"></a>monthly<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(monthly<span class="op">$</span>date, <span class="st">&quot;%m&quot;</span>))</span>
-<span id="cb316-6"><a href="sec-trends-gam.html#cb316-6" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">transform</span>(monthly, <span class="dt">trend =</span> year <span class="op">+</span><span class="st"> </span>(month <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="sec-trends-gam.html#cb319-1" aria-hidden="true"></a><span class="kw">library</span>(mgcv)</span>
+<span id="cb319-2"><a href="sec-trends-gam.html#cb319-2" aria-hidden="true"></a>dat &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;mh&quot;</span>, <span class="dt">year =</span> <span class="dv">1988</span><span class="op">:</span><span class="dv">2010</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="sec-trends-gam.html#cb320-1" aria-hidden="true"></a><span class="co">## calculate monthly means</span></span>
+<span id="cb320-2"><a href="sec-trends-gam.html#cb320-2" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(dat, <span class="dt">avg.time =</span> <span class="st">&quot;month&quot;</span>)</span>
+<span id="cb320-3"><a href="sec-trends-gam.html#cb320-3" aria-hidden="true"></a><span class="co">## now calculate components for the models</span></span>
+<span id="cb320-4"><a href="sec-trends-gam.html#cb320-4" aria-hidden="true"></a>monthly<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(monthly<span class="op">$</span>date, <span class="st">&quot;%Y&quot;</span>))</span>
+<span id="cb320-5"><a href="sec-trends-gam.html#cb320-5" aria-hidden="true"></a>monthly<span class="op">$</span>month &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">format</span>(monthly<span class="op">$</span>date, <span class="st">&quot;%m&quot;</span>))</span>
+<span id="cb320-6"><a href="sec-trends-gam.html#cb320-6" aria-hidden="true"></a>monthly &lt;-<span class="st"> </span><span class="kw">transform</span>(monthly, <span class="dt">trend =</span> year <span class="op">+</span><span class="st"> </span>(month <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="dv">12</span>)</span></code></pre></div>
 <p>It is <em>always</em> a good idea to plot the data first:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="sec-trends-gam.html#cb317-1" aria-hidden="true"></a><span class="kw">timePlot</span>(monthly, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="sec-trends-gam.html#cb321-1" aria-hidden="true"></a><span class="kw">timePlot</span>(monthly, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:MHplot"></span>
 <img src="openair_files/figure-html/MHplot-1.png" alt="Monthly mean O~3~ concentrations at Mace Head, Ireland (1998--2010)." width="960" />
 <p class="caption">
@@ -371,8 +374,8 @@ O<sub>3</sub> concentrations, which is certainly expected. Less obvious is
 whether there is a trend.</p>
 <p>Even though it is known there is a seasonal signal in the data, we
 will first of all ignore it and build a simple model that only has a trend component (model M0).</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="sec-trends-gam.html#cb318-1" aria-hidden="true"></a>M0 &lt;-<span class="st"> </span><span class="kw">gam</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(trend), <span class="dt">data =</span> monthly)</span>
-<span id="cb318-2"><a href="sec-trends-gam.html#cb318-2" aria-hidden="true"></a><span class="kw">summary</span>(M0)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="sec-trends-gam.html#cb322-1" aria-hidden="true"></a>M0 &lt;-<span class="st"> </span><span class="kw">gam</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(trend), <span class="dt">data =</span> monthly)</span>
+<span id="cb322-2"><a href="sec-trends-gam.html#cb322-2" aria-hidden="true"></a><span class="kw">summary</span>(M0)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -401,7 +404,7 @@ this omission is to plot the autocorrelation function (ACF) of the
 residuals, shown in Figure <a href="sec-trends-gam.html#fig:M0ACF">C.2</a>. This Figure clearly shows the
 residuals have a strong seasonal pattern. <span class="citation">Chatfield (<a href="#ref-Chatfield2004" role="doc-biblioref">2004</a>)</span>
 provides lots of useful information on time series modelling.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="sec-trends-gam.html#cb320-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M0))</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="sec-trends-gam.html#cb324-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M0))</span></code></pre></div>
 <div class="figure"><span id="fig:M0ACF"></span>
 <img src="openair_files/figure-html/M0ACF-1.png" alt="ACF for the residuals of model M0." width="50%" />
 <p class="caption">
@@ -413,8 +416,8 @@ in O<sub>3</sub> concentrations. Therefore, we add a term taking account of
 the seasonal variation. Note also that we choose a cyclic spline for
 the monthly component (<code>bs = "cc"</code>), which joins the first and last
 points i.e. January and December.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="sec-trends-gam.html#cb321-1" aria-hidden="true"></a>M1 &lt;-<span class="st"> </span><span class="kw">gam</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(trend) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>), <span class="dt">data =</span> monthly)</span>
-<span id="cb321-2"><a href="sec-trends-gam.html#cb321-2" aria-hidden="true"></a><span class="kw">summary</span>(M1)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="sec-trends-gam.html#cb325-1" aria-hidden="true"></a>M1 &lt;-<span class="st"> </span><span class="kw">gam</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(trend) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>), <span class="dt">data =</span> monthly)</span>
+<span id="cb325-2"><a href="sec-trends-gam.html#cb325-2" aria-hidden="true"></a><span class="kw">summary</span>(M1)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -441,14 +444,14 @@ points i.e. January and December.</p>
 r<sup>2</sup> of 0.65. Also, the p-values for the trend and seasonal
 components are both highly statistically significant. Let’s have a look
 at the separate components for trend and seasonal variation:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="sec-trends-gam.html#cb323-1" aria-hidden="true"></a><span class="kw">plot.gam</span>(M1, <span class="dt">select =</span> <span class="dv">1</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="sec-trends-gam.html#cb327-1" aria-hidden="true"></a><span class="kw">plot.gam</span>(M1, <span class="dt">select =</span> <span class="dv">1</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:M1trend"></span>
 <img src="openair_files/figure-html/M1trend-1.png" alt="The trend component of model M1." width="50%" />
 <p class="caption">
 Figure C.3: The trend component of model M1.
 </p>
 </div>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="sec-trends-gam.html#cb324-1" aria-hidden="true"></a><span class="kw">plot.gam</span>(M1, <span class="dt">select =</span> <span class="dv">2</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="sec-trends-gam.html#cb328-1" aria-hidden="true"></a><span class="kw">plot.gam</span>(M1, <span class="dt">select =</span> <span class="dv">2</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:M1seas"></span>
 <img src="openair_files/figure-html/M1seas-1.png" alt="The seasonal component of model M1." width="50%" />
 <p class="caption">
@@ -473,7 +476,7 @@ Europe. Better and more useful models would likely be possible if the
 data were split my airmass origin, which is something that will be
 returned to when <span class="pkg">openair</span> includes a consideration of back
 trajectories.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="sec-trends-gam.html#cb325-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M1))</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="sec-trends-gam.html#cb329-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M1))</span></code></pre></div>
 <div class="figure"><span id="fig:M1ACF"></span>
 <img src="openair_files/figure-html/M1ACF-1.png" alt="ACF for the residuals of model M1." width="50%" />
 <p class="caption">
@@ -488,10 +491,10 @@ model the short-term autocorrelation using a linear mixed model. The
 <code>gamm</code> function uses the package <span class="pkg">nmle</span> and the Generalized
 Linear Mixed Model (GLMM) fitting routine. In the M2 model below the
 correlation structure is considered explicitly.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="sec-trends-gam.html#cb326-1" aria-hidden="true"></a>M2 &lt;-<span class="st"> </span><span class="kw">gamm</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>)  <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(trend), </span>
-<span id="cb326-2"><a href="sec-trends-gam.html#cb326-2" aria-hidden="true"></a>           <span class="dt">data =</span> monthly,</span>
-<span id="cb326-3"><a href="sec-trends-gam.html#cb326-3" aria-hidden="true"></a>           <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>month <span class="op">|</span><span class="st"> </span>year))</span>
-<span id="cb326-4"><a href="sec-trends-gam.html#cb326-4" aria-hidden="true"></a><span class="kw">summary</span>(M2<span class="op">$</span>gam)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="sec-trends-gam.html#cb330-1" aria-hidden="true"></a>M2 &lt;-<span class="st"> </span><span class="kw">gamm</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>)  <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(trend), </span>
+<span id="cb330-2"><a href="sec-trends-gam.html#cb330-2" aria-hidden="true"></a>           <span class="dt">data =</span> monthly,</span>
+<span id="cb330-3"><a href="sec-trends-gam.html#cb330-3" aria-hidden="true"></a>           <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>month <span class="op">|</span><span class="st"> </span>year))</span>
+<span id="cb330-4"><a href="sec-trends-gam.html#cb330-4" aria-hidden="true"></a><span class="kw">summary</span>(M2<span class="op">$</span>gam)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -519,7 +522,7 @@ autocorrelation has been dealt with and we can be rather more
 confident about the trend component (not plotted). Note that in this
 case we need to use the normalized residuals to get residuals that
 take account of the fitted correlation structure.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="sec-trends-gam.html#cb328-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M2<span class="op">$</span>lme, <span class="dt">type =</span> <span class="st">&quot;normalized&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="sec-trends-gam.html#cb332-1" aria-hidden="true"></a><span class="kw">acf</span>(<span class="kw">residuals</span>(M2<span class="op">$</span>lme, <span class="dt">type =</span> <span class="st">&quot;normalized&quot;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:M2ACF"></span>
 <img src="openair_files/figure-html/M2ACF-1.png" alt="ACF for the residuals of model M2." width="50%" />
 <p class="caption">
@@ -537,10 +540,10 @@ that the trend and seasonal components are essentially on different
 scales. We would not necessarily want to apply the same level of
 smoothness to both components. An example of covariates on the same
 scale would be latitude and longitude.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="sec-trends-gam.html#cb329-1" aria-hidden="true"></a>M3 &lt;-<span class="st"> </span><span class="kw">gamm</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>)  <span class="op">+</span><span class="st"> </span></span>
-<span id="cb329-2"><a href="sec-trends-gam.html#cb329-2" aria-hidden="true"></a><span class="st">             </span><span class="kw">te</span>(trend, month), <span class="dt">data =</span> monthly,</span>
-<span id="cb329-3"><a href="sec-trends-gam.html#cb329-3" aria-hidden="true"></a>           <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>month <span class="op">|</span><span class="st"> </span>year))</span>
-<span id="cb329-4"><a href="sec-trends-gam.html#cb329-4" aria-hidden="true"></a><span class="kw">summary</span>(M3<span class="op">$</span>gam)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="sec-trends-gam.html#cb333-1" aria-hidden="true"></a>M3 &lt;-<span class="st"> </span><span class="kw">gamm</span>(o3 <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(month, <span class="dt">bs =</span> <span class="st">&quot;cc&quot;</span>)  <span class="op">+</span><span class="st"> </span></span>
+<span id="cb333-2"><a href="sec-trends-gam.html#cb333-2" aria-hidden="true"></a><span class="st">             </span><span class="kw">te</span>(trend, month), <span class="dt">data =</span> monthly,</span>
+<span id="cb333-3"><a href="sec-trends-gam.html#cb333-3" aria-hidden="true"></a>           <span class="dt">correlation =</span> <span class="kw">corAR1</span>(<span class="dt">form =</span> <span class="op">~</span><span class="st"> </span>month <span class="op">|</span><span class="st"> </span>year))</span>
+<span id="cb333-4"><a href="sec-trends-gam.html#cb333-4" aria-hidden="true"></a><span class="kw">summary</span>(M3<span class="op">$</span>gam)</span></code></pre></div>
 <pre><code>## 
 ## Family: gaussian 
 ## Link function: identity 
@@ -557,7 +560,7 @@ scale would be latitude and longitude.</p>
 ## Approximate significance of smooth terms:
 ##                   edf Ref.df     F  p-value    
 ## s(month)        6.886  8.000 22.21  &lt; 2e-16 ***
-## te(trend,month) 4.162  4.162  7.96 7.79e-05 ***
+## te(trend,month) 4.162  4.162  7.96 7.78e-05 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -569,7 +572,7 @@ shown in Figure <a href="sec-trends-gam.html#fig:perpsM3">C.7</a>. This plot sho
 during summertime the trends component varies little. However for the
 autumn and winter months there has been a much greater increase in the
 trend component for O<sub>3</sub>.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="sec-trends-gam.html#cb331-1" aria-hidden="true"></a><span class="kw">plot</span>(M3<span class="op">$</span>gam, <span class="dt">select =</span> <span class="dv">2</span>, <span class="dt">pers =</span> <span class="ot">TRUE</span>, <span class="dt">theta =</span> <span class="dv">225</span>, <span class="dt">phi =</span> <span class="dv">10</span>,<span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="sec-trends-gam.html#cb335-1" aria-hidden="true"></a><span class="kw">plot</span>(M3<span class="op">$</span>gam, <span class="dt">select =</span> <span class="dv">2</span>, <span class="dt">pers =</span> <span class="ot">TRUE</span>, <span class="dt">theta =</span> <span class="dv">225</span>, <span class="dt">phi =</span> <span class="dv">10</span>,<span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:perpsM3"></span>
 <img src="openair_files/figure-html/perpsM3-1.png" alt="lot showing the two-way interaction between the trend and seasonal components." width="55%" />
 <p class="caption">
