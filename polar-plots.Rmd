@@ -1,6 +1,6 @@
 # Polar plots {#sec:polarPlot}
 
-This Sections considers the flexible `polarPlot` function that is used to provide information about source characteritics. The clustering of polar plots is also considered using `polarCluster`.
+This Section considers the flexible `polarPlot` function that is used to provide information about source characteritics. The clustering of polar plots is also considered using `polarCluster`.
 
 ## Introduction to polar plots
 
