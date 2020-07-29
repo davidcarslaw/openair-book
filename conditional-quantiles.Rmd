@@ -200,7 +200,7 @@ A subset of the data for the North Kensington site can be imported as
 shown below.
 
 ```{r eval=FALSE}
-condDat <- readRDS(url("https://davidcarslaw.github.io/data/openair/condDat.rds"))
+condDat <- readRDS(url("https://davidcarslaw.com/data/openair/condDat.rds"))
 ```
 
 The file contains observed and modelled hourly values for O~3~,
