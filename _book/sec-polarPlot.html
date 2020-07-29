@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-28" />
+<meta name="date" content="2020-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -334,123 +334,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This Sections considers the flexible <code>polarPlot</code> function that is used to provide information about source characteritics. The clustering of polar plots is also considered using <code>polarCluster</code>.</p>
 <div id="introduction-to-polar-plots" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Introduction to polar plots</h2>
-<p>The <code>polarPlot</code> function plots a <em>bivariate polar plot</em> of
-concentrations. Concentrations are shown to vary by wind speed and
-wind direction. In many respects they are similar to the plots shown
-in Section <a href="sec-polarFreq.html#sec:polarFreq">6</a> but include some additional
-enhancements. These enhancements include: plots are shown as a
-continuous surface and surfaces are calculated through modelling using
-smoothing techniques. These plots are not entirely new as others have
-considered the joint wind speed-direction dependence of concentrations
-(see for example <span class="citation">Yu et al. (<a href="#ref-Yu2004" role="doc-biblioref">2004</a>)</span>). However, plotting the data in
-polar coordinates and for the purposes of source identification is
-new. Furthermore, the basic polar plot is since been enhanced in many
-ways as described below. Publications that describe or use the
-technique are <span class="citation">Carslaw et al. (<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> and
-<span class="citation">Westmoreland et al. (<a href="#ref-Westmoreland2007" role="doc-biblioref">2007</a>)</span>. These plots have proved to be useful for
-quickly gaining a graphical impression of potential sources influences
-at a location.</p>
-<p>The <code>polarPlot</code> function is described in more detail in
-<span class="citation">Carslaw et al. (<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> where it is used to triangulate sources in an
-airport setting, <span class="citation">Carslaw and Beevers (<a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span> where it is used with a
-clustering technique to identify features in a polar plot with
-similar characteristics and <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span> where it is extended
-to include a conditional probability function to extract more
-information from the plots.</p>
-<p>For many, maybe most situations, increasing wind speed generally
-results in lower concentrations due to increased dilution through
-advection and increased mechanical turbulence. There are, however,
-many processes that can lead to interesting concentration-wind speed
-dependencies, and we will provide a more theoretical treatment of this
-in due course. However, below are a few reasons why concentrations can
-change with increasing wind speeds.</p>
+<p>The <code>polarPlot</code> function plots a <em>bivariate polar plot</em> of concentrations. Concentrations are shown to vary by wind speed and wind direction. In many respects they are similar to the plots shown in Section <a href="sec-polarFreq.html#sec:polarFreq">6</a> but include some additional enhancements. These enhancements include: plots are shown as a continuous surface and surfaces are calculated through modelling using smoothing techniques. These plots are not entirely new as others have considered the joint wind speed-direction dependence of concentrations (see for example Yu et al. <span class="citation">(<a href="#ref-Yu2004" role="doc-biblioref">2004</a>)</span>). However, plotting the data in polar coordinates and for the purposes of source identification is new. Furthermore, the basic polar plot is since been enhanced in many ways as described below. Publications that describe or use the technique are Carslaw et al. <span class="citation">(<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> and Westmoreland et al. <span class="citation">(<a href="#ref-Westmoreland2007" role="doc-biblioref">2007</a>)</span>. These plots have proved to be useful for quickly gaining a graphical impression of potential sources influences at a location.</p>
+<p>The <code>polarPlot</code> function is described in more detail in Carslaw et al. <span class="citation">(<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> where it is used to triangulate sources in an airport setting, Carslaw and Beevers <span class="citation">(<a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span> where it is used with a clustering technique to identify features in a polar plot with similar characteristics and Uria-Tellaetxe and Carslaw <span class="citation">(<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span> where it is extended to include a conditional probability function to extract more information from the plots.</p>
+<p>For many, maybe most situations, increasing wind speed generally results in lower concentrations due to increased dilution through advection and increased mechanical turbulence. There are, however, many processes that can lead to interesting concentration-wind speed dependencies, and we will provide a more theoretical treatment of this in due course. However, below are a few reasons why concentrations can change with increasing wind speeds.</p>
 <ul>
-<li><p>Buoyant plumes from tall stacks can be brought down to
-ground-level resulting in high concentrations under high wind speed
-conditions.</p></li>
-<li><p>Particle suspension increases with increasing wind speeds
-e.g. PM<sub>10</sub> from spoil heaps and the like.</p></li>
-<li><p>‘Particle’ suspension can be important close to coastal areas
-where higher wind speeds generate more sea spray.</p></li>
-<li><p>The wind speed dependence of concentrations in a street canyon
-can be very complex: higher wind speeds do not always results in
-lower concentrations due to re-circulation. Bivariate polar plots are
-very good at revealing these complexities.</p></li>
-<li><p>As <span class="citation">Carslaw et al. (<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> showed, aircraft emissions have an unusual
-wind speed dependence and this can help distinguish them from other
-sources. If several measurement sites are available, polar plots can
-be used to triangulate different sources.</p></li>
-<li><p>Concentrations of NO<sub>2</sub> can increase with increasing wind speed
-— or at least not decline steeply due to increased mixing. This
-mixing can result in O<sub>3</sub>-rich air converting NO to NO<sub>2</sub>.</p></li>
+<li><p>Buoyant plumes from tall stacks can be brought down to ground-level resulting in high concentrations under high wind speed conditions.</p></li>
+<li><p>Particle suspension increases with increasing wind speeds e.g. PM<sub>10</sub> from spoil heaps and the like.</p></li>
+<li><p>‘Particle’ suspension can be important close to coastal areas where higher wind speeds generate more sea spray.</p></li>
+<li><p>The wind speed dependence of concentrations in a street canyon can be very complex: higher wind speeds do not always results in lower concentrations due to re-circulation. Bivariate polar plots are very good at revealing these complexities.</p></li>
+<li><p>As Carslaw et al. <span class="citation">(<a href="#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> showed, aircraft emissions have an unusual wind speed dependence and this can help distinguish them from other sources. If several measurement sites are available, polar plots can be used to triangulate different sources.</p></li>
+<li><p>Concentrations of NO<sub>2</sub> can increase with increasing wind speed — or at least not decline steeply due to increased mixing. This mixing can result in O<sub>3</sub>-rich air converting NO to NO<sub>2</sub>.</p></li>
 </ul>
-<p>The function has been developed to allow variables other than wind
-speed to be plotted with wind direction in polar coordinates. The key
-issue is that the other variable plotted against wind direction should
-be discriminating in some way. For example, temperature can help
-reveal high-level sources brought down to ground level in unstable
-atmospheric conditions, or show the effect a source emission dependent
-on temperature e.g. biogenic isoprene. For research applications where
-many more variables could be available, discriminating sources by
-these other variables could be very insightful.</p>
-<p>Bivariate polar plots are constructed in the following way. First,
-wind speed, wind direction and concentration data are partitioned into
-wind speed-direction bins and the mean concentration calculated for
-each bin. Testing on a wide range of data suggests that wind direction
-intervals at 5–10<span class="math inline">\(^\circ\)</span> and 40 wind speed intervals capture sufficient
-detail of the concentration distribution. The wind direction data
-typically available are generally rounded to 10<span class="math inline">\(^\circ\)</span> and for
-typical surface measurements. Binning the
-data in this way is not strictly necessary but acts as an effective
-data reduction technique without affecting the fidelity of the plot
-itself. Furthermore, because of the inherent wind direction
-variability in the atmosphere, data from several weeks, months or
-years typically used to construct a bivariate polar plot tends to be
-diffuse and does not vary abruptly with either wind direction or speed
-and more finely resolved bin sizes or working with the raw data
-directly does not yield more information.</p>
+<p>The function has been developed to allow variables other than wind speed to be plotted with wind direction in polar coordinates. The key issue is that the other variable plotted against wind direction should be discriminating in some way. For example, temperature can help reveal high-level sources brought down to ground level in unstable atmospheric conditions, or show the effect a source emission dependent on temperature e.g. biogenic isoprene. For research applications where many more variables could be available, discriminating sources by these other variables could be very insightful.</p>
+<p>Bivariate polar plots are constructed in the following way. First, wind speed, wind direction and concentration data are partitioned into wind speed-direction bins and the mean concentration calculated for each bin. Testing on a wide range of data suggests that wind direction intervals at 5–10<span class="math inline">\(^\circ\)</span> and 40 wind speed intervals capture sufficient detail of the concentration distribution. The wind direction data typically available are generally rounded to 10<span class="math inline">\(^\circ\)</span> and for typical surface measurements. Binning the data in this way is not strictly necessary but acts as an effective data reduction technique without affecting the fidelity of the plot itself. Furthermore, because of the inherent wind direction variability in the atmosphere, data from several weeks, months or years typically used to construct a bivariate polar plot tends to be diffuse and does not vary abruptly with either wind direction or speed and more finely resolved bin sizes or working with the raw data directly does not yield more information.</p>
 <p>The wind components, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are calculated i.e.</p>
-<p><span class="math display" id="eq:wind-comp">\[\begin{equation}
+<p><span class="math display" id="eq:wind-comp">\[
 u = \overline{u} . sin\left(\frac{2\pi}{\theta}\right), v = \overline{u} . cos\left(\frac{2\pi}{\theta}\right) \tag{8.1}
-\end{equation}\]</span></p>
-<p>with <span class="math inline">\(\overline{u}\)</span> is the mean hourly wind speed and <span class="math inline">\(\theta\)</span> is the mean wind
-direction in degrees with 90<span class="math inline">\(^\circ\)</span> as being from the east.</p>
-<p>The calculations above provides a <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, concentration (<span class="math inline">\(C\)</span>)
-surface. While it would be possible to work with this surface data
-directly a better approach is to apply a model to the surface to
-describe the concentration as a function of the wind components <span class="math inline">\(u\)</span>
-and <span class="math inline">\(v\)</span> to extract real source features rather than noise. A flexible
-framework for fitting a surface is to use a Generalized Additive Model
-(GAM) e.g. <span class="citation">Hastie and Tibshirani (<a href="#ref-Hastie1990" role="doc-biblioref">1990</a>)</span>, <span class="citation">Wood (<a href="#ref-Wood2006" role="doc-biblioref">2006</a>)</span>. GAMs are a useful modelling
-framework with respect to air pollution prediction because typically
-the relationships between variables are non-linear and variable
-interactions are important, both of which issues can be addressed in a
-GAM framework. GAMs can be expressed as shown in Equation <a href="sec-polarPlot.html#eq:gam">(8.2)</a>:</p>
-<p><span class="math display" id="eq:gam">\[\begin{equation}
-  \sqrt{C_i} = \beta_0 + \sum_{j=1}^{n}s_j(x_{ij}) + e_i \tag{8.2}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(C_i\)</span> is the ith pollutant concentration, <span class="math inline">\(\beta_0\)</span> is the
-overall mean of the response, <span class="math inline">\(s_j(x_{ij})\)</span> is the smooth function of
-ith value of covariate <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span> is the total number of covariates, and
-<span class="math inline">\(e_i\)</span> is the <span class="math inline">\(i\)</span>th residual. Note that <span class="math inline">\(C_i\)</span> is square-root
-transformed as the transformation generally produces better model
-diagnostics e.g. normally distributed residuals.</p>
-<p>The model chosen for the estimate of the concentration surface is
-given by Equation @ref(eq:mod}. In this model the square root-transformed
-concentration is a smooth function of the bivariate wind components
-<span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. Note that the smooth function used is <em>isotropic</em>
-because <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are on the same scales. The isotropic smooth
-avoids the potential difficulty of smoothing two variables on
-different scales e.g. wind speed and direction, which introduces
-further complexities.</p>
-<p><span class="math display" id="eq:gam-2">\[\begin{equation}
-  \sqrt{C_i} = s(u, v) + e_i \tag{8.3}
-\end{equation}\]</span></p>
+\]</span></p>
+<p>with <span class="math inline">\(\overline{u}\)</span> is the mean hourly wind speed and <span class="math inline">\(\theta\)</span> is the mean wind direction in degrees with 90<span class="math inline">\(^\circ\)</span> as being from the east.</p>
+<p>The calculations above provides a <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, concentration (<span class="math inline">\(C\)</span>) surface. While it would be possible to work with this surface data directly a better approach is to apply a model to the surface to describe the concentration as a function of the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> to extract real source features rather than noise. A flexible framework for fitting a surface is to use a Generalized Additive Model (GAM) e.g. <span class="citation">(Hastie and Tibshirani <a href="#ref-Hastie1990" role="doc-biblioref">1990</a>)</span>, <span class="citation">(Wood <a href="#ref-Wood2006" role="doc-biblioref">2006</a>)</span>. GAMs are a useful modelling framework with respect to air pollution prediction because typically the relationships between variables are non-linear and variable interactions are important, both of which issues can be addressed in a GAM framework. GAMs can be expressed as shown in Equation <a href="sec-polarPlot.html#eq:gam">(8.2)</a>:</p>
+<p><span class="math display" id="eq:gam">\[
+\sqrt{C_i} = \beta_0 + \sum_{j=1}^{n}s_j(x_{ij}) + e_i \tag{8.2}
+\]</span></p>
+<p>where <span class="math inline">\(C_i\)</span> is the ith pollutant concentration, <span class="math inline">\(\beta_0\)</span> is the overall mean of the response, <span class="math inline">\(s_j(x_{ij})\)</span> is the smooth function of ith value of covariate <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span> is the total number of covariates, and <span class="math inline">\(e_i\)</span> is the <span class="math inline">\(i\)</span>th residual. Note that <span class="math inline">\(C_i\)</span> is square-root transformed as the transformation generally produces better model diagnostics e.g. normally distributed residuals.</p>
+<p>The model chosen for the estimate of the concentration surface is given by Equation <a href="sec-polarPlot.html#eq:gam-2">(8.3)</a>. In this model the square root-transformed concentration is a smooth function of the bivariate wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. Note that the smooth function used is <em>isotropic</em> because <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are on the same scales. The isotropic smooth avoids the potential difficulty of smoothing two variables on different scales e.g. wind speed and direction, which introduces further complexities.</p>
+<p><span class="math display" id="eq:gam-2">\[
+\sqrt{C_i} = s(u, v) + e_i \tag{8.3}
+\]</span></p>
 </div>
 <div id="polar-plot-examples" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Examples</h2>
-<p>We first use the function in its simplest form to make a polar plot of
-NO<sub>x</sub>. The code is very simple as shown in Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a>.</p>
+<p>We first use the function in its simplest form to make a polar plot of NO<sub>x</sub>. The code is very simple as shown in Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a>.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="sec-polarPlot.html#cb57-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarPlot"></span>
 <img src="openair_files/figure-html/polarPlot-1.png" alt="Default use of the `polarPlot` function applied to Marylebone Road NO~x~ concentrations." width="50%" />
@@ -458,59 +372,10 @@ NO<sub>x</sub>. The code is very simple as shown in Figure <a href="sec-polarPlo
 Figure 8.1: Default use of the <code>polarPlot</code> function applied to Marylebone Road NO<sub>x</sub> concentrations.
 </p>
 </div>
-<p>This produces Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a>. The scale is automatically set
-using whatever units the original data are in. This plot clearly shows
-highest NO<sub>x</sub> concentrations when the wind is from the
-south-west. Given that the monitor is on the <em>south</em> side of the
-street and the highest concentrations are recorded when the wind is
-blowing <em>away</em> from the monitor is strong evidence of street
-canyon recirculation.</p>
-<p>Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a> and Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> shows polar
-plots using different defaults and for other pollutants. In the first
-(Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a>, a different colour scheme is used and some
-adjustments are made to the key. In Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>, SO<sub>2</sub>
-concentrations are shown. What is interesting about this plot compared
-with either Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a> or Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a> is that the concentration pattern is very different i.e. high
-concentrations with high wind speeds from the east. The most likely
-source of this SO<sub>2</sub> are industrial sources to the east of
-London. The plot does still however show evidence of a source to the
-south-west, similar to the plot for NO<sub>x</sub>, which implies that road
-traffic sources of SO<sub>2</sub> can also be detected.</p>
-<p>These plots often show interesting features at higher wind speeds. For
-these conditions there can be very few measurements and therefore
-greater uncertainty in the calculation of the surface. There are
-several ways in which this issue can be tackled. First, it is possible
-to avoid smoothing altogether and use <code>polarFreq</code>. The problem
-with this approach is that it is difficult to know how best to bin
-wind speed and direction: the choice of interval tends to be
-arbitrary. Second, the effect of setting a minimum number of
-measurements in each wind speed-direction bin can be examined through
-<code>min.bin</code>. It is possible that a single point at high wind speed
-conditions can strongly affect the surface prediction. Therefore,
-setting <code>min.bin = 3</code>, for example, will remove all wind
-speed-direction bins with fewer than 3 measurements <em>before</em>
-fitting the surface. This is a useful strategy for testing how
-sensitive the plotted surface is to the number of measurements
-available. While this is a useful strategy to get a feel for how the
-surface changes with different <code>min.bin</code> settings, it is still
-difficult to know how many points should be used as a minimum. Third,
-consider setting <code>uncertainty = TRUE</code>. This option will show the
-predicted surface together with upper and lower 95% confidence
-intervals, which take account of the frequency of measurements. The
-uncertainty approach ought to be the most robust and removes any
-arbitrary setting of other options. There is a close relationship
-between the amount of smoothing and the uncertainty: more smoothing
-will tend to reveal less detail and lower uncertainties in the fitted
-surface and vice-versa.</p>
-<p>The default however is to down-weight the bins with few data points
-when fitting a surface. Weights of 0.25, 0.5 and 0.75 are used for
-bins containing 1, 2 and 3 data points respectively. The advantage of
-this approach is that no data are actually removed (which is what
-happens when using <code>min.bin</code>). This approach should be robust in a
-very wide range of situations and is also similar to the approaches
-used when trying to locate sources when using back trajectories as
-described in Section <a href="sec-trajPlot.html#sec:trajPlot">18</a>. Users can ignore the automatic
-weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
+<p>This produces Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a>. The scale is automatically set using whatever units the original data are in. This plot clearly shows highest NO<sub>x</sub> concentrations when the wind is from the south-west. Given that the monitor is on the <em>south</em> side of the street and the highest concentrations are recorded when the wind is blowing <em>away</em> from the monitor is strong evidence of street canyon recirculation.</p>
+<p>Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a> and Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> shows polar plots using different defaults and for other pollutants. In the first (Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a>, a different colour scheme is used and some adjustments are made to the key. In Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>, SO<sub>2</sub> concentrations are shown. What is interesting about this plot compared with either Figure <a href="sec-polarPlot.html#fig:polarPlot2">8.2</a> or Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a> is that the concentration pattern is very different i.e. high concentrations with high wind speeds from the east. The most likely source of this SO<sub>2</sub> are industrial sources to the east of London. The plot does still however show evidence of a source to the south-west, similar to the plot for NO<sub>x</sub>, which implies that road traffic sources of SO<sub>2</sub> can also be detected.</p>
+<p>These plots often show interesting features at higher wind speeds. For these conditions there can be very few measurements and therefore greater uncertainty in the calculation of the surface. There are several ways in which this issue can be tackled. First, it is possible to avoid smoothing altogether and use <code>polarFreq</code>. The problem with this approach is that it is difficult to know how best to bin wind speed and direction: the choice of interval tends to be arbitrary. Second, the effect of setting a minimum number of measurements in each wind speed-direction bin can be examined through <code>min.bin</code>. It is possible that a single point at high wind speed conditions can strongly affect the surface prediction. Therefore, setting <code>min.bin = 3</code>, for example, will remove all wind speed-direction bins with fewer than 3 measurements <em>before</em> fitting the surface. This is a useful strategy for testing how sensitive the plotted surface is to the number of measurements available. While this is a useful strategy to get a feel for how the surface changes with different <code>min.bin</code> settings, it is still difficult to know how many points should be used as a minimum. Third, consider setting <code>uncertainty = TRUE</code>. This option will show the predicted surface together with upper and lower 95% confidence intervals, which take account of the frequency of measurements. The uncertainty approach ought to be the most robust and removes any arbitrary setting of other options. There is a close relationship between the amount of smoothing and the uncertainty: more smoothing will tend to reveal less detail and lower uncertainties in the fitted surface and vice-versa.</p>
+<p>The default however is to down-weight the bins with few data points when fitting a surface. Weights of 0.25, 0.5 and 0.75 are used for bins containing 1, 2 and 3 data points respectively. The advantage of this approach is that no data are actually removed (which is what happens when using <code>min.bin</code>). This approach should be robust in a very wide range of situations and is also similar to the approaches used when trying to locate sources when using back trajectories as described in Section <a href="sec-trajPlot.html#sec:trajPlot">18</a>. Users can ignore the automatic weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sec-polarPlot.html#cb58-1" aria-hidden="true"></a><span class="co">## NOx plot</span></span>
 <span id="cb58-2"><a href="sec-polarPlot.html#cb58-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, </span>
 <span id="cb58-3"><a href="sec-polarPlot.html#cb58-3" aria-hidden="true"></a>          <span class="dt">key.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
@@ -529,35 +394,14 @@ Figure 8.2: Example plots using the <code>polarPlot</code> function with differe
 Figure 8.3: Example plots using the <code>polarPlot</code> function for the mean concentration of SO<sub>2</sub>.
 </p>
 </div>
-<p>A very useful approach for understanding air pollution is to consider
-ratios of pollutants. One reason is that pollutant ratios can be
-largely independent of meteorological variation. In many circumstances
-it is possible to gain a lot of insight into sources if pollutant
-ratios are considered. First, it is necessary to calculate a ratio,
-which is easy in R. In this example we consider the ratio of SO<sub>2</sub>/NO<sub>x</sub>:</p>
+<p>A very useful approach for understanding air pollution is to consider ratios of pollutants. One reason is that pollutant ratios can be largely independent of meteorological variation. In many circumstances it is possible to gain a lot of insight into sources if pollutant ratios are considered. First, it is necessary to calculate a ratio, which is easy in R. In this example we consider the ratio of SO<sub>2</sub>/NO<sub>x</sub>:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sec-polarPlot.html#cb60-1" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb60-2"><a href="sec-polarPlot.html#cb60-2" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">mutate</span>(mydata, <span class="dt">ratio =</span> so2 <span class="op">/</span><span class="st"> </span>nox)</span></code></pre></div>
-<p>This makes a new variable called <code>ratio</code>. Sometimes it can be
-problematic if there are values equal to zero on the denominator, as
-is the case here. The mean and maximum value of the ratio is infinite,
-as shown by the <code>Inf</code> in the statistics below. Luckily, R can deal
-with infinity and the <span class="pkg">openair</span> functions will remove these values
-before performing calculations. It is very simple therefore to
-calculate ratios.</p>
+<p>This makes a new variable called <code>ratio</code>. Sometimes it can be problematic if there are values equal to zero on the denominator, as is the case here. The mean and maximum value of the ratio is infinite, as shown by the <code>Inf</code> in the statistics below. Luckily, R can deal with infinity and the <span class="pkg">openair</span> functions will remove these values before performing calculations. It is very simple therefore to calculate ratios.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="sec-polarPlot.html#cb61-1" aria-hidden="true"></a><span class="kw">summary</span>(mydata<span class="op">$</span>ratio)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   0.000   0.018   0.024     Inf   0.034     Inf   11782</code></pre>
-<p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in Figure
-<a href="sec-polarPlot.html#fig:polarRatio">8.4</a>. The plot highlights some new features not
-seen before. First, to the north there seems to be evidence that the
-air tends to have a higher SO<sub>2</sub>/NO<sub>x</sub> ratio. Also, the source to the
-east has a higher SO<sub>2</sub>/NO<sub>x</sub> ratio compared with that when the wind
-is from the south-west i.e. dominated by road sources. It seems
-therefore that the easterly source(s), which are believed to be
-industrial sources have a different SO<sub>2</sub>/NO<sub>x</sub> ratio compared with
-road sources. This is a very simple analysis, but ratios can be used
-effectively in many functions and are particularly useful in the
-presence of high source complexity.</p>
+<p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in Figure <a href="sec-polarPlot.html#fig:polarRatio">8.4</a>. The plot highlights some new features not seen before. First, to the north there seems to be evidence that the air tends to have a higher SO<sub>2</sub>/NO<sub>x</sub> ratio. Also, the source to the east has a higher SO<sub>2</sub>/NO<sub>x</sub> ratio compared with that when the wind is from the south-west i.e. dominated by road sources. It seems therefore that the easterly source(s), which are believed to be industrial sources have a different SO<sub>2</sub>/NO<sub>x</sub> ratio compared with road sources. This is a very simple analysis, but ratios can be used effectively in many functions and are particularly useful in the presence of high source complexity.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="sec-polarPlot.html#cb63-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;so2/nox ratio&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarRatio"></span>
 <img src="openair_files/figure-html/polarRatio-1.png" alt="Bivariate polar plot of the ratio of SO~2~/NO~x~." width="50%" />
@@ -565,20 +409,9 @@ presence of high source complexity.</p>
 Figure 8.4: Bivariate polar plot of the ratio of SO<sub>2</sub>/NO<sub>x</sub>.
 </p>
 </div>
-<p>Sometimes when considering ratios it might be necessary to limit the
-values in some way; perhaps due to some unusually low value
-denominator data resulting in a few very high values for the
-ratio. This is easy to do with the <strong>dplyr</strong> <code>filter</code> command. The code below selects ratios less than 0.1.</p>
+<p>Sometimes when considering ratios it might be necessary to limit the values in some way; perhaps due to some unusually low value denominator data resulting in a few very high values for the ratio. This is easy to do with the [dplyr{.pkg} <code>filter</code> command. The code below selects ratios less than 0.1.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sec-polarPlot.html#cb64-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(<span class="kw">filter</span>(mydata, ratio <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.1</span>), <span class="dt">pollutant =</span> <span class="st">&quot;ratio&quot;</span>)</span></code></pre></div>
-<p>The uncertainties in the surface can be calculated by setting the
-option <code>uncertainty = TRUE</code>. The details are described above and
-here we show the example of SO<sub>2</sub> concentrations
-(Figure <a href="sec-polarPlot.html#fig:polarUncer">8.5</a>. In general the uncertainties are higher
-at high wind speeds i.e. at the ‘fringes’ of a plot where there are
-fewer data. However, the magnitude depends on both the frequency and
-magnitude of the concentration close to the points of interest. The
-pattern of uncertainty is not always obvious and it can differ
-markedly for different pollutants.</p>
+<p>The uncertainties in the surface can be calculated by setting the option <code>uncertainty = TRUE</code>. The details are described above and here we show the example of SO<sub>2</sub> concentrations (Figure <a href="sec-polarPlot.html#fig:polarUncer">8.5</a>. In general the uncertainties are higher at high wind speeds i.e. at the ‘fringes’ of a plot where there are fewer data. However, the magnitude depends on both the frequency and magnitude of the concentration close to the points of interest. The pattern of uncertainty is not always obvious and it can differ markedly for different pollutants.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="sec-polarPlot.html#cb65-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">uncertainty =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarUncer"></span>
 <img src="openair_files/figure-html/polarUncer-1.png" alt="Bivariate polar plot of SO~2~ concentrations at Marylebone Road. Three surfaces are shown: the central prediction (middle) and the lower and upper 95% estimated uncertainties. These plots help to show that in this particular case, some of the concentrations for strong easterly and south-easterly winds are rather uncertain. However, the central feature to the east remains, suggesting this feature is real and not an artifact of there being too few data." width="768" />
@@ -586,48 +419,15 @@ markedly for different pollutants.</p>
 Figure 8.5: Bivariate polar plot of SO<sub>2</sub> concentrations at Marylebone Road. Three surfaces are shown: the central prediction (middle) and the lower and upper 95% estimated uncertainties. These plots help to show that in this particular case, some of the concentrations for strong easterly and south-easterly winds are rather uncertain. However, the central feature to the east remains, suggesting this feature is real and not an artifact of there being too few data.
 </p>
 </div>
-<p>The <code>polarPlot</code> function can also produce plots dependent on
-another variable (see the <code>type</code> option). For example, the
-variation of SO<sub>2</sub> concentrations at Marylebone Road by hour of the
-day in the code below. The function was called as shown in below, and
-in this case the minimum number of points in each wind speed/direction
-was set to 2.</p>
+<p>The <code>polarPlot</code> function can also produce plots dependent on another variable (see the <code>type</code> option). For example, the variation of SO<sub>2</sub> concentrations at Marylebone Road by hour of the day in the code below. The function was called as shown in below, and in this case the minimum number of points in each wind speed/direction was set to 2.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sec-polarPlot.html#cb66-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;hour&quot;</span>, <span class="dt">min.bin =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p>This plot shows that concentrations of SO<sub>2</sub> tend to be highest from
-the east (as also shown in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>) and for hours in
-the morning. Together these plots can help better understand different
-source types. For example, does a source only seem to be present
-during weekdays, or winter months etc. In the case of <code>type = "hour"</code>, the more obvious presence during the morning hours could be
-due to meteorological factors and this possibility should be
-investigated as well. In other settings where there are many sources
-that vary in their source emission and temporal characteristics, the
-<code>polarPlot</code> function should prove to be very useful.</p>
-<p>One issue to be aware of is the amount of data required to generate
-some of these plots; particularly the hourly plots. If only a
-relatively short time series is available there may not be sufficient
-information to produce useful plots. Whether this is important or not
-will depend on the specific circumstances e.g. the prevalence of wind
-speeds and directions from the direction of interest. When used to
-produce many plots (e.g. <code>type = "hour"</code>), the run time can be quite
-long.</p>
+<p>This plot shows that concentrations of SO<sub>2</sub> tend to be highest from the east (as also shown in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>) and for hours in the morning. Together these plots can help better understand different source types. For example, does a source only seem to be present during weekdays, or winter months etc. In the case of <code>type = "hour"</code>, the more obvious presence during the morning hours could be due to meteorological factors and this possibility should be investigated as well. In other settings where there are many sources that vary in their source emission and temporal characteristics, the <code>polarPlot</code> function should prove to be very useful.</p>
+<p>One issue to be aware of is the amount of data required to generate some of these plots; particularly the hourly plots. If only a relatively short time series is available there may not be sufficient information to produce useful plots. Whether this is important or not will depend on the specific circumstances e.g. the prevalence of wind speeds and directions from the direction of interest. When used to produce many plots (e.g. <code>type = "hour"</code>), the run time can be quite long.</p>
 </div>
 <div id="nonparametric-wind-regression-nwr" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Nonparametric Wind Regression, NWR</h2>
-<p>An alternative approach to modelling the surface concentrations with a
-GAM is to use kernel smoothers, as described by
-<span class="citation">Henry et al. (<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>. In NWR, smoothing is achieved using
-nonparametric kernel smoothers that weight concentrations on a surface
-according to their proximity to defined wind speed and direction
-intervals. In the approach adopted in <span class="pkg">openair</span> (which is not identical
-to <span class="citation">Henry et al. (<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>), Gaussian smoothers are used for both wind
-direction and wind speed. Unlike the default GAM approach in <span class="pkg">openair</span>,
-the NWR technique works directly with the raw (often hourly) data. It
-tends to provide similar results to <span class="pkg">openair</span> but may have advantages
-in certain situations e.g. when there is insufficient data available
-to use a GAM. The width of the Gaussian kernels (<span class="math inline">\(\sigma\)</span>) is
-controlled by the options <code>wd_spread</code> and <code>ws_spread</code>.</p>
-<p>An example for SO<sub>2</sub> concentrations is shown in Figure
-<a href="sec-polarPlot.html#fig:polarNWR">8.6</a>, which can be compared with Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>.</p>
+<p>An alternative approach to modelling the surface concentrations with a GAM is to use kernel smoothers, as described by Henry et al. <span class="citation">(<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>. In NWR, smoothing is achieved using nonparametric kernel smoothers that weight concentrations on a surface according to their proximity to defined wind speed and direction intervals. In the approach adopted in <span class="pkg">openair</span> (which is not identical to Henry et al. <span class="citation">(<a href="#ref-henry2009" role="doc-biblioref">2009</a>)</span>), Gaussian smoothers are used for both wind direction and wind speed. Unlike the default GAM approach in <span class="pkg">openair</span>, the NWR technique works directly with the raw (often hourly) data. It tends to provide similar results to <span class="pkg">openair</span> but may have advantages in certain situations e.g. when there is insufficient data available to use a GAM. The width of the Gaussian kernels (𝜎) is controlled by the options <code>wd_spread</code> and <code>ws_spread</code>.</p>
+<p>An example for SO<sub>2</sub> concentrations is shown in Figure <a href="sec-polarPlot.html#fig:polarNWR">8.6</a>, which can be compared with Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="sec-polarPlot.html#cb67-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;nwr&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarNWR"></span>
 <img src="openair_files/figure-html/polarNWR-1.png" alt="`polarPlot` of SO~2~ concentrations at Marylebone Road based on the NWR approach." width="50%" />
@@ -638,24 +438,7 @@ Figure 8.6: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebon
 </div>
 <div id="conditional-probability-function-cpf-plot" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Conditional Probability Function (CPF) plot</h2>
-<p>The conditional probability functions (CPF) was described on
- in the context of the <code>percentileRose</code>
-function. The CPF was originally used to show the wind directions that
-dominate a (specified) high concentration of a pollutant; showing the
-probability of such concentrations occurring by wind direction
-<span class="citation">Ashbaugh, Malm, and Sadeh (<a href="#ref-Ashbaugh1985" role="doc-biblioref">1985</a>)</span>. However, these ideas can very usefully be
-applied to bivariate polar plots. In this case the CPF is defined as
-CPF = <span class="math inline">\(m_{\theta,j}/n_{\theta,j}\)</span>, where <span class="math inline">\(m_{\theta,j}\)</span> is the number
-of samples in the wind sector <span class="math inline">\(\theta\)</span> and wind speed interval <span class="math inline">\(j\)</span>
-with mixing ratios greater than some ‘high’ concentration, and
-<span class="math inline">\(n_{\theta, j}\)</span> is the total number of samples in the same wind
-direction-speed interval. Note that <span class="math inline">\(j\)</span> does not have to be wind speed
-but could be any numeric variable e.g. ambient temperature. CPF
-analysis is very useful for showing which wind direction, wind speed
-intervals are dominated by high concentrations and give the
-probability of doing so. A full explanation of the development and use
-of the bivariate case of the CPF is described in <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>
-where it is applied to monitoring data close to steelworks.</p>
+<p>The conditional probability functions (CPF) was described in Section <a href="sec-percentileRose.html#sec:CPF">7.3</a> in the context of the <code>percentileRose</code> function. The CPF was originally used to show the wind directions that dominate a (specified) high concentration of a pollutant; showing the probability of such concentrations occurring by wind direction Ashbaugh et al. <span class="citation">(<a href="#ref-Ashbaugh1985" role="doc-biblioref">1985</a>)</span>. However, these ideas can very usefully be applied to bivariate polar plots. In this case the CPF is defined as CPF = <span class="math inline">\(m_{\theta,j}/n_{\theta,j}\)</span>, where <span class="math inline">\(m_{\theta,j}\)</span> is the number of samples in the wind sector <span class="math inline">\(\theta\)</span> and wind speed interval <span class="math inline">\(j\)</span> with mixing ratios greater than some ‘high’ concentration, and <span class="math inline">\(n_{\theta, j}\)</span> is the total number of samples in the same wind direction-speed interval. Note that <span class="math inline">\(j\)</span> does not have to be wind speed but could be any numeric variable e.g. ambient temperature. CPF analysis is very useful for showing which wind direction, wind speed intervals are dominated by high concentrations and give the probability of doing so. A full explanation of the development and use of the bivariate case of the CPF is described in Uria-Tellaetxe and Carslaw <span class="citation">(<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span> where it is applied to monitoring data close to steelworks.</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="sec-polarPlot.html#cb68-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, </span>
 <span id="cb68-2"><a href="sec-polarPlot.html#cb68-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, </span>
 <span id="cb68-3"><a href="sec-polarPlot.html#cb68-3" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;cpf&quot;</span>, </span>
@@ -666,36 +449,8 @@ where it is applied to monitoring data close to steelworks.</p>
 Figure 8.7: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function.
 </p>
 </div>
-<p>An example of a CPF polar plot is shown in Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a>
-for the 90th percentile concentration of SO<sub>2</sub>. This plot shows that
-for most wind speed-directions the probability of SO<sub>2</sub>
-concentrations being greater than the 90th percentile is zero. The
-clearest areas where the probability is higher is to the east. Indeed,
-the plot now clearly reveals two potential sources of SO<sub>2</sub>, which
-are not as apparent in the ‘standard’ plot shown in Figure
-<a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>. Note that Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> also
-gives the calculated percentile at the bottom of the plot (9.2 ppb in
-this case). Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> can also be compared with the
-CPF plot based only on wind direction shown in Figure
-<a href="sec-percentileRose.html#fig:percentileRoseCPF">7.4</a>. While Figure <a href="sec-percentileRose.html#fig:percentileRoseCPF">7.4</a>
-very clearly shows that easterly wind dominate high concentrations of
-SO<sub>2</sub>, Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> provides additional valuable
-information by also considering wind speed, which in this case is able
-to discriminate between two sources (or groups of sources) to the east.</p>
-<p>The polar CPF plot is therefore potentially very useful for source
-identification and characterisation. It is, for example, worth also
-considering other percentile levels and other pollutants. For example,
-considering the 95th percentile for SO<sub>2</sub> ‘removes’ one of the
-sources (the one at highest wind speed). This helps to show some maybe
-important differences between the sources that could easily have been
-missed. Similarly, considering other pollutants can help build up a
-good understanding of these sources. A CPF plot for NO<sub>2</sub> at the 90th
-percentile shows the single dominance of the road source. However, a
-CPF plot at the 75th percentile level indicates source contributions
-from the east (likely tall stacks), which again are not as clear in
-the standard bivariate polar plot. Considering a range of percentile
-values can therefore help to build up a more complete understanding of
-source contributions.</p>
+<p>An example of a CPF polar plot is shown in Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> for the 90th percentile concentration of SO<sub>2</sub>. This plot shows that for most wind speed-directions the probability of SO<sub>2</sub> concentrations being greater than the 90th percentile is zero. The clearest areas where the probability is higher is to the east. Indeed, the plot now clearly reveals two potential sources of SO<sub>2</sub>, which are not as apparent in the ‘standard’ plot shown in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>. Note that Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> also gives the calculated percentile at the bottom of the plot (9.2 ppb in this case). Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> can also be compared with the CPF plot based only on wind direction shown in Figure <a href="sec-percentileRose.html#fig:percentileRoseCPF">7.4</a>. While Figure <a href="sec-percentileRose.html#fig:percentileRoseCPF">7.4</a> very clearly shows that easterly wind dominate high concentrations of SO<sub>2</sub>, Figure <a href="sec-polarPlot.html#fig:polarPlotCPF">8.7</a> provides additional valuable information by also considering wind speed, which in this case is able to discriminate between two sources (or groups of sources) to the east.</p>
+<p>The polar CPF plot is therefore potentially very useful for source identification and characterisation. It is, for example, worth also considering other percentile levels and other pollutants. For example, considering the 95th percentile for SO<sub>2</sub> ‘removes’ one of the sources (the one at highest wind speed). This helps to show some maybe important differences between the sources that could easily have been missed. Similarly, considering other pollutants can help build up a good understanding of these sources. A CPF plot for NO<sub>2</sub> at the 90th percentile shows the single dominance of the road source. However, a CPF plot at the 75th percentile level indicates source contributions from the east (likely tall stacks), which again are not as clear in the standard bivariate polar plot. Considering a range of percentile values can therefore help to build up a more complete understanding of source contributions.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="sec-polarPlot.html#cb69-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span>
 <span id="cb69-2"><a href="sec-polarPlot.html#cb69-2" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>))</span>
 <span id="cb69-3"><a href="sec-polarPlot.html#cb69-3" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">poll =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">stati =</span> <span class="st">&quot;cpf&quot;</span>, <span class="dt">percentile =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">30</span>))</span>
@@ -712,80 +467,27 @@ source contributions.</p>
 Figure 8.8: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0–10, 10–20, … , 90–100.
 </p>
 </div>
-<p>However, even more useful information can be gained by considering
-<em>intervals</em> of percentiles e.g. 50–60, 60–70 etc. By
-considering intervals of percentiles it becomes clear that some
-sources only affect a limited percentile range. <code>polarPlot</code> can
-accept a <code>percentile</code> argument of length two e.g. <code>percentile =  c(80, 90)</code>. In this case concentrations in the range from the lower
-to upper percentiles will be considered. In Figure
-<a href="sec-polarPlot.html#fig:polarPlotCPFInt">8.8</a> for example, it is apparent that the
-road source to the south west is only important between the 60 to 90th
-percentiles. As mentioned previously, the chimney stacks to the east
-are important for the higher percentiles (90 to 100). What is
-interesting though is the emergence of what appears to be other
-sources at the lower percentile intervals. These potential sources are
-not apparent in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>. The other interesting aspect
-is that it does seem that specific sources tend to be prominent for
-specific percentile ranges. If this characteristic is shown to be the
-case more generally, then CPF intervals could be a powerful way in
-which to identify many sources. Whether these particular sources are
-important or not is questionable and depends on the aims of the
-analysis. However, there is no reason to believe that the potential
-sources shown in the percentile ranges 0 to 50 are artefacts. They
-could for example be signals from more distant point sources whose
-plumes have diluted more over longer distances. Such sources would be
-‘washed out’ in an ordinary polar plot. For a fuller example of this
-approach see <span class="citation">Uria-Tellaetxe and Carslaw (<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>.</p>
-<p>Note that it is easy to work out what the concentration intervals are
-for the percentiles shown in Figure <a href="sec-polarPlot.html#fig:polarPlotCPFInt">8.8</a>:</p>
+<p>However, even more useful information can be gained by considering <em>intervals</em> of percentiles e.g. 50–60, 60–70 etc. By considering intervals of percentiles it becomes clear that some sources only affect a limited percentile range. <code>polarPlot</code> can accept a <code>percentile</code> argument of length two e.g. <code>percentile =  c(80, 90)</code>. In this case concentrations in the range from the lower to upper percentiles will be considered. In Figure <a href="sec-polarPlot.html#fig:polarPlotCPFInt">8.8</a> for example, it is apparent that the road source to the south west is only important between the 60 to 90th percentiles. As mentioned previously, the chimney stacks to the east are important for the higher percentiles (90 to 100). What is interesting though is the emergence of what appears to be other sources at the lower percentile intervals. These potential sources are not apparent in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a>. The other interesting aspect is that it does seem that specific sources tend to be prominent for specific percentile ranges. If this characteristic is shown to be the case more generally, then CPF intervals could be a powerful way in which to identify many sources. Whether these particular sources are important or not is questionable and depends on the aims of the analysis. However, there is no reason to believe that the potential sources shown in the percentile ranges 0 to 50 are artefacts. They could for example be signals from more distant point sources whose plumes have diluted more over longer distances. Such sources would be ‘washed out’ in an ordinary polar plot. For a fuller example of this approach see [Uria-Tellaetxe and Carslaw <span class="citation">(<a href="#ref-Uria2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>Note that it is easy to work out what the concentration intervals are for the percentiles shown in Figure <a href="sec-polarPlot.html#fig:polarPlotCPFInt">8.8</a>:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="sec-polarPlot.html#cb70-1" aria-hidden="true"></a><span class="kw">quantile</span>(mydata<span class="op">$</span>so2, <span class="dt">probs =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>##      0%     10%     20%     30%     40%     50%     60%     70%     80%     90% 
 ##  0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 
 ##    100% 
 ## 63.2050</code></pre>
-<p>To plot the Figures on one page it is necessary to make the plot
-objects first and then decide how to plot them. To plot the Figures in
-a particular layout see Section <a href="sec-openair-package.html#sec:multiple-plots-page">2.8</a>.</p>
+<p>To plot the Figures on one page it is necessary to make the plot objects first and then decide how to plot them. To plot the Figures in a particular layout see Section <a href="sec-openair-package.html#sec:multiple-plots-page">2.8</a>.</p>
 </div>
 <div id="pairwise-statistics" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Pairwise statistics</h2>
-<p><span class="citation">Grange, Lewis, and Carslaw (<a href="#ref-grange2016" role="doc-biblioref">2016</a>)</span> further developed the capabilities of the <code>polarPlot</code> function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the <code>polarPlot</code> function can provide enhanced information. The pairwise statistics that can be considered include:</p>
+<p>Grange et al. <span class="citation">(<a href="#ref-grange2016" role="doc-biblioref">2016</a>)</span> further developed the capabilities of the <code>polarPlot</code> function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the <code>polarPlot</code> function can provide enhanced information. The pairwise statistics that can be considered include:</p>
 <ul>
 <li><p>The Pearson or Spearman correlation coefficient, <span class="math inline">\(r\)</span>;</p></li>
-<li><p>The robust slope (gradient) resulting from a linear regressions
-between two pollutants.</p></li>
-<li><p>The quantile slope from a quantile regression applied to two
-variables with a quantile value of <span class="math inline">\(tau\)</span>. By default, the median
-slope (i.e. <span class="math inline">\(tau\)</span> = 0.5) is used by the actual level can be set by
-the user.</p></li>
+<li><p>The robust slope (gradient) resulting from a linear regressions between two pollutants.</p></li>
+<li><p>The quantile slope from a quantile regression applied to two variables with a quantile value of <span class="math inline">\(tau\)</span>. By default, the median slope (i.e. <span class="math inline">\(tau\)</span> = 0.5) is used by the actual level can be set by the user.</p></li>
 </ul>
-<p>The calculation involves a weighted Pearson correlation coefficient,
-which is weighted by Gaussian kernels for wind direction and the radial
-variable (by default wind speed). More weight is assigned to values
-close to a wind speed-direction interval. Kernel weighting is used to
-ensure that all data are used rather than relying on the potentially
-small number of values in a wind speed-direction interval.</p>
-<p>The calculation involves a weighted statistics by Gaussian kernels for
-wind direction and the radial variable (by default wind speed). More
-weight is assigned to values close to a wind speed-direction
-interval. Kernel weighting is used to ensure that all data are used
-rather than relying on the potentially small number of values in a
-wind speed-direction interval.</p>
-<p>An example usage scenario is that measurements of metal concentrations
-are made close to a steelworks where there is interest in
-understanding the principal sources. While it is useful to consider
-the correlation between potentially many metal concentrations, the
-contention is that if the correlation is also considered as a function
-of wind speed and direction, improved information will be available of
-the types of sources contributing. For example, it may be that Fe and
-Mn are quite strongly correlated overall, but they tend to be most
-correlated under specific wind speed and direction ranges —
-suggesting a specific source origin.</p>
-<p>As an example of usage we will consider the relationship between
-PM<sub>2.5</sub> and PM<sub>10</sub> at the rural Harwell site in
-Oxfordshire. Additionally, we will use meteorological data from a
-nearby site rather than rely on modelled values that are provided in
-<code>importAURN</code>.</p>
+<p>The calculation involves a weighted Pearson correlation coefficient, which is weighted by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval.</p>
+<p>The calculation involves a weighted statistics by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval.</p>
+<p>An example usage scenario is that measurements of metal concentrations are made close to a steelworks where there is interest in understanding the principal sources. While it is useful to consider the correlation between potentially many metal concentrations, the contention is that if the correlation is also considered as a function of wind speed and direction, improved information will be available of the types of sources contributing. For example, it may be that Fe and Mn are quite strongly correlated overall, but they tend to be most correlated under specific wind speed and direction ranges — suggesting a specific source origin.</p>
+<p>As an example of usage we will consider the relationship between PM<sub>2.5</sub> and PM<sub>10</sub> at the rural Harwell site in Oxfordshire. Additionally, we will use meteorological data from a nearby site rather than rely on modelled values that are provided in <code>importAURN</code>.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="sec-polarPlot.html#cb72-1" aria-hidden="true"></a><span class="kw">library</span>(worldmet) <span class="co"># to access met data</span></span>
 <span id="cb72-2"><a href="sec-polarPlot.html#cb72-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse) </span>
 <span id="cb72-3"><a href="sec-polarPlot.html#cb72-3" aria-hidden="true"></a></span>
@@ -800,14 +502,8 @@ nearby site rather than rely on modelled values that are provided in
 <span id="cb72-12"><a href="sec-polarPlot.html#cb72-12" aria-hidden="true"></a>  met,</span>
 <span id="cb72-13"><a href="sec-polarPlot.html#cb72-13" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span></span>
 <span id="cb72-14"><a href="sec-polarPlot.html#cb72-14" aria-hidden="true"></a>)</span></code></pre></div>
-<p>An example pairwise regression surface relationship relating PM<sub>2.5</sub>
-and PM<sub>10</sub> is shown in Figure <a href="sec-polarPlot.html#fig:polarPair">8.9</a>. This plot reveals that
-almost all the PM<sub>10</sub> is in the form of PM<sub>2.5</sub> when the wind has an
-easterly component, which is attributed to the large secondary
-contribution likely dominated by ammonium nitrate.</p>
-<p>A simple scatter plot between PM<sub>2.5</sub> and PM<sub>10</sub> strongly suggests a
-1:1 relationship and it is not obvious that there is a higher
-PM<sub>2.5</sub>/PM<sub>10</sub> ratio when the wind is from the east.</p>
+<p>An example pairwise regression surface relationship relating PM<sub>2.5</sub> and PM<sub>10</sub> is shown in Figure <a href="sec-polarPlot.html#fig:polarPair">8.9</a>. This plot reveals that almost all the PM<sub>10</sub> is in the form of PM<sub>2.5</sub> when the wind has an easterly component, which is attributed to the large secondary contribution likely dominated by ammonium nitrate.</p>
+<p>A simple scatter plot between PM<sub>2.5</sub> and PM<sub>10</sub> strongly suggests a 1:1 relationship and it is not obvious that there is a higher PM<sub>2.5</sub>/PM<sub>10</sub> ratio when the wind is from the east.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="sec-polarPlot.html#cb73-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(har, <span class="dt">poll =</span> <span class="kw">c</span>(<span class="st">&quot;pm2.5&quot;</span>, <span class="st">&quot;pm10&quot;</span>), </span>
 <span id="cb73-2"><a href="sec-polarPlot.html#cb73-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;robust_slope&quot;</span>,</span>
 <span id="cb73-3"><a href="sec-polarPlot.html#cb73-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
@@ -823,92 +519,28 @@ Figure 8.9: Use of the <code>polarPlot</code> function to investigate the linear
 </div>
 <div id="sec:polarCluster" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Clustering</h2>
-<p>The <code>polarPlot</code> function will often identify interesting features
-that would be useful to analyse further. It is possible to select
-areas of interest based only on a consideration of a plot. Such a
-selection could be based on wind direction and wind speed intervals
-for example e.g.</p>
+<p>The <code>polarPlot</code> function will often identify interesting features that would be useful to analyse further. It is possible to select areas of interest based only on a consideration of a plot. Such a selection could be based on wind direction and wind speed intervals for example e.g.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="sec-polarPlot.html#cb74-1" aria-hidden="true"></a>subdata &lt;-<span class="st"> </span><span class="kw">filter</span>(mydata, ws <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>, wd <span class="op">&gt;=</span><span class="st"> </span><span class="dv">180</span>, wd <span class="op">&lt;=</span><span class="st"> </span><span class="dv">270</span>)</span></code></pre></div>
-<p>which would select wind speeds &gt;3 m s<sup>-1</sup> and wind directions from 180
-to 270 degrees from <code>mydata</code>. That subset of data, <code>subdata</code>,
-could then be analysed using other functions. While this approach may
-be useful in many circumstances it is rather arbitrary. In fact, the
-choice of ‘interesting feature’ in the first place can even depend
-on the colour scale used, which is not very robust. Furthermore, many
-interesting patterns can be difficult to select and won’t always fall
-into convenient intervals of other variables such as wind speed and
-direction.</p>
-<p>A better approach is to use a method that can select group similar
-features together. One such approach is to use <em>cluster analysis</em>. <span class="pkg">openair</span> uses k-means clustering as a way in which
-bivariate polar plot features can be identified and grouped. The main
-purpose of grouping data in this way is to identify records in the
-original time series data by cluster to enable post-processing to
-better understand potential source characteristics. The process of
-grouping data in k-means clustering proceeds as follows. First, <span class="math inline">\(k\)</span>
-points are randomly chosen form the space represented by the objects
-that are being clustered into <span class="math inline">\(k\)</span> groups. These points represent
-initial group centroids. Each object is assigned to the group that has
-the closest centroid. When all objects have been assigned, the
-positions of the <span class="math inline">\(k\)</span> centroids is re-calculated. The previous two
-steps are repeated until the centroids no longer move. This produces a
-separation of the objects into groups from which the metric to be
-minimised can be calculated.</p>
-<p>Central to the idea of clustering data is the concept of distance
-i.e. some measure of similarity or dissimilarity between
-points. Clusters should be comprised of points separated by small
-distances relative to the distance between the clusters. Careful
-consideration is required to define the distance measure used because
-the effectiveness of clustering itself fundamentally depends on its
-choice. The similarity of concentrations shown in Figure
-<a href="sec-polarPlot.html#fig:polarPlot">8.1</a> for example is determined by three variables:
-the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> wind components and the concentration. All three
-variables are equally important in characterising the
-concentration-location information, but they exist on different scales
-i.e. a wind speed-direction measure and a concentration. Let <span class="math inline">\(X = \{x_i\}, i = 1,\ldots,n\)</span> be a set of <span class="math inline">\(n\)</span> points to be clustered into
-<span class="math inline">\(K\)</span> clusters, <span class="math inline">\(C = \{c_k, k = 1,\ldots,K\}\)</span>. The basic k-means
-algorithm for <span class="math inline">\(K\)</span> clusters is obtained by minimising:</p>
-<p><span class="math display" id="eq:clust-1">\[\begin{equation}
- \sum_{k=1}^{K} \sum_{x_i \in c_k} || x_i - \mu_k ||^2 \tag{8.4}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(|| x_i - \mu_k ||^2\)</span> is a chosen distance measure, <span class="math inline">\(\mu_k\)</span> is
-the mean of cluster <span class="math inline">\(c_k\)</span>.</p>
+<p>which would select wind speeds &gt;3 m s<sup>-1</sup> and wind directions from 180 to 270 degrees from <code>mydata</code>. That subset of data, <code>subdata</code>, could then be analysed using other functions. While this approach may be useful in many circumstances it is rather arbitrary. In fact, the choice of ‘interesting feature’ in the first place can even depend on the colour scale used, which is not very robust. Furthermore, many interesting patterns can be difficult to select and won’t always fall into convenient intervals of other variables such as wind speed and direction.</p>
+<p>A better approach is to use a method that can select group similar features together. One such approach is to use <em>cluster analysis</em>. <span class="pkg">openair</span> uses k-means clustering as a way in which bivariate polar plot features can be identified and grouped. The main purpose of grouping data in this way is to identify records in the original time series data by cluster to enable post-processing to better understand potential source characteristics. The process of grouping data in k-means clustering proceeds as follows. First, <span class="math inline">\(k\)</span> points are randomly chosen form the space represented by the objects that are being clustered into <span class="math inline">\(k\)</span> groups. These points represent initial group centroids. Each object is assigned to the group that has the closest centroid. When all objects have been assigned, the positions of the <span class="math inline">\(k\)</span> centroids is re-calculated. The previous two steps are repeated until the centroids no longer move. This produces a separation of the objects into groups from which the metric to be minimised can be calculated.</p>
+<p>Central to the idea of clustering data is the concept of distance i.e. some measure of similarity or dissimilarity between points. Clusters should be comprised of points separated by small distances relative to the distance between the clusters. Careful consideration is required to define the distance measure used because the effectiveness of clustering itself fundamentally depends on its choice. The similarity of concentrations shown in Figure <a href="sec-polarPlot.html#fig:polarPlot">8.1</a> for example is determined by three variables: the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> wind components and the concentration. All three variables are equally important in characterising the concentration-location information, but they exist on different scales i.e. a wind speed-direction measure and a concentration. Let <span class="math inline">\(X = \{x_i\}, i = 1,\ldots,n\)</span> be a set of <span class="math inline">\(n\)</span> points to be clustered into <span class="math inline">\(K\)</span> clusters, <span class="math inline">\(C = \{c_k, k = 1,\ldots,K\}\)</span>. The basic k-means algorithm for <span class="math inline">\(K\)</span> clusters is obtained by minimising:</p>
+<p><span class="math display" id="eq:clust-1">\[
+\sum_{k=1}^{K} \sum_{x_i \in c_k} || x_i - \mu_k ||^2 \tag{8.4}
+\]</span></p>
+<p>where <span class="math inline">\(|| x_i - \mu_k ||^2\)</span> is a chosen distance measure, <span class="math inline">\(\mu_k\)</span> is the mean of cluster <span class="math inline">\(c_k\)</span>.</p>
 <p>The distance measure is defined as the Euclidean distance:</p>
-<p><span class="math display" id="eq:clust-2">\[\begin{equation}
-d_{x, y} = \left({\sum_{j=1}^{J} (x_j - y_j) ^ 2}\right)^{1/2}  \tag{8.5}
-\end{equation}\]</span></p>
-<p>Where <strong>x</strong> and <strong>y</strong> are two J-dimensional vectors,
-which have been standardized by subtracting the mean and dividing by
-the standard deviation. In the current case <span class="math inline">\(J\)</span> is of length three
-i.e. the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> and the concentration <span class="math inline">\(C\)</span>,
-each of which is standardized e.g.:</p>
-<p><span class="math display" id="eq:clust-3">\[\begin{equation}
-x_j = \left(\frac{x_j - \overline{x}}{\sigma_x}\right)  \tag{8.6}
-\end{equation}\]</span></p>
-<p>Standardization is necessary because the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>
-are on different scales to the concentration. In principle, more
-weight could be given to the concentration rather than the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>
-components, although this would tend to identify clusters with
-similar concentrations but different source origins.</p>
-<p><code>polarCluster</code> can be thought of as the ‘local’ version of
-clustering of back trajectories. Rather than using air mass origins,
-wind speed, wind direction and concentration are used to group similar
-conditions together. Section <a href="sec-trajPlot.html#sec:trajCluster">18.6</a> provides the details of clustering back trajectories in <span class="pkg">openair</span>. A fuller description of the
-clustering approach is described in <span class="citation">Carslaw and Beevers (<a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span>.</p>
-<p>The use of the <code>polarCluster</code> is very similar to the use of all
-<span class="pkg">openair</span> functions. While there are many techniques available to try
-and find the optimum number of clusters, it is difficult for these
-approaches to work in a consistent way for identifying features in
-bivariate polar plots. For this reason it is best to consider a range
-of solutions that covers a number of clusters.</p>
-<p>Cluster analysis is computationally intensive and the
-<code>polarCluster</code> function can take a comparatively long time to
-run. The basic idea is to calculate the solution to several cluster
-levels and then choose one that offers the most appropriate solution
-for post-processing.</p>
-<p>The example given below is for concentrations of SO<sub>2</sub>, shown in Figure
-<a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> and the aim is to identify features in that
-plot. A range of numbers of clusters will be calculated — in this
-case from two to ten.</p>
+<p><span class="math display" id="eq:clust-2">\[
+d_{x, y} = \left({\sum_{j=1}^{J} (x_j - y_j) ^ 2}\right)^{1/2} \tag{8.5}
+\]</span></p>
+<p>Where <strong>x</strong> and <strong>y</strong> are two J-dimensional vectors, which have been standardized by subtracting the mean and dividing by the standard deviation. In the current case <span class="math inline">\(J\)</span> is of length three i.e. the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> and the concentration <span class="math inline">\(C\)</span>, each of which is standardized e.g.:</p>
+<p><span class="math display" id="eq:clust-3">\[
+x_j = \left(\frac{x_j - \overline{x}}{\sigma_x}\right) \tag{8.6}
+\]</span></p>
+<p>Standardization is necessary because the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are on different scales to the concentration. In principle, more weight could be given to the concentration rather than the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> components, although this would tend to identify clusters with similar concentrations but different source origins.</p>
+<p><code>polarCluster</code> can be thought of as the ‘local’ version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. Section <a href="sec-trajPlot.html#sec:trajCluster">18.6</a> provides the details of clustering back trajectories in <span class="pkg">openair</span>. A fuller description of the clustering approach is described in <span class="citation">(Carslaw and Beevers <a href="#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span>.</p>
+<p>The use of the <code>polarCluster</code> is very similar to the use of all <span class="pkg">openair</span> functions. While there are many techniques available to try and find the optimum number of clusters, it is difficult for these approaches to work in a consistent way for identifying features in bivariate polar plots. For this reason it is best to consider a range of solutions that covers a number of clusters.</p>
+<p>Cluster analysis is computationally intensive and the <code>polarCluster</code> function can take a comparatively long time to run. The basic idea is to calculate the solution to several cluster levels and then choose one that offers the most appropriate solution for post-processing.</p>
+<p>The example given below is for concentrations of SO<sub>2</sub>, shown in Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> and the aim is to identify features in that plot. A range of numbers of clusters will be calculated — in this case from two to ten.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="sec-polarPlot.html#cb75-1" aria-hidden="true"></a><span class="kw">polarCluster</span>(mydata, <span class="dt">pollutant=</span><span class="st">&quot;so2&quot;</span>, <span class="dt">n.clusters=</span><span class="dv">2</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">cols=</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarClust"></span>
 <img src="openair_files/figure-html/polarClust-1.png" alt="Use of the `polarCluster` function applied to SO~2~ concentrations at Marylebone Road. In this case 2 to 10 clusters have been chosen." width="672" />
@@ -925,15 +557,7 @@ Figure 8.10: Use of the <code>polarCluster</code> function applied to SO<sub>2</
 Figure 8.11: Use of the <code>polarCluster</code> function applied to SO<sub>2</sub> concentrations at Marylebone Road. In this case 8 clusters have been chosen.
 </p>
 </div>
-<p>The real benefit of <code>polarCluster</code> is being able to identify
-clusters in the original data frame. To do this, the results from the
-analysis must be read into a new variable, as in Figure
-<a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>, where the results are read into a data
-frame `results}. Now it is possible to use this new information. In
-the 8-cluster solution to Figure <a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>, cluster~6
-seems to capture the elevated SO<sub>2</sub> concentrations to the east well
-(see Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> for comparison), while cluster 5 will
-strongly represent the road contribution.</p>
+<p>The real benefit of <code>polarCluster</code> is being able to identify clusters in the original data frame. To do this, the results from the analysis must be read into a new variable, as in Figure <a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>, where the results are read into a data frame <code>results</code>. Now it is possible to use this new information. In the 8-cluster solution to Figure <a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>, cluster 6 seems to capture the elevated SO<sub>2</sub> concentrations to the east well (see Figure <a href="sec-polarPlot.html#fig:polarPlot3">8.3</a> for comparison), while cluster 5 will strongly represent the road contribution.</p>
 <p>The results are here:</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="sec-polarPlot.html#cb77-1" aria-hidden="true"></a><span class="kw">head</span>(results[[<span class="st">&quot;data&quot;</span>]])</span></code></pre></div>
 <pre><code>##     .id                date   ws  wd nox no2 o3 pm10    so2     co pm25
@@ -950,18 +574,14 @@ strongly represent the road contribution.</p>
 ## 4  8.040307 261.2030 0.02310484       4
 ## 5  4.804759 282.0226 0.03693662       7
 ## 6 11.513468 359.0491 0.03376471       7</code></pre>
-<p>Note that there is an additional column <code>cluster</code> that gives the
-cluster a particular row belongs to and that this is a
-<em>character</em> variable. It might be easier to read these results
-into a new data frame:</p>
+<p>Note that there is an additional column <code>cluster</code> that gives the cluster a particular row belongs to and that this is a <em>character</em> variable. It might be easier to read these results into a new data frame:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sec-polarPlot.html#cb79-1" aria-hidden="true"></a>results &lt;-<span class="st"> </span>results[[<span class="st">&quot;data&quot;</span>]]</span></code></pre></div>
 <p>It is easy to find out how many points are in each cluster:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="sec-polarPlot.html#cb80-1" aria-hidden="true"></a><span class="kw">table</span>(results[[<span class="st">&quot;cluster&quot;</span>]])</span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     4     5     6     7     8 
 ##   206   412   160 24133 16049  2590  7925  2832</code></pre>
-<p>Now other <span class="pkg">openair</span> analysis functions can be used to analyse the
-results. For example, to consider the temporal variations by cluster:</p>
+<p>Now other <span class="pkg">openair</span> analysis functions can be used to analyse the results. For example, to consider the temporal variations by cluster:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="sec-polarPlot.html#cb82-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(results, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>,</span>
 <span id="cb82-2"><a href="sec-polarPlot.html#cb82-2" aria-hidden="true"></a>              <span class="dt">key.columns =</span> <span class="dv">4</span>,</span>
 <span id="cb82-3"><a href="sec-polarPlot.html#cb82-3" aria-hidden="true"></a>              <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, <span class="dt">ci =</span> <span class="ot">FALSE</span>, <span class="dt">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
@@ -982,23 +602,8 @@ Figure 8.12: Temporal variation in SO<sub>2</sub> split by cluster.
 Figure 8.13: Temporal variation in SO<sub>2</sub> split by cluster — showing only two clusters.
 </p>
 </div>
-<p><code>polarCluster</code> will work on any surface that can be plotted by
-<code>polarPlot</code> e.g. the radial variable does not have to be wind speed
-but could be another variable such as temperature. While it is not
-always possible for <code>polarCluster</code> to identify all features in a
-surface it certainly makes it easier to post-process <code>polarPlot</code>s
-using other <span class="pkg">openair</span> functions or indeed other analyses altogether.</p>
-<p>Another useful way of understanding the clusters is to use the
-<code>timeProp</code> function, which can display a time series as a bar chart
-split by a categorical variable (in this case the cluster). In this
-case it is useful to plot the time series of SO<sub>2</sub> <em>and</em> show
-how much of the concentration is contributed to by each cluster. Such
-a plot is shown in Figure <a href="sec-polarPlot.html#fig:timePropPolar">8.14</a>. It is now easy to see
-for example that many of the peaks in SO<sub>2</sub> are associated with
-cluster 6 (power station sources from the east), seen in Figure
-<a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>. Cluster~6 is particularly prominent
-during springtime, but those sources also make important contributions
-through the whole year.</p>
+<p><code>polarCluster</code> will work on any surface that can be plotted by <code>polarPlot</code> e.g. the radial variable does not have to be wind speed but could be another variable such as temperature. While it is not always possible for <code>polarCluster</code> to identify all features in a surface it certainly makes it easier to post-process <code>polarPlot</code>s using other <span class="pkg">openair</span> functions or indeed other analyses altogether.</p>
+<p>Another useful way of understanding the clusters is to use the <code>timeProp</code> function, which can display a time series as a bar chart split by a categorical variable (in this case the cluster). In this case it is useful to plot the time series of SO<sub>2</sub> <em>and</em> show how much of the concentration is contributed to by each cluster. Such a plot is shown in Figure <a href="sec-polarPlot.html#fig:timePropPolar">8.14</a>. It is now easy to see for example that many of the peaks in SO<sub>2</sub> are associated with cluster 6 (power station sources from the east), seen in Figure <a href="sec-polarPlot.html#fig:polarClustn6">8.11</a>. Cluster 6 is particularly prominent during springtime, but those sources also make important contributions through the whole year.</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="sec-polarPlot.html#cb84-1" aria-hidden="true"></a><span class="kw">timeProp</span>(<span class="kw">selectByDate</span>(results, <span class="dt">year =</span> <span class="dv">2003</span>), </span>
 <span id="cb84-2"><a href="sec-polarPlot.html#cb84-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>,</span>
 <span id="cb84-3"><a href="sec-polarPlot.html#cb84-3" aria-hidden="true"></a>         <span class="dt">proportion=</span> <span class="st">&quot;cluster&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>, </span>
@@ -1014,16 +619,10 @@ Figure 8.14: Temporal variation in daily SO<sub>2</sub> concentration at the Mar
 </div>
 <div id="polar-plots-on-an-interactive-map" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> Polar plots on an interactive map</h2>
-<p>A developmental R package called [openairmaps{.pkg} has been developed to
-plot bivariate polar plots on an interactive leaflet map. This package
-is not on CRAN but can be installed from GitHub:</p>
+<p>A developmental R package called [openairmaps{.pkg} has been developed to plot bivariate polar plots on an interactive leaflet map. This package is not on CRAN but can be installed from GitHub:</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="sec-polarPlot.html#cb85-1" aria-hidden="true"></a><span class="kw">library</span>(devtools)</span>
 <span id="cb85-2"><a href="sec-polarPlot.html#cb85-2" aria-hidden="true"></a><span class="kw">install_github</span>(<span class="st">&quot;davidcarslaw/openairmaps&quot;</span>)</span></code></pre></div>
-<p>The function <code>polarMap</code> requires information on the site (anme or code), latitude and
-longitude in addition to the usual information required by the
-<code>polarPlot</code> function. The package comes with some example data
-(<code>polar_data</code>) that can be used as a template for using different
-data.</p>
+<p>The function <code>polarMap</code> requires information on the site (anme or code), latitude and longitude in addition to the usual information required by the <code>polarPlot</code> function. The package comes with some example data (<code>polar_data</code>) that can be used as a template for using different data.</p>
 <p>The function can plot <em>any</em> type of polar plot e.g. with different options for <code>statistic</code>.</p>
 <p>First, load the package and check out the data format.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="sec-polarPlot.html#cb86-1" aria-hidden="true"></a><span class="kw">library</span>(openairmaps)</span>

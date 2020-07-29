@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-28" />
+<meta name="date" content="2020-07-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -331,81 +331,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sec:trajPlot" class="section level1" number="18">
 <h1><span class="header-section-number">Section 18</span> Trajectory analysis</h1>
-<p>Back trajectories are extremely useful in air pollution and can
-provide important information on air mass origins. Despite the clear
-usefulness of back trajectories, their use tends to be restricted to
-the research community. Back trajectories are used for many purposes
-from understanding the origins of air masses over a few days to
-undertaking longer term analyses. They are often used to filter air
-mass origins to allow for more refined analyses of air pollution —
-for example trends in concentration by air mass origin. They are often
-also combined with more sophisticated analyses such as cluster analysis
-to help group similar type of air mass by origin.</p>
-<p>Perhaps one of the reasons why back trajectory analysis is not carried
-out more often is that it can be time consuming to do. This is
-particularly so if one wants to consider several years at several
-sites. It can also be difficult to access back trajectory data. In an
-attempt to overcome some of these issues and expand the possibilities
-for data analysis, <span class="pkg">openair</span> makes several functions
-available to access and analyse pre-calculated back trajectories.</p>
-<p>Currently these functions allow for the import of pre-calculated back
-trajectories are several pre-define locations and some trajectory
-plotting functions. In time all of these functions will be developed
-to allow more sophisticated analyses to be undertaken. Also it should
-be recognised that these functions are in their early stages of
-development and will may continue to change and be refined.</p>
-<p>The <code>importTraj</code> function imports pre-calculated back trajectories
-using the Hysplit trajectory model <a href="https://ready.arl.noaa.gov/HYSPLIT.php">Hybrid Single Particle
-Lagrangian Integrated Trajectory Model</a>. Trajectories are run at
-3-hour intervals and stored in yearly files (see below). The
-trajectories are started at ground-level (10m) and propagated
-backwards in time. The data are stored on web-servers at Ricardo Energy &amp; Environment similar to that for <a href="sec-importAURN.html#sec:importAURN">importAURN</a>, which makes it very easy
-to import pre-processed trajectory data for a range of locations and
-years.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
-<p>Users may for various reasons wish to run Hysplit themselves
-e.g. for different starting heights, longer periods or more
-locations. Code and instructions have been provided in Section
-<a href="sec-prod-hyspl-traj.html#sec:prod-hyspl-traj">B</a> for users wishing to do this. Users
-can also use different means of calculating back trajectories
-e.g. ECMWF and plot them in <span class="pkg">openair</span> provided a few basic fields are
-present: <code>date</code> (POSIXct), <code>lat</code> (decimal latitude), <code>lon</code>
-(decimal longitude) and <code>hour.inc</code> the hour offset from the arrival
-date (i.e. from zero decreasing to the length of the back
-trajectories). See <code>?importTraj</code> for more details.</p>
-<p>These trajectories have been calculated using the Global
-NOAA-NCEP/NCAR reanalysis data archives. The global data are
-on a latitude-longitude grid (2.5 degree). Note that there are many
-meteorological data sets that can be used to run Hysplit
-e.g. including ECMWF data. However, in order to make it
-practicable to run and store trajectories for many years and sites,
-the NOAA-NCEP/NCAR reanalysis data is most useful. In
-addition, these archives are available for use widely, which is not
-the case for many other data sets
-e.g. ECMWF. Hysplit calculated trajectories based on
-archive data may be distributed without permission (see
-<a href="https://ready.arl.noaa.gov/HYSPLIT_agreement.php" class="uri">https://ready.arl.noaa.gov/HYSPLIT_agreement.php</a>). For those
-wanting, for example, to consider higher resolution meteorological
-data sets it may be better to run the trajectories separately.</p>
-<p><span class="pkg">openair</span> uses the <span class="pkg">mapproj</span> package to allow users to user
-different map projections. By default, the projection used is Lambert
-conformal, which is a conic projection best used for mid-latitude
-areas. The Hysplit model itself will use any one of three
-different projections depending on the latitude of the origin. If the
-latitude greater than 55.0 (or less than -55.0) then a polar
-stereographic projection is used, if the latitude greater than -25.0
-and less than 25.0 the mercator projection is used and elsewhere (the
-mid-latitudes) the Lambert projection. All these projections (and many
-others) are available in the <span class="pkg">mapproj</span> package.</p>
-<p>Users should see the help file for <code>importTraj</code> to get an up to
-date list of receptors where back trajectories have been calculated. First, the packages are loaded that are needed.</p>
+<p>Back trajectories are extremely useful in air pollution and can provide important information on air mass origins. Despite the clear usefulness of back trajectories, their use tends to be restricted to the research community. Back trajectories are used for many purposes from understanding the origins of air masses over a few days to undertaking longer term analyses. They are often used to filter air mass origins to allow for more refined analyses of air pollution — for example trends in concentration by air mass origin. They are often also combined with more sophisticated analyses such as cluster analysis to help group similar type of air mass by origin.</p>
+<p>Perhaps one of the reasons why back trajectory analysis is not carried out more often is that it can be time consuming to do. This is particularly so if one wants to consider several years at several sites. It can also be difficult to access back trajectory data. In an attempt to overcome some of these issues and expand the possibilities for data analysis, <span class="pkg">openair</span> makes several functions available to access and analyse pre-calculated back trajectories.</p>
+<p>Currently these functions allow for the import of pre-calculated back trajectories are several pre-define locations and some trajectory plotting functions. In time all of these functions will be developed to allow more sophisticated analyses to be undertaken. Also it should be recognised that these functions are in their early stages of development and will may continue to change and be refined.</p>
+<p>The <code>importTraj</code> function imports pre-calculated back trajectories using the Hysplit trajectory model <a href="https://ready.arl.noaa.gov/HYSPLIT.php">Hybrid Single Particle Lagrangian Integrated Trajectory Model</a>. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy &amp; Environment similar to that for <a href="sec-importAURN.html#sec:importAURN">importAURN</a>, which makes it very easy to import pre-processed trajectory data for a range of locations and years.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>Users may for various reasons wish to run Hysplit themselves e.g. for different starting heights, longer periods or more locations. Code and instructions have been provided in Section <a href="sec-prod-hyspl-traj.html#sec:prod-hyspl-traj">B</a> for users wishing to do this. Users can also use different means of calculating back trajectories e.g. ECMWF and plot them in <span class="pkg">openair</span> provided a few basic fields are present: <code>date</code> (POSIXct), <code>lat</code> (decimal latitude), <code>lon</code> (decimal longitude) and <code>hour.inc</code> the hour offset from the arrival date (i.e. from zero decreasing to the length of the back trajectories). See <code>?importTraj</code> for more details.</p>
+<p>These trajectories have been calculated using the Global NOAA-NCEP/NCAR reanalysis data archives. The global data are on a latitude-longitude grid (2.5 degree). Note that there are many meteorological data sets that can be used to run Hysplit e.g. including ECMWF data. However, in order to make it practicable to run and store trajectories for many years and sites, the NOAA-NCEP/NCAR reanalysis data is most useful. In addition, these archives are available for use widely, which is not the case for many other data sets e.g. ECMWF. Hysplit calculated trajectories based on archive data may be distributed without permission (see <a href="https://ready.arl.noaa.gov/HYSPLIT_agreement.php" class="uri">https://ready.arl.noaa.gov/HYSPLIT_agreement.php</a>). For those wanting, for example, to consider higher resolution meteorological data sets it may be better to run the trajectories separately.</p>
+<p><span class="pkg">openair</span> uses the <span class="pkg">mapproj</span> package to allow users to user different map projections. By default, the projection used is Lambert conformal, which is a conic projection best used for mid-latitude areas. The Hysplit model itself will use any one of three different projections depending on the latitude of the origin. If the latitude greater than 55.0 (or less than -55.0) then a polar stereographic projection is used, if the latitude greater than -25.0 and less than 25.0 the mercator projection is used and elsewhere (the mid-latitudes) the Lambert projection. All these projections (and many others) are available in the <span class="pkg">mapproj</span> package.</p>
+<p>Users should see the help file for <code>importTraj</code> to get an up to date list of receptors where back trajectories have been calculated. First, the packages are loaded that are needed.</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="sec-trajPlot.html#cb172-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
 <span id="cb172-2"><a href="sec-trajPlot.html#cb172-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb172-3"><a href="sec-trajPlot.html#cb172-3" aria-hidden="true"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
-<p>As an example, we will import trajectories for London in
-2010. Importing them is easy:</p>
+<p>As an example, we will import trajectories for London in 2010. Importing them is easy:</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="sec-trajPlot.html#cb173-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="dt">site =</span> <span class="st">&quot;london&quot;</span>, <span class="dt">year =</span> <span class="dv">2010</span>)</span></code></pre></div>
-<p>The file itself contains lots of information that is of use for
-plotting back trajectories:</p>
+<p>The file itself contains lots of information that is of use for plotting back trajectories:</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="sec-trajPlot.html#cb174-1" aria-hidden="true"></a><span class="kw">head</span>(traj)</span></code></pre></div>
 <pre><code>##   receptor year month day hour hour.inc    lat    lon height pressure
 ## 1        1 2010     1   1    9        0 51.500 -0.100   10.0    994.7
@@ -421,32 +360,11 @@ plotting back trajectories:</p>
 ## 4 2010-01-01 06:00:00 2010-01-01 09:00:00
 ## 5 2010-01-01 05:00:00 2010-01-01 09:00:00
 ## 6 2010-01-01 04:00:00 2010-01-01 09:00:00</code></pre>
-<p>The <code>traj</code> data frame contains among other things the latitude and
-longitude of the back trajectory, the height (m) and pressure (Pa) of
-the trajectory. The <code>date</code> field is the <em>arrival</em> time of the
-air-mass and is useful for linking with ambient measurement data.</p>
-<p>The <code>trajPlot</code> function is used for plotting back trajectory lines
-and density plots and has the following options:</p>
+<p>The <code>traj</code> data frame contains among other things the latitude and longitude of the back trajectory, the height (m) and pressure (Pa) of the trajectory. The <code>date</code> field is the <em>arrival</em> time of the air-mass and is useful for linking with ambient measurement data.</p>
+<p>The <code>trajPlot</code> function is used for plotting back trajectory lines and density plots and has the following options:</p>
 <div id="plotting-trajectories" class="section level2" number="18.1">
 <h2><span class="header-section-number">18.1</span> Plotting trajectories</h2>
-<p>Next, we consider how to plot back trajectories with a few simple
-examples. The first example will consider a potentially interesting
-period when the Icelandic volcano, Eyjafjallajokull erupted in
-April 2010. The eruption of Eyjafjallajokull resulted in a
-flight-ban that lasted six days across many European airports. In Figure
-<a href="sec-trajPlot.html#fig:traj1">18.1</a> <code>selectByDate</code> is used to consider the 7 days
-of interest and we choose to plot the back trajectories as lines
-rather than points (the default). Figure <a href="sec-trajPlot.html#fig:traj1">18.1</a> does indeed show
-that many of the back trajectories originated from Iceland over this
-period. Note also the plot automatically includes a world base
-map. The base map itself is not at very high resolution by default but
-is useful for the sorts of spatial scales that back trajectories exist
-over. The base map is also global, so provided that there are
-pre-calculated back trajectories, these maps can be generated anywhere
-in the world. By default the function uses the ‘world’ map from the
-<span class="pkg">maps</span> package. If <code>map.res = "hires"</code> then the (much) more
-detailed base map <code>worldHires</code> from the <span class="pkg">mapdata</span> package is
-used.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>Next, we consider how to plot back trajectories with a few simple examples. The first example will consider a potentially interesting period when the Icelandic volcano, Eyjafjallajokull erupted in April 2010. The eruption of Eyjafjallajokull resulted in a flight-ban that lasted six days across many European airports. In Figure <a href="sec-trajPlot.html#fig:traj1">18.1</a> <code>selectByDate</code> is used to consider the 7 days of interest and we choose to plot the back trajectories as lines rather than points (the default). Figure <a href="sec-trajPlot.html#fig:traj1">18.1</a> does indeed show that many of the back trajectories originated from Iceland over this period. Note also the plot automatically includes a world base map. The base map itself is not at very high resolution by default but is useful for the sorts of spatial scales that back trajectories exist over. The base map is also global, so provided that there are pre-calculated back trajectories, these maps can be generated anywhere in the world. By default the function uses the ‘world’ map from the <span class="pkg">maps</span> package. If <code>map.res = "hires"</code> then the (much) more detailed base map <code>worldHires</code> from the <span class="pkg">mapdata</span> package is used.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="sec-trajPlot.html#cb176-1" aria-hidden="true"></a><span class="kw">trajPlot</span>(<span class="kw">selectByDate</span>(traj, <span class="dt">start =</span> <span class="st">&quot;15/4/2010&quot;</span>, <span class="dt">end =</span><span class="st">&quot;21/4/2010&quot;</span>),</span>
 <span id="cb176-2"><a href="sec-trajPlot.html#cb176-2" aria-hidden="true"></a>         <span class="dt">map.cols =</span> <span class="kw">openColours</span>(<span class="st">&quot;hue&quot;</span>, <span class="dv">10</span>), </span>
 <span id="cb176-3"><a href="sec-trajPlot.html#cb176-3" aria-hidden="true"></a>         <span class="dt">col =</span> <span class="st">&quot;grey30&quot;</span>)</span></code></pre></div>
@@ -461,16 +379,8 @@ used.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
 Figure 18.1: 96-hour Hysplit back trajectories centred on London for 7 days in April 2010. Note the additional option to vary the country colours using <code>map.cols</code>. By default the map colours for all countries are grey.
 </p>
 </div>
-<p>Note that <code>trajPlot</code> will only plot <em>full length</em>
-trajectories. This can be important when plotting something like a
-single month e.g. by using <code>selectByDate</code> when on partial sections
-of some trajectories may be selected.</p>
-<p>There are a few other ways of representing the data shown in Figure
-<a href="sec-trajPlot.html#fig:traj1">18.1</a>. For example, it might be useful to plot the
-trajectories for each day. To do this we need to make a new column
-<code>day</code> which can be used in the plotting. The first example considers
-plotting the back trajectories in separate panels Figure
-(<a href="sec-trajPlot.html#fig:traj2">18.2</a>.</p>
+<p>Note that <code>trajPlot</code> will only plot <em>full length</em> trajectories. This can be important when plotting something like a single month e.g. by using <code>selectByDate</code> when on partial sections of some trajectories may be selected.</p>
+<p>There are a few other ways of representing the data shown in Figure <a href="sec-trajPlot.html#fig:traj1">18.1</a>. For example, it might be useful to plot the trajectories for each day. To do this we need to make a new column <code>day</code> which can be used in the plotting. The first example considers plotting the back trajectories in separate panels Figure (<a href="sec-trajPlot.html#fig:traj2">18.2</a>.</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="sec-trajPlot.html#cb179-1" aria-hidden="true"></a><span class="co">## make a day column</span></span>
 <span id="cb179-2"><a href="sec-trajPlot.html#cb179-2" aria-hidden="true"></a>traj<span class="op">$</span>day &lt;-<span class="st"> </span><span class="kw">as.Date</span>(traj<span class="op">$</span>date)</span>
 <span id="cb179-3"><a href="sec-trajPlot.html#cb179-3" aria-hidden="true"></a></span>
@@ -483,9 +393,7 @@ plotting the back trajectories in separate panels Figure
 Figure 18.2: 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, shown separately for each day.
 </p>
 </div>
-<p>Another way of plotting the data is to group the trajectories by day
-and colour them. This time we also set a few other options to get the
-layout we want — shown in Figure <a href="sec-trajPlot.html#fig:traj3">18.3</a>.</p>
+<p>Another way of plotting the data is to group the trajectories by day and colour them. This time we also set a few other options to get the layout we want — shown in Figure <a href="sec-trajPlot.html#fig:traj3">18.3</a>.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="sec-trajPlot.html#cb180-1" aria-hidden="true"></a><span class="kw">trajPlot</span>(<span class="kw">selectByDate</span>(traj, <span class="dt">start =</span> <span class="st">&quot;15/4/2010&quot;</span>, <span class="dt">end =</span> <span class="st">&quot;21/4/2010&quot;</span>),</span>
 <span id="cb180-2"><a href="sec-trajPlot.html#cb180-2" aria-hidden="true"></a>         <span class="dt">group =</span> <span class="st">&quot;day&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">key.pos =</span> <span class="st">&quot;top&quot;</span>, </span>
 <span id="cb180-3"><a href="sec-trajPlot.html#cb180-3" aria-hidden="true"></a>         <span class="dt">key.col =</span> <span class="dv">4</span>)</span></code></pre></div>
@@ -495,16 +403,7 @@ layout we want — shown in Figure <a href="sec-trajPlot.html#fig:traj3">18.3</a
 Figure 18.3: 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, shown grouped for each day and coloured accordingly.
 </p>
 </div>
-<p>So far the plots have provided information on where the back
-trajectories come from, grouped or split by day. It is also possible,
-in common with most other <span class="pkg">openair</span> functions to split the trajectories
-by many other variables e.g. month, season and so on. However, perhaps
-one of the most useful approaches is to link the back trajectories
-with the concentrations of a pollutant. As mentioned previously, the
-back trajectory data has a column <code>date</code> representing the arrival time
-of the air mass that can be used to link with concentration
-measurements. A couple of steps are required to do this using the
-<code>left_join</code> function.</p>
+<p>So far the plots have provided information on where the back trajectories come from, grouped or split by day. It is also possible, in common with most other <span class="pkg">openair</span> functions to split the trajectories by many other variables e.g. month, season and so on. However, perhaps one of the most useful approaches is to link the back trajectories with the concentrations of a pollutant. As mentioned previously, the back trajectory data has a column <code>date</code> representing the arrival time of the air mass that can be used to link with concentration measurements. A couple of steps are required to do this using the <code>left_join</code> function.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="sec-trajPlot.html#cb181-1" aria-hidden="true"></a><span class="co">## import data for North Kensington</span></span>
 <span id="cb181-2"><a href="sec-trajPlot.html#cb181-2" aria-hidden="true"></a>kc1 &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="st">&quot;kc1&quot;</span>, <span class="dt">year =</span> <span class="dv">2010</span>)</span>
 <span id="cb181-3"><a href="sec-trajPlot.html#cb181-3" aria-hidden="true"></a><span class="co"># now merge with trajectory data by &#39;date&#39;</span></span>
@@ -532,19 +431,7 @@ measurements. A couple of steps are required to do this using the
 ## 4  6 46   0    8    NA   0   NA    8    NA NA NA       NA
 ## 5  6 46   0    8    NA   0   NA    8    NA NA NA       NA
 ## 6  6 46   0    8    NA   0   NA    8    NA NA NA       NA</code></pre>
-<p>This time we can use the option <code>pollutant</code> in the function
-<code>trajPlot</code>, which will plot the back trajectories coloured by the
-concentration of a pollutant. Figure <a href="sec-trajPlot.html#fig:traj4">18.4</a> does seem to show
-elevated PM<sub>10</sub> concentrations originating from Iceland over the
-period of interest. In fact, these elevated concentrations occur on
-two days as shown in Figure <a href="sec-trajPlot.html#fig:traj2">18.2</a>. However, care is needed when
-interpreting such data because other analysis would need to rule out
-other reasons why PM<sub>10</sub> could be elevated; in particular due to local
-sources of PM<sub>10</sub>. There are lots of <span class="pkg">openair</span> functions that can help
-here e.g. <code>timeVariation</code> or <code>timePlot</code> to see if NO<sub>x</sub>
-concentrations were also elevated (which they seem to be). It would
-also be worth considering other sites for back trajectories that could
-be less influenced by local emissions.</p>
+<p>This time we can use the option <code>pollutant</code> in the function <code>trajPlot</code>, which will plot the back trajectories coloured by the concentration of a pollutant. Figure <a href="sec-trajPlot.html#fig:traj4">18.4</a> does seem to show elevated PM<sub>10</sub> concentrations originating from Iceland over the period of interest. In fact, these elevated concentrations occur on two days as shown in Figure <a href="sec-trajPlot.html#fig:traj2">18.2</a>. However, care is needed when interpreting such data because other analysis would need to rule out other reasons why PM<sub>10</sub> could be elevated; in particular due to local sources of PM<sub>10</sub>. There are lots of <span class="pkg">openair</span> functions that can help here e.g. <code>timeVariation</code> or <code>timePlot</code> to see if NO<sub>x</sub> concentrations were also elevated (which they seem to be). It would also be worth considering other sites for back trajectories that could be less influenced by local emissions.</p>
 
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="sec-trajPlot.html#cb183-1" aria-hidden="true"></a><span class="kw">trajPlot</span>(<span class="kw">selectByDate</span>(traj, <span class="dt">start =</span> <span class="st">&quot;15/4/2010&quot;</span>, <span class="dt">end =</span> <span class="st">&quot;21/4/2010&quot;</span>),</span>
 <span id="cb183-2"><a href="sec-trajPlot.html#cb183-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, <span class="dt">lwd =</span><span class="dv">2</span>)</span></code></pre></div>
@@ -554,47 +441,22 @@ be less influenced by local emissions.</p>
 Figure 18.4: 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM<sub>10</sub> in μg m<sup>-3</sup>.
 </p>
 </div>
-<p>However, it is possible to account for the PM that is local to some
-extent by considering the relationship between NO<sub>x</sub> and PM<sub>10</sub> (or
-PM<sub>2.5</sub>). For example, using <code>scatterPlot</code> (not shown):</p>
+<p>However, it is possible to account for the PM that is local to some extent by considering the relationship between NO<sub>x</sub> and PM<sub>10</sub> (or PM<sub>2.5</sub>). For example, using <code>scatterPlot</code> (not shown):</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="sec-trajPlot.html#cb184-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(kc1, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;pm2.5&quot;</span>, <span class="dt">avg =</span> <span class="st">&quot;day&quot;</span>, <span class="dt">linear =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p>which suggests a gradient of 0.084. Therefore, we can remove the PM<sub>10</sub>
-that is associated NO<sub>x</sub> in <code>kc1</code> data, making a new column
-<code>pm.new</code>:</p>
+<p>which suggests a gradient of 0.084. Therefore, we can remove the PM<sub>10</sub> that is associated NO<sub>x</sub> in <code>kc1</code> data, making a new column <code>pm.new</code>:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="sec-trajPlot.html#cb185-1" aria-hidden="true"></a>kc1 &lt;-<span class="st"> </span><span class="kw">mutate</span>(kc1, <span class="dt">pm.new =</span> pm10 <span class="op">-</span><span class="st"> </span><span class="fl">0.084</span> <span class="op">*</span><span class="st"> </span>nox)</span></code></pre></div>
-<p>We have already merged <code>kc1</code> with <code>traj</code>, so to keep things
-simple we import <code>traj</code> again and merge it with <code>kc1</code>. Note that
-if we had thought of this initially, <code>pm.new</code> would have been
-calculated first before merging with <code>traj</code>.</p>
+<p>We have already merged <code>kc1</code> with <code>traj</code>, so to keep things simple we import <code>traj</code> again and merge it with <code>kc1</code>. Note that if we had thought of this initially, <code>pm.new</code> would have been calculated first before merging with <code>traj</code>.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="sec-trajPlot.html#cb186-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="dt">site =</span> <span class="st">&quot;london&quot;</span>, <span class="dt">year =</span> <span class="dv">2010</span>)</span>
 <span id="cb186-2"><a href="sec-trajPlot.html#cb186-2" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">left_join</span>(traj, kc1, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span></code></pre></div>
 <p>Now it is possible to plot the trajectories:</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="sec-trajPlot.html#cb187-1" aria-hidden="true"></a><span class="kw">trajPlot</span>(<span class="kw">selectByDate</span>(traj, <span class="dt">start =</span> <span class="st">&quot;15/4/2010&quot;</span>, <span class="dt">end =</span> <span class="st">&quot;21/4/2010&quot;</span>),</span>
 <span id="cb187-2"><a href="sec-trajPlot.html#cb187-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;pm.new&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p>Which, interestingly still clearly shows elevated PM<sub>10</sub>
-concentrations for those two days that cross Iceland. The same is also
-true for PM<sub>2.5</sub>. However, as mentioned previously, checking other
-sites in more rural areas would be a good idea.</p>
+<p>Which, interestingly still clearly shows elevated PM<sub>10</sub> concentrations for those two days that cross Iceland. The same is also true for PM<sub>2.5</sub>. However, as mentioned previously, checking other sites in more rural areas would be a good idea.</p>
 </div>
 <div id="sec:trajLevel" class="section level2" number="18.2">
 <h2><span class="header-section-number">18.2</span> Trajectory gridded frequencies</h2>
-<p>The Hysplit model itself contains various analysis options
-for gridding trajectory data. Similar capabilities are also available
-in <span class="pkg">openair</span> where the analyses can be extended using other <span class="pkg">openair</span>
-capabilities. It is useful to gain an idea of where trajectories come
-from. Over the course of a year representing trajectories as lines or
-points results in a lot of over-plotting. Therefore it is useful to
-grid the trajectory data and calculate various statistics by
-considering latitude-longitude intervals.</p>
-<p>The first analysis considers the number of unique trajectories in a
-particular grid square. This is achieved by using the <code>trajLevel</code>
-function and setting the <code>statistic</code> option to
-“frequency”. Figure <a href="sec-trajPlot.html#fig:trajFreq">18.5</a> shows the frequency of back
-trajectory crossings for the North Kensington data. In this case it
-highlights that most trajectory origins are from the west and north
-for 2010 at this site. Note that in this case, <code>pollutant</code> can just
-be the trajectory height (or another numeric field) rather than an
-actual pollutant because only the frequencies are considered.</p>
+<p>The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in <span class="pkg">openair</span> where the analyses can be extended using other <span class="pkg">openair</span> capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals.</p>
+<p>The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the <code>trajLevel</code> function and setting the <code>statistic</code> option to “frequency”. Figure <a href="sec-trajPlot.html#fig:trajFreq">18.5</a> shows the frequency of back trajectory crossings for the North Kensington data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, <code>pollutant</code> can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="sec-trajPlot.html#cb188-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(traj, <span class="dt">statistic =</span> <span class="st">&quot;frequency&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:trajFreq"></span>
 <img src="openair_files/figure-html/trajFreq-1.png" alt="Gridded back trajectory frequencies. The `border = NA` option removes the border around each grid cell." width="65%" />
@@ -602,13 +464,7 @@ actual pollutant because only the frequencies are considered.</p>
 Figure 18.5: Gridded back trajectory frequencies. The <code>border = NA</code> option removes the border around each grid cell.
 </p>
 </div>
-<p>It is also possible to use hexagonal binning to gain an idea about
-trajectory frequencies. In this case each 3-hour point along each
-trajectory is used in the counting. The code below focuses more on
-Europe and uses the hexagonal binning method. Note that the effect of
-the very few high number of points at the origin has been diminished
-by plotting the data on a log scale — see Section <a href="sec-scatterPlot.html#sec:hexbin">17.2.1</a>
-for details.</p>
+<p>It is also possible to use hexagonal binning to gain an idea about trajectory frequencies. In this case each 3-hour point along each trajectory is used in the counting. The code below focuses more on Europe and uses the hexagonal binning method. Note that the effect of the very few high number of points at the origin has been diminished by plotting the data on a log scale — see Section <a href="sec-scatterPlot.html#sec:hexbin">17.2.1</a> for details.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="sec-trajPlot.html#cb189-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(<span class="kw">subset</span>(traj, lat <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span> <span class="op">&amp;</span><span class="st"> </span>lat <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&gt;</span><span class="st"> </span><span class="dv">-30</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>),</span>
 <span id="cb189-2"><a href="sec-trajPlot.html#cb189-2" aria-hidden="true"></a>          <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
 <span id="cb189-3"><a href="sec-trajPlot.html#cb189-3" aria-hidden="true"></a>          <span class="dt">xbin =</span> <span class="dv">40</span>)</span></code></pre></div>
@@ -621,44 +477,11 @@ Figure 18.6: Gridded back trajectory frequencies with hexagonal binning.
 </div>
 <div id="trajectory-source-contribution-functions" class="section level2" number="18.3">
 <h2><span class="header-section-number">18.3</span> Trajectory source contribution functions</h2>
-<p>Back trajectories offer the possibility to undertake receptor
-modelling to identify the location of major emission sources. When
-many back trajectories (over months to years) are analysed in specific
-ways they begin to show the geographic origin most associated with
-elevated concentrations. With enough (dissimilar) trajectories those
-locations leading to the highest concentrations begin to be
-revealed. When a whole year of back trajectory data is plotted the
-individual back trajectories can extend 1000s of km. There are many
-approaches using back trajectories in this way and <span class="citation">Fleming, Monks, and Manning (<a href="#ref-Fleming2012" role="doc-biblioref">2012</a>)</span>
-provide a good overview of the methods available. <span class="pkg">openair</span> has
-implemented a few of these techniques and over time these will be
-refined and extended.</p>
+<p>Back trajectories offer the possibility to undertake receptor modelling to identify the location of major emission sources. When many back trajectories (over months to years) are analysed in specific ways they begin to show the geographic origin most associated with elevated concentrations. With enough (dissimilar) trajectories those locations leading to the highest concentrations begin to be revealed. When a whole year of back trajectory data is plotted the individual back trajectories can extend 1000s of km. There are many approaches using back trajectories in this way and <span class="citation">(Fleming, Monks, and Manning <a href="#ref-Fleming2012" role="doc-biblioref">2012</a>)</span> provide a good overview of the methods available. <span class="pkg">openair</span> has implemented a few of these techniques and over time these will be refined and extended.</p>
 <div id="identifying-the-contribution-of-high-concentration-back-trajectories" class="section level3" number="18.3.1">
 <h3><span class="header-section-number">18.3.1</span> Identifying the contribution of high concentration back trajectories</h3>
-<p>A useful analysis to undertake is to consider the pattern of
-frequencies for two different conditions. In particular, there is
-often interest in the origin of high concentrations for different
-pollutants. For example, compared with data over a whole year, how do
-the frequencies of occurrence differ? Figure <a href="sec-trajPlot.html#fig:trajDiff">18.7</a> shows an
-example of such an analysis for PM<sub>10</sub> concentrations. By default the
-function will compare concentrations $&gt;$90th percentile with the full
-year. The percentile level is controlled by the option
-<code>percentile</code>. Note also there is an option <code>min.bin</code> that will
-exclude grid cells where there are fewer than <code>min.bin</code> data
-points. The analysis compares the percentage of time the air masses
-are in particular grid squares for all data and a subset of data where
-the concentrations are greater than the given percentile. The graph
-shows the absolute percentage difference between the two cases
-i.e. high minus base.</p>
-<p>Figure <a href="sec-trajPlot.html#fig:trajDiff">18.7</a> shows that compared with the whole year, high
-PM<sub>10</sub> concentrations ($&gt;$90th percentile) are more prevalent when the
-trajectories originate from the east, which is seen by the positive
-values in the plot. Similarly there are relatively fewer occurrences
-of these high concentration back trajectories when they originate from
-the west. This analysis is in keeping with the highest PM<sub>10</sub>
-concentrations being largely controlled by secondary aerosol formation
-from air-masses originating during anticyclonic conditions from
-mainland Europe.</p>
+<p>A useful analysis to undertake is to consider the pattern of frequencies for two different conditions. In particular, there is often interest in the origin of high concentrations for different pollutants. For example, compared with data over a whole year, how do the frequencies of occurrence differ? Figure <a href="sec-trajPlot.html#fig:trajDiff">18.7</a> shows an example of such an analysis for PM<sub>10</sub> concentrations. By default the function will compare concentrations $&gt;$90th percentile with the full year. The percentile level is controlled by the option <code>percentile</code>. Note also there is an option <code>min.bin</code> that will exclude grid cells where there are fewer than <code>min.bin</code> data points. The analysis compares the percentage of time the air masses are in particular grid squares for all data and a subset of data where the concentrations are greater than the given percentile. The graph shows the absolute percentage difference between the two cases i.e. high minus base.</p>
+<p>Figure <a href="sec-trajPlot.html#fig:trajDiff">18.7</a> shows that compared with the whole year, high PM<sub>10</sub> concentrations ($&gt;$90th percentile) are more prevalent when the trajectories originate from the east, which is seen by the positive values in the plot. Similarly there are relatively fewer occurrences of these high concentration back trajectories when they originate from the west. This analysis is in keeping with the highest PM<sub>10</sub> concentrations being largely controlled by secondary aerosol formation from air-masses originating during anticyclonic conditions from mainland Europe.</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="sec-trajPlot.html#cb190-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(traj, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;difference&quot;</span>,</span>
 <span id="cb190-2"><a href="sec-trajPlot.html#cb190-2" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;tomato&quot;</span>), <span class="dt">min.bin =</span> <span class="dv">50</span>, <span class="dt">border =</span> <span class="ot">NA</span>, </span>
 <span id="cb190-3"><a href="sec-trajPlot.html#cb190-3" aria-hidden="true"></a>          <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">40</span>, <span class="dv">70</span>))</span></code></pre></div>
@@ -668,8 +491,7 @@ mainland Europe.</p>
 Figure 18.7: Gridded back trajectory frequencies showing the percentage difference in occurrence for high PM<sub>10</sub> concentrations (90th percentile) compared with conditions over the full year.
 </p>
 </div>
-<p>Note that it is also possible to use conditioning with these
-plots. For example to split the frequency results by season:</p>
+<p>Note that it is also possible to use conditioning with these plots. For example to split the frequency results by season:</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="sec-trajPlot.html#cb191-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(traj, <span class="dt">pollutant =</span> <span class="st">&quot;pm10&quot;</span>, </span>
 <span id="cb191-2"><a href="sec-trajPlot.html#cb191-2" aria-hidden="true"></a>          <span class="dt">statistic =</span> <span class="st">&quot;frequency&quot;</span>, </span>
 <span id="cb191-3"><a href="sec-trajPlot.html#cb191-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;heat&quot;</span>,</span>
@@ -677,18 +499,7 @@ plots. For example to split the frequency results by season:</p>
 </div>
 <div id="allocating-trajectories-to-different-wind-sectors" class="section level3" number="18.3.2">
 <h3><span class="header-section-number">18.3.2</span> Allocating trajectories to different wind sectors</h3>
-<p>One of the key aspects of trajectory analysis is knowing something
-about where air masses have come from. Cluster analysis can be used to
-group trajectories based on their origins and this is discussed in Section
-<a href="sec-trajPlot.html#sec:trajCluster">18.6</a>. A simple approach is to consider different
-wind sectors e.g. N, NE, E and calculate the proportion of time a
-particular back trajectory resides in a specific sector. It is then
-possible to allocate a particular trajectory to a sector based on some
-assumption about the proportion of time it is in that sector — for
-example, assume a trajectory is from the west sector if it spends at
-least 50% of its time in that sector or otherwise record the
-allocation as ‘unallocated’. The code below can be used as the basis
-of such an approach.</p>
+<p>One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in Section <a href="sec-trajPlot.html#sec:trajCluster">18.6</a>. A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector — for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as ‘unallocated’. The code below can be used as the basis of such an approach.</p>
 <p>First we import the trajectories, which in this case are for London in 2010:</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="sec-trajPlot.html#cb192-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="dt">site =</span> <span class="st">&quot;london&quot;</span>, <span class="dt">year =</span> <span class="dv">2010</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="sec-trajPlot.html#cb193-1" aria-hidden="true"></a>alloc &lt;-<span class="st"> </span>traj</span>
@@ -720,8 +531,7 @@ of such an approach.</p>
 <span id="cb193-27"><a href="sec-trajPlot.html#cb193-27" aria-hidden="true"></a></span>
 <span id="cb193-28"><a href="sec-trajPlot.html#cb193-28" aria-hidden="true"></a><span class="co"># combine with trajectories</span></span>
 <span id="cb193-29"><a href="sec-trajPlot.html#cb193-29" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">left_join</span>(traj, alloc, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span></code></pre></div>
-<p>Now it is possible to post-process the data. <code>traj</code> now has the
-angle, sector and allocation (<code>sector</code>).</p>
+<p>Now it is possible to post-process the data. <code>traj</code> now has the angle, sector and allocation (<code>sector</code>).</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="sec-trajPlot.html#cb194-1" aria-hidden="true"></a><span class="kw">head</span>(traj)</span></code></pre></div>
 <pre><code>##   receptor year month day hour hour.inc    lat    lon height pressure
 ## 1        1 2010     1   1    9        0 51.500 -0.100   10.0    994.7
@@ -739,8 +549,7 @@ angle, sector and allocation (<code>sector</code>).</p>
 ## 6 2010-01-01 04:00:00 2010-01-01 09:00:00 unallocated 9</code></pre>
 <p>First, merge the air quality data from North Kensington:</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="sec-trajPlot.html#cb196-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">left_join</span>(traj, kc1, <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span></code></pre></div>
-<p>We can work out the mean concentration by allocation, which shows the
-clear importance for the east and south-east sectors.</p>
+<p>We can work out the mean concentration by allocation, which shows the clear importance for the east and south-east sectors.</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="sec-trajPlot.html#cb197-1" aria-hidden="true"></a><span class="kw">group_by</span>(traj, sector) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb197-2"><a href="sec-trajPlot.html#cb197-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">PM2.5 =</span> <span class="kw">mean</span>(pm2<span class="fl">.5</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
@@ -756,8 +565,7 @@ clear importance for the east and south-east sectors.</p>
 ## 7 SW           10.8
 ## 8 unallocated  15.5
 ## 9 W            11.8</code></pre>
-<p>Finally, the percentage of the year in each sector can be calculated
-as follows:</p>
+<p>Finally, the percentage of the year in each sector can be calculated as follows:</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="sec-trajPlot.html#cb200-1" aria-hidden="true"></a><span class="kw">group_by</span>(traj, sector) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb200-2"><a href="sec-trajPlot.html#cb200-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb200-3"><a href="sec-trajPlot.html#cb200-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(traj))</span></code></pre></div>
@@ -778,36 +586,12 @@ as follows:</p>
 </div>
 <div id="potential-source-contribution-function-pscf" class="section level2" number="18.4">
 <h2><span class="header-section-number">18.4</span> Potential Source Contribution Function (PSCF)</h2>
-<p>If <code>statistic = "pscf"</code> then the Potential Source Contribution
-Function (PSCF) is plotted. The PSCF calculates the probability that a
-source is located at latitude <span class="math inline">\(i\)</span> and longitude <span class="math inline">\(j\)</span>
-<span class="citation">(Fleming, Monks, and Manning <a href="#ref-Fleming2012" role="doc-biblioref">2012</a>; Pekney et al. <a href="#ref-Pekney2006" role="doc-biblioref">2006</a>)</span>. The PSCF is somewhat analogous to the
-CPF function described on Section <a href="sec-percentileRose.html#sec:CPF">7.3</a> that considers local
-wind direction probabilities. In fact, the two approaches have been
-shown to work well together <span class="citation">(Pekney et al. <a href="#ref-Pekney2006" role="doc-biblioref">2006</a>)</span>. The PSCF approach has
-been widely used in the analysis of air mass back
-trajectories. <span class="citation">Ara Begum et al. (<a href="#ref-AraBegum2005" role="doc-biblioref">2005</a>)</span> for example assessed the method
-against the known locations of wildfires and found it performed well
-for PM<sub>2.5</sub>, EC (elemental carbon) and OC (organic carbon) and that
-other (non-fire related) species such as sulphate had different source
-origins. The basis of PSCF is that if a source is located at (<span class="math inline">\(i\)</span>,
-<span class="math inline">\(j\)</span>), an air parcel back trajectory passing through that location
-indicates that material from the source can be collected and
-transported along the trajectory to the receptor site. PSCF solves</p>
+<p>If <code>statistic = "pscf"</code> then the Potential Source Contribution Function (PSCF) is plotted. The PSCF calculates the probability that a source is located at latitude <span class="math inline">\(i\)</span> and longitude <span class="math inline">\(j\)</span> <span class="citation">(Fleming, Monks, and Manning <a href="#ref-Fleming2012" role="doc-biblioref">2012</a>; Pekney et al. <a href="#ref-Pekney2006" role="doc-biblioref">2006</a>)</span>. The PSCF is somewhat analogous to the CPF function described on Section <a href="sec-percentileRose.html#sec:CPF">7.3</a> that considers local wind direction probabilities. In fact, the two approaches have been shown to work well together <span class="citation">(Pekney et al. <a href="#ref-Pekney2006" role="doc-biblioref">2006</a>)</span>. The PSCF approach has been widely used in the analysis of air mass back trajectories. <span class="citation">(Ara Begum et al. <a href="#ref-AraBegum2005" role="doc-biblioref">2005</a>)</span> for example assessed the method against the known locations of wildfires and found it performed well for PM<sub>2.5</sub>, EC (elemental carbon) and OC (organic carbon) and that other (non-fire related) species such as sulphate had different source origins. The basis of PSCF is that if a source is located at (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>), an air parcel back trajectory passing through that location indicates that material from the source can be collected and transported along the trajectory to the receptor site. PSCF solves</p>
 <p><span class="math display" id="eq:PSCF">\[\begin{equation}
 PSCF = \frac{m_{ij}}{n_{ij}} \tag{18.1}
 \end{equation}\]</span></p>
-<p>where <span class="math inline">\(n_{ij}\)</span> is the number of times that the trajectories passed
-through the cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>) and <span class="math inline">\(m_{ij}\)</span> is the number of times that a
-source concentration was high when the trajectories passed through the
-cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>). The criterion for determining <span class="math inline">\(m_{ij}\)</span> is controlled by
-`percentile}, which by default is 90. Note also that cells with few
-data have a weighting factor applied to reduce their effect.</p>
-<p>An example of a PSCF plot is shown in Figure <a href="sec-trajPlot.html#fig:PSCF">18.8</a> for PM<sub>2.5</sub>
-for concentrations &gt;90th percentile. This Figure gives a very clear
-indication that the principal (high) sources are dominated by source
-origins in mainland Europe — particularly around the Benelux
-countries.</p>
+<p>where <span class="math inline">\(n_{ij}\)</span> is the number of times that the trajectories passed through the cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>) and <span class="math inline">\(m_{ij}\)</span> is the number of times that a source concentration was high when the trajectories passed through the cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>). The criterion for determining <span class="math inline">\(m_{ij}\)</span> is controlled by `percentile}, which by default is 90. Note also that cells with few data have a weighting factor applied to reduce their effect.</p>
+<p>An example of a PSCF plot is shown in Figure <a href="sec-trajPlot.html#fig:PSCF">18.8</a> for PM<sub>2.5</sub> for concentrations &gt;90th percentile. This Figure gives a very clear indication that the principal (high) sources are dominated by source origins in mainland Europe — particularly around the Benelux countries.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="sec-trajPlot.html#cb203-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(<span class="kw">filter</span>(traj, lon <span class="op">&gt;</span><span class="st"> </span><span class="dv">-20</span>, lon <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>, lat <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>, lat <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span>),</span>
 <span id="cb203-2"><a href="sec-trajPlot.html#cb203-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;pm2.5&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;pscf&quot;</span>, </span>
 <span id="cb203-3"><a href="sec-trajPlot.html#cb203-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>,</span>
@@ -821,38 +605,12 @@ Figure 18.8: PSCF probabilities for PM<sub>2.5</sub> concentrations (90th percen
 </div>
 <div id="concentration-weighted-trajectory-cwt" class="section level2" number="18.5">
 <h2><span class="header-section-number">18.5</span> Concentration Weighted Trajectory (CWT)</h2>
-<p>A limitation of the PSCF method is that grid cells can have the same
-PSCF value when sample concentrations are either only slightly higher
-or much higher than the criterion <span class="citation">(Hsu, Holsen, and Hopke <a href="#ref-Hsu2003" role="doc-biblioref">2003</a>)</span>. As a result, it can
-be difficult to distinguish moderate sources from strong
-ones. <span class="citation">Seibert et al. (<a href="#ref-seibert1994" role="doc-biblioref">1994</a>)</span> computed concentration fields to identify
-source areas of pollutants. This approach is sometimes referred to as
-the CWT or CF (concentration field). A grid domain was used as in the
-PSCF method. For each grid cell, the mean (CWT) or logarithmic mean
-(used in the Residence Time Weighted Concentration (RTWC) method)
-concentration of a pollutant species was calculated as follows:</p>
+<p>A limitation of the PSCF method is that grid cells can have the same PSCF value when sample concentrations are either only slightly higher or much higher than the criterion <span class="citation">(Hsu, Holsen, and Hopke <a href="#ref-Hsu2003" role="doc-biblioref">2003</a>)</span>. As a result, it can be difficult to distinguish moderate sources from strong ones. <span class="citation">(Seibert et al. <a href="#ref-seibert1994" role="doc-biblioref">1994</a>)</span> computed concentration fields to identify source areas of pollutants. This approach is sometimes referred to as the CWT or CF (concentration field). A grid domain was used as in the PSCF method. For each grid cell, the mean (CWT) or logarithmic mean (used in the Residence Time Weighted Concentration (RTWC) method) concentration of a pollutant species was calculated as follows:</p>
 <p><span class="math display" id="eq:RTWC">\[\begin{equation}
   ln(\overline{C}_{ij}) = \frac{1}{\sum_{k=1}^{N}\tau_{ijk}}\sum_{k=1}^{N}ln(c_k)\tau_{ijk} \tag{18.2}
 \end{equation}\]</span></p>
-<p>where <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are the indices of grid, <span class="math inline">\(k\)</span> the index of
-trajectory, <span class="math inline">\(N\)</span> the total number of trajectories used in analysis,
-<span class="math inline">\(c_k\)</span> the pollutant concentration measured upon arrival of trajectory
-<span class="math inline">\(k\)</span>, and <span class="math inline">\(\tau_{ijk}\)</span> the residence time of trajectory <span class="math inline">\(k\)</span> in grid
-cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>). A high value of <span class="math inline">\(\overline{C}_{ij}\)</span> means that, air
-parcels passing over cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>) would, on average, cause high
-concentrations at the receptor site.</p>
-<p>Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> shows the situation for PM<sub>2.5</sub> concentrations. It
-was calculated by recording the associated PM<sub>2.5</sub> concentration for
-each point on the back trajectory based on the arrival time
-concentration using 2010 data. The plot shows the geographic areas
-most strongly associated with high PM<sub>2.5</sub> concentrations i.e. to the
-east in continental Europe. Both the CWT and PSCF methods have been
-shown to give similar results and each have their advantages and
-disadvantages <span class="citation">(Lupu and Maenhaut <a href="#ref-Lupu2002" role="doc-biblioref">2002</a>; Hsu, Holsen, and Hopke <a href="#ref-Hsu2003" role="doc-biblioref">2003</a>)</span>. Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> can be
-compared with Figure <a href="sec-trajPlot.html#fig:PSCF">18.8</a> to compare the overall identification
-of source regions using the CWT and PSCF techniques. Overall the
-agreement is good in that similar geographic locations are identified
-as being important for PM<sub>2.5</sub>.</p>
+<p>where <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are the indices of grid, <span class="math inline">\(k\)</span> the index of trajectory, <span class="math inline">\(N\)</span> the total number of trajectories used in analysis, <span class="math inline">\(c_k\)</span> the pollutant concentration measured upon arrival of trajectory <span class="math inline">\(k\)</span>, and <span class="math inline">\(\tau_{ijk}\)</span> the residence time of trajectory <span class="math inline">\(k\)</span> in grid cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>). A high value of <span class="math inline">\(\overline{C}_{ij}\)</span> means that, air parcels passing over cell (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>) would, on average, cause high concentrations at the receptor site.</p>
+<p>Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> shows the situation for PM<sub>2.5</sub> concentrations. It was calculated by recording the associated PM<sub>2.5</sub> concentration for each point on the back trajectory based on the arrival time concentration using 2010 data. The plot shows the geographic areas most strongly associated with high PM<sub>2.5</sub> concentrations i.e. to the east in continental Europe. Both the CWT and PSCF methods have been shown to give similar results and each have their advantages and disadvantages <span class="citation">(Lupu and Maenhaut <a href="#ref-Lupu2002" role="doc-biblioref">2002</a>; Hsu, Holsen, and Hopke <a href="#ref-Hsu2003" role="doc-biblioref">2003</a>)</span>. Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> can be compared with Figure <a href="sec-trajPlot.html#fig:PSCF">18.8</a> to compare the overall identification of source regions using the CWT and PSCF techniques. Overall the agreement is good in that similar geographic locations are identified as being important for PM<sub>2.5</sub>.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="sec-trajPlot.html#cb204-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(<span class="kw">filter</span>(traj,lon <span class="op">&gt;</span><span class="st"> </span><span class="dv">-20</span>, lon <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>, lat <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span>, lat <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span>),</span>
 <span id="cb204-2"><a href="sec-trajPlot.html#cb204-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;pm2.5&quot;</span>, <span class="dt">statistic=</span><span class="st">&quot;cwt&quot;</span>, </span>
 <span id="cb204-3"><a href="sec-trajPlot.html#cb204-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>,</span>
@@ -863,9 +621,7 @@ as being important for PM<sub>2.5</sub>.</p>
 Figure 18.9: Gridded back trajectory concentrations showing mean PM<sub>2.5</sub> concentrations using the CWT approach.
 </p>
 </div>
-<p>Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> is useful, but it can be clearer if the trajectory
-surface is smoothed, which has been done for PM<sub>2.5</sub> concentrations
-shown in Figure <a href="sec-trajPlot.html#fig:traj6">18.10</a>.</p>
+<p>Figure <a href="sec-trajPlot.html#fig:traj5">18.9</a> is useful, but it can be clearer if the trajectory surface is smoothed, which has been done for PM<sub>2.5</sub> concentrations shown in Figure <a href="sec-trajPlot.html#fig:traj6">18.10</a>.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="sec-trajPlot.html#cb205-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(<span class="kw">subset</span>(traj, lat <span class="op">&gt;</span><span class="st"> </span><span class="dv">45</span> <span class="op">&amp;</span><span class="st"> </span>lat <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&gt;-</span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&lt;</span><span class="dv">20</span>),</span>
 <span id="cb205-2"><a href="sec-trajPlot.html#cb205-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span><span class="st">&quot;pm2.5&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;cwt&quot;</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb205-3"><a href="sec-trajPlot.html#cb205-3" aria-hidden="true"></a>          <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>)</span></code></pre></div>
@@ -875,54 +631,20 @@ shown in Figure <a href="sec-trajPlot.html#fig:traj6">18.10</a>.</p>
 Figure 18.10: Gridded and smoothed back trajectory concentrations showing mean PM<sub>2.5</sub> concentrations using the CWT approach.
 </p>
 </div>
-<p>In common with most other <span class="pkg">openair</span> functions, the flexible <code>type</code>
-option can be used to split the data in different ways. For example, to
-plot the smoothed back trajectories for PM<sub>2.5</sub> concentrations by
-season.</p>
+<p>In common with most other <span class="pkg">openair</span> functions, the flexible <code>type</code> option can be used to split the data in different ways. For example, to plot the smoothed back trajectories for PM<sub>2.5</sub> concentrations by season.</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="sec-trajPlot.html#cb206-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(<span class="kw">subset</span>(traj, lat <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>lat <span class="op">&lt;</span><span class="st"> </span><span class="dv">70</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&gt;-</span><span class="dv">20</span> <span class="op">&amp;</span><span class="st"> </span>lon <span class="op">&lt;</span><span class="dv">20</span>),</span>
 <span id="cb206-2"><a href="sec-trajPlot.html#cb206-2" aria-hidden="true"></a>          <span class="dt">pollutant =</span> <span class="st">&quot;pm2.5&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">statistic =</span> <span class="st">&quot;pscf&quot;</span>,</span>
 <span id="cb206-3"><a href="sec-trajPlot.html#cb206-3" aria-hidden="true"></a>          <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">1</span>))</span></code></pre></div>
-<p>It should be noted that it makes sense to analyse back trajectories
-for pollutants that have a large regional component — such as
-particles or . It makes little sense to analyse pollutants that
-are known to have local impacts e.g. . However, a species such as
-can be helpful to exclude `fresh’ emissions from the analysis.</p>
+<p>It should be noted that it makes sense to analyse back trajectories for pollutants that have a large regional component — such as particles or . It makes little sense to analyse pollutants that are known to have local impacts e.g. . However, a species such as can be helpful to exclude `fresh’ emissions from the analysis.</p>
 </div>
 <div id="sec:trajCluster" class="section level2" number="18.6">
 <h2><span class="header-section-number">18.6</span> Trajectory clustering</h2>
-<p>Often it is useful to use cluster analysis on back trajectories to
-group similar air mass origins together. The principal purpose of
-clustering back trajectories is to post-process data according to
-cluster origin. By grouping data with similar geographic origins it is
-possible to gain information on pollutant species with similar
-chemical histories. There are several ways in which clustering can be
-carried out and several measures of the similarity of different
-clusters. A key issue is how the <em>distance matrix</em> is calculated,
-which determines the similarity (or dissimilarity) of different back
-trajectories. The simplest measure is the Euclidean distance. However,
-an angle-based measure is also often used. The two distance measures
-are defined below. In <span class="pkg">openair</span> the distance matrices are calculated
-using C<span class="math inline">\(++\)</span> code because their calculation is computationally
-intensive. Note that these calculations can also be performed directly
-in the Hysplit model itself.</p>
-<p>The Euclidean distance between two trajectories is given by Equation
-<a href="sec-trajPlot.html#eq:Euclid">(18.3)</a>. Where <span class="math inline">\(X_1\)</span>, <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(Y_2\)</span> are the
-latitude and longitude coordinates of back trajectories <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>,
-respectively. <span class="math inline">\(n\)</span> is the number of back trajectory points (96 hours in
-this case).</p>
+<p>Often it is useful to use cluster analysis on back trajectories to group similar air mass origins together. The principal purpose of clustering back trajectories is to post-process data according to cluster origin. By grouping data with similar geographic origins it is possible to gain information on pollutant species with similar chemical histories. There are several ways in which clustering can be carried out and several measures of the similarity of different clusters. A key issue is how the <em>distance matrix</em> is calculated, which determines the similarity (or dissimilarity) of different back trajectories. The simplest measure is the Euclidean distance. However, an angle-based measure is also often used. The two distance measures are defined below. In <span class="pkg">openair</span> the distance matrices are calculated using C<span class="math inline">\(++\)</span> code because their calculation is computationally intensive. Note that these calculations can also be performed directly in the Hysplit model itself.</p>
+<p>The Euclidean distance between two trajectories is given by Equation <a href="sec-trajPlot.html#eq:Euclid">(18.3)</a>. Where <span class="math inline">\(X_1\)</span>, <span class="math inline">\(Y_1\)</span> and <span class="math inline">\(X_2\)</span>, <span class="math inline">\(Y_2\)</span> are the latitude and longitude coordinates of back trajectories <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>, respectively. <span class="math inline">\(n\)</span> is the number of back trajectory points (96 hours in this case).</p>
 <p><span class="math display" id="eq:Euclid">\[\begin{equation}
 d_{1, 2} = \left({\sum_{i=1}^{n} ((X_{1i} - X_{2i}) ^ 2 + (Y_{1i} - Y_{2i})) ^ 2}\right)^{1/2} \tag{18.3}
 \end{equation}\]</span></p>
-<p>The <em>angle</em> distance matrix is a measure of how similar two back
-trajectory points are in terms of their angle from the origin i.e. the
-starting location of the back trajectories. The angle-based measure
-will often capture some of the important circulatory features in the
-atmosphere e.g. situations where there is a high pressure located to
-the east of the UK. However, the most appropriate distance measure
-will be application dependent and is probably best tested by the
-extent to which they are able to differentiate different air-mass
-characteristics, which can be tested through post-processing. The
-angle-based distance measure is defined as:</p>
+<p>The <em>angle</em> distance matrix is a measure of how similar two back trajectory points are in terms of their angle from the origin i.e. the starting location of the back trajectories. The angle-based measure will often capture some of the important circulatory features in the atmosphere e.g. situations where there is a high pressure located to the east of the UK. However, the most appropriate distance measure will be application dependent and is probably best tested by the extent to which they are able to differentiate different air-mass characteristics, which can be tested through post-processing. The angle-based distance measure is defined as:</p>
 <p><span class="math display" id="eq:Angle">\[\begin{equation}
 d_{1, 2} = \frac{1}{n}\sum_{i=1}^{n}cos^{-1} \left(0.5\frac{A_i + B_i + C_i}{\sqrt{A_iB_i}}\right)  \tag{18.4}
 \end{equation}\]</span></p>
@@ -939,19 +661,12 @@ d_{1, 2} = \frac{1}{n}\sum_{i=1}^{n}cos^{-1} \left(0.5\frac{A_i + B_i + C_i}{\sq
   \tag{18.7}
   C_i = (X_2(i) - X_1(i))^2 + (Y_2(i) - Y_1(i))^2
 \end{equation}\]</span></p>
-<p>where <span class="math inline">\(X_0\)</span> and <span class="math inline">\(Y_0\)</span> are the coordinates of the location being
-studied i.e. the starting location of the trajectories.</p>
+<p>where <span class="math inline">\(X_0\)</span> and <span class="math inline">\(Y_0\)</span> are the coordinates of the location being studied i.e. the starting location of the trajectories.</p>
 <p>As an example we will consider back trajectories for London in 2011.</p>
-<p>First, the back trajectory data for London is imported together with
-the air pollution data for the North Kensington site (KC1).</p>
+<p>First, the back trajectory data for London is imported together with the air pollution data for the North Kensington site (KC1).</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="sec-trajPlot.html#cb207-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">importTraj</span>(<span class="dt">site =</span> <span class="st">&quot;london&quot;</span>, <span class="dt">year =</span> <span class="dv">2011</span>)</span>
 <span id="cb207-2"><a href="sec-trajPlot.html#cb207-2" aria-hidden="true"></a>kc1 &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;kc1&quot;</span>, <span class="dt">year =</span> <span class="dv">2011</span>)</span></code></pre></div>
-<p>The clusters are straightforward to calculate. In this case the back
-trajectory data (<code>traj</code>) is supplied and the angle-based distance
-matrix is used. Furthermore, we choose to calculate 6 clusters and
-choose a specific colour scheme. In this case we read the output from
-<code>trajCluster</code> into a variable <code>clust</code> so that the results can be
-post-processed.</p>
+<p>The clusters are straightforward to calculate. In this case the back trajectory data (<code>traj</code>) is supplied and the angle-based distance matrix is used. Furthermore, we choose to calculate 6 clusters and choose a specific colour scheme. In this case we read the output from <code>trajCluster</code> into a variable <code>clust</code> so that the results can be post-processed.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="sec-trajPlot.html#cb208-1" aria-hidden="true"></a>clust &lt;-<span class="st"> </span><span class="kw">trajCluster</span>(traj, <span class="dt">method =</span> <span class="st">&quot;Angle&quot;</span>, </span>
 <span id="cb208-2"><a href="sec-trajPlot.html#cb208-2" aria-hidden="true"></a>                     <span class="dt">n.cluster =</span> <span class="dv">6</span>, </span>
 <span id="cb208-3"><a href="sec-trajPlot.html#cb208-3" aria-hidden="true"></a>                     <span class="dt">col =</span> <span class="st">&quot;Set2&quot;</span>,</span>
@@ -962,53 +677,21 @@ post-processed.</p>
 Figure 18.11: The 6-cluster solution to back trajectories calculated for the London North Kensington site for 2011 showing the mean trajectory for each cluster.
 </p>
 </div>
-<p><code>clust</code> returns all the back trajectory information together with
-the cluster (as a character). This data can now be used together with
-other data to analyse results further. However, first it is possible
-to show all trajectories coloured by cluster, although for a year of
-data there is significant overlap and it is difficult to tell them
-apart.</p>
+<p><code>clust</code> returns all the back trajectory information together with the cluster (as a character). This data can now be used together with other data to analyse results further. However, first it is possible to show all trajectories coloured by cluster, although for a year of data there is significant overlap and it is difficult to tell them apart.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="sec-trajPlot.html#cb209-1" aria-hidden="true"></a><span class="kw">trajPlot</span>(clust<span class="op">$</span>data, <span class="dt">group =</span> <span class="st">&quot;cluster&quot;</span>)</span></code></pre></div>
-<p>A useful way in which to see where these air masses come from by
-trajectory is to produce a frequency plot by cluster. Such a plot (not
-shown, but code below) provides a good indication of the spread of the
-different trajectory clusters as well as providing an indication of
-where air masses spend most of their time. For the London 2011 data it
-can be seen cluster 1 is dominated by air from the European mainland
-to the south.</p>
+<p>A useful way in which to see where these air masses come from by trajectory is to produce a frequency plot by cluster. Such a plot (not shown, but code below) provides a good indication of the spread of the different trajectory clusters as well as providing an indication of where air masses spend most of their time. For the London 2011 data it can be seen cluster 1 is dominated by air from the European mainland to the south.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="sec-trajPlot.html#cb210-1" aria-hidden="true"></a><span class="kw">trajLevel</span>(clust<span class="op">$</span>data, <span class="dt">type =</span> <span class="st">&quot;cluster&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>)</span></code></pre></div>
-<p>Perhaps more useful is to merge the cluster data with measurement
-data. In this case the data at North Kensington site are used. Note
-that in merging these two data frames it is not necessary to retain
-all 96 back trajectory hours and for this reason we extract only the
-first hour.</p>
+<p>Perhaps more useful is to merge the cluster data with measurement data. In this case the data at North Kensington site are used. Note that in merging these two data frames it is not necessary to retain all 96 back trajectory hours and for this reason we extract only the first hour.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="sec-trajPlot.html#cb211-1" aria-hidden="true"></a><span class="co"># use inner join - so only where we have data in each</span></span>
 <span id="cb211-2"><a href="sec-trajPlot.html#cb211-2" aria-hidden="true"></a>kc1 &lt;-<span class="st"> </span><span class="kw">inner_join</span>(kc1, <span class="kw">filter</span>(clust<span class="op">$</span>data, hour.inc <span class="op">==</span><span class="st"> </span><span class="dv">0</span>), <span class="dt">by =</span> <span class="st">&quot;date&quot;</span>)</span></code></pre></div>
-<p>Now <code>kc1</code> contains air pollution data identified by cluster. The
-size of this data frame is about a third of the original size because
-back trajectories are only run every 3~hours.</p>
+<p>Now <code>kc1</code> contains air pollution data identified by cluster. The size of this data frame is about a third of the original size because back trajectories are only run every 3~hours.</p>
 <p>The numbers of each cluster are given by:</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="sec-trajPlot.html#cb212-1" aria-hidden="true"></a><span class="kw">table</span>(kc1[[<span class="st">&quot;cluster&quot;</span>]])</span></code></pre></div>
 <pre><code>## 
 ##  C1  C2  C3  C4  C5  C6 
 ## 347 661 989 277 280 333</code></pre>
 <p>i.e. is dominated by clusters 3 and 2 from west and south-west (Atlantic).</p>
-<p>Now it is possible to analyse the concentration data according to the
-cluster. There are numerous types of analysis that can be carried out
-with these results, which will depend on what the aims of the analysis
-are in the first place. However, perhaps one of the first things to
-consider is how the concentrations vary by cluster. As the summary
-results below show, there are distinctly different mean concentrations
-of most pollutants by cluster. For example, clusters 1 and 6 are
-associated with much higher concentrations of PM<sub>10</sub> — approximately
-double that of other clusters. Both of these clusters originate from
-continental Europe. Cluster 5 is also relatively high, which tends to
-come from the rest of the UK. Other clues concerning the types of
-air-mass can be gained from the mean pressure. For example, cluster~5
-is associated with the highest pressure (1014~kPa), and as is seen in Figure
-<a href="sec-trajPlot.html#fig:calcClusterTraj">18.11</a> the shape of the line for cluster~5 is
-consistent with air-masses associated with a high pressure system (a
-clockwise-type sweep).</p>
+<p>Now it is possible to analyse the concentration data according to the cluster. There are numerous types of analysis that can be carried out with these results, which will depend on what the aims of the analysis are in the first place. However, perhaps one of the first things to consider is how the concentrations vary by cluster. As the summary results below show, there are distinctly different mean concentrations of most pollutants by cluster. For example, clusters 1 and 6 are associated with much higher concentrations of PM<sub>10</sub> — approximately double that of other clusters. Both of these clusters originate from continental Europe. Cluster 5 is also relatively high, which tends to come from the rest of the UK. Other clues concerning the types of air-mass can be gained from the mean pressure. For example, cluster~5 is associated with the highest pressure (1014~kPa), and as is seen in Figure <a href="sec-trajPlot.html#fig:calcClusterTraj">18.11</a> the shape of the line for cluster~5 is consistent with air-masses associated with a high pressure system (a clockwise-type sweep).</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="sec-trajPlot.html#cb214-1" aria-hidden="true"></a><span class="kw">group_by</span>(kc1, cluster) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb214-2"><a href="sec-trajPlot.html#cb214-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 28
@@ -1024,19 +707,7 @@ clockwise-type sweep).</p>
 ## #   receptor &lt;dbl&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;, day &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   hour.inc &lt;dbl&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;, height &lt;dbl&gt;, pressure &lt;dbl&gt;,
 ## #   traj_len &lt;dbl&gt;, len &lt;dbl&gt;</code></pre>
-<p>Simple plots can be generated from these results too. For example, it
-is easy to consider the temporal nature of the volatile component of
-PM<sub>2.5</sub> concentrations (<code>v2.5</code> in the <code>kc1</code> data
-frame). Figure <a href="sec-trajPlot.html#fig:calcClusterLevel">18.12</a> for example shows how the
-concentration of the volatile component of PM<sub>2.5</sub> concentrations
-varies by cluster by plotting the hour of day-month variation. It is
-clear from Figure <a href="sec-trajPlot.html#fig:calcClusterLevel">18.12</a> that the clusters associated
-with the highest volatile PM<sub>2.5</sub> concentrations are clusters 1 and 6
-(European origin) and that these concentrations peak during
-spring. There is less data to see clearly what is going on with
-cluster~5. Nevertheless, the cluster analysis has clearly separated
-different air mass characteristics which allows for more refined
-analysis of different air-mass types.</p>
+<p>Simple plots can be generated from these results too. For example, it is easy to consider the temporal nature of the volatile component of PM<sub>2.5</sub> concentrations (<code>v2.5</code> in the <code>kc1</code> data frame). Figure <a href="sec-trajPlot.html#fig:calcClusterLevel">18.12</a> for example shows how the concentration of the volatile component of PM<sub>2.5</sub> concentrations varies by cluster by plotting the hour of day-month variation. It is clear from Figure <a href="sec-trajPlot.html#fig:calcClusterLevel">18.12</a> that the clusters associated with the highest volatile PM<sub>2.5</sub> concentrations are clusters 1 and 6 (European origin) and that these concentrations peak during spring. There is less data to see clearly what is going on with cluster~5. Nevertheless, the cluster analysis has clearly separated different air mass characteristics which allows for more refined analysis of different air-mass types.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="sec-trajPlot.html#cb216-1" aria-hidden="true"></a><span class="kw">trendLevel</span>(kc1, <span class="dt">pollutant =</span> <span class="st">&quot;v2.5&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cluster&quot;</span>, </span>
 <span id="cb216-2"><a href="sec-trajPlot.html#cb216-2" aria-hidden="true"></a>           <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">1</span>),</span>
 <span id="cb216-3"><a href="sec-trajPlot.html#cb216-3" aria-hidden="true"></a>               <span class="dt">cols =</span> <span class="st">&quot;increment&quot;</span>)</span></code></pre></div>
@@ -1046,17 +717,8 @@ analysis of different air-mass types.</p>
 Figure 18.12: Some of the temporal characteristics of the volatile PM<sub>2.5</sub> component plotted by month and hour of the day and by cluster for the London North Kensington site for 2011.
 </p>
 </div>
-<p>Similarly, as considered in Figure <a href="sec-polarPlot.html#sec:polarCluster">8.6</a>, the
-<code>timeVariation</code> function can also be used to consider the temporal
-components.</p>
-<p>Another useful plot to consider is <code>timeProp</code> (see Section <a href="sec-timeProp.html#sec:timeProp">12</a>), which can show how
-the concentration of a pollutant is comprised. In this case it is
-useful to plot the time series of PM<sub>2.5</sub> <em>and</em> show how much of
-the concentration is contributed to by each cluster. Such a plot is
-shown in Figure <a href="sec-trajPlot.html#fig:timePropTraj">18.13</a>. It is now easy to see for example
-that during the spring months many of the high concentration events
-were due to clusters 1 and 6, which correspond to European origin
-air-masses as shown in Figure <a href="sec-trajPlot.html#fig:calcClusterTraj">18.11</a>.</p>
+<p>Similarly, as considered in Figure <a href="sec-polarPlot.html#sec:polarCluster">8.6</a>, the <code>timeVariation</code> function can also be used to consider the temporal components.</p>
+<p>Another useful plot to consider is <code>timeProp</code> (see Section <a href="sec-timeProp.html#sec:timeProp">12</a>), which can show how the concentration of a pollutant is comprised. In this case it is useful to plot the time series of PM<sub>2.5</sub> <em>and</em> show how much of the concentration is contributed to by each cluster. Such a plot is shown in Figure <a href="sec-trajPlot.html#fig:timePropTraj">18.13</a>. It is now easy to see for example that during the spring months many of the high concentration events were due to clusters 1 and 6, which correspond to European origin air-masses as shown in Figure <a href="sec-trajPlot.html#fig:calcClusterTraj">18.11</a>.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sec-trajPlot.html#cb217-1" aria-hidden="true"></a><span class="kw">timeProp</span>(kc1, <span class="dt">pollutant =</span> <span class="st">&quot;pm2.5&quot;</span>, </span>
 <span id="cb217-2"><a href="sec-trajPlot.html#cb217-2" aria-hidden="true"></a>         <span class="dt">avg.time =</span> <span class="st">&quot;day&quot;</span>, <span class="dt">proportion =</span> <span class="st">&quot;cluster&quot;</span>,</span>
 <span id="cb217-3"><a href="sec-trajPlot.html#cb217-3" aria-hidden="true"></a>         <span class="dt">cols =</span> <span class="st">&quot;Set2&quot;</span>, </span>
@@ -1094,11 +756,8 @@ Figure 18.13: Temporal variation in daily PM<sub>2.5</sub> concentrations at the
 <div class="footnotes">
 <hr />
 <ol start="5">
-<li id="fn5"><p>Note — the back trajectories have been pre-calculated
-for specific locations and stored as .RData objects. Users should
-contact David Carslaw to request the addition of other locations.<a href="sec-trajPlot.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>You will need to load the <span class="pkg">mapdata</span> package
-i.e. <code>library(mapdata)</code>.<a href="sec-trajPlot.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Note — the back trajectories have been pre-calculated for specific locations and stored as .RData objects. Users should contact David Carslaw to request the addition of other locations.<a href="sec-trajPlot.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>You will need to load the <span class="pkg">mapdata</span> package i.e. <code>library(mapdata)</code>.<a href="sec-trajPlot.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
