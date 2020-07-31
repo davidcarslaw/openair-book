@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-29" />
+<meta name="date" content="2020-07-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The worldmet package</a></li>
+<li class="chapter" data-level="4.2" data-path="sec-worldmet.html"><a href="sec-worldmet.html#sec:link-aq"><i class="fa fa-check"></i><b>4.2</b> Linking with air quality data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
 <ul>
@@ -350,48 +351,48 @@ NOAA website.</p></li>
 <p>To run back trajectories it is necessary to download the
 meteorological data files. The easiest way to download the
 meteorological files is using the function below.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="sec-prod-hyspl-traj.html#cb309-1" aria-hidden="true"></a>getMet &lt;-<span class="st"> </span><span class="cf">function</span> (<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span>, </span>
-<span id="cb309-2"><a href="sec-prod-hyspl-traj.html#cb309-2" aria-hidden="true"></a>                    <span class="dt">path_met =</span> <span class="st">&quot;~/TrajData/&quot;</span>) {</span>
-<span id="cb309-3"><a href="sec-prod-hyspl-traj.html#cb309-3" aria-hidden="true"></a></span>
-<span id="cb309-4"><a href="sec-prod-hyspl-traj.html#cb309-4" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(year)) {</span>
-<span id="cb309-5"><a href="sec-prod-hyspl-traj.html#cb309-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(month)) {</span>
-<span id="cb309-6"><a href="sec-prod-hyspl-traj.html#cb309-6" aria-hidden="true"></a>            <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="kw">paste0</span>(<span class="st">&quot;ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP&quot;</span>,</span>
-<span id="cb309-7"><a href="sec-prod-hyspl-traj.html#cb309-7" aria-hidden="true"></a>                              year[i], <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>),</span>
-<span id="cb309-8"><a href="sec-prod-hyspl-traj.html#cb309-8" aria-hidden="true"></a>                          <span class="dt">destfile =</span> <span class="kw">paste0</span>(path_met, <span class="st">&quot;RP&quot;</span>, year[i],</span>
-<span id="cb309-9"><a href="sec-prod-hyspl-traj.html#cb309-9" aria-hidden="true"></a>                              <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>), <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
-<span id="cb309-10"><a href="sec-prod-hyspl-traj.html#cb309-10" aria-hidden="true"></a>        }</span>
-<span id="cb309-11"><a href="sec-prod-hyspl-traj.html#cb309-11" aria-hidden="true"></a>    }</span>
-<span id="cb309-12"><a href="sec-prod-hyspl-traj.html#cb309-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="sec-prod-hyspl-traj.html#cb313-1" aria-hidden="true"></a>getMet &lt;-<span class="st"> </span><span class="cf">function</span> (<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span>, </span>
+<span id="cb313-2"><a href="sec-prod-hyspl-traj.html#cb313-2" aria-hidden="true"></a>                    <span class="dt">path_met =</span> <span class="st">&quot;~/TrajData/&quot;</span>) {</span>
+<span id="cb313-3"><a href="sec-prod-hyspl-traj.html#cb313-3" aria-hidden="true"></a></span>
+<span id="cb313-4"><a href="sec-prod-hyspl-traj.html#cb313-4" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(year)) {</span>
+<span id="cb313-5"><a href="sec-prod-hyspl-traj.html#cb313-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="kw">seq_along</span>(month)) {</span>
+<span id="cb313-6"><a href="sec-prod-hyspl-traj.html#cb313-6" aria-hidden="true"></a>            <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="kw">paste0</span>(<span class="st">&quot;ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP&quot;</span>,</span>
+<span id="cb313-7"><a href="sec-prod-hyspl-traj.html#cb313-7" aria-hidden="true"></a>                              year[i], <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>),</span>
+<span id="cb313-8"><a href="sec-prod-hyspl-traj.html#cb313-8" aria-hidden="true"></a>                          <span class="dt">destfile =</span> <span class="kw">paste0</span>(path_met, <span class="st">&quot;RP&quot;</span>, year[i],</span>
+<span id="cb313-9"><a href="sec-prod-hyspl-traj.html#cb313-9" aria-hidden="true"></a>                              <span class="kw">sprintf</span>(<span class="st">&quot;%02d&quot;</span>, month[j]), <span class="st">&quot;.gbl&quot;</span>), <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb313-10"><a href="sec-prod-hyspl-traj.html#cb313-10" aria-hidden="true"></a>        }</span>
+<span id="cb313-11"><a href="sec-prod-hyspl-traj.html#cb313-11" aria-hidden="true"></a>    }</span>
+<span id="cb313-12"><a href="sec-prod-hyspl-traj.html#cb313-12" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The function will download monthly met files (each about 120 MB) to
 the chosen directory. Note that the met data files only need be
 downloaded once. For example, to download files for 2013:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="sec-prod-hyspl-traj.html#cb310-1" aria-hidden="true"></a><span class="kw">getMet</span>(<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="sec-prod-hyspl-traj.html#cb314-1" aria-hidden="true"></a><span class="kw">getMet</span>(<span class="dt">year =</span> <span class="dv">2013</span>, <span class="dt">month =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</span></code></pre></div>
 <p>The original functions have been modified by Stuart Grange (PhD
 student at the University of York). It is first necessary on ensure
 that the <span class="pkg">stringr</span> and <span class="pkg">devtools</span> packages are installed. The
 latter is needed to load some R functions stored as a <em>GitHub
 gist</em> (some code that can be shared publicly).</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="sec-prod-hyspl-traj.html#cb311-1" aria-hidden="true"></a><span class="kw">library</span>(devtools)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="sec-prod-hyspl-traj.html#cb315-1" aria-hidden="true"></a><span class="kw">library</span>(devtools)</span></code></pre></div>
 <pre><code>## Loading required package: usethis</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="sec-prod-hyspl-traj.html#cb313-1" aria-hidden="true"></a><span class="kw">source_gist</span>(<span class="st">&quot;https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5&quot;</span>,</span>
-<span id="cb313-2"><a href="sec-prod-hyspl-traj.html#cb313-2" aria-hidden="true"></a>            <span class="dt">filename =</span> <span class="st">&quot;run_hysplit.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="sec-prod-hyspl-traj.html#cb317-1" aria-hidden="true"></a><span class="kw">source_gist</span>(<span class="st">&quot;https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5&quot;</span>,</span>
+<span id="cb317-2"><a href="sec-prod-hyspl-traj.html#cb317-2" aria-hidden="true"></a>            <span class="dt">filename =</span> <span class="st">&quot;run_hysplit.R&quot;</span>)</span></code></pre></div>
 <pre><code>## Sourcing https://gist.githubusercontent.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5/raw/1eb36e223725308934bfa189c30969014e979198/run_hysplit.R</code></pre>
 <pre><code>## SHA-1 hash of file is e1d37c75528ac18924fd0c6902318702301fa591</code></pre>
 <p>Now there should be several loaded functions, including
 <code>run_hysplit</code>. To run Hysplit, have a look at the examples here <a href="https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5" class="uri">https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5</a>.</p>
 <p>On my Windows machine it is run as follows:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="sec-prod-hyspl-traj.html#cb316-1" aria-hidden="true"></a>data_out &lt;-<span class="st"> </span><span class="kw">run_hysplit</span>(</span>
-<span id="cb316-2"><a href="sec-prod-hyspl-traj.html#cb316-2" aria-hidden="true"></a><span class="dt">latitude =</span> <span class="fl">36.134</span>, </span>
-<span id="cb316-3"><a href="sec-prod-hyspl-traj.html#cb316-3" aria-hidden="true"></a> <span class="dt">longitude =</span> <span class="fl">-5.347</span>, </span>
-<span id="cb316-4"><a href="sec-prod-hyspl-traj.html#cb316-4" aria-hidden="true"></a>  <span class="dt">runtime =</span> <span class="dv">-96</span>, </span>
-<span id="cb316-5"><a href="sec-prod-hyspl-traj.html#cb316-5" aria-hidden="true"></a>  <span class="dt">start_height =</span> <span class="dv">10</span>, </span>
-<span id="cb316-6"><a href="sec-prod-hyspl-traj.html#cb316-6" aria-hidden="true"></a>  <span class="dt">model_height =</span> <span class="dv">10000</span>, </span>
-<span id="cb316-7"><a href="sec-prod-hyspl-traj.html#cb316-7" aria-hidden="true"></a>  <span class="dt">start =</span> <span class="dv">2015</span>,</span>
-<span id="cb316-8"><a href="sec-prod-hyspl-traj.html#cb316-8" aria-hidden="true"></a>  <span class="dt">end =</span> <span class="st">&quot;2015-01-10&quot;</span>,</span>
-<span id="cb316-9"><a href="sec-prod-hyspl-traj.html#cb316-9" aria-hidden="true"></a>  <span class="dt">hysplit_exec =</span> <span class="st">&quot;~/hysplit4/exec&quot;</span>, </span>
-<span id="cb316-10"><a href="sec-prod-hyspl-traj.html#cb316-10" aria-hidden="true"></a>  <span class="dt">hysplit_input =</span> <span class="st">&quot;~/trajData&quot;</span>, </span>
-<span id="cb316-11"><a href="sec-prod-hyspl-traj.html#cb316-11" aria-hidden="true"></a>  <span class="dt">hysplit_output =</span> <span class="st">&quot;~/temp&quot;</span>,</span>
-<span id="cb316-12"><a href="sec-prod-hyspl-traj.html#cb316-12" aria-hidden="true"></a>  <span class="dt">site =</span> <span class="st">&quot;gibraltar&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="sec-prod-hyspl-traj.html#cb320-1" aria-hidden="true"></a>data_out &lt;-<span class="st"> </span><span class="kw">run_hysplit</span>(</span>
+<span id="cb320-2"><a href="sec-prod-hyspl-traj.html#cb320-2" aria-hidden="true"></a><span class="dt">latitude =</span> <span class="fl">36.134</span>, </span>
+<span id="cb320-3"><a href="sec-prod-hyspl-traj.html#cb320-3" aria-hidden="true"></a> <span class="dt">longitude =</span> <span class="fl">-5.347</span>, </span>
+<span id="cb320-4"><a href="sec-prod-hyspl-traj.html#cb320-4" aria-hidden="true"></a>  <span class="dt">runtime =</span> <span class="dv">-96</span>, </span>
+<span id="cb320-5"><a href="sec-prod-hyspl-traj.html#cb320-5" aria-hidden="true"></a>  <span class="dt">start_height =</span> <span class="dv">10</span>, </span>
+<span id="cb320-6"><a href="sec-prod-hyspl-traj.html#cb320-6" aria-hidden="true"></a>  <span class="dt">model_height =</span> <span class="dv">10000</span>, </span>
+<span id="cb320-7"><a href="sec-prod-hyspl-traj.html#cb320-7" aria-hidden="true"></a>  <span class="dt">start =</span> <span class="dv">2015</span>,</span>
+<span id="cb320-8"><a href="sec-prod-hyspl-traj.html#cb320-8" aria-hidden="true"></a>  <span class="dt">end =</span> <span class="st">&quot;2015-01-10&quot;</span>,</span>
+<span id="cb320-9"><a href="sec-prod-hyspl-traj.html#cb320-9" aria-hidden="true"></a>  <span class="dt">hysplit_exec =</span> <span class="st">&quot;~/hysplit4/exec&quot;</span>, </span>
+<span id="cb320-10"><a href="sec-prod-hyspl-traj.html#cb320-10" aria-hidden="true"></a>  <span class="dt">hysplit_input =</span> <span class="st">&quot;~/trajData&quot;</span>, </span>
+<span id="cb320-11"><a href="sec-prod-hyspl-traj.html#cb320-11" aria-hidden="true"></a>  <span class="dt">hysplit_output =</span> <span class="st">&quot;~/temp&quot;</span>,</span>
+<span id="cb320-12"><a href="sec-prod-hyspl-traj.html#cb320-12" aria-hidden="true"></a>  <span class="dt">site =</span> <span class="st">&quot;gibraltar&quot;</span>)</span></code></pre></div>
 <p>The <code>data_out</code> can then be used directly in <span class="pkg">openair</span> trajectory
 functions.</p>
 <p>Most of the options should be self-explanatory but <code>hysplit_exec</code>
@@ -401,9 +402,9 @@ to the meteorological files (downloaded as described above) and
 temporary files.</p>
 <p>Once run it is then advisable to store the data somewhere. Save it
 like:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="sec-prod-hyspl-traj.html#cb317-1" aria-hidden="true"></a><span class="kw">saveRDS</span>(data_out, <span class="dt">file =</span> <span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="sec-prod-hyspl-traj.html#cb321-1" aria-hidden="true"></a><span class="kw">saveRDS</span>(data_out, <span class="dt">file =</span> <span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
 <p>Then it is easy to read in later and use e.g.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="sec-prod-hyspl-traj.html#cb318-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="sec-prod-hyspl-traj.html#cb322-1" aria-hidden="true"></a>traj &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;~/trajProc/myTrajData.rds&quot;</span>)</span></code></pre></div>
 
 </div>
             </section>

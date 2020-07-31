@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-29" />
+<meta name="date" content="2020-07-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The worldmet package</a></li>
+<li class="chapter" data-level="4.2" data-path="sec-worldmet.html"><a href="sec-worldmet.html#sec:link-aq"><i class="fa fa-check"></i><b>4.2</b> Linking with air quality data</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
 <ul>
@@ -381,8 +382,8 @@ towards the help pages (type <code>?scatterPlot</code>) for more extensive examp
 <p>First we select a subset of data (2003) using the <span class="pkg">openair</span>
 <code>selectByDate</code> function and plot NO<sub>x</sub> vs. NO<sub>2</sub> Figure
 (<a href="sec-scatterPlot.html#fig:scatterPlot1">17.1</a>).</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="sec-scatterPlot.html#cb158-1" aria-hidden="true"></a>data2003 &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>)</span>
-<span id="cb158-2"><a href="sec-scatterPlot.html#cb158-2" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="sec-scatterPlot.html#cb162-1" aria-hidden="true"></a>data2003 &lt;-<span class="st"> </span><span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>)</span>
+<span id="cb162-2"><a href="sec-scatterPlot.html#cb162-2" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot1"></span>
 <img src="openair_files/figure-html/scatterPlot1-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road for 2003." width="50%" />
 <p class="caption">
@@ -414,7 +415,7 @@ the other that inverses it. For log scaling for example (the default),
 <code>trans = function(x) log(x)</code> and <code>inv = function(x) exp(x)</code>. For
 a square root transform use <code>trans = sqrt</code> and <code>inv =  function(x) x^2</code>. To not apply any transformation <code>trans = NULL</code>
 and <code>inv = NULL</code> should be used.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="sec-scatterPlot.html#cb159-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="sec-scatterPlot.html#cb163-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col=</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot2"></span>
 <img src="openair_files/figure-html/scatterPlot2-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road using hexagonal binning. The number of occurrences in each bin is colour-coded (not on a linear scale). It is now possible to see where most of the data lie and a better indication of the relationship between NO~x~ and NO~2~ is revealed." width="50%" />
 <p class="caption">
@@ -425,18 +426,18 @@ Figure 17.2: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Maryle
 are useful e.g. a border around each bin and the number of bins. For
 example, to place a grey border around each bin and set the bin size
 try:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="sec-scatterPlot.html#cb160-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
-<span id="cb160-2"><a href="sec-scatterPlot.html#cb160-2" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
-<span id="cb160-3"><a href="sec-scatterPlot.html#cb160-3" aria-hidden="true"></a>            <span class="dt">border =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">xbin =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="sec-scatterPlot.html#cb164-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(mydata, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb164-2"><a href="sec-scatterPlot.html#cb164-2" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;hexbin&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>,</span>
+<span id="cb164-3"><a href="sec-scatterPlot.html#cb164-3" aria-hidden="true"></a>            <span class="dt">border =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">xbin =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p>The hexagonal binning and other binning methods are useful but often
 the choice of bin size is somewhat arbitrary. Another useful approach
 is to use a kernel density estimate to show where most points
 lie. This is possible in <code>scatterPlot</code> with the <code>method =   "density"</code> option. Such a plot is shown in Figure
 <a href="sec-scatterPlot.html#fig:scatterPlotDens">17.3</a>.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="sec-scatterPlot.html#cb161-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
-<span id="cb161-2"><a href="sec-scatterPlot.html#cb161-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>,</span>
-<span id="cb161-3"><a href="sec-scatterPlot.html#cb161-3" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;density&quot;</span>, </span>
-<span id="cb161-4"><a href="sec-scatterPlot.html#cb161-4" aria-hidden="true"></a>            <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="sec-scatterPlot.html#cb165-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>),</span>
+<span id="cb165-2"><a href="sec-scatterPlot.html#cb165-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>,</span>
+<span id="cb165-3"><a href="sec-scatterPlot.html#cb165-3" aria-hidden="true"></a>            <span class="dt">method =</span> <span class="st">&quot;density&quot;</span>, </span>
+<span id="cb165-4"><a href="sec-scatterPlot.html#cb165-4" aria-hidden="true"></a>            <span class="dt">cols =</span> <span class="st">&quot;jet&quot;</span>)</span></code></pre></div>
 <pre><code>## (loaded the KernSmooth namespace)</code></pre>
 <div class="figure"><span id="fig:scatterPlotDens"></span>
 <img src="openair_files/figure-html/scatterPlotDens-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road using a kernel density estimate to show where most of the points lie. The *intensity* is a measure of how many points lie in a unit area of NO~x~ and NO~2~ concentration." width="55%" />
@@ -452,9 +453,9 @@ that variable. We illustrate this point by considering how the
 relationship between NO<sub>x</sub> and NO<sub>2</sub> varies with different levels of
 O<sub>3</sub>. We also take the opportunity to not plot the smooth line, but
 plot a linear fit instead and force the layout to be a 2 by 2 grid.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="sec-scatterPlot.html#cb163-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
-<span id="cb163-2"><a href="sec-scatterPlot.html#cb163-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">smooth =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb163-3"><a href="sec-scatterPlot.html#cb163-3" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="sec-scatterPlot.html#cb167-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, </span>
+<span id="cb167-2"><a href="sec-scatterPlot.html#cb167-2" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">smooth =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb167-3"><a href="sec-scatterPlot.html#cb167-3" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot3"></span>
 <img src="openair_files/figure-html/scatterPlot3-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road by different levels of O~3~." width="65%" />
 <p class="caption">
@@ -462,17 +463,17 @@ Figure 17.4: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Maryle
 </p>
 </div>
 <p>Below is an extended example that brings together data manipulation, refined plot options and linear fitting of two variables with NO<sub>x</sub>. The aim is to plot the weekly concentration of NO<sub>x</sub> against PM<sub>10</sub> and PM<sub>2.5</sub> and fit linear equations to both relationships. To do this we need the <span class="math inline">\(x\)</span> variable as NO<sub>x</sub> and the <span class="math inline">\(y\)</span> variable as PM<sub>10</sub> or PM<sub>2.5</sub>, which means we also need a column that will act as a grouping column i.e. identifies whether the <span class="math inline">\(y\)</span> is PM<sub>10</sub> or PM<sub>2.5</sub>.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="sec-scatterPlot.html#cb164-1" aria-hidden="true"></a><span class="co"># load the packages we need</span></span>
-<span id="cb164-2"><a href="sec-scatterPlot.html#cb164-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb164-3"><a href="sec-scatterPlot.html#cb164-3" aria-hidden="true"></a></span>
-<span id="cb164-4"><a href="sec-scatterPlot.html#cb164-4" aria-hidden="true"></a><span class="co"># select the variables of interest</span></span>
-<span id="cb164-5"><a href="sec-scatterPlot.html#cb164-5" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">select</span>(mydata, date, nox, pm10, pm25) <span class="co"># calculate weekly averages</span></span>
-<span id="cb164-6"><a href="sec-scatterPlot.html#cb164-6" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(subdat, <span class="dt">avg.time =</span> <span class="st">&quot;week&quot;</span>)</span>
-<span id="cb164-7"><a href="sec-scatterPlot.html#cb164-7" aria-hidden="true"></a></span>
-<span id="cb164-8"><a href="sec-scatterPlot.html#cb164-8" aria-hidden="true"></a><span class="co"># reshape so we have two variable columns</span></span>
-<span id="cb164-9"><a href="sec-scatterPlot.html#cb164-9" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(subdat, <span class="dt">cols =</span> <span class="kw">c</span>(pm10, pm25), </span>
-<span id="cb164-10"><a href="sec-scatterPlot.html#cb164-10" aria-hidden="true"></a>                       <span class="dt">names_to =</span> <span class="st">&quot;pollutant&quot;</span>)</span>
-<span id="cb164-11"><a href="sec-scatterPlot.html#cb164-11" aria-hidden="true"></a><span class="kw">head</span>(subdat)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="sec-scatterPlot.html#cb168-1" aria-hidden="true"></a><span class="co"># load the packages we need</span></span>
+<span id="cb168-2"><a href="sec-scatterPlot.html#cb168-2" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb168-3"><a href="sec-scatterPlot.html#cb168-3" aria-hidden="true"></a></span>
+<span id="cb168-4"><a href="sec-scatterPlot.html#cb168-4" aria-hidden="true"></a><span class="co"># select the variables of interest</span></span>
+<span id="cb168-5"><a href="sec-scatterPlot.html#cb168-5" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">select</span>(mydata, date, nox, pm10, pm25) <span class="co"># calculate weekly averages</span></span>
+<span id="cb168-6"><a href="sec-scatterPlot.html#cb168-6" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">timeAverage</span>(subdat, <span class="dt">avg.time =</span> <span class="st">&quot;week&quot;</span>)</span>
+<span id="cb168-7"><a href="sec-scatterPlot.html#cb168-7" aria-hidden="true"></a></span>
+<span id="cb168-8"><a href="sec-scatterPlot.html#cb168-8" aria-hidden="true"></a><span class="co"># reshape so we have two variable columns</span></span>
+<span id="cb168-9"><a href="sec-scatterPlot.html#cb168-9" aria-hidden="true"></a>subdat &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(subdat, <span class="dt">cols =</span> <span class="kw">c</span>(pm10, pm25), </span>
+<span id="cb168-10"><a href="sec-scatterPlot.html#cb168-10" aria-hidden="true"></a>                       <span class="dt">names_to =</span> <span class="st">&quot;pollutant&quot;</span>)</span>
+<span id="cb168-11"><a href="sec-scatterPlot.html#cb168-11" aria-hidden="true"></a><span class="kw">head</span>(subdat)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   date                  nox pollutant value
 ##   &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -483,12 +484,12 @@ Figure 17.4: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Maryle
 ## 5 1998-01-12 00:00:00  203. pm10       29.1
 ## 6 1998-01-12 00:00:00  203. pm25      NaN</code></pre>
 <p>Now we will plot weekly NO<sub>x</sub> versus PM<sub>10</sub> and PM<sub>2.5</sub> and fit a linear equation to both — and adjust some of the symbols (shown in Figure <a href="sec-scatterPlot.html#fig:scatterPlotTwo">17.5</a>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="sec-scatterPlot.html#cb166-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;pollutant&quot;</span>, </span>
-<span id="cb166-2"><a href="sec-scatterPlot.html#cb166-2" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb166-3"><a href="sec-scatterPlot.html#cb166-3" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb166-4"><a href="sec-scatterPlot.html#cb166-4" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb166-5"><a href="sec-scatterPlot.html#cb166-5" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb166-6"><a href="sec-scatterPlot.html#cb166-6" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="sec-scatterPlot.html#cb170-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, <span class="dt">group =</span> <span class="st">&quot;pollutant&quot;</span>, </span>
+<span id="cb170-2"><a href="sec-scatterPlot.html#cb170-2" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb170-3"><a href="sec-scatterPlot.html#cb170-3" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb170-4"><a href="sec-scatterPlot.html#cb170-4" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb170-5"><a href="sec-scatterPlot.html#cb170-5" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb170-6"><a href="sec-scatterPlot.html#cb170-6" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlotTwo"></span>
 <img src="openair_files/figure-html/scatterPlotTwo-1.png" alt="Scatter plot of weekly NO~x~ vs. PM~10~ *and* PM~2.5~ at Marylebone Road with linear equations shown and plot symbols modified." width="67%" />
 <p class="caption">
@@ -496,24 +497,24 @@ Figure 17.5: Scatter plot of weekly NO<sub>x</sub> vs. PM<sub>10</sub> <em>and<
 </p>
 </div>
 <p>To gain a better idea of where the data lie and the linear fits, adding some transparency helps:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="sec-scatterPlot.html#cb167-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb167-2"><a href="sec-scatterPlot.html#cb167-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
-<span id="cb167-3"><a href="sec-scatterPlot.html#cb167-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, </span>
-<span id="cb167-4"><a href="sec-scatterPlot.html#cb167-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb167-5"><a href="sec-scatterPlot.html#cb167-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb167-6"><a href="sec-scatterPlot.html#cb167-6" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb167-7"><a href="sec-scatterPlot.html#cb167-7" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb167-8"><a href="sec-scatterPlot.html#cb167-8" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>,</span>
-<span id="cb167-9"><a href="sec-scatterPlot.html#cb167-9" aria-hidden="true"></a>            <span class="dt">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="sec-scatterPlot.html#cb171-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb171-2"><a href="sec-scatterPlot.html#cb171-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
+<span id="cb171-3"><a href="sec-scatterPlot.html#cb171-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="fl">1.6</span>, </span>
+<span id="cb171-4"><a href="sec-scatterPlot.html#cb171-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb171-5"><a href="sec-scatterPlot.html#cb171-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, </span>
+<span id="cb171-6"><a href="sec-scatterPlot.html#cb171-6" aria-hidden="true"></a>            <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb171-7"><a href="sec-scatterPlot.html#cb171-7" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb171-8"><a href="sec-scatterPlot.html#cb171-8" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>,</span>
+<span id="cb171-9"><a href="sec-scatterPlot.html#cb171-9" aria-hidden="true"></a>            <span class="dt">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p>The above example will also work with <code>type</code>. For example, to consider how NO<sub>x</sub> againts PM<sub>10</sub> and PM<sub>2.5</sub> varies by season:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="sec-scatterPlot.html#cb168-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb168-2"><a href="sec-scatterPlot.html#cb168-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
-<span id="cb168-3"><a href="sec-scatterPlot.html#cb168-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
-<span id="cb168-4"><a href="sec-scatterPlot.html#cb168-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
-<span id="cb168-5"><a href="sec-scatterPlot.html#cb168-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
-<span id="cb168-6"><a href="sec-scatterPlot.html#cb168-6" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
-<span id="cb168-7"><a href="sec-scatterPlot.html#cb168-7" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>, </span>
-<span id="cb168-8"><a href="sec-scatterPlot.html#cb168-8" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="sec-scatterPlot.html#cb172-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(subdat, <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb172-2"><a href="sec-scatterPlot.html#cb172-2" aria-hidden="true"></a>            <span class="dt">group =</span> <span class="st">&quot;variable&quot;</span>, </span>
+<span id="cb172-3"><a href="sec-scatterPlot.html#cb172-3" aria-hidden="true"></a>            <span class="dt">pch =</span> <span class="dv">21</span><span class="op">:</span><span class="dv">22</span>, <span class="dt">cex =</span> <span class="dv">2</span>, </span>
+<span id="cb172-4"><a href="sec-scatterPlot.html#cb172-4" aria-hidden="true"></a>            <span class="dt">fill =</span> <span class="kw">c</span>(<span class="st">&quot;dodgerblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>), </span>
+<span id="cb172-5"><a href="sec-scatterPlot.html#cb172-5" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">linear =</span> <span class="ot">TRUE</span>, </span>
+<span id="cb172-6"><a href="sec-scatterPlot.html#cb172-6" aria-hidden="true"></a>            <span class="dt">xlab =</span> <span class="st">&quot;nox (ppb)&quot;</span>, </span>
+<span id="cb172-7"><a href="sec-scatterPlot.html#cb172-7" aria-hidden="true"></a>            <span class="dt">ylab =</span> <span class="st">&quot;PM concentration (ug/m3)&quot;</span>, </span>
+<span id="cb172-8"><a href="sec-scatterPlot.html#cb172-8" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
 <p>Finally, we show how to plot a continuous colour scale for a third
 <em>numeric</em> variable setting the value of <code>z</code> to the third
 variable. Figure <a href="sec-scatterPlot.html#fig:scatterPlot4">17.6</a> shows again the relationship
@@ -537,10 +538,10 @@ but contains a huge amount of useful information showing the
 relationship between NO<sub>x</sub> and NO<sub>2</sub> dependent upon the concentration
 of O<sub>3</sub>, the season and the day of the week. There are of course
 numerous other plots that are equally easily produced.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="sec-scatterPlot.html#cb169-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, </span>
-<span id="cb169-2"><a href="sec-scatterPlot.html#cb169-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb169-3"><a href="sec-scatterPlot.html#cb169-3" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;weekend&quot;</span>),</span>
-<span id="cb169-4"><a href="sec-scatterPlot.html#cb169-4" aria-hidden="true"></a>            <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="sec-scatterPlot.html#cb173-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(data2003, </span>
+<span id="cb173-2"><a href="sec-scatterPlot.html#cb173-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;nox&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb173-3"><a href="sec-scatterPlot.html#cb173-3" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;weekend&quot;</span>),</span>
+<span id="cb173-4"><a href="sec-scatterPlot.html#cb173-4" aria-hidden="true"></a>            <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot4"></span>
 <img src="openair_files/figure-html/scatterPlot4-1.png" alt="Scatter plot of hourly NO~x~ vs. NO~2~ at Marylebone Road by different levels of O~3~ split by season and weekday-weekend." width="960" />
 <p class="caption">
@@ -550,9 +551,9 @@ Figure 17.6: Scatter plot of hourly NO<sub>x</sub> vs. NO<sub>2</sub> at Maryle
 <p>Figure <a href="sec-scatterPlot.html#fig:scatterPlot5">17.7</a> shows that <code>scatterPlot</code> can also
 handles dates on the x-axis; in this case shown for SO<sub>2</sub>
 concentrations coloured by wind direction for August 2003.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="sec-scatterPlot.html#cb170-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(data2003, <span class="dt">month =</span> <span class="dv">8</span>), </span>
-<span id="cb170-2"><a href="sec-scatterPlot.html#cb170-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;so2&quot;</span>,</span>
-<span id="cb170-3"><a href="sec-scatterPlot.html#cb170-3" aria-hidden="true"></a>             <span class="dt">z =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="sec-scatterPlot.html#cb174-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(data2003, <span class="dt">month =</span> <span class="dv">8</span>), </span>
+<span id="cb174-2"><a href="sec-scatterPlot.html#cb174-2" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;so2&quot;</span>,</span>
+<span id="cb174-3"><a href="sec-scatterPlot.html#cb174-3" aria-hidden="true"></a>             <span class="dt">z =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlot5"></span>
 <img src="openair_files/figure-html/scatterPlot5-1.png" alt="Scatter plot of date vs. SO~2~- at Marylebone Road by different levels of wind direction for August 2003." width="65%" />
 <p class="caption">
@@ -569,13 +570,13 @@ interest using the <code>selectByDate</code>
 function. Figure <a href="sec-scatterPlot.html#fig:scatterPlotwswd">17.8</a> shows that when the wind
 direction changes to northerly, the concentration of NO<sub>2</sub> decreases
 and that of O<sub>3</sub> increases.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="sec-scatterPlot.html#cb171-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/6/2001&quot;</span>, </span>
-<span id="cb171-2"><a href="sec-scatterPlot.html#cb171-2" aria-hidden="true"></a>                         <span class="dt">end =</span> <span class="st">&quot;5/6/2001&quot;</span>), </span>
-<span id="cb171-3"><a href="sec-scatterPlot.html#cb171-3" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb171-4"><a href="sec-scatterPlot.html#cb171-4" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>, </span>
-<span id="cb171-5"><a href="sec-scatterPlot.html#cb171-5" aria-hidden="true"></a>            <span class="dt">windflow =</span> <span class="kw">list</span>(<span class="dt">scale =</span> <span class="fl">0.15</span>), </span>
-<span id="cb171-6"><a href="sec-scatterPlot.html#cb171-6" aria-hidden="true"></a>            <span class="dt">key.footer =</span> <span class="st">&quot;o3</span><span class="ch">\n</span><span class="st"> (ppb)&quot;</span>, </span>
-<span id="cb171-7"><a href="sec-scatterPlot.html#cb171-7" aria-hidden="true"></a>            <span class="dt">main =</span> <span class="ot">NULL</span>, <span class="dt">ylab =</span> <span class="st">&quot;no2 (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="sec-scatterPlot.html#cb175-1" aria-hidden="true"></a><span class="kw">scatterPlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">start =</span> <span class="st">&quot;1/6/2001&quot;</span>, </span>
+<span id="cb175-2"><a href="sec-scatterPlot.html#cb175-2" aria-hidden="true"></a>                         <span class="dt">end =</span> <span class="st">&quot;5/6/2001&quot;</span>), </span>
+<span id="cb175-3"><a href="sec-scatterPlot.html#cb175-3" aria-hidden="true"></a>            <span class="dt">x =</span> <span class="st">&quot;date&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">z =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb175-4"><a href="sec-scatterPlot.html#cb175-4" aria-hidden="true"></a>            <span class="dt">col =</span> <span class="st">&quot;increment&quot;</span>, </span>
+<span id="cb175-5"><a href="sec-scatterPlot.html#cb175-5" aria-hidden="true"></a>            <span class="dt">windflow =</span> <span class="kw">list</span>(<span class="dt">scale =</span> <span class="fl">0.15</span>), </span>
+<span id="cb175-6"><a href="sec-scatterPlot.html#cb175-6" aria-hidden="true"></a>            <span class="dt">key.footer =</span> <span class="st">&quot;o3</span><span class="ch">\n</span><span class="st"> (ppb)&quot;</span>, </span>
+<span id="cb175-7"><a href="sec-scatterPlot.html#cb175-7" aria-hidden="true"></a>            <span class="dt">main =</span> <span class="ot">NULL</span>, <span class="dt">ylab =</span> <span class="st">&quot;no2 (ppb)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:scatterPlotwswd"></span>
 <img src="openair_files/figure-html/scatterPlotwswd-1.png" alt="Scatter plot of date vs. NO~2~ with the colour scale representing O~3~. The wind flow vectors are also shown." width="65%" />
 <p class="caption">
