@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 4 Access meteorological data | The openair book</title>
   <meta name="description" content="Analysing air quality data with the openair package" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 4 Access meteorological data | The openair book" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-31" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="sec-importAURN.html"/>
 <link rel="next" href="sec-windRose.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +51,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -200,8 +202,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR</a></li>
 <li class="chapter" data-level="8.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="8.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.6</b> Clustering</a></li>
-<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.7</b> Polar plots on an interactive map</a></li>
+<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#comparing-two-time-periods"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods</a></li>
+<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering</a></li>
+<li class="chapter" data-level="8.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.8</b> Polar plots on an interactive map</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus</a>
 <ul>
@@ -239,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>15.1</b> Trend estimates</a></li>
 <li class="chapter" data-level="15.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Example trend analysis</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>15.2.1</b> Output</a></li>
+<li class="chapter" data-level="15.2.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#output-1"><i class="fa fa-check"></i><b>15.2.1</b> Output</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>16</b> Smooth trends</a>
@@ -304,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.5" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#highlight-a-specific-point"><i class="fa fa-check"></i><b>A.5</b> Highlight a specific point</a></li>
 <li class="chapter" data-level="A.6" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-a-filled-polygon"><i class="fa fa-check"></i><b>A.6</b> Add a filled polygon</a></li>
 <li class="chapter" data-level="A.7" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons"><i class="fa fa-check"></i><b>A.7</b> Add air quality bands as polygons</a></li>
-<li class="chapter" data-level="A.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
+<li class="chapter" data-level="A.8" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#polar-plot-examples-1"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
 <li class="chapter" data-level="A.9" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively"><i class="fa fa-check"></i><b>A.9</b> Using grid graphics — identify locations interactively</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="sec-prod-hyspl-traj.html"><a href="sec-prod-hyspl-traj.html"><i class="fa fa-check"></i><b>B</b> Production of HYSPLIT trajectory files</a></li>

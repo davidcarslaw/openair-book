@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Annotating openair plots | The openair book</title>
   <meta name="description" content="Analysing air quality data with the openair package" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Annotating openair plots | The openair book" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-07-31" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="sec-utility.html"/>
 <link rel="next" href="sec-prod-hyspl-traj.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +51,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -200,8 +202,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR</a></li>
 <li class="chapter" data-level="8.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="8.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.6</b> Clustering</a></li>
-<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.7</b> Polar plots on an interactive map</a></li>
+<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#comparing-two-time-periods"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods</a></li>
+<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering</a></li>
+<li class="chapter" data-level="8.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.8</b> Polar plots on an interactive map</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus</a>
 <ul>
@@ -239,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>15.1</b> Trend estimates</a></li>
 <li class="chapter" data-level="15.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Example trend analysis</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>15.2.1</b> Output</a></li>
+<li class="chapter" data-level="15.2.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#output-1"><i class="fa fa-check"></i><b>15.2.1</b> Output</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>16</b> Smooth trends</a>
@@ -304,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.5" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#highlight-a-specific-point"><i class="fa fa-check"></i><b>A.5</b> Highlight a specific point</a></li>
 <li class="chapter" data-level="A.6" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-a-filled-polygon"><i class="fa fa-check"></i><b>A.6</b> Add a filled polygon</a></li>
 <li class="chapter" data-level="A.7" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons"><i class="fa fa-check"></i><b>A.7</b> Add air quality bands as polygons</a></li>
-<li class="chapter" data-level="A.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
+<li class="chapter" data-level="A.8" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#polar-plot-examples-1"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
 <li class="chapter" data-level="A.9" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively"><i class="fa fa-check"></i><b>A.9</b> Using grid graphics — identify locations interactively</a></li>
 </ul></li>
 <li class="chapter" data-level="B" data-path="sec-prod-hyspl-traj.html"><a href="sec-prod-hyspl-traj.html"><i class="fa fa-check"></i><b>B</b> Production of HYSPLIT trajectory files</a></li>
@@ -386,17 +389,17 @@ plot such as Figure <a href="annotating-openair-plots.html#fig:timePlotAnnotate"
 specify which rows/columns should be added to. If they are not
 specified then the annotation will appear in all panels.</p>
 <p>First, a plot should be produced to which we wish to add some text.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="annotating-openair-plots.html#cb296-1" aria-hidden="true"></a><span class="co">## make sure latticeExtra is loaded</span></span>
-<span id="cb296-2"><a href="annotating-openair-plots.html#cb296-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb296-3"><a href="annotating-openair-plots.html#cb296-3" aria-hidden="true"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb296-4"><a href="annotating-openair-plots.html#cb296-4" aria-hidden="true"></a><span class="kw">library</span>(latticeExtra)</span>
-<span id="cb296-5"><a href="annotating-openair-plots.html#cb296-5" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>, <span class="dt">month =</span> <span class="st">&quot;aug&quot;</span>),</span>
-<span id="cb296-6"><a href="annotating-openair-plots.html#cb296-6" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;pm25&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;ws&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="annotating-openair-plots.html#cb300-1" aria-hidden="true"></a><span class="co">## make sure latticeExtra is loaded</span></span>
+<span id="cb300-2"><a href="annotating-openair-plots.html#cb300-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
+<span id="cb300-3"><a href="annotating-openair-plots.html#cb300-3" aria-hidden="true"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb300-4"><a href="annotating-openair-plots.html#cb300-4" aria-hidden="true"></a><span class="kw">library</span>(latticeExtra)</span>
+<span id="cb300-5"><a href="annotating-openair-plots.html#cb300-5" aria-hidden="true"></a><span class="kw">timePlot</span>(<span class="kw">selectByDate</span>(mydata, <span class="dt">year =</span> <span class="dv">2003</span>, <span class="dt">month =</span> <span class="st">&quot;aug&quot;</span>),</span>
+<span id="cb300-6"><a href="annotating-openair-plots.html#cb300-6" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="kw">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;pm25&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;ws&quot;</span>))</span></code></pre></div>
 <p>So, considering <a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a>, this is how the text
 `some missing data’ was added to the top panel.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="annotating-openair-plots.html#cb297-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb297-2"><a href="annotating-openair-plots.html#cb297-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd</span>(<span class="st">&quot;2003-08-04&quot;</span>), <span class="dt">y =</span> <span class="dv">200</span>,</span>
-<span id="cb297-3"><a href="annotating-openair-plots.html#cb297-3" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;some missing data&quot;</span>), <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="annotating-openair-plots.html#cb301-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb301-2"><a href="annotating-openair-plots.html#cb301-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd</span>(<span class="st">&quot;2003-08-04&quot;</span>), <span class="dt">y =</span> <span class="dv">200</span>,</span>
+<span id="cb301-3"><a href="annotating-openair-plots.html#cb301-3" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;some missing data&quot;</span>), <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>So what does this do? First, the <code>trellis.last.object()</code> is simply
 the last plot that was plotted. Next the <code>layer</code> function is used
 to add some text. The text itself is added using the <code>ltext</code>
@@ -420,25 +423,25 @@ cover the whole region.</p>
 <p>The polygon could of course be horizontal and more than one producing
 a series of ‘bands’ e.g. air quality indexes. A more sophisticated
 approach is shown later for PM<sub>2.5</sub></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="annotating-openair-plots.html#cb298-1" aria-hidden="true"></a><span class="co">## add shaded polygon</span></span>
-<span id="cb298-2"><a href="annotating-openair-plots.html#cb298-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb298-3"><a href="annotating-openair-plots.html#cb298-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>),</span>
-<span id="cb298-4"><a href="annotating-openair-plots.html#cb298-4" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>),</span>
-<span id="cb298-5"><a href="annotating-openair-plots.html#cb298-5" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>)), <span class="dt">y =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">600</span>, <span class="dv">600</span>, <span class="dv">-20</span>),</span>
-<span id="cb298-6"><a href="annotating-openair-plots.html#cb298-6" aria-hidden="true"></a>                   <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>), <span class="dt">under =</span> <span class="ot">TRUE</span>, <span class="dt">rows =</span> <span class="dv">2</span>)</span>
-<span id="cb298-7"><a href="annotating-openair-plots.html#cb298-7" aria-hidden="true"></a><span class="co">## add text</span></span>
-<span id="cb298-8"><a href="annotating-openair-plots.html#cb298-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb298-9"><a href="annotating-openair-plots.html#cb298-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-09 12:00&quot;</span>), <span class="dt">y =</span> <span class="dv">50</span>,</span>
-<span id="cb298-10"><a href="annotating-openair-plots.html#cb298-10" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;!!episode!!&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
-<span id="cb298-11"><a href="annotating-openair-plots.html#cb298-11" aria-hidden="true"></a>                <span class="dt">font =</span> <span class="dv">2</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>), <span class="dt">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="annotating-openair-plots.html#cb302-1" aria-hidden="true"></a><span class="co">## add shaded polygon</span></span>
+<span id="cb302-2"><a href="annotating-openair-plots.html#cb302-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb302-3"><a href="annotating-openair-plots.html#cb302-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>),</span>
+<span id="cb302-4"><a href="annotating-openair-plots.html#cb302-4" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>),</span>
+<span id="cb302-5"><a href="annotating-openair-plots.html#cb302-5" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>)), <span class="dt">y =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">600</span>, <span class="dv">600</span>, <span class="dv">-20</span>),</span>
+<span id="cb302-6"><a href="annotating-openair-plots.html#cb302-6" aria-hidden="true"></a>                   <span class="dt">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>), <span class="dt">under =</span> <span class="ot">TRUE</span>, <span class="dt">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb302-7"><a href="annotating-openair-plots.html#cb302-7" aria-hidden="true"></a><span class="co">## add text</span></span>
+<span id="cb302-8"><a href="annotating-openair-plots.html#cb302-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb302-9"><a href="annotating-openair-plots.html#cb302-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-09 12:00&quot;</span>), <span class="dt">y =</span> <span class="dv">50</span>,</span>
+<span id="cb302-10"><a href="annotating-openair-plots.html#cb302-10" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;!!episode!!&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb302-11"><a href="annotating-openair-plots.html#cb302-11" aria-hidden="true"></a>                <span class="dt">font =</span> <span class="dv">2</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>), <span class="dt">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>The small shaded, semi-transparent area shown in the bottom panel was
 added as follows:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="annotating-openair-plots.html#cb299-1" aria-hidden="true"></a><span class="co">## add shaded polygon</span></span>
-<span id="cb299-2"><a href="annotating-openair-plots.html#cb299-2" aria-hidden="true"></a>plt &lt;-<span class="st"> </span>plt <span class="op">+</span></span>
-<span id="cb299-3"><a href="annotating-openair-plots.html#cb299-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>),</span>
-<span id="cb299-4"><a href="annotating-openair-plots.html#cb299-4" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>)),</span>
-<span id="cb299-5"><a href="annotating-openair-plots.html#cb299-5" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>,</span>
-<span id="cb299-6"><a href="annotating-openair-plots.html#cb299-6" aria-hidden="true"></a>                   <span class="dt">alpha =</span> <span class="fl">0.2</span>), <span class="dt">rows =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="annotating-openair-plots.html#cb303-1" aria-hidden="true"></a><span class="co">## add shaded polygon</span></span>
+<span id="cb303-2"><a href="annotating-openair-plots.html#cb303-2" aria-hidden="true"></a>plt &lt;-<span class="st"> </span>plt <span class="op">+</span></span>
+<span id="cb303-3"><a href="annotating-openair-plots.html#cb303-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>),</span>
+<span id="cb303-4"><a href="annotating-openair-plots.html#cb303-4" aria-hidden="true"></a>                   <span class="kw">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>), <span class="kw">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>)),</span>
+<span id="cb303-5"><a href="annotating-openair-plots.html#cb303-5" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">border =</span> <span class="ot">NA</span>,</span>
+<span id="cb303-6"><a href="annotating-openair-plots.html#cb303-6" aria-hidden="true"></a>                   <span class="dt">alpha =</span> <span class="fl">0.2</span>), <span class="dt">rows =</span> <span class="dv">5</span>)</span></code></pre></div>
 </div>
 <div id="adding-an-arrow" class="section level2" number="23.3">
 <h2><span class="header-section-number">A.3</span> Adding an arrow</h2>
@@ -446,22 +449,22 @@ added as follows:</p>
 was added as follows. Note the <code>code = 3</code> placed arrows at both
 ends. Note that <code>angle</code> is the angle from the shaft of the arrow to
 the edge of the arrow head.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="annotating-openair-plots.html#cb300-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb300-2"><a href="annotating-openair-plots.html#cb300-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">larrows</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-01&quot;</span>), <span class="dv">100</span>,</span>
-<span id="cb300-3"><a href="annotating-openair-plots.html#cb300-3" aria-hidden="true"></a>                  <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-08 14:00&quot;</span>),</span>
-<span id="cb300-4"><a href="annotating-openair-plots.html#cb300-4" aria-hidden="true"></a>                  <span class="dv">100</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">30</span>), <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="annotating-openair-plots.html#cb304-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb304-2"><a href="annotating-openair-plots.html#cb304-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">larrows</span>(<span class="kw">ymd</span>(<span class="st">&quot;2003-08-01&quot;</span>), <span class="dv">100</span>,</span>
+<span id="cb304-3"><a href="annotating-openair-plots.html#cb304-3" aria-hidden="true"></a>                  <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-08 14:00&quot;</span>),</span>
+<span id="cb304-4"><a href="annotating-openair-plots.html#cb304-4" aria-hidden="true"></a>                  <span class="dv">100</span>, <span class="dt">code =</span> <span class="dv">3</span>, <span class="dt">angle =</span> <span class="dv">30</span>), <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="adding-a-reference-line-and-text" class="section level2" number="23.4">
 <h2><span class="header-section-number">A.4</span> Adding a reference line and text</h2>
 <p>This code adds a vertical dashed reference line shown in the 4th panel
 (PM<sub>10</sub>) along with some text aligned at 90 degrees using the
 <code>srt</code> option of <code>ltext</code>.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="annotating-openair-plots.html#cb301-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb301-2"><a href="annotating-openair-plots.html#cb301-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">panel.abline</span>(<span class="dt">v =</span> <span class="kw">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>), <span class="dt">lty =</span> <span class="dv">5</span>),</span>
-<span id="cb301-3"><a href="annotating-openair-plots.html#cb301-3" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">4</span>)</span>
-<span id="cb301-4"><a href="annotating-openair-plots.html#cb301-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb301-5"><a href="annotating-openair-plots.html#cb301-5" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-25 08:00&quot;</span>), <span class="dt">y =</span> <span class="dv">60</span>,</span>
-<span id="cb301-6"><a href="annotating-openair-plots.html#cb301-6" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;reference line&quot;</span>, <span class="dt">srt =</span> <span class="dv">90</span>), <span class="dt">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="annotating-openair-plots.html#cb305-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb305-2"><a href="annotating-openair-plots.html#cb305-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">panel.abline</span>(<span class="dt">v =</span> <span class="kw">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>), <span class="dt">lty =</span> <span class="dv">5</span>),</span>
+<span id="cb305-3"><a href="annotating-openair-plots.html#cb305-3" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">4</span>)</span>
+<span id="cb305-4"><a href="annotating-openair-plots.html#cb305-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb305-5"><a href="annotating-openair-plots.html#cb305-5" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dt">x =</span> <span class="kw">ymd_hm</span>(<span class="st">&quot;2003-08-25 08:00&quot;</span>), <span class="dt">y =</span> <span class="dv">60</span>,</span>
+<span id="cb305-6"><a href="annotating-openair-plots.html#cb305-6" aria-hidden="true"></a>                <span class="dt">labels =</span> <span class="st">&quot;reference line&quot;</span>, <span class="dt">srt =</span> <span class="dv">90</span>), <span class="dt">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
 </div>
 <div id="highlight-a-specific-point" class="section level2" number="23.5">
 <h2><span class="header-section-number">A.5</span> Highlight a specific point</h2>
@@ -473,25 +476,25 @@ refer to existing data greatly extends the power of these functions.</p>
 indexing the point of interest i.e. <code>x</code>, <code>y</code>. For example, to
 mark the 200th PM<sub>10</sub> concentration (without knowing the actual date
 or value):</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="annotating-openair-plots.html#cb302-1" aria-hidden="true"></a><span class="co">## add a specfic point</span></span>
-<span id="cb302-2"><a href="annotating-openair-plots.html#cb302-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb302-3"><a href="annotating-openair-plots.html#cb302-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpoints</span>(x[<span class="dv">200</span>], y[<span class="dv">200</span>], <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>),</span>
-<span id="cb302-4"><a href="annotating-openair-plots.html#cb302-4" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="annotating-openair-plots.html#cb306-1" aria-hidden="true"></a><span class="co">## add a specfic point</span></span>
+<span id="cb306-2"><a href="annotating-openair-plots.html#cb306-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb306-3"><a href="annotating-openair-plots.html#cb306-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpoints</span>(x[<span class="dv">200</span>], y[<span class="dv">200</span>], <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">1.5</span>),</span>
+<span id="cb306-4"><a href="annotating-openair-plots.html#cb306-4" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>What if we wanted to highlight the maximum O<sub>3</sub> concentration? It is
 possible to work out the index first and then use that to refer to
 that point. Note the <code>}</code> to allow for the code to span multiple
 commands.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="annotating-openair-plots.html#cb303-1" aria-hidden="true"></a><span class="co">## add a point to the max O3 concentration</span></span>
-<span id="cb303-2"><a href="annotating-openair-plots.html#cb303-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb303-3"><a href="annotating-openair-plots.html#cb303-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({maxy &lt;-<span class="st"> </span><span class="kw">which.max</span>(y);</span>
-<span id="cb303-4"><a href="annotating-openair-plots.html#cb303-4" aria-hidden="true"></a>           <span class="kw">lpoints</span>(x[maxy], y[maxy], <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>)},</span>
-<span id="cb303-5"><a href="annotating-openair-plots.html#cb303-5" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">2</span>)</span>
-<span id="cb303-6"><a href="annotating-openair-plots.html#cb303-6" aria-hidden="true"></a></span>
-<span id="cb303-7"><a href="annotating-openair-plots.html#cb303-7" aria-hidden="true"></a><span class="co">## label max ozone</span></span>
-<span id="cb303-8"><a href="annotating-openair-plots.html#cb303-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb303-9"><a href="annotating-openair-plots.html#cb303-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({maxy &lt;-<span class="st"> </span><span class="kw">which.max</span>(y);</span>
-<span id="cb303-10"><a href="annotating-openair-plots.html#cb303-10" aria-hidden="true"></a>           <span class="kw">ltext</span>(x[maxy], y[maxy], <span class="kw">paste</span>(y[maxy], <span class="st">&quot;ppb&quot;</span>),</span>
-<span id="cb303-11"><a href="annotating-openair-plots.html#cb303-11" aria-hidden="true"></a>                 <span class="dt">pos =</span> <span class="dv">4</span>)}, <span class="dt">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="annotating-openair-plots.html#cb307-1" aria-hidden="true"></a><span class="co">## add a point to the max O3 concentration</span></span>
+<span id="cb307-2"><a href="annotating-openair-plots.html#cb307-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb307-3"><a href="annotating-openair-plots.html#cb307-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({maxy &lt;-<span class="st"> </span><span class="kw">which.max</span>(y);</span>
+<span id="cb307-4"><a href="annotating-openair-plots.html#cb307-4" aria-hidden="true"></a>           <span class="kw">lpoints</span>(x[maxy], y[maxy], <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>)},</span>
+<span id="cb307-5"><a href="annotating-openair-plots.html#cb307-5" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb307-6"><a href="annotating-openair-plots.html#cb307-6" aria-hidden="true"></a></span>
+<span id="cb307-7"><a href="annotating-openair-plots.html#cb307-7" aria-hidden="true"></a><span class="co">## label max ozone</span></span>
+<span id="cb307-8"><a href="annotating-openair-plots.html#cb307-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb307-9"><a href="annotating-openair-plots.html#cb307-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({maxy &lt;-<span class="st"> </span><span class="kw">which.max</span>(y);</span>
+<span id="cb307-10"><a href="annotating-openair-plots.html#cb307-10" aria-hidden="true"></a>           <span class="kw">ltext</span>(x[maxy], y[maxy], <span class="kw">paste</span>(y[maxy], <span class="st">&quot;ppb&quot;</span>),</span>
+<span id="cb307-11"><a href="annotating-openair-plots.html#cb307-11" aria-hidden="true"></a>                 <span class="dt">pos =</span> <span class="dv">4</span>)}, <span class="dt">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
 <div id="add-a-filled-polygon" class="section level2" number="23.6">
 <h2><span class="header-section-number">A.6</span> Add a filled polygon</h2>
@@ -502,22 +505,22 @@ possible to draw polygons easily and refer to the data itself, there
 needs to be a way for dealing with gaps in data, otherwise these gaps
 could be filled in perhaps unpredictable ways. A function has been
 written to draw a polygon taking into account gaps (<code>poly.na</code>).</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="annotating-openair-plots.html#cb304-1" aria-hidden="true"></a>poly.na &lt;-<span class="st"> </span><span class="cf">function</span>(x1, y1, x2, y2, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) {</span>
-<span id="cb304-2"><a href="annotating-openair-plots.html#cb304-2" aria-hidden="true"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">2</span>, <span class="kw">length</span>(x1)))</span>
-<span id="cb304-3"><a href="annotating-openair-plots.html#cb304-3" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">any</span>(<span class="kw">is.na</span>(y2[<span class="kw">c</span>(i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, i)])))</span>
-<span id="cb304-4"><a href="annotating-openair-plots.html#cb304-4" aria-hidden="true"></a>      <span class="kw">lpolygon</span>(<span class="kw">c</span>(x1[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], x1[i], x2[i], x2[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]),</span>
-<span id="cb304-5"><a href="annotating-openair-plots.html#cb304-5" aria-hidden="true"></a>               <span class="kw">c</span>(y1[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], y1[i], y2[i], y2[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]),</span>
-<span id="cb304-6"><a href="annotating-openair-plots.html#cb304-6" aria-hidden="true"></a>               <span class="dt">col =</span> col, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">alpha =</span> alpha)</span>
-<span id="cb304-7"><a href="annotating-openair-plots.html#cb304-7" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="annotating-openair-plots.html#cb308-1" aria-hidden="true"></a>poly.na &lt;-<span class="st"> </span><span class="cf">function</span>(x1, y1, x2, y2, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) {</span>
+<span id="cb308-2"><a href="annotating-openair-plots.html#cb308-2" aria-hidden="true"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">2</span>, <span class="kw">length</span>(x1)))</span>
+<span id="cb308-3"><a href="annotating-openair-plots.html#cb308-3" aria-hidden="true"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">any</span>(<span class="kw">is.na</span>(y2[<span class="kw">c</span>(i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, i)])))</span>
+<span id="cb308-4"><a href="annotating-openair-plots.html#cb308-4" aria-hidden="true"></a>      <span class="kw">lpolygon</span>(<span class="kw">c</span>(x1[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], x1[i], x2[i], x2[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]),</span>
+<span id="cb308-5"><a href="annotating-openair-plots.html#cb308-5" aria-hidden="true"></a>               <span class="kw">c</span>(y1[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>], y1[i], y2[i], y2[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]),</span>
+<span id="cb308-6"><a href="annotating-openair-plots.html#cb308-6" aria-hidden="true"></a>               <span class="dt">col =</span> col, <span class="dt">border =</span> <span class="ot">NA</span>, <span class="dt">alpha =</span> alpha)</span>
+<span id="cb308-7"><a href="annotating-openair-plots.html#cb308-7" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This time we work out the ids of the data spanning an area of
 interest. Then the <code>poly.na</code> function is used. Note that the alpha
 transparency is by default 0.2 but another value can easily be
 supplied, as shown in the air quality `bands’ example.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="annotating-openair-plots.html#cb305-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb305-2"><a href="annotating-openair-plots.html#cb305-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({id &lt;-<span class="st"> </span><span class="kw">which</span>(x <span class="op">&gt;=</span><span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2003-08-11&quot;</span>) <span class="op">&amp;</span></span>
-<span id="cb305-3"><a href="annotating-openair-plots.html#cb305-3" aria-hidden="true"></a><span class="st">                       </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>));</span>
-<span id="cb305-4"><a href="annotating-openair-plots.html#cb305-4" aria-hidden="true"></a>           <span class="kw">poly.na</span>(x[id], y[id], x[id], <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(id)),</span>
-<span id="cb305-5"><a href="annotating-openair-plots.html#cb305-5" aria-hidden="true"></a>                   <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>)}, <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="annotating-openair-plots.html#cb309-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb309-2"><a href="annotating-openair-plots.html#cb309-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>({id &lt;-<span class="st"> </span><span class="kw">which</span>(x <span class="op">&gt;=</span><span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2003-08-11&quot;</span>) <span class="op">&amp;</span></span>
+<span id="cb309-3"><a href="annotating-openair-plots.html#cb309-3" aria-hidden="true"></a><span class="st">                       </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>));</span>
+<span id="cb309-4"><a href="annotating-openair-plots.html#cb309-4" aria-hidden="true"></a>           <span class="kw">poly.na</span>(x[id], y[id], x[id], <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(id)),</span>
+<span id="cb309-5"><a href="annotating-openair-plots.html#cb309-5" aria-hidden="true"></a>                   <span class="dt">col =</span> <span class="st">&quot;darkorange&quot;</span>)}, <span class="dt">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="add-air-quality-bands-as-polygons" class="section level2" number="23.7">
 <h2><span class="header-section-number">A.7</span> Add air quality bands as polygons</h2>
@@ -525,23 +528,23 @@ supplied, as shown in the air quality `bands’ example.</p>
 polygons at certain intervals e.g. air quality indexes. These are
 shown for PM<sub>2.5</sub> and the bands considered are 0–20, 20–30, 30–40
 and &gt;40.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="annotating-openair-plots.html#cb306-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb306-2"><a href="annotating-openair-plots.html#cb306-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, y, x, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x)),</span>
-<span id="cb306-3"><a href="annotating-openair-plots.html#cb306-3" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb306-4"><a href="annotating-openair-plots.html#cb306-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb306-5"><a href="annotating-openair-plots.html#cb306-5" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">20</span>, <span class="ot">NA</span>, y), x,</span>
-<span id="cb306-6"><a href="annotating-openair-plots.html#cb306-6" aria-hidden="true"></a>                  <span class="kw">rep</span>(<span class="dv">20</span>, <span class="kw">length</span>(x)), <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>),</span>
-<span id="cb306-7"><a href="annotating-openair-plots.html#cb306-7" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb306-8"><a href="annotating-openair-plots.html#cb306-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb306-9"><a href="annotating-openair-plots.html#cb306-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">30</span>, <span class="ot">NA</span>, y),</span>
-<span id="cb306-10"><a href="annotating-openair-plots.html#cb306-10" aria-hidden="true"></a>                  x, <span class="kw">rep</span>(<span class="dv">30</span>, <span class="kw">length</span>(x)),</span>
-<span id="cb306-11"><a href="annotating-openair-plots.html#cb306-11" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb306-12"><a href="annotating-openair-plots.html#cb306-12" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb306-13"><a href="annotating-openair-plots.html#cb306-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">40</span>, <span class="ot">NA</span>, y),</span>
-<span id="cb306-14"><a href="annotating-openair-plots.html#cb306-14" aria-hidden="true"></a>                  x, <span class="kw">rep</span>(<span class="dv">40</span>, <span class="kw">length</span>(x)),</span>
-<span id="cb306-15"><a href="annotating-openair-plots.html#cb306-15" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="annotating-openair-plots.html#cb310-1" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb310-2"><a href="annotating-openair-plots.html#cb310-2" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, y, x, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(x)),</span>
+<span id="cb310-3"><a href="annotating-openair-plots.html#cb310-3" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb310-4"><a href="annotating-openair-plots.html#cb310-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb310-5"><a href="annotating-openair-plots.html#cb310-5" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">20</span>, <span class="ot">NA</span>, y), x,</span>
+<span id="cb310-6"><a href="annotating-openair-plots.html#cb310-6" aria-hidden="true"></a>                  <span class="kw">rep</span>(<span class="dv">20</span>, <span class="kw">length</span>(x)), <span class="dt">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>),</span>
+<span id="cb310-7"><a href="annotating-openair-plots.html#cb310-7" aria-hidden="true"></a>          <span class="dt">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb310-8"><a href="annotating-openair-plots.html#cb310-8" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb310-9"><a href="annotating-openair-plots.html#cb310-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">30</span>, <span class="ot">NA</span>, y),</span>
+<span id="cb310-10"><a href="annotating-openair-plots.html#cb310-10" aria-hidden="true"></a>                  x, <span class="kw">rep</span>(<span class="dv">30</span>, <span class="kw">length</span>(x)),</span>
+<span id="cb310-11"><a href="annotating-openair-plots.html#cb310-11" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb310-12"><a href="annotating-openair-plots.html#cb310-12" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb310-13"><a href="annotating-openair-plots.html#cb310-13" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">poly.na</span>(x, <span class="kw">ifelse</span>(y <span class="op">&lt;</span><span class="dv">40</span>, <span class="ot">NA</span>, y),</span>
+<span id="cb310-14"><a href="annotating-openair-plots.html#cb310-14" aria-hidden="true"></a>                  x, <span class="kw">rep</span>(<span class="dv">40</span>, <span class="kw">length</span>(x)),</span>
+<span id="cb310-15"><a href="annotating-openair-plots.html#cb310-15" aria-hidden="true"></a>                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>), <span class="dt">rows =</span> <span class="dv">3</span>)</span></code></pre></div>
 </div>
-<div id="polar-plot-examples" class="section level2" number="23.8">
+<div id="polar-plot-examples-1" class="section level2" number="23.8">
 <h2><span class="header-section-number">A.8</span> Polar plot examples</h2>
 <p>Many of the examples considered above are relevant to all other
 functions e.g. how to add text, choosing rows and columns to plot
@@ -554,30 +557,30 @@ the angular area of interest and <code>lower</code> and <code>upper</code> to se
 lower and upper wind speed, respectively. It also has additional
 arguments <code>theta3</code> and <code>theta4</code> which optionally set the angles
 for the ‘upper’ wind speed.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="annotating-openair-plots.html#cb307-1" aria-hidden="true"></a>arc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">theta1 =</span> <span class="dv">30</span>, <span class="dt">theta2 =</span> <span class="dv">60</span>, <span class="dt">theta3 =</span> theta1, <span class="dt">theta4 =</span> theta2,</span>
-<span id="cb307-2"><a href="annotating-openair-plots.html#cb307-2" aria-hidden="true"></a>                <span class="dt">lower =</span> <span class="dv">1</span>, <span class="dt">upper =</span> <span class="dv">10</span>){</span>
-<span id="cb307-3"><a href="annotating-openair-plots.html#cb307-3" aria-hidden="true"></a>  <span class="co">## function to work out coordinates for an arc sector</span></span>
-<span id="cb307-4"><a href="annotating-openair-plots.html#cb307-4" aria-hidden="true"></a>  <span class="cf">if</span> (theta2 <span class="op">&lt;</span><span class="st"> </span>theta1) {</span>
-<span id="cb307-5"><a href="annotating-openair-plots.html#cb307-5" aria-hidden="true"></a>    ang1 &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, <span class="dv">360</span>, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
-<span id="cb307-6"><a href="annotating-openair-plots.html#cb307-6" aria-hidden="true"></a>    ang2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
-<span id="cb307-7"><a href="annotating-openair-plots.html#cb307-7" aria-hidden="true"></a>    angles.low &lt;-<span class="st"> </span><span class="kw">c</span>(ang1, ang2)</span>
-<span id="cb307-8"><a href="annotating-openair-plots.html#cb307-8" aria-hidden="true"></a></span>
-<span id="cb307-9"><a href="annotating-openair-plots.html#cb307-9" aria-hidden="true"></a>    <span class="co">## for upper angles</span></span>
-<span id="cb307-10"><a href="annotating-openair-plots.html#cb307-10" aria-hidden="true"></a>    ang1 &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, <span class="dv">360</span>, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
-<span id="cb307-11"><a href="annotating-openair-plots.html#cb307-11" aria-hidden="true"></a>    ang2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
-<span id="cb307-12"><a href="annotating-openair-plots.html#cb307-12" aria-hidden="true"></a>    angles.high &lt;-<span class="st"> </span><span class="kw">c</span>(ang1, ang2)</span>
-<span id="cb307-13"><a href="annotating-openair-plots.html#cb307-13" aria-hidden="true"></a></span>
-<span id="cb307-14"><a href="annotating-openair-plots.html#cb307-14" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb307-15"><a href="annotating-openair-plots.html#cb307-15" aria-hidden="true"></a>    angles.low &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
-<span id="cb307-16"><a href="annotating-openair-plots.html#cb307-16" aria-hidden="true"></a>    angles.high &lt;-<span class="st"> </span><span class="kw">seq</span>(theta3, theta4, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
-<span id="cb307-17"><a href="annotating-openair-plots.html#cb307-17" aria-hidden="true"></a>  }</span>
-<span id="cb307-18"><a href="annotating-openair-plots.html#cb307-18" aria-hidden="true"></a>  x1 &lt;-<span class="st"> </span>lower <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(pi <span class="op">*</span><span class="st"> </span>angles.low <span class="op">/</span><span class="st"> </span><span class="dv">180</span>)</span>
-<span id="cb307-19"><a href="annotating-openair-plots.html#cb307-19" aria-hidden="true"></a>  y1 &lt;-<span class="st"> </span>lower <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(pi <span class="op">*</span><span class="st"> </span>angles.low <span class="op">/</span><span class="st"> </span><span class="dv">180</span>)</span>
-<span id="cb307-20"><a href="annotating-openair-plots.html#cb307-20" aria-hidden="true"></a>  x2 &lt;-<span class="st"> </span><span class="kw">rev</span>(upper <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(pi <span class="op">*</span><span class="st"> </span>angles.high <span class="op">/</span><span class="st"> </span><span class="dv">180</span>))</span>
-<span id="cb307-21"><a href="annotating-openair-plots.html#cb307-21" aria-hidden="true"></a>  y2 &lt;-<span class="st"> </span><span class="kw">rev</span>(upper <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(pi <span class="op">*</span><span class="st"> </span>angles.high <span class="op">/</span><span class="st"> </span><span class="dv">180</span>))</span>
-<span id="cb307-22"><a href="annotating-openair-plots.html#cb307-22" aria-hidden="true"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(x1, x2), <span class="dt">y =</span> <span class="kw">c</span>(y1, y2))</span>
-<span id="cb307-23"><a href="annotating-openair-plots.html#cb307-23" aria-hidden="true"></a></span>
-<span id="cb307-24"><a href="annotating-openair-plots.html#cb307-24" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="annotating-openair-plots.html#cb311-1" aria-hidden="true"></a>arc &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">theta1 =</span> <span class="dv">30</span>, <span class="dt">theta2 =</span> <span class="dv">60</span>, <span class="dt">theta3 =</span> theta1, <span class="dt">theta4 =</span> theta2,</span>
+<span id="cb311-2"><a href="annotating-openair-plots.html#cb311-2" aria-hidden="true"></a>                <span class="dt">lower =</span> <span class="dv">1</span>, <span class="dt">upper =</span> <span class="dv">10</span>){</span>
+<span id="cb311-3"><a href="annotating-openair-plots.html#cb311-3" aria-hidden="true"></a>  <span class="co">## function to work out coordinates for an arc sector</span></span>
+<span id="cb311-4"><a href="annotating-openair-plots.html#cb311-4" aria-hidden="true"></a>  <span class="cf">if</span> (theta2 <span class="op">&lt;</span><span class="st"> </span>theta1) {</span>
+<span id="cb311-5"><a href="annotating-openair-plots.html#cb311-5" aria-hidden="true"></a>    ang1 &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, <span class="dv">360</span>, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
+<span id="cb311-6"><a href="annotating-openair-plots.html#cb311-6" aria-hidden="true"></a>    ang2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
+<span id="cb311-7"><a href="annotating-openair-plots.html#cb311-7" aria-hidden="true"></a>    angles.low &lt;-<span class="st"> </span><span class="kw">c</span>(ang1, ang2)</span>
+<span id="cb311-8"><a href="annotating-openair-plots.html#cb311-8" aria-hidden="true"></a></span>
+<span id="cb311-9"><a href="annotating-openair-plots.html#cb311-9" aria-hidden="true"></a>    <span class="co">## for upper angles</span></span>
+<span id="cb311-10"><a href="annotating-openair-plots.html#cb311-10" aria-hidden="true"></a>    ang1 &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, <span class="dv">360</span>, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
+<span id="cb311-11"><a href="annotating-openair-plots.html#cb311-11" aria-hidden="true"></a>    ang2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
+<span id="cb311-12"><a href="annotating-openair-plots.html#cb311-12" aria-hidden="true"></a>    angles.high &lt;-<span class="st"> </span><span class="kw">c</span>(ang1, ang2)</span>
+<span id="cb311-13"><a href="annotating-openair-plots.html#cb311-13" aria-hidden="true"></a></span>
+<span id="cb311-14"><a href="annotating-openair-plots.html#cb311-14" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
+<span id="cb311-15"><a href="annotating-openair-plots.html#cb311-15" aria-hidden="true"></a>    angles.low &lt;-<span class="st"> </span><span class="kw">seq</span>(theta1, theta2, <span class="dt">length =</span> <span class="kw">abs</span>(theta2 <span class="op">-</span><span class="st"> </span>theta1))</span>
+<span id="cb311-16"><a href="annotating-openair-plots.html#cb311-16" aria-hidden="true"></a>    angles.high &lt;-<span class="st"> </span><span class="kw">seq</span>(theta3, theta4, <span class="dt">length =</span> <span class="kw">abs</span>(theta4 <span class="op">-</span><span class="st"> </span>theta3))</span>
+<span id="cb311-17"><a href="annotating-openair-plots.html#cb311-17" aria-hidden="true"></a>  }</span>
+<span id="cb311-18"><a href="annotating-openair-plots.html#cb311-18" aria-hidden="true"></a>  x1 &lt;-<span class="st"> </span>lower <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(pi <span class="op">*</span><span class="st"> </span>angles.low <span class="op">/</span><span class="st"> </span><span class="dv">180</span>)</span>
+<span id="cb311-19"><a href="annotating-openair-plots.html#cb311-19" aria-hidden="true"></a>  y1 &lt;-<span class="st"> </span>lower <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(pi <span class="op">*</span><span class="st"> </span>angles.low <span class="op">/</span><span class="st"> </span><span class="dv">180</span>)</span>
+<span id="cb311-20"><a href="annotating-openair-plots.html#cb311-20" aria-hidden="true"></a>  x2 &lt;-<span class="st"> </span><span class="kw">rev</span>(upper <span class="op">*</span><span class="st"> </span><span class="kw">sin</span>(pi <span class="op">*</span><span class="st"> </span>angles.high <span class="op">/</span><span class="st"> </span><span class="dv">180</span>))</span>
+<span id="cb311-21"><a href="annotating-openair-plots.html#cb311-21" aria-hidden="true"></a>  y2 &lt;-<span class="st"> </span><span class="kw">rev</span>(upper <span class="op">*</span><span class="st"> </span><span class="kw">cos</span>(pi <span class="op">*</span><span class="st"> </span>angles.high <span class="op">/</span><span class="st"> </span><span class="dv">180</span>))</span>
+<span id="cb311-22"><a href="annotating-openair-plots.html#cb311-22" aria-hidden="true"></a>  <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(x1, x2), <span class="dt">y =</span> <span class="kw">c</span>(y1, y2))</span>
+<span id="cb311-23"><a href="annotating-openair-plots.html#cb311-23" aria-hidden="true"></a></span>
+<span id="cb311-24"><a href="annotating-openair-plots.html#cb311-24" aria-hidden="true"></a>}</span></code></pre></div>
 <div class="figure"><span id="fig:annonatePolar"></span>
 <img src="openair_files/figure-html/annonatePolar-1.png" alt="Annotations on a polar plot." width="50%" />
 <p class="caption">
@@ -591,16 +594,16 @@ middle of the plot and the radial distance will be determined by the
 wind speed — or whatever the radial variable is. This way of
 plotting arcs can also be applied to other functions that show
 directional data.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="annotating-openair-plots.html#cb308-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>)</span>
-<span id="cb308-2"><a href="annotating-openair-plots.html#cb308-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="op">-</span><span class="dv">12</span>, <span class="dv">-12</span>, <span class="st">&quot;A&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>))</span>
-<span id="cb308-3"><a href="annotating-openair-plots.html#cb308-3" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="st">&quot;B&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>))</span>
-<span id="cb308-4"><a href="annotating-openair-plots.html#cb308-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">lsegments</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">-11.5</span>, <span class="fl">-11.5</span>, <span class="dt">lty =</span> <span class="dv">5</span>))</span>
-<span id="cb308-5"><a href="annotating-openair-plots.html#cb308-5" aria-hidden="true"></a><span class="co">## add and arc to highlight area of interest</span></span>
-<span id="cb308-6"><a href="annotating-openair-plots.html#cb308-6" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
-<span id="cb308-7"><a href="annotating-openair-plots.html#cb308-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">arc</span>(<span class="dt">theta1 =</span> <span class="dv">60</span>, <span class="dt">theta2 =</span> <span class="dv">120</span>, <span class="dt">lower =</span> <span class="dv">2</span>,</span>
-<span id="cb308-8"><a href="annotating-openair-plots.html#cb308-8" aria-hidden="true"></a>                   <span class="dt">upper =</span> <span class="dv">15</span>)<span class="op">$</span>x, <span class="dt">y =</span> <span class="kw">arc</span>(<span class="dt">theta1 =</span> <span class="dv">60</span>,</span>
-<span id="cb308-9"><a href="annotating-openair-plots.html#cb308-9" aria-hidden="true"></a>                                  <span class="dt">theta2 =</span> <span class="dv">120</span>, <span class="dt">lower =</span> <span class="dv">2</span>,</span>
-<span id="cb308-10"><a href="annotating-openair-plots.html#cb308-10" aria-hidden="true"></a>                                  <span class="dt">upper =</span> <span class="dv">15</span>)<span class="op">$</span>y, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="annotating-openair-plots.html#cb312-1" aria-hidden="true"></a><span class="kw">polarPlot</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;jet&quot;</span>)</span>
+<span id="cb312-2"><a href="annotating-openair-plots.html#cb312-2" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="op">-</span><span class="dv">12</span>, <span class="dv">-12</span>, <span class="st">&quot;A&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>))</span>
+<span id="cb312-3"><a href="annotating-openair-plots.html#cb312-3" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">ltext</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="st">&quot;B&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>))</span>
+<span id="cb312-4"><a href="annotating-openair-plots.html#cb312-4" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span><span class="st"> </span><span class="kw">layer</span>(<span class="kw">lsegments</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">-11.5</span>, <span class="fl">-11.5</span>, <span class="dt">lty =</span> <span class="dv">5</span>))</span>
+<span id="cb312-5"><a href="annotating-openair-plots.html#cb312-5" aria-hidden="true"></a><span class="co">## add and arc to highlight area of interest</span></span>
+<span id="cb312-6"><a href="annotating-openair-plots.html#cb312-6" aria-hidden="true"></a><span class="kw">trellis.last.object</span>() <span class="op">+</span></span>
+<span id="cb312-7"><a href="annotating-openair-plots.html#cb312-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">layer</span>(<span class="kw">lpolygon</span>(<span class="dt">x =</span> <span class="kw">arc</span>(<span class="dt">theta1 =</span> <span class="dv">60</span>, <span class="dt">theta2 =</span> <span class="dv">120</span>, <span class="dt">lower =</span> <span class="dv">2</span>,</span>
+<span id="cb312-8"><a href="annotating-openair-plots.html#cb312-8" aria-hidden="true"></a>                   <span class="dt">upper =</span> <span class="dv">15</span>)<span class="op">$</span>x, <span class="dt">y =</span> <span class="kw">arc</span>(<span class="dt">theta1 =</span> <span class="dv">60</span>,</span>
+<span id="cb312-9"><a href="annotating-openair-plots.html#cb312-9" aria-hidden="true"></a>                                  <span class="dt">theta2 =</span> <span class="dv">120</span>, <span class="dt">lower =</span> <span class="dv">2</span>,</span>
+<span id="cb312-10"><a href="annotating-openair-plots.html#cb312-10" aria-hidden="true"></a>                                  <span class="dt">upper =</span> <span class="dv">15</span>)<span class="op">$</span>y, <span class="dt">lty =</span> <span class="dv">1</span>, <span class="dt">lwd =</span> <span class="dv">2</span>))</span></code></pre></div>
 </div>
 <div id="using-grid-graphics-identify-locations-interactively" class="section level2" number="23.9">
 <h2><span class="header-section-number">A.9</span> Using grid graphics — identify locations interactively</h2>
@@ -620,19 +623,19 @@ the <code>grid</code> package. That function can be called with different
 coordinate systems — but the one we want defines the bottom-left
 corner as (0, 0) and the top right as (1, 1).</p>
 <p>First, make a <code>timeVariation</code> plot like Figure <a href="sec-timeVariation.html#fig:timeVar1">11.1</a>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="annotating-openair-plots.html#cb309-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="annotating-openair-plots.html#cb313-1" aria-hidden="true"></a><span class="kw">timeVariation</span>(mydata)</span></code></pre></div>
 <p>Now let’s choose a location on the plot interactively using the mouse
 and selecting somewhere in the middle of the monthly plot.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="annotating-openair-plots.html#cb310-1" aria-hidden="true"></a><span class="kw">library</span>(grid)</span>
-<span id="cb310-2"><a href="annotating-openair-plots.html#cb310-2" aria-hidden="true"></a><span class="co">## bring up the interactive location chooser</span></span>
-<span id="cb310-3"><a href="annotating-openair-plots.html#cb310-3" aria-hidden="true"></a><span class="kw">grid.locator</span>(<span class="dt">unit =</span> <span class="st">&quot;npc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="annotating-openair-plots.html#cb314-1" aria-hidden="true"></a><span class="kw">library</span>(grid)</span>
+<span id="cb314-2"><a href="annotating-openair-plots.html#cb314-2" aria-hidden="true"></a><span class="co">## bring up the interactive location chooser</span></span>
+<span id="cb314-3"><a href="annotating-openair-plots.html#cb314-3" aria-hidden="true"></a><span class="kw">grid.locator</span>(<span class="dt">unit =</span> <span class="st">&quot;npc&quot;</span>)</span></code></pre></div>
 <p>What should happen is that in the R console the coordinates are given
 for that point. In my case these were x = 0.503 and y = 0.338. These
 coordinates can now be used as the basis of adding some text or other
 annotation. In the example below, the <code>grid.text</code> function is used
 to add some text for these coordinates making the font bigger (<code>cex = 2</code>), bold (<code>font = 2</code>) and blue (<code>col = "blue"</code>).</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="annotating-openair-plots.html#cb311-1" aria-hidden="true"></a><span class="kw">grid.text</span>(<span class="dt">x =</span> <span class="fl">0.503</span>, <span class="dt">y =</span> <span class="fl">0.338</span>, <span class="dt">label =</span> <span class="st">&quot;here!&quot;</span>,</span>
-<span id="cb311-2"><a href="annotating-openair-plots.html#cb311-2" aria-hidden="true"></a>          <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">font =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="annotating-openair-plots.html#cb315-1" aria-hidden="true"></a><span class="kw">grid.text</span>(<span class="dt">x =</span> <span class="fl">0.503</span>, <span class="dt">y =</span> <span class="fl">0.338</span>, <span class="dt">label =</span> <span class="st">&quot;here!&quot;</span>,</span>
+<span id="cb315-2"><a href="annotating-openair-plots.html#cb315-2" aria-hidden="true"></a>          <span class="dt">gp =</span> <span class="kw">gpar</span>(<span class="dt">cex =</span> <span class="dv">2</span>, <span class="dt">font =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p>Even with this basic approach, some sophisticated annotation is
 possible with <em>any</em> <span class="pkg">openair</span> plot. There are many other functions
 that can be used from the grid package that would allow for polygons,
@@ -641,9 +644,9 @@ examples earlier in this section. Continuing with the same example,
 here is how to add an arrow pointing to the maximum concentration
 shown on the top plot for Saturday (again using the <code>grid.locator</code>
 function).</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="annotating-openair-plots.html#cb312-1" aria-hidden="true"></a><span class="kw">grid.lines</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">0.736</span>, <span class="fl">0.760</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="fl">0.560</span>, <span class="fl">0.778</span>),</span>
-<span id="cb312-2"><a href="annotating-openair-plots.html#cb312-2" aria-hidden="true"></a>           <span class="dt">arrow =</span> <span class="kw">arrow</span>())</span>
-<span id="cb312-3"><a href="annotating-openair-plots.html#cb312-3" aria-hidden="true"></a><span class="kw">grid.text</span>(<span class="dt">x =</span> <span class="fl">0.736</span>, <span class="dt">y =</span> <span class="fl">0.560</span>, <span class="dt">label =</span> <span class="st">&quot;maximum&quot;</span>, <span class="dt">just =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="annotating-openair-plots.html#cb316-1" aria-hidden="true"></a><span class="kw">grid.lines</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">0.736</span>, <span class="fl">0.760</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="fl">0.560</span>, <span class="fl">0.778</span>),</span>
+<span id="cb316-2"><a href="annotating-openair-plots.html#cb316-2" aria-hidden="true"></a>           <span class="dt">arrow =</span> <span class="kw">arrow</span>())</span>
+<span id="cb316-3"><a href="annotating-openair-plots.html#cb316-3" aria-hidden="true"></a><span class="kw">grid.text</span>(<span class="dt">x =</span> <span class="fl">0.736</span>, <span class="dt">y =</span> <span class="fl">0.560</span>, <span class="dt">label =</span> <span class="st">&quot;maximum&quot;</span>, <span class="dt">just =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
