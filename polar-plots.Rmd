@@ -217,6 +217,36 @@ polarPlot(har, poll = c("pm2.5", "pm10"),
           wd_spread = 10)
 ```
 
+## Comparing two time periods
+
+Polar plots can be useful for characterising the presence of different source types. Often the interest is in knowing how things have changed over time. It can be difficult from time series data alone to characterise these changes --- and especially whether there is evidence that particular sources have changed their strength.
+
+The `polarDiff` function has been written to compare polar plot surfaces between two time periods. The main purpose is to highlight whether there is evidence that source strengths may have changed. To illustrate the use of `polarDiff` data from a site close to a complex steelworks is used ([Port Talbot](https://www.google.co.uk/maps/place/Tata+Steel+Port+Talbot/@51.5696918,-3.7659959,3447m/data=!3m1!1e3!4m5!3m4!1s0x486e6716f44ca7c3:0x9eec15ac83c4648c!8m2!3d51.5679565!4d-3.7594051) in Wales). Two years will be compared as an example: 2012 and 2013. First, we need to import the air quality data for these two years:
+
+```{r import-PT4}
+port_talbot <- importAURN(site = "pt4", year = c(2012, 2019))
+
+port_talbot
+```
+
+We can now generate a polar plot of the difference between the two years (2019 with 2012 subtracted). The first example if for SO~2~. The three main arguments for the function are the 'before' data, the 'after' data and pollutant name.
+
+```{r polarDiff-SO2,fig.width=5,fig.height=4.5,fig.keep='last',fig.cap='A difference plot for SO~2~ concentrations at Port Talbot between 2012 and 2019.'}
+polarDiff(before = selectByDate(port_talbot, year = 2012), 
+          after = selectByDate(port_talbot, year = 2019), 
+          pollutant = "so2")
+```
+
+Figure \@ref(fig:polarDiff-SO2) shows very clearly an area to the south-west where concentrations of SO~2~ have decreased considerably between 2012 and 2019, perhaps due to mitigation measures on the steelworks. Interestingly, the analysis for PM~10~ shown in Figure \@ref(fig:polarDiff-PM10) shows a distinct area of increased concentration to the WSW, which would merit further investigation.
+
+```{r polarDiff-PM10,fig.width=5,fig.height=4.5,fig.keep='last',fig.cap='A difference plot for PM~10~ concentrations at Port Talbot between 2012 and 2019.'}
+polarDiff(before = selectByDate(port_talbot, year = 2012), 
+          after = selectByDate(port_talbot, year = 2019), 
+          pollutant = "pm10")
+```
+
+When selecting the periods, it is possible to refine the specific periods of interest using the `selectByDate` function described in Section \@ref(sec:selectByDate). For example, a comparison might usefully consider weekdays only, or certain hours of the year, and so on. Such time period selections can quickly 'home in' on specific source types by focusing on the periods they are likely to be most active.
+
 ## Clustering {#sec:polarCluster}
 
 The `polarPlot` function will often identify interesting features that would be useful to analyse further. It is possible to select areas of interest based only on a consideration of a plot. Such a selection could be based on wind direction and wind speed intervals for example e.g.
