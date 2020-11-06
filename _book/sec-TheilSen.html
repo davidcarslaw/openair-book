@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -351,13 +351,13 @@ linear regression, such as the assumption of normality,
 autocorrelation etc.</p>
 <p>One commonly used approach for trend calculation in studies of air
 pollution is the non-parametric <em>Mann-Kendall</em> approach
-<span class="citation">(Hirsch, Slack, and Smith <a href="#ref-Hirsch1982" role="doc-biblioref">1982</a>)</span>. <span class="citation">Wilcox (<a href="#ref-Wilcox2010" role="doc-biblioref">2010</a>)</span> provides an excellent case for
+<span class="citation">(<a href="references.html#ref-Hirsch1982" role="doc-biblioref">Hirsch, Slack, and Smith 1982</a>)</span>. <span class="citation"><a href="references.html#ref-Wilcox2010" role="doc-biblioref">Wilcox</a> (<a href="references.html#ref-Wilcox2010" role="doc-biblioref">2010</a>)</span> provides an excellent case for
 using ‘modern methods’ for regression including the benefits of
 non-parametric approaches and bootstrap simulations. Note also that
 the all the regression parameters are estimated through bootstrap
 resampling.</p>
 <p>The Theil-Sen method dates back to 1950, but the basic idea pre-dates
-1950 <span class="citation">(Theil <a href="#ref-theil50" role="doc-biblioref">1950</a>; Sen <a href="#ref-sen1968" role="doc-biblioref">1968</a>)</span>. It is one of those methods that
+1950 <span class="citation">(<a href="references.html#ref-theil50" role="doc-biblioref">Theil 1950</a>; <a href="references.html#ref-sen1968" role="doc-biblioref">Sen 1968</a>)</span>. It is one of those methods that
 required the invention of fast computers to be practical. The basic
 idea is as follows. Given a set of <span class="math inline">\(n\)</span> <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> pairs, the slopes
 between all pairs of points are calculated. Note, the number of slopes
@@ -383,7 +383,7 @@ independent. Ignoring this dependence would tend to give an overly
 optimistic impression of uncertainties. However, taking account of it
 is far from simple. A discussion of these issues is beyond the aims of
 this report and readers are referred to standard statistical texts on
-the issue. In <span class="pkg">openair</span> we follow the suggestion of <span class="citation">Kunsch (<a href="#ref-Kunsch1989" role="doc-biblioref">1989</a>)</span>
+the issue. In <span class="pkg">openair</span> we follow the suggestion of <span class="citation"><a href="references.html#ref-Kunsch1989" role="doc-biblioref">Kunsch</a> (<a href="references.html#ref-Kunsch1989" role="doc-biblioref">1989</a>)</span>
 of setting the block length to <span class="math inline">\(n^{1/3}\)</span> where n is the length of the
 time series.</p>
 <p>There is a temptation when considering trends to use all the available
@@ -438,11 +438,11 @@ how statistically significant the trend estimate is: <span class="math inline">\
 concentrations of O<sub>3</sub>. The function is called as shown in Figure
 <a href="sec-TheilSen.html#fig:TheilSen1">15.1</a>.</p>
 
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="sec-TheilSen.html#cb143-1" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb143-2"><a href="sec-TheilSen.html#cb143-2" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
-<span id="cb143-3"><a href="sec-TheilSen.html#cb143-3" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, </span>
-<span id="cb143-4"><a href="sec-TheilSen.html#cb143-4" aria-hidden="true"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb143-5"><a href="sec-TheilSen.html#cb143-5" aria-hidden="true"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="sec-TheilSen.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
+<span id="cb143-2"><a href="sec-TheilSen.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>, </span>
+<span id="cb143-3"><a href="sec-TheilSen.html#cb143-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, </span>
+<span id="cb143-4"><a href="sec-TheilSen.html#cb143-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">deseason =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb143-5"><a href="sec-TheilSen.html#cb143-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">date.format =</span> <span class="st">&quot;%Y&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;</code></pre>
 <div class="figure"><span id="fig:TheilSen1"></span>
 <img src="openair_files/figure-html/TheilSen1-1.png" alt="Trends in ozone at Marylebone Road. The plot shows the deseasonalised monthly mean concentrations of O3. The solid red line shows the trend estimate and the dashed red lines show the 95% confidence intervals for the trend based on resampling methods. The overall trend is shown at the top-left as 0.38 (ppb) per year and the 95% confidence intervals in the slope from 0.21–0.51 ppb/year. The \(\ast\ast\ast\) show that the trend is significant to the 0.001 level." width="70%" />
@@ -462,14 +462,14 @@ with the summary results is shown in Figure <a href="sec-TheilSen.html#fig:Theil
 that if one wanted to display the confidence intervals in the slope at
 the 99% confidence intervals, the code would be Figure
 <a href="sec-TheilSen.html#fig:TheilSen2">15.2</a>.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="sec-TheilSen.html#cb145-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="sec-TheilSen.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.01</span>)</span></code></pre></div>
 <p>Sometimes it is useful to consider a subset of data, perhaps by
 excluding some years. This is easy with the <code>filter</code> function. The
 following code calculates trends for years greater than 1999 i.e. from
 2000 onward.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="sec-TheilSen.html#cb146-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(<span class="kw">filter</span>(mydata, <span class="kw">format</span>(date, <span class="st">&quot;%Y&quot;</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1999</span>), </span>
-<span id="cb146-2"><a href="sec-TheilSen.html#cb146-2" aria-hidden="true"></a>         <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
-<span id="cb146-3"><a href="sec-TheilSen.html#cb146-3" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="sec-TheilSen.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(<span class="fu">filter</span>(mydata, <span class="fu">format</span>(date, <span class="st">&quot;%Y&quot;</span>) <span class="sc">&gt;</span> <span class="dv">1999</span>), </span>
+<span id="cb146-2"><a href="sec-TheilSen.html#cb146-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>,</span>
+<span id="cb146-3"><a href="sec-TheilSen.html#cb146-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
 <p>It is also possible to calculate trends in many other ways e.g. by
 wind direction. Considering how trends vary by wind direction can be
 extremely useful because the influence of different sources invariably
@@ -491,10 +491,10 @@ NO<sub>2</sub>. At this particular location it will probably take many more
 years before O<sub>3</sub> concentrations start to increase when the wind
 direction is southerly. Nevertheless, there will always be <em>some</em>
 hours that do not have such high concentrations of NO.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sec-TheilSen.html#cb147-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>, </span>
-<span id="cb147-2"><a href="sec-TheilSen.html#cb147-2" aria-hidden="true"></a>         <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb147-3"><a href="sec-TheilSen.html#cb147-3" aria-hidden="true"></a>         <span class="dt">date.format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
-<span id="cb147-4"><a href="sec-TheilSen.html#cb147-4" aria-hidden="true"></a>         <span class="dt">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sec-TheilSen.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">type =</span> <span class="st">&quot;wd&quot;</span>, </span>
+<span id="cb147-2"><a href="sec-TheilSen.html#cb147-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">deseason =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb147-3"><a href="sec-TheilSen.html#cb147-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">date.format =</span> <span class="st">&quot;%Y&quot;</span>,</span>
+<span id="cb147-4"><a href="sec-TheilSen.html#cb147-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;ozone (ppb)&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
@@ -523,8 +523,8 @@ T [\%.yr^{-1}] = 100.\left(\frac{C_{End}}{C_{Start}}
 <p>where <span class="math inline">\(C_{End}\)</span> and <span class="math inline">\(C_{Start}\)</span> are the mean concentrations for the
 end and start date, respectfully. <span class="math inline">\(N_{years}\)</span> is the
 number of years (or fractions of) the time series spans.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sec-TheilSen.html#cb149-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb149-2"><a href="sec-TheilSen.html#cb149-2" aria-hidden="true"></a>            <span class="dt">slope.percent =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sec-TheilSen.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">deseason =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb149-2"><a href="sec-TheilSen.html#cb149-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">slope.percent =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The <code>TheilSen</code> function was written to work with hourly data,
 which is then averaged into monthly or annual data. However, it is
 realised that users may already have data that is monthly or
@@ -533,23 +533,23 @@ data directly. <em>However, it is necessary to ensure the date field
 is in the correct format</em>. Assuming data in an Excel file in the
 format dd/mm/YYYY (e.g. 23/11/2008), it is necessary to convert this
 to a date format understood by R, as shown below. Similarly, if annual
-data were available, get the dates in formats like ‘2005-01-01’,
+data were available, get the dates in formats like ‘2005-01-01,’
 ‘2006-01-01’ … and make sure the date is again formatted using
 <code>as.Date</code>. Note that if dates are pre-formatted as YYYY-mm-dd,
 then it is sufficient to use <code>as.Date</code> without providing any
 format information because it is already in the correct format.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="sec-TheilSen.html#cb150-1" aria-hidden="true"></a>mydata<span class="op">$</span>date =<span class="st"> </span><span class="kw">as.Date</span>(mydata<span class="op">$</span>date, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="sec-TheilSen.html#cb150-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>date <span class="ot">=</span> <span class="fu">as.Date</span>(mydata<span class="sc">$</span>date, <span class="at">format =</span> <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
 <p>Finally, the <code>TheilSen</code> function can consider trends at
 different sites, provided the input data are correctly formatted. For
 input, a data frame with three columns is required: date, pollutant
 and <em>site</em>. The call would then be, for example:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sec-TheilSen.html#cb151-1" aria-hidden="true"></a><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sec-TheilSen.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;no2&quot;</span>, <span class="at">type =</span> <span class="st">&quot;site&quot;</span>)</span></code></pre></div>
 <div id="output-1" class="section level3" number="15.2.1">
 <h3><span class="header-section-number">15.2.1</span> Output</h3>
 <p>The <code>TheilSen</code> function provides lots of output data for further
 analysis or adding to a report. To obtain it, it is necessary to read
 it into a variable:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="sec-TheilSen.html#cb152-1" aria-hidden="true"></a>MKresults &lt;-<span class="st">  </span><span class="kw">TheilSen</span>(mydata, <span class="dt">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="dt">deseason =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="sec-TheilSen.html#cb152-1" aria-hidden="true" tabindex="-1"></a>MKresults <span class="ot">&lt;-</span>  <span class="fu">TheilSen</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">deseason =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="st">&quot;wd&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;
@@ -560,7 +560,7 @@ it into a variable:</p>
 ## [1] &quot;Taking bootstrap samples. Please wait.&quot;</code></pre>
 <p>This returns a list of two data frames containing all the monthly mean values and
 trend statistics and an aggregated summary. The first 6 lines are shown next:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sec-TheilSen.html#cb154-1" aria-hidden="true"></a><span class="kw">head</span>(MKresults<span class="op">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sec-TheilSen.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(MKresults<span class="sc">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>##   wd       date      conc         a            b   upper.a     upper.b  lower.a
 ## 1  E 1998-01-01  5.552253 -2.825001 0.0007185124 -8.826666 0.001230109 3.848278
 ## 2  E 1998-02-01  2.919639 -2.825001 0.0007185124 -8.826666 0.001230109 3.848278
@@ -591,7 +591,7 @@ trend statistics and an aggregated summary. The first 6 lines are shown next:</p
 ## 6       11.9614</code></pre>
 <p>Often only the trend statistics are required and not all the monthly
 values. These can be obtained by:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sec-TheilSen.html#cb156-1" aria-hidden="true"></a>MKresults<span class="op">$</span>data[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sec-TheilSen.html#cb156-1" aria-hidden="true" tabindex="-1"></a>MKresults<span class="sc">$</span>data[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##   wd p.stars       date     conc          a            b     upper.a
 ## 1  E       * 2001-09-15 5.989974  -2.825001 7.185124e-04  -8.8266663
 ## 2  N     *** 2001-09-15 9.786267 -19.142102 2.485907e-03 -28.7157702
@@ -633,24 +633,6 @@ values. These can be obtained by:</p>
 the trend and <code>slope</code> is the trend estimate expressed in units/year.</p>
 
 </div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Hirsch1982">
-<p>Hirsch, R. M., J. R. Slack, and R. A. Smith. 1982. “Techniques of Trend Analysis for Monthly Water-Quality Data.” <em>Water Resources Research</em> 18 (1): 107–21.</p>
-</div>
-<div id="ref-Kunsch1989">
-<p>Kunsch, H. R. 1989. “The Jackknife and the Bootstrap for General Stationary Observations.” <em>Annals of Statistics</em> 17 (3): 1217–41.</p>
-</div>
-<div id="ref-sen1968">
-<p>Sen, P. K. 1968. “Estimates of Regression Coefficient Based on Kendall’s Tau.” <em>Journal of the American Statistical Association</em> 63(324): 1379–89.</p>
-</div>
-<div id="ref-theil50">
-<p>Theil, H. 1950. “A Rank Invariant Method of Linear and Polynomial Regression Analysis, I, Ii, Iii.” <em>Proceedings of the Koninklijke Nederlandse Akademie Wetenschappen, Series A – Mathematical Sciences</em> 53: 386–92, 521–25, 1397–1412.</p>
-</div>
-<div id="ref-Wilcox2010">
-<p>Wilcox, Rand R. 2010. <em>Fundamentals of Modern Statistical Methods: Substantially Improving Power and Accuracy</em>. 2nd ed. Springer New York. <a href="http://www.springerlink.com/content/978-1-4419-5524-1">http://www.springerlink.com/content/978-1-4419-5524-1</a>.</p>
 </div>
 </div>
             </section>

@@ -1,6 +1,6 @@
 # Polar plots {#sec:polarPlot}
 
-This Section considers the flexible `polarPlot` function that is used to provide information about source characteritics. The clustering of polar plots is also considered using `polarCluster`.
+This Section considers the flexible `polarPlot` function that is used to provide information about source characteristics. The clustering of polar plots is also considered using `polarCluster`.
 
 ## Introduction to polar plots
 
@@ -246,6 +246,8 @@ polarDiff(before = selectByDate(port_talbot, year = 2012),
 ```
 
 When selecting the periods, it is possible to refine the specific periods of interest using the `selectByDate` function described in Section \@ref(sec:selectByDate). For example, a comparison might usefully consider weekdays only, or certain hours of the year, and so on. Such time period selections can quickly 'home in' on specific source types by focusing on the periods they are likely to be most active.
+
+The `polarDiff` function is also not restricted to comparing two time periods. Any two surfaces can be compared (provided the same pollutant is in each data set). For example, it is possible to consider the difference between two nearby sites or two co-located instruments.
 
 ## Clustering {#sec:polarCluster}
 

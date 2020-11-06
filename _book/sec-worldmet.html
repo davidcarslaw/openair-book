@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -338,16 +338,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-worldmet-package" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> The worldmet package</h2>
 <p>Most of the import functions described in Section <a href="sec-importAURN.html#sec:importAURN">3</a> return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.</p>
-<p>Alternatively it may be advantageous to use surface measurements. <span class="pkg">worldmet</span> provides an easy way in which to access surface meteorological data from &gt;30,000 sites across the world <span class="citation">(Carslaw <a href="#ref-R-worldmet" role="doc-biblioref">2020</a>)</span>. The package accesses the NOAA webservers to download hourly data. See <a href="https://github.com/davidcarslaw/worldmet" class="uri">https://github.com/davidcarslaw/worldmet</a> and <a href="https://www.ncdc.noaa.gov/isd" class="uri">https://www.ncdc.noaa.gov/isd</a> for further information.</p>
+<p>Alternatively it may be advantageous to use surface measurements. <span class="pkg">worldmet</span> provides an easy way in which to access surface meteorological data from &gt;30,000 sites across the world <span class="citation">(<a href="references.html#ref-R-worldmet" role="doc-biblioref">D. Carslaw 2020</a>)</span>. The package accesses the NOAA webservers to download hourly data. See <a href="https://github.com/davidcarslaw/worldmet" class="uri">https://github.com/davidcarslaw/worldmet</a> and <a href="https://www.ncdc.noaa.gov/isd" class="uri">https://www.ncdc.noaa.gov/isd</a> for further information.</p>
 <p>Access to surface meteorological data is very useful in general but is especially useful when using <span class="pkg">openair</span> and functions such as <code>polarPlot</code>. To install the package, type:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="sec-worldmet.html#cb27-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;worldmet&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="sec-worldmet.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;worldmet&quot;</span>)</span></code></pre></div>
 <p>There are two main functions in the package: <code>getMeta</code> and <code>importNOAA</code>. The former helps the user find meteorological sites by name, country and proximity to a location based on the latitude and longitude. <code>getMeta</code> will also return a code that can be supplied to <code>importNOAA</code>, which then imports the data.</p>
 <p>Probably the most common use of <code>getMeta</code> is to search around a location of interest based on its latitude and longitude. First we will load the <strong>worldmet</strong> package (and other packages we use later):</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="sec-worldmet.html#cb28-1" aria-hidden="true"></a><span class="kw">library</span>(worldmet)</span>
-<span id="cb28-2"><a href="sec-worldmet.html#cb28-2" aria-hidden="true"></a><span class="kw">library</span>(openair)</span>
-<span id="cb28-3"><a href="sec-worldmet.html#cb28-3" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="sec-worldmet.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(worldmet)</span>
+<span id="cb28-2"><a href="sec-worldmet.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
+<span id="cb28-3"><a href="sec-worldmet.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>As an example, we will search for the 10 nearest sites to Dublin (latitude = 53.3, longitude = -6.3)<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="sec-worldmet.html#cb29-1" aria-hidden="true"></a><span class="kw">getMeta</span>(<span class="dt">lat =</span> <span class="fl">53.3</span>, <span class="dt">lon =</span> <span class="fl">-6.3</span>, <span class="dt">returnMap =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="sec-worldmet.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getMeta</span>(<span class="at">lat =</span> <span class="fl">53.3</span>, <span class="at">lon =</span> <span class="sc">-</span><span class="fl">6.3</span>, <span class="at">returnMap =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-23"></span>
 <div id="htmlwidget-112456380568bb1e2d4e" style="width:672px;height:480px;" class="leaflet html-widget"></div>
 <script type="application/json" data-for="htmlwidget-112456380568bb1e2d4e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[53.302,53.421,52.85,53.533,54.233,54.05,52.283,53.248,53.017,52.783],[-6.451,-6.27,-6.9,-7.367,-6.5,-7.3,-6.483,-4.535,-8,-4.733],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["CASEMENT<br/>Code: 039670-99999<br/>Start: 1987-02-01<br/>End: 2020-07-25<br/>Distance (km) 10","DUBLIN<br/>Code: 039690-99999<br/>Start: 1973-01-01<br/>End: 2020-07-25<br/>Distance (km) 13.6","OAK PARK - CARLOW<br/>Code: 039610-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 64.1","MULLINGAR<br/>Code: 039710-99999<br/>Start: 1973-01-01<br/>End: 2020-07-25<br/>Distance (km) 75.3","GLENANNE NO2<br/>Code: 039230-99999<br/>Start: 1985-02-07<br/>End: 2020-07-25<br/>Distance (km) 104.6","BALLYHAISE<br/>Code: 039790-99999<br/>Start: 2008-07-21<br/>End: 2020-07-17<br/>Distance (km) 106.3","JOHNSTOWN CASTLE<br/>Code: 039560-99999<br/>Start: 2007-08-06<br/>End: 2020-07-25<br/>Distance (km) 113.8","VALLEY<br/>Code: 033020-99999<br/>Start: 1926-06-06<br/>End: 2020-07-25<br/>Distance (km) 117.5","GURTEEN<br/>Code: 039660-99999<br/>Start: 1929-10-01<br/>End: 2020-07-25<br/>Distance (km) 117.6","ABERDARON<br/>Code: 034050-99999<br/>Start: 1994-10-01<br/>End: 2020-07-25<br/>Distance (km) 119.5"],null,{"showCoverageOnHover":true,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[53.3,-6.3,200,null,null,{"interactive":true,"className":"","stroke":true,"color":"red","weight":20,"opacity":0.5,"fill":true,"fillColor":"red","fillOpacity":0.2},["Search location<br/>Lat = 53.302<br/>Lon = -6.451","Search location<br/>Lat = 53.421<br/>Lon = -6.27","Search location<br/>Lat = 52.85<br/>Lon = -6.9","Search location<br/>Lat = 53.533<br/>Lon = -7.367","Search location<br/>Lat = 54.233<br/>Lon = -6.5","Search location<br/>Lat = 54.05<br/>Lon = -7.3","Search location<br/>Lat = 52.283<br/>Lon = -6.483","Search location<br/>Lat = 53.248<br/>Lon = -4.535","Search location<br/>Lat = 53.017<br/>Lon = -8","Search location<br/>Lat = 52.783<br/>Lon = -4.733"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"limits":{"lat":[52.283,54.233],"lng":[-8,-4.535]}},"evals":[],"jsHooks":[]}</script>
@@ -356,12 +356,12 @@ Figure 4.1: Map of returned area of interest. The user can interactively select 
 </p>
 </div>
 <p>Note that it is just as easy to access all the site information at once because it is quick to use the map to select the site and its code i.e.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sec-worldmet.html#cb30-1" aria-hidden="true"></a><span class="kw">getMeta</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sec-worldmet.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getMeta</span>()</span></code></pre></div>
 <p>We can use the map that is produced to select a site of interest and import the data. For example, to import data for Dublin Airport and look at some of the data:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sec-worldmet.html#cb31-1" aria-hidden="true"></a>dublin_met &lt;-<span class="st"> </span><span class="kw">importNOAA</span>(<span class="dt">code =</span> <span class="st">&quot;039690-99999&quot;</span>, <span class="dt">year =</span> <span class="dv">2019</span>)</span>
-<span id="cb31-2"><a href="sec-worldmet.html#cb31-2" aria-hidden="true"></a></span>
-<span id="cb31-3"><a href="sec-worldmet.html#cb31-3" aria-hidden="true"></a><span class="co"># first few lines of data</span></span>
-<span id="cb31-4"><a href="sec-worldmet.html#cb31-4" aria-hidden="true"></a>dublin_met</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sec-worldmet.html#cb31-1" aria-hidden="true" tabindex="-1"></a>dublin_met <span class="ot">&lt;-</span> <span class="fu">importNOAA</span>(<span class="at">code =</span> <span class="st">&quot;039690-99999&quot;</span>, <span class="at">year =</span> <span class="dv">2019</span>)</span>
+<span id="cb31-2"><a href="sec-worldmet.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="sec-worldmet.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># first few lines of data</span></span>
+<span id="cb31-4"><a href="sec-worldmet.html#cb31-4" aria-hidden="true" tabindex="-1"></a>dublin_met</span></code></pre></div>
 <pre><code>## # A tibble: 8,760 x 24
 ##    code  station date                latitude longitude  elev    ws    wd
 ##    &lt;fct&gt; &lt;fct&gt;   &lt;dttm&gt;                 &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -381,30 +381,30 @@ Figure 4.1: Map of returned area of interest. The user can interactively select 
 ## #   cl_1_height &lt;dbl&gt;, cl_2_height &lt;dbl&gt;, cl_3_height &lt;dbl&gt;, precip_12 &lt;dbl&gt;,
 ## #   precip_6 &lt;dbl&gt;, precip &lt;dbl&gt;</code></pre>
 <p>Plot a wind rose.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sec-worldmet.html#cb33-1" aria-hidden="true"></a><span class="kw">windRose</span>(dublin_met)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sec-worldmet.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">windRose</span>(dublin_met)</span></code></pre></div>
 <p><img src="openair_files/figure-html/unnamed-chunk-26-1.png" width="50%" /></p>
 </div>
 <div id="sec:link-aq" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Linking with air quality data</h2>
 <p>Having imported some meteorological data it will often be necessary to combine it with air quality data. Quite how this is done depends on the air quality data. The important point is there should be a <code>date</code> column in each data set that make the connection between the two. It may also depend on whether the air quality data has existing fields that also exist in the meteorological data e.g. <code>ws</code>, <code>wd</code> and <code>air_temp</code>, as is the case with most data accessible as described in Section <a href="sec-importAURN.html#sec:importAURN">3</a>. In this case, the aim to to replace any existing meteorological variables in the air quality data with those in the meteorological data. An example is shown below.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sec-worldmet.html#cb34-1" aria-hidden="true"></a><span class="co"># import some air quality data and check the variables that exist</span></span>
-<span id="cb34-2"><a href="sec-worldmet.html#cb34-2" aria-hidden="true"></a></span>
-<span id="cb34-3"><a href="sec-worldmet.html#cb34-3" aria-hidden="true"></a>aq_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">importAURN</span>(<span class="dt">site =</span> <span class="st">&quot;kc1&quot;</span>, <span class="dt">year =</span> <span class="dv">2019</span>)</span>
-<span id="cb34-4"><a href="sec-worldmet.html#cb34-4" aria-hidden="true"></a><span class="kw">names</span>(aq_<span class="dv">2019</span>) <span class="co"># ws, wd, air_temp already exist from WRF model</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sec-worldmet.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import some air quality data and check the variables that exist</span></span>
+<span id="cb34-2"><a href="sec-worldmet.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="sec-worldmet.html#cb34-3" aria-hidden="true" tabindex="-1"></a>aq_2019 <span class="ot">&lt;-</span> <span class="fu">importAURN</span>(<span class="at">site =</span> <span class="st">&quot;kc1&quot;</span>, <span class="at">year =</span> <span class="dv">2019</span>)</span>
+<span id="cb34-4"><a href="sec-worldmet.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(aq_2019) <span class="co"># ws, wd, air_temp already exist from WRF model</span></span></code></pre></div>
 <pre><code>##  [1] &quot;site&quot;     &quot;code&quot;     &quot;date&quot;     &quot;co&quot;       &quot;nox&quot;      &quot;no2&quot;     
 ##  [7] &quot;no&quot;       &quot;o3&quot;       &quot;so2&quot;      &quot;pm10&quot;     &quot;pm2.5&quot;    &quot;ws&quot;      
 ## [13] &quot;wd&quot;       &quot;air_temp&quot;</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sec-worldmet.html#cb36-1" aria-hidden="true"></a><span class="co"># import some met data - default is London Heathrow</span></span>
-<span id="cb36-2"><a href="sec-worldmet.html#cb36-2" aria-hidden="true"></a>met_<span class="dv">2019</span> &lt;-<span class="st"> </span><span class="kw">importNOAA</span>(<span class="dt">year =</span> <span class="dv">2019</span>)</span>
-<span id="cb36-3"><a href="sec-worldmet.html#cb36-3" aria-hidden="true"></a></span>
-<span id="cb36-4"><a href="sec-worldmet.html#cb36-4" aria-hidden="true"></a><span class="co"># merge the two data sets but not ws, wd, air_temp from aq data</span></span>
-<span id="cb36-5"><a href="sec-worldmet.html#cb36-5" aria-hidden="true"></a>aq_met &lt;-<span class="st"> </span><span class="kw">left_join</span>(</span>
-<span id="cb36-6"><a href="sec-worldmet.html#cb36-6" aria-hidden="true"></a>  <span class="kw">select</span>(aq_<span class="dv">2019</span>, <span class="op">-</span>ws, <span class="op">-</span>wd, <span class="op">-</span>air_temp),</span>
-<span id="cb36-7"><a href="sec-worldmet.html#cb36-7" aria-hidden="true"></a>  met_<span class="dv">2019</span>,</span>
-<span id="cb36-8"><a href="sec-worldmet.html#cb36-8" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;date&quot;</span></span>
-<span id="cb36-9"><a href="sec-worldmet.html#cb36-9" aria-hidden="true"></a>)</span>
-<span id="cb36-10"><a href="sec-worldmet.html#cb36-10" aria-hidden="true"></a></span>
-<span id="cb36-11"><a href="sec-worldmet.html#cb36-11" aria-hidden="true"></a><span class="kw">names</span>(aq_met)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sec-worldmet.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import some met data - default is London Heathrow</span></span>
+<span id="cb36-2"><a href="sec-worldmet.html#cb36-2" aria-hidden="true" tabindex="-1"></a>met_2019 <span class="ot">&lt;-</span> <span class="fu">importNOAA</span>(<span class="at">year =</span> <span class="dv">2019</span>)</span>
+<span id="cb36-3"><a href="sec-worldmet.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="sec-worldmet.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the two data sets but not ws, wd, air_temp from aq data</span></span>
+<span id="cb36-5"><a href="sec-worldmet.html#cb36-5" aria-hidden="true" tabindex="-1"></a>aq_met <span class="ot">&lt;-</span> <span class="fu">left_join</span>(</span>
+<span id="cb36-6"><a href="sec-worldmet.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(aq_2019, <span class="sc">-</span>ws, <span class="sc">-</span>wd, <span class="sc">-</span>air_temp),</span>
+<span id="cb36-7"><a href="sec-worldmet.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  met_2019,</span>
+<span id="cb36-8"><a href="sec-worldmet.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">&quot;date&quot;</span></span>
+<span id="cb36-9"><a href="sec-worldmet.html#cb36-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-10"><a href="sec-worldmet.html#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="sec-worldmet.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(aq_met)</span></code></pre></div>
 <pre><code>##  [1] &quot;site&quot;        &quot;code.x&quot;      &quot;date&quot;        &quot;co&quot;          &quot;nox&quot;        
 ##  [6] &quot;no2&quot;         &quot;no&quot;          &quot;o3&quot;          &quot;so2&quot;         &quot;pm10&quot;       
 ## [11] &quot;pm2.5&quot;       &quot;code.y&quot;      &quot;station&quot;     &quot;latitude&quot;    &quot;longitude&quot;  
@@ -413,12 +413,6 @@ Figure 4.1: Map of returned area of interest. The user can interactively select 
 ## [26] &quot;cl_2&quot;        &quot;cl_3&quot;        &quot;cl&quot;          &quot;cl_1_height&quot; &quot;cl_2_height&quot;
 ## [31] &quot;cl_3_height&quot; &quot;precip_12&quot;   &quot;precip_6&quot;    &quot;precip&quot;      &quot;pwc&quot;</code></pre>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-worldmet">
-<p>Carslaw, David. 2020. <em>Worldmet: Import Surface Meteorological Data from Noaa Integrated Surface Database (Isd)</em>. <a href="http://github.com/davidcarslaw/worldmet">http://github.com/davidcarslaw/worldmet</a>.</p>
 </div>
 </div>
 <div class="footnotes">
