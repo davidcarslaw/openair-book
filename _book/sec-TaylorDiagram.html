@@ -24,7 +24,7 @@
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -202,8 +202,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR</a></li>
 <li class="chapter" data-level="8.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot</a></li>
 <li class="chapter" data-level="8.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#comparing-two-time-periods"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods</a></li>
-<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering</a></li>
+<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polar-compare"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods</a></li>
+<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#clustering-concentrations"><i class="fa fa-check"></i><b>8.7.1</b> Clustering concentrations</a></li>
+<li class="chapter" data-level="8.7.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#clustering-differences-in-concentrations"><i class="fa fa-check"></i><b>8.7.2</b> Clustering differences in concentrations</a></li>
+</ul></li>
 <li class="chapter" data-level="8.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.8</b> Polar plots on an interactive map</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus</a>
@@ -363,9 +367,9 @@ characteristics it becomes much easier to understand. A typical
 diagram is shown in Figure <a href="sec-TaylorDiagram.html#fig:TaylorExam">21.1</a> for nine anonymised
 models used for predicting hourly O<sub>3</sub> concentrations at 15 sites
 around the UK.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="sec-TaylorDiagram.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
-<span id="cb249-2"><a href="sec-TaylorDiagram.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="sec-TaylorDiagram.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="at">group =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="sec-TaylorDiagram.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
+<span id="cb253-2"><a href="sec-TaylorDiagram.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="sec-TaylorDiagram.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, <span class="at">group =</span> <span class="st">&quot;group&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:TaylorExam"></span>
 <img src="openair_files/figure-html/TaylorExam-1.png" alt="An example of the use of the `TaylorDiagram` function." width="65%" />
 <p class="caption">
@@ -416,9 +420,9 @@ easier to conclude that models <span class="math inline">\(e\)</span> and <span 
 <p>Note that in cases where there is a column <code>site</code> it makes sense to
 use <code>type = "site"</code> to ensure that the statistics are calculated
 on a per site basis and each panel represents a single site.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="sec-TaylorDiagram.html#cb251-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="fu">c</span>(<span class="st">&#39;images/TaylorExplainSD.png&#39;</span>,</span>
-<span id="cb251-2"><a href="sec-TaylorDiagram.html#cb251-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;images/TaylorExplainR.png&#39;</span>,</span>
-<span id="cb251-3"><a href="sec-TaylorDiagram.html#cb251-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;images/TaylorExplainRMS.png&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="sec-TaylorDiagram.html#cb255-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="fu">c</span>(<span class="st">&#39;images/TaylorExplainSD.png&#39;</span>,</span>
+<span id="cb255-2"><a href="sec-TaylorDiagram.html#cb255-2" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;images/TaylorExplainR.png&#39;</span>,</span>
+<span id="cb255-3"><a href="sec-TaylorDiagram.html#cb255-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&#39;images/TaylorExplainRMS.png&#39;</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:TaylorPlots"></span>
 <img src="images/TaylorExplainSD.png" alt="Taylor Diagrams broken down to highlight how to interpret the three main statistics. The red line/arrow indicate how to read interpret each of the three statistics. Top left: standard deviation, top right: correlation, bottom: centrered RMS error." width="198" /><img src="images/TaylorExplainR.png" alt="Taylor Diagrams broken down to highlight how to interpret the three main statistics. The red line/arrow indicate how to read interpret each of the three statistics. Top left: standard deviation, top right: correlation, bottom: centrered RMS error." width="198" /><img src="images/TaylorExplainRMS.png" alt="Taylor Diagrams broken down to highlight how to interpret the three main statistics. The red line/arrow indicate how to read interpret each of the three statistics. Top left: standard deviation, top right: correlation, bottom: centrered RMS error." width="198" />
 <p class="caption">
@@ -436,10 +440,10 @@ models. In the call below, <code>group</code> is the column that identified
 the model and <code>type</code> is the conditioning variable that produces in
 this case four panels — one for each season. Note that in this case
 we focus on a single site.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="sec-TaylorDiagram.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="do">## select a single site</span></span>
-<span id="cb252-2"><a href="sec-TaylorDiagram.html#cb252-2" aria-hidden="true" tabindex="-1"></a>LH <span class="ot">&lt;-</span> <span class="fu">filter</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Lullington.Heath&quot;</span>)</span>
-<span id="cb252-3"><a href="sec-TaylorDiagram.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(LH, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
-<span id="cb252-4"><a href="sec-TaylorDiagram.html#cb252-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="sec-TaylorDiagram.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="do">## select a single site</span></span>
+<span id="cb256-2"><a href="sec-TaylorDiagram.html#cb256-2" aria-hidden="true" tabindex="-1"></a>LH <span class="ot">&lt;-</span> <span class="fu">filter</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Lullington.Heath&quot;</span>)</span>
+<span id="cb256-3"><a href="sec-TaylorDiagram.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(LH, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
+<span id="cb256-4"><a href="sec-TaylorDiagram.html#cb256-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;season&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:TaylorSeas"></span>
 <img src="openair_files/figure-html/TaylorSeas-1.png" alt="Use of the `TaylorDiagam` function to show model performance for 9 models used to predict O~3~ concentrations at the Lullington Heath site." width="864" />
 <p class="caption">
@@ -463,20 +467,20 @@ why some models are better for wintertime conditions and others better
 in summer and this is clearly something that could be investigated further.</p>
 <p>There are many other useful comparisons that can be undertaken
 easily. A few of these are shown below, but not plotted.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="sec-TaylorDiagram.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="do">## by receptor comparison</span></span>
-<span id="cb253-2"><a href="sec-TaylorDiagram.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
-<span id="cb253-3"><a href="sec-TaylorDiagram.html#cb253-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;site&quot;</span>)</span>
-<span id="cb253-4"><a href="sec-TaylorDiagram.html#cb253-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-5"><a href="sec-TaylorDiagram.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="do">## by month comparison for a SINGLE site</span></span>
-<span id="cb253-6"><a href="sec-TaylorDiagram.html#cb253-6" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(<span class="fu">subset</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Harwell&quot;</span>), </span>
-<span id="cb253-7"><a href="sec-TaylorDiagram.html#cb253-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
-<span id="cb253-8"><a href="sec-TaylorDiagram.html#cb253-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;month&quot;</span>)</span>
-<span id="cb253-9"><a href="sec-TaylorDiagram.html#cb253-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-10"><a href="sec-TaylorDiagram.html#cb253-10" aria-hidden="true" tabindex="-1"></a><span class="do">## By season AND daylight/nighttime</span></span>
-<span id="cb253-11"><a href="sec-TaylorDiagram.html#cb253-11" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(<span class="fu">subset</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Harwell&quot;</span>), </span>
-<span id="cb253-12"><a href="sec-TaylorDiagram.html#cb253-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
-<span id="cb253-13"><a href="sec-TaylorDiagram.html#cb253-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, </span>
-<span id="cb253-14"><a href="sec-TaylorDiagram.html#cb253-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="sec-TaylorDiagram.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="do">## by receptor comparison</span></span>
+<span id="cb257-2"><a href="sec-TaylorDiagram.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
+<span id="cb257-3"><a href="sec-TaylorDiagram.html#cb257-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;site&quot;</span>)</span>
+<span id="cb257-4"><a href="sec-TaylorDiagram.html#cb257-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-5"><a href="sec-TaylorDiagram.html#cb257-5" aria-hidden="true" tabindex="-1"></a><span class="do">## by month comparison for a SINGLE site</span></span>
+<span id="cb257-6"><a href="sec-TaylorDiagram.html#cb257-6" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(<span class="fu">subset</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Harwell&quot;</span>), </span>
+<span id="cb257-7"><a href="sec-TaylorDiagram.html#cb257-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
+<span id="cb257-8"><a href="sec-TaylorDiagram.html#cb257-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, <span class="at">type =</span> <span class="st">&quot;month&quot;</span>)</span>
+<span id="cb257-9"><a href="sec-TaylorDiagram.html#cb257-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-10"><a href="sec-TaylorDiagram.html#cb257-10" aria-hidden="true" tabindex="-1"></a><span class="do">## By season AND daylight/nighttime</span></span>
+<span id="cb257-11"><a href="sec-TaylorDiagram.html#cb257-11" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(<span class="fu">subset</span>(modTest, site <span class="sc">==</span> <span class="st">&quot;Harwell&quot;</span>), </span>
+<span id="cb257-12"><a href="sec-TaylorDiagram.html#cb257-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>,</span>
+<span id="cb257-13"><a href="sec-TaylorDiagram.html#cb257-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="st">&quot;group&quot;</span>, </span>
+<span id="cb257-14"><a href="sec-TaylorDiagram.html#cb257-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;season&quot;</span>, <span class="st">&quot;daylight&quot;</span>))</span></code></pre></div>
 <p>It is also possible to combine different groups of model results. For
 example, rather than plot how the models perform at a single site it
 can be useful to show how they compare at all sites. To do this it is
@@ -487,10 +491,10 @@ variation by model for <em>all</em> sites. The results are shown in Figure
 <a href="sec-TaylorDiagram.html#fig:Taylor2Grp">21.4</a>. These results show that in general models
 tend to predict in similalry good (or bad) ways across all sites as
 shown by the grouping of points on Figure <a href="sec-TaylorDiagram.html#fig:Taylor2Grp">21.4</a>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="sec-TaylorDiagram.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
-<span id="cb254-2"><a href="sec-TaylorDiagram.html#cb254-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;site&quot;</span>), </span>
-<span id="cb254-3"><a href="sec-TaylorDiagram.html#cb254-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">normalise =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">1</span>, </span>
-<span id="cb254-4"><a href="sec-TaylorDiagram.html#cb254-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>, <span class="dv">15</span><span class="sc">:</span><span class="dv">18</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="sec-TaylorDiagram.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TaylorDiagram</span>(modTest, <span class="at">obs =</span> <span class="st">&quot;o3&quot;</span>, <span class="at">mod =</span> <span class="st">&quot;mod&quot;</span>, </span>
+<span id="cb258-2"><a href="sec-TaylorDiagram.html#cb258-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;site&quot;</span>), </span>
+<span id="cb258-3"><a href="sec-TaylorDiagram.html#cb258-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">normalise =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">1</span>, </span>
+<span id="cb258-4"><a href="sec-TaylorDiagram.html#cb258-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>, <span class="dv">15</span><span class="sc">:</span><span class="dv">18</span>))</span></code></pre></div>
 <div class="figure"><span id="fig:Taylor2Grp"></span>
 <img src="openair_files/figure-html/Taylor2Grp-1.png" alt="Use of the `TaylorDiagam` function to show model performance for 9 models used for all sites." width="60%" />
 <p class="caption">

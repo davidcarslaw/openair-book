@@ -217,7 +217,7 @@ polarPlot(har, poll = c("pm2.5", "pm10"),
           wd_spread = 10)
 ```
 
-## Comparing two time periods
+## Comparing two time periods {#sec:polar-compare}
 
 Polar plots can be useful for characterising the presence of different source types. Often the interest is in knowing how things have changed over time. It can be difficult from time series data alone to characterise these changes --- and especially whether there is evidence that particular sources have changed their strength.
 
@@ -250,6 +250,8 @@ When selecting the periods, it is possible to refine the specific periods of int
 The `polarDiff` function is also not restricted to comparing two time periods. Any two surfaces can be compared (provided the same pollutant is in each data set). For example, it is possible to consider the difference between two nearby sites or two co-located instruments.
 
 ## Clustering {#sec:polarCluster}
+
+### Clustering concentrations
 
 The `polarPlot` function will often identify interesting features that would be useful to analyse further. It is possible to select areas of interest based only on a consideration of a plot. Such a selection could be based on wind direction and wind speed intervals for example e.g.
 
@@ -351,9 +353,32 @@ timeProp(selectByDate(results, year = 2003),
          ylab = "so2 (ug/m3)")
 ```
 
+### Clustering differences in concentrations
+
+Section \@ref(sec:polar-compare) showed how to consider differences in polar plot surfaces, which can be useful for considering how source strengths may have changed in time. This section considers how to apply cluster analysis to these difference surfaces. The clustering works in the same way as shown earlier in this section but with an additional argument (`after`) which represents the second data frame used to calculate the difference between two surfaces.
+
+The function is called as shown in Figure \@ref(fig:polarClust-diff). Note that the output is recorded in `clust_out`.
+
+```{r polarClust-diff,fig.width=5,fig.height=4.5,fig.keep='last',fig.cap='A difference plot for PM~10~ concentrations at Port Talbot between 2012 and 2019.'}
+clust_out <- polarCluster(selectByDate(port_talbot, year = 2012), 
+          after = selectByDate(port_talbot, year = 2019), 
+          pollutant = "so2",
+          n.clusters = 5)
+```
+
+The `clust_out` usefully contains the two original data sets that were used to make the difference surface as well as the assigned cluster. These two outputs can be combined and post-processed in different ways. In the code below the mean concentrations by cluster are calculated but other useful analyses could be considered knowing that Cluster 3 is most strongly associated with the *change* in SO~2~ concentration. The latter point is important because clustering features by how they change ought to provide an improved analysis of the effect of interventions --- rather than just considering absolute concentrations in a before or after period.
+
+```{r extract-clust-diff}
+clust_data <- bind_rows(clust_out$data, clust_out$after)
+
+# consider mean SO2 by cluster
+group_by(clust_data, cluster) %>% 
+  summarise(mean_so2 = mean(so2, na.rm = TRUE))
+```
+
 ## Polar plots on an interactive map
 
-A developmental R package called [openairmaps{.pkg} has been developed to plot bivariate polar plots on an interactive leaflet map. This package is not on CRAN but can be installed from GitHub:
+A developmental R package called [openairmaps]{.pkg} has been developed to plot bivariate polar plots on an interactive leaflet map. This package is not on CRAN but can be installed from GitHub:
 
 ```{r eval=FALSE}
 library(devtools)

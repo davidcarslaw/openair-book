@@ -44,6 +44,7 @@ fig:polarClustn6
 fig:tempEvalClust
 fig:clustTV
 fig:timePropPolar
+fig:polarClust-diff
 fig:polarAnnulus
 fig:timePlot
 fig:timePlotNorm
@@ -164,8 +165,10 @@ polar-plot-examples
 nonparametric-wind-regression-nwr
 conditional-probability-function-cpf-plot
 pairwise-statistics
-comparing-two-time-periods
+sec:polar-compare
 sec:polarCluster
+clustering-concentrations
+clustering-differences-in-concentrations
 polar-plots-on-an-interactive-map
 sec:polarAnnulus
 polarAnnulusBack
