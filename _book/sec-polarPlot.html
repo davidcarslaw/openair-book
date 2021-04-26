@@ -675,15 +675,15 @@ Figure 8.16: Temporal variation in daily SO<sub>2</sub> concentration at the Mar
 <div id="clustering-differences-in-concentrations" class="section level3" number="8.7.2">
 <h3><span class="header-section-number">8.7.2</span> Clustering differences in concentrations</h3>
 <p>Section <a href="sec-polarPlot.html#sec:polar-compare">8.6</a> showed how to consider differences in polar plot surfaces, which can be useful for considering how source strengths may have changed in time. This section considers how to apply cluster analysis to these difference surfaces. The clustering works in the same way as shown earlier in this section but with an additional argument (<code>after</code>) which represents the second data frame used to calculate the difference between two surfaces.</p>
-<p>The function is called as shown in Figure <a href="sec-polarPlot.html#fig:polarClust-diff">8.17</a>. Note that the output is recorded in <code>clust_out</code>.</p>
+<p>The function is called as shown in Figure <a href="sec-polarPlot.html#fig:polarClust-diff">8.17</a>. Note that the output is recorded in <code>clust_out</code>. The clustering is applied to the difference plots shown in Figure <a href="sec-polarPlot.html#fig:polarDiff-SO2">8.10</a>.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="sec-polarPlot.html#cb93-1" aria-hidden="true" tabindex="-1"></a>clust_out <span class="ot">&lt;-</span> <span class="fu">polarCluster</span>(<span class="fu">selectByDate</span>(port_talbot, <span class="at">year =</span> <span class="dv">2012</span>), </span>
 <span id="cb93-2"><a href="sec-polarPlot.html#cb93-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">after =</span> <span class="fu">selectByDate</span>(port_talbot, <span class="at">year =</span> <span class="dv">2019</span>), </span>
 <span id="cb93-3"><a href="sec-polarPlot.html#cb93-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">pollutant =</span> <span class="st">&quot;so2&quot;</span>,</span>
 <span id="cb93-4"><a href="sec-polarPlot.html#cb93-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">n.clusters =</span> <span class="dv">5</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:polarClust-diff"></span>
-<img src="openair_files/figure-html/polarClust-diff-1.png" alt="A difference plot for PM~10~ concentrations at Port Talbot between 2012 and 2019." width="480" />
+<img src="openair_files/figure-html/polarClust-diff-1.png" alt="Clustering differences in polar plot concentrations of SO~2~ concentrations at Port Talbot between 2012 and 2019." width="480" />
 <p class="caption">
-Figure 8.17: A difference plot for PM<sub>10</sub> concentrations at Port Talbot between 2012 and 2019.
+Figure 8.17: Clustering differences in polar plot concentrations of SO<sub>2</sub> concentrations at Port Talbot between 2012 and 2019.
 </p>
 </div>
 <p>The <code>clust_out</code> usefully contains the two original data sets that were used to make the difference surface as well as the assigned cluster. These two outputs can be combined and post-processed in different ways. In the code below the mean concentrations by cluster are calculated but other useful analyses could be considered knowing that Cluster 3 is most strongly associated with the <em>change</em> in SO<sub>2</sub> concentration. The latter point is important because clustering features by how they change ought to provide an improved analysis of the effect of interventions — rather than just considering absolute concentrations in a before or after period.</p>

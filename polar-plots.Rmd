@@ -357,9 +357,9 @@ timeProp(selectByDate(results, year = 2003),
 
 Section \@ref(sec:polar-compare) showed how to consider differences in polar plot surfaces, which can be useful for considering how source strengths may have changed in time. This section considers how to apply cluster analysis to these difference surfaces. The clustering works in the same way as shown earlier in this section but with an additional argument (`after`) which represents the second data frame used to calculate the difference between two surfaces.
 
-The function is called as shown in Figure \@ref(fig:polarClust-diff). Note that the output is recorded in `clust_out`.
+The function is called as shown in Figure \@ref(fig:polarClust-diff). Note that the output is recorded in `clust_out`. The clustering is applied to the difference plots shown in Figure \@ref(fig:polarDiff-SO2).
 
-```{r polarClust-diff,fig.width=5,fig.height=4.5,fig.keep='last',fig.cap='A difference plot for PM~10~ concentrations at Port Talbot between 2012 and 2019.'}
+```{r polarClust-diff,fig.width=5,fig.height=4.5,fig.keep='last',fig.cap='Clustering differences in polar plot concentrations of SO~2~ concentrations at Port Talbot between 2012 and 2019.'}
 clust_out <- polarCluster(selectByDate(port_talbot, year = 2012), 
           after = selectByDate(port_talbot, year = 2019), 
           pollutant = "so2",

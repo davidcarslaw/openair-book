@@ -239,3 +239,10 @@ polar-plot-examples-1
 using-grid-graphics-identify-locations-interactively
 sec:prod-hyspl-traj
 sec:trends-gam
+no-bias-correction
+bias-correction-the-default
+example-of-comparing-2-met-sites
+first-we-will-make-some-new-wswd-data-with-a-postive-bias
+need-to-correct-negative-wd
+results-show-postive-bias-in-wd-and-ws
+add-some-wd-bias-to-some-nighttime-hours

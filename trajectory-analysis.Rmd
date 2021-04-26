@@ -208,7 +208,7 @@ alloc <- group_by(alloc, date, sector) %>%
   mutate(n = n()) %>% 
   group_by(date) %>% 
   arrange(date, n) %>% 
-  slice_tail(1) %>% 
+  slice_tail(n = 1) %>% 
   mutate(sector = ifelse(n > 50, sector, "unallocated")) %>% 
   select(date, sector, n)
 
