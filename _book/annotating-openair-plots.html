@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Annotating openair plots | The openair book</title>
   <meta name="description" content="Analysing air quality data with the openair package" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Annotating openair plots | The openair book" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:image" content="/images/cover.png" />
   <meta property="og:description" content="Analysing air quality data with the openair package" />
   <meta name="github-repo" content="davidcarslaw/openair-book" />
 
@@ -19,22 +19,23 @@
   <meta name="twitter:title" content="A Annotating openair plots | The openair book" />
   
   <meta name="twitter:description" content="Analysing air quality data with the openair package" />
-  <meta name="twitter:image" content="images/cover.png" />
+  <meta name="twitter:image" content="/images/cover.png" />
 
 <meta name="author" content="David C. Carslaw" />
 
 
-<meta name="date" content="2020-11-10" />
+<meta name="date" content="2022-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sec-utility.html"/>
-<link rel="next" href="sec-prod-hyspl-traj.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="sec:utility.html"/>
+<link rel="next" href="sec:prod-hyspl-traj.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,30 +51,16 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
-<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
-<link href="libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
-<script src="libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -134,6 +121,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -150,173 +138,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">The openair book</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<li><a href="index.html#preface">Preface<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#hello-and-welcome"><i class="fa fa-check"></i>Hello and welcome</a></li>
+<li><a href="index.html#hello-and-welcome">Hello and welcome<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="sec-openair-package.html"><a href="sec-openair-package.html"><i class="fa fa-check"></i><b>2</b> The openair package</a>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a></li>
+<li class="chapter" data-level="2" data-path="sec:openair-package.html"><a href="sec:openair-package.html"><i class="fa fa-check"></i><b>2</b> The openair package<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access</a></li>
-<li class="chapter" data-level="2.2" data-path="sec-openair-package.html"><a href="sec-openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair</a></li>
-<li class="chapter" data-level="2.4" data-path="sec-openair-package.html"><a href="sec-openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option</a>
+<li class="chapter" data-level="2.1" data-path="sec:openair-package.html"><a href="sec:openair-package.html#installation-and-code-access"><i class="fa fa-check"></i><b>2.1</b> Installation and code access<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="sec:openair-package.html"><a href="sec:openair-package.html#input-data-requirements"><i class="fa fa-check"></i><b>2.2</b> Input data requirements<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="sec:openair-package.html"><a href="sec:openair-package.html#sec:brief-intr-open"><i class="fa fa-check"></i><b>2.3</b> Brief overview of openair<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="sec:openair-package.html"><a href="sec:openair-package.html#the-type-option"><i class="fa fa-check"></i><b>2.4</b> The type option<span></span></a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="sec-openair-package.html"><a href="sec-openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type</a></li>
+<li class="chapter" data-level="2.4.1" data-path="sec:openair-package.html"><a href="sec:openair-package.html#make-your-own-type"><i class="fa fa-check"></i><b>2.4.1</b> Make your own type<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size</a></li>
-<li class="chapter" data-level="2.6" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours</a></li>
-<li class="chapter" data-level="2.7" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting</a></li>
-<li class="chapter" data-level="2.8" data-path="sec-openair-package.html"><a href="sec-openair-package.html#sec:multiple-plots-page"><i class="fa fa-check"></i><b>2.8</b> Multiple plots on a page</a></li>
+<li class="chapter" data-level="2.5" data-path="sec:openair-package.html"><a href="sec:openair-package.html#sec:font-size"><i class="fa fa-check"></i><b>2.5</b> Controlling font size<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="sec:openair-package.html"><a href="sec:openair-package.html#sec:colours"><i class="fa fa-check"></i><b>2.6</b> Using colours<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="sec:openair-package.html"><a href="sec:openair-package.html#sec:quickText"><i class="fa fa-check"></i><b>2.7</b> Automatic text formatting<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="sec:openair-package.html"><a href="sec:openair-package.html#sec:multiple-plots-page"><i class="fa fa-check"></i><b>2.8</b> Multiple plots on a page<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="sec-importAURN.html"><a href="sec-importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data</a>
+<li class="chapter" data-level="3" data-path="sec:importAURN.html"><a href="sec:importAURN.html"><i class="fa fa-check"></i><b>3</b> Accessing UK Air Quality Data<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="sec-importAURN.html"><a href="sec-importAURN.html#accessing-data"><i class="fa fa-check"></i><b>3.1</b> Accessing data</a></li>
-<li class="chapter" data-level="3.2" data-path="sec-importAURN.html"><a href="sec-importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data</a></li>
-<li class="chapter" data-level="3.3" data-path="sec-importAURN.html"><a href="sec-importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map</a></li>
+<li class="chapter" data-level="3.1" data-path="sec:importAURN.html"><a href="sec:importAURN.html#accessing-data"><i class="fa fa-check"></i><b>3.1</b> Accessing data<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="sec:importAURN.html"><a href="sec:importAURN.html#site-meta-data"><i class="fa fa-check"></i><b>3.2</b> Site Meta Data<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="sec:importAURN.html"><a href="sec:importAURN.html#plot-sites-on-a-map"><i class="fa fa-check"></i><b>3.3</b> Plot Sites on a Map<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="sec-worldmet.html"><a href="sec-worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data</a>
+<li class="chapter" data-level="4" data-path="sec:worldmet.html"><a href="sec:worldmet.html"><i class="fa fa-check"></i><b>4</b> Access meteorological data<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="sec-worldmet.html"><a href="sec-worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The worldmet package</a></li>
-<li class="chapter" data-level="4.2" data-path="sec-worldmet.html"><a href="sec-worldmet.html#sec:link-aq"><i class="fa fa-check"></i><b>4.2</b> Linking with air quality data</a></li>
+<li class="chapter" data-level="4.1" data-path="sec:worldmet.html"><a href="sec:worldmet.html#the-worldmet-package"><i class="fa fa-check"></i><b>4.1</b> The worldmet package<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="sec:worldmet.html"><a href="sec:worldmet.html#sec:link-aq"><i class="fa fa-check"></i><b>4.2</b> Linking with air quality data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="sec-windRose.html"><a href="sec-windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses</a>
+<li class="chapter" data-level="5" data-path="sec:windRose.html"><a href="sec:windRose.html"><i class="fa fa-check"></i><b>5</b> Wind and Pollution Roses<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="sec-windRose.html"><a href="sec-windRose.html#example-of-use"><i class="fa fa-check"></i><b>5.1</b> Example of use</a></li>
-<li class="chapter" data-level="5.2" data-path="sec-windRose.html"><a href="sec-windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>5.2</b> Comparing two meteorological data sets</a></li>
+<li class="chapter" data-level="5.1" data-path="sec:windRose.html"><a href="sec:windRose.html#example-of-use"><i class="fa fa-check"></i><b>5.1</b> Example of use<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="sec:windRose.html"><a href="sec:windRose.html#no-bias-correction"><i class="fa fa-check"></i><b>5.2</b> no bias correction<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="sec:windRose.html"><a href="sec:windRose.html#bias-correction-the-default"><i class="fa fa-check"></i><b>5.3</b> bias correction (the default)<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="sec:windRose.html"><a href="sec:windRose.html#sec:comp-met"><i class="fa fa-check"></i><b>5.4</b> Comparing two meteorological data sets<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="sec:windRose.html"><a href="sec:windRose.html#example-of-comparing-2-met-sites"><i class="fa fa-check"></i><b>5.5</b> $example of comparing 2 met sites<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="sec:windRose.html"><a href="sec:windRose.html#first-we-will-make-some-new-wswd-data-with-a-postive-bias"><i class="fa fa-check"></i><b>5.6</b> first we will make some new ws/wd data with a postive bias<span></span></a></li>
+<li class="chapter" data-level="5.7" data-path="sec:windRose.html"><a href="sec:windRose.html#need-to-correct-negative-wd"><i class="fa fa-check"></i><b>5.7</b> need to correct negative wd<span></span></a></li>
+<li class="chapter" data-level="5.8" data-path="sec:windRose.html"><a href="sec:windRose.html#results-show-postive-bias-in-wd-and-ws"><i class="fa fa-check"></i><b>5.8</b> results show postive bias in wd and ws<span></span></a></li>
+<li class="chapter" data-level="5.9" data-path="sec:windRose.html"><a href="sec:windRose.html#add-some-wd-bias-to-some-nighttime-hours"><i class="fa fa-check"></i><b>5.9</b> add some wd bias to some nighttime hours<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html"><i class="fa fa-check"></i><b>6</b> Polar frequencies</a>
+<li class="chapter" data-level="6" data-path="sec:polarFreq.html"><a href="sec:polarFreq.html"><i class="fa fa-check"></i><b>6</b> Polar frequencies<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="sec-polarFreq.html"><a href="sec-polarFreq.html#sec:polarFreqBack"><i class="fa fa-check"></i><b>6.1</b> Background and examples</a></li>
+<li class="chapter" data-level="6.1" data-path="sec:polarFreq.html"><a href="sec:polarFreq.html#sec:polarFreqBack"><i class="fa fa-check"></i><b>6.1</b> Background and examples<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html"><i class="fa fa-check"></i><b>7</b> Percentile roses</a>
+<li class="chapter" data-level="7" data-path="sec:percentileRose.html"><a href="sec:percentileRose.html"><i class="fa fa-check"></i><b>7</b> Percentile roses<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples</a></li>
-<li class="chapter" data-level="7.3" data-path="sec-percentileRose.html"><a href="sec-percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>7.3</b> Condtional probability function</a></li>
+<li class="chapter" data-level="7.1" data-path="sec:percentileRose.html"><a href="sec:percentileRose.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="sec:percentileRose.html"><a href="sec:percentileRose.html#examples"><i class="fa fa-check"></i><b>7.2</b> Examples<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="sec:percentileRose.html"><a href="sec:percentileRose.html#sec:CPF"><i class="fa fa-check"></i><b>7.3</b> Condtional probability function<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html"><i class="fa fa-check"></i><b>8</b> Polar plots</a>
+<li class="chapter" data-level="8" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html"><i class="fa fa-check"></i><b>8</b> Polar plots<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>8.1</b> Introduction to polar plots</a></li>
-<li class="chapter" data-level="8.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>8.2</b> Examples</a></li>
-<li class="chapter" data-level="8.3" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR</a></li>
-<li class="chapter" data-level="8.4" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot</a></li>
-<li class="chapter" data-level="8.5" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics</a></li>
-<li class="chapter" data-level="8.6" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polar-compare"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods</a></li>
-<li class="chapter" data-level="8.7" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering</a>
+<li class="chapter" data-level="8.1" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#introduction-to-polar-plots"><i class="fa fa-check"></i><b>8.1</b> Introduction to polar plots<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#polar-plot-examples"><i class="fa fa-check"></i><b>8.2</b> Examples<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#nonparametric-wind-regression-nwr"><i class="fa fa-check"></i><b>8.3</b> Nonparametric Wind Regression, NWR<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#conditional-probability-function-cpf-plot"><i class="fa fa-check"></i><b>8.4</b> Conditional Probability Function (CPF) plot<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#pairwise-statistics"><i class="fa fa-check"></i><b>8.5</b> Pairwise statistics<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#sec:polar-compare"><i class="fa fa-check"></i><b>8.6</b> Comparing two time periods<span></span></a></li>
+<li class="chapter" data-level="8.7" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#sec:polarCluster"><i class="fa fa-check"></i><b>8.7</b> Clustering<span></span></a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#clustering-concentrations"><i class="fa fa-check"></i><b>8.7.1</b> Clustering concentrations</a></li>
-<li class="chapter" data-level="8.7.2" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#clustering-differences-in-concentrations"><i class="fa fa-check"></i><b>8.7.2</b> Clustering differences in concentrations</a></li>
+<li class="chapter" data-level="8.7.1" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#clustering-concentrations"><i class="fa fa-check"></i><b>8.7.1</b> Clustering concentrations<span></span></a></li>
+<li class="chapter" data-level="8.7.2" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#clustering-differences-in-concentrations"><i class="fa fa-check"></i><b>8.7.2</b> Clustering differences in concentrations<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="sec-polarPlot.html"><a href="sec-polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.8</b> Polar plots on an interactive map</a></li>
+<li class="chapter" data-level="8.8" data-path="sec:polarPlot.html"><a href="sec:polarPlot.html#polar-plots-on-an-interactive-map"><i class="fa fa-check"></i><b>8.8</b> Polar plots on an interactive map<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus</a>
+<li class="chapter" data-level="9" data-path="sec:polarAnnulus.html"><a href="sec:polarAnnulus.html"><i class="fa fa-check"></i><b>9</b> Polar annulus<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>9.1</b> Purpose</a></li>
-<li class="chapter" data-level="9.2" data-path="sec-polarAnnulus.html"><a href="sec-polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>9.2</b> Example of use</a></li>
+<li class="chapter" data-level="9.1" data-path="sec:polarAnnulus.html"><a href="sec:polarAnnulus.html#polarAnnulusBack"><i class="fa fa-check"></i><b>9.1</b> Purpose<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="sec:polarAnnulus.html"><a href="sec:polarAnnulus.html#sec:examAnnulus"><i class="fa fa-check"></i><b>9.2</b> Example of use<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="sec-timePlot.html"><a href="sec-timePlot.html"><i class="fa fa-check"></i><b>10</b> Time series plots</a>
+<li class="chapter" data-level="10" data-path="sec:timePlot.html"><a href="sec:timePlot.html"><i class="fa fa-check"></i><b>10</b> Time series plots<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="sec-timePlot.html"><a href="sec-timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>10.1</b> Background</a></li>
-<li class="chapter" data-level="10.2" data-path="sec-timePlot.html"><a href="sec-timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>10.2</b> Examples of time series plotting</a></li>
+<li class="chapter" data-level="10.1" data-path="sec:timePlot.html"><a href="sec:timePlot.html#sec:timePlotBack"><i class="fa fa-check"></i><b>10.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="sec:timePlot.html"><a href="sec:timePlot.html#examples-of-time-series-plotting"><i class="fa fa-check"></i><b>10.2</b> Examples of time series plotting<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html"><i class="fa fa-check"></i><b>11</b> Temporal variations</a>
+<li class="chapter" data-level="11" data-path="sec:timeVariation.html"><a href="sec:timeVariation.html"><i class="fa fa-check"></i><b>11</b> Temporal variations<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>11.1</b> Purpose</a></li>
-<li class="chapter" data-level="11.2" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#applications"><i class="fa fa-check"></i><b>11.2</b> Applications</a></li>
-<li class="chapter" data-level="11.3" data-path="sec-timeVariation.html"><a href="sec-timeVariation.html#output"><i class="fa fa-check"></i><b>11.3</b> Output</a></li>
+<li class="chapter" data-level="11.1" data-path="sec:timeVariation.html"><a href="sec:timeVariation.html#sec:purpose-time-var"><i class="fa fa-check"></i><b>11.1</b> Purpose<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="sec:timeVariation.html"><a href="sec:timeVariation.html#applications"><i class="fa fa-check"></i><b>11.2</b> Applications<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="sec:timeVariation.html"><a href="sec:timeVariation.html#output"><i class="fa fa-check"></i><b>11.3</b> Output<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="sec-timeProp.html"><a href="sec-timeProp.html"><i class="fa fa-check"></i><b>12</b> Time proportion plots</a>
+<li class="chapter" data-level="12" data-path="sec:timeProp.html"><a href="sec:timeProp.html"><i class="fa fa-check"></i><b>12</b> Time proportion plots<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>12.1</b> Background</a></li>
-<li class="chapter" data-level="12.2" data-path="sec-timeProp.html"><a href="sec-timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>12.2</b> Examples</a></li>
+<li class="chapter" data-level="12.1" data-path="sec:timeProp.html"><a href="sec:timeProp.html#sec:timePropBack"><i class="fa fa-check"></i><b>12.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="sec:timeProp.html"><a href="sec:timeProp.html#sec:timePropEx"><i class="fa fa-check"></i><b>12.2</b> Examples<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html"><i class="fa fa-check"></i><b>13</b> Trend heat maps</a>
+<li class="chapter" data-level="13" data-path="sec:trendLevel.html"><a href="sec:trendLevel.html"><i class="fa fa-check"></i><b>13</b> Trend heat maps<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#another-way-of-representing-trends"><i class="fa fa-check"></i><b>13.1</b> Another way of representing trends</a></li>
-<li class="chapter" data-level="13.2" data-path="sec-trendLevel.html"><a href="sec-trendLevel.html#sec:TrendLevelEx"><i class="fa fa-check"></i><b>13.2</b> Examples</a></li>
+<li class="chapter" data-level="13.1" data-path="sec:trendLevel.html"><a href="sec:trendLevel.html#another-way-of-representing-trends"><i class="fa fa-check"></i><b>13.1</b> Another way of representing trends<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="sec:trendLevel.html"><a href="sec:trendLevel.html#sec:TrendLevelEx"><i class="fa fa-check"></i><b>13.2</b> Examples<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html"><i class="fa fa-check"></i><b>14</b> Calendar plots</a>
+<li class="chapter" data-level="14" data-path="sec:calendarPlot.html"><a href="sec:calendarPlot.html"><i class="fa fa-check"></i><b>14</b> Calendar plots<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#purpose"><i class="fa fa-check"></i><b>14.1</b> Purpose</a></li>
-<li class="chapter" data-level="14.2" data-path="sec-calendarPlot.html"><a href="sec-calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>14.2</b> Calendar examples</a></li>
+<li class="chapter" data-level="14.1" data-path="sec:calendarPlot.html"><a href="sec:calendarPlot.html#purpose"><i class="fa fa-check"></i><b>14.1</b> Purpose<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="sec:calendarPlot.html"><a href="sec:calendarPlot.html#calendar-examples"><i class="fa fa-check"></i><b>14.2</b> Calendar examples<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html"><i class="fa fa-check"></i><b>15</b> Theil-Sen trends</a>
+<li class="chapter" data-level="15" data-path="sec:TheilSen.html"><a href="sec:TheilSen.html"><i class="fa fa-check"></i><b>15</b> Theil-Sen trends<span></span></a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>15.1</b> Trend estimates</a></li>
-<li class="chapter" data-level="15.2" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Example trend analysis</a>
+<li class="chapter" data-level="15.1" data-path="sec:TheilSen.html"><a href="sec:TheilSen.html#trend-estimates"><i class="fa fa-check"></i><b>15.1</b> Trend estimates<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="sec:TheilSen.html"><a href="sec:TheilSen.html#example-trend-analysis"><i class="fa fa-check"></i><b>15.2</b> Example trend analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="sec-TheilSen.html"><a href="sec-TheilSen.html#output-1"><i class="fa fa-check"></i><b>15.2.1</b> Output</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html"><i class="fa fa-check"></i><b>16</b> Smooth trends</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>16.1</b> Background</a></li>
-<li class="chapter" data-level="16.2" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>16.2</b> Examples of trend analysis</a></li>
-<li class="chapter" data-level="16.3" data-path="sec-smoothTrend.html"><a href="sec-smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>16.3</b> Seasonal averages</a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html"><i class="fa fa-check"></i><b>17</b> Scatter plots</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterPurpose"><i class="fa fa-check"></i><b>17.1</b> Purpose</a></li>
-<li class="chapter" data-level="17.2" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:ScatterEx"><i class="fa fa-check"></i><b>17.2</b> Examples</a>
-<ul>
-<li class="chapter" data-level="17.2.1" data-path="sec-scatterPlot.html"><a href="sec-scatterPlot.html#sec:hexbin"><i class="fa fa-check"></i><b>17.2.1</b> Hexaganol binning</a></li>
+<li class="chapter" data-level="15.2.1" data-path="sec:TheilSen.html"><a href="sec:TheilSen.html#output-1"><i class="fa fa-check"></i><b>15.2.1</b> Output<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html"><i class="fa fa-check"></i><b>18</b> Trajectory analysis</a>
+<li class="chapter" data-level="16" data-path="sec:smoothTrend.html"><a href="sec:smoothTrend.html"><i class="fa fa-check"></i><b>16</b> Smooth trends<span></span></a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>18.1</b> Plotting trajectories</a></li>
-<li class="chapter" data-level="18.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>18.2</b> Trajectory gridded frequencies</a></li>
-<li class="chapter" data-level="18.3" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>18.3</b> Trajectory source contribution functions</a>
+<li class="chapter" data-level="16.1" data-path="sec:smoothTrend.html"><a href="sec:smoothTrend.html#sec:SmoothTrendInfo"><i class="fa fa-check"></i><b>16.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="sec:smoothTrend.html"><a href="sec:smoothTrend.html#examples-of-trend-analysis"><i class="fa fa-check"></i><b>16.2</b> Examples of trend analysis<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="sec:smoothTrend.html"><a href="sec:smoothTrend.html#seasonal-averages"><i class="fa fa-check"></i><b>16.3</b> Seasonal averages<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="sec:scatterPlot.html"><a href="sec:scatterPlot.html"><i class="fa fa-check"></i><b>17</b> Scatter plots<span></span></a>
 <ul>
-<li class="chapter" data-level="18.3.1" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>18.3.1</b> Identifying the contribution of high concentration back trajectories</a></li>
-<li class="chapter" data-level="18.3.2" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>18.3.2</b> Allocating trajectories to different wind sectors</a></li>
-</ul></li>
-<li class="chapter" data-level="18.4" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>18.4</b> Potential Source Contribution Function (PSCF)</a></li>
-<li class="chapter" data-level="18.5" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>18.5</b> Concentration Weighted Trajectory (CWT)</a></li>
-<li class="chapter" data-level="18.6" data-path="sec-trajPlot.html"><a href="sec-trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>18.6</b> Trajectory clustering</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html"><i class="fa fa-check"></i><b>19</b> Conditional quantiles</a>
+<li class="chapter" data-level="17.1" data-path="sec:scatterPlot.html"><a href="sec:scatterPlot.html#sec:ScatterPurpose"><i class="fa fa-check"></i><b>17.1</b> Purpose<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="sec:scatterPlot.html"><a href="sec:scatterPlot.html#sec:ScatterEx"><i class="fa fa-check"></i><b>17.2</b> Examples<span></span></a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalQuantileBack"><i class="fa fa-check"></i><b>19.1</b> Background</a></li>
-<li class="chapter" data-level="19.2" data-path="sec-conditionalQuantile.html"><a href="sec-conditionalQuantile.html#sec:conditionalEval"><i class="fa fa-check"></i><b>19.2</b> Conditional evaluation</a></li>
+<li class="chapter" data-level="17.2.1" data-path="sec:scatterPlot.html"><a href="sec:scatterPlot.html#sec:hexbin"><i class="fa fa-check"></i><b>17.2.1</b> Hexaganol binning<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="sec-modStats.html"><a href="sec-modStats.html"><i class="fa fa-check"></i><b>20</b> Model evaluation</a>
+</ul></li>
+<li class="chapter" data-level="18" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html"><i class="fa fa-check"></i><b>18</b> Trajectory analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModBack"><i class="fa fa-check"></i><b>20.1</b> Background</a></li>
-<li class="chapter" data-level="20.2" data-path="sec-modStats.html"><a href="sec-modStats.html#sec:ModEx"><i class="fa fa-check"></i><b>20.2</b> Example of use</a></li>
-</ul></li>
-<li class="chapter" data-level="21" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html"><i class="fa fa-check"></i><b>21</b> Taylor Diagam</a>
+<li class="chapter" data-level="18.1" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#plotting-trajectories"><i class="fa fa-check"></i><b>18.1</b> Plotting trajectories<span></span></a></li>
+<li class="chapter" data-level="18.2" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#sec:trajLevel"><i class="fa fa-check"></i><b>18.2</b> Trajectory gridded frequencies<span></span></a></li>
+<li class="chapter" data-level="18.3" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#trajectory-source-contribution-functions"><i class="fa fa-check"></i><b>18.3</b> Trajectory source contribution functions<span></span></a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#sec:TaylorBack"><i class="fa fa-check"></i><b>21.1</b> Background</a></li>
-<li class="chapter" data-level="21.2" data-path="sec-TaylorDiagram.html"><a href="sec-TaylorDiagram.html#examples-of-taylor-diagrams"><i class="fa fa-check"></i><b>21.2</b> Examples of Taylor Diagrams</a></li>
+<li class="chapter" data-level="18.3.1" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#identifying-the-contribution-of-high-concentration-back-trajectories"><i class="fa fa-check"></i><b>18.3.1</b> Identifying the contribution of high concentration back trajectories<span></span></a></li>
+<li class="chapter" data-level="18.3.2" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#allocating-trajectories-to-different-wind-sectors"><i class="fa fa-check"></i><b>18.3.2</b> Allocating trajectories to different wind sectors<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="sec-utility.html"><a href="sec-utility.html"><i class="fa fa-check"></i><b>22</b> Utility functions</a>
+<li class="chapter" data-level="18.4" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#potential-source-contribution-function-pscf"><i class="fa fa-check"></i><b>18.4</b> Potential Source Contribution Function (PSCF)<span></span></a></li>
+<li class="chapter" data-level="18.5" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#concentration-weighted-trajectory-cwt"><i class="fa fa-check"></i><b>18.5</b> Concentration Weighted Trajectory (CWT)<span></span></a></li>
+<li class="chapter" data-level="18.6" data-path="sec:trajPlot.html"><a href="sec:trajPlot.html#sec:trajCluster"><i class="fa fa-check"></i><b>18.6</b> Trajectory clustering<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="sec:conditionalQuantile.html"><a href="sec:conditionalQuantile.html"><i class="fa fa-check"></i><b>19</b> Conditional quantiles<span></span></a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>22.1</b> Selecting data by date</a></li>
-<li class="chapter" data-level="22.2" data-path="sec-utility.html"><a href="sec-utility.html#sec:cutData"><i class="fa fa-check"></i><b>22.2</b> Making intervals — cutData</a></li>
-<li class="chapter" data-level="22.3" data-path="sec-utility.html"><a href="sec-utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>22.3</b> Selecting run lengths of values above a threshold — pollution episodes</a></li>
-<li class="chapter" data-level="22.4" data-path="sec-utility.html"><a href="sec-utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>22.4</b> Calculating rolling means</a></li>
-<li class="chapter" data-level="22.5" data-path="sec-utility.html"><a href="sec-utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>22.5</b> Aggregating data by different time intervals</a></li>
-<li class="chapter" data-level="22.6" data-path="sec-utility.html"><a href="sec-utility.html#sec:calcPercentile"><i class="fa fa-check"></i><b>22.6</b> Calculating percentiles</a></li>
-<li class="chapter" data-level="22.7" data-path="sec-utility.html"><a href="sec-utility.html#sec:corPlot"><i class="fa fa-check"></i><b>22.7</b> Correlation matrices</a></li>
+<li class="chapter" data-level="19.1" data-path="sec:conditionalQuantile.html"><a href="sec:conditionalQuantile.html#sec:conditionalQuantileBack"><i class="fa fa-check"></i><b>19.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="19.2" data-path="sec:conditionalQuantile.html"><a href="sec:conditionalQuantile.html#sec:conditionalEval"><i class="fa fa-check"></i><b>19.2</b> Conditional evaluation<span></span></a></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html"><i class="fa fa-check"></i><b>A</b> Annotating openair plots</a>
+<li class="chapter" data-level="20" data-path="sec:modStats.html"><a href="sec:modStats.html"><i class="fa fa-check"></i><b>20</b> Model evaluation<span></span></a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text"><i class="fa fa-check"></i><b>A.1</b> Adding text</a></li>
-<li class="chapter" data-level="A.2" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text-and-a-shaded-area"><i class="fa fa-check"></i><b>A.2</b> Adding text and a shaded area</a></li>
-<li class="chapter" data-level="A.3" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-an-arrow"><i class="fa fa-check"></i><b>A.3</b> Adding an arrow</a></li>
-<li class="chapter" data-level="A.4" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-a-reference-line-and-text"><i class="fa fa-check"></i><b>A.4</b> Adding a reference line and text</a></li>
-<li class="chapter" data-level="A.5" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#highlight-a-specific-point"><i class="fa fa-check"></i><b>A.5</b> Highlight a specific point</a></li>
-<li class="chapter" data-level="A.6" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-a-filled-polygon"><i class="fa fa-check"></i><b>A.6</b> Add a filled polygon</a></li>
-<li class="chapter" data-level="A.7" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons"><i class="fa fa-check"></i><b>A.7</b> Add air quality bands as polygons</a></li>
-<li class="chapter" data-level="A.8" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#polar-plot-examples-1"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples</a></li>
-<li class="chapter" data-level="A.9" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively"><i class="fa fa-check"></i><b>A.9</b> Using grid graphics — identify locations interactively</a></li>
+<li class="chapter" data-level="20.1" data-path="sec:modStats.html"><a href="sec:modStats.html#sec:ModBack"><i class="fa fa-check"></i><b>20.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="20.2" data-path="sec:modStats.html"><a href="sec:modStats.html#sec:ModEx"><i class="fa fa-check"></i><b>20.2</b> Example of use<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="sec-prod-hyspl-traj.html"><a href="sec-prod-hyspl-traj.html"><i class="fa fa-check"></i><b>B</b> Production of HYSPLIT trajectory files</a></li>
-<li class="chapter" data-level="C" data-path="sec-trends-gam.html"><a href="sec-trends-gam.html"><i class="fa fa-check"></i><b>C</b> A closer look at trends</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="21" data-path="sec:TaylorDiagram.html"><a href="sec:TaylorDiagram.html"><i class="fa fa-check"></i><b>21</b> Taylor Diagam<span></span></a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="sec:TaylorDiagram.html"><a href="sec:TaylorDiagram.html#sec:TaylorBack"><i class="fa fa-check"></i><b>21.1</b> Background<span></span></a></li>
+<li class="chapter" data-level="21.2" data-path="sec:TaylorDiagram.html"><a href="sec:TaylorDiagram.html#examples-of-taylor-diagrams"><i class="fa fa-check"></i><b>21.2</b> Examples of Taylor Diagrams<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="sec:utility.html"><a href="sec:utility.html"><i class="fa fa-check"></i><b>22</b> Utility functions<span></span></a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="sec:utility.html"><a href="sec:utility.html#sec:selectByDate"><i class="fa fa-check"></i><b>22.1</b> Selecting data by date<span></span></a></li>
+<li class="chapter" data-level="22.2" data-path="sec:utility.html"><a href="sec:utility.html#sec:cutData"><i class="fa fa-check"></i><b>22.2</b> Making intervals — cutData<span></span></a></li>
+<li class="chapter" data-level="22.3" data-path="sec:utility.html"><a href="sec:utility.html#sec:selectRunning"><i class="fa fa-check"></i><b>22.3</b> Selecting run lengths of values above a threshold — pollution episodes<span></span></a></li>
+<li class="chapter" data-level="22.4" data-path="sec:utility.html"><a href="sec:utility.html#sec:rollingMean"><i class="fa fa-check"></i><b>22.4</b> Calculating rolling means<span></span></a></li>
+<li class="chapter" data-level="22.5" data-path="sec:utility.html"><a href="sec:utility.html#sec:timeAverage"><i class="fa fa-check"></i><b>22.5</b> Aggregating data by different time intervals<span></span></a></li>
+<li class="chapter" data-level="22.6" data-path="sec:utility.html"><a href="sec:utility.html#sec:calcPercentile"><i class="fa fa-check"></i><b>22.6</b> Calculating percentiles<span></span></a></li>
+<li class="chapter" data-level="22.7" data-path="sec:utility.html"><a href="sec:utility.html#sec:corPlot"><i class="fa fa-check"></i><b>22.7</b> Correlation matrices<span></span></a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix<span></span></b></span></li>
+<li class="chapter" data-level="A" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html"><i class="fa fa-check"></i><b>A</b> Annotating openair plots<span></span></a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text"><i class="fa fa-check"></i><b>A.1</b> Adding text<span></span></a></li>
+<li class="chapter" data-level="A.2" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-text-and-a-shaded-area"><i class="fa fa-check"></i><b>A.2</b> Adding text and a shaded area<span></span></a></li>
+<li class="chapter" data-level="A.3" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-an-arrow"><i class="fa fa-check"></i><b>A.3</b> Adding an arrow<span></span></a></li>
+<li class="chapter" data-level="A.4" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#adding-a-reference-line-and-text"><i class="fa fa-check"></i><b>A.4</b> Adding a reference line and text<span></span></a></li>
+<li class="chapter" data-level="A.5" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#highlight-a-specific-point"><i class="fa fa-check"></i><b>A.5</b> Highlight a specific point<span></span></a></li>
+<li class="chapter" data-level="A.6" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-a-filled-polygon"><i class="fa fa-check"></i><b>A.6</b> Add a filled polygon<span></span></a></li>
+<li class="chapter" data-level="A.7" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons"><i class="fa fa-check"></i><b>A.7</b> Add air quality bands as polygons<span></span></a></li>
+<li class="chapter" data-level="A.8" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#polar-plot-examples-1"><i class="fa fa-check"></i><b>A.8</b> Polar plot examples<span></span></a></li>
+<li class="chapter" data-level="A.9" data-path="annotating-openair-plots.html"><a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively"><i class="fa fa-check"></i><b>A.9</b> Using grid graphics — identify locations interactively<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="sec:prod-hyspl-traj.html"><a href="sec:prod-hyspl-traj.html"><i class="fa fa-check"></i><b>B</b> Production of HYSPLIT trajectory files<span></span></a></li>
+<li class="chapter" data-level="C" data-path="sec:trends-gam.html"><a href="sec:trends-gam.html"><i class="fa fa-check"></i><b>C</b> A closer look at trends<span></span></a></li>
+<li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -337,8 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="annotating-openair-plots" class="section level1" number="23">
-<h1><span class="header-section-number">A</span> Annotating openair plots</h1>
+<div id="annotating-openair-plots" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">A</span> Annotating openair plots<a href="annotating-openair-plots.html#annotating-openair-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>A frequently asked question about <span class="pkg">openair</span> and requested feature is
 how to annotate plots. While all <span class="pkg">openair</span> functions could have options
 to allow annotations to be made, this would make the functions
@@ -347,9 +342,8 @@ able to annotate plots in lots of different ways. Fortunately there
 are existing functions in packages such as <span class="pkg">lattice</span> and
 <span class="pkg">latticeExtra</span> that allow for plots to be updated. An example of
 the sorts of annotation that are possible is shown in Figure
-<a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a>, which is an enhanced version of Figure
-<a href="sec-timePlot.html#fig:timePlot">10.1</a>. These annotations have been subsequently added
-to Figure <a href="sec-timePlot.html#fig:timePlot">10.1</a> and built up in layers. This section
+<a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a>, which is an enhanced version of a <code>timePlot</code> Figure. These annotations have been subsequently added
+to a basic plot and built up in layers. This section
 considers how to annotate <span class="pkg">openair</span> plots more generally and uses Figure
 <a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a> as an example of the types of
 annotation possible. Also considered specifically is the annotation of
@@ -364,21 +358,15 @@ being the coordinate system used in each case.</p>
 <p>The basis of <span class="pkg">openair</span> annotations is through the use of the
 <span class="pkg">latticeExtra</span> package, which should already be installed as part
 of <span class="pkg">openair</span>. In that package there is a function called <code>layer</code>
-that effectively allows annotations to be built up ‘layer by layer.’</p>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## 
-## Attaching package: &#39;latticeExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     layer</code></pre>
-<div class="figure"><span id="fig:timePlotAnnotate"></span>
+that effectively allows annotations to be built up ‘layer by layer’.</p>
+<div class="figure"><span style="display:block;" id="fig:timePlotAnnotate"></span>
 <img src="openair_files/figure-html/timePlotAnnotate-1.png" alt="Annotations added to the `timePlot` output." width="960" />
 <p class="caption">
 Figure A.1: Annotations added to the <code>timePlot</code> output.
 </p>
 </div>
-<div id="adding-text" class="section level2" number="23.1">
-<h2><span class="header-section-number">A.1</span> Adding text</h2>
+<div id="adding-text" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">A.1</span> Adding text<a href="annotating-openair-plots.html#adding-text" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To add text (or other annotations) it is necessary to know the
 coordinates on a plot for where the text will go, which will depend on
 the data plotted. In this extended example using the <code>timePlot</code>
@@ -393,17 +381,18 @@ plot such as Figure <a href="annotating-openair-plots.html#fig:timePlotAnnotate"
 specify which rows/columns should be added to. If they are not
 specified then the annotation will appear in all panels.</p>
 <p>First, a plot should be produced to which we wish to add some text.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="annotating-openair-plots.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make sure latticeExtra is loaded</span></span>
-<span id="cb304-2"><a href="annotating-openair-plots.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
-<span id="cb304-3"><a href="annotating-openair-plots.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb304-4"><a href="annotating-openair-plots.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latticeExtra)</span>
-<span id="cb304-5"><a href="annotating-openair-plots.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="fu">timePlot</span>(<span class="fu">selectByDate</span>(mydata, <span class="at">year =</span> <span class="dv">2003</span>, <span class="at">month =</span> <span class="st">&quot;aug&quot;</span>),</span>
-<span id="cb304-6"><a href="annotating-openair-plots.html#cb304-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">pollutant =</span> <span class="fu">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;pm25&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;ws&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="annotating-openair-plots.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make sure latticeExtra is loaded</span></span>
+<span id="cb1-2"><a href="annotating-openair-plots.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span>
+<span id="cb1-3"><a href="annotating-openair-plots.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="annotating-openair-plots.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(latticeExtra)</span>
+<span id="cb1-5"><a href="annotating-openair-plots.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">timePlot</span>(<span class="fu">selectByDate</span>(mydata, <span class="at">year =</span> <span class="dv">2003</span>, <span class="at">month =</span> <span class="st">&quot;aug&quot;</span>),</span>
+<span id="cb1-6"><a href="annotating-openair-plots.html#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">pollutant =</span> <span class="fu">c</span>(<span class="st">&quot;nox&quot;</span>, <span class="st">&quot;o3&quot;</span>, <span class="st">&quot;pm25&quot;</span>, <span class="st">&quot;pm10&quot;</span>, <span class="st">&quot;ws&quot;</span>),</span>
+<span id="cb1-7"><a href="annotating-openair-plots.html#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y.relation =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p>So, considering <a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a>, this is how the text
 `some missing data’ was added to the top panel.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="annotating-openair-plots.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb305-2"><a href="annotating-openair-plots.html#cb305-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd</span>(<span class="st">&quot;2003-08-04&quot;</span>), <span class="at">y =</span> <span class="dv">200</span>,</span>
-<span id="cb305-3"><a href="annotating-openair-plots.html#cb305-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;some missing data&quot;</span>), <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="annotating-openair-plots.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb2-2"><a href="annotating-openair-plots.html#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-04 12:00&quot;</span>), <span class="at">y =</span> <span class="dv">200</span>,</span>
+<span id="cb2-3"><a href="annotating-openair-plots.html#cb2-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;some missing data&quot;</span>), <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>So what does this do? First, the <code>trellis.last.object()</code> is simply
 the last plot that was plotted. Next the <code>layer</code> function is used
 to add some text. The text itself is added using the <code>ltext</code>
@@ -415,8 +404,8 @@ other options. We have chosen to plot the text at position x =
 positions below (the default), to the left of, above and to the right
 of the specified coordinates</p>
 </div>
-<div id="adding-text-and-a-shaded-area" class="section level2" number="23.2">
-<h2><span class="header-section-number">A.2</span> Adding text and a shaded area</h2>
+<div id="adding-text-and-a-shaded-area" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">A.2</span> Adding text and a shaded area<a href="annotating-openair-plots.html#adding-text-and-a-shaded-area" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This time we will highlight an interval in row 2 (O<sub>3</sub>) and write
 some text on top. Note that this time we use the <code>lpolygon</code>
 function and choose to put it under everything else on the plot. For
@@ -427,51 +416,51 @@ cover the whole region.</p>
 <p>The polygon could of course be horizontal and more than one producing
 a series of ‘bands’ e.g. air quality indexes. A more sophisticated
 approach is shown later for PM<sub>2.5</sub></p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="annotating-openair-plots.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add shaded polygon</span></span>
-<span id="cb306-2"><a href="annotating-openair-plots.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb306-3"><a href="annotating-openair-plots.html#cb306-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>),</span>
-<span id="cb306-4"><a href="annotating-openair-plots.html#cb306-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd</span>(<span class="st">&quot;2003-08-07&quot;</span>), <span class="fu">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>),</span>
-<span id="cb306-5"><a href="annotating-openair-plots.html#cb306-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd</span>(<span class="st">&quot;2003-08-12&quot;</span>)), <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">600</span>, <span class="dv">600</span>, <span class="sc">-</span><span class="dv">20</span>),</span>
-<span id="cb306-6"><a href="annotating-openair-plots.html#cb306-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>), <span class="at">under =</span> <span class="cn">TRUE</span>, <span class="at">rows =</span> <span class="dv">2</span>)</span>
-<span id="cb306-7"><a href="annotating-openair-plots.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="do">## add text</span></span>
-<span id="cb306-8"><a href="annotating-openair-plots.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb306-9"><a href="annotating-openair-plots.html#cb306-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-09 12:00&quot;</span>), <span class="at">y =</span> <span class="dv">50</span>,</span>
-<span id="cb306-10"><a href="annotating-openair-plots.html#cb306-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;!!episode!!&quot;</span>, <span class="at">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
-<span id="cb306-11"><a href="annotating-openair-plots.html#cb306-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">font =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.5</span>), <span class="at">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="annotating-openair-plots.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add shaded polygon</span></span>
+<span id="cb3-2"><a href="annotating-openair-plots.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="annotating-openair-plots.html#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-07 00:00&quot;</span>),</span>
+<span id="cb3-4"><a href="annotating-openair-plots.html#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-07 00:00&quot;</span>), <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-12 00:00&quot;</span>),</span>
+<span id="cb3-5"><a href="annotating-openair-plots.html#cb3-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-12 00:00&quot;</span>)), <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">600</span>, <span class="dv">600</span>, <span class="sc">-</span><span class="dv">20</span>),</span>
+<span id="cb3-6"><a href="annotating-openair-plots.html#cb3-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>), <span class="at">under =</span> <span class="cn">TRUE</span>, <span class="at">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="annotating-openair-plots.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## add text</span></span>
+<span id="cb3-8"><a href="annotating-openair-plots.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="annotating-openair-plots.html#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-09 12:00&quot;</span>), <span class="at">y =</span> <span class="dv">50</span>,</span>
+<span id="cb3-10"><a href="annotating-openair-plots.html#cb3-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;!!episode!!&quot;</span>, <span class="at">col =</span> <span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb3-11"><a href="annotating-openair-plots.html#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">font =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">1.5</span>), <span class="at">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>The small shaded, semi-transparent area shown in the bottom panel was
 added as follows:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="annotating-openair-plots.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add shaded polygon</span></span>
-<span id="cb307-2"><a href="annotating-openair-plots.html#cb307-2" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span></span>
-<span id="cb307-3"><a href="annotating-openair-plots.html#cb307-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>), <span class="fu">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>),</span>
-<span id="cb307-4"><a href="annotating-openair-plots.html#cb307-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>), <span class="fu">ymd</span>(<span class="st">&quot;2003-08-23&quot;</span>)),</span>
-<span id="cb307-5"><a href="annotating-openair-plots.html#cb307-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>,</span>
-<span id="cb307-6"><a href="annotating-openair-plots.html#cb307-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha =</span> <span class="fl">0.2</span>), <span class="at">rows =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="annotating-openair-plots.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add shaded polygon</span></span>
+<span id="cb4-2"><a href="annotating-openair-plots.html#cb4-2" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span></span>
+<span id="cb4-3"><a href="annotating-openair-plots.html#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>), <span class="fu">ymd</span>(<span class="st">&quot;2003-08-21&quot;</span>),</span>
+<span id="cb4-4"><a href="annotating-openair-plots.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-23 00:00&quot;</span>), <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-23 00:00&quot;</span>)),</span>
+<span id="cb4-5"><a href="annotating-openair-plots.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">4</span>), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb4-6"><a href="annotating-openair-plots.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">alpha =</span> <span class="fl">0.2</span>), <span class="at">rows =</span> <span class="dv">5</span>)</span></code></pre></div>
 </div>
-<div id="adding-an-arrow" class="section level2" number="23.3">
-<h2><span class="header-section-number">A.3</span> Adding an arrow</h2>
+<div id="adding-an-arrow" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">A.3</span> Adding an arrow<a href="annotating-openair-plots.html#adding-an-arrow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The arrow shown on the first panel of Figure <a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a>
 was added as follows. Note the <code>code = 3</code> placed arrows at both
 ends. Note that <code>angle</code> is the angle from the shaft of the arrow to
 the edge of the arrow head.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="annotating-openair-plots.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb308-2"><a href="annotating-openair-plots.html#cb308-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">larrows</span>(<span class="fu">ymd</span>(<span class="st">&quot;2003-08-01&quot;</span>), <span class="dv">100</span>,</span>
-<span id="cb308-3"><a href="annotating-openair-plots.html#cb308-3" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-08 14:00&quot;</span>),</span>
-<span id="cb308-4"><a href="annotating-openair-plots.html#cb308-4" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">100</span>, <span class="at">code =</span> <span class="dv">3</span>, <span class="at">angle =</span> <span class="dv">30</span>), <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="annotating-openair-plots.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb5-2"><a href="annotating-openair-plots.html#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">larrows</span>(<span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-01 00:00&quot;</span>), <span class="dv">100</span>,</span>
+<span id="cb5-3"><a href="annotating-openair-plots.html#cb5-3" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-08 14:00&quot;</span>),</span>
+<span id="cb5-4"><a href="annotating-openair-plots.html#cb5-4" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">100</span>, <span class="at">code =</span> <span class="dv">3</span>, <span class="at">angle =</span> <span class="dv">30</span>), <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="adding-a-reference-line-and-text" class="section level2" number="23.4">
-<h2><span class="header-section-number">A.4</span> Adding a reference line and text</h2>
+<div id="adding-a-reference-line-and-text" class="section level2 hasAnchor" number="23.4">
+<h2><span class="header-section-number">A.4</span> Adding a reference line and text<a href="annotating-openair-plots.html#adding-a-reference-line-and-text" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This code adds a vertical dashed reference line shown in the 4th panel
 (PM<sub>10</sub>) along with some text aligned at 90 degrees using the
 <code>srt</code> option of <code>ltext</code>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="annotating-openair-plots.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb309-2"><a href="annotating-openair-plots.html#cb309-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">panel.abline</span>(<span class="at">v =</span> <span class="fu">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>), <span class="at">lty =</span> <span class="dv">5</span>),</span>
-<span id="cb309-3"><a href="annotating-openair-plots.html#cb309-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">4</span>)</span>
-<span id="cb309-4"><a href="annotating-openair-plots.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb309-5"><a href="annotating-openair-plots.html#cb309-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-25 08:00&quot;</span>), <span class="at">y =</span> <span class="dv">60</span>,</span>
-<span id="cb309-6"><a href="annotating-openair-plots.html#cb309-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;reference line&quot;</span>, <span class="at">srt =</span> <span class="dv">90</span>), <span class="at">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="annotating-openair-plots.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="annotating-openair-plots.html#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">panel.abline</span>(<span class="at">v =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-25 00:00&quot;</span>), <span class="at">lty =</span> <span class="dv">5</span>),</span>
+<span id="cb6-3"><a href="annotating-openair-plots.html#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">4</span>)</span>
+<span id="cb6-4"><a href="annotating-openair-plots.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="annotating-openair-plots.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="at">x =</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-25 08:00&quot;</span>), <span class="at">y =</span> <span class="dv">60</span>,</span>
+<span id="cb6-6"><a href="annotating-openair-plots.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="st">&quot;reference line&quot;</span>, <span class="at">srt =</span> <span class="dv">90</span>), <span class="at">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
 </div>
-<div id="highlight-a-specific-point" class="section level2" number="23.5">
-<h2><span class="header-section-number">A.5</span> Highlight a specific point</h2>
+<div id="highlight-a-specific-point" class="section level2 hasAnchor" number="23.5">
+<h2><span class="header-section-number">A.5</span> Highlight a specific point<a href="annotating-openair-plots.html#highlight-a-specific-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Up until now annotations have been added using arbitrary coordinates in
 each panel. What if we wanted to highlight a particular point, or more
 generally work with the actual data that are plotted. Knowing how to
@@ -480,28 +469,28 @@ refer to existing data greatly extends the power of these functions.</p>
 indexing the point of interest i.e. <code>x</code>, <code>y</code>. For example, to
 mark the 200th PM<sub>10</sub> concentration (without knowing the actual date
 or value):</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="annotating-openair-plots.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add a specfic point</span></span>
-<span id="cb310-2"><a href="annotating-openair-plots.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb310-3"><a href="annotating-openair-plots.html#cb310-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpoints</span>(x[<span class="dv">200</span>], y[<span class="dv">200</span>], <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">1.5</span>),</span>
-<span id="cb310-4"><a href="annotating-openair-plots.html#cb310-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="annotating-openair-plots.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add a specfic point</span></span>
+<span id="cb7-2"><a href="annotating-openair-plots.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="annotating-openair-plots.html#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpoints</span>(x[<span class="dv">200</span>], y[<span class="dv">200</span>], <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">1.5</span>),</span>
+<span id="cb7-4"><a href="annotating-openair-plots.html#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>What if we wanted to highlight the maximum O<sub>3</sub> concentration? It is
 possible to work out the index first and then use that to refer to
 that point. Note the <code>}</code> to allow for the code to span multiple
 commands.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="annotating-openair-plots.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add a point to the max O3 concentration</span></span>
-<span id="cb311-2"><a href="annotating-openair-plots.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb311-3"><a href="annotating-openair-plots.html#cb311-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({maxy <span class="ot">&lt;-</span> <span class="fu">which.max</span>(y);</span>
-<span id="cb311-4"><a href="annotating-openair-plots.html#cb311-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">lpoints</span>(x[maxy], y[maxy], <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)},</span>
-<span id="cb311-5"><a href="annotating-openair-plots.html#cb311-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">2</span>)</span>
-<span id="cb311-6"><a href="annotating-openair-plots.html#cb311-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb311-7"><a href="annotating-openair-plots.html#cb311-7" aria-hidden="true" tabindex="-1"></a><span class="do">## label max ozone</span></span>
-<span id="cb311-8"><a href="annotating-openair-plots.html#cb311-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb311-9"><a href="annotating-openair-plots.html#cb311-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({maxy <span class="ot">&lt;-</span> <span class="fu">which.max</span>(y);</span>
-<span id="cb311-10"><a href="annotating-openair-plots.html#cb311-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">ltext</span>(x[maxy], y[maxy], <span class="fu">paste</span>(y[maxy], <span class="st">&quot;ppb&quot;</span>),</span>
-<span id="cb311-11"><a href="annotating-openair-plots.html#cb311-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">pos =</span> <span class="dv">4</span>)}, <span class="at">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="annotating-openair-plots.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## add a point to the max O3 concentration</span></span>
+<span id="cb8-2"><a href="annotating-openair-plots.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="annotating-openair-plots.html#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({maxy <span class="ot">&lt;-</span> <span class="fu">which.max</span>(y);</span>
+<span id="cb8-4"><a href="annotating-openair-plots.html#cb8-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">lpoints</span>(x[maxy], y[maxy], <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>)},</span>
+<span id="cb8-5"><a href="annotating-openair-plots.html#cb8-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb8-6"><a href="annotating-openair-plots.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="annotating-openair-plots.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">## label max ozone</span></span>
+<span id="cb8-8"><a href="annotating-openair-plots.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb8-9"><a href="annotating-openair-plots.html#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({maxy <span class="ot">&lt;-</span> <span class="fu">which.max</span>(y);</span>
+<span id="cb8-10"><a href="annotating-openair-plots.html#cb8-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">ltext</span>(x[maxy], y[maxy], <span class="fu">paste</span>(y[maxy], <span class="st">&quot;ppb&quot;</span>),</span>
+<span id="cb8-11"><a href="annotating-openair-plots.html#cb8-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">pos =</span> <span class="dv">4</span>)}, <span class="at">rows =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="add-a-filled-polygon" class="section level2" number="23.6">
-<h2><span class="header-section-number">A.6</span> Add a filled polygon</h2>
+<div id="add-a-filled-polygon" class="section level2 hasAnchor" number="23.6">
+<h2><span class="header-section-number">A.6</span> Add a filled polygon<a href="annotating-openair-plots.html#add-a-filled-polygon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It can be seen in the top panel of Figure <a href="annotating-openair-plots.html#fig:timePlotAnnotate">A.1</a> that
 some data are highlighted by filling the area below the line. This
 approach can be useful more generally in plotting. While it is
@@ -509,47 +498,47 @@ possible to draw polygons easily and refer to the data itself, there
 needs to be a way for dealing with gaps in data, otherwise these gaps
 could be filled in perhaps unpredictable ways. A function has been
 written to draw a polygon taking into account gaps (<code>poly.na</code>).</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="annotating-openair-plots.html#cb312-1" aria-hidden="true" tabindex="-1"></a>poly.na <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) {</span>
-<span id="cb312-2"><a href="annotating-openair-plots.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">length</span>(x1)))</span>
-<span id="cb312-3"><a href="annotating-openair-plots.html#cb312-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">any</span>(<span class="fu">is.na</span>(y2[<span class="fu">c</span>(i <span class="sc">-</span> <span class="dv">1</span>, i)])))</span>
-<span id="cb312-4"><a href="annotating-openair-plots.html#cb312-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lpolygon</span>(<span class="fu">c</span>(x1[i <span class="sc">-</span> <span class="dv">1</span>], x1[i], x2[i], x2[i <span class="sc">-</span> <span class="dv">1</span>]),</span>
-<span id="cb312-5"><a href="annotating-openair-plots.html#cb312-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(y1[i <span class="sc">-</span> <span class="dv">1</span>], y1[i], y2[i], y2[i <span class="sc">-</span> <span class="dv">1</span>]),</span>
-<span id="cb312-6"><a href="annotating-openair-plots.html#cb312-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">col =</span> col, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> alpha)</span>
-<span id="cb312-7"><a href="annotating-openair-plots.html#cb312-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="annotating-openair-plots.html#cb9-1" aria-hidden="true" tabindex="-1"></a>poly.na <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, y1, x2, y2, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) {</span>
+<span id="cb9-2"><a href="annotating-openair-plots.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="fu">length</span>(x1)))</span>
+<span id="cb9-3"><a href="annotating-openair-plots.html#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">any</span>(<span class="fu">is.na</span>(y2[<span class="fu">c</span>(i <span class="sc">-</span> <span class="dv">1</span>, i)])))</span>
+<span id="cb9-4"><a href="annotating-openair-plots.html#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lpolygon</span>(<span class="fu">c</span>(x1[i <span class="sc">-</span> <span class="dv">1</span>], x1[i], x2[i], x2[i <span class="sc">-</span> <span class="dv">1</span>]),</span>
+<span id="cb9-5"><a href="annotating-openair-plots.html#cb9-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">c</span>(y1[i <span class="sc">-</span> <span class="dv">1</span>], y1[i], y2[i], y2[i <span class="sc">-</span> <span class="dv">1</span>]),</span>
+<span id="cb9-6"><a href="annotating-openair-plots.html#cb9-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">col =</span> col, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> alpha)</span>
+<span id="cb9-7"><a href="annotating-openair-plots.html#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This time we work out the ids of the data spanning an area of
 interest. Then the <code>poly.na</code> function is used. Note that the alpha
 transparency is by default 0.2 but another value can easily be
-supplied, as shown in the air quality `bands’ example.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="annotating-openair-plots.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb313-2"><a href="annotating-openair-plots.html#cb313-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({id <span class="ot">&lt;-</span> <span class="fu">which</span>(x <span class="sc">&gt;=</span> <span class="fu">ymd</span>(<span class="st">&quot;2003-08-11&quot;</span>) <span class="sc">&amp;</span></span>
-<span id="cb313-3"><a href="annotating-openair-plots.html#cb313-3" aria-hidden="true" tabindex="-1"></a>                       x <span class="sc">&lt;=</span> <span class="fu">ymd</span>(<span class="st">&quot;2003-08-25&quot;</span>));</span>
-<span id="cb313-4"><a href="annotating-openair-plots.html#cb313-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">poly.na</span>(x[id], y[id], x[id], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(id)),</span>
-<span id="cb313-5"><a href="annotating-openair-plots.html#cb313-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>)}, <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
+supplied, as shown in the air quality ‘bands’ example.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="annotating-openair-plots.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb10-2"><a href="annotating-openair-plots.html#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>({id <span class="ot">&lt;-</span> <span class="fu">which</span>(x <span class="sc">&gt;=</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-11 00:00&quot;</span>) <span class="sc">&amp;</span></span>
+<span id="cb10-3"><a href="annotating-openair-plots.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                       x <span class="sc">&lt;=</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2003-08-25 00:00&quot;</span>));</span>
+<span id="cb10-4"><a href="annotating-openair-plots.html#cb10-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">poly.na</span>(x[id], y[id], x[id], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(id)),</span>
+<span id="cb10-5"><a href="annotating-openair-plots.html#cb10-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>)}, <span class="at">rows =</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="add-air-quality-bands-as-polygons" class="section level2" number="23.7">
-<h2><span class="header-section-number">A.7</span> Add air quality bands as polygons</h2>
+<div id="add-air-quality-bands-as-polygons" class="section level2 hasAnchor" number="23.7">
+<h2><span class="header-section-number">A.7</span> Add air quality bands as polygons<a href="annotating-openair-plots.html#add-air-quality-bands-as-polygons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is a simple extension to go from using a polygon below the data to
 polygons at certain intervals e.g. air quality indexes. These are
 shown for PM<sub>2.5</sub> and the bands considered are 0–20, 20–30, 30–40
 and &gt;40.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="annotating-openair-plots.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb314-2"><a href="annotating-openair-plots.html#cb314-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, y, x, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(x)),</span>
-<span id="cb314-3"><a href="annotating-openair-plots.html#cb314-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb314-4"><a href="annotating-openair-plots.html#cb314-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb314-5"><a href="annotating-openair-plots.html#cb314-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">20</span>, <span class="cn">NA</span>, y), x,</span>
-<span id="cb314-6"><a href="annotating-openair-plots.html#cb314-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">rep</span>(<span class="dv">20</span>, <span class="fu">length</span>(x)), <span class="at">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>),</span>
-<span id="cb314-7"><a href="annotating-openair-plots.html#cb314-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb314-8"><a href="annotating-openair-plots.html#cb314-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb314-9"><a href="annotating-openair-plots.html#cb314-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">30</span>, <span class="cn">NA</span>, y),</span>
-<span id="cb314-10"><a href="annotating-openair-plots.html#cb314-10" aria-hidden="true" tabindex="-1"></a>                  x, <span class="fu">rep</span>(<span class="dv">30</span>, <span class="fu">length</span>(x)),</span>
-<span id="cb314-11"><a href="annotating-openair-plots.html#cb314-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span>
-<span id="cb314-12"><a href="annotating-openair-plots.html#cb314-12" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb314-13"><a href="annotating-openair-plots.html#cb314-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">40</span>, <span class="cn">NA</span>, y),</span>
-<span id="cb314-14"><a href="annotating-openair-plots.html#cb314-14" aria-hidden="true" tabindex="-1"></a>                  x, <span class="fu">rep</span>(<span class="dv">40</span>, <span class="fu">length</span>(x)),</span>
-<span id="cb314-15"><a href="annotating-openair-plots.html#cb314-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="annotating-openair-plots.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb11-2"><a href="annotating-openair-plots.html#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, y, x, <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">length</span>(x)),</span>
+<span id="cb11-3"><a href="annotating-openair-plots.html#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="annotating-openair-plots.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="annotating-openair-plots.html#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">20</span>, <span class="cn">NA</span>, y), x,</span>
+<span id="cb11-6"><a href="annotating-openair-plots.html#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">rep</span>(<span class="dv">20</span>, <span class="fu">length</span>(x)), <span class="at">col =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>),</span>
+<span id="cb11-7"><a href="annotating-openair-plots.html#cb11-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb11-8"><a href="annotating-openair-plots.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="annotating-openair-plots.html#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">30</span>, <span class="cn">NA</span>, y),</span>
+<span id="cb11-10"><a href="annotating-openair-plots.html#cb11-10" aria-hidden="true" tabindex="-1"></a>                  x, <span class="fu">rep</span>(<span class="dv">30</span>, <span class="fu">length</span>(x)),</span>
+<span id="cb11-11"><a href="annotating-openair-plots.html#cb11-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span>
+<span id="cb11-12"><a href="annotating-openair-plots.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb11-13"><a href="annotating-openair-plots.html#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">poly.na</span>(x, <span class="fu">ifelse</span>(y <span class="sc">&lt;</span><span class="dv">40</span>, <span class="cn">NA</span>, y),</span>
+<span id="cb11-14"><a href="annotating-openair-plots.html#cb11-14" aria-hidden="true" tabindex="-1"></a>                  x, <span class="fu">rep</span>(<span class="dv">40</span>, <span class="fu">length</span>(x)),</span>
+<span id="cb11-15"><a href="annotating-openair-plots.html#cb11-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="dv">1</span>), <span class="at">rows =</span> <span class="dv">3</span>)</span></code></pre></div>
 </div>
-<div id="polar-plot-examples-1" class="section level2" number="23.8">
-<h2><span class="header-section-number">A.8</span> Polar plot examples</h2>
+<div id="polar-plot-examples-1" class="section level2 hasAnchor" number="23.8">
+<h2><span class="header-section-number">A.8</span> Polar plot examples<a href="annotating-openair-plots.html#polar-plot-examples-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many of the examples considered above are relevant to all other
 functions e.g. how to add text, choosing rows and columns to plot
 in. Polar coordinate plots are different because of the coordinate
@@ -561,31 +550,31 @@ the angular area of interest and <code>lower</code> and <code>upper</code> to se
 lower and upper wind speed, respectively. It also has additional
 arguments <code>theta3</code> and <code>theta4</code> which optionally set the angles
 for the ‘upper’ wind speed.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="annotating-openair-plots.html#cb315-1" aria-hidden="true" tabindex="-1"></a>arc <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">theta1 =</span> <span class="dv">30</span>, <span class="at">theta2 =</span> <span class="dv">60</span>, <span class="at">theta3 =</span> theta1, <span class="at">theta4 =</span> theta2,</span>
-<span id="cb315-2"><a href="annotating-openair-plots.html#cb315-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lower =</span> <span class="dv">1</span>, <span class="at">upper =</span> <span class="dv">10</span>){</span>
-<span id="cb315-3"><a href="annotating-openair-plots.html#cb315-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## function to work out coordinates for an arc sector</span></span>
-<span id="cb315-4"><a href="annotating-openair-plots.html#cb315-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (theta2 <span class="sc">&lt;</span> theta1) {</span>
-<span id="cb315-5"><a href="annotating-openair-plots.html#cb315-5" aria-hidden="true" tabindex="-1"></a>    ang1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, <span class="dv">360</span>, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
-<span id="cb315-6"><a href="annotating-openair-plots.html#cb315-6" aria-hidden="true" tabindex="-1"></a>    ang2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
-<span id="cb315-7"><a href="annotating-openair-plots.html#cb315-7" aria-hidden="true" tabindex="-1"></a>    angles.low <span class="ot">&lt;-</span> <span class="fu">c</span>(ang1, ang2)</span>
-<span id="cb315-8"><a href="annotating-openair-plots.html#cb315-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-9"><a href="annotating-openair-plots.html#cb315-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## for upper angles</span></span>
-<span id="cb315-10"><a href="annotating-openair-plots.html#cb315-10" aria-hidden="true" tabindex="-1"></a>    ang1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, <span class="dv">360</span>, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
-<span id="cb315-11"><a href="annotating-openair-plots.html#cb315-11" aria-hidden="true" tabindex="-1"></a>    ang2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
-<span id="cb315-12"><a href="annotating-openair-plots.html#cb315-12" aria-hidden="true" tabindex="-1"></a>    angles.high <span class="ot">&lt;-</span> <span class="fu">c</span>(ang1, ang2)</span>
-<span id="cb315-13"><a href="annotating-openair-plots.html#cb315-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-14"><a href="annotating-openair-plots.html#cb315-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb315-15"><a href="annotating-openair-plots.html#cb315-15" aria-hidden="true" tabindex="-1"></a>    angles.low <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
-<span id="cb315-16"><a href="annotating-openair-plots.html#cb315-16" aria-hidden="true" tabindex="-1"></a>    angles.high <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta3, theta4, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
-<span id="cb315-17"><a href="annotating-openair-plots.html#cb315-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb315-18"><a href="annotating-openair-plots.html#cb315-18" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> lower <span class="sc">*</span> <span class="fu">sin</span>(pi <span class="sc">*</span> angles.low <span class="sc">/</span> <span class="dv">180</span>)</span>
-<span id="cb315-19"><a href="annotating-openair-plots.html#cb315-19" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> lower <span class="sc">*</span> <span class="fu">cos</span>(pi <span class="sc">*</span> angles.low <span class="sc">/</span> <span class="dv">180</span>)</span>
-<span id="cb315-20"><a href="annotating-openair-plots.html#cb315-20" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(upper <span class="sc">*</span> <span class="fu">sin</span>(pi <span class="sc">*</span> angles.high <span class="sc">/</span> <span class="dv">180</span>))</span>
-<span id="cb315-21"><a href="annotating-openair-plots.html#cb315-21" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(upper <span class="sc">*</span> <span class="fu">cos</span>(pi <span class="sc">*</span> angles.high <span class="sc">/</span> <span class="dv">180</span>))</span>
-<span id="cb315-22"><a href="annotating-openair-plots.html#cb315-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(x1, x2), <span class="at">y =</span> <span class="fu">c</span>(y1, y2))</span>
-<span id="cb315-23"><a href="annotating-openair-plots.html#cb315-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-24"><a href="annotating-openair-plots.html#cb315-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="figure"><span id="fig:annonatePolar"></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="annotating-openair-plots.html#cb12-1" aria-hidden="true" tabindex="-1"></a>arc <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">theta1 =</span> <span class="dv">30</span>, <span class="at">theta2 =</span> <span class="dv">60</span>, <span class="at">theta3 =</span> theta1, <span class="at">theta4 =</span> theta2,</span>
+<span id="cb12-2"><a href="annotating-openair-plots.html#cb12-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lower =</span> <span class="dv">1</span>, <span class="at">upper =</span> <span class="dv">10</span>){</span>
+<span id="cb12-3"><a href="annotating-openair-plots.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## function to work out coordinates for an arc sector</span></span>
+<span id="cb12-4"><a href="annotating-openair-plots.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (theta2 <span class="sc">&lt;</span> theta1) {</span>
+<span id="cb12-5"><a href="annotating-openair-plots.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    ang1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, <span class="dv">360</span>, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
+<span id="cb12-6"><a href="annotating-openair-plots.html#cb12-6" aria-hidden="true" tabindex="-1"></a>    ang2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
+<span id="cb12-7"><a href="annotating-openair-plots.html#cb12-7" aria-hidden="true" tabindex="-1"></a>    angles.low <span class="ot">&lt;-</span> <span class="fu">c</span>(ang1, ang2)</span>
+<span id="cb12-8"><a href="annotating-openair-plots.html#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="annotating-openair-plots.html#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="do">## for upper angles</span></span>
+<span id="cb12-10"><a href="annotating-openair-plots.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    ang1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, <span class="dv">360</span>, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
+<span id="cb12-11"><a href="annotating-openair-plots.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    ang2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
+<span id="cb12-12"><a href="annotating-openair-plots.html#cb12-12" aria-hidden="true" tabindex="-1"></a>    angles.high <span class="ot">&lt;-</span> <span class="fu">c</span>(ang1, ang2)</span>
+<span id="cb12-13"><a href="annotating-openair-plots.html#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="annotating-openair-plots.html#cb12-14" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb12-15"><a href="annotating-openair-plots.html#cb12-15" aria-hidden="true" tabindex="-1"></a>    angles.low <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta1, theta2, <span class="at">length =</span> <span class="fu">abs</span>(theta2 <span class="sc">-</span> theta1))</span>
+<span id="cb12-16"><a href="annotating-openair-plots.html#cb12-16" aria-hidden="true" tabindex="-1"></a>    angles.high <span class="ot">&lt;-</span> <span class="fu">seq</span>(theta3, theta4, <span class="at">length =</span> <span class="fu">abs</span>(theta4 <span class="sc">-</span> theta3))</span>
+<span id="cb12-17"><a href="annotating-openair-plots.html#cb12-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-18"><a href="annotating-openair-plots.html#cb12-18" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> lower <span class="sc">*</span> <span class="fu">sin</span>(pi <span class="sc">*</span> angles.low <span class="sc">/</span> <span class="dv">180</span>)</span>
+<span id="cb12-19"><a href="annotating-openair-plots.html#cb12-19" aria-hidden="true" tabindex="-1"></a>  y1 <span class="ot">&lt;-</span> lower <span class="sc">*</span> <span class="fu">cos</span>(pi <span class="sc">*</span> angles.low <span class="sc">/</span> <span class="dv">180</span>)</span>
+<span id="cb12-20"><a href="annotating-openair-plots.html#cb12-20" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(upper <span class="sc">*</span> <span class="fu">sin</span>(pi <span class="sc">*</span> angles.high <span class="sc">/</span> <span class="dv">180</span>))</span>
+<span id="cb12-21"><a href="annotating-openair-plots.html#cb12-21" aria-hidden="true" tabindex="-1"></a>  y2 <span class="ot">&lt;-</span> <span class="fu">rev</span>(upper <span class="sc">*</span> <span class="fu">cos</span>(pi <span class="sc">*</span> angles.high <span class="sc">/</span> <span class="dv">180</span>))</span>
+<span id="cb12-22"><a href="annotating-openair-plots.html#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(x1, x2), <span class="at">y =</span> <span class="fu">c</span>(y1, y2))</span>
+<span id="cb12-23"><a href="annotating-openair-plots.html#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="annotating-openair-plots.html#cb12-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:annonatePolar"></span>
 <img src="openair_files/figure-html/annonatePolar-1.png" alt="Annotations on a polar plot." width="50%" />
 <p class="caption">
 Figure A.2: Annotations on a polar plot.
@@ -598,19 +587,19 @@ middle of the plot and the radial distance will be determined by the
 wind speed — or whatever the radial variable is. This way of
 plotting arcs can also be applied to other functions that show
 directional data.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="annotating-openair-plots.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polarPlot</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="at">col =</span> <span class="st">&quot;jet&quot;</span>)</span>
-<span id="cb316-2"><a href="annotating-openair-plots.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="sc">-</span><span class="dv">12</span>, <span class="st">&quot;A&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>))</span>
-<span id="cb316-3"><a href="annotating-openair-plots.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="st">&quot;B&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;white&quot;</span>))</span>
-<span id="cb316-4"><a href="annotating-openair-plots.html#cb316-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">lsegments</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="fl">11.5</span>, <span class="sc">-</span><span class="fl">11.5</span>, <span class="at">lty =</span> <span class="dv">5</span>))</span>
-<span id="cb316-5"><a href="annotating-openair-plots.html#cb316-5" aria-hidden="true" tabindex="-1"></a><span class="do">## add and arc to highlight area of interest</span></span>
-<span id="cb316-6"><a href="annotating-openair-plots.html#cb316-6" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
-<span id="cb316-7"><a href="annotating-openair-plots.html#cb316-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">arc</span>(<span class="at">theta1 =</span> <span class="dv">60</span>, <span class="at">theta2 =</span> <span class="dv">120</span>, <span class="at">lower =</span> <span class="dv">2</span>,</span>
-<span id="cb316-8"><a href="annotating-openair-plots.html#cb316-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">upper =</span> <span class="dv">15</span>)<span class="sc">$</span>x, <span class="at">y =</span> <span class="fu">arc</span>(<span class="at">theta1 =</span> <span class="dv">60</span>,</span>
-<span id="cb316-9"><a href="annotating-openair-plots.html#cb316-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">theta2 =</span> <span class="dv">120</span>, <span class="at">lower =</span> <span class="dv">2</span>,</span>
-<span id="cb316-10"><a href="annotating-openair-plots.html#cb316-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">upper =</span> <span class="dv">15</span>)<span class="sc">$</span>y, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="annotating-openair-plots.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">polarPlot</span>(mydata, <span class="at">pollutant =</span> <span class="st">&quot;so2&quot;</span>, <span class="at">col =</span> <span class="st">&quot;jet&quot;</span>)</span>
+<span id="cb13-2"><a href="annotating-openair-plots.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="sc">-</span><span class="dv">12</span>, <span class="sc">-</span><span class="dv">12</span>, <span class="st">&quot;A&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>))</span>
+<span id="cb13-3"><a href="annotating-openair-plots.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">ltext</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="st">&quot;B&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;white&quot;</span>))</span>
+<span id="cb13-4"><a href="annotating-openair-plots.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span> <span class="fu">layer</span>(<span class="fu">lsegments</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="fl">11.5</span>, <span class="sc">-</span><span class="fl">11.5</span>, <span class="at">lty =</span> <span class="dv">5</span>))</span>
+<span id="cb13-5"><a href="annotating-openair-plots.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## add and arc to highlight area of interest</span></span>
+<span id="cb13-6"><a href="annotating-openair-plots.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">trellis.last.object</span>() <span class="sc">+</span></span>
+<span id="cb13-7"><a href="annotating-openair-plots.html#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer</span>(<span class="fu">lpolygon</span>(<span class="at">x =</span> <span class="fu">arc</span>(<span class="at">theta1 =</span> <span class="dv">60</span>, <span class="at">theta2 =</span> <span class="dv">120</span>, <span class="at">lower =</span> <span class="dv">2</span>,</span>
+<span id="cb13-8"><a href="annotating-openair-plots.html#cb13-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">upper =</span> <span class="dv">15</span>)<span class="sc">$</span>x, <span class="at">y =</span> <span class="fu">arc</span>(<span class="at">theta1 =</span> <span class="dv">60</span>,</span>
+<span id="cb13-9"><a href="annotating-openair-plots.html#cb13-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">theta2 =</span> <span class="dv">120</span>, <span class="at">lower =</span> <span class="dv">2</span>,</span>
+<span id="cb13-10"><a href="annotating-openair-plots.html#cb13-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">upper =</span> <span class="dv">15</span>)<span class="sc">$</span>y, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>))</span></code></pre></div>
 </div>
-<div id="using-grid-graphics-identify-locations-interactively" class="section level2" number="23.9">
-<h2><span class="header-section-number">A.9</span> Using grid graphics — identify locations interactively</h2>
+<div id="using-grid-graphics-identify-locations-interactively" class="section level2 hasAnchor" number="23.9">
+<h2><span class="header-section-number">A.9</span> Using grid graphics — identify locations interactively<a href="annotating-openair-plots.html#using-grid-graphics-identify-locations-interactively" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The examples above provide a precise way of annotating plots for
 single or multi-panels <span class="pkg">openair</span> displays. However, these methods won’t
 work for plots that consist of completely separate plots such as the
@@ -619,27 +608,27 @@ can be used to annotate such plots using the package <code>grid</code>, which
 forms the basis of <span class="pkg">lattice</span> graphics. There is enormous capability
 for annotating plots using the <code>grid</code> package and only a few simple
 examples are given here.</p>
-<p>Given a plot such as Figure <a href="sec-timeVariation.html#fig:timeVar1">11.1</a>, how could texts be added
+<p>Given a a basic <code>timeVariation</code> plot, how could texts be added
 at any location — say in the middle monthly plot? One very useful
 function for this type of annotation that allows the user to
 interactively choose a location is the <code>grid.locator()</code> function in
 the <code>grid</code> package. That function can be called with different
 coordinate systems — but the one we want defines the bottom-left
 corner as (0, 0) and the top right as (1, 1).</p>
-<p>First, make a <code>timeVariation</code> plot like Figure <a href="sec-timeVariation.html#fig:timeVar1">11.1</a>.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="annotating-openair-plots.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timeVariation</span>(mydata)</span></code></pre></div>
+<p>First, make a <code>timeVariation</code> plot.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="annotating-openair-plots.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">timeVariation</span>(mydata)</span></code></pre></div>
 <p>Now let’s choose a location on the plot interactively using the mouse
 and selecting somewhere in the middle of the monthly plot.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="annotating-openair-plots.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
-<span id="cb318-2"><a href="annotating-openair-plots.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="do">## bring up the interactive location chooser</span></span>
-<span id="cb318-3"><a href="annotating-openair-plots.html#cb318-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.locator</span>(<span class="at">unit =</span> <span class="st">&quot;npc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="annotating-openair-plots.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
+<span id="cb15-2"><a href="annotating-openair-plots.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="do">## bring up the interactive location chooser</span></span>
+<span id="cb15-3"><a href="annotating-openair-plots.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.locator</span>(<span class="at">unit =</span> <span class="st">&quot;npc&quot;</span>)</span></code></pre></div>
 <p>What should happen is that in the R console the coordinates are given
 for that point. In my case these were x = 0.503 and y = 0.338. These
 coordinates can now be used as the basis of adding some text or other
 annotation. In the example below, the <code>grid.text</code> function is used
 to add some text for these coordinates making the font bigger (<code>cex = 2</code>), bold (<code>font = 2</code>) and blue (<code>col = "blue"</code>).</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="annotating-openair-plots.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.text</span>(<span class="at">x =</span> <span class="fl">0.503</span>, <span class="at">y =</span> <span class="fl">0.338</span>, <span class="at">label =</span> <span class="st">&quot;here!&quot;</span>,</span>
-<span id="cb319-2"><a href="annotating-openair-plots.html#cb319-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">cex =</span> <span class="dv">2</span>, <span class="at">font =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="annotating-openair-plots.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.text</span>(<span class="at">x =</span> <span class="fl">0.503</span>, <span class="at">y =</span> <span class="fl">0.338</span>, <span class="at">label =</span> <span class="st">&quot;here!&quot;</span>,</span>
+<span id="cb16-2"><a href="annotating-openair-plots.html#cb16-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">cex =</span> <span class="dv">2</span>, <span class="at">font =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p>Even with this basic approach, some sophisticated annotation is
 possible with <em>any</em> <span class="pkg">openair</span> plot. There are many other functions
 that can be used from the grid package that would allow for polygons,
@@ -648,9 +637,9 @@ examples earlier in this section. Continuing with the same example,
 here is how to add an arrow pointing to the maximum concentration
 shown on the top plot for Saturday (again using the <code>grid.locator</code>
 function).</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="annotating-openair-plots.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.lines</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fl">0.736</span>, <span class="fl">0.760</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.560</span>, <span class="fl">0.778</span>),</span>
-<span id="cb320-2"><a href="annotating-openair-plots.html#cb320-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">arrow =</span> <span class="fu">arrow</span>())</span>
-<span id="cb320-3"><a href="annotating-openair-plots.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.text</span>(<span class="at">x =</span> <span class="fl">0.736</span>, <span class="at">y =</span> <span class="fl">0.560</span>, <span class="at">label =</span> <span class="st">&quot;maximum&quot;</span>, <span class="at">just =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="annotating-openair-plots.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.lines</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fl">0.736</span>, <span class="fl">0.760</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.560</span>, <span class="fl">0.778</span>),</span>
+<span id="cb17-2"><a href="annotating-openair-plots.html#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">arrow =</span> <span class="fu">arrow</span>())</span>
+<span id="cb17-3"><a href="annotating-openair-plots.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.text</span>(<span class="at">x =</span> <span class="fl">0.736</span>, <span class="at">y =</span> <span class="fl">0.560</span>, <span class="at">label =</span> <span class="st">&quot;maximum&quot;</span>, <span class="at">just =</span> <span class="st">&quot;left&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -659,12 +648,11 @@ function).</p>
           </div>
         </div>
       </div>
-<a href="sec-utility.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sec-prod-hyspl-traj.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sec:utility.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sec:prod-hyspl-traj.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -683,6 +671,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": false
 },
 "fontsettings": {
@@ -703,6 +692,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -710,20 +703,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -10,9 +10,8 @@ able to annotate plots in lots of different ways. Fortunately there
 are existing functions in packages such as [lattice]{.pkg} and
 [latticeExtra]{.pkg} that allow for plots to be updated. An example of
 the sorts of annotation that are possible is shown in Figure
-\@ref(fig:timePlotAnnotate), which is an enhanced version of Figure
-\@ref(fig:timePlot). These annotations have been subsequently added
-to Figure \@ref(fig:timePlot) and built up in layers. This section
+\@ref(fig:timePlotAnnotate), which is an enhanced version of a `timePlot` Figure. These annotations have been subsequently added
+to a basic plot and built up in layers. This section
 considers how to annotate [openair]{.pkg} plots more generally and uses Figure
 \@ref(fig:timePlotAnnotate) as an example of the types of
 annotation possible. Also considered specifically is the annotation of
@@ -31,7 +30,7 @@ The basis of [openair]{.pkg} annotations is through the use of the
 of [openair]{.pkg}. In that package there is a function called `layer`
 that effectively allows annotations to be built up 'layer by layer'.
 
-```{r timePlotAnnotate,fig.keep='last',echo=FALSE, fig.width=10, fig.height=8,fig.cap='Annotations added to the `timePlot` output.'}
+```{r timePlotAnnotate,fig.keep='last',echo=FALSE, fig.width=10, fig.height=8,fig.cap='Annotations added to the `timePlot` output.',message=FALSE,warning=FALSE}
 library(openair)
 library(lubridate)
 poly.na <- function(x1, y1, x2, y2, col = "black", alpha= 0.2) {
@@ -135,7 +134,8 @@ library(openair)
 library(lubridate)
 library(latticeExtra)
 timePlot(selectByDate(mydata, year = 2003, month = "aug"),
-         pollutant = c("nox", "o3", "pm25", "pm10", "ws"))
+         pollutant = c("nox", "o3", "pm25", "pm10", "ws"),
+         y.relation = "free")
 ```
 
 So, considering \@ref(fig:timePlotAnnotate), this is how the text
@@ -143,7 +143,7 @@ So, considering \@ref(fig:timePlotAnnotate), this is how the text
 
 ```{r annotateP1, eval=FALSE}
 trellis.last.object() +
-    layer(ltext(x = ymd("2003-08-04"), y = 200,
+    layer(ltext(x = ymd_hm("2003-08-04 12:00"), y = 200,
                 labels = "some missing data"), rows = 1)
 ```
 
@@ -175,9 +175,9 @@ approach is shown later for PM~2.5~
 ```{r annotateP2, eval=FALSE}
 ## add shaded polygon
 trellis.last.object() +
-    layer(lpolygon(x = c(ymd("2003-08-07"),
-                   ymd("2003-08-07"), ymd("2003-08-12"),
-                   ymd("2003-08-12")), y = c(-20, 600, 600, -20),
+    layer(lpolygon(x = c(ymd_hm("2003-08-07 00:00"),
+                   ymd_hm("2003-08-07 00:00"), ymd_hm("2003-08-12 00:00"),
+                   ymd_hm("2003-08-12 00:00")), y = c(-20, 600, 600, -20),
                    col = "grey", border = NA), under = TRUE, rows = 2)
 ## add text
 trellis.last.object() +
@@ -193,7 +193,7 @@ added as follows:
 ## add shaded polygon
 plt <- plt +
     layer(lpolygon(x = c(ymd("2003-08-21"), ymd("2003-08-21"),
-                   ymd("2003-08-23"), ymd("2003-08-23")),
+                   ymd_hm("2003-08-23 00:00"), ymd_hm("2003-08-23 00:00")),
                    y = c(4, 8, 8, 4), col = "blue", border = NA,
                    alpha = 0.2), rows = 5)
 ```
@@ -208,7 +208,7 @@ the edge of the arrow head.
 
 ```{r annotateP3, eval=FALSE}
 trellis.last.object() +
-    layer(larrows(ymd("2003-08-01"), 100,
+    layer(larrows(ymd_hm("2003-08-01 00:00"), 100,
                   ymd_hm("2003-08-08 14:00"),
                   100, code = 3, angle = 30), rows = 1)
 ```
@@ -221,7 +221,7 @@ This code adds a vertical dashed reference line shown in the 4th panel
 
 ```{r annotateP4, eval=FALSE}
 trellis.last.object() +
-    layer(panel.abline(v = ymd("2003-08-25"), lty = 5),
+    layer(panel.abline(v = ymd_hm("2003-08-25 00:00"), lty = 5),
           rows = 4)
 trellis.last.object() +
     layer(ltext(x = ymd_hm("2003-08-25 08:00"), y = 60,
@@ -289,12 +289,12 @@ poly.na <- function(x1, y1, x2, y2, col = "black", alpha = 0.2) {
 This time we work out the ids of the data spanning an area of
 interest. Then the `poly.na` function is used. Note that the alpha
 transparency is by default 0.2 but another value can easily be
-supplied, as shown in the air quality `bands' example.
+supplied, as shown in the air quality 'bands' example.
 
 ```{r annotateP7, eval=FALSE}
 trellis.last.object() +
-    layer({id <- which(x >= ymd("2003-08-11") &
-                       x <= ymd("2003-08-25"));
+    layer({id <- which(x >= ymd_hm("2003-08-11 00:00") &
+                       x <= ymd_hm("2003-08-25 00:00"));
            poly.na(x[id], y[id], x[id], rep(0, length(id)),
                    col = "darkorange")}, rows = 1)
 ```
@@ -437,7 +437,7 @@ forms the basis of [lattice]{.pkg} graphics. There is enormous capability
 for annotating plots using the `grid` package and only a few simple
 examples are given here.
 
-Given a plot such as Figure \@ref(fig:timeVar1), how could texts be added
+Given a a basic `timeVariation` plot, how could texts be added
 at any location --- say in the middle monthly plot? One very useful
 function for this type of annotation that allows the user to
 interactively choose a location is the `grid.locator()` function in
@@ -445,7 +445,7 @@ the `grid` package. That function can be called with different
 coordinate systems --- but the one we want defines the bottom-left
 corner as (0, 0) and the top right as (1, 1).
 
-First, make a `timeVariation` plot like Figure \@ref(fig:timeVar1).
+First, make a `timeVariation` plot.
 
 ```{r timeVarGrid, eval=FALSE}
 timeVariation(mydata)

@@ -196,13 +196,14 @@ alloc <- mutate(
   alloc, 
   angle = atan2(lon - x0, lat - y0) * 360 / 2 / pi,
   angle = ifelse(angle < 0, angle + 360 , angle),
-  sector = as.character(cut(angle, 
-                            breaks = seq(22.5, 382.5, 45),
-                            labels = c("NE", "E", "SE", 
-                                       "S", "SW", "W",
-                                       "NW", "N"))),
+  sector = cut(angle, 
+               breaks = seq(22.5, 382.5, 45),
+               labels = c("NE", "E", "SE", 
+                          "S", "SW", "W",
+                          "NW", "N")),
+  sector = as.character(sector),
   sector = ifelse(is.na(sector), "N", sector)
-)  
+) 
 
 alloc <- group_by(alloc, date, sector) %>% 
   mutate(n = n()) %>% 
