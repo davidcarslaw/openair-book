@@ -9,6 +9,7 @@ dplyr
 stringr
 forcats
 openair
+colorspace
 leaflet
 worldmet
 openairmaps
@@ -20,4 +21,3 @@ usethis
 devtools
 nlme
 mgcv
-colorspace

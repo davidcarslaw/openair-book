@@ -1,7 +1,7 @@
-# Temporal variations {#sec:timeVariation}
+# Temporal variations {#timeVariation}
 
 
-## Purpose {#sec:purpose-time-var}
+## Purpose {#purpose-time-var}
 
 In air pollution, the variation of a pollutant by time of day and day
 of week can reveal useful information concerning the likely
@@ -67,7 +67,7 @@ are a few uses/advantages:
   concentrations of ozone and the like.
 
 -  The function works well in conjunction with other functions
-  such as `polarPlot` (see Section \@ref(sec:polarPlot)), where the latter may identify conditions
+  such as `polarPlot` (see Section \@ref(polarPlot)), where the latter may identify conditions
   of interest (say a wind speed/direction range). By sub-setting for
   those conditions in `timeVariation` the temporal
   characteristics of a particular source could be characterised and
@@ -104,7 +104,7 @@ are a few uses/advantages:
 We apply the `timeVariation` function to PM~10~ concentrations and
 take the opportunity to filter the data to maximise the signal from
 the road. The `polarPlot` function described in Section
-(Section \@ref(sec:polarPlot)) is very useful in this respect in highlighting
+(Section \@ref(polarPlot)) is very useful in this respect in highlighting
 the conditions under which different sources have their greatest
 impact. A subset of data is used filtering for wind speeds > 3 m s^-1^ and
 wind directions from 100--270 degrees. The code used is:

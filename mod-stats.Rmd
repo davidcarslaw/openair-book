@@ -1,6 +1,6 @@
-# Model evaluation {#sec:modStats}
+# Model evaluation {#modStats}
 
-## Background {#sec:ModBack}
+## Background {#ModBack}
 
 The `modStats` function provides key model evaluation statistics
 for comparing models against measurements and models against other models.
@@ -140,7 +140,7 @@ IOA = \left\{
 \end{equation}
 
 
-## Example of use {#sec:ModEx}
+## Example of use {#ModEx}
 
 The function can be called very simply and only requires two numeric
 fields to compare. To show how the function works, some synthetic data

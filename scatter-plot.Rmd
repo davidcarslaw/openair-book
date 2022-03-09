@@ -1,6 +1,6 @@
-# Scatter plots {#sec:scatterPlot}
+# Scatter plots {#scatterPlot}
 
-## Purpose {#sec:ScatterPurpose}
+## Purpose {#ScatterPurpose}
 
 Scatter plots are extremely useful and a very commonly used analysis
 technique for considering how variables relate to one another. R does
@@ -49,7 +49,7 @@ understanding show variables relate to one another. Furthermore, there
 are many options to make it easy to explore data in an interactive way
 without worrying about processing data or formatting plots.
 
-## Examples {#sec:ScatterEx}
+## Examples {#ScatterEx}
 
 We provide a few examples of use and as usual, users are directed
 towards the help pages (type `?scatterPlot`) for more extensive examples.
@@ -74,7 +74,7 @@ hexagons can be placed next to one another.^[In fact it is not
   forma a lattice without gaps.] To use hexagonal binning it will be
 necessary to install the [hexbin]{.pkg} package:
 
-### Hexaganol binning {#sec:hexbin}
+### Hexaganol binning {#hexbin}
 
 Now it should be possible to make the plot by setting the method
 option to `method = "hexbin"`, as shown in Figure
@@ -233,7 +233,7 @@ scatterPlot(selectByDate(data2003, month = 8),
              z = "wd")
 ```
 
-Similar to Section \@ref(sec:timePlot), `scatterPlot` can
+Similar to Section \@ref(timePlot), `scatterPlot` can
 also plot wind vector arrows if wind speed and wind direction are
 available in the data frame. Figure \@ref(fig:scatterPlotwswd) shows an
 example of using the `windflow` option. The Figure also sets many

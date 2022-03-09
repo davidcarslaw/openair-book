@@ -1,4 +1,4 @@
-# Theil-Sen trends {#sec:TheilSen}
+# Theil-Sen trends {#TheilSen}
 
 ## Trend estimates 
 

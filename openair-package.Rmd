@@ -1,4 +1,4 @@
-# The openair package {#sec:openair-package}
+# The openair package {#openair-package}
 
 In this book two packages are frequently used and it is a good idea to load both.
 
@@ -31,7 +31,7 @@ The [openair]{.pkg} package applies certain constraints on input data requiremen
 
 -   Other variables names can be upper/lower case *but should not start with a number*. If column names do have white spaces, R will automatically replace them with a full-stop. While `PM2.5` as a field name is perfectly acceptable, it is a pain to type it in---better just to use `pm25` ([openair]{.pkg} will recognise pollutant names like this and automatically format them as PM~2.5~ in plots).
 
-## Brief overview of openair {#sec:brief-intr-open}
+## Brief overview of openair {#brief-intr-open}
 
 This section gives a brief overview of the functions in [openair]{.pkg}. Having read some data into a data frame it is then straightforward to run any function. Almost all functions are run as:
 
@@ -39,7 +39,7 @@ This section gives a brief overview of the functions in [openair]{.pkg}. Having 
 functionName(thedata, options, ...)
 ```
 
-The usage is best illustrated through a specific example, in this case the `polarPlot` function. The details of the function are shown in Section \@ref(sec:polarPlot) and through the help pages (type ?polarPlot). As it can be seen there are numerous options associated with `polarPlot` --- and most other functions and each of these has a default. For example, the default pollutant considered in `polarPlot` is `nox`. If the user has a data frame called `theData` then `polarPlot` could minimally be called by:
+The usage is best illustrated through a specific example, in this case the `polarPlot` function. The details of the function are shown in Section \@ref(polarPlot) and through the help pages (type ?polarPlot). As it can be seen there are numerous options associated with `polarPlot` --- and most other functions and each of these has a default. For example, the default pollutant considered in `polarPlot` is `nox`. If the user has a data frame called `theData` then `polarPlot` could minimally be called by:
 
 ```{r eval=FALSE}
 polarPlot(theData)
@@ -149,7 +149,7 @@ splitByDate(
 
 This code adds a new column `scenario` that is labelled `before` and `after` depending on the date. Note that the `dates` input by the user is in British format (dd/mm/YYYY) and that several dates (and labels) can be provided.
 
-## Controlling font size {#sec:font-size}
+## Controlling font size {#font-size}
 
 All [openair]{.pkg} plot functions have an option `fontsize`. Users can easily vary the size of the font for each plot e.g.
 
@@ -159,7 +159,7 @@ polarPlot(mydata, fontsize = 20)
 
 The font size will be reset to the default sizes once the plot is complete. Finer control of individual font sizes is currently not easily possible.
 
-## Using colours {#sec:colours}
+## Using colours {#colours}
 
 Many of the functions described require that colour scales are used; particularly for plots showing surfaces. It is only necessary to consider using other colours if the user does not wish to use the default scheme, shown at the top of Figure \@ref(fig:colours). The choice of colours does seem to be a vexing issue as well as something that depends on what one is trying to show in the first place. For this reason, the colour schemes used in [openair]{.pkg} are very flexible: if you don't like them, you can change them easily. R itself can handle colours in many sophisticated ways; see for example the `RColorBrewer` package.
 
@@ -213,13 +213,13 @@ library(openair)
 windRose(mydata, cols = qualitative_hcl(4, palette = "Dark 3"))
 ```
 
-## Automatic text formatting {#sec:quickText}
+## Automatic text formatting {#quickText}
 
 [openair]{.pkg} tries to automate the process of annotating plots. It can be time-consuming (and tricky) to repetitively type in text to represent μg m^-3^ or PM~10~ (μg m^-3^) etc. in R. For this reason, an attempt is made to automatically detect strings such as `nox` or `NOx` and format them correctly. Where a user needs a y-axis label such as NO~x~ (μg m^-3^) it will only be necessary to type `ylab = "nox (ug/m3)"`. The same is also true for plot titles.
 
 Users can override this option by setting it to FALSE.
 
-## Multiple plots on a page {#sec:multiple-plots-page}
+## Multiple plots on a page {#multiple-plots-page}
 
 We often get asked how to combine multiple plots on one page. Recent changes to [openair]{.pkg} makes this a bit easier. Note that because [openair]{.pkg} uses [lattice]{.pkg} graphics the base graphics \`par} settings will not work.
 

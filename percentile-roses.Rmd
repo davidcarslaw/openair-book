@@ -1,4 +1,4 @@
-# Percentile roses {#sec:percentileRose}
+# Percentile roses {#percentileRose}
 
 ## Introduction
 
@@ -70,7 +70,7 @@ percentileRose(mydata, type = c("season", "daylight"), pollutant = "o3",
                col = "Set3", mean.col = "black")
 ```
 
-## Condtional probability function {#sec:CPF}
+## Condtional probability function {#CPF}
 
 The `percentileRose` function can also plot conditional probability
 functions (CPF) [@Ashbaugh1985]. The CPF is defined as CPF =

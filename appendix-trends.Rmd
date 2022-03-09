@@ -1,8 +1,8 @@
-# A closer look at trends {#sec:trends-gam}
+# A closer look at trends {#trends-gam}
 
 Understanding trends is a core component of air quality and the
 atmospheric sciences in general. [openair]{.pkg} provides two main functions
-for considering trends (`smoothTrend` and `TheilSen`; see Sections \@ref(sec:smoothTrend) and \@ref(sec:TheilSen)), the
+for considering trends (`smoothTrend` and `TheilSen`; see Sections \@ref(smoothTrend) and \@ref(TheilSen)), the
 latter useful for linear trend estimates. Understanding trends and
 quantifying them robustly is not so easy and careful analysis would
 treat each time series individually and consider a wide range of

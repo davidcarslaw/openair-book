@@ -1,6 +1,6 @@
-# Time series plots  {#sec:timePlot}
+# Time series plots  {#timePlot}
 
-## Background {#sec:timePlotBack}
+## Background {#timePlotBack}
 
 The `timePlot` function is designed to quickly plot time series of
 data, perhaps for several pollutants or variables. This is, or should
@@ -28,14 +28,14 @@ series on different scales e.g. emissions and ambient measurements.
 
 `timePlot` works very well in conjunction with
 `selectByDate`, which makes it easy to select specific time
-series intervals. See (Section \@ref(sec:selectByDate)) for examples
+series intervals. See (Section \@ref(selectByDate)) for examples
 of how to select parts of a data frame based on the date.
 
 Another useful feature of `timePlot` is the ability to average the
 data in several ways. This makes it easy, for example, to plot daily
 or monthly means from hourly data, or hourly means from 15-minute
 data. See the option `avg.time` for more details and
-(Section \@ref(sec:timeAverage)) where a full description of time
+(Section \@ref(timeAverage)) where a full description of time
 averaging of data frames is given.
 
 ## Examples of time series plotting

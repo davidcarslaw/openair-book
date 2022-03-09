@@ -1,6 +1,6 @@
-# Production of HYSPLIT trajectory files {#sec:prod-hyspl-traj}
+# Production of HYSPLIT trajectory files {#prod-hyspl-traj}
 
-As discussed in Section \@ref(sec:trajPlot), [openair]{.pkg} can import
+As discussed in Section \@ref(trajPlot), [openair]{.pkg} can import
 pre-calculated trajectory data for specified locations. The data are
 stored on a Ricardo webserver to make it easy to import
 96-hour back trajectory data. Several users have requested how they

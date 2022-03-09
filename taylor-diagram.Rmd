@@ -1,6 +1,6 @@
-# Taylor Diagam {#sec:TaylorDiagram}
+# Taylor Diagam {#TaylorDiagram}
 
-## Background {#sec:TaylorBack}
+## Background {#TaylorBack}
 
 The *Taylor Diagram* is one of the more useful methods for
 evaluating model performance. Details of the diagram can be found at

@@ -1,4 +1,4 @@
-# Trajectory analysis {#sec:trajPlot}
+# Trajectory analysis {#trajPlot}
 
 Back trajectories are extremely useful in air pollution and can provide important information on air mass origins. Despite the clear usefulness of back trajectories, their use tends to be restricted to the research community. Back trajectories are used for many purposes from understanding the origins of air masses over a few days to undertaking longer term analyses. They are often used to filter air mass origins to allow for more refined analyses of air pollution --- for example trends in concentration by air mass origin. They are often also combined with more sophisticated analyses such as cluster analysis to help group similar type of air mass by origin.
 
@@ -6,11 +6,11 @@ Perhaps one of the reasons why back trajectory analysis is not carried out more 
 
 Currently these functions allow for the import of pre-calculated back trajectories are several pre-define locations and some trajectory plotting functions. In time all of these functions will be developed to allow more sophisticated analyses to be undertaken. Also it should be recognised that these functions are in their early stages of development and will may continue to change and be refined.
 
-The `importTraj` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php). Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#sec:importAURN), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
+The `importTraj` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php). Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#importAURN), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
 
 [^trajectory-analysis-1]: Note --- the back trajectories have been pre-calculated for specific locations and stored as .RData objects. Users should contact David Carslaw to request the addition of other locations.
 
-Users may for various reasons wish to run Hysplit themselves e.g. for different starting heights, longer periods or more locations. Code and instructions have been provided in Section \@ref(sec:prod-hyspl-traj) for users wishing to do this. Users can also use different means of calculating back trajectories e.g. ECMWF and plot them in [openair]{.pkg} provided a few basic fields are present: `date` (POSIXct), `lat` (decimal latitude), `lon` (decimal longitude) and `hour.inc` the hour offset from the arrival date (i.e. from zero decreasing to the length of the back trajectories). See `?importTraj` for more details.
+Users may for various reasons wish to run Hysplit themselves e.g. for different starting heights, longer periods or more locations. Code and instructions have been provided in Section \@ref(prod-hyspl-traj) for users wishing to do this. Users can also use different means of calculating back trajectories e.g. ECMWF and plot them in [openair]{.pkg} provided a few basic fields are present: `date` (POSIXct), `lat` (decimal latitude), `lon` (decimal longitude) and `hour.inc` the hour offset from the arrival date (i.e. from zero decreasing to the length of the back trajectories). See `?importTraj` for more details.
 
 These trajectories have been calculated using the Global NOAA-NCEP/NCAR reanalysis data archives. The global data are on a latitude-longitude grid (2.5 degree). Note that there are many meteorological data sets that can be used to run Hysplit e.g. including ECMWF data. However, in order to make it practicable to run and store trajectories for many years and sites, the NOAA-NCEP/NCAR reanalysis data is most useful. In addition, these archives are available for use widely, which is not the case for many other data sets e.g. ECMWF. Hysplit calculated trajectories based on archive data may be distributed without permission (see <https://ready.arl.noaa.gov/HYSPLIT_agreement.php>). For those wanting, for example, to consider higher resolution meteorological data sets it may be better to run the trajectories separately.
 
@@ -126,7 +126,7 @@ trajPlot(selectByDate(traj, start = "15/4/2010", end = "21/4/2010"),
 
 Which, interestingly still clearly shows elevated PM~10~ concentrations for those two days that cross Iceland. The same is also true for PM~2.5~. However, as mentioned previously, checking other sites in more rural areas would be a good idea.
 
-## Trajectory gridded frequencies {#sec:trajLevel}
+## Trajectory gridded frequencies {#trajLevel}
 
 The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals.
 
@@ -136,7 +136,7 @@ The first analysis considers the number of unique trajectories in a particular g
 trajLevel(traj, statistic = "frequency")
 ```
 
-It is also possible to use hexagonal binning to gain an idea about trajectory frequencies. In this case each 3-hour point along each trajectory is used in the counting. The code below focuses more on Europe and uses the hexagonal binning method. Note that the effect of the very few high number of points at the origin has been diminished by plotting the data on a log scale --- see Section \@ref(sec:hexbin) for details.
+It is also possible to use hexagonal binning to gain an idea about trajectory frequencies. In this case each 3-hour point along each trajectory is used in the counting. The code below focuses more on Europe and uses the hexagonal binning method. Note that the effect of the very few high number of points at the origin has been diminished by plotting the data on a log scale --- see Section \@ref(hexbin) for details.
 
 ```{r trajHex,w=8,h=5,out.width='75%',fig.cap='Gridded back trajectory frequencies with hexagonal binning.'}
 trajLevel(subset(traj, lat > 30 & lat < 70 & lon > -30 & lon < 20),
@@ -171,7 +171,7 @@ trajLevel(traj, pollutant = "pm10",
 
 ### Allocating trajectories to different wind sectors
 
-One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in Section \@ref(sec:trajCluster). A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
+One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in Section \@ref(trajCluster). A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
 
 ```{r echo=FALSE}
 ## load from file
@@ -246,7 +246,7 @@ group_by(traj, sector) %>%
 
 ## Potential Source Contribution Function (PSCF)
 
-If `statistic = "pscf"` then the Potential Source Contribution Function (PSCF) is plotted. The PSCF calculates the probability that a source is located at latitude $i$ and longitude $j$ [@Fleming2012; @Pekney2006]. The PSCF is somewhat analogous to the CPF function described on Section \@ref(sec:CPF) that considers local wind direction probabilities. In fact, the two approaches have been shown to work well together [@Pekney2006]. The PSCF approach has been widely used in the analysis of air mass back trajectories. [@AraBegum2005] for example assessed the method against the known locations of wildfires and found it performed well for PM~2.5~, EC (elemental carbon) and OC (organic carbon) and that other (non-fire related) species such as sulphate had different source origins. The basis of PSCF is that if a source is located at ($i$, $j$), an air parcel back trajectory passing through that location indicates that material from the source can be collected and transported along the trajectory to the receptor site. PSCF solves
+If `statistic = "pscf"` then the Potential Source Contribution Function (PSCF) is plotted. The PSCF calculates the probability that a source is located at latitude $i$ and longitude $j$ [@Fleming2012; @Pekney2006]. The PSCF is somewhat analogous to the CPF function described on Section \@ref(CPF) that considers local wind direction probabilities. In fact, the two approaches have been shown to work well together [@Pekney2006]. The PSCF approach has been widely used in the analysis of air mass back trajectories. [@AraBegum2005] for example assessed the method against the known locations of wildfires and found it performed well for PM~2.5~, EC (elemental carbon) and OC (organic carbon) and that other (non-fire related) species such as sulphate had different source origins. The basis of PSCF is that if a source is located at ($i$, $j$), an air parcel back trajectory passing through that location indicates that material from the source can be collected and transported along the trajectory to the receptor site. PSCF solves
 
 \begin{equation}
 PSCF = \frac{m_{ij}}{n_{ij}} (#eq:PSCF)
@@ -300,7 +300,7 @@ trajLevel(subset(traj, lat > 40 & lat < 70 & lon >-20 & lon <20),
 
 It should be noted that it makes sense to analyse back trajectories for pollutants that have a large regional component --- such as particles or \ozone. It makes little sense to analyse pollutants that are known to have local impacts e.g. \nox. However, a species such as \nox can be helpful to exclude \`fresh' emissions from the analysis.
 
-## Trajectory clustering {#sec:trajCluster}
+## Trajectory clustering {#trajCluster}
 
 Often it is useful to use cluster analysis on back trajectories to group similar air mass origins together. The principal purpose of clustering back trajectories is to post-process data according to cluster origin. By grouping data with similar geographic origins it is possible to gain information on pollutant species with similar chemical histories. There are several ways in which clustering can be carried out and several measures of the similarity of different clusters. A key issue is how the *distance matrix* is calculated, which determines the similarity (or dissimilarity) of different back trajectories. The simplest measure is the Euclidean distance. However, an angle-based measure is also often used. The two distance measures are defined below. In [openair]{.pkg} the distance matrices are calculated using C$++$ code because their calculation is computationally intensive. Note that these calculations can also be performed directly in the Hysplit model itself.
 
@@ -403,9 +403,9 @@ trendLevel(kc1, pollutant = "v2.5", type = "cluster",
                cols = "increment")
 ```
 
-Similarly, as considered in Figure \@ref(sec:polarCluster), the `timeVariation` function can also be used to consider the temporal components.
+Similarly, as considered in Figure \@ref(polarCluster), the `timeVariation` function can also be used to consider the temporal components.
 
-Another useful plot to consider is `timeProp` (see Section \@ref(sec:timeProp)), which can show how the concentration of a pollutant is comprised. In this case it is useful to plot the time series of PM~2.5~ *and* show how much of the concentration is contributed to by each cluster. Such a plot is shown in Figure \@ref(fig:timePropTraj). It is now easy to see for example that during the spring months many of the high concentration events were due to clusters 1 and 6, which correspond to European origin air-masses as shown in Figure \@ref(fig:calcClusterTraj).
+Another useful plot to consider is `timeProp` (see Section \@ref(timeProp)), which can show how the concentration of a pollutant is comprised. In this case it is useful to plot the time series of PM~2.5~ *and* show how much of the concentration is contributed to by each cluster. Such a plot is shown in Figure \@ref(fig:timePropTraj). It is now easy to see for example that during the spring months many of the high concentration events were due to clusters 1 and 6, which correspond to European origin air-masses as shown in Figure \@ref(fig:calcClusterTraj).
 
 ```{r timePropTraj, fig.width=15, fig.height=5,fig.cap='Temporal variation in daily PM~2.5~ concentrations at the North Kensington site show by contribution of each cluster.'}
 timeProp(kc1, pollutant = "pm2.5", 

@@ -13,3 +13,6 @@ RnwWeave: knitr
 LaTeX: pdfLaTeX
 
 BuildType: Website
+
+MarkdownWrap: Column
+MarkdownWrapAtColumn: 72

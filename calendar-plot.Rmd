@@ -1,4 +1,4 @@
-# Calendar plots {#sec:calendarPlot}
+# Calendar plots {#calendarPlot}
 
 ## Purpose
 

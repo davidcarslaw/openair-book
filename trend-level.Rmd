@@ -1,4 +1,4 @@
-# Trend heat maps {#sec:trendLevel}
+# Trend heat maps {#trendLevel}
 
 ## Another way of representing trends
 
@@ -22,9 +22,9 @@ value. Despite being called `trendLevel` the function is flexible
 enough to consider a wide range of plotting variables.
 
 If the $x$ and $y$ variables are not categorical they are made so by
-splitting the data into quantiles (using `cutData`). Furthermore, the user can supply as many levels as they wish for the quantile using the option `n.levels`. Remeber also there are lots of built-in options for `x` or `y` based on temporal variations (see Section \@ref(sec:cutData)) e.g. "month" (the default), "week", "daylight" and so on.
+splitting the data into quantiles (using `cutData`). Furthermore, the user can supply as many levels as they wish for the quantile using the option `n.levels`. Remeber also there are lots of built-in options for `x` or `y` based on temporal variations (see Section \@ref(cutData)) e.g. "month" (the default), "week", "daylight" and so on.
 
-## Examples {#sec:TrendLevelEx}
+## Examples {#TrendLevelEx}
 
 The standard output from `trendLevel` is shown in Figure
 \@ref(fig:trendLevel1), which shows the variation in NO~x~

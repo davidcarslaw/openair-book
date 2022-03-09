@@ -1,4 +1,4 @@
-# Polar annulus  {#sec:polarAnnulus}
+# Polar annulus  {#polarAnnulus}
 
 
 ## Purpose {#polarAnnulusBack}
@@ -12,7 +12,7 @@ origin. These plots have the capacity to display potentially important
 information regarding sources; particularly if more than one pollutant
 is available.
 
-## Example of use {#sec:examAnnulus}
+## Example of use {#examAnnulus}
 
 We apply the four variations of the `polarAnnulus` plot to PM~10~
 concentrations at Marylebone Road. Figure \@ref(fig:polarAnnulus) shows the

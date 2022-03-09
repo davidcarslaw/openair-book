@@ -1,6 +1,6 @@
-# Utility functions {#sec:utility}
+# Utility functions {#utility}
 
-## Selecting data by date {#sec:selectByDate}
+## Selecting data by date {#selectByDate}
 
 Selecting by date/time in R can be intimidating for new users---and time-consuming for all users. The `selectByDate` function aims to make this easier by allowing users to select data based on the British way of expressing date i.e. d/m/y. This function should be very useful in circumstances where it is necessary to select only part of a data frame.
 
@@ -34,7 +34,7 @@ The function can be used directly in other functions. For example, to make a pol
 polarPlot(selectByDate(mydata, year = 2000), pollutant = "so2")
 ```
 
-## Making intervals --- cutData {#sec:cutData}
+## Making intervals --- cutData {#cutData}
 
 The `cutData` function is a utility function that is called by most other functions but is useful in its own right. Its main use is to partition data in many ways, many of which are built-in to [openair]{.pkg}
 
@@ -67,7 +67,7 @@ polarPlot(mydata, pollutant = "so2", type = "season")
 
 However, it can be useful to call `cutData` *before* supplying the data to a function in a few cases. First, if one wants to set seasons to the southern hemisphere as above. Second, it is possible to override the division of a numeric variable into four quantiles by using the option `n.levels`. More details can be found in the `cutData` help file.
 
-## Selecting run lengths of values above a threshold --- pollution episodes {#sec:selectRunning}
+## Selecting run lengths of values above a threshold --- pollution episodes {#selectRunning}
 
 A seemingly easy thing to do that has relevance to air pollution episodes is to select run lengths of contiguous values of a pollutant above a certain threshold. For example, one might be interested in selecting O~3~ concentrations where there are at least 8 consecutive hours above 90\~ppb. In other words, a selection that combines both a threshold and *persistence*. These periods can be very important from a health perspective and it can be useful to study the conditions under which they occur. But how do you select such periods easily? The `selectRunning` utility function has been written to do this. It could be useful for all sorts of situations e.g.
 
@@ -114,7 +114,7 @@ episode <- selectRunning(mydata, pollutant = "nox",
 polarPlot(episode, pollutant = "nox", min.bin = 2)
 ```
 
-## Calculating rolling means {#sec:rollingMean}
+## Calculating rolling means {#rollingMean}
 
 Some air pollution statistics such as for O~3~ and particulate matter are expressed as rolling means and it is useful to be able to calculate these. It can also be useful to help smooth-out data for clearer plotting. The `rollingMean` function makes these calculations. One detail that can be important is that for some statistics a mean is only considered valid if there are a sufficient number of valid readings over the averaging period. Often there is a requirement for at least 75% data capture. For example, with an averaging period of 8 hours and a data capture threshold of 75%, at least 6 hours are required to calculate the mean.
 
@@ -130,7 +130,7 @@ Note that calculating rolling means shortens the length of the data set. In the 
 
 Type `?rollingMean` into R for more details. Note that the function currently only works with a single site.
 
-## Aggregating data by different time intervals {#sec:timeAverage}
+## Aggregating data by different time intervals {#timeAverage}
 
 Aggregating data by different averaging periods is a common and important task. There are many reasons for aggregating data in this way:
 
@@ -210,9 +210,9 @@ head(data15, 20)
 
 The `timePlot` can apply this function directly to make it very easy to plot data with different averaging times and statistics.
 
-## Calculating percentiles {#sec:calcPercentile}
+## Calculating percentiles {#calcPercentile}
 
-`calcPercentile` makes it straightforward to calculate percentiles for a single pollutant. It can take account of different averaging periods, data capture thresholds --- see Section \@ref(sec:timeAverage) for more details.
+`calcPercentile` makes it straightforward to calculate percentiles for a single pollutant. It can take account of different averaging periods, data capture thresholds --- see Section \@ref(timeAverage) for more details.
 
 For example, to calculate the 25, 50, 75 and 95th percentiles of O~3~ concentration by year:
 
@@ -222,7 +222,7 @@ calcPercentile(mydata, pollutant  = "o3",
                avg.time = "year")
 ```
 
-## Correlation matrices {#sec:corPlot}
+## Correlation matrices {#corPlot}
 
 Understanding how different variables are related to one another is always important. However, it can be difficult to easily develop an understanding of the relationships when many different variables are present. One of the useful techniques used is to plot a *correlation matrix*, which provides the correlation between all pairs of data. The basic idea of a correlation matrix has been extended to help visualise relationships between variables by [@friendly2002] and [@Sarkar2008].
 

@@ -1,6 +1,6 @@
-# Conditional quantiles {#sec:conditionalQuantile}
+# Conditional quantiles {#conditionalQuantile}
 
-## Background {#sec:conditionalQuantileBack}
+## Background {#conditionalQuantileBack}
 
 Conditional quantiles are a very useful way of considering model
 performance against observations for continuous measurements
@@ -104,11 +104,11 @@ conditionalQuantile(subset(CMAQ.KCL, site == "Lullington.Heath"),
                     mod = "mod", type = "season")
 ```
 
-## Conditional evaluation {#sec:conditionalEval}
+## Conditional evaluation {#conditionalEval}
 
 There are numerous ways in which model performance can be assessed,
 including the use of common statistical measures described in Section
-\@ref(sec:modStats). These approaches are very useful for comparing
+\@ref(modStats). These approaches are very useful for comparing
 models against observations and other models. However, model
 developers would generally like to know *why* a model may have
 poor performance under some situations. This is a much more
@@ -127,7 +127,7 @@ were spring, summer, autumn or winter. This is useful because if model
 performance is worse for example at high concentrations of `mod`
 then knowing that these tend to occur during a particular season
 etc. can be very helpful when trying to understand *why* a model
-fails. See Section \@ref(sec:cutData) for more details on the types of
+fails. See Section \@ref(cutData) for more details on the types of
 variable that can be `statistic`. Another example would be
 `statistic = "ws"` (if wind speed were available in the data
 frame), which would then split wind speed into four quantiles and plot
@@ -138,7 +138,7 @@ related to low to high wind speed conditions.
 `conditionalEval` can also simultaneously plot the model
 performance of other observed/predicted variable *pairs*
 according to different model evaluation statistics. These statistics
-derive from the Section \@ref(sec:modStats) function and include *MB*,
+derive from the Section \@ref(modStats) function and include *MB*,
 *NMB*, *r*, *COE*, *MGE*, *NMGE*, *RMSE*
 and *FAC2*. More than one statistic can be supplied
 e.g. `statistic = c("NMB", "COE")`. Bootstrap samples are taken

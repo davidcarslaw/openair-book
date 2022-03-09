@@ -1,6 +1,6 @@
-# Smooth trends  {#sec:smoothTrend}
+# Smooth trends  {#smoothTrend}
 
-## Background {#sec:SmoothTrendInfo}
+## Background {#SmoothTrendInfo}
 
 The `smoothTrend` function calculates smooth trends in the
 monthly mean concentrations of pollutants. In its basic use it will
@@ -17,7 +17,7 @@ features) nor too variable (perhaps fitting 'noise' rather than real
 effects). Some background information on the use of this approach in
 an air quality setting can be found in @Carslaw2007a.
 
-Section \@ref(sec:trends-gam) considers smooth trends in more detail and
+Section \@ref(trends-gam) considers smooth trends in more detail and
 considers how different models can be developed that can be quite
 sophisticated. Readers should consider this section if they are
 considering trend analysis in more depth.
