@@ -7,7 +7,6 @@ description: "Analysing air quality data with the openair package"
 github-repo: "davidcarslaw/openair-book"
 cover-image: "images/cover.png"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib, DCC-refs.bib]
 before_chapter_script: ["load-packages.R"]

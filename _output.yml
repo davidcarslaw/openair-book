@@ -1,15 +1,7 @@
-bookdown::gitbook:
-  css: style.css
-  config:
-    toc:
-      collapse: subsection
-      before: |
-        <li><a href="./">The openair book</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/davidcarslaw/openair-book/edit/master/%s
-    sharing:
-      github: yes
-      facebook: no
-      twitter: yes
-      all: no
+bookdown::bs4_book:
+  css: bs4_style.css
+  theme:
+    base_font:
+      google: "Roboto"
+    code_font:
+      google: "JetBrains Mono"
