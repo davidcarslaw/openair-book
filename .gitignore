@@ -5,5 +5,5 @@
 .DS_Store
 *.html
 rsconnect
-_book/*
-_bookdown_files/*
+_book/
+_bookdown_files/
