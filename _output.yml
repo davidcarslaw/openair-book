@@ -2,6 +2,8 @@ bookdown::bs4_book:
   css: bs4_style.css
   theme:
     base_font:
-      google: "Roboto"
+      google: "Source Serif Pro"
     code_font:
-      google: "JetBrains Mono"
+      google: "Fira Mono"
+    heading_font:
+      google: "Source Sans Pro"
