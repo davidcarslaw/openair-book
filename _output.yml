@@ -13,3 +13,5 @@ bookdown::bs4_book:
         family: Roboto Mono
     bg: "#fefefe" #backgrounds
     fg: "#000000" #fonts
+  footnotes_inline: true
+  css: style.css
