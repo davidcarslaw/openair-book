@@ -1,3 +1,5 @@
+# (PART) Directional Analysis {-}
+
 # Wind and Pollution Roses {#windRose}
 
 The wind rose is a very useful way of summarising meteorological data.

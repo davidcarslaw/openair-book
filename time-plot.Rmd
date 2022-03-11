@@ -1,3 +1,5 @@
+# (PART) Time Series and Trends {-}
+
 # Time series plots  {#timePlot}
 
 ## Background {#timePlotBack}

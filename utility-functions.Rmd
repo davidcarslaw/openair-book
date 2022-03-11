@@ -1,3 +1,5 @@
+# (PART) Utlity functions {-}
+
 # Utility functions {#utility}
 
 ## Selecting data by date {#selectByDate}
