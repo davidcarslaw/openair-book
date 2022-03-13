@@ -29,7 +29,7 @@ First we import the data:
 
 ```{r echo=FALSE,message=FALSE,warning=FALSE,cache=FALSE}
 library(mgcv)
-load("~/My Drive/openair/Data/MaceHead.RData")
+load("book_data/MaceHead.RData")
 ```
 
 ```{r eval=FALSE}

@@ -28,7 +28,7 @@ As an example, we will import trajectories for London in 2010. Importing them is
 
 ```{r loadTraj, echo=FALSE}
 ## load from file
-load("~/My Drive/openair/Data/londonTraj.RData")
+load("book_data/londonTraj.RData")
 ```
 
 ```{r eval=FALSE}

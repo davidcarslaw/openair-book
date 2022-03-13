@@ -189,7 +189,7 @@ is 'best' and for this reason the models are simply referred to as
 widely available. However, data set has this form:
 
 ```{r showModData}
-load("~/My Drive/openair/Data/modelData.RData")
+load("book_data/modelData.RData")
 head(modTest)
 ```
 
