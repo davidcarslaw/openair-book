@@ -1,6 +1,6 @@
 bookdown::bs4_book:
   theme:
-    primary: "#3860b6" #links  
+    primary: "#2c4b8f" #links  
     base_font: 
       google: 
         family: Lato
