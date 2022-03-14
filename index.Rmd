@@ -9,6 +9,7 @@ cover-image: "images/cover.png"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib, DCC-refs.bib]
+csl: atmospheric-environment.csl
 before_chapter_script: ["load-packages.R"]
 always_allow_html: true
 biblio-style: apalike
