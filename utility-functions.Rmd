@@ -90,18 +90,17 @@ nrow(ted)
 We are going to contrast two polar plots of O~3~ concentration. The first uses all hours in the data set, and the second uses a subset of hours. The subset of hours is defined by O~3~ concentrations above 90\~ppb for periods of at least 8-hours i.e. what might be considered as ozone episode conditions.
 
 ```{r episodeSelect}
-episode <- selectRunning(ted, pollutant = "o3", 
+ted <- selectRunning(ted, pollutant = "o3", 
                          threshold = 90, 
                          run.len = 8)
-## see how many rows there are
-nrow(episode)
 ```
 
 Now we are going to produce two bivariate polar plots shown in Figure \@ref(fig:RunningRes).
 
-```{r RunningRes,fig.width=5,fig.height=5,out.width='50%',fig.show='hold',fig.cap='Example of using the `selectRunning` function to select episode hours to produce bivariate polar plots of O~3~ concentration.'}
-polarPlot(ted, pollutant = "o3", min.bin = 2)
-polarPlot(episode, pollutant = "o3", min.bin = 2)
+```{r RunningRes,fig.width=8,fig.height=5,out.width='80%',fig.cap='Example of using the `selectRunning` function to select episode hours to produce bivariate polar plots of O~3~ concentration.'}
+polarPlot(ted, pollutant = "o3", 
+          min.bin = 2, 
+          type = "criterion")
 ```
 
 The results are shown in Figure \@ref(fig:RunningRes). The polar plot for all data (left plot of Figure \@ref(fig:RunningRes)) shows that the highest O~3~ concentrations tend to occur for high wind speed conditions from almost every direction. Lower concentrations are observed for low wind speeds because concentrations of NO~x~ are higher, resulting in O~3~ destruction. By contrast, a polar plot of the episode conditions (right plot of Figure \@ref(fig:RunningRes)) is very different. In this case there is a clear set of conditions where these criteria are met i.e. lengths of at least 8-hours where the O~3~ concentration is at least 90\~ppb. It is clear the highest concentrations are dominated by south-easterly conditions i.e. corresponding to easterly flow from continental Europe where there has been time to the O~3~ chemistry to take place.
