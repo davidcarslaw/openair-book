@@ -175,7 +175,7 @@ One of the key aspects of trajectory analysis is knowing something about where a
 
 ```{r echo=FALSE}
 ## load from file
-load("~/My Drive/openair/Data/londonTraj.RData")
+load("book_data/londonTraj.RData")
 ```
 
 First we import the trajectories, which in this case are for London in 2010:
@@ -340,7 +340,7 @@ As an example we will consider back trajectories for London in 2011.
 ```{r echo=FALSE}
 ## load pre-calculated cluster data for kc1
 ## provides traj and kc1
-load("~/My Drive/openair/Data/clusterData.RData")
+load("book_data/clusterData.RData")
 ```
 
 First, the back trajectory data for London is imported together with the air pollution data for the North Kensington site (KC1).
