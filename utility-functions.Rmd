@@ -95,7 +95,7 @@ ted <- selectRunning(ted, pollutant = "o3",
                          run.len = 8)
 ```
 
-The `selectRunning` function returns a new column `criterion` that flags whether the condition is met or not. The user can control the text provided, which by defauly is "yes" and "no".
+The `selectRunning` function returns a new column `criterion` that flags whether the condition is met or not. The user can control the text provided, which by default is "yes" and "no".
 
 ```{r criterion}
 table(ted$criterion)
