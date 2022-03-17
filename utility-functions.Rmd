@@ -8,7 +8,7 @@ Selecting by date/time in R can be intimidating for new users---and time-consumi
 
 First load the packages we need.
 
-```{r}
+```{r message=FALSE,warning=FALSE}
 library(openair)
 library(tidyverse)
 ```
@@ -87,7 +87,7 @@ ted <- importKCL(site = "td0", year = 2005:2009, met = TRUE)
 nrow(ted)
 ```
 
-We are going to contrast two polar plots of O~3~ concentration. The first uses all hours in the data set, and the second uses a subset of hours. The subset of hours is defined by O~3~ concentrations above 90\~ppb for periods of at least 8-hours i.e. what might be considered as ozone episode conditions.
+We are going to contrast two pollution roses of O~3~ concentration. The first shows hours where the criterion is not met, and the second where it is met. The subset of hours is defined by O~3~ concentrations above 90 ppb for periods of at least 8-hours i.e. what might be considered as ozone episode conditions.
 
 ```{r episodeSelect}
 ted <- selectRunning(ted, pollutant = "o3", 
@@ -95,24 +95,38 @@ ted <- selectRunning(ted, pollutant = "o3",
                          run.len = 8)
 ```
 
-Now we are going to produce two bivariate polar plots shown in Figure \@ref(fig:RunningRes).
+The `selectRunning` function returns a new column `criterion` that flags whether the condition is met or not. The user can control the text provided, which by defauly is "yes" and "no".
 
-```{r RunningRes,fig.width=8,fig.height=5,out.width='80%',fig.cap='Example of using the `selectRunning` function to select episode hours to produce bivariate polar plots of O~3~ concentration.'}
-polarPlot(ted, pollutant = "o3", 
-          min.bin = 2, 
+```{r criterion}
+table(ted$criterion)
+```
+
+Now we are going to produce two pollution roses shown in Figure \@ref(fig:RunningRes). Note, however that many other types of analysis could be carried out now the data have been partitioned.
+
+```{r RunningRes,fig.width=8,fig.height=5,out.width='90%',fig.cap='Example of using the `selectRunning` function to select episode hours to produce pollution roses of O~3~ concentration.'}
+pollutionRose(ted, pollutant = "o3", 
           type = "criterion")
 ```
 
-The results are shown in Figure \@ref(fig:RunningRes). The polar plot for all data (left plot of Figure \@ref(fig:RunningRes)) shows that the highest O~3~ concentrations tend to occur for high wind speed conditions from almost every direction. Lower concentrations are observed for low wind speeds because concentrations of NO~x~ are higher, resulting in O~3~ destruction. By contrast, a polar plot of the episode conditions (right plot of Figure \@ref(fig:RunningRes)) is very different. In this case there is a clear set of conditions where these criteria are met i.e. lengths of at least 8-hours where the O~3~ concentration is at least 90\~ppb. It is clear the highest concentrations are dominated by south-easterly conditions i.e. corresponding to easterly flow from continental Europe where there has been time to the O~3~ chemistry to take place.
+The results are shown in Figure \@ref(fig:RunningRes). The pollution rose for for the "no" criterion (left plot of Figure \@ref(fig:RunningRes)) shows that the highest O~3~ concentrations tend to occur for wind directions from the south-west, where there is a high proportion of measurements. By contrast, the  when the criterion is met (right plot of Figure \@ref(fig:RunningRes)) is very different. In this case there is a clear set of conditions where these criteria are met i.e. lengths of at least 8-hours where the O~3~ concentration is at least 90\~ppb. It is clear the highest concentrations are dominated by south-easterly conditions i.e. corresponding to easterly flow from continental Europe where there has been time to the O~3~ chemistry to take place.
 
-Another interesting test plot is to consider NO~x~ concentrations at Marylebone Road --- see Figure \@ref(fig:polarPlot), which shows that high concentrations are dominated by a swathe of south-westerly wind conditions (even for high wind speeds). However, if a selection is made of episode conditions (defined here as NO~x~ concentrations \>500 ppb for at least 5-hours), then it can be seen that it is actually the low wind speed conditions that dominate. These conditions correspond to low in-canyon wind speeds and low wind speeds across London, which tend to elevate local and background NO~x~ concentrations. Even though high concentrations of NO~x~ are observed at high wind speeds, it does not seem that these conditions are as important for episode conditions. Users can run the code below to verify these observations.
+The code below shows (as an example), that the summer of 2006 had a high proportion of conditions where the criterion was met.
+
+```{r eval=FALSE}
+timeProp(ted, pollutant = "o3", 
+         proportion = "criterion", 
+         avg.time = "month", 
+         cols = "viridis")
+```
+
+It is also useful to consider what controls the highest NO~x~ concentrations at a central London roadside site. For example, the code below (not plotted) shows very strongly that the persistently highest NO~x~ concentrations are dominated by south-westerly winds. As mentioned earlier, there are many other types of analysis that can be carried out now the data set identifies where the criterion is or is not met.
 
 ```{r runningNOx,eval=FALSE}
 episode <- selectRunning(mydata, pollutant = "nox", 
-                         threshold = 800, 
+                         threshold = 500, 
                          run.len = 5)
 
-polarPlot(episode, pollutant = "nox", min.bin = 2)
+pollutionRose(episode, pollutant = "nox", type = "criterion")
 ```
 
 ## Calculating rolling means {#rollingMean}
