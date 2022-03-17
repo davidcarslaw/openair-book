@@ -59,7 +59,7 @@ when the wind was from the SSW and 2003 clearly had more occasions when
 the wind was easterly. It can also be useful to use `type = "month"` to
 get an idea of how wind speed and direction vary seasonally.
 
-```{r windRoseyear,fig.width=10,fig.height=5,fig.cap='Use of `windRose` function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies.'}
+```{r windRoseyear,fig.width=10,fig.height=5,out.width='90%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies.'}
 windRose(mydata, type = "year", layout = c(4, 2))
 ```
 
