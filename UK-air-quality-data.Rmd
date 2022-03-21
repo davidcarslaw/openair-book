@@ -66,10 +66,7 @@ formats, time zones etc. Finally, it is easy to import many years of
 data. The final point makes it possible to download several long time
 series in one go.
 
-The site codes and pollutant names can be upper or lower case. The
-function will issue a warning when data less than six months old is
-downloaded, which may not be ratified. Type ?importAURN for a full
-listing of sites and their codes.
+The site codes and pollutant names can be upper or lower case. 
 
 Some examples of usage are shown below. First load the packages we need.
 
@@ -90,7 +87,7 @@ aurn_meta <- importMeta(source = "aurn")
 aurn_meta
 ```
 
-Or return much more detailed data:
+Or return much more detailed data that includes which pollutants are measured at each site and site start / end dates. The option `all = TRUE` should be added.
 
 ```{r importMetaAll,eval=FALSE}
 aurn_meta <- importMeta(source = "aurn", all = TRUE) 
@@ -150,7 +147,7 @@ using the option `to_narrow`:
 my1 <- importAURN("my1", year = 2018, to_narrow = TRUE)
 ``` 
 
-It is also possible to return information on whether the data have been ratifed or not using the option `ratified` (`FALSE` by default). So, add the option `ratified = TRUE` if you want this information.
+It is also possible to return information on whether the data have been ratified or not using the option `ratified` (`FALSE` by default). So, add the option `ratified = TRUE` if you want this information.
 
 ## Plot Sites on a Map
 
@@ -182,5 +179,51 @@ leaflet(aurn_unique) %>%
   addTiles() %>%
   addMarkers(~ longitude, ~ latitude, popup = content,
              clusterOptions = markerClusterOptions())
+```
+
+## Annual and other statistics
+
+By default, all the functions above return hourly data. However, often there is a need to return data such as annual means of a long period of time. The UK family of function (but not `importKCL`) can return data for averaging times: annual, monthly, daily and for SO~2~ 15-minute. The annual and monthly data also provide valuable information on data capture rates. The averaging statistic is selected with the `data_type` option. The values `data_type` can take include:
+
+- **"hourly"** This is the default and specific site(s) must be provided.
+- **"daily"** Daily means returned and specific site(s) must be provided.
+- **"monthly"** Monthly means returned. No site code is needed because all data for a particular year are returned. Data capture statistics are also given.
+- **"annual"** Annual means returned. No site code is needed because all data for a particular year are returned. Data capture statistics are also given.
+- **"15min"** 15-minute SO~2~ concentrations returned for a specific site(s).
+
+
+
+Note that for annual and monthly statistics all network data is returned and the `site` option has no effect.
+
+As an example, to import 5 years of annual mean data from the AURN:
+
+```{r eval=FALSE}
+uk_annual <- importAURN(year = 2016:2020, data_type = "annual")
+```
+
+By default, this will return data in "wide" format with a pollutant and its data capture rate in separate columns. Often it is more useful to have "narrow" format data, which is possible to select with the `to_narrow` option. Furthermore, it is also possible to return site meta data (site type, latitude and longitude) at the same time. 
+
+Below is an example of obtaining annual mean data for 2020.
+
+```{r importAnnual}
+uk_2020 <- importAURN(year = 2020, 
+                      data_type = "annual",
+                      meta = TRUE,
+                      to_narrow = TRUE)
+
+uk_2020
+```
+
+The pollutants returned include:
+
+```{r}
+unique(uk_2020$species)
+```
+
+Now it is easy for example, to select annual mean data from 2020 for NO~2~ with a data capture rate of at least 80%:
+
+```{r filterNO2}
+uk_2020 %>% 
+  filter(species == "no2", data_capture >= 0.8)
 ```
 
