@@ -136,7 +136,7 @@ Some air pollution statistics such as for O~3~ and particulate matter are expres
 The function is called as follows; in this case to calculate 8-hour rolling mean concentrations of O~3~.
 
 ```{r selectBydate}
-mydata <- rollingMean(mydata, pollutant = "o3", hours = 8,
+mydata <- rollingMean(mydata, pollutant = "o3", width = 8,
                        new.name = "rollingo3", data.thresh = 75)
 tail(mydata)
 ```
