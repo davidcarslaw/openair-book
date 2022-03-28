@@ -82,7 +82,7 @@ good idea about the conditions that tend to lead to high (or low)
 concentrations of a pollutant. Furthermore, the `type` option is
 available in almost all [openair]{.pkg} functions.
 
-```{r windRsPM10,fig.width=10,fig.height=4,fig.cap='Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels.'}
+```{r windRsPM10,fig.width=10,fig.height=4,out.width='90%',fig.cap='Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels.'}
 windRose(mydata, type = "pm10", layout = c(4, 1))
 ```
 
@@ -130,10 +130,11 @@ most apparent at highest SO~2~ concentrations that is obscured in Figure
 \@ref(fig:pollutionRoseBasic) by a relatively high NO~x~ background
 (Figure \@ref(fig:pollRoseNOxO2).
 
-```{r pollRoseNOxO2,fig.width=10,fig.height=5,fig.cap='NO~x~ pollution rose conditioned by SO~2~ concentration.'}
+```{r pollRoseNOxO2,fig.width=10,fig.height=5,out.width='100%',fig.cap='NO~x~ pollution rose conditioned by SO~2~ concentration.'}
 pollutionRose(mydata, pollutant = "nox", 
               type = "so2", 
-              layout = c(4, 1))
+              layout = c(4, 1),
+              key.position = "bottom")
 ```
 
 `pollutionRose` can also usefully be used to show which wind directions
@@ -236,8 +237,7 @@ pollutionRose(mydata,
               ws = "ws", 
               wd = "wd", 
               ws2 = "ws2", 
-              wd2 = "wd2", 
-              grid.line = 5)
+              wd2 = "wd2")
 ```
 
 An example of using user-supplied breaks is shown in Figure
@@ -255,5 +255,5 @@ mydata$wd2[id] <- mydata$wd2[id] + 360
 pollutionRose(mydata, ws = "ws", wd = "wd", ws2 = "ws2", wd2 = "wd2",
               breaks = c(-11, -2, -1, -0.5, 0.5, 1, 2, 11),
               cols = c("dodgerblue4", "white", "firebrick"),
-              grid.line = 5, type = "daylight")
+              type = "daylight")
 ```
