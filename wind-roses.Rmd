@@ -49,7 +49,7 @@ library(tidyverse)
 The function is very simply called as shown for Figure
 \@ref(fig:windroseBasic).
 
-```{r windroseBasic,fig.width=5,fig.height=5,out.width='50%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.'}
+```{r windroseBasic,fig.width=5,fig.height=5,out.width='60%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the % frequencies.'}
 windRose(mydata)
 ```
 
@@ -59,7 +59,7 @@ when the wind was from the SSW and 2003 clearly had more occasions when
 the wind was easterly. It can also be useful to use `type = "month"` to
 get an idea of how wind speed and direction vary seasonally.
 
-```{r windRoseyear,fig.width=10,fig.height=5,out.width='90%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies.'}
+```{r windRoseyear,fig.width=8,fig.height=5,out.width='100%',fig.cap='Use of `windRose` function to plot wind speed/direction frequencies by year. Wind speeds are split into the intervals shown by the scale in each panel. The grey circles show the 10 and 20% frequencies.'}
 windRose(mydata, type = "year", layout = c(4, 2))
 ```
 
@@ -82,7 +82,7 @@ good idea about the conditions that tend to lead to high (or low)
 concentrations of a pollutant. Furthermore, the `type` option is
 available in almost all [openair]{.pkg} functions.
 
-```{r windRsPM10,fig.width=10,fig.height=4,out.width='90%',fig.cap='Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels.'}
+```{r windRsPM10,fig.width=10,fig.height=4,out.width='100%',fig.cap='Wind rose for four different levels of PM~10~ concentration. The levels are defined as the four *quantiles* of PM~10~ concentration and the ranges are shown on each of the plot labels.'}
 windRose(mydata, type = "pm10", layout = c(4, 1))
 ```
 
@@ -108,7 +108,7 @@ You can produce similar pollution roses using the `pollutionRose`
 function in recent versions of [openair]{.pkg}, e.g. as in Figure
 \@ref(fig:pollutionRoseBasic):
 
-```{r pollutionRoseBasic,fig.width=5,fig.height=4,out.width='50%',fig.cap='NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings.'}
+```{r pollutionRoseBasic,fig.width=5,fig.height=4,out.width='60%',fig.cap='NO~x~ pollution rose produced using  `pollutionRose` and default `pollutionRose` settings.'}
 pollutionRose(mydata, pollutant = "nox")
 ```
 
@@ -152,7 +152,7 @@ is more effective because both length and colour are used to show the
 contribution. These plots are very useful for understanding which wind
 directions control the overall mean concentrations.
 
-```{r pollRoseAttr,fig.width=5,h=5,out.width='50%',fig.cap='Pollution rose showing which wind directions contribute most to overall mean concentrations.'}
+```{r pollRoseAttr,fig.width=5,h=5,out.width='60%',fig.cap='Pollution rose showing which wind directions contribute most to overall mean concentrations.'}
 pollutionRose(mydata, pollutant = "nox", statistic = "prop.mean")
 ```
 
@@ -174,7 +174,7 @@ each wind sector is scaled between 0 and 1. Also shown with a black like
 is an indication of the wind direction frequency to remind us that winds
 from the east occur with a low frequency.
 
-```{r pollRoseNorm,fig.width=5,h=4,out.width='50%',fig.cap='SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector.'}
+```{r pollRoseNorm,fig.width=5,h=4,out.width='60%',fig.cap='SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector.'}
 pollutionRose(mydata, pollutant = "so2", normalise = TRUE, seg = 1)
 ```
 
