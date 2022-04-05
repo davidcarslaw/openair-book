@@ -175,7 +175,11 @@ is an indication of the wind direction frequency to remind us that winds
 from the east occur with a low frequency.
 
 ```{r pollRoseNorm,fig.width=5,h=4,out.width='60%',fig.cap='SO~2~ pollution rose produced using `pollutionRose` normalised by each wind sector.'}
-pollutionRose(mydata, pollutant = "so2", normalise = TRUE, seg = 1)
+pollutionRose(mydata, 
+              pollutant = "so2", 
+              normalise = TRUE, 
+              seg = 1, 
+              cols = "heat")
 ```
 
 ## Comparing two meteorological data sets {#comp-met}
