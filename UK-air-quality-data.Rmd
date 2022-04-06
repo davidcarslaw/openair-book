@@ -190,6 +190,7 @@ By default, all the functions above return hourly data. However, often there is 
 - **"monthly"** Monthly means returned. No site code is needed because all data for a particular year are returned. Data capture statistics are also given.
 - **"annual"** Annual means returned. No site code is needed because all data for a particular year are returned. Data capture statistics are also given.
 - **"15min"** 15-minute SO~2~ concentrations returned for a specific site(s).
+- **"daqi"** Daily Air Quality Index (DAQI). See [here](https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=ozone#pollutant) for more details of how the index is defined.
 
 Note that for annual and monthly statistics all network data is returned and the `site` option has no effect.
 
@@ -225,3 +226,9 @@ uk_2020 %>%
   filter(species == "no2", data_capture >= 0.8)
 ```
 
+For the AURN, it is also possible to return the DAQI (Daily Air Quality Index) by pollutant to save deriving it.
+
+```{r daqi}
+daqi_2020 <- importAURN(year = 2020, data_type = "daqi", meta = TRUE)
+daqi_2020
+```
