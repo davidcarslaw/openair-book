@@ -83,7 +83,8 @@ trajPlot(selectByDate(traj,
                       end = "21/4/2010"),
          group = "day", col = "jet", 
          lwd = 2, key.pos = "top", 
-         key.col = 4)
+         key.col = 4,
+         ylim = c(50, 79))
 ```
 
 So far the plots have provided information on where the back trajectories come from, grouped or split by day. It is also possible, in common with most other [openair]{.pkg} functions to split the trajectories by many other variables e.g. month, season and so on. However, perhaps one of the most useful approaches is to link the back trajectories with the concentrations of a pollutant. As mentioned previously, the back trajectory data has a column `date` representing the arrival time of the air mass that can be used to link with concentration measurements. A couple of steps are required to do this using the `left_join` function.
