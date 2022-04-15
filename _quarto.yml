@@ -1,0 +1,73 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "openair book"
+  author: "David C Carslaw"
+  date: "13 April 2022"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - openair-package.qmd
+    - part: "Data Access"
+      chapters:
+        - UK-air-quality-data.qmd
+        - access-met-data.qmd
+    - part: "Directional Analysis"
+      chapters:
+        - wind-roses.qmd
+        - polar-freq.qmd
+        - percentile-roses.qmd
+        - polar-plots.qmd
+        - polar-annulus.qmd
+        - trajectory-analysis.qmd
+    - part: "Time Series and Trends"
+      chapters:
+        - time-plot.qmd
+        - time-variation.qmd
+        - time-proportion.qmd
+        - trend-level.qmd
+        - calendar-plot.qmd
+        - theil-sen.qmd
+        - smooth-trend.qmd
+    - part: "Model Evaluation"
+      chapters:
+        - mod-stats.qmd
+        - taylor-diagram.qmd
+        - conditional-quantiles.qmd
+    - part: "Utility functions"
+      chapters:
+        - utility-functions.qmd
+        - scatter-plot.qmd
+  appendices:
+   - appendix-annotate.qmd
+   - appendix-hysplit.qmd
+   - appendix-trends.qmd
+   - references.qmd
+
+bibliography: [DCC-refs.bib, packages.bib]
+
+execute: 
+  warning: false
+  message: false
+  echo: true
+  error: false
+  eval: true
+  prompt: false
+  freeze: true
+  cache: true
+
+format:
+  html:
+    theme: lumen
+    highlight-style: pygments
+    fig-align: center
+    code-link: true
+    code-copy: true
+    link-external-newwindow: true
+    citation-location: margin
+    css: style.css
+    
+editor_options: 
+  chunk_output_type: console

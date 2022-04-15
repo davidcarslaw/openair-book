@@ -7,4 +7,9 @@ packages.bib
 *.html
 rsconnect
 _book/
+docs/
 _bookdown_files/
+*_cache/
+*_files/
+_freeze/
+/.quarto/
