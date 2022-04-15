@@ -6,6 +6,7 @@ packages.bib
 .DS_Store
 *.html
 rsconnect
+site_libs/
 _book/
 docs/
 _bookdown_files/
