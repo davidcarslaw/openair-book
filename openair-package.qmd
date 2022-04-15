@@ -32,9 +32,9 @@ The [openair]{.pkg} package applies certain constraints on input data requiremen
 
 -   **The date/time field should be called `date`** --- note the lower case. No other name is acceptable.
 
--   **The wind speed and wind direction should be named `ws` and `wd`**, respectively (note again, lower case). Wind directions follow the UK Met Office format and are represented as degrees from north e.g. 90 degrees is east. North is taken to be 360 degrees
+-   **The wind speed and wind direction should be named `ws` and `wd`**, respectively (note again, lower case). Wind directions follow the UK Met Office format and are represented as degrees from north e.g. 90 degrees is east. North is taken to be 360 degrees
 
--   Where fields should have numeric data e.g. concentrations of NO~x~, then the user should ensure that no other characters are present in the column, accept maybe something that represents missing data e.g. \`no data'. .
+-   Where fields should have numeric data e.g. concentrations of NO~x~, then the user should ensure that no other characters are present in the column, accept maybe something that represents missing data e.g. 'no data'. 
 
 -   Other variables names can be upper/lower case *but should not start with a number*. If column names do have white spaces, R will automatically replace them with a full-stop. While `PM2.5` as a field name is perfectly acceptable, it is a pain to type it in---better just to use `pm25` ([openair]{.pkg} will recognise pollutant names like this and automatically format them as PM~2.5~ in plots).
 
@@ -90,9 +90,9 @@ knitr::kable(tab_dat, booktabs = TRUE)
 
 One of the central themes in [openair]{.pkg} is the idea of *conditioning*. Rather than plot $x$ against $y$, considerably more information can usually be gained by considering a third variable, $z$. In this case, $x$ is plotted against $y$ for many different intervals of $z$. This idea can be further extended. For example, a trend of NO~x~ against time can be *conditioned* in many ways: NO~x~ vs. time split by wind sector, day of the week, wind speed, temperature, hour of the day ... and so on. This type of analysis is rarely carried out when analysing air pollution data, in part because it is time consuming to do. However, thanks to the capabilities of R and packages such as [lattice]{.pkg} and [ggplot2]{.pkg}, it becomes easier to work in this way.
 
-In most [openair]{.pkg} functions conditioning is controlled using the `type` option. `type` can be any other variable available in a data frame (numeric, character or factor). A simple example of `type` would be a variable representing a 'before' and 'after' situation, say a variable called `period` i.e. the option `type   = "period"` is supplied. In this case a plot or analysis would be separately shown for 'before' and 'after'. When `type` is a numeric variable then the data will be split into four *quantiles* and labelled accordingly. Note however the user can set the quantile intervals to other values using the option `n.levels`. For example, the user could choose to plot a variable by different levels of temperature. If `n.levels = 3` then the data could be split by 'low', 'medium' and 'high' temperatures, and so on. Some variables are treated in a special way. For example if `type = "wd"` then the data are split into 8 wind sectors (N, NE, E, ...) and plots are organised by points of the compass.
+In most [openair]{.pkg} functions conditioning is controlled using the `type` option. `type` can be any other variable available in a data frame (numeric, character or factor). A simple example of `type` would be a variable representing a 'before' and 'after' situation, say a variable called `period` i.e. the option `type = "period"` is supplied. In this case a plot or analysis would be separately shown for 'before' and 'after'. When `type` is a numeric variable then the data will be split into four *quantiles* and labelled accordingly. Note however the user can set the quantile intervals to other values using the option `n.levels`. For example, the user could choose to plot a variable by different levels of temperature. If `n.levels = 3` then the data could be split by 'low', 'medium' and 'high' temperatures, and so on. Some variables are treated in a special way. For example if `type = "wd"` then the data are split into 8 wind sectors (N, NE, E, ...) and plots are organised by points of the compass.
 
-There are a series of pre-defined values that `type` can take related to the temporal components of the data as summarised in Table \@ref(tab:openairType). To use these there *must* be a `date` field so that it can be calculated. These pre-defined values of `type` are shown below are both useful and convenient. Given a data frame containing several years of data it is easy to analyse the data e.g. plot it, by year by supplying the option `type =   "year"`. Other useful and straightforward values are "hour" and "month". When `type = "season"` [openair]{.pkg} will split the data by the four seasons (winter = Dec/Jan/Feb etc.). Note for southern hemisphere users that the option `hemisphere = "southern"` can be given. When `type = "daylight"` is used the data are split between nighttime and daylight hours. In this case the user can also supply the options `latitude` and `longitude` for their location (the default is London).
+There are a series of pre-defined values that `type` can take related to the temporal components of the data as summarised in @tbl-openairType. To use these there *must* be a `date` field so that it can be calculated. These pre-defined values of `type` are shown below are both useful and convenient. Given a data frame containing several years of data it is easy to analyse the data e.g. plot it, by year by supplying the option `type = "year"`. Other useful and straightforward values are "hour" and "month". When `type = "season"` [openair]{.pkg} will split the data by the four seasons (winter = Dec/Jan/Feb etc.). Note for southern hemisphere users that the option `hemisphere = "southern"` can be given. When `type = "daylight"` is used the data are split between nighttime and daylight hours. In this case the user can also supply the options `latitude` and `longitude` for their location (the default is London).
 
 ```{r echo=FALSE}
 
@@ -115,10 +115,12 @@ tab_type <- tibble(
 )
 ```
 
-```{r openairType,echo=FALSE}
+```{r}
+#| label: tbl-openairType
+#| tbl-cap: 'Built-in ways of splitting data in [openair]{.pkg} using the `type` option that is available for most functions.'
+#| echo: false
 knitr::kable(
-  tab_type, booktabs = TRUE,
-  caption = 'Built-in ways of splitting data in [openair]{.pkg} using the `type` option that is available for most functions.'
+  tab_type, booktabs = TRUE
 )
 ```
 
