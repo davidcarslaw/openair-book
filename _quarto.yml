@@ -10,6 +10,7 @@ book:
   repo-url: https://github.com/davidcarslaw/openair-book/
   repo-branch: master
   repo-actions: [edit]
+  sharing: [twitter, facebook, linkedin]
   chapters:
     - index.qmd
     - intro.qmd
