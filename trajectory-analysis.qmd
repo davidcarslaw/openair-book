@@ -49,7 +49,7 @@ The `trajPlot` function is used for plotting back trajectory lines and density p
 
 ## Plotting trajectories
 
-Next, we consider how to plot back trajectories with a few simple examples. The first example will consider a potentially interesting period when the Icelandic volcano, Eyjafjallajokull erupted in April 2010. The eruption of Eyjafjallajokull resulted in a flight-ban that lasted six days across many European airports. In @fig-traj1) `selectByDate` is used to consider the 7 days of interest and we choose to plot the back trajectories as lines rather than points (the default). @fig-traj1 does indeed show that many of the back trajectories originated from Iceland over this period. Note also the plot automatically includes a world base map. The base map itself is not at very high resolution by default but is useful for the sorts of spatial scales that back trajectories exist over. The base map is also global, so provided that there are pre-calculated back trajectories, these maps can be generated anywhere in the world. By default the function uses the 'world' map from the [maps]{.pkg} package. If `map.res = "hires"` then the (much) more detailed base map `worldHires` from the [mapdata]{.pkg} package is used.[^trajectory-analysis-2]
+Next, we consider how to plot back trajectories with a few simple examples. The first example will consider a potentially interesting period when the Icelandic volcano, Eyjafjallajokull erupted in April 2010. The eruption of Eyjafjallajokull resulted in a flight-ban that lasted six days across many European airports. In @fig-traj1 `selectByDate` is used to consider the 7 days of interest and we choose to plot the back trajectories as lines rather than points (the default). @fig-traj1 does indeed show that many of the back trajectories originated from Iceland over this period. Note also the plot automatically includes a world base map. The base map itself is not at very high resolution by default but is useful for the sorts of spatial scales that back trajectories exist over. The base map is also global, so provided that there are pre-calculated back trajectories, these maps can be generated anywhere in the world. By default the function uses the 'world' map from the [maps]{.pkg} package. If `map.res = "hires"` then the (much) more detailed base map `worldHires` from the [mapdata]{.pkg} package is used.[^trajectory-analysis-2]
 
 [^trajectory-analysis-2]: You will need to load the [mapdata]{.pkg} package i.e. `library(mapdata)`.
 
@@ -114,11 +114,9 @@ head(traj)
 
 This time we can use the option `pollutant` in the function `trajPlot`, which will plot the back trajectories coloured by the concentration of a pollutant. @fig-traj4 does seem to show elevated PM~10~ concentrations originating from Iceland over the period of interest. In fact, these elevated concentrations occur on two days as shown in @fig-traj2. However, care is needed when interpreting such data because other analysis would need to rule out other reasons why PM~10~ could be elevated; in particular due to local sources of PM~10~. There are lots of [openair]{.pkg} functions that can help here e.g. `timeVariation` or `timePlot` to see if NO~x~ concentrations were also elevated (which they seem to be). It would also be worth considering other sites for back trajectories that could be less influenced by local emissions.
 
-(ref:Traj4) 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM~10~ in μg m^-3^.
-
 ```{r}
 #| label: fig-traj4
-#| fig-cap: Trajectory frequencies.
+#| fig-cap: 96-hour Hysplit back trajectories centred on London for 7 days in April 2010, coloured by the concentration of PM~10~ in μg m^-3^.
 #| fig-height: 6
 #| fig-width: 6
 trajPlot(selectByDate(traj, 
