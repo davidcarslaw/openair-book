@@ -446,7 +446,9 @@ Perhaps more useful is to merge the cluster data with measurement data. In this 
 
 ```{r mergeClustTraj}
 # use inner join - so only where we have data in each
-kc1 <- inner_join(kc1, filter(clust$data, hour.inc == 0), by = "date")
+kc1 <- inner_join(kc1, 
+                  filter(clust$data, hour.inc == 0), 
+                  by = "date")
 ```
 
 Now `kc1` contains air pollution data identified by cluster. The size of this data frame is about a third of the original size because back trajectories are only run every 3 hours.
@@ -459,11 +461,11 @@ table(kc1[["cluster"]])
 
 i.e. is dominated by clusters 3 and 2 from west and south-west (Atlantic).
 
-Now it is possible to analyse the concentration data according to the cluster. There are numerous types of analysis that can be carried out with these results, which will depend on what the aims of the analysis are in the first place. However, perhaps one of the first things to consider is how the concentrations vary by cluster. As the summary results below show, there are distinctly different mean concentrations of most pollutants by cluster. For example, clusters 1 and 6 are associated with much higher concentrations of PM~10~ --- approximately double that of other clusters. Both of these clusters originate from continental Europe. Cluster 5 is also relatively high, which tends to come from the rest of the UK. Other clues concerning the types of air-mass can be gained from the mean pressure. For example, cluster 5 is associated with the highest pressure (1014\~kPa), and as is seen in @fig-calcClusterTraj the shape of the line for cluster 5 is consistent with air-masses associated with a high pressure system (a clockwise-type sweep).
+Now it is possible to analyse the concentration data according to the cluster. There are numerous types of analysis that can be carried out with these results, which will depend on what the aims of the analysis are in the first place. However, perhaps one of the first things to consider is how the concentrations vary by cluster. As the summary results below show, there are distinctly different mean concentrations of most pollutants by cluster. For example, clusters 1 and 6 are associated with much higher concentrations of PM~10~ --- approximately double that of other clusters. Both of these clusters originate from continental Europe. Cluster 5 is also relatively high, which tends to come from the rest of the UK. Other clues concerning the types of air-mass can be gained from the mean pressure. For example, cluster 5 is associated with the highest pressure (1014 kPa), and as is seen in @fig-calcClusterTraj the shape of the line for cluster 5 is consistent with air-masses associated with a high pressure system (a clockwise-type sweep).
 
 ```{r clustMeans}
 group_by(kc1, cluster) %>% 
-  summarise_if(is.numeric, mean, na.rm = TRUE)
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 ```
 
 Simple plots can be generated from these results too. For example, it is easy to consider the temporal nature of the volatile component of PM~2.5~ concentrations (`v2.5` in the `kc1` data frame). @fig-calcClusterLevel for example shows how the concentration of the volatile component of PM~2.5~ concentrations varies by cluster by plotting the hour of day-month variation. It is clear from @fig-calcClusterLevel that the clusters associated with the highest volatile PM~2.5~ concentrations are clusters 1 and 6 (European origin) and that these concentrations peak during spring. There is less data to see clearly what is going on with cluster 5. Nevertheless, the cluster analysis has clearly separated different air mass characteristics which allows for more refined analysis of different air-mass types.
