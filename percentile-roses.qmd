@@ -70,7 +70,7 @@ percentileRose(mydata, poll="so2", percentile = 95,
                col = "darkorange", smooth = TRUE)
 ```
 
-It is easy to plot several species on the same plot and this works well because they all have the same probability scale (i.e. 0 to 1). In the example below (not shown) it is easy to see for each pollutant the wind directions that dominate the contributions to the highest (95th percentile) concentrations. For example, the highest CO and \nox concentrations are totally dominated by south/south-westerly winds and the probability of their being such high concentrations from other wind directions is effectively zero.
+It is easy to plot several species on the same plot and this works well because they all have the same probability scale (i.e. 0 to 1). In the example below (not shown) it is easy to see for each pollutant the wind directions that dominate the contributions to the highest (95th percentile) concentrations. For example, the highest CO and NO~x~ concentrations are totally dominated by south/south-westerly winds and the probability of their being such high concentrations from other wind directions is effectively zero.
 
 ```{r}
 #| label: fig-CPFExample

@@ -59,7 +59,7 @@ block length to $n^{1/3}$ where n is the length of the time series.
 
 There is a temptation when considering trends to use all the available
 data. Why? Often it is useful to consider specific periods. For example,
-is there any evidence that concentrations of \nox have decreased since
+is there any evidence that concentrations of NO~x~ have decreased since
 2000? Clearly, the time period used depends on both the data and the
 questions, but it is good to be aware that considering subsets of data
 can be very insightful.
