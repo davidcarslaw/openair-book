@@ -61,11 +61,11 @@ The function is very simply called as shown for @fig-windroseBasic.
 windRose(mydata)
 ```
 
-@fig-windRoseyear highlights some interesting differences
-between the years. In 2000, for example, there were numerous occasions
-when the wind was from the SSW and 2003 clearly had more occasions when
-the wind was easterly. It can also be useful to use `type = "month"` to
-get an idea of how wind speed and direction vary seasonally.
+@fig-windRoseyear highlights some interesting differences between the
+years. In 2000, for example, there were numerous occasions when the wind
+was from the SSW and 2003 clearly had more occasions when the wind was
+easterly. It can also be useful to use `type = "month"` to get an idea
+of how wind speed and direction vary seasonally.
 
 ```{r}
 #| label: fig-windRoseyear
@@ -76,21 +76,23 @@ windRose(mydata, type = "year", layout = c(4, 2))
 ```
 
 The `type` option is very flexible in [openair]{.pkg} and can be used to
-quickly consider the dependencies between variables. @sec-cutData) describes the basis of this option in [openair]{.pkg}
-plot. As an example, consider the question: what are the meteorological
-conditions that control high and low concentrations of PM~10~? By
-setting `type = "pm10"`, [openair]{.pkg} will split the PM~10~
-concentrations into four *quantiles* i.e. roughly equal numbers of
-points in each level. The plot will then show four different wind roses
-for each quantile level, although the default number of levels can be
-set by the user --- see `?cutData` for more details. @fig-windRsPM10 shows the results of setting `type = "pm10"`. For
-the lowest concentrations of PM~10~ the wind direction is dominated by
-northerly winds, and relatively low wind speeds. By contrast, the
-highest concentrations (plot furthest right) are dominated by relatively
-strong winds from the south-west. It is therefore very easy to obtain a
-good idea about the conditions that tend to lead to high (or low)
-concentrations of a pollutant. Furthermore, the `type` option is
-available in almost all [openair]{.pkg} functions.
+quickly consider the dependencies between variables. @sec-cutData)
+describes the basis of this option in [openair]{.pkg} plot. As an
+example, consider the question: what are the meteorological conditions
+that control high and low concentrations of PM~10~? By setting
+`type = "pm10"`, [openair]{.pkg} will split the PM~10~ concentrations
+into four *quantiles* i.e. roughly equal numbers of points in each
+level. The plot will then show four different wind roses for each
+quantile level, although the default number of levels can be set by the
+user --- see `?cutData` for more details. @fig-windRsPM10 shows the
+results of setting `type = "pm10"`. For the lowest concentrations of
+PM~10~ the wind direction is dominated by northerly winds, and
+relatively low wind speeds. By contrast, the highest concentrations
+(plot furthest right) are dominated by relatively strong winds from the
+south-west. It is therefore very easy to obtain a good idea about the
+conditions that tend to lead to high (or low) concentrations of a
+pollutant. Furthermore, the `type` option is available in almost all
+[openair]{.pkg} functions.
 
 ```{r}
 #| label: fig-windRsPM10
@@ -119,7 +121,8 @@ range. This type of approach can be very informative for air pollutant
 species, as demonstrated by Ronald Henry and co-authors in @henry2009.
 
 You can produce similar pollution roses using the `pollutionRose`
-function in recent versions of [openair]{.pkg}, e.g. as in @fig-pollutionRoseBasic:
+function in recent versions of [openair]{.pkg}, e.g. as in
+@fig-pollutionRoseBasic:
 
 ```{r}
 #| label: fig-pollutionRoseBasic
@@ -138,12 +141,14 @@ pollutant and uses a slightly different set of default options (key to
 right, wedge style plot) but otherwise handles arguments just like the
 parent `windRose` function.
 
-While @fig-pollutionRoseBasic indicates that higher NO~x~
-concentrations are also associated with the SW, conditioning allows you
-to be much informative. For example, conditioning by SO~2~ (@fig-pollRoseNOxO2) demonstrates that higher NO~x~ concentrations
-are associated with the SW and much of the higher SO~2~ concentrations.
-However, it also highlights a notable NO~x~ contribution from the E,
-most apparent at highest SO~2~ concentrations that is obscured in @fig-pollutionRoseBasic by a relatively high NO~x~ background @fig-pollRoseNOxO2.
+While @fig-pollutionRoseBasic indicates that higher NO~x~ concentrations
+are also associated with the SW, conditioning allows you to be much
+informative. For example, conditioning by SO~2~ (@fig-pollRoseNOxO2)
+demonstrates that higher NO~x~ concentrations are associated with the SW
+and much of the higher SO~2~ concentrations. However, it also highlights
+a notable NO~x~ contribution from the E, most apparent at highest SO~2~
+concentrations that is obscured in @fig-pollutionRoseBasic by a
+relatively high NO~x~ background @fig-pollRoseNOxO2.
 
 ```{r}
 #| label: fig-pollRoseNOxO2
@@ -161,14 +166,15 @@ dominate the overall concentrations. By supplying the option
 `statistic = "prop.mean"` (proportion contribution to the mean), a good
 idea can be gained as to which wind directions contribute most to
 overall concentrations, as well as providing information on the
-different concentration levels. A simple plot is shown in @fig-pollRoseAttr, which clearly shows the dominance of
-south-westerly winds controlling the overall mean NO~x~ concentrations
-at this site. Indeed, almost half the overall NO~x~ concentration is
-contributed by two wind sectors to the south-west. The `polarFreq`
-function can also show this sort of information, but the pollution rose
-is more effective because both length and colour are used to show the
-contribution. These plots are very useful for understanding which wind
-directions control the overall mean concentrations.
+different concentration levels. A simple plot is shown in
+@fig-pollRoseAttr, which clearly shows the dominance of south-westerly
+winds controlling the overall mean NO~x~ concentrations at this site.
+Indeed, almost half the overall NO~x~ concentration is contributed by
+two wind sectors to the south-west. The `polarFreq` function can also
+show this sort of information, but the pollution rose is more effective
+because both length and colour are used to show the contribution. These
+plots are very useful for understanding which wind directions control
+the overall mean concentrations.
 
 ```{r}
 #| label: fig-pollRoseAttr
@@ -190,11 +196,11 @@ pollutionRose(mydata, pollutant = "so2", seg = 1)
 
 However, each wind sector can be normalised to give a probability
 between 0 and 1 to help show the variation within each wind sector more
-clearly. An example is shown in @fig-pollRoseNorm where for
-easterly winds it is now clearer that a greater proportion of the time
-the concentration is made up of high SO~2~ concentrations. In this plot
-each wind sector is scaled between 0 and 1. Also shown with a black like
-is an indication of the wind direction frequency to remind us that winds
+clearly. An example is shown in @fig-pollRoseNorm where for easterly
+winds it is now clearer that a greater proportion of the time the
+concentration is made up of high SO~2~ concentrations. In this plot each
+wind sector is scaled between 0 and 1. Also shown with a black like is
+an indication of the wind direction frequency to remind us that winds
 from the east occur with a low frequency.
 
 ```{r}
@@ -237,18 +243,19 @@ speed. Users should be aware of this limitation.
 In the next example, some artificial wind direction data are generated
 by adding a positive bias of 30\~degrees with some normally distributed
 scatter. Also, the wind speed data are given a positive bias. The
-results are shown in @fig-pollRoseComp. The Figure clearly
-shows the mean positive bias in wind direction i.e. the direction is
-displaced from north (no bias). The colour scale also shows the extent
-to which wind speeds are biased i.e. there is a higher proportion of
-positively biased wind speeds shown by the red colour compared with the
-negatively biased shown in blue. Also shown in @fig-pollRoseComp is the mean wind speed and direction bias as numerical values.
+results are shown in @fig-pollRoseComp. The Figure clearly shows the
+mean positive bias in wind direction i.e. the direction is displaced
+from north (no bias). The colour scale also shows the extent to which
+wind speeds are biased i.e. there is a higher proportion of positively
+biased wind speeds shown by the red colour compared with the negatively
+biased shown in blue. Also shown in @fig-pollRoseComp is the mean wind
+speed and direction bias as numerical values.
 
-Note that the `type` option can be used in @fig-pollRoseComp e.g. `type = "month"` to split the analysis in
-useful ways. This is useful if one wanted to see whether a site or the
-output from a model was biased for different periods. For example,
-`type = "daylight"` would show whether there are biases between
-nighttime and daytime conditions.
+Note that the `type` option can be used in @fig-pollRoseComp e.g.
+`type = "month"` to split the analysis in useful ways. This is useful if
+one wanted to see whether a site or the output from a model was biased
+for different periods. For example, `type = "daylight"` would show
+whether there are biases between nighttime and daytime conditions.
 
 ```{r}
 #| label: fig-pollRoseComp
@@ -274,7 +281,9 @@ pollutionRose(mydata,
               wd2 = "wd2")
 ```
 
-An example of using user-supplied breaks is shown in @fig-pollRoseComp2. In this case six intervals are chosen including one that spans -0.5 to +0.5 that is useful to show wind speeds that do not change.
+An example of using user-supplied breaks is shown in @fig-pollRoseComp2.
+In this case six intervals are chosen including one that spans -0.5 to
++0.5 that is useful to show wind speeds that do not change.
 
 ```{r}
 #| label: fig-pollRoseComp2
