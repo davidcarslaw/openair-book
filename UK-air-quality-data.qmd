@@ -3,9 +3,12 @@ author: David Carslaw
 editor_options: 
   markdown: 
     wrap: 72
+abstract: This section outlines the different ways users can access the abundant air quality data in the UK. The main functions provide easy access to hourly data and other statistical summaries such as annual means and data capture rates. Easy access is also provided to site meta data such as longitude, latitude, site type and details of the pollutants measured.
 ---
 
 # Accessing UK Air Quality Data {#sec-importAURN}
+
+## Accessing data
 
 The UK has a surprisingly large amount of air quality data that is publicly accessible. The main UK AURN archive and regional (England, Scotland, Wales and Northern Ireland) together with
 Imperial College London's London Air Quality Network (LAQN) are 
@@ -13,8 +16,6 @@ important and large databases of information that allow free public
 access. Storing and managing data in this way has many advantages
 including consistent data format, and underlying high quality methods
 to process and store the data.
-
-## Accessing data
 
 [openair]{.pkg} has a family of functions that provide users with extensive
 access to UK air quality data. Ricardo Energy \& Environment have
@@ -43,8 +44,8 @@ approach requires a link to the Internet to work. The networks include:
 
 - `importEurope` A simplified version of a function to give
   basic access to hourly European data based on Stuart Grange's
-  \cd{saqgetr} package --- see
-  https://github.com/skgrange/saqgetr. The [openair]{.pkg} function has
+  [saqgetr]{.pkg} package --- see
+  <https://github.com/skgrange/saqgetr>. The [openair]{.pkg} function has
   a similar approach to other [openair]{.pkg} import functions i.e. requires
   a site code(s) and year(s) to be supplied.
   
@@ -54,7 +55,7 @@ approach requires a link to the Internet to work. The networks include:
 
 
 Many users download hourly data from the air quality archive at
-http://www.airquality.co.uk. Most commonly, the data are emailed
+<https://www.airquality.co.uk>. Most commonly, the data are emailed
 to the user as .csv files and have a fixed format as shown below. This
 is a useful facility but does have some limitations and frustrations,
 many of which have been overcome using a new way of storing and
