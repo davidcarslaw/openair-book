@@ -12,8 +12,7 @@ Because the [openair]{.pkg} package (and R itself) are continually updated, it w
 ::: callout-note
 ## Function help
 
-Where code is shown in this document, function names are hyper-linked
-and will take you to the help page for the function.
+Where code is shown in this document, function names are hyper-linked and will take you to the help page for the function.
 :::
 
 ## Installation and code access
@@ -34,7 +33,7 @@ The [openair]{.pkg} package applies certain constraints on input data requiremen
 
 -   **The wind speed and wind direction should be named `ws` and `wd`**, respectively (note again, lower case). Wind directions follow the UK Met Office format and are represented as degrees from north e.g. 90 degrees is east. North is taken to be 360 degrees
 
--   Where fields should have numeric data e.g. concentrations of NO~x~, then the user should ensure that no other characters are present in the column, accept maybe something that represents missing data e.g. 'no data'. 
+-   Where fields should have numeric data e.g. concentrations of NO~x~, then the user should ensure that no other characters are present in the column, accept maybe something that represents missing data e.g. 'no data'.
 
 -   Other variables names can be upper/lower case *but should not start with a number*. If column names do have white spaces, R will automatically replace them with a full-stop. While `PM2.5` as a field name is perfectly acceptable, it is a pain to type it in---better just to use `pm25` ([openair]{.pkg} will recognise pollutant names like this and automatically format them as PM~2.5~ in plots).
 
@@ -219,7 +218,6 @@ polarPlot(mydata, cols = c("red", "white", "blue"))
 
 For more detailed information on using appropriate colours, have a look at the [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html) package. [colorspace]{.pkg} provides the definitive, comprehensive approach to using colours effectively. You will need to install the package, `install.packages("colorspace")`. To use the palettes with [openair]{.pkg}, you can for example do:
 
-
 ```{r,fig.width=4.5,fig.height=4.5,out.width='50%'}
 library(colorspace)
 library(openair)
@@ -260,7 +258,7 @@ print(b, split = c(1, 1, 2, 1))
 print(c, split = c(2, 1, 2, 1), subset = "hour", newpage = FALSE)
 ```
 
-For more control it is possible to use the `position` argument. `position` is a vector of 4 numbers, c(xmin, ymin, xmax, ymax) that give the lower-left and upper-right corners of a rectangle in which the plot is to be positioned. The coordinate system for this rectangle is [0--1] in both the x and y directions.
+For more control it is possible to use the `position` argument. `position` is a vector of 4 numbers, c(xmin, ymin, xmax, ymax) that give the lower-left and upper-right corners of a rectangle in which the plot is to be positioned. The coordinate system for this rectangle is \[0--1\] in both the x and y directions.
 
 As an example, consider plotting the first plot in the lower left quadrant and the second plot in the upper right quadrant:
 

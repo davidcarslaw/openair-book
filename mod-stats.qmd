@@ -6,129 +6,84 @@ author: David Carslaw
 
 ## Background {#sec-ModBack}
 
-The `modStats` function provides key model evaluation statistics
-for comparing models against measurements and models against other models.
+The `modStats` function provides key model evaluation statistics for comparing models against measurements and models against other models.
 
-There are a very wide range of evaluation statistics that can be used
-to assess model performance. There is, however, no single statistic
-that encapsulates all aspects of interest. For this reason it is
-useful to consider several performance statistics and also to
-understand the sort of information or insight they might provide.
+There are a very wide range of evaluation statistics that can be used to assess model performance. There is, however, no single statistic that encapsulates all aspects of interest. For this reason it is useful to consider several performance statistics and also to understand the sort of information or insight they might provide.
 
-In the following definitions, $O_i$ represents the $i$th observed
-value and  $M_i$ represents the $i$th modelled value for a total of
-$n$ observations.
+In the following definitions, $O_i$ represents the $i$th observed value and $M_i$ represents the $i$th modelled value for a total of $n$ observations.
 
-**Fraction of predictions within a factor or two, _FAC2_ **
+**Fraction of predictions within a factor or two, *FAC2***
 
-The fraction of modelled values within a factor of two of the
-observed values are the fraction of model predictions that satisfy:
+The fraction of modelled values within a factor of two of the observed values are the fraction of model predictions that satisfy:
 
 $$
    0.5 \leq \frac{M_i}{O_i} \leq 2.0 
 $$ {#eq-FAC2}
 
-**Mean bias, _MB_ **
+**Mean bias, *MB***
 
-The mean bias provides a good indication of the mean over or under
-estimate of predictions. Mean bias in the same units as the quantities
-being considered.
+The mean bias provides a good indication of the mean over or under estimate of predictions. Mean bias in the same units as the quantities being considered.
 
 $$
  MB = \frac{1}{n}\sum_{i=1}^{N} M_i - O_i  
 $$ {#eq-MB}
 
-**Mean Gross Error, _MGE_ **
+**Mean Gross Error, *MGE***
 
-The mean gross error provides a good indication of the mean error
-regardless of whether it is an over or under estimate. Mean gross
-error is in the same units as the quantities being considered.
+The mean gross error provides a good indication of the mean error regardless of whether it is an over or under estimate. Mean gross error is in the same units as the quantities being considered.
 
 $$
  MGE = \frac{1}{n}\sum_{i=1}^{N} |M_i - O_i|  
 $$ {#eq-MGE}
 
-**Normalised mean bias, _NMB_ **
+**Normalised mean bias, *NMB***
 
-The normalised mean bias is useful for comparing pollutants that cover
-different concentration scales and the mean bias is normalised by
-dividing by the observed concentration.
+The normalised mean bias is useful for comparing pollutants that cover different concentration scales and the mean bias is normalised by dividing by the observed concentration.
 
 $$
  NMB = \frac{\sum\limits_{i=1}^{n} M_i - O_i}{\sum\limits_{i=1}^{n} O_i} 
 $$ {#eq-NMB}
 
-**Normalised mean gross error, _NMGE_ **
+**Normalised mean gross error, *NMGE***
 
-The normalised mean gross error further ignores whether a prediction
-is an over or under estimate.
+The normalised mean gross error further ignores whether a prediction is an over or under estimate.
 
 $$
  NMGE = \frac{\sum\limits_{i=1}^{n} |M_i - O_i|}{\sum\limits_{i=1}^{n} O_i} 
-$$  {#eq-NMGE}
+$$ {#eq-NMGE}
 
-**Root mean squared error, _RMSE_ **
+**Root mean squared error, *RMSE***
 
-The RMSE is a commonly used statistic that provides a good overall
-measure of how close modelled values are to predicted values.
+The RMSE is a commonly used statistic that provides a good overall measure of how close modelled values are to predicted values.
 
 $$
    RMSE = \left({\frac{\sum\limits_{i=1}^{n} (M_i - O_i)^2}{n}}\right)^{1/2}   
 $$ {#eq-RMSE}
 
-**Correlation coefficient, _r_ **
+**Correlation coefficient, *r***
 
-The (Pearson) correlation coefficient is a measure of the strength of
-the linear relationship between two variables. If there is perfect
-linear relationship with positive slope between the two variables, $r$
-= 1. If there is a perfect linear relationship with negative slope
-between the two variables $r$ = -1. A correlation coefficient of 0
-means that there is no linear relationship between the variables. Note
-that `modStats` accepts an option `method`, which can be set to
-"kendall" and "spearman" for alternative calculations of $r$.
+The (Pearson) correlation coefficient is a measure of the strength of the linear relationship between two variables. If there is perfect linear relationship with positive slope between the two variables, $r$ = 1. If there is a perfect linear relationship with negative slope between the two variables $r$ = -1. A correlation coefficient of 0 means that there is no linear relationship between the variables. Note that `modStats` accepts an option `method`, which can be set to "kendall" and "spearman" for alternative calculations of $r$.
 
 $$
  r = \frac{1}{(n-1)}\sum\limits_{i=1}^{n}\left(\frac{M_i - \overline{M}}{\sigma_M}\right)\left(\frac{O_i - \overline{O}}{\sigma_O}\right)   
 $$ {#eq-r}
 
-**Coefficient of Efficiency, _COE_ **
+**Coefficient of Efficiency, *COE***
 
-The *Coefficient of Efficiency* based on
-@legates2012 and @legates1999. There have been many suggestions for
-measuring model performance over the years, but the $COE$ is a simple
-formulation which is easy to interpret.
+The *Coefficient of Efficiency* based on @legates2012 and @legates1999. There have been many suggestions for measuring model performance over the years, but the $COE$ is a simple formulation which is easy to interpret.
 
-A perfect model has a $COE$ = 1. As noted by Legates and McCabe although
-the $COE$ has no lower bound, a value of $COE$ = 0.0 has a fundamental
-meaning. It implies that the model is no more able to predict the
-observed values than does the observed mean. Therefore, since the
-model can explain no more of the variation in the observed values than
-can the observed mean, such a model can have no predictive advantage.
+A perfect model has a $COE$ = 1. As noted by Legates and McCabe although the $COE$ has no lower bound, a value of $COE$ = 0.0 has a fundamental meaning. It implies that the model is no more able to predict the observed values than does the observed mean. Therefore, since the model can explain no more of the variation in the observed values than can the observed mean, such a model can have no predictive advantage.
 
-For negative values of $COE$, the model is less effective than the
-observed mean in predicting the variation in the observations.
+For negative values of $COE$, the model is less effective than the observed mean in predicting the variation in the observations.
 
 $$
  COE = 1.0 - \frac{\sum\limits_{i=1}^{n} |M_i
              -O_i|}{\sum\limits_{i=1}^{n} |O_i - \overline{O}|}  
 $$ {#eq-COE}
 
-**Index of Agreement, _IOA_ **
+**Index of Agreement, *IOA***
 
-The *Index of Agreement*, $IOA$ is commonly used in model
-evaluation [@Willmott2011]. It spans between -1 and +1
-with values approaching +1 representing better model performance. An
-$IOA$ of 0.5, for example, indicates that the sum of the
-error-magnitudes is one half of the sum of the observed-deviation
-magnitudes. When $IOA$ = 0.0, it signifies that the sum of the
-magnitudes of the errors and the sum of the observed-deviation
-magnitudes are equivalent. When $IOA$ = -0.5, it indicates that the
-sum of the error-magnitudes is twice the sum of the perfect
-model-deviation and observed-deviation magnitudes. Values of $IOA$
-near -1.0 can mean that the model-estimated deviations about $O$ are
-poor estimates of the observed deviations; but, they also can mean
-that there simply is little observed variability --- so some caution
-is needed when the $IOA$ approaches -1. It is defined as (with $c = 2$):
+The *Index of Agreement*, $IOA$ is commonly used in model evaluation [@Willmott2011]. It spans between -1 and +1 with values approaching +1 representing better model performance. An $IOA$ of 0.5, for example, indicates that the sum of the error-magnitudes is one half of the sum of the observed-deviation magnitudes. When $IOA$ = 0.0, it signifies that the sum of the magnitudes of the errors and the sum of the observed-deviation magnitudes are equivalent. When $IOA$ = -0.5, it indicates that the sum of the error-magnitudes is twice the sum of the perfect model-deviation and observed-deviation magnitudes. Values of $IOA$ near -1.0 can mean that the model-estimated deviations about $O$ are poor estimates of the observed deviations; but, they also can mean that there simply is little observed variability --- so some caution is needed when the $IOA$ approaches -1. It is defined as (with $c = 2$):
 
 $$
 IOA = \left\{
@@ -143,12 +98,9 @@ IOA = \left\{
 \right.
 $$ {#eq-IOA}
 
-
 ## Example of use {#ModEx}
 
-The function can be called very simply and only requires two numeric
-fields to compare. To show how the function works, some synthetic data
-will be generated for 5 models.
+The function can be called very simply and only requires two numeric fields to compare. To show how the function works, some synthetic data will be generated for 5 models.
 
 ```{r modStats}
 ## observations; 100 random numbers
@@ -163,8 +115,7 @@ modData <- rbind(mod1, mod2, mod3, mod4, mod5)
 head(modData)
 ```
 
-We now have a data frame with observations and predictions for 5
-models. The evaluation of the statistics is given by:
+We now have a data frame with observations and predictions for 5 models. The evaluation of the statistics is given by:
 
 ```{r evalModStats}
 library(openair) # load package
@@ -180,36 +131,16 @@ modStats(modData, obs = "obs", mod = "mod", type = "model",
          rank.name = "model")
 ```
 
-The `modStats` function is however much more flexible than
-indicated above. While it is useful to calculate model evaluation
-statistics in a straightforward way it can be much more informative to
-consider the statistics split by different periods.
+The `modStats` function is however much more flexible than indicated above. While it is useful to calculate model evaluation statistics in a straightforward way it can be much more informative to consider the statistics split by different periods.
 
-Data have been assembled from a Defra model evaluation exercise which
-consists of hourly O~3~ predictions at 15 receptor points around the
-UK for 2006. The aim here is not to identify a particular model that
-is 'best' and for this reason the models are simply referred to as
-`model 1`, `model 2` and so on. We will aim to make the data more
-widely available. However, data set has this form:
+Data have been assembled from a Defra model evaluation exercise which consists of hourly O~3~ predictions at 15 receptor points around the UK for 2006. The aim here is not to identify a particular model that is 'best' and for this reason the models are simply referred to as `model 1`, `model 2` and so on. We will aim to make the data more widely available. However, data set has this form:
 
 ```{r showModData}
 load("book_data/modelData.RData")
 head(modTest)
 ```
 
-There are columns representing the receptor location (`site`), the
-date, measured values (`o3`), model predictions (`mod`) and the
-model itself (`group`). There are numerous ways in which the
-statistics can be calculated. However, of interest here is how the
-models perform at a single receptor by season. The seasonal nature of
-O~3~ is a very important characteristic and it is worth considering
-in more detail. The statistics are easy enough to calculate as shown
-below. In this example a subset of the data is selected to consider
-only the Harwell site. Second, the `type` option is used to split
-the calculations by season and model. Finally, the statistics are
-grouped by the $IOA$ for each season. It is now very easy how model
-performance changes by season and which models perform best in each
-season.
+There are columns representing the receptor location (`site`), the date, measured values (`o3`), model predictions (`mod`) and the model itself (`group`). There are numerous ways in which the statistics can be calculated. However, of interest here is how the models perform at a single receptor by season. The seasonal nature of O~3~ is a very important characteristic and it is worth considering in more detail. The statistics are easy enough to calculate as shown below. In this example a subset of the data is selected to consider only the Harwell site. Second, the `type` option is used to split the calculations by season and model. Finally, the statistics are grouped by the $IOA$ for each season. It is now very easy how model performance changes by season and which models perform best in each season.
 
 ```{r modStatsDefra}
 options(digits = 2) ## don't display too many decimal places
@@ -218,15 +149,9 @@ modStats(subset(modTest, site == "Harwell"),
          type = c("season", "group"), rank = "group")
 ```
 
-Note that it is possible to read the results of the `modStats`
-function into a data frame, which then allows the results to be
-plotted. This is generally a good idea when there is a lot of numeric
-data to consider and plots will convey the information better.
+Note that it is possible to read the results of the `modStats` function into a data frame, which then allows the results to be plotted. This is generally a good idea when there is a lot of numeric data to consider and plots will convey the information better.
 
-The `modStats` function is much more flexible than indicated above
-and can be used in lots of interesting ways. The `type` option in
-particular makes it possible to split the statistics in numerous
-ways. For example, to summarise the performance of models by site, model and day of the week:
+The `modStats` function is much more flexible than indicated above and can be used in lots of interesting ways. The `type` option in particular makes it possible to split the statistics in numerous ways. For example, to summarise the performance of models by site, model and day of the week:
 
 ```{r modStatsEx, eval=FALSE}
 modStats(modStats, obs = "o3", mod = "mod",
@@ -234,11 +159,4 @@ modStats(modStats, obs = "o3", mod = "mod",
          rank = "group")
 ```
 
-Similarly, if other data are available e.g. meteorological data or
-other pollutant species then these variables can also be used to test
-models against ranges in their values. This capability is potentially
-very useful because it allows for a much more probing analysis into
-model evaluation. For example, with wind speed and direction it is
-easy to consider how model performance varies by wind speed intervals
-or wind sectors, both of which could reveal important performance
-characteristics.
+Similarly, if other data are available e.g. meteorological data or other pollutant species then these variables can also be used to test models against ranges in their values. This capability is potentially very useful because it allows for a much more probing analysis into model evaluation. For example, with wind speed and direction it is easy to consider how model performance varies by wind speed intervals or wind sectors, both of which could reveal important performance characteristics.
