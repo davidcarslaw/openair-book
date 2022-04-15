@@ -5,7 +5,8 @@ project:
 book:
   title: "openair book"
   author: "David C Carslaw"
-  date: "13 April 2022"
+  date: today
+  date-format: long
   chapters:
     - index.qmd
     - intro.qmd
