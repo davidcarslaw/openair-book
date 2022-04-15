@@ -7,6 +7,9 @@ book:
   author: "David C Carslaw"
   date: today
   date-format: long
+  repo-url: https://github.com/davidcarslaw/openair-book/
+  repo-branch: master
+  repo-actions: [edit]
   chapters:
     - index.qmd
     - intro.qmd
