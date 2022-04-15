@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Model evaluation {#sec-modStats}
 
 ## Background {#sec-ModBack}

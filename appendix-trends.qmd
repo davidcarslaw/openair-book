@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # A closer look at trends {#sec-trends-gam}
 
 Understanding trends is a core component of air quality and the

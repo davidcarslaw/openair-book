@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Trend heat maps {#sec-trendLevel}
 
 ## Another way of representing trends

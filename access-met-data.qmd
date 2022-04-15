@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Access meteorological data {#sec-worldmet}
 
 ## The worldmet package

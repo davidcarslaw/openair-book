@@ -1,3 +1,10 @@
+---
+author: David Carslaw
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Accessing UK Air Quality Data {#sec-importAURN}
 
 The UK has a surprisingly large amount of air quality data that is publicly accessible. The main UK AURN archive and regional (England, Scotland, Wales and Northern Ireland) together with

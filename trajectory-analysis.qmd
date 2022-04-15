@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Trajectory analysis {#sec-trajPlot}
 
 ## Introduction

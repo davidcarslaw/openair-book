@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Polar plots {#sec-polarPlot}
 
 This Section considers the flexible `polarPlot` function that is used to provide information about source characteristics. The clustering of polar plots is also considered using `polarCluster`.

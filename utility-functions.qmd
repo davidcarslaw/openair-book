@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Utility functions {#sec-utility}
 
 ## Selecting data by date {#sec-selectByDate}

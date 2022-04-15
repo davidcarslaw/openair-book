@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Production of HYSPLIT trajectory files {#sec-prod-hyspl-traj}
 
 As discussed in @sec-trajPlot), [openair]{.pkg} can import

@@ -1,3 +1,7 @@
+---
+author: David Carslaw
+---
+
 # Annotating openair plots {#sec-annotating-openair}
 
 A frequently asked question about [openair]{.pkg} and requested feature
