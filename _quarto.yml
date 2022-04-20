@@ -45,11 +45,11 @@ book:
       chapters:
         - utility-functions.qmd
         - scatter-plot.qmd
+    - references.qmd
   appendices:
    - appendix-annotate.qmd
    - appendix-hysplit.qmd
    - appendix-trends.qmd
-   - references.qmd
 
 bibliography: [DCC-refs.bib, packages.bib]
 

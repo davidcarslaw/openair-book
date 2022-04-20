@@ -1,8 +1,4 @@
----
-author: David Carslaw
----
-
-# References
+# References {.unnumbered}
 
 ::: {#refs}
 :::

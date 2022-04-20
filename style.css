@@ -37,8 +37,8 @@
  
  .pkg {
   color: #4a5858;
-  padding: 0 3px;
-  margin: 0 2px;
+  padding: 0 2px;
+  margin: 0 1px;
   border: 1px solid #7c9393;
   box-shadow: 2px 2px 0px 0px rgba(124,147,147,1);
 }

@@ -27,8 +27,4 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown','openair','worldmet'
 ), 'packages.bib')
 
-library(knitr)
-library(tidyverse)
-knit_hooks$set(crop = hook_pdfcrop)
-opts_chunk$set(fig.show='asis',warning=FALSE, crop=TRUE, background=c(1,1,1), cache=TRUE, tidy=FALSE)
 ```
