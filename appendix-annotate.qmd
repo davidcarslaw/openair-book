@@ -98,7 +98,7 @@ plt
 
 To add text (or other annotations) it is necessary to know the coordinates on a plot for where the text will go, which will depend on the data plotted. In this extended example using the `timePlot` function, the y-axis will be in ordinary numerical units, whereas the x-axis will be in a date-time format (`POSIXct`).
 
-There are various ways that annotations can be added, but the method used here is to add to the previous plot using a function called `trellis.last.object()` to which we want to add a later. This may seem complicated, but once a few examples are considered, the method becomes very powerful, flexible and straightforward. In a multi-panel plot such as @fig-timePlotAnnotate) it is also useful to specify which rows/columns should be added to. If they are not specified then the annotation will appear in all panels.
+There are various ways that annotations can be added, but the method used here is to add to the previous plot using a function called `trellis.last.object()` to which we want to add a later. This may seem complicated, but once a few examples are considered, the method becomes very powerful, flexible and straightforward. In a multi-panel plot such as @fig-timePlotAnnotate it is also useful to specify which rows/columns should be added to. If they are not specified then the annotation will appear in all panels.
 
 First, a plot should be produced to which we wish to add some text.
 
@@ -155,7 +155,7 @@ plt <- plt +
 
 ## Adding an arrow
 
-The arrow shown on the first panel of @fig-timePlotAnnotate) was added as follows. Note the `code = 3` placed arrows at both ends. Note that `angle` is the angle from the shaft of the arrow to the edge of the arrow head.
+The arrow shown on the first panel of @fig-timePlotAnnotate was added as follows. Note the `code = 3` placed arrows at both ends. Note that `angle` is the angle from the shaft of the arrow to the edge of the arrow head.
 
 ```{r annotateP3, eval=FALSE}
 trellis.last.object() +
@@ -208,7 +208,7 @@ trellis.last.object() +
 
 ## Add a filled polygon
 
-It can be seen in the top panel of @fig-timePlotAnnotate) that some data are highlighted by filling the area below the line. This approach can be useful more generally in plotting. While it is possible to draw polygons easily and refer to the data itself, there needs to be a way for dealing with gaps in data, otherwise these gaps could be filled in perhaps unpredictable ways. A function has been written to draw a polygon taking into account gaps (`poly.na`).
+It can be seen in the top panel of @fig-timePlotAnnotate that some data are highlighted by filling the area below the line. This approach can be useful more generally in plotting. While it is possible to draw polygons easily and refer to the data itself, there needs to be a way for dealing with gaps in data, otherwise these gaps could be filled in perhaps unpredictable ways. A function has been written to draw a polygon taking into account gaps (`poly.na`).
 
 ```{r polyNA, eval=FALSE}
 poly.na <- function(x1, y1, x2, y2, col = "black", alpha = 0.2) {

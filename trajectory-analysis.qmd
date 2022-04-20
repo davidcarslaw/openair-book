@@ -196,7 +196,7 @@ Back trajectories offer the possibility to undertake receptor modelling to ident
 
 A useful analysis to undertake is to consider the pattern of frequencies for two different conditions. In particular, there is often interest in the origin of high concentrations for different pollutants. For example, compared with data over a whole year, how do the frequencies of occurrence differ? @fig-trajDiff shows an example of such an analysis for PM~10~ concentrations. By default the function will compare concentrations \>90th percentile with the full year. The percentile level is controlled by the option `percentile`. Note also there is an option `min.bin` that will exclude grid cells where there are fewer than `min.bin` data points. The analysis compares the percentage of time the air masses are in particular grid squares for all data and a subset of data where the concentrations are greater than the given percentile. The graph shows the absolute percentage difference between the two cases i.e. high minus base.
 
-@fig-trajDiff shows that compared with the whole year, high PM~10~ concentrations (\>90th percentile) are more prevalent when the trajectories originate from the east, which is seen by the positive values in the plot. Similarly there are relatively fewer occurrences of these high concentration back trajectories when they originate from the west. This analysis is in keeping with the highest PM~10~ concentrations being largely controlled by secondary aerosol formation from air-masses originating during anticyclonic conditions from mainland Europe.
+@fig-trajDiff shows that compared with the whole year, high PM~10~ concentrations (90th percentile) are more prevalent when the trajectories originate from the east, which is seen by the positive values in the plot. Similarly there are relatively fewer occurrences of these high concentration back trajectories when they originate from the west. This analysis is in keeping with the highest PM~10~ concentrations being largely controlled by secondary aerosol formation from air-masses originating during anticyclonic conditions from mainland Europe.
 
 ```{r}
 #| label: fig-trajDiff
@@ -307,7 +307,7 @@ $$ {#eq-PSCF}
 
 where $n_{ij}$ is the number of times that the trajectories passed through the cell ($i$, $j$) and $m_{ij}$ is the number of times that a source concentration was high when the trajectories passed through the cell ($i$, $j$). The criterion for determining $m_{ij}$ is controlled by `percentile`, which by default is 90. Note also that cells with few data have a weighting factor applied to reduce their effect.
 
-An example of a PSCF plot is shown in @fig-PSCF for PM~2.5~ for concentrations \>90th percentile. This Figure gives a very clear indication that the principal (high) sources are dominated by source origins in mainland Europe --- particularly around the Benelux countries.
+An example of a PSCF plot is shown in @fig-PSCF for PM~2.5~ for concentrations 90th percentile. This Figure gives a very clear indication that the principal (high) sources are dominated by source origins in mainland Europe --- particularly around the Benelux countries.
 
 ```{r}
 #| label: fig-PSCF

@@ -89,7 +89,7 @@ plot.gam(M1, select = 1, shade = TRUE)
 plot.gam(M1, select = 2, shade = TRUE)
 ```
 
-The seasonal component shown in @fig-M1seas) clearly shows the strong seasonal effect on O~3~ at this site (peaking in April). The trend component is actually linear in this case and could be modelled as such. This model looks much better, but as is often the case autocorrelation could remain important. The ACF is shown in @fig-M1ACF and shows there is still some short-term correlation in the residuals.
+The seasonal component shown in @fig-M1seas clearly shows the strong seasonal effect on O~3~ at this site (peaking in April). The trend component is actually linear in this case and could be modelled as such. This model looks much better, but as is often the case autocorrelation could remain important. The ACF is shown in @fig-M1ACF and shows there is still some short-term correlation in the residuals.
 
 Note also that there are other diagnostic tests one should consider when comparing these models that are not shown here e.g. such as considering the normality of the residuals. Indeed a consideration of the residuals shows that the model fails to some extent in explaining the very low values of O~3~, which can be seen in @fig-MHplot. These few points (which skew the residuals) may well be associated with air masses from the polluted regions of Europe. Better and more useful models would likely be possible if the data were split my airmass origin, which is something that will be returned to when [openair]{.pkg} includes a consideration of back trajectories.
 
