@@ -1,8 +1,8 @@
-# Preface {-}
+# Preface {.unnumbered}
 
-## Hello and welcome {-}
+## Hello and welcome {.unnumbered}
 
-<img src="images/plume.png" width="304" height="250" alt="Cover image" align="right" style="margin: 0 0 1em 1em; border-width: 1px; border-style: solid; border-color: white;" /></a>
+<img src="images/plume.png" alt="Cover image" width="304" height="250" align="right" style="margin: 0 0 1em 1em; border-width: 1px; border-style: solid; border-color: white;"/></a>
 
 This document has been a long time coming. The openair project started with funding from the UK Natural Environment Environment Research Council (NERC) over 10 years ago. The main aim was to fill a perceived gap in that there was a lack of a dedicated set of *easily accessible, open source* tools for analysing air quality data. At that time R was becoming increasingly popular but far, far less than it is today.
 
@@ -16,10 +16,9 @@ This book will be developed over the coming months.
 
 To cite [openair]{.pkg} please use:
 
-Carslaw, D. C., and K. Ropkins. 2012. “openair — An R package for air quality data analysis.” *Environmental Modelling & Software* 27–28 (0): 52–61. <https://doi.org/10.1016/j.envsoft.2011.09.008>.
+Carslaw, D. C., and K. Ropkins. 2012. "openair --- An R package for air quality data analysis." *Environmental Modelling & Software* 27--28 (0): 52--61. <https://doi.org/10.1016/j.envsoft.2011.09.008>.
 
- This document was produced using R version `r getRversion()` and
-     [openair]{.pkg} version `r packageDescription("openair", field = "Version")`.
+This document was produced using R version `r getRversion()` and [openair]{.pkg} version `r packageDescription("openair", field = "Version")`.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
