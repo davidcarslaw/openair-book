@@ -4,7 +4,11 @@ author: David Carslaw
 
 # Production of HYSPLIT trajectory files {#sec-prod-hyspl-traj}
 
-As discussed in @sec-trajPlot, [openair]{.pkg} can import pre-calculated trajectory data for specified locations. The data are stored on a Ricardo webserver to make it easy to import 96-hour back trajectory data. Several users have requested how they can run HYSPLIT themselves e.g. for different trajectory start heights or for many locations. This section provides the code necessary to run the HYSPLIT model. The code below assumes that full years are run, but it could be adopted for shorter periods. There are three main parts to producing trajectory files:
+As discussed in @sec-trajPlot, [openair]{.pkg} can import pre-calculated trajectory data for specified locations for whole years run at a 3-hour interval. The data are stored on a Ricardo webserver to make it easy to import 96-hour back trajectory data. Several users have requested how they can run HYSPLIT themselves e.g. for different trajectory start heights or for many locations. It should be noted that Hysplit is a powerful and flexible model and to exploit its full potential, users should consider using Hysplit directly.
+
+A well-written R package called [splitr]{.pkg} written by Rich Iannone (see [here](https://github.com/rich-iannone/splitr)) provides a lot of flexibility for working with different meteorological inputs and Hysplit options. Users should consider [splitr]{.pkg} if they want more control over Hysplit options --- especially for the detailed investigation of short time periods such as pollution episodes where higher resolution meteorological data is useful.
+
+This focus of this section is to run Hysplit with the Reanalysis meteorological data over periods of a year to allow for the analysis of longer-term air quality data analysis. The code below assumes that full years are run, but it could be adopted for shorter periods. There are three main parts to producing trajectory files:
 
 1.  Download and install the [NOAA Hysplit model](https://www.ready.noaa.gov/HYSPLIT.php), somewhere with write access (see below).
 
@@ -15,17 +19,23 @@ As discussed in @sec-trajPlot, [openair]{.pkg} can import pre-calculated traject
 To run back trajectories it is necessary to download the meteorological data files. The easiest way to download the meteorological files is using the function below.
 
 ```{r getMet, eval=FALSE}
-getMet <- function (year = 2013, month = 1, 
-                    path_met = "~/TrajData/") {
-
-    for (i in seq_along(year)) {
-        for (j in seq_along(month)) {
-            download.file(url = paste0("ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP",
-                              year[i], sprintf("%02d", month[j]), ".gbl"),
-                          destfile = paste0(path_met, "RP", year[i],
-                              sprintf("%02d", month[j]), ".gbl"), mode = "wb")
-        }
+getMet <- function(year = 2013, month = 1,
+                   path_met = "~/TrajData/") {
+  for (i in seq_along(year)) {
+    for (j in seq_along(month)) {
+      download.file(
+        url = paste0(
+          "ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP",
+          year[i], sprintf("%02d", month[j]), ".gbl"
+        ),
+        destfile = paste0(
+          path_met, "RP", year[i],
+          sprintf("%02d", month[j]), ".gbl"
+        ),
+        mode = "wb"
+      )
     }
+  }
 }
 ```
 
@@ -35,7 +45,7 @@ The function will download monthly met files (each about 120 MB) to the chosen d
 getMet(year = 2013, month = 1:12)
 ```
 
-It is first necessary on ensure that the [stringr]{.pkg} and [devtools]{.pkg} packages are installed. The latter is needed to load some R functions stored as a *GitHub gist* (some code that can be shared publicly). Copy the code below and paste it into R, which will load the necessary functions needed to run Hysplit.
+It is first necessary on ensure that the [devtools]{.pkg} package is installed, which is needed to load some R functions stored as a *GitHub gist* (some code that can be shared publicly). Copy the code below and paste it into R, which will load the necessary functions needed to run Hysplit.
 
 ```{r getGist}
 library(devtools)
@@ -43,7 +53,7 @@ source_gist("https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bd
             filename = "run_hysplit.R")
 ```
 
-Now there should be several loaded functions, including `run_hysplit`. To run Hysplit, have a look at the examples here https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5.
+Now there should be several loaded functions, including `run_hysplit`. To run Hysplit, have a look at the examples [here](https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5).
 
 For example
 
@@ -62,7 +72,7 @@ latitude = 36.134,
   site = "gibraltar")
 ```
 
-The `data_out` can then be used directly in [openair]{.pkg} trajectory functions.
+The `data_out` can then be used directly in [openair]{.pkg} trajectory functions. The code will also return information from Hysplit such as pressure, temperature, terrain and boundary layer height.
 
 Most of the options should be self-explanatory but `hysplit_exec` is the path to the Hysplit executable, `hysplit_input` is the path to the meteorological files (downloaded as described above) and `hysplit_output` is the directory where Hysplit will write its temporary files.
 

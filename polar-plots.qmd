@@ -178,10 +178,11 @@ The conditional probability functions (CPF) was described in @sec-CPF in the con
 #| fig-width: 5
 #| fig-height: 5
 #| out-width: 50%
-polarPlot(mydata, 
-          pollutant = "so2", 
-          statistic = "cpf", 
-          percentile = 90)
+polarPlot(mydata,
+  pollutant = "so2",
+  statistic = "cpf",
+  percentile = 90
+)
 ```
 
 An example of a CPF polar plot is shown in @fig-polarPlotCPF for the 90th percentile concentration of SO~2~. This plot shows that for most wind speed-directions the probability of SO~2~ concentrations being greater than the 90th percentile is zero. The clearest areas where the probability is higher is to the east. Indeed, the plot now clearly reveals two potential sources of SO~2~, which are not as apparent in the 'standard' plot shown in @fig-polarPlot3. Note that @fig-polarPlotCPF also gives the calculated percentile at the bottom of the plot (9.2 ppb in this case). @fig-polarPlotCPF can also be compared with the CPF plot based only on wind direction shown in @fig-percentileRoseCPF. While @fig-percentileRoseCPF very clearly shows that easterly wind dominate high concentrations of SO~2~, @fig-polarPlotCPF provides additional valuable information by also considering wind speed, which in this case is able to discriminate between two sources (or groups of sources) to the east.
@@ -219,7 +220,7 @@ polarPlot(mydata, poll = "so2", stati = "cpf", percentile = c(80, 90))
 polarPlot(mydata, poll = "so2", stati = "cpf", percentile = c(90, 100))
 ```
 
-However, even more useful information can be gained by considering *intervals* of percentiles e.g. 50--60, 60--70 etc. By considering intervals of percentiles it becomes clear that some sources only affect a limited percentile range. `polarPlot` can accept a `percentile` argument of length two e.g. `percentile =  c(80, 90)`. In this case concentrations in the range from the lower to upper percentiles will be considered. In @fig-polarPlotCPFInt for example, it is apparent that the road source to the south west is only important between the 60 to 90th percentiles. As mentioned previously, the chimney stacks to the east are important for the higher percentiles (90 to 100). What is interesting though is the emergence of what appears to be other sources at the lower percentile intervals. These potential sources are not apparent in @fig-polarPlot3. The other interesting aspect is that it does seem that specific sources tend to be prominent for specific percentile ranges. If this characteristic is shown to be the case more generally, then CPF intervals could be a powerful way in which to identify many sources. Whether these particular sources are important or not is questionable and depends on the aims of the analysis. However, there is no reason to believe that the potential sources shown in the percentile ranges 0 to 50 are artefacts. They could for example be signals from more distant point sources whose plumes have diluted more over longer distances. Such sources would be 'washed out' in an ordinary polar plot. For a fuller example of this approach see \[Uria-Tellaetxe and Carslaw [-@Uria2014].
+However, even more useful information can be gained by considering *intervals* of percentiles e.g. 50--60, 60--70 etc. By considering intervals of percentiles it becomes clear that some sources only affect a limited percentile range. `polarPlot` can accept a `percentile` argument of length two e.g. `percentile =  c(80, 90)`. In this case concentrations in the range from the lower to upper percentiles will be considered. In @fig-polarPlotCPFInt for example, it is apparent that the road source to the south west is only important between the 60 to 90th percentiles. As mentioned previously, the chimney stacks to the east are important for the higher percentiles (90 to 100). What is interesting though is the emergence of what appears to be other sources at the lower percentile intervals. These potential sources are not apparent in @fig-polarPlot3. The other interesting aspect is that it does seem that specific sources tend to be prominent for specific percentile ranges. If this characteristic is shown to be the case more generally, then CPF intervals could be a powerful way in which to identify many sources. Whether these particular sources are important or not is questionable and depends on the aims of the analysis. However, there is no reason to believe that the potential sources shown in the percentile ranges 0 to 50 are artefacts. They could for example be signals from more distant point sources whose plumes have diluted more over longer distances. Such sources would be 'washed out' in an ordinary polar plot. For a fuller example of this approach see [Uria-Tellaetxe and Carslaw [-@Uria2014].
 
 Note that it is easy to work out what the concentration intervals are for the percentiles shown in @fig-polarPlotCPFInt:
 
@@ -274,12 +275,14 @@ A simple scatter plot between PM~2.5~ and PM~10~ strongly suggests a 1:1 relatio
 #| fig-width: 5
 #| fig-height: 5
 #| out-width: 50%
-polarPlot(har, poll = c("pm2.5", "pm10"), 
-          statistic = "robust_slope",
-          col = "jet",
-          limits = c(0, 1),
-          ws_spread = 1.5,
-          wd_spread = 10)
+polarPlot(har,
+  poll = c("pm2.5", "pm10"),
+  statistic = "robust_slope",
+  col = "jet",
+  limits = c(0, 1),
+  ws_spread = 1.5,
+  wd_spread = 10
+)
 ```
 
 ## Comparing two time periods {#sec-polar-compare}
@@ -386,9 +389,11 @@ polarCluster(mydata, pollutant="so2", n.clusters=2:10, cols= "Set2")
 #| fig-height: 5
 #| out-width: 60%
 #| fig-keep: 'last'
-results <- polarCluster(mydata, pollutant="so2", 
-                        n.clusters = 8, 
-                        cols = "Set2")
+results <- polarCluster(mydata,
+  pollutant = "so2",
+  n.clusters = 8,
+  cols = "Set2"
+)
 ```
 
 The real benefit of `polarCluster` is being able to identify clusters in the original data frame. To do this, the results from the analysis must be read into a new variable, as in @fig-polarClustn6, where the results are read into a data frame `results`. Now it is possible to use this new information. In the 8-cluster solution to @fig-polarClustn6, cluster 6 seems to capture the elevated SO~2~ concentrations to the east well (see @fig-polarPlot3 for comparison), while cluster 5 will strongly represent the road contribution.
@@ -431,9 +436,10 @@ Or if we just want to plot a couple of clusters (5 and 6) *using the same colour
 #| fig-width: 9
 #| fig-height: 7
 timeVariation(filter(results, cluster %in% c("5", "6")),
-              pollutant = "so2",
-              group = "cluster",  
-              col = openColours("Set2", 8)[5:6], lwd = 3)
+  pollutant = "so2",
+  group = "cluster",
+  col = openColours("Set2", 8)[5:6], lwd = 3
+)
 ```
 
 `polarCluster` will work on any surface that can be plotted by `polarPlot` e.g. the radial variable does not have to be wind speed but could be another variable such as temperature. While it is not always possible for `polarCluster` to identify all features in a surface it certainly makes it easier to post-process `polarPlot`s using other [openair]{.pkg} functions or indeed other analyses altogether.
@@ -446,12 +452,13 @@ Another useful way of understanding the clusters is to use the `timeProp` functi
 #| fig-width: 15
 #| fig-height: 5
 #| column: screen-inset-right
-timeProp(selectByDate(results, year = 2003), 
-         pollutant = "so2", avg.time = "day",
-         proportion= "cluster", col = "Set2", 
-         key.position = "top",
-         key.columns = 8, date.breaks = 10, 
-         ylab = "so2 (ug/m3)")
+timeProp(selectByDate(results, year = 2003),
+  pollutant = "so2", avg.time = "day",
+  proportion = "cluster", col = "Set2",
+  key.position = "top",
+  key.columns = 8, date.breaks = 10,
+  ylab = "so2 (ug/m3)"
+)
 ```
 
 ### Clustering differences in concentrations
@@ -466,10 +473,11 @@ The function is called as shown in @fig-polarClust-diff. Note that the output is
 #| fig-width: 5
 #| fig-height: 4.5
 #| fig-keep: 'last'
-clust_out <- polarCluster(selectByDate(port_talbot, year = 2012), 
-          after = selectByDate(port_talbot, year = 2019), 
-          pollutant = "so2",
-          n.clusters = 5)
+clust_out <- polarCluster(selectByDate(port_talbot, year = 2012),
+  after = selectByDate(port_talbot, year = 2019),
+  pollutant = "so2",
+  n.clusters = 5
+)
 ```
 
 The `clust_out` usefully contains the two original data sets that were used to make the difference surface as well as the assigned cluster. These two outputs can be combined and post-processed in different ways. In the code below the mean concentrations by cluster are calculated but other useful analyses could be considered knowing that Cluster 3 is most strongly associated with the *change* in SO~2~ concentration. The latter point is important because clustering features by how they change ought to provide an improved analysis of the effect of interventions --- rather than just considering absolute concentrations in a before or after period.
@@ -510,10 +518,11 @@ Plot an interactive map.
 #| cache: false
 #| fig-cap: Interactive map of polar plots with default map.
 #| column: screen-inset-right
-polarMap(polar_data, 
-         latitude = "latitude", 
-         longitude = "longitude",
-         type = "site")
+polarMap(polar_data,
+  latitude = "latitude",
+  longitude = "longitude",
+  type = "site"
+)
 ```
 
 Or with a different base map (there are many!). See the help file for `polarMap` on how to find out about and use different base maps. Note that if you are using the `importAURN` family of functions it is useful to add the option `meta = TRUE`, which will return the latitude and longitude of the site together with the air quality data.
@@ -523,9 +532,10 @@ Or with a different base map (there are many!). See the help file for `polarMap`
 #| label: fig-interMap2
 #| cache: false
 #| fig-cap: Interactive map of polar plots with an alternative base map.
-polarMap(polar_data, 
-         latitude = "latitude", 
-         longitude = "longitude",
-         type = "site", 
-         provider = "Stamen.Toner")
+polarMap(polar_data,
+  latitude = "latitude",
+  longitude = "longitude",
+  type = "site",
+  provider = "Stamen.Toner"
+)
 ```

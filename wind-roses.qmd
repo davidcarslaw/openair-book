@@ -156,10 +156,12 @@ relatively high NO~x~ background @fig-pollRoseNOxO2.
 #| fig-cap: NO~x~ pollution rose conditioned by SO~2~ concentration.
 #| fig-width: 10
 #| fig-height: 5
-pollutionRose(mydata, pollutant = "nox", 
-              type = "so2", 
-              layout = c(4, 1),
-              key.position = "bottom")
+pollutionRose(mydata,
+  pollutant = "nox",
+  type = "so2",
+  layout = c(4, 1),
+  key.position = "bottom"
+)
 ```
 
 `pollutionRose` can also usefully be used to show which wind directions
@@ -210,11 +212,12 @@ from the east occur with a low frequency.
 #| fig-width: 5
 #| fig-height: 4
 #| out-width: 60%
-pollutionRose(mydata, 
-              pollutant = "so2", 
-              normalise = TRUE, 
-              seg = 1, 
-              cols = "heat")
+pollutionRose(mydata,
+  pollutant = "so2",
+  normalise = TRUE,
+  seg = 1,
+  cols = "heat"
+)
 ```
 
 ## Comparing two meteorological data sets {#sec-comp-met}
@@ -267,19 +270,21 @@ whether there are biases between nighttime and daytime conditions.
 ## $example of comparing 2 met sites
 ## first we will make some new ws/wd data with a postive bias
 mydata <- mutate(mydata,
-                    ws2 = ws + 2 * rnorm(nrow(mydata)) + 1,
-                    wd2 = wd + 30 * rnorm(nrow(mydata)) + 30)
+  ws2 = ws + 2 * rnorm(nrow(mydata)) + 1,
+  wd2 = wd + 30 * rnorm(nrow(mydata)) + 30
+)
 
 ## need to correct negative wd
 id <- which(mydata$wd2 < 0)
 mydata$wd2[id] <- mydata$wd2[id] + 360
 
 ## results show postive bias in wd and ws
-pollutionRose(mydata, 
-              ws = "ws", 
-              wd = "wd", 
-              ws2 = "ws2", 
-              wd2 = "wd2")
+pollutionRose(mydata,
+  ws = "ws",
+  wd = "wd",
+  ws2 = "ws2",
+  wd2 = "wd2"
+)
 ```
 
 An example of using user-supplied breaks is shown in @fig-pollRoseComp2.
@@ -298,8 +303,10 @@ mydata$wd2[id] <- mydata$wd[id] + 30 * rnorm(length(id)) + 120
 id <- which(mydata$wd2 < 0)
 mydata$wd2[id] <- mydata$wd2[id] + 360
 
-pollutionRose(mydata, ws = "ws", wd = "wd", ws2 = "ws2", wd2 = "wd2",
-              breaks = c(-11, -2, -1, -0.5, 0.5, 1, 2, 11),
-              cols = c("dodgerblue4", "white", "firebrick"),
-              type = "daylight")
+pollutionRose(mydata,
+  ws = "ws", wd = "wd", ws2 = "ws2", wd2 = "wd2",
+  breaks = c(-11, -2, -1, -0.5, 0.5, 1, 2, 11),
+  cols = c("dodgerblue4", "white", "firebrick"),
+  type = "daylight"
+  )
 ```
