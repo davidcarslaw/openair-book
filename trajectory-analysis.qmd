@@ -399,6 +399,71 @@ filter(traj, lat > 40 & lat < 70 & lon > -20 & lon < 20) %>%
 
 It should be noted that it makes sense to analyse back trajectories for pollutants that have a large regional component --- such as particles or O~3~. It makes little sense to analyse pollutants that are known to have local impacts e.g. NO~x~ However, a species such as NO~x~ can be helpful to exclude 'fresh' emissions from the analysis.
 
+## Simplified Quantitative Transport Bias Analysis (SQTBA)
+
+Both CWT and PSCF techniques is essence assume that the trajectory paths represent a good estimate of the centreline of the air mass origin. However, trajectory analysis is implicitly uncertain, not least because of the difficulty of accurately describing the dispersion of pollutants in the atmosphere. Hysplit has many approaches to deal with these uncertainties such as running an ensemble of trajectories with different starting locations. However, for longer term analysis it can be very time consuming to run the model to explore the influence of meteorological variation.
+
+SQTBA is an approach that recognises the natural processes of plume dispersion and uses this understanding as part of back trajectory analysis. The approach has been used in many studies that aim to better understand sources regions for PM~2.5~ (or components of PM~2.5~) e.g. [@brook2004; @zhao2007; @zhou2004].
+
+The basic idea, only described briefly here, is that there is a natural transport behaviour of dispersing air masses that can be described by the Gaussian plume equation. Rather than a single back trajectory being considered, it is assumed that concentrations are represented according to Gaussian plume dilution along each trajectory --- giving a probability of a certain concentration at a particular point on a grid. In effect, the further from a receptor (measurement site), the wider the plume (σ value), which has the effect of spreading-out the likely origin of the source. This approach is an effective, pragmatic solution to better account for the uncertainties in the location of upwind sources.
+
+Q(x,t\| x', t'), is the probability for the air parcel at position x' at time t' to arrive at position x at time t is given by:
+
+$$
+  Q(x, t, x', t') = \frac{1}{2 \pi \sigma_x(t') \sigma_y(t')}e^{-\frac{1}{2}\Bigg[\bigg(\frac{X - x'(t')}{\sigma_x(t')}\bigg)^2 + \bigg(\frac{Y - y'(t')}{\sigma_y(t')}\bigg)^2\Bigg]}
+$$
+
+X, Y: Coordinate of the grid center
+
+x' y': Centreline of trajectory
+
+σ: Standard deviation of trajectories at two directions which are assumed to grow with time
+
+σ~x~(t') = σ~y~(t') = at', a is a dispersion speed, equals to 5.4 km h^-1^.
+
+This means at each trajectory point, the probability is calculated across a pre-defined grid. These calculations can take some time to run. For example, with 96 hour back trajectories calculated every 3 hours in a year, there are 840,960 trajectory end points. Each one of these points is used to estimate the probability on a grid, which itself can be large (a one degree grid from 35 to 80°N and -55 to 25°W is 3600 grid points).
+
+A *potential mass transfer potential field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
+
+$$
+\overline{T_l}(x | x') = \frac{\int_{t-\tau}^{t} Q(x,t| x', t')dt'}{\int_{t-\tau}^{t}dt'} 
+$$
+
+and the concentration-weighted field calculated as:
+
+$$
+\widetilde{T}(x|x') = \sum_{l=1}^{l=L}\overline{T_l}(x|x')c_l 
+$$
+
+c~l~: Receptor concentration of back trajectory I
+
+L: Total number of back trajectories
+
+And the final SQTBA is calculated as:
+
+$$
+SQTBA(x|x') = \frac{\widetilde{T}(x|x')}{\sum_{l=1}^{l=L}\overline{T_l}(x|x')}
+$$
+
+As an example, consideration is given to PM~2.5~ concentrations in a similar way as shown for CWT and the PSCF techniques. The option `min.bin = 10` is used to exlcude lat-lon grid squares with less than 10 trajectory end points.
+
+```{r}
+#| label: fig-SQTBA
+#| fig-cap: SQTBA approach applied to PM~2.5~ concentrations at the North Kensington site in London for 2010.
+#| fig-height: 6
+#| fig-width: 10
+trajLevel(traj,
+          pollutant = "pm2.5",
+          statistic =  "sqtba",
+          cols = "increment",
+          min.bin = 10
+          )
+```
+
+The analysis above was demonstrated for a single site. However, to exploit the full potential of the SQTBA approach, multiple receptors should be considered. The reason why multiple sites should be considered is that there will be better geographic coverage of the trajectories and potential for source regions to be sampled multiple times. To conduct an analysis of multiple sites, trajectories linked to pollutant concentrations should be combined into a single data frame in the format similar to `traj` above but with an additional variable that identifies the different sites. When running `trajLevel` the option `.combine` should be used to identify the relevant column e.g. `.combine = "site"`.
+
+The results returned from multiple site analysis are normalised by each site individually by dividing the output by the mean of the pollutant concentration. This approach ensures that sites with potentially very different mean concentrations can be used in a consistent way to identify source regions, without single sites dominating the output.
+
 ## Trajectory clustering {#sec-trajCluster}
 
 Often it is useful to use cluster analysis on back trajectories to group similar air mass origins together. The principal purpose of clustering back trajectories is to post-process data according to cluster origin. By grouping data with similar geographic origins it is possible to gain information on pollutant species with similar chemical histories. There are several ways in which clustering can be carried out and several measures of the similarity of different clusters. A key issue is how the *distance matrix* is calculated, which determines the similarity (or dissimilarity) of different back trajectories. The simplest measure is the Euclidean distance. However, an angle-based measure is also often used. The two distance measures are defined below. In [openair]{.pkg} the distance matrices are calculated using C$++$ code because their calculation is computationally intensive. Note that these calculations can also be performed directly in the Hysplit model itself.
