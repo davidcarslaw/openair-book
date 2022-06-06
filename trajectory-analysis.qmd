@@ -403,7 +403,7 @@ It should be noted that it makes sense to analyse back trajectories for pollutan
 
 Both CWT and PSCF techniques is essence assume that the trajectory paths represent a good estimate of the centreline of the air mass origin. However, trajectory analysis is implicitly uncertain, not least because of the difficulty of accurately describing the dispersion of pollutants in the atmosphere. Hysplit has many approaches to deal with these uncertainties such as running an ensemble of trajectories with different starting locations. However, for longer term analysis it can be very time consuming to run the model to explore the influence of meteorological variation.
 
-SQTBA is an approach that recognises the natural processes of plume dispersion and uses this understanding as part of back trajectory analysis. The approach has been used in many studies that aim to better understand sources regions for PM~2.5~ (or components of PM~2.5~) e.g. [@brook2004; @zhao2007; @zhou2004].
+SQTBA is an approach that recognises the natural processes of plume dispersion and uses this understanding as part of back trajectory analysis. The approach has been used in many studies that aim to better understand sources regions for PM~2.5~ (or components of PM~2.5~) e.g. @brook2004 considering PM~2.5~ in North America, @zhao2007 modelling particulate nitrate and sulphate, @zhou2004 comparing different source attribution techniques including SQTBA and the consideration of sources of ammonia in New York State [@zhou2019].
 
 The basic idea, only described briefly here, is that there is a natural transport behaviour of dispersing air masses that can be described by the Gaussian plume equation. Rather than a single back trajectory being considered, it is assumed that concentrations are represented according to Gaussian plume dilution along each trajectory --- giving a probability of a certain concentration at a particular point on a grid. In effect, the further from a receptor (measurement site), the wider the plume (σ value), which has the effect of spreading-out the likely origin of the source. This approach is an effective, pragmatic solution to better account for the uncertainties in the location of upwind sources.
 
@@ -455,6 +455,7 @@ As an example, consideration is given to PM~2.5~ concentrations in a similar way
 trajLevel(traj,
           pollutant = "pm2.5",
           statistic =  "sqtba",
+          map.fill = FALSE,
           cols = "increment",
           min.bin = 10
           )
