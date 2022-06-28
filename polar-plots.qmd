@@ -240,9 +240,9 @@ Grange et al. [-@grange2016] further developed the capabilities of the `polarPl
 
 -   The quantile slope from a quantile regression applied to two variables with a quantile value of $tau$. By default, the median slope (i.e. $tau$ = 0.5) is used by the actual level can be set by the user.
 
-The calculation involves a weighted Pearson correlation coefficient, which is weighted by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval.
+-   'York' regression that accounts for errors in the 'x' and the 'y' variables.
 
-The calculation involves a weighted statistics by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval.
+The calculation involves a weighted Pearson correlation coefficient, which is weighted by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval. Two important settings are `ws_spread` and `wd_spread` that determine the σ value used in the Gaussian kernel weightings. Setting these values too low will result in potentially noisy results. As a guide, values of `ws_spread` around a tenth of the maximum wind speed seem reasonable and 5-10° for `wd_spread`.
 
 An example usage scenario is that measurements of metal concentrations are made close to a steelworks where there is interest in understanding the principal sources. While it is useful to consider the correlation between potentially many metal concentrations, the contention is that if the correlation is also considered as a function of wind speed and direction, improved information will be available of the types of sources contributing. For example, it may be that Fe and Mn are quite strongly correlated overall, but they tend to be most correlated under specific wind speed and direction ranges --- suggesting a specific source origin.
 
@@ -274,7 +274,7 @@ A simple scatter plot between PM~2.5~ and PM~10~ strongly suggests a 1:1 relatio
 #| fig-cap: Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the robust slope is calculated.
 #| fig-width: 5
 #| fig-height: 5
-#| out-width: 50%
+#| out-width: 60%
 polarPlot(har,
   poll = c("pm2.5", "pm10"),
   statistic = "robust_slope",
@@ -282,6 +282,33 @@ polarPlot(har,
   limits = c(0, 1),
   ws_spread = 1.5,
   wd_spread = 10
+)
+```
+
+The York regression option requires special mention. In ordinary linear regression it is assumed there is no error in the 'x' variable. However, in atmospheric science, the interest is often in regressing two variables that both have uncertainty. There are various methods available, such as Reduced Major Axis (RMA) regression. However, a more general solution to this problem was solved a long time ago by the geophysicist Derek York from the University of Toronto [@york1968a; @york2004a].[^polar-plots-1] While the York approach is ideally suited to atmospheric applications, the challenge may be obtaining the uncertainties in the measurements themselves. As discussed in @wu2018, the York approach can still work well if the error in one of the variables is unknown or the measurement error cannot be trusted. In the example below, the errors are estimated and fixed for illustration purposes, but in many applications could be provided directly based on how well an instrument performs.
+
+[^polar-plots-1]: There is a lot of opportunity for confusion over the 'York' regression approach given this document is written while being based at the University of York! Derek was also born in in Yorkshire in the UK --- so even more cause for potential confusion. Sadly, Derek York has now passed, but he made an enormous contribution to his field and beyond and his work has a lasting and important legacy.
+
+```{r}
+#| label: fig-polarPairYork
+#| fig-cap: Use of the `polarPlot` function to investigate the linear regression slope between PM~2.5~ and PM~10~ at Harwell in 2013. In this case the York regression slope is calculated.
+#| fig-width: 5
+#| fig-height: 5
+#| out-width: 60%
+
+# assign simple / fixed uncertainties
+
+har <- mutate(har, pm10_error = 2, pm2.5_error = 2)
+
+polarPlot(har,
+  poll = c("pm2.5", "pm10"),
+  statistic = "york_slope",
+  col = "jet",
+  limits = c(0, 1),
+  ws_spread = 1.5,
+  wd_spread = 10,
+  x_error = "pm10_error", 
+  y_error = "pm2.5_error"
 )
 ```
 
