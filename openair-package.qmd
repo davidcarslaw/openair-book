@@ -46,7 +46,7 @@ For a lot of [openair]{.pkg} functions this issue will not be important. While t
 ::: callout-important
 ## Know your data!
 
-When importing data into R it is important to know how the date-time is represented, especially in terms of time zone.
+When importing data into R it is important to know how the date-time is represented in your original data, especially in terms of time zone.
 :::
 
 When importing data it is important to know how the date-time is represented. In the UK it is easy for us to forget that simply working with data in GMT is not always an option. However, most air quality and meteorological data around the world tends to be in GMT/UTC or a fixed offset from GMT/UTC i.e. not in local time where hours can be missing or duplicated.
@@ -81,6 +81,8 @@ date_time <- "8/2/2022 11:05:12" # time 8 hours behind GMT
 mdy_hms(date_time, tz = "Etc/GMT+8")
 ```
 
+which actually shows the GMT offset of -8 hours.
+
 A common task might be to plot time series and temporal variations of pollutant concentrations in local time. How does one do this if the imported data are in GMT/UTC (or a fixed offset from GMT/UTC)?
 
 In this case it is necessary to know how the local time zone with daylight saving time (DST) is represented. Time zone names follow the Olson scheme --- you can list them by typing `OlsonNames()`. Given the scenario where we have imported data in GMT but want to display the data in local time (BST --- British Summer Time), we can use the `with_tz` function in [lubridate]{.pkg} to do this:
@@ -92,17 +94,28 @@ date_time <- "2/8/2022 11:00"
 date_time <- dmy_hm(date_time) # GMT
 date_time
 
-# what is the local hour?
+# what is the hour?
 hour(date_time)
 
 # format in local time
 time_local <- with_tz(date_time, tz = "Europe/London")
 time_local
 
+# local hour is +1 from GMT
 hour(time_local)
 ```
 
-In the above example, `date_time` and `local_time` are the same absolute time --- we are just changing how the time is expressed. In practice, given a data frame the a `date` column in GMT and there interest in making sure [openair]{.pkg} uses the local time, some formatting such as `mydata$date -> with_tz(mydata$date, tz = "Europe/London")` is what is needed.
+In the above example, `date_time` and `local_time` are the same absolute time --- we are just changing how the time is displayed. In practice, given a data frame with a `date` column in GMT and there interest in making sure [openair]{.pkg} uses the local time, some formatting such as `mydata$date -> with_tz(mydata$date, tz = "Europe/London")` is what is needed.
+
+Another scenario is you import data using a function such as `read_csv` from the [readr]{.pkg} package and it recognises a date-time in the data and by default assumes it is GMT/UTC. This might be wrong even though it is now formatted correctly in R. In this case you can *force* a new time zone using the `force_tz` function. For example:
+
+```{r}
+# a correctly formatted date-time that is in GMT but should be something else
+date_time
+
+# force the time zone to be something different
+force_tz(date_time, tz = "Etc/GMT+8")
+```
 
 Finally, what about combining data sets in different time zones? In @sec-worldmet it is shown how it is possible to access meteorological data from around the world (all in GMT). The interest might be in combining this data with air quality data that is in another time zone. So long as the date-times were correctly formatted in the first place, then simply joining the data sets by date is all that is needed, as R works out how the times match internally. An example of joining two data sets is shown in @sec-link-aq.
 
