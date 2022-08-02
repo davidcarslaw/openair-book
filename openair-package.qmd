@@ -37,6 +37,75 @@ The [openair]{.pkg} package applies certain constraints on input data requiremen
 
 -   Other variables names can be upper/lower case *but should not start with a number*. If column names do have white spaces, R will automatically replace them with a full-stop. While `PM2.5` as a field name is perfectly acceptable, it is a pain to type it in---better just to use `pm25` ([openair]{.pkg} will recognise pollutant names like this and automatically format them as PM~2.5~ in plots).
 
+## Reading and formatting dates and times
+
+While not specific to [openair]{.pkg}, dealing with dates and times is likely to be an issue that needs to be dealt with at some point. There is no getting away from the fact that dates and times can be complicated with issues such as time zones and daylight saving time i.e. when the clocks change for summer. This is a potentially big topic to consider and it is only considered in outline here.
+
+For a lot of [openair]{.pkg} functions this issue will not be important. While these issues can often be ignored, it is better to be explicit and set the date-time correctly. Two situations where it becomes important is when wanting to show temporal variations in local time and combining data sets that are in different time zones. The former issue can be important (for example) when considering diurnal variations in a pollutant concentration that follows a human activity (such as rush-hour traffic), which follows local time and not GMT/UTC.
+
+::: callout-important
+## Know your data!
+
+When importing data into R it is important to know how the date-time is represented, especially in terms of time zone.
+:::
+
+When importing data it is important to know how the date-time is represented. In the UK it is easy for us to forget that simply working with data in GMT is not always an option. However, most air quality and meteorological data around the world tends to be in GMT/UTC or a fixed offset from GMT/UTC i.e. not in local time where hours can be missing or duplicated.
+
+Life is made much easier using the [lubridate]{.pkg} package, which has been developed for working with dates and times. The [lubridate]{.pkg} package has a family of functions that will convert common formats of dates and times into a R-formatted version. These functions are useful when importing data and the date-time is in a character format and needs formatting. Here are some examples:
+
+Original date in 'British' format (day/month/ year hours-minutes):
+
+```{r}
+library(lubridate) # load package
+date_time <- "2/8/2022 11:00"
+
+# format it
+dmy_hm(date_time)
+```
+
+When R formats a date-time correctly is will be shown from 'large to small' i.e. YYYY-MM-DD HH:MM:SS, which provides a clue that it has indeed been formatted correctly.
+
+US date time with seconds (month-day-year):
+
+```{r}
+date_time <- "8/2/2022 11:05:12"
+mdy_hms(date_time)
+```
+
+As you can see, by default, the date-time is formatted in UTC (GMT). It is at this point where you can also set a time zone of the original data if it was not in GMT. Let's assume the original data were a fixed off-set from GMT of -8 hours (west coast USA perhaps). This can be done by setting the time zone explicitly[^openair-package-1]:
+
+[^openair-package-1]: As R help says: "Contrary to some expectations (but consistent with names such as '⁠PST8PDT⁠'), negative offsets are times ahead of (east of) UTC, positive offsets are times behind (west of) UTC."
+
+```{r}
+date_time <- "8/2/2022 11:05:12" # time 8 hours behind GMT
+mdy_hms(date_time, tz = "Etc/GMT+8")
+```
+
+A common task might be to plot time series and temporal variations of pollutant concentrations in local time. How does one do this if the imported data are in GMT/UTC (or a fixed offset from GMT/UTC)?
+
+In this case it is necessary to know how the local time zone with daylight saving time (DST) is represented. Time zone names follow the Olson scheme --- you can list them by typing `OlsonNames()`. Given the scenario where we have imported data in GMT but want to display the data in local time (BST --- British Summer Time), we can use the `with_tz` function in [lubridate]{.pkg} to do this:
+
+```{r}
+date_time <- "2/8/2022 11:00"
+
+# format it
+date_time <- dmy_hm(date_time) # GMT
+date_time
+
+# what is the local hour?
+hour(date_time)
+
+# format in local time
+time_local <- with_tz(date_time, tz = "Europe/London")
+time_local
+
+hour(time_local)
+```
+
+In the above example, `date_time` and `local_time` are the same absolute time --- we are just changing how the time is expressed. In practice, given a data frame the a `date` column in GMT and there interest in making sure [openair]{.pkg} uses the local time, some formatting such as `mydata$date -> with_tz(mydata$date, tz = "Europe/London")` is what is needed.
+
+Finally, what about combining data sets in different time zones? In @sec-worldmet it is shown how it is possible to access meteorological data from around the world (all in GMT). The interest might be in combining this data with air quality data that is in another time zone. So long as the date-times were correctly formatted in the first place, then simply joining the data sets by date is all that is needed, as R works out how the times match internally. An example of joining two data sets is shown in @sec-link-aq.
+
 ## Brief overview of openair {#brief-intr-open}
 
 This section gives a brief overview of the functions in [openair]{.pkg}. Having read some data into a data frame it is then straightforward to run any function. Almost all functions are run as:
