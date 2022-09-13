@@ -413,13 +413,13 @@ $$
   Q(x, t, x', t') = \frac{1}{2 \pi \sigma_x(t') \sigma_y(t')}e^{-\frac{1}{2}\Bigg[\bigg(\frac{X - x'(t')}{\sigma_x(t')}\bigg)^2 + \bigg(\frac{Y - y'(t')}{\sigma_y(t')}\bigg)^2\Bigg]}
 $$
 
-X, Y: Coordinate of the grid center
+X, Y: Coordinate of the grid centre
 
 x' y': Centreline of trajectory
 
 σ: Standard deviation of trajectories at two directions which are assumed to grow with time
 
-σ~x~(t') = σ~y~(t') = at', a is a dispersion speed, equals to 5.4 km h^-1^.
+σ~x~(t') = σ~y~(t') = at', a is a dispersion speed, equals to 1.5 km h^-1^. Note that the default σ is assumed to be 1.5 km h^-1^ rather than 5.4 km h^-1^ that is commonly used in other studies because testing shows that a lower value reveals more information about source origins without introducing noise. In practice, the value of σ will vary depending on meteorological conditions and be influenced by both turbulence and wind shear. Users can set their own value of σ in the function options.
 
 This means at each trajectory point, the probability is calculated across a pre-defined grid. These calculations can take some time to run. For example, with 96 hour back trajectories calculated every 3 hours in a year, there are 840,960 trajectory end points. Each one of these points is used to estimate the probability on a grid, which itself can be large (a one degree grid from 35 to 80°N and -55 to 25°W is 3600 grid points).
 
@@ -445,7 +445,7 @@ $$
 SQTBA(x|x') = \frac{\widetilde{T}(x|x')}{\sum_{l=1}^{l=L}\overline{T_l}(x|x')}
 $$
 
-As an example, consideration is given to PM~2.5~ concentrations in a similar way as shown for CWT and the PSCF techniques. The option `min.bin = 10` is used to exlcude lat-lon grid squares with less than 10 trajectory end points.
+As an example, consideration is given to PM~2.5~ concentrations in a similar way as shown for CWT and the PSCF techniques. This plot indicates several potential sources of PM~2.5~ precursors with the Benelux countries and around the Po Valley in Italy (known high NO~x~ emission regions and potential sources of ammonium nitrate), and also a higher source region in eastern Europe across south Poland.
 
 ```{r}
 #| label: fig-SQTBA
@@ -456,8 +456,43 @@ trajLevel(traj,
           pollutant = "pm2.5",
           statistic =  "sqtba",
           map.fill = FALSE,
-          cols = "increment",
-          min.bin = 10
+          cols = "default",
+          lat.inc = 0.5,
+          lon.inc = 0.5
+          )
+```
+
+Some further analysis can be carried out on the TEOM FDMS measurements, which separately reports the volatile and non-volatile components of PM. @fig-SQTBA-PMv shows the plot for the volatile PM~2.5~ component, which highlights the source regions of the Benelux counties and (likely) northern Italy.
+
+```{r}
+#| label: fig-SQTBA-PMv
+#| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
+#| fig-height: 6
+#| fig-width: 10
+trajLevel(traj,
+          pollutant = "v2.5",
+          statistic =  "sqtba",
+          map.fill = FALSE,
+          cols = "default",
+          lat.inc = 0.5,
+          lon.inc = 0.5
+          )
+```
+
+On the other hand, @fig-SQTBA-PMnv shows the non-volatile PM~2.5~ component, which more clearly shows eastern Europe as the principal source. This plot differs from @fig-SQTBA-PMv and likely highlights the higher sulphur emissions from power generation in this part of Europe. More detailed analysis can be carried out if the components of PM are available at an hourly or daily resolution e.g. particulate nitrate, sulphate.
+
+```{r}
+#| label: fig-SQTBA-PMnv
+#| fig-cap: SQTBA approach applied to the non-volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
+#| fig-height: 6
+#| fig-width: 10
+trajLevel(traj,
+          pollutant = "nv2.5",
+          statistic =  "sqtba",
+          map.fill = FALSE,
+          cols = "default",
+          lat.inc = 0.5,
+          lon.inc = 0.5
           )
 ```
 
