@@ -227,6 +227,7 @@ The easiest way to get polar plots on a map is through the use of the all-in-one
 
 ```{r maps}
 #| label: tbl-dirAnalysisRef
+#| echo: false
 #| tbl-cap: "A reference table for `openairmaps` directional analysis mapping functions."
 tribble(
   ~openair, ~ openairmaps, ~ `unique arguments`,
