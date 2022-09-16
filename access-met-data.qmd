@@ -21,7 +21,7 @@ There are two main functions in the package: `getMeta` and `importNOAA`. The for
 
 Probably the most common use of `getMeta` is to search around a location of interest based on its latitude and longitude. First we will load the [worldmet]{.pkg} (and other packages we use later):
 
-```{r}
+```{r pkg}
 library(worldmet)
 library(openair)
 library(tidyverse)
@@ -31,7 +31,7 @@ As an example, we will search for the 10 nearest sites to Dublin (latitude = 53.
 
 [^access-met-data-1]: Note that `returnMap` was only used to display the map in this document and would not normally be needed.
 
-```{r}
+```{r getMeta}
 #| label: fig-worldmet
 #| fig-cap: Map of returned area of interest. The user can interactively select a site of interest and find its code to import data.
 getMeta(lat = 53.3, lon = -6.3, returnMap = TRUE)
@@ -39,13 +39,14 @@ getMeta(lat = 53.3, lon = -6.3, returnMap = TRUE)
 
 Note that it is just as easy to access all the site information at once because it is quick to use the map to select the site and its code i.e.
 
-```{r eval = FALSE}
+```{r getMeta-map}
+#| eval: false
 getMeta()
 ```
 
 We can use the map that is produced to select a site of interest and import the data. For example, to import data for Dublin Airport and look at some of the data:
 
-```{r }
+```{r dublin}
 dublin_met <- importNOAA(code = "039690-99999", year = 2019)
 
 # first few lines of data
@@ -54,7 +55,7 @@ dublin_met
 
 Plot a wind rose.
 
-```{r}
+```{r wr-dublin}
 #| out-width: 50%
 #| fig-width: 5
 #| fig-height: 5
@@ -67,7 +68,7 @@ windRose(dublin_met)
 
 Having imported some meteorological data it will often be necessary to combine it with air quality data. Quite how this is done depends on the air quality data. The important point is there should be a `date` column in each data set that make the connection between the two. It may also depend on whether the air quality data has existing fields that also exist in the meteorological data e.g. `ws`, `wd` and `air_temp`, as is the case with most data accessible as described in @sec-importAURN. In this case, the aim to to replace any existing meteorological variables in the air quality data with those in the meteorological data. An example is shown below.
 
-```{r}
+```{r linkaqmet}
 # import some air quality data and check the variables that exist
 
 aq_2019 <- importAURN(site = "kc1", year = 2019)

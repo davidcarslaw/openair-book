@@ -50,6 +50,7 @@ book:
    - appendix-annotate.qmd
    - appendix-hysplit.qmd
    - appendix-trends.qmd
+   - appendix-openairmaps.qmd
 
 bibliography: [DCC-refs.bib, packages.bib]
 
@@ -60,7 +61,7 @@ execute:
   error: false
   eval: true
   prompt: false
-  freeze: true
+  freeze: auto
   cache: true
 
 format:

@@ -176,6 +176,10 @@ Information is also collected for the map popups and then the map is
 plotted.
 
 ```{r}
+#| label: fig-leafletmap
+#| cache: false
+#| fig-cap: Plotting sites on an interactive map.
+#| results: asis
 library(leaflet)
 
 aurn_unique <- distinct(aurn_detailed, site, .keep_all = TRUE)
@@ -199,6 +203,25 @@ leaflet(aurn_unique) %>%
   addMarkers(~ longitude, ~ latitude, popup = content,
              clusterOptions = markerClusterOptions())
 ```
+
+To easily visualise entire monitoring networks, consider using the [openairmaps]{.pkg} R package. This package can be installed from CRAN, similar to [openair]{.pkg}.
+
+```{r eval=FALSE}
+install.packages("openairmaps")
+```
+
+This package contains the `networkMap` function which acts as a wrapper around `importMeta` and returns a detailed map similar to the one produced above, with many options for customisation. For example, sites can be clustered together to avoid clutter, and an optional "control menu" can be added to filter for certain sites (e.g., different site types, shown below).
+
+```{r}
+#| label: fig-openairmapsNetworkMap
+#| cache: false
+#| fig-cap: Plotting the AURN using the `openairmaps` package.
+#| results: asis
+library(openairmaps)
+networkMap(source = "aurn", cluster = TRUE, control = "site_type")
+```
+
+For more information about [openairmaps]{.pkg} please refer to [Appendix -@sec-openairmaps].
 
 ## Annual and other statistics
 
