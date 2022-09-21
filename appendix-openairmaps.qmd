@@ -28,9 +28,10 @@ If you would like to use [openairmaps]{.pkg} in your analysis, don't forget to l
 ```{r}
 #| cache: false
 library(openairmaps)
+library(tidyverse)
 ```
 
-:::{.callout-note appearance="simple"}
+::: {.callout-note appearance="simple"}
 This chapter was produced using R version `r getRversion()` and [openairmaps]{.pkg} version `r packageDescription("openairmaps", field = "Version")`.
 :::
 
@@ -46,9 +47,9 @@ Air quality data analysis --- particularly as it pertains to long term monitorin
 
 [openairmaps]{.pkg} currently has three families of functions, those being network visualisation, directional analysis, and trajectory analysis. These are summarised in @tbl-openairmaps-overview. The functions are further divided into two categories:
 
-* **"All-in-one"** functions are most like [openair]{.pkg} functions in that they will construct a map from the ground-up. These functions provide the quickest route from data to a HTML map.
+-   **"All-in-one"** functions are most like [openair]{.pkg} functions in that they will construct a map from the ground-up. These functions provide the quickest route from data to a HTML map.
 
-* **"Marker"** functions are most like [leaflet]{.pkg} functions in that they add layers onto pre-existing `leaflet` maps. These are more complicated to use, but are more powerful if you are more familiar with how [leaflet]{.pkg} works.
+-   **"Marker"** functions are most like [leaflet]{.pkg} functions in that they add layers onto pre-existing `leaflet` maps. These are more complicated to use, but are more powerful if you are more familiar with how [leaflet]{.pkg} works.
 
 ```{r}
 #| label: tbl-openairmaps-overview
@@ -82,15 +83,15 @@ tribble(
 
 While [openairmaps]{.pkg} can be used without a thorough understanding of the [leaflet]{.pkg} package, some knowledge can definitely help! @fig-leafletdemo shows an example leaflet map. Try the following:
 
-* Click and drag to move the map around --- you can go anywhere in the world!
+-   Click and drag to move the map around --- you can go anywhere in the world!
 
-* Use your scroll wheel or the +/- options (top left) to zoom in and out.
+-   Use your scroll wheel or the +/- options (top left) to zoom in and out.
 
-* Hover over the marker to see its label.
+-   Hover over the marker to see its label.
 
-* Click on the marker to see a popup.
+-   Click on the marker to see a popup.
 
-* Use the "layer control" menu (top right) to show and hide the marker, and swap between base maps.
+-   Use the "layer control" menu (top right) to show and hide the marker, and swap between base maps.
 
 ```{r}
 #| label: fig-leafletdemo
@@ -115,18 +116,19 @@ leaflet() %>%
 
 The anatomy of a leaflet map may look a little unusual, so to unpack:
 
-* Every leaflet map starts with the `leaflet` function.
+-   Every leaflet map starts with the `leaflet` function.
 
-* Different base maps can be added using `addTiles` and `addProviderTiles`. There are many of these base maps --- some are minimalist and some are busy, some are colourful and some are black-and-white, some are plain and some are highly stylised!
+-   Different base maps can be added using `addTiles` and `addProviderTiles`. There are many of these base maps --- some are minimalist and some are busy, some are colourful and some are black-and-white, some are plain and some are highly stylised!
 
-* Markers can be added using `addMarkers` and other similar functions. These markers can have different features such as hover labels and popups.
+-   Markers can be added using `addMarkers` and other similar functions. These markers can have different features such as hover labels and popups.
 
-* The `addLayersControl` function creates a menu which allows users to show/hide or swap between certain features of the map.
+-   The `addLayersControl` function creates a menu which allows users to show/hide or swap between certain features of the map.
 
 Don't worry if you don't fully understand all of this --- the "all-in-one" functions in [openairmaps]{.pkg} deal with much of this for you! The only [leaflet]{.pkg} awareness you'll need to use these functions is knowledge of the available base map providers, which can be accessed using `leaflet::providers`. These are shown in the collapsible below (the list is very long!).
 
-:::{.callout-note collapse="true"}
+::: {.callout-note collapse="true"}
 #### View Providers
+
 ```{r}
 leaflet::providers
 ```
@@ -154,15 +156,15 @@ networkMap(source = "aurn")
 
 `networkMap` is a quite simple function, with the following arguments for customisation:
 
-* `source`: Any of the `importMeta` sources --- can be “aurn”, “saqn” (or “saqd”), “aqe”, “waqn”, “ni”, “kcl” or “europe”.
+-   `source`: Any of the `importMeta` sources --- can be "aurn", "saqn" (or "saqd"), "aqe", "waqn", "ni", "kcl" or "europe".
 
-* `control`: Any column of the equivalent `importMeta` dataset, which is used to create a "layer control" menu to allow readers to filter for certain sites. The `control` option is quite opinionated, and selects an appropriate style of layer control depending on the column selected (e.g., pollutants are switched between, wheres multiple site types can be selected at once) 
+-   `control`: Any column of the equivalent `importMeta` dataset, which is used to create a "layer control" menu to allow readers to filter for certain sites. The `control` option is quite opinionated, and selects an appropriate style of layer control depending on the column selected (e.g., pollutants are switched between, wheres multiple site types can be selected at once)
 
-* `date`: By default, `networkMap` shows currently active monitoring sites. By specifying `date`, sites active *at that date* will be shown. This may be of interest if you want to explore the history of your chosen monitoring site.
+-   `date`: By default, `networkMap` shows currently active monitoring sites. By specifying `date`, sites active *at that date* will be shown. This may be of interest if you want to explore the history of your chosen monitoring site.
 
-* `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.
+-   `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.
 
-* `provider`: Any one of the [leaflet]{.pkg} providers (see `leaflet::providers`).
+-   `provider`: Any one of the [leaflet]{.pkg} providers (see `leaflet::providers`).
 
 Some of these arguments are demonstrated in @fig-networkMap2 for the Northern Ireland AQ Network. Pay particular attention to the layer control menu, which allows you to toggle different site types on and off.
 
@@ -244,17 +246,17 @@ tribble(
 
 Effectively all of these functions have very similar arguments, although some are unique to the specific function (also shown in @tbl-dirAnalysisRef). The important ones to pay attention to are:
 
-* `data`: The data you would like to map. Ensure that lat/lon information is present.
+-   `data`: The data you would like to map. Ensure that lat/lon information is present.
 
-* `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
+-   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
-* `latitude`, `longitude`: The lat/lon column names.
+-   `latitude`, `longitude`: The lat/lon column names.
 
-* `type`: The `type` column should distinguish between different lat/lon combinations. Commonly this will be "site", "site_code", "site_name" or something to that effect!
+-   `type`: The `type` column should distinguish between different lat/lon combinations. Commonly this will be "site", "site_code", "site_name" or something to that effect!
 
-* `provider`: The [leaflet]{.pkg} base map provider(s) you'd like to use. If multiple providers are provided, a "layer control" menu will allow readers to swap between them. Note that you can provide multiple pollutants *and* providers!
+-   `provider`: The [leaflet]{.pkg} base map provider(s) you'd like to use. If multiple providers are provided, a "layer control" menu will allow readers to swap between them. Note that you can provide multiple pollutants *and* providers!
 
-* `...`: Any additional arguments to pass to the equivalent [openair]{.pkg} function. This could be useful if you want to, for example, use the same colour scale for all of the plots by using the `limits` argument.
+-   `...`: Any additional arguments to pass to the equivalent [openair]{.pkg} function. This could be useful if you want to, for example, use the same colour scale for all of the plots by using the `limits` argument.
 
 `polarMap` is demonstrated in @fig-polarMap. Try clicking on each of the markers to see which sites they correspond to.
 
@@ -279,7 +281,9 @@ annulusMap(
 
 ### Marker Function
 
-The directional analysis marker function is `addPolarMarkers`, which behaves similarly (but not identically) to `leaflet::addMarkers`. You will need to define the `data` you're using, the `lat`/`lng`^[Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
+The directional analysis marker function is `addPolarMarkers`, which behaves similarly (but not identically) to `leaflet::addMarkers`. You will need to define the `data` you're using, the `lat`/`lng`[^appendix-openairmaps-1] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
+
+[^appendix-openairmaps-1]: Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.
 
 To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq` function to plot multiple polar pollutant frequency plots for oxides of nitrogen. What is different about this map is that users can select the specific statistic they are interested in -- in this case, mean, median or maximum. This is achieved by using the `group` arguments and `addLayersControl`.
 
@@ -321,11 +325,11 @@ leaflet() %>%
 
 One could imagine different applications, using this approach. For example:
 
-* Giving users the option to swap between different `period`s for a `polarAnnulus` map, or different polar coordinates in a `polarPlot` map (i.e., different `x` arguments).
+-   Giving users the option to swap between different `period`s for a `polarAnnulus` map, or different polar coordinates in a `polarPlot` map (i.e., different `x` arguments).
 
-* Allowing users to swap between different plot types (e.g., have "Wind Rose", "Pollution Rose" and "Polar Plot" on the layer control menu).
+-   Allowing users to swap between different plot types (e.g., have "Wind Rose", "Pollution Rose" and "Polar Plot" on the layer control menu).
 
-* Letting users switch between different years, to see how pollutant sources might have changed over time.
+-   Letting users switch between different years, to see how pollutant sources might have changed over time.
 
 The options are pretty much endless for the kinds of things you could achieve using this approach. If one of the all-in-one functions doesn't give you the flexibility you need, try to see if you can create your vision yourself from scratch using [leaflet]{.pkg} and the `addPolarMarkers` function.
 
@@ -343,9 +347,9 @@ dplyr::glimpse(traj_data)
 
 There are two all-in-one functions for trajectory mapping in [openairmaps]{.pkg}, which will be discussed in turn.
 
-1. `trajMap`, which is an analogue to `openair::trajPlot`.
+1.  `trajMap`, which is an analogue to `openair::trajPlot`.
 
-2. `trajLevelMap`, which is an analogue to `openair::trajLevel`.
+2.  `trajLevelMap`, which is an analogue to `openair::trajLevel`.
 
 By default, `trajMap()` will plot your trajectories in black on a default "OpenStreetMap" base map, as shown in @fig-trajMap. A popup is also automatically generated --- try clicking on the points to get information about that particular air mass.
 
@@ -380,6 +384,7 @@ clustdata <- trajCluster(traj_data)
 #| label: fig-trajNeon
 #| fig-cap: Interactive map of clustered trajectories, with a cool neon colour scheme!
 #| results: asis
+#| eval: false
 trajMap(
   data = clustdata$data,
   colour = "cluster",
@@ -442,4 +447,3 @@ leaflet() %>%
   addLayersControl(overlayGroups = c("Paris, France", "London, UK"))
 
 ```
-

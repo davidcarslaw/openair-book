@@ -549,7 +549,7 @@ polarMap(polar_data,
          type = "site")
 ```
 
-The `polarMap` function allows for control of many parts of the [leaflet]{.pkg} map. For example, you can provide one (or more) different base map(s) --- there are many! You may also visualise multiple pollutants at once which can then be toggled between. 
+The `polarMap` function allows for control of many parts of the [leaflet]{.pkg} map. For example, you can provide one (or more) different base map(s) --- there are many! You may also visualise multiple pollutants at once which can then be toggled between.
 
 ```{r}
 #| label: fig-interMap2
