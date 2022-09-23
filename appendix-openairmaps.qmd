@@ -384,9 +384,8 @@ clustdata <- trajCluster(traj_data)
 #| label: fig-trajNeon
 #| fig-cap: Interactive map of clustered trajectories, with a cool neon colour scheme!
 #| results: asis
-#| eval: false
 trajMap(
-  data = clustdata$data,
+  data = clustdata$data$traj,
   colour = "cluster",
   control = "cluster",
   cols = c("#9B5DE5", "#F15BB5", "#FEE440", "#00BBF9", "#00F5D4"),
