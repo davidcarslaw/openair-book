@@ -579,7 +579,7 @@ Perhaps more useful is to merge the cluster data with measurement data. In this 
 ```{r mergeClustTraj}
 # use inner join - so only where we have data in each
 kc1 <- inner_join(kc1, 
-                  filter(clust$data, hour.inc == 0), 
+                  filter(clust$data$traj, hour.inc == 0), 
                   by = "date")
 ```
 
