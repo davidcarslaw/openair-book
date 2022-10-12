@@ -52,13 +52,13 @@ $$
 \sqrt{C_i} = s(u, v) + e_i 
 $$ {#eq-gam-2}
 
-## Polar plots from an Air Pollution Dispersion Perspective
+## Polar plots from an air pollution dispersion perspective
 
 This section considers some of the common features that can be observed in polar plots that can be related to the underlying characteristics of dispersion. Hourly dispersion model output can be analysed in the same way as measurements of air pollution but has the advantage of simplifying the types and number of sources considered.
 
 ### Effect of source type {#sec-effect-of-source}
 
-As an example of different dispersion behaviours two source types have been modelled using the ADMS 5.1 model: a shallow volume source and a single stack. The volume source is assumed to be 10 m deep and cover an area of 10x10 km with the receptor located in the middle of the source. This type of source is a simple representation of urban area sources e.g. road traffic and domestic combustion. The point source is assumed to have a height of 60 m, and efflux velocity of 10 m s^-1^ and a temperature of 150 °C. The receptor is located about 1 km to the north-west of the source (i.e. the source is to the south-west of the receptor). Hourly meteorological data from the London Heathrow site for 2019 were used in the model.
+As an example of different dispersion behaviours two source types have been modelled using the ADMS 5.2 model: a shallow volume source and a single stack. The volume source is assumed to be 10 m deep and cover an area of 10x10 km with the receptor located in the middle of the source. This type of source is a simple representation of urban area sources e.g. road traffic and domestic combustion. The point source is assumed to have a height of 60 m, and efflux velocity of 10 m s^-1^ and a temperature of 150 °C. The receptor is located about 1 km to the north-west of the source (i.e. the source is to the south-west of the receptor). Hourly meteorological data from the London Heathrow site for 2019 were used in the model.
 
 The hourly output from the model was processed and polar plots produced for each source type as shown in @fig-dispersion-ws. The shallow volume source (@fig-volume-ws) shows a characteristic dispersion pattern where concentrations are highest at low wind speeds (shown by the high values at the centre of the plot), which decrease with increasing wind speed (away from the centre of the plot). This type of pattern is frequently seen in monitoring data and often in urban areas where there are lots of ground-level, non-buoyant sources.
 
