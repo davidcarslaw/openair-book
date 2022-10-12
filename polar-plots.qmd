@@ -38,7 +38,7 @@ $$ {#eq-wind-comp}
 
 with $\overline{u}$ is the mean hourly wind speed and $\theta$ is the mean wind direction in degrees with 90$^\circ$ as being from the east.
 
-The calculations above provides a $u$, $v$, concentration ($C$) surface. While it would be possible to work with this surface data directly a better approach is to apply a model to the surface to describe the concentration as a function of the wind components $u$ and $v$ to extract real source features rather than noise. A flexible framework for fitting a surface is to use a Generalized Additive Model (GAM) e.g. [@Hastie1990], [@Wood2006]. GAMs are a useful modelling framework with respect to air pollution prediction because typically the relationships between variables are non-linear and variable interactions are important, both of which issues can be addressed in a GAM framework. GAMs can be expressed as shown in @eq-gam:
+The calculations above provides a $u$, $v$, concentration ($C$) surface. While it would be possible to work with this surface data directly a better approach is to apply a model to the surface to describe the concentration as a function of the wind components $u$ and $v$ to extract real source features rather than noise. A flexible framework for fitting a surface is to use a Generalized Additive Model (GAM) e.g. [@Hastie1990], [@Wood2006]. GAMs are a useful modelling framework with respect to air pollution prediction because typically the relationships between variables are non-linear and variable interactions are important, both of which issues can be addressed in a GAM framework. GAMs can be expressed as shown in @eq-gam:
 
 $$
 \sqrt{C_i} = \beta_0 + \sum_{j=1}^{n}s_j(x_{ij}) + e_i 
@@ -46,11 +46,68 @@ $$ {#eq-gam}
 
 where $C_i$ is the ith pollutant concentration, $\beta_0$ is the overall mean of the response, $s_j(x_{ij})$ is the smooth function of ith value of covariate $j$, $n$ is the total number of covariates, and $e_i$ is the $i$th residual. Note that $C_i$ is square-root transformed as the transformation generally produces better model diagnostics e.g. normally distributed residuals.
 
-The model chosen for the estimate of the concentration surface is given by @eq-gam-2. In this model the square root-transformed concentration is a smooth function of the bivariate wind components $u$ and $v$. Note that the smooth function used is *isotropic* because $u$ and $v$ are on the same scales. The isotropic smooth avoids the potential difficulty of smoothing two variables on different scales e.g. wind speed and direction, which introduces further complexities.
+The model chosen for the estimate of the concentration surface is given by @eq-gam-2. In this model the square root-transformed concentration is a smooth function of the bivariate wind components $u$ and $v$. Note that the smooth function used is *isotropic* because $u$ and $v$ are on the same scales. The isotropic smooth avoids the potential difficulty of smoothing two variables on different scales e.g. wind speed and direction, which introduces further complexities.
 
 $$
 \sqrt{C_i} = s(u, v) + e_i 
 $$ {#eq-gam-2}
+
+## Polar plots from an Air Pollution Dispersion Perspective
+
+This section considers some of the common features that can be observed in polar plots that can be related to the underlying characteristics of dispersion. Hourly dispersion model output can be analysed in the same way as measurements of air pollution but has the advantage of simplifying the types and number of sources considered.
+
+### Effect of source type {#sec-effect-of-source}
+
+As an example of different dispersion behaviours two source types have been modelled using the ADMS 5.1 model: a shallow volume source and a single stack. The volume source is assumed to be 10 m deep and cover an area of 10x10 km with the receptor located in the middle of the source. This type of source is a simple representation of urban area sources e.g. road traffic and domestic combustion. The point source is assumed to have a height of 60 m, and efflux velocity of 10 m s^-1^ and a temperature of 150 °C. The receptor is located about 1 km to the north-west of the source (i.e. the source is to the south-west of the receptor). Hourly meteorological data from the London Heathrow site for 2019 were used in the model.
+
+The hourly output from the model was processed and polar plots produced for each source type as shown in @fig-dispersion-ws. The shallow volume source (@fig-volume-ws) shows a characteristic dispersion pattern where concentrations are highest at low wind speeds (shown by the high values at the centre of the plot), which decrease with increasing wind speed (away from the centre of the plot). This type of pattern is frequently seen in monitoring data and often in urban areas where there are lots of ground-level, non-buoyant sources.
+
+By contrast, the pattern from the stack shown in @fig-stack-ws is markedly different compared to the shallow volume source. In this case, it is clear the source is located to the south-west and is detected at a range of wind speeds, even up to very high values. This sort of behaviour is typical of a stack source plume being brought down to ground level under higher wind speed conditions. The pattern seen in @fig-stack-ws will depend on many factors such as distance to the stack, the nature of the release (efflux velocity and plume exit temperature) and the effect of the atmosphere itself, which is discussed more in the next section.
+
+::: {#fig-dispersion-ws layout-ncol="2"}
+![Shallow volume source.](images/volume-ws.png){#fig-volume-ws}
+
+![Stack source.](images/plume-ws.png){#fig-stack-ws}
+
+Effect of source type on plume dispersion with wind speed on the radial axis. In these plots the wind direction is the direction the wind is coming from and wind speed forms the radial axis such that zero wind speed is at the centre of the plot and increases away from the centre to 14 m s^-1^. The concentration of a pollutant is shown by the colour scale.
+:::
+
+### Atmospheric stability on the radial axis
+
+By default, polar plots use wind speed on the radial axis. However, any numeric variable can be used if it is helpful in distinguishing between different types of source. For example, if a source is known to have an ambient temperature dependence (such as biogenic isoprene emissions), then temperature on the radial axis can usefully highlight these types of source. Similarly, relative humidity might be useful in highlighting re-suspended sources where particle are bound by water and remain on teh surface at higher relative humidities.
+
+From a dispersion perspective, atmospheric stability is of fundamental importance to how plumes disperse. Originally, categorical stability classes such as the Pasquill-Gifford were widely used in dispersion modelling, with classes from A to G (A = extremely unstable, D = neutral and G = extremely stable. However, 'modern' dispersion models such as the Atmospheric Dispersion Modelling System (ADMS) and the USEPA AERMOD models use the Monin-Obukhov length (L~MO~) and boundary layer height (H) as the basis of describing the boundary later and its stability. In particular, the ratio of H/L~MO~ represents a continuous scale of atmospheric stability. Ranges of H/L~MO~ can provide a guide as to whether the atmosphere is unstable, neutral or stable, as shown in @tbl-stability. The choice of values to partition H/L~MO~ is somewhat arbitrary but the values given in @tbl-stability are commonly used values.
+
+| Condition             | Range                |
+|-----------------------|----------------------|
+| Convective (unstable) | H/L~MO~ \< -0.6      |
+| Neutral               | -0.6 \< H/L~MO~ \< 2 |
+| Stable                | H/L~MO~ \> 2         |
+|                       |                      |
+
+: Stability conditions using the Monin-Obukhov length. {#tbl-stability}
+
+A continuous measure of atmospheric stability available through H/L~MO~ makes it possible to use atmospheric stability on the radial axis. It should be noted that both ADMS and AERMOD use meteorological pre-processors to calculate these parameters, allowing them to be used in any analysis of dispersion model output or ambient measurements.[^polar-plots-1]
+
+[^polar-plots-1]: For example, when ADMS is run, a .MOP file is produced, which is a simple text file that can be read into R to access L~MO~ and H and combined with directly measured quantities such as wind speed and direction.
+
+The influence of atmospheric stability on plume dispersion can be seen in @fig-atmos-stability, which shows the average plume height and spread (σ~z~) across all conditions modelled. This Figure highlights several important characteristics: that an elevated plume under stable conditions may not reach group level in proximity to the stack, that plume spread is much less under stable conditions and when the atmosphere is unstable there is a greater chance of a plume being brought down to ground level close to the source. As discussed in the previous section, the actual variation in these characteristics will depend on many factors, but they do highlight some common behaviours.
+
+![Behaviour of a dispersing plume from a 60 m stack under different conditions of atmospheric stability. The line corresponds to the mean plume centreline height and the shaded area indicates the mean plume spread (σ~z~).](images/stability_plume.png){#fig-atmos-stability}
+
+Just as in @sec-effect-of-source, we can illustrate the how concentrations are represented on polar plots when the radial axis is atmospheric stability (H/L~MO~). @fig-volume-stability shows how predicted concentrations vary with atmospheric stability with values close to zero corresponding to neutral conditions and positive values representing stable conditions. For the shallow volume source it is clear that the highest concentrations are observed under stable atmospheric condition, which tend to also be conditions where the wind speed is low, as shown previously in @fig-volume-ws.
+
+By contrast, the stack dispersion pattern is very different (@fig-stack-stability) compared to the shallow volume source. Again, like @fig-stack-ws the plume is obvious, but in this case the highest concentrations are seen under *unstable* atmospheric conditions sown by negative values of H/L~MO~ on the radial axis. These results show that the plume is being mixed down to the receptor when the atmosphere is unstable as illustrated in @fig-atmos-stability.
+
+::: {#fig-dispersion-monin layout-ncol="2"}
+![Shallow volume source.](images/volume-stability.png){#fig-volume-stability}
+
+![Stack source.](images/stack_stability.png){#fig-stack-stability}
+
+Effect of source type on plume dispersion with atmospheric stability (H/L~MO~) on the radial axis.
+:::
+
+The patterns seen from the examples in this section provide some guidance on how to interpret polar plots. There are of course many other source types and situations that can be considered, but the ability to understand the patterns observed in real data in terms of underlying dispersion (or chemistry) is an important aspect of using these types of analysis effectively.
 
 ## Examples {#sec-polar-plot-examples}
 
@@ -285,9 +342,9 @@ polarPlot(har,
 )
 ```
 
-The York regression option requires special mention. In ordinary linear regression it is assumed there is no error in the 'x' variable. However, in atmospheric science, the interest is often in regressing two variables that both have uncertainty. There are various methods available, such as Reduced Major Axis (RMA) regression. However, a more general solution to this problem was solved a long time ago by the geophysicist Derek York from the University of Toronto [@york1968a; @york2004a].[^polar-plots-1] While the York approach is ideally suited to atmospheric applications, the challenge may be obtaining the uncertainties in the measurements themselves. As discussed in @wu2018, the York approach can still work well if the error in one of the variables is unknown or the measurement error cannot be trusted. In the example below, the errors are estimated and fixed for illustration purposes, but in many applications could be provided directly based on how well an instrument performs.
+The York regression option requires special mention. In ordinary linear regression it is assumed there is no error in the 'x' variable. However, in atmospheric science, the interest is often in regressing two variables that both have uncertainty. There are various methods available, such as Reduced Major Axis (RMA) regression. However, a more general solution to this problem was solved a long time ago by the geophysicist Derek York from the University of Toronto [@york1968a; @york2004a].[^polar-plots-2] While the York approach is ideally suited to atmospheric applications, the challenge may be obtaining the uncertainties in the measurements themselves. As discussed in @wu2018, the York approach can still work well if the error in one of the variables is unknown or the measurement error cannot be trusted. In the example below, the errors are estimated and fixed for illustration purposes, but in many applications could be provided directly based on how well an instrument performs.
 
-[^polar-plots-1]: There is a lot of opportunity for confusion over the 'York' regression approach given this document is written while being based at the University of York! Derek was also born in in Yorkshire in the UK --- so even more cause for potential confusion. Sadly, Derek York has now passed, but he made an enormous contribution to his field and beyond and his work has a lasting and important legacy.
+[^polar-plots-2]: There is a lot of opportunity for confusion over the 'York' regression approach given this document is written while being based at the University of York! Derek was also born in in Yorkshire in the UK --- so even more cause for potential confusion. Sadly, Derek York has now passed, but he made an enormous contribution to his field and beyond and his work has a lasting and important legacy.
 
 ```{r}
 #| label: fig-polarPairYork
