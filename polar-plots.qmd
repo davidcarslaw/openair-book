@@ -175,6 +175,8 @@ summary(mydata$ratio)
 
 A polar plot of the SO~2~/NO~x~ ratio is shown in @fig-polarRatio. The plot highlights some new features not seen before. First, to the north there seems to be evidence that the air tends to have a higher SO~2~/NO~x~ ratio. Also, the source to the east has a higher SO~2~/NO~x~ ratio compared with that when the wind is from the south-west i.e. dominated by road sources. It seems therefore that the easterly source(s), which are believed to be industrial sources have a different SO~2~/NO~x~ ratio compared with road sources. This is a very simple analysis, but ratios can be used effectively in many functions and are particularly useful in the presence of high source complexity.
 
+Arguably a better approach would be to calculate the ratio (slope) from a regression, as described in @sec-polar-pairwise. One reason is that simply dividing one concentration by another would include the effect of background concentrations, which could be large. A regression-based approach avoids this problem.
+
 ```{r}
 #| label: fig-polarRatio
 #| fig-cap: Bivariate polar plot of the ratio of SO~2~/NO~x~.
@@ -287,9 +289,9 @@ quantile(mydata$so2, probs = seq(0, 1, by = 0.1), na.rm = TRUE)
 
 To plot the Figures on one page it is necessary to make the plot objects first and then decide how to plot them. To plot the Figures in a particular layout see @sec-multiple-plots-page.
 
-## Pairwise statistics
+## Pairwise statistics {#sec-polar-pairwise}
 
-Grange et al. [-@grange2016] further developed the capabilities of the `polarPlot` function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the `polarPlot` function can provide enhanced information. The pairwise statistics that can be considered include:
+Grange et al. [-@grange2016] further developed the capabilities of the `polarPlot` function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the `polarPlot` function can provide enhanced information. The pairwise statistics that can be considered include:
 
 -   The Pearson or Spearman correlation coefficient, $r$;
 
