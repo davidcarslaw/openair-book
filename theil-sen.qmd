@@ -144,7 +144,8 @@ shown in @fig-TheilSen1. Note that if one wanted to display the
 confidence intervals in the slope at the 99% confidence intervals, the
 code would be @fig-TheilSen2.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 TheilSen(mydata, pollutant = "o3", ylab = "ozone (ppb)", alpha = 0.01)
 ```
 
@@ -153,7 +154,8 @@ excluding some years. This is easy with the `filter` function. The
 following code calculates trends for years greater than 1999 i.e. from
 2000 onward.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 TheilSen(filter(mydata, format(date, "%Y") > 1999), 
          pollutant = "o3",
          ylab = "ozone (ppb)")
@@ -208,7 +210,9 @@ where $C_{End}$ and $C_{Start}$ are the mean concentrations for the end
 and start date, respectfully. $N_{years}$ is the number of years (or
 fractions of) the time series spans.
 
-```{r MannKen, eval=FALSE}
+```{r}
+#| label: MannKen
+#| eval: false
 TheilSen(mydata, pollutant = "o3", deseason = TRUE,
             slope.percent = TRUE)
 ```
@@ -236,7 +240,8 @@ pre-formatted as YYYY-mm-dd, then it is sufficient to use `as.Date`
 without providing any format information because it is already in the
 correct format.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 mydata$date = as.Date(mydata$date, format = "%d/%m/%Y")
 ```
 
@@ -245,7 +250,8 @@ provided the input data are correctly formatted. For input, a data frame
 with three columns is required: date, pollutant and *site*. The call
 would then be, for example:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 TheilSen(mydata, pollutant = "no2", type = "site")
 ```
 
@@ -255,7 +261,9 @@ The `TheilSen` function provides lots of output data for further
 analysis or adding to a report. To obtain it, it is necessary to read it
 into a variable:
 
-```{r MKout,fig.keep='none'}
+```{r}
+#| label: MKout
+#| fig.keep: none
 MKresults <-  TheilSen(mydata, 
                        pollutant = "o3", 
                        deseason = TRUE, 

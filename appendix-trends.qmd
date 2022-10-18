@@ -12,18 +12,24 @@ The example considered is 23 years of O~3~ measurements at Mace Head on the West
 
 First we import the data:
 
-```{r echo=FALSE,message=FALSE,warning=FALSE,cache=FALSE}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| cache: false
 library(mgcv)
 library(openair) # load openair
 load("book_data/MaceHead.RData")
 ```
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 library(mgcv)
 dat <- importAURN(site = "mh", year = 1988:2010)
 ```
 
-```{r calcMonthly}
+```{r}
+#| label: calcMonthly
 ## calculate monthly means
 monthly <- timeAverage(dat, avg.time = "month")
 ## now calculate components for the models
@@ -46,7 +52,8 @@ timePlot(monthly, pollutant = "o3")
 
 Even though it is known there is a seasonal signal in the data, we will first of all ignore it and build a simple model that only has a trend component (model M0).
 
-```{r mod1}
+```{r}
+#| label: mod1
 M0 <- gam(o3 ~ s(trend), data = monthly)
 summary(M0)
 ```
@@ -64,7 +71,8 @@ acf(residuals(M0))
 
 A refined model should therefore take account of the seasonal variation in O~3~ concentrations. Therefore, we add a term taking account of the seasonal variation. Note also that we choose a cyclic spline for the monthly component (`bs = "cc"`), which joins the first and last points i.e. January and December.
 
-```{r mod1a}
+```{r}
+#| label: mod1a
 M1 <- gam(o3 ~ s(trend) + s(month, bs = "cc"), data = monthly)
 summary(M1)
 ```
@@ -104,7 +112,8 @@ acf(residuals(M1))
 
 Further tests, also considering the partial autocorrelation function (PACF) suggest that an AR1 model is suitable for modelling this short-term autocorrelation. This is where modelling using a GAMM (Generalized Additive Mixed Model) comes in because it is possible to model the short-term autocorrelation using a linear mixed model. The `gamm` function uses the package [nmle]{.pkg} and the Generalized Linear Mixed Model (GLMM) fitting routine. In the M2 model below the correlation structure is considered explicitly.
 
-```{r M3mod}
+```{r}
+#| label: M3mod
 M2 <- gamm(o3 ~ s(month, bs = "cc")  + s(trend), 
            data = monthly,
            correlation = corAR1(form = ~ month | year))
@@ -124,7 +133,9 @@ acf(residuals(M2$lme, type = "normalized"))
 
 Note that model M2 assumes that the trend and seasonal terms vary independently of one another. However, if the seasonal amplitude and/or phase change over time then a model that accounts for the interaction between the two may be better. Indeed, this does seem to be the case here, as shown by the improved fit of the model below. This model uses a tensor product smooth (`te`) and the reason for doing this and not using an isotropic smooth (`s`) is that the trend and seasonal components are essentially on different scales. We would not necessarily want to apply the same level of smoothness to both components. An example of covariates on the same scale would be latitude and longitude.
 
-```{r M3modGAMM, cache=FALSE}
+```{r}
+#| label: M3modGAMM
+#| cache: false
 M3 <- gamm(o3 ~ s(month, bs = "cc")  + 
              te(trend, month), data = monthly,
            correlation = corAR1(form = ~ month | year))

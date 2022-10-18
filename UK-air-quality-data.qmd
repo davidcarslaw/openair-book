@@ -79,7 +79,10 @@ The site codes and pollutant names can be upper or lower case.
 
 Some examples of usage are shown below. First load the packages we need.
 
-```{r warning=FALSE,message=FALSE,cache=FALSE}
+```{r}
+#| warning: false
+#| message: false
+#| cache: false
 library(openair)
 library(tidyverse)
 ```
@@ -92,7 +95,10 @@ using the `importMeta` function. The user only needs to provide the
 network name and (optionally) whether all data should be returned. By
 default only site type, latitude and longitude are returned.
 
-```{r importMeta,warning=FALSE,message=FALSE}
+```{r}
+#| label: importMeta
+#| warning: false
+#| message: false
 aurn_meta <- importMeta(source = "aurn")
 aurn_meta
 ```
@@ -101,7 +107,9 @@ Or return much more detailed data that includes which pollutants are
 measured at each site and site start / end dates. The option
 `all = TRUE` should be added.
 
-```{r importMetaAll,eval=FALSE}
+```{r}
+#| label: importMetaAll
+#| eval: false
 aurn_meta <- importMeta(source = "aurn", all = TRUE) 
 aurn_meta
 ```
@@ -112,7 +120,9 @@ easily be extended to the other data sources.
 To see how many sites measure NO~2~ in the AURN that are 'urban
 traffic':
 
-```{r warning=FALSE,message=FALSE}
+```{r}
+#| warning: false
+#| message: false
 aurn_detailed <- importMeta(source = "aurn", all = TRUE)
 
 no2_sites <- filter(
@@ -127,7 +137,8 @@ nrow(no2_sites)
 To import data, you can use the different versions of `importAURN`. Some
 examples are below.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 ## import all pollutants from Marylebone Rd from 2000:2005
 mary <- importAURN(site = "my1", year = 2000:2005)
 
@@ -146,7 +157,8 @@ yk13 <- importAQE(site = "yk13", year = 2018)
 
 And to include basic meta data when importing air pollution data:
 
-```{r importWithMeta}
+```{r}
+#| label: importWithMeta
 kc1 <- importAURN(site = "kc1", year = 2018, meta = TRUE)
 
 glimpse(kc1)
@@ -160,7 +172,8 @@ separate column. However, it is possible to return the data in a *tidy*
 format (column for pollutant name, column for value) by using the option
 `to_narrow`:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 my1 <- importAURN("my1", year = 2018, to_narrow = TRUE)
 ```
 
@@ -174,7 +187,8 @@ To easily visualise entire monitoring networks, consider using the
 [openairmaps]{.pkg} R package. This package can be installed from CRAN,
 similar to [openair]{.pkg}.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 install.packages("openairmaps")
 ```
 
@@ -234,7 +248,8 @@ and the `site` option has no effect.
 
 As an example, to import 5 years of annual mean data from the AURN:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 uk_annual <- importAURN(year = 2016:2020, data_type = "annual")
 ```
 
@@ -246,7 +261,8 @@ data (site type, latitude and longitude) at the same time.
 
 Below is an example of obtaining annual mean data for 2020.
 
-```{r importAnnual}
+```{r}
+#| label: importAnnual
 uk_2020 <- importAURN(year = 2020, 
                       data_type = "annual",
                       meta = TRUE,
@@ -264,7 +280,8 @@ unique(uk_2020$species)
 Now it is easy for example, to select annual mean data from 2020 for
 NO~2~ with a data capture rate of at least 80%:
 
-```{r filterNO2}
+```{r}
+#| label: filterNO2
 uk_2020 %>% 
   filter(species == "no2", data_capture >= 0.8)
 ```
@@ -272,7 +289,8 @@ uk_2020 %>%
 For the AURN, it is also possible to return the DAQI (Daily Air Quality
 Index) by pollutant to save deriving it.
 
-```{r daqi}
+```{r}
+#| label: daqi
 daqi_2020 <- importAURN(year = 2020, data_type = "daqi", meta = TRUE)
 daqi_2020
 ```

@@ -61,7 +61,9 @@ scatterPlot(data2003, x = "nox", y = "no2", method = "hexbin", col= "jet")
 
 Note that when `method = "hexbin"` there are various options that are useful e.g. a border around each bin and the number of bins. For example, to place a grey border around each bin and set the bin size try:
 
-```{r hexbinAlt, eval=FALSE}
+```{r}
+#| label: hexbinAlt
+#| eval: false
 scatterPlot(mydata, x = "nox", y = "no2", 
             method = "hexbin", col = "jet",
             border = "grey", xbin = 15)
@@ -96,7 +98,8 @@ scatterPlot(data2003, x = "nox", y = "no2",
 
 Below is an extended example that brings together data manipulation, refined plot options and linear fitting of two variables with NO~x~. The aim is to plot the weekly concentration of NO~x~ against PM~10~ and PM~2.5~ and fit linear equations to both relationships. To do this we need the $x$ variable as NO~x~ and the $y$ variable as PM~10~ or PM~2.5~, which means we also need a column that will act as a grouping column i.e. identifies whether the $y$ is PM~10~ or PM~2.5~.
 
-```{r dataManip}
+```{r}
+#| label: dataManip
 # load the packages we need
 library(tidyverse)
 
@@ -130,7 +133,9 @@ scatterPlot(subdat, x = "nox", y = "value",
 
 To gain a better idea of where the data lie and the linear fits, adding some transparency helps:
 
-```{r scatterPlotTwoAlpha,eval=FALSE}
+```{r}
+#| label: scatterPlotTwoAlpha
+#| eval: false
 scatterPlot(subdat, x = "nox", y = "value", 
             group = "variable", 
             pch = 21:22, cex = 1.6, 
@@ -144,7 +149,9 @@ scatterPlot(subdat, x = "nox", y = "value",
 
 The above example will also work with `type`. For example, to consider how NO~x~ againts PM~10~ and PM~2.5~ varies by season:
 
-```{r scatterTwoSeas,eval=FALSE}
+```{r}
+#| label: scatterTwoSeas
+#| eval: false
 scatterPlot(subdat, x = "nox", y = "value", 
             group = "variable", 
             pch = 21:22, cex = 2, 

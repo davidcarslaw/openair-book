@@ -58,13 +58,17 @@ The plot can be used in much more flexible ways. Here are some examples (not plo
 
 A plot of mean O~3~ concentration shown by season and by daylight/nighttime hours.
 
-```{r trendLevelex1, eval=FALSE}
+```{r}
+#| label: trendLevelex1
+#| eval: false
 trendLevel(mydata, x = "season", y = "daylight", pollutant = "o3")
 ```
 
 Or by season and hour of the day:
 
-```{r trendLevelEx2, eval=FALSE}
+```{r}
+#| label: trendLevelEx2
+#| eval: false
     trendLevel(mydata, x = "season", y = "hour", 
                pollutant = "o3",
                cols = "increment")
@@ -85,7 +89,9 @@ trendLevel(mydata, x = "nox", y = "no2", pollutant = "o3",
 
 The plot can also be shown by wind direction sector, this time showing how O~3~ varies by weekday, wind direction sector and NO~x~ quantile.
 
-```{r trendLevelEx4, eval=FALSE}
+```{r}
+#| label: trendLevelEx4
+#| eval: false
 trendLevel(mydata, x = "nox", y = "weekday", pollutant = "o3",
            border = "white", n.levels = 10, statistic = "max",
            limits = c(0, 50), type = "wd")

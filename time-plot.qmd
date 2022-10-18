@@ -20,7 +20,8 @@ Another useful feature of `timePlot` is the ability to average the data in sever
 
 A full set of examples is shown in the help pages --- see `?timePlot` for details. At the basic level, concentrations are shown using a simple call e.g. to plot time series of NO~x~ and O~3~ in separate panels with their own scales.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 timePlot(mydata, 
          pollutant = c("nox", "o3"), 
          y.relation = "free")
@@ -30,7 +31,8 @@ Often it is necessary to only consider part of a time series and using the [open
 
 To plot data only for 2003:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 timePlot(selectByDate(mydata, year = 2003), 
          pollutant = c("nox", "o3"), 
          y.relation = "free")
@@ -53,7 +55,8 @@ timePlot(selectByDate(mydata, year = 2003, month = "aug"),
 
 Some other examples (not plotted) are:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 ## plot monthly means of ozone and no2
 timePlot(mydata, pollutant = c("o3", "no2"), avg.time = "month",
          y.relation = "free")
@@ -112,7 +115,8 @@ timePlot(aq, pollutant = "nox",
 
 Using the code above it is also possible to include several species. But what if we wanted to plot NO~x~ concentrations across all sites in one panel? An example of how to do this is shown below. Note, in order to make referring to the columns easier, we will drop the full (long) site name and use the site code instead.
 
-```{r reshapeData}
+```{r}
+#| label: reshapeData
 ## first drop site name
 aq <- select(aq, -site)
 
@@ -142,7 +146,8 @@ timePlot(aq,
 
 An alternative way of selecting all columns containing the character 'nox' is to use the `grep` command. For example:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 timePlot(thedata, pollutant = names(thedata)[grep(pattern = "nox", 
                                                   names(thedata))],
          avg.time = "month", group = TRUE)

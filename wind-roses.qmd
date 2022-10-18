@@ -46,7 +46,9 @@ multiplied by 1.125.
 
 First we load the packages:
 
-```{r message=FALSE,warning=FALSE}
+```{r}
+#| message: false
+#| warning: false
 library(openair)
 library(tidyverse)
 ```
@@ -107,7 +109,9 @@ A comparison of the effect that bias has can be seen by plotting the
 following. Note the prominent frequencies for W, E and N in particular
 that are due to the bias issue discussed by @applequist2012.
 
-```{r windRoseBias, eval=FALSE}
+```{r}
+#| label: windRoseBias
+#| eval: false
 ## no bias correction
 windRose(mydata, angle = 22.5, bias.corr = FALSE)
 
@@ -193,7 +197,9 @@ wind directions that have low frequencies. For example, for a pollution
 rose of SO~2~ there are few occurrences of easterly winds making it
 difficult to see how the concentration intervals are made up. Try:
 
-```{r pollRoseSO2, eval = FALSE}
+```{r}
+#| label: pollRoseSO2
+#| eval: false
 pollutionRose(mydata, pollutant = "so2", seg = 1)
 ```
 

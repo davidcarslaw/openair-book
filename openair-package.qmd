@@ -2,7 +2,9 @@
 
 In this book two packages are frequently used and it is a good idea to load both.
 
-```{r message=FALSE,warning=FALSE}
+```{r}
+#| message: false
+#| warning: false
 library(openair)
 library(tidyverse)
 ```
@@ -123,13 +125,15 @@ Finally, what about combining data sets in different time zones? In @sec-worldme
 
 This section gives a brief overview of the functions in [openair]{.pkg}. Having read some data into a data frame it is then straightforward to run any function. Almost all functions are run as:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 functionName(thedata, options, ...)
 ```
 
 The usage is best illustrated through a specific example, in this case the `polarPlot` function. The details of the function are shown in @sec-polarPlot) and through the help pages (type ?polarPlot). As it can be seen there are numerous options associated with `polarPlot` --- and most other functions and each of these has a default. For example, the default pollutant considered in `polarPlot` is `nox`. If the user has a data frame called `theData` then `polarPlot` could minimally be called by:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(theData)
 ```
 
@@ -137,7 +141,8 @@ which would plot a `nox` polar plot if `nox` was available in the data frame `th
 
 Note that the options do not need to be specified in order nor is it always necessary to write the whole word. For example, it is possible to write:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(theData, type = "year", poll = "so2")
 ```
 
@@ -145,7 +150,8 @@ In this case writing `poll` is sufficient to uniquely identify that the option i
 
 Also there are many common options available in functions that are not explicitly documented, but are part of lattice graphics. Some common ones are summarised in @tbl-options. The `layout` option allows the user to control the layout of multi-panel plots e.g. `layout = c(4, 1)` would ensure a four-panel plot is 4 columns by 1 row.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 
 tab_dat <- tibble(
   option = c("xlab", "ylab", "main", "pch", "cex", "lty", 
@@ -175,7 +181,8 @@ In most [openair]{.pkg} functions conditioning is controlled using the `type` op
 
 There are a series of pre-defined values that `type` can take related to the temporal components of the data as summarised in @tbl-openairType. To use these there *must* be a `date` field so that it can be calculated. These pre-defined values of `type` are shown below are both useful and convenient. Given a data frame containing several years of data it is easy to analyse the data e.g. plot it, by year by supplying the option `type = "year"`. Other useful and straightforward values are "hour" and "month". When `type = "season"` [openair]{.pkg} will split the data by the four seasons (winter = Dec/Jan/Feb etc.). Note for southern hemisphere users that the option `hemisphere = "southern"` can be given. When `type = "daylight"` is used the data are split between nighttime and daylight hours. In this case the user can also supply the options `latitude` and `longitude` for their location (the default is London).
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 
 tab_type <- tibble(
   option = c("'year'", "'month'", "'week'", "'monthyear'", "'season'", 
@@ -228,7 +235,8 @@ Then it is possible to use the new `intervals` variable in most [openair]{.pkg} 
 
 A special case is splitting data by date. In this scenario there might be interest in a 'before-after' situation e.g. due to an intervention. The [openair]{.pkg} function `splitByDate` should make this easy. Here is an example:
 
-```{r splitbydate}
+```{r}
+#| label: splitbydate
 splitByDate(
   mydata,
   dates = "1/1/2003",
@@ -243,7 +251,8 @@ This code adds a new column `scenario` that is labelled `before` and `after` dep
 
 All [openair]{.pkg} plot functions have an option `fontsize`. Users can easily vary the size of the font for each plot e.g.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(mydata, fontsize = 20)
 ```
 
@@ -284,7 +293,8 @@ printCols(c("tomato", "white", "forestgreen" ), 1.4)
 
 The user-defined scheme is very flexible and the following provides examples of its use. In the examples shown next, the `polarPlot` function is used as a demonstration of their use.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 # use default colours - no need to specify
 polarPlot(mydata)
 
@@ -300,7 +310,10 @@ polarPlot(mydata, cols = c("red", "white", "blue"))
 
 For more detailed information on using appropriate colours, have a look at the [colorspace](https://cran.r-project.org/web/packages/colorspace/vignettes/colorspace.html) package. [colorspace]{.pkg} provides the definitive, comprehensive approach to using colours effectively. You will need to install the package, `install.packages("colorspace")`. To use the palettes with [openair]{.pkg}, you can for example do:
 
-```{r,fig.width=4.5,fig.height=4.5,out.width='50%'}
+```{r}
+#| fig.width: 4.5
+#| fig.height: 4.5
+#| out.width: 50%
 library(colorspace)
 library(openair)
 windRose(mydata, cols = qualitative_hcl(4, palette = "Dark 3"))
@@ -318,14 +331,16 @@ We often get asked how to combine multiple plots on one page. Recent changes to 
 
 It is possible to arrange plots based on a column $\times$ row layout. Let's put two plots side by side (2 columns, 1 row). First it is necessary to assign the plots to a variable:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 a <- windRose(mydata)
 b <- polarPlot(mydata)
 ```
 
 Now we can plot them using the split option:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 print(a, split = c(1, 1, 2, 1))
 print(b, split = c(2, 1, 2, 1), newpage = FALSE)
 ```
@@ -334,7 +349,8 @@ In the code above for the `split` option, the last two numbers give the overall 
 
 There is one difficulty with plots that already contain sub-plots such as `timeVariation` where it is necessary to identify the particular plot of interest (see the `timeVariation` help for details). However, say we want a polar plot (`b` above) and a diurnal plot:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 c <- timeVariation(mydata)
 print(b, split = c(1, 1, 2, 1))
 print(c, split = c(2, 1, 2, 1), subset = "hour", newpage = FALSE)
@@ -344,7 +360,8 @@ For more control it is possible to use the `position` argument. `position` is a 
 
 As an example, consider plotting the first plot in the lower left quadrant and the second plot in the upper right quadrant:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 print(a, position = c(0, 0, 0.5, 0.5), more = TRUE)
 print(b, position = c(0.5, 0.5, 1, 1))
 ```

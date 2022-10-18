@@ -20,7 +20,8 @@ Carslaw, D. C., and K. Ropkins. 2012. "openair --- An R package for air quality 
 
 This document was produced using R version `r getRversion()` and [openair]{.pkg} version `r packageDescription("openair", field = "Version")`.
 
-```{r include=FALSE}
+```{r}
+#| include: false
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown','openair','worldmet'

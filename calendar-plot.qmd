@@ -64,7 +64,8 @@ calendarPlot(mydata,
 
 Note again that `selectByDate` can be useful. For example, to plot select months:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 calendarPlot(selectByDate(mydata,
   year = 2003,
   month = c("jun", "jul", "aug")
@@ -90,7 +91,9 @@ calendarPlot(mydata,
 
 The user can explicitly set each colour interval:
 
-```{r calendarPlotCols, eval=FALSE}
+```{r}
+#| label: calendarPlotCols
+#| eval: false
 calendarPlot(mydata,
   pollutant = "no2", year = 2003,
   breaks = c(0, 50, 100, 150, 1000),
@@ -102,7 +105,9 @@ calendarPlot(mydata,
 
 Note that in the case of categorical scales it is possible to define the breaks and labels first and then make the plot. For example:
 
-```{r CalendarBreaks,eval=FALSE}
+```{r}
+#| label: CalendarBreaks
+#| eval: false
 breaks <- c(0, 34, 66, 100, 121, 141, 160, 188, 214, 240, 500)
 labels <- c(
   "Low.1", "Low.2", "Low.3", "Moderate.4", "Moderate.5", "Moderate.6",
@@ -118,7 +123,9 @@ calendarPlot(mydata,
 
 It is also possible to first use `rollingMean` to calculate statistics. For example, if one was interested in plotting the maximum daily rolling 8-hour mean concentration, the data could be prepared and plotted as follows.
 
-```{r CalendarAvg,eval=FALSE}
+```{r}
+#| label: CalendarAvg
+#| eval: false
 ## makes a new field 'rolling8o3'
 dat <- rollingMean(mydata, pollutant = "o3", hours = 8)
 breaks <- c(0, 34, 66, 100, 121, 141, 160, 188, 214, 240, 500)
@@ -138,7 +145,8 @@ The UK has an air quality index for O~3~, NO~2~, PM~10~ and \pmtwo described in 
 
 In the code below the labels and breaks are defined for each pollutant to make it easier to use the index in the `calendarPlot` function.
 
-```{r AQIndex}
+```{r}
+#| label: AQIndex
 ## the labels - same for all species
 labels <- c(
   "1 - Low", "2 - Low", "3 - Low", "4 - Moderate", "5 - Moderate",
@@ -152,7 +160,9 @@ pm25.breaks <- c(0, 12, 24, 35, 42, 47, 53, 59, 65, 70, 1000)
 
 Remember it is necessary to use the correct averaging time. Assuming data are imported using `importAURN` or similar, then the units will be in μg m^-3^ --- if not the user should ensure this is the case. Note that rather than showing the day of the month (the default), `annotate = "value"` can be used to show the actual numeric value on each day. In this way, the colours represent the categorical interval the concentration on a day corresponds to *and* the actual value itself is shown.
 
-```{r AQIndexPlots,eval=FALSE}
+```{r}
+#| label: AQIndexPlots
+#| eval: false
 ## import test data
 dat <- importAURN(site = "kc1", year = 2010)
 

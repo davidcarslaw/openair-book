@@ -18,7 +18,9 @@ This focus of this section is to run Hysplit with the Reanalysis meteorological 
 
 To run back trajectories it is necessary to download the meteorological data files. The easiest way to download the meteorological files is using the function below.
 
-```{r getMet, eval=FALSE}
+```{r}
+#| label: getMet
+#| eval: false
 getMet <- function(year = 2013, month = 1,
                    path_met = "~/TrajData/") {
   for (i in seq_along(year)) {
@@ -41,13 +43,16 @@ getMet <- function(year = 2013, month = 1,
 
 The function will download monthly met files (each about 120 MB) to the chosen directory. Note that the met data files only need be downloaded once. For example, to download files for 2013:
 
-```{r getMet2, eval=FALSE}
+```{r}
+#| label: getMet2
+#| eval: false
 getMet(year = 2013, month = 1:12)
 ```
 
 It is first necessary on ensure that the [devtools]{.pkg} package is installed, which is needed to load some R functions stored as a *GitHub gist* (some code that can be shared publicly). Copy the code below and paste it into R, which will load the necessary functions needed to run Hysplit.
 
-```{r getGist}
+```{r}
+#| label: getGist
 library(devtools)
 source_gist("https://gist.github.com/davidcarslaw/c67e33a04ff6e1be0cd7357796e4bdf5",
             filename = "run_hysplit.R")
@@ -57,7 +62,9 @@ Now there should be several loaded functions, including `run_hysplit`. To run Hy
 
 For example
 
-```{r run_hysplit, eval=FALSE}
+```{r}
+#| label: run_hysplit
+#| eval: false
 data_out <- run_hysplit(
 latitude = 36.134, 
  longitude = -5.347, 
@@ -78,12 +85,16 @@ Most of the options should be self-explanatory but `hysplit_exec` is the path to
 
 Once run it is then advisable to store the data somewhere. Save it like:
 
-```{r saveHysplit, eval=FALSE}
+```{r}
+#| label: saveHysplit
+#| eval: false
 saveRDS(data_out, file = "~/trajProc/myTrajData.rds")
 ```
 
 Then it is easy to read in later and use e.g.
 
-```{r importTrajLocal, eval=FALSE}
+```{r}
+#| label: importTrajLocal
+#| eval: false
 traj <- readRDS("~/trajProc/myTrajData.rds")
 ```

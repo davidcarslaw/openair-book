@@ -102,7 +102,8 @@ $$ {#eq-IOA}
 
 The function can be called very simply and only requires two numeric fields to compare. To show how the function works, some synthetic data will be generated for 5 models.
 
-```{r modStats}
+```{r}
+#| label: modStats
 ## observations; 100 random numbers
 set.seed(10)
 obs <- 100 * runif(100)
@@ -117,7 +118,8 @@ head(modData)
 
 We now have a data frame with observations and predictions for 5 models. The evaluation of the statistics is given by:
 
-```{r evalModStats}
+```{r}
+#| label: evalModStats
 library(openair) # load package
 
 modStats(modData, obs = "obs", mod = "mod", type = "model")
@@ -126,7 +128,8 @@ modStats(modData, obs = "obs", mod = "mod", type = "model")
 It is possible to rank the statistics based on the \emph{Coefficient
   of Efficiency}, which is a good general indicator of model performance.
 
-```{r evalModStatsRank}
+```{r}
+#| label: evalModStatsRank
 modStats(modData, obs = "obs", mod = "mod", type = "model", 
          rank.name = "model")
 ```
@@ -135,14 +138,16 @@ The `modStats` function is however much more flexible than indicated above. Whil
 
 Data have been assembled from a Defra model evaluation exercise which consists of hourly O~3~ predictions at 15 receptor points around the UK for 2006. The aim here is not to identify a particular model that is 'best' and for this reason the models are simply referred to as `model 1`, `model 2` and so on. We will aim to make the data more widely available. However, data set has this form:
 
-```{r showModData}
+```{r}
+#| label: showModData
 load("book_data/modelData.RData")
 head(modTest)
 ```
 
 There are columns representing the receptor location (`site`), the date, measured values (`o3`), model predictions (`mod`) and the model itself (`group`). There are numerous ways in which the statistics can be calculated. However, of interest here is how the models perform at a single receptor by season. The seasonal nature of O~3~ is a very important characteristic and it is worth considering in more detail. The statistics are easy enough to calculate as shown below. In this example a subset of the data is selected to consider only the Harwell site. Second, the `type` option is used to split the calculations by season and model. Finally, the statistics are grouped by the $IOA$ for each season. It is now very easy how model performance changes by season and which models perform best in each season.
 
-```{r modStatsDefra}
+```{r}
+#| label: modStatsDefra
 options(digits = 2) ## don't display too many decimal places
 modStats(subset(modTest, site == "Harwell"), 
          obs = "o3", mod = "mod",
@@ -153,7 +158,9 @@ Note that it is possible to read the results of the `modStats` function into a d
 
 The `modStats` function is much more flexible than indicated above and can be used in lots of interesting ways. The `type` option in particular makes it possible to split the statistics in numerous ways. For example, to summarise the performance of models by site, model and day of the week:
 
-```{r modStatsEx, eval=FALSE}
+```{r}
+#| label: modStatsEx
+#| eval: false
 modStats(modStats, obs = "o3", mod = "mod",
          type = c("site", "weekday", "group"), 
          rank = "group")

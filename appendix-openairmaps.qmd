@@ -11,6 +11,7 @@ execute:
 [openairmaps]{.pkg} is on CRAN, so can be simply downloaded using `install.packages`.
 
 ```{r}
+#| label: install
 #| eval: false
 install.packages("openairmaps")
 ```
@@ -18,6 +19,7 @@ install.packages("openairmaps")
 If you would like to access new features and bug fixes before they're pushed to CRAN, the development version of [openairmaps]{.pkg} can be downloaded directly from GitHub.
 
 ```{r}
+#| label: remotes
 #| eval: false
 library(remotes)
 install_github("davidcarslaw/openairmaps")
@@ -26,6 +28,7 @@ install_github("davidcarslaw/openairmaps")
 If you would like to use [openairmaps]{.pkg} in your analysis, don't forget to load it using the `library` function.
 
 ```{r}
+#| label: library
 #| cache: false
 library(openairmaps)
 library(tidyverse)
@@ -130,6 +133,7 @@ Don't worry if you don't fully understand all of this --- the "all-in-one" funct
 #### View Providers
 
 ```{r}
+#| label: leafletproviders
 leaflet::providers
 ```
 :::
@@ -140,7 +144,8 @@ If you would like to use [openairmaps]{.pkg} in a more advanced way (for example
 
 Network visualisation is the simplest family of functions in [openairmaps]{.pkg} --- in fact, it only has one member. `networkMap` is a function which you can consider as an analogue to `importMeta` from [openair]{.pkg}. To demonstrate, lets consider the metadata available for the AURN.
 
-```{r importMeta}
+```{r}
+#| label: importMeta
 library(openair)
 aurn_meta <- importMeta(source = "aurn", all = TRUE)
 dplyr::glimpse(aurn_meta)
@@ -148,7 +153,7 @@ dplyr::glimpse(aurn_meta)
 
 This dataset has `r nrow(aurn_meta)` rows and `r ncol(aurn_meta)` columns, which is a lot of information to explore in a tabular format. A more effective way to communicate this information could be a map, which can be created using the `networkMap` function. Consider this as an analogue to `importMeta` --- it can map any of the `source`s that `importMeta` can. @fig-networkMap visualises the active AURN sites as of `r Sys.Date()`.
 
-```{r networkMap}
+```{r}
 #| label: fig-networkMap
 #| fig-cap: "An interactive map of the AURN monitoring network."
 networkMap(source = "aurn")
@@ -185,11 +190,12 @@ networkMap(
 
 [openairmaps]{.pkg} contains the `polar_data` dataset to allow users to test the directional analysis functions. The structure of this data set is provided below, and a summary is given in @tbl-polardata. The important feature of this data when compared to `openair::mydata` is latitude and longitude information, which [openairmaps]{.pkg} needs to place the directional analysis markers in the correct positions.
 
-```{r glimpsePolar}
+```{r}
+#| label: glimpsePolar
 dplyr::glimpse(polar_data)
 ```
 
-```{r summaryPolar}
+```{r}
 #| label: tbl-polardata
 #| echo: false
 #| tbl-cap: "A statistical summary of the `polar_data` dataset."
@@ -228,7 +234,7 @@ windRose(polar_data)
 
 The easiest way to get polar plots on a map is through the use of the all-in-one functions. These are all named using the pattern `{function-name}Map`, where `{function_name}` is a short hand for the equivalent [openair]{.pkg} function. A reference is provided in @tbl-dirAnalysisRef.
 
-```{r maps}
+```{r}
 #| label: tbl-dirAnalysisRef
 #| echo: false
 #| tbl-cap: "A reference table for `openairmaps` directional analysis mapping functions."
@@ -267,7 +273,7 @@ Effectively all of these functions have very similar arguments, although some ar
 
 `polarMap` is demonstrated in @fig-polarMap. Try clicking on each of the markers to see which sites they correspond to.
 
-```{r polarMap}
+```{r}
 #| label: fig-polarMap
 #| fig-cap: "A demonstration of `polarMap`."
 polarMap(
@@ -280,7 +286,7 @@ polarMap(
 
 Another example, this time using `annulusMap`, is given in @fig-annulusMap. Note that this time there are two different pollutants plotted, which can be swapped between using the layer control menu. Note that [openairmaps]{.pkg} automatically deals with subscripts in common pollutant names.
 
-```{r annulus}
+```{r}
 #| label: fig-annulusMap
 #| fig-cap: "A more complex demonstration, this time using `annulusMap`."
 annulusMap(
@@ -294,7 +300,7 @@ annulusMap(
 
 A third example is shown in @fig-controlMap. This uses `percentileMap` and demonstrates how to use the "control" option to create a custom "layer control" menu and "label" and "popup" to label the markers, as well as passing on arguments to the equivalent [openair]{.pkg} function --- in this case, passing the "intervals" argument to `percentileRose` so that all of the markers are on the same radial axis.
 
-```{r annulus}
+```{r}
 #| label: fig-controlMap
 #| fig-cap: "A demonstration of `percentileMap` using the 'control' option and passing arguments to `openair::percentileRose`."
 polar_data %>%
@@ -320,7 +326,7 @@ The directional analysis marker function is `addPolarMarkers`, which behaves sim
 
 To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq` function to plot multiple polar pollutant frequency plots for oxides of nitrogen. What is different about this map is that users can select the specific statistic they are interested in -- in this case, mean, median or maximum. This is achieved by using the `group` arguments and `addLayersControl`.
 
-```{r addPolars}
+```{r}
 #| label: fig-polarFreqMap
 #| fig-cap: "Using `addPolarMarkers` to create a more complex map."
 leaflet() %>%
@@ -370,7 +376,8 @@ The options are pretty much endless for the kinds of things you could achieve us
 
 [openairmaps]{.pkg} contains the `traj_data` dataset to allow users to test the directional analysis functions. The structure of this data set is provided below. This was obtained using the `importTraj` function in [openair]{.pkg}; if you are using your own trajectory data, try to match this structure (including column names) so that the [openairmaps]{.pkg} functions will correctly work.
 
-```{r glimpseTraj}
+```{r}
+#| label: glimpseTraj
 dplyr::glimpse(traj_data)
 ```
 
@@ -384,7 +391,7 @@ There are two all-in-one functions for trajectory mapping in [openairmaps]{.pkg}
 
 By default, `trajMap()` will plot your trajectories in black on a default "OpenStreetMap" base map, but the `colour` argument allows you to colour by any column of your data. For example, @fig-trajMap shows the trajectory paths coloured by arrival date. A popup is also automatically generated --- try clicking on the points to get information about that particular air mass.
 
-```{r trajMap1}
+```{r}
 #| label: fig-trajMap
 #| fig-cap: "A simple demonstration of `trajMap`."
 trajMap(traj_data, colour = "date")
@@ -392,7 +399,7 @@ trajMap(traj_data, colour = "date")
 
 What may be of greater interest is colouring the trajectories by the concentration of pollutant on their arrival. The `colour` argument can be used for this. When `colour` is specified, trajectory paths are plotted in order of the numeric value of the "colour" column, so the highest concentrations (which are assumed to be of most interest) are most easily accessible. Specifying `colour` also creates a legend and appends a relevant line to the popup --- explore the example in @fig-trajPM.
 
-```{r trajMappm10}
+```{r}
 #| label: fig-trajPM
 #| fig-cap: "A more thorough application of `trajMap`, this time coloured by PM concentrations."
 trajMap(
@@ -406,12 +413,13 @@ trajMap(
 
 There is a `control` option in `trajMap` which allows for a layer control menu to be generated. This might be useful if you have a lot of trajectory paths and want to let users reduce the clutter. It also pairs nicely with clustered trajectories returned by `openair::trajCluster`. An example of this is given below, in @fig-trajNeon.
 
-```{r trajclusters}
+```{r}
+#| label: trajclusters
 #| fig-show: hide
 clustdata <- trajCluster(traj_data)
 ```
 
-```{r trajNeon}
+```{r}
 #| label: fig-trajNeon
 #| fig-cap: Interactive map of clustered trajectories, with a cool neon colour scheme!
 #| results: asis
@@ -426,7 +434,7 @@ trajMap(
 
 `trajLevelMap` is the other all-in-one trajectory function and is, in many ways, simpler than `trajMap`. Think of `trajLevelMap` as you do `trajLevel` --- it has many of the same arguments and does effectively the same thing, but returns an interactive map. In @fig-trajLevel, try hovering over and clicking each of the tiles to learn more specific details about each bin.
 
-```{r trajLevel}
+```{r}
 #| label: fig-trajLevel
 #| fig-cap: An interactive 'frequency' map plotted by `trajLevelMap`.
 #| results: asis
@@ -443,7 +451,7 @@ trajLevelMap(
 
 The marker function equivalent of `trajMap` is `addTrajPaths` which, much like `addPolarMarkers`, allows you to customise your trajectory maps. For example, @fig-trajMarker shows a way to plot multiple sets of trajectory data on one map (in this case, one arriving in London and the other in Paris).
 
-```{r trajMarker}
+```{r}
 #| label: fig-trajMarker
 #| fig-cap: A demonstration of the use of `addTrajPaths`.
 france <- importTraj("paris", year = 2009) %>%

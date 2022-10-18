@@ -28,7 +28,9 @@ These trajectories have been calculated using the Global NOAA-NCEP/NCAR reanalys
 
 Users should see the help file for `importTraj` to get an up to date list of receptors where back trajectories have been calculated. First, the packages are loaded that are needed.
 
-```{r warning=FALSE,message=FALSE}
+```{r}
+#| warning: false
+#| message: false
 library(openair)
 library(tidyverse)
 library(lubridate)
@@ -36,18 +38,22 @@ library(lubridate)
 
 As an example, we will import trajectories for London in 2010. Importing them is easy:
 
-```{r loadTraj, echo=FALSE}
+```{r}
+#| label: loadTraj
+#| echo: false
 ## load from file
 load("book_data/londonTraj.RData")
 ```
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 traj <- importTraj(site = "london", year = 2010)
 ```
 
 The file itself contains lots of information that is of use for plotting back trajectories:
 
-```{r headTraj}
+```{r}
+#| label: headTraj
 head(traj)
 ```
 
@@ -120,7 +126,8 @@ selectByDate(traj,
 
 So far the plots have provided information on where the back trajectories come from, grouped or split by day. It is also possible, in common with most other [openair]{.pkg} functions to split the trajectories by many other variables e.g. month, season and so on. However, perhaps one of the most useful approaches is to link the back trajectories with the concentrations of a pollutant. As mentioned previously, the back trajectory data has a column `date` representing the arrival time of the air mass that can be used to link with concentration measurements. A couple of steps are required to do this using the `left_join` function.
 
-```{r mergeTraj}
+```{r}
+#| label: mergeTraj
 ## import data for North Kensington
 kc1 <- importAURN("kc1", year = 2010)
 # now merge with trajectory data by 'date'
@@ -148,7 +155,8 @@ selectByDate(traj,
 
 However, it is possible to account for the PM that is local to some extent by considering the relationship between NO~x~ and PM~10~ (or PM~2.5~). For example, using `scatterPlot` (not shown):
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 scatterPlot(kc1, x = "nox", 
             y = "pm2.5", 
             avg = "day", 
@@ -157,20 +165,23 @@ scatterPlot(kc1, x = "nox",
 
 which suggests a gradient of 0.084. Therefore, we can remove the PM~10~ that is associated NO~x~ in `kc1` data, making a new column `pm.new`:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 kc1 <- mutate(kc1, pm.new = pm10 - 0.084 * nox)
 ```
 
 We have already merged `kc1` with `traj`, so to keep things simple we import `traj` again and merge it with `kc1`. Note that if we had thought of this initially, `pm.new` would have been calculated first before merging with `traj`.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 traj <- importTraj(site = "london", year = 2010)
 traj <- left_join(traj, kc1, by = "date")
 ```
 
 Now it is possible to plot the trajectories:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 selectByDate(traj,
   start = "15/4/2010",
   end = "21/4/2010"
@@ -235,7 +246,9 @@ trajLevel(traj, pollutant = "pm10",
 
 Note that it is also possible to use conditioning with these plots. For example to split the frequency results by season:
 
-```{r trajFreq2,eval=FALSE}
+```{r}
+#| label: trajFreq2
+#| eval: false
 trajLevel(traj, 
           pollutant = "pm10", 
           statistic = "frequency", 
@@ -247,18 +260,21 @@ trajLevel(traj,
 
 One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in @sec-trajCluster. A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 ## load from file
 load("book_data/londonTraj.RData")
 ```
 
 First we import the trajectories, which in this case are for London in 2010:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 traj <- importTraj(site = "london", year = 2010)
 ```
 
-```{r allocateTraj}
+```{r}
+#| label: allocateTraj
 alloc <- traj
 
 id <- which(alloc$hour.inc == 0) 
@@ -293,26 +309,30 @@ traj <- left_join(traj, alloc, by = "date")
 
 Now it is possible to post-process the data. `traj` now has the angle, sector and allocation (`sector`).
 
-```{r headTraj2}
+```{r}
+#| label: headTraj2
 head(traj)
 ```
 
 First, merge the air quality data from North Kensington:
 
-```{r mergeNK}
+```{r}
+#| label: mergeNK
 traj <- left_join(traj, kc1, by = "date")
 ```
 
 We can work out the mean concentration by allocation, which shows the clear importance for the east and south-east sectors.
 
-```{r meanAlloc}
+```{r}
+#| label: meanAlloc
 group_by(traj, sector) %>% 
   summarise(PM2.5 = mean(pm2.5, na.rm = TRUE))
 ```
 
 Finally, the percentage of the year in each sector can be calculated as follows:
 
-```{r percentAlloc}
+```{r}
+#| label: percentAlloc
 group_by(traj, sector) %>% 
   summarise(n = n()) %>% 
   mutate(percent = 100 * n / nrow(traj))
@@ -387,7 +407,9 @@ filter(traj, lat > 45 & lat < 60 & lon > -20 & lon < 20) %>%
 
 In common with most other [openair]{.pkg} functions, the flexible `type` option can be used to split the data in different ways. For example, to plot the smoothed back trajectories for PM~2.5~ concentrations by season.
 
-```{r traj7,eval=FALSE}
+```{r}
+#| label: traj7
+#| eval: false
 filter(traj, lat > 40 & lat < 70 & lon > -20 & lon < 20) %>%
   trajLevel(
     pollutant = "pm2.5",
@@ -534,7 +556,8 @@ where $X_0$ and $Y_0$ are the coordinates of the location being studied i.e. the
 
 As an example we will consider back trajectories for London in 2011.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 ## load pre-calculated cluster data for kc1
 ## provides traj and kc1
 load("book_data/clusterData.RData")
@@ -542,7 +565,8 @@ load("book_data/clusterData.RData")
 
 First, the back trajectory data for London is imported together with the air pollution data for the North Kensington site (KC1).
 
-```{r importTrajKC1}
+```{r}
+#| label: importTrajKC1
 traj <- importTraj(site = "london", year = 2011)
 kc1 <- importAURN(site = "kc1", year = 2011)
 ```
@@ -562,13 +586,15 @@ clust <- trajCluster(traj, method = "Angle",
 
 `clust` returns all the back trajectory information together with the cluster (as a character). This data can now be used together with other data to analyse results further. However, first it is possible to show all trajectories coloured by cluster, although for a year of data there is significant overlap and it is difficult to tell them apart.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 trajPlot(clust$data, group = "cluster")
 ```
 
 A useful way in which to see where these air masses come from by trajectory is to produce a frequency plot by cluster. Such a plot (not shown, but code below) provides a good indication of the spread of the different trajectory clusters as well as providing an indication of where air masses spend most of their time. For the London 2011 data it can be seen cluster 1 is dominated by air from the European mainland to the south.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 trajLevel(clust$data, type = "cluster", 
           col = "increment", 
           border = NA)
@@ -576,7 +602,8 @@ trajLevel(clust$data, type = "cluster",
 
 Perhaps more useful is to merge the cluster data with measurement data. In this case the data at North Kensington site are used. Note that in merging these two data frames it is not necessary to retain all 96 back trajectory hours and for this reason we extract only the first hour.
 
-```{r mergeClustTraj}
+```{r}
+#| label: mergeClustTraj
 # use inner join - so only where we have data in each
 kc1 <- inner_join(kc1, 
                   filter(clust$data$traj, hour.inc == 0), 
@@ -587,7 +614,8 @@ Now `kc1` contains air pollution data identified by cluster. The size of this da
 
 The numbers of each cluster are given by:
 
-```{r numClust}
+```{r}
+#| label: numClust
 table(kc1[["cluster"]])
 ```
 
@@ -595,7 +623,8 @@ i.e. is dominated by clusters 3 and 2 from west and south-west (Atlantic).
 
 Now it is possible to analyse the concentration data according to the cluster. There are numerous types of analysis that can be carried out with these results, which will depend on what the aims of the analysis are in the first place. However, perhaps one of the first things to consider is how the concentrations vary by cluster. As the summary results below show, there are distinctly different mean concentrations of most pollutants by cluster. For example, clusters 1 and 6 are associated with much higher concentrations of PM~10~ --- approximately double that of other clusters. Both of these clusters originate from continental Europe. Cluster 5 is also relatively high, which tends to come from the rest of the UK. Other clues concerning the types of air-mass can be gained from the mean pressure. For example, cluster 5 is associated with the highest pressure (1014 kPa), and as is seen in @fig-calcClusterTraj the shape of the line for cluster 5 is consistent with air-masses associated with a high pressure system (a clockwise-type sweep).
 
-```{r clustMeans}
+```{r}
+#| label: clustMeans
 group_by(kc1, cluster) %>% 
   summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 ```
@@ -617,7 +646,7 @@ Similarly, as considered in @sec-polarCluster, the `timeVariation` function can 
 
 Another useful plot to consider is `timeProp` (see @sec-timeProp), which can show how the concentration of a pollutant is comprised. In this case it is useful to plot the time series of PM~2.5~ *and* show how much of the concentration is contributed to by each cluster. Such a plot is shown in @fig-timePropTraj. It is now easy to see for example that during the spring months many of the high concentration events were due to clusters 1 and 6, which correspond to European origin air-masses as shown in @fig-calcClusterTraj.
 
-```{r timePropTraj, fig.width=15, fig.height=5,fig.cap=''}
+```{r}
 #| label: fig-timePropTraj
 #| fig-cap: Temporal variation in daily PM~2.5~ concentrations at the North Kensington site show by contribution of each cluster.
 #| fig-width: 15
@@ -633,7 +662,8 @@ timeProp(kc1, pollutant = "pm2.5",
 
 An R package called [openairmaps]{.pkg} has been developed to plot trajectories on interactive [leaflet]{.pkg} maps. This package can be installed from CRAN, similar to [openair]{.pkg}.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 install.packages("openairmaps")
 ```
 
@@ -641,7 +671,8 @@ The function `trajMap` is the [openairmaps]{.pkg} equivalent of the `trajPlot` f
 
 First, load the package.
 
-```{r cache=FALSE}
+```{r}
+#| cache: false
 library(openairmaps)
 ```
 

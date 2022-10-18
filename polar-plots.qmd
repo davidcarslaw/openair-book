@@ -188,7 +188,8 @@ polarPlot(mydata, pollutant = "ratio", main = "so2/nox ratio")
 
 Sometimes when considering ratios it might be necessary to limit the values in some way; perhaps due to some unusually low value denominator data resulting in a few very high values for the ratio. This is easy to do with the [dplyr]{.pkg} `filter` command. The code below selects ratios less than 0.1.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(filter(mydata, ratio < 0.1), pollutant = "ratio")
 ```
 
@@ -204,7 +205,9 @@ polarPlot(mydata, pollutant = "so2", uncertainty = TRUE)
 
 The `polarPlot` function can also produce plots dependent on another variable (see the `type` option). For example, the variation of SO~2~ concentrations at Marylebone Road by hour of the day in the code below. The function was called as shown in below, and in this case the minimum number of points in each wind speed/direction was set to 2.
 
-```{r polarCondSO2,eval=FALSE}
+```{r}
+#| label: polarCondSO2
+#| eval: false
 polarPlot(mydata, pollutant = "so2", type = "hour", min.bin = 2)
 ```
 
@@ -283,7 +286,8 @@ However, even more useful information can be gained by considering *intervals* o
 
 Note that it is easy to work out what the concentration intervals are for the percentiles shown in @fig-polarPlotCPFInt:
 
-```{r quantInt}
+```{r}
+#| label: quantInt
 quantile(mydata$so2, probs = seq(0, 1, by = 0.1), na.rm = TRUE)
 ```
 
@@ -307,7 +311,8 @@ An example usage scenario is that measurements of metal concentrations are made 
 
 As an example of usage we will consider the relationship between PM~2.5~ and PM~10~ at the rural Harwell site in Oxfordshire. Additionally, we will use meteorological data from a nearby site rather than rely on modelled values that are provided in `importAURN`.
 
-```{r importPolarData}
+```{r}
+#| label: importPolarData
 library(worldmet) # to access met data
 library(tidyverse) 
 
@@ -377,7 +382,8 @@ Polar plots can be useful for characterising the presence of different source ty
 
 The `polarDiff` function has been written to compare polar plot surfaces between two time periods. The main purpose is to highlight whether there is evidence that source strengths may have changed. To illustrate the use of `polarDiff` data from a site close to a complex steelworks is used ([Port Talbot](https://www.google.co.uk/maps/place/Tata+Steel+Port+Talbot/@51.5696918,-3.7659959,3447m/data=!3m1!1e3!4m5!3m4!1s0x486e6716f44ca7c3:0x9eec15ac83c4648c!8m2!3d51.5679565!4d-3.7594051) in Wales). Two years will be compared as an example: 2012 and 2013. First, we need to import the air quality data for these two years:
 
-```{r import-PT4}
+```{r}
+#| label: import-PT4
 port_talbot <- importAURN(site = "pt4", year = c(2012, 2019))
 
 port_talbot
@@ -421,7 +427,9 @@ The `polarDiff` function is also not restricted to comparing two time periods. A
 
 The `polarPlot` function will often identify interesting features that would be useful to analyse further. It is possible to select areas of interest based only on a consideration of a plot. Such a selection could be based on wind direction and wind speed intervals for example e.g.
 
-```{r selectPolar, eval=FALSE}
+```{r}
+#| label: selectPolar
+#| eval: false
 subdata <- filter(mydata, ws > 3, wd >= 180, wd <= 270)
 ```
 
@@ -486,7 +494,8 @@ The real benefit of `polarCluster` is being able to identify clusters in the ori
 
 The results are here:
 
-```{r showClustResults}
+```{r}
+#| label: showClustResults
 head(results[["data"]])
 ```
 
@@ -498,7 +507,8 @@ results <- results[["data"]]
 
 It is easy to find out how many points are in each cluster:
 
-```{r nResClust}
+```{r}
+#| label: nResClust
 table(results[["cluster"]])
 ```
 
@@ -568,7 +578,8 @@ clust_out <- polarCluster(selectByDate(port_talbot, year = 2012),
 
 The `clust_out` usefully contains the two original data sets that were used to make the difference surface as well as the assigned cluster. These two outputs can be combined and post-processed in different ways. In the code below the mean concentrations by cluster are calculated but other useful analyses could be considered knowing that Cluster 3 is most strongly associated with the *change* in SO~2~ concentration. The latter point is important because clustering features by how they change ought to provide an improved analysis of the effect of interventions --- rather than just considering absolute concentrations in a before or after period.
 
-```{r extract-clust-diff}
+```{r}
+#| label: extract-clust-diff
 clust_data <- bind_rows(clust_out$data, clust_out$after)
 
 # consider mean SO2 by cluster
@@ -580,7 +591,8 @@ group_by(clust_data, cluster) %>%
 
 An R package called [openairmaps]{.pkg} has been developed to plot polar plots and other "directional analysis" visualisations on interactive [leaflet]{.pkg} maps. This package can be installed from CRAN, similar to [openair]{.pkg}.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 install.packages("openairmaps")
 ```
 
@@ -588,7 +600,8 @@ The function `polarMap` requires information on the site (name or code), latitud
 
 First, load the package and check out the data format.
 
-```{r cache=FALSE}
+```{r}
+#| cache: false
 library(openairmaps)
 
 glimpse(polar_data)

@@ -16,7 +16,8 @@ To make things more interesting we will use data from a model evaluation exercis
 
 First the data are loaded:
 
-```{r loadCMAQ}
+```{r}
+#| label: loadCMAQ
 load("book_data/CMAQozone.RData")
 class(CMAQ.KCL$date) <- c("POSIXct", "POSIXt")
 head(CMAQ.KCL)
@@ -82,19 +83,22 @@ Far more insight can be gained into model performance through conditioning using
 
 As an example, similar data to that described above from CMAQ have been used as an example.
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 load("book_data/condDat.RData")
 ```
 
 A subset of the data for the North Kensington site can be imported as shown below.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 condDat <- readRDS(url("https://davidcarslaw.com/data/openair/condDat.rds"))
 ```
 
 The file contains observed and modelled hourly values for O~3~, NO~x~, wind speed, wind direction, temperature and relative humidity.
 
-```{r headcondDat}
+```{r}
+#| label: headcondDat
 head(condDat)
 ```
 
@@ -116,7 +120,11 @@ In an extension to @fig-condDatWS it is possible to derive information on the si
 
 In essence the `conditionalEval` function provides more information on model performance that can help better diagnose potential problems. Clearly, there are many other ways in which the results can be analysed, which will depend on the data available.
 
-```{r condDat,fig.width=15,fig.height=7,fig.keep='last',fig.cap=''}
+```{r}
+#| fig.width: 15.0
+#| fig.height: 7.0
+#| fig.keep: last
+#| fig.cap: ''
 #| label: fig-condDat
 #| fig-cap: Conditional quantiles at for O~3~ concentrations (left plot). On the right is the model performance for wind speed and NO~x~ predictions, which in this case is for the Normalised Mean Bias.
 #| fig-width: 15
@@ -132,7 +140,9 @@ conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
 
 A plot using temperature predictions shows that for most of the range in O~3~ predictions there is very little bias in temperature (although there is some negative bias in temperature for very low concentration O~3~ predictions):
 
-```{r condDatTemp, eval=FALSE}
+```{r}
+#| label: condDatTemp
+#| eval: false
  conditionalEval(condDat, obs = "O3.obs", mod = "O3.mod",
                 var.obs = c("temp.obs", "ws.obs"),
                 var.mod = c("temp.mod", "ws.mod"),
@@ -141,7 +151,9 @@ A plot using temperature predictions shows that for most of the range in O~3~ pr
 
 Finally, (but not shown) it can be very useful to consider model performance in terms of air mass origin. In the example below, trajectories are imported, a cluster analysis undertaken and then evaluated using `conditionalEval`.
 
-```{r evalClust, eval=FALSE}
+```{r}
+#| label: evalClust
+#| eval: false
 ## import trajectories for 2006
 traj <- importTraj("london", 2006)
 

@@ -121,14 +121,18 @@ timeVariation(mydata, pollutant = "pm10",
 
 The `timeVariation` function produces several outputs that can be used for further analysis or plotting. It is necessary to read the output into a variable for further processing. The code below shows the different objects that are returned and the code shows how to access them.
 
-```{r timevarOutput,fig.keep='none'}
+```{r}
+#| label: timevarOutput
+#| fig.keep: none
 myOutput <- timeVariation(mydata, pollutant = "so2")
 ## show the first part of the day/hour variation
 ## note that value = mean, and Upper/Lower the 95% confid. intervals
 head(myOutput$data$day.hour)
 ```
 
-```{r timevarOutput2,fig.keep='none'}
+```{r}
+#| label: timevarOutput2
+#| fig.keep: none
 ## can make a new data frame of this data e.g.
 day.hour <- myOutput$data$day.hour
 head(day.hour)
@@ -136,7 +140,9 @@ head(day.hour)
 
 All the numerical results are given by:
 
-```{r timeVarout,eval=FALSE}
+```{r}
+#| label: timeVarout
+#| eval: false
 myOutput$data$day.hour ## are the weekday and hour results
 myOutput$data$hour ## are the diurnal results
 myOutput$data$day ## are the weekday results
@@ -145,7 +151,8 @@ myOutput$data$month ## are the monthly results
 
 It is also possible to plot the individual plots that make up the (four) plots produced by `timeVariation`:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 ## just the diurnal variation
 plot(myOutput, subset = "hour")
 ## day and hour

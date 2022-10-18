@@ -71,7 +71,8 @@ smoothTrend(mydata, pollutant = c("no2", "pm10", "o3"),
 
 If the interest is in considering seasonal trends, it makes sense to set the averaging time to 'season' and also show each season in a separate panel. In @fig-smoothTrendSeason some data is imported for O~3~ from Lullington Heath on the south coast of England. This plot shows there is strongest evidence for an increase in O~3~ concentrations during springtime from about 2012 onwards. A probable reason for this increase is a general reduction in NO~x~ concentrations.
 
-```{r importLul}
+```{r}
+#| label: importLul
 lh <- importAURN(site = "lh", year = 2000:2019)
 ```
 

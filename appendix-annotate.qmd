@@ -102,7 +102,9 @@ There are various ways that annotations can be added, but the method used here i
 
 First, a plot should be produced to which we wish to add some text.
 
-```{r annotatePbase, eval=FALSE}
+```{r}
+#| label: annotatePbase
+#| eval: false
 ## make sure latticeExtra is loaded
 library(openair)
 library(lubridate)
@@ -114,7 +116,9 @@ timePlot(selectByDate(mydata, year = 2003, month = "aug"),
 
 So, considering \@ref(fig:timePlotAnnotate), this is how the text \`some missing data' was added to the top panel.
 
-```{r annotateP1, eval=FALSE}
+```{r}
+#| label: annotateP1
+#| eval: false
 trellis.last.object() +
     layer(ltext(x = ymd_hm("2003-08-04 12:00"), y = 200,
                 labels = "some missing data"), rows = 1)
@@ -128,7 +132,9 @@ This time we will highlight an interval in row 2 (O~3~) and write some text on t
 
 The polygon could of course be horizontal and more than one producing a series of 'bands' e.g. air quality indexes. A more sophisticated approach is shown later for PM~2.5~
 
-```{r annotateP2, eval=FALSE}
+```{r}
+#| label: annotateP2
+#| eval: false
 ## add shaded polygon
 trellis.last.object() +
     layer(lpolygon(x = c(ymd_hm("2003-08-07 00:00"),
@@ -144,7 +150,9 @@ trellis.last.object() +
 
 The small shaded, semi-transparent area shown in the bottom panel was added as follows:
 
-```{r annotateP2a, eval=FALSE}
+```{r}
+#| label: annotateP2a
+#| eval: false
 ## add shaded polygon
 plt <- plt +
     layer(lpolygon(x = c(ymd("2003-08-21"), ymd("2003-08-21"),
@@ -157,7 +165,9 @@ plt <- plt +
 
 The arrow shown on the first panel of @fig-timePlotAnnotate was added as follows. Note the `code = 3` placed arrows at both ends. Note that `angle` is the angle from the shaft of the arrow to the edge of the arrow head.
 
-```{r annotateP3, eval=FALSE}
+```{r}
+#| label: annotateP3
+#| eval: false
 trellis.last.object() +
     layer(larrows(ymd_hm("2003-08-01 00:00"), 100,
                   ymd_hm("2003-08-08 14:00"),
@@ -168,7 +178,9 @@ trellis.last.object() +
 
 This code adds a vertical dashed reference line shown in the 4th panel (PM~10~) along with some text aligned at 90 degrees using the `srt` option of `ltext`.
 
-```{r annotateP4, eval=FALSE}
+```{r}
+#| label: annotateP4
+#| eval: false
 trellis.last.object() +
     layer(panel.abline(v = ymd_hm("2003-08-25 00:00"), lty = 5),
           rows = 4)
@@ -183,7 +195,9 @@ Up until now annotations have been added using arbitrary coordinates in each pan
 
 It is possible to refer to a specific point in a panel simply by indexing the point of interest i.e. `x`, `y`. For example, to mark the 200th PM~10~ concentration (without knowing the actual date or value):
 
-```{r annotateP5, eval=FALSE}
+```{r}
+#| label: annotateP5
+#| eval: false
 ## add a specific point
 trellis.last.object() +
     layer(lpoints(x[200], y[200], pch = 16, cex = 1.5),
@@ -192,7 +206,9 @@ trellis.last.object() +
 
 What if we wanted to highlight the maximum O~3~ concentration? It is possible to work out the index first and then use that to refer to that point. Note the `}` to allow for the code to span multiple commands.
 
-```{r annotateP6, eval=FALSE}
+```{r}
+#| label: annotateP6
+#| eval: false
 ## add a point to the max O3 concentration
 trellis.last.object() +
     layer({maxy <- which.max(y);
@@ -210,7 +226,9 @@ trellis.last.object() +
 
 It can be seen in the top panel of @fig-timePlotAnnotate that some data are highlighted by filling the area below the line. This approach can be useful more generally in plotting. While it is possible to draw polygons easily and refer to the data itself, there needs to be a way for dealing with gaps in data, otherwise these gaps could be filled in perhaps unpredictable ways. A function has been written to draw a polygon taking into account gaps (`poly.na`).
 
-```{r polyNA, eval=FALSE}
+```{r}
+#| label: polyNA
+#| eval: false
 poly.na <- function(x1, y1, x2, y2, col = "black", alpha = 0.2) {
   for(i in seq(2, length(x1)))
     if (!any(is.na(y2[c(i - 1, i)])))
@@ -222,7 +240,9 @@ poly.na <- function(x1, y1, x2, y2, col = "black", alpha = 0.2) {
 
 This time we work out the ids of the data spanning an area of interest. Then the `poly.na` function is used. Note that the alpha transparency is by default 0.2 but another value can easily be supplied, as shown in the air quality 'bands' example.
 
-```{r annotateP7, eval=FALSE}
+```{r}
+#| label: annotateP7
+#| eval: false
 trellis.last.object() +
     layer({id <- which(x >= ymd_hm("2003-08-11 00:00") &
                        x <= ymd_hm("2003-08-25 00:00"));
@@ -234,7 +254,9 @@ trellis.last.object() +
 
 It is a simple extension to go from using a polygon below the data to polygons at certain intervals e.g. air quality indexes. These are shown for PM~2.5~ and the bands considered are 0--20, 20--30, 30--40 and \>40.
 
-```{r annotateP8, eval=FALSE}
+```{r}
+#| label: annotateP8
+#| eval: false
 trellis.last.object() +
     layer(poly.na(x, y, x, rep(0, length(x)),
                   col = "green", alpha = 1), rows = 3)
@@ -258,7 +280,8 @@ Many of the examples considered above are relevant to all other functions e.g. h
 
 One useful approach is to be able to draw an arc, perhaps highlighting an area of interest. A simple, but flexible function has been written to do this. It takes arguments `theta1` and `theta2` that define the angular area of interest and `lower` and `upper` to set the lower and upper wind speed, respectively. It also has additional arguments `theta3` and `theta4` which optionally set the angles for the 'upper' wind speed.
 
-```{r arcCode}
+```{r}
+#| label: arcCode
 arc <- function(theta1 = 30, theta2 = 60, theta3 = theta1, theta4 = theta2,
                 lower = 1, upper = 10){
   ## function to work out coordinates for an arc sector
@@ -332,7 +355,9 @@ plt
 
 Following on from the previous examples, some annotations have been added to the basic polar plot for SO~2~ as shown in @fig-annonatePolar. Note that in these plots (0, 0) is the middle of the plot and the radial distance will be determined by the wind speed --- or whatever the radial variable is. This way of plotting arcs can also be applied to other functions that show directional data. 
 
-```{r annotatePolar1, eval=FALSE}
+```{r}
+#| label: annotatePolar1
+#| eval: false
 polarPlot(mydata, pollutant = "so2", col = "jet")
 trellis.last.object() + layer(ltext(-12, -12, "A", cex = 2))
 trellis.last.object() + layer(ltext(10, 2, "B", cex = 2, col = "white"))
@@ -353,13 +378,17 @@ Given a a basic `timeVariation` plot, how could texts be added at any location -
 
 First, make a `timeVariation` plot.
 
-```{r timeVarGrid, eval=FALSE}
+```{r}
+#| label: timeVarGrid
+#| eval: false
 timeVariation(mydata)
 ```
 
 Now let's choose a location on the plot interactively using the mouse and selecting somewhere in the middle of the monthly plot.
 
-```{r gridLocate, eval=FALSE}
+```{r}
+#| label: gridLocate
+#| eval: false
 library(grid)
 ## bring up the interactive location chooser
 grid.locator(unit = "npc")
@@ -367,14 +396,18 @@ grid.locator(unit = "npc")
 
 What should happen is that in the R console the coordinates are given for that point. In my case these were x = 0.503 and y = 0.338. These coordinates can now be used as the basis of adding some text or other annotation. In the example below, the `grid.text` function is used to add some text for these coordinates making the font bigger (`cex = 2`), bold (`font = 2`) and blue (`col = "blue"`).
 
-```{r addGridText, eval=FALSE}
+```{r}
+#| label: addGridText
+#| eval: false
 grid.text(x = 0.503, y = 0.338, label = "here!",
           gp = gpar(cex = 2, font = 2, col = "blue"))
 ```
 
 Even with this basic approach, some sophisticated annotation is possible with *any* [openair]{.pkg} plot. There are many other functions that can be used from the grid package that would allow for polygons, segments and other features to be drawn is a similar way to the examples earlier in this section. Continuing with the same example, here is how to add an arrow pointing to the maximum \nox concentration shown on the top plot for Saturday (again using the `grid.locator` function).
 
-```{r addGridArrow, eval=FALSE}
+```{r}
+#| label: addGridArrow
+#| eval: false
 grid.lines(x = c(0.736, 0.760), y = c(0.560, 0.778),
            arrow = arrow())
 grid.text(x = 0.736, y = 0.560, label = "maximum", just = "left")

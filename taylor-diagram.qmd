@@ -17,7 +17,8 @@ library(openair)
 library(tidyverse)
 ```
 
-```{r showModData}
+```{r}
+#| label: showModData
 load("book_data/modelData.RData")
 head(modTest)
 ```
@@ -79,7 +80,9 @@ By contrast, during wintertime conditions models 1 and 3 are clearly best. From 
 
 There are many other useful comparisons that can be undertaken easily. A few of these are shown below, but not plotted.
 
-```{r TaylorExamples,eval=FALSE}
+```{r}
+#| label: TaylorExamples
+#| eval: false
 ## by receptor comparison
 TaylorDiagram(modTest, obs = "o3", mod = "mod", 
               group = "group", type = "site")

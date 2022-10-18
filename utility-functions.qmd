@@ -10,7 +10,9 @@ Selecting by date/time in R can be intimidating for new users---and time-consumi
 
 First load the packages we need.
 
-```{r message=FALSE,warning=FALSE}
+```{r}
+#| message: false
+#| warning: false
 library(openair)
 library(tidyverse)
 ```
@@ -34,7 +36,8 @@ sub.data <- selectByDate(mydata, day = "weekend", hour = 7:19,
 
 The function can be used directly in other functions. For example, to make a polar plot using year 2000 data:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(selectByDate(mydata, year = 2000), pollutant = "so2")
 ```
 
@@ -46,7 +49,8 @@ Note that all the date-based types e.g. month/year are derived from a column `da
 
 For example, to cut data into seasons:
 
-```{r cutdataexam}
+```{r}
+#| label: cutdataexam
 mydata <- cutData(mydata, type = "season")
 head(mydata)
 ```
@@ -55,7 +59,8 @@ This adds a new field `season` that is split into four seasons. There is an opti
 
 The `type` can also be another field in a data frame e.g.
 
-```{r cutdata2}
+```{r}
+#| label: cutdata2
 mydata <- cutData(mydata, type = "pm10")
 head(mydata)
 data(mydata) ## re-load mydata fresh
@@ -65,7 +70,8 @@ This divides PM~10~ concentrations into four *quantiles* --- roughly equal numbe
 
 Most of the time users do not have to call `cutData` directly because most functions have a `type` option that is used to call `cutData` directly e.g.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 polarPlot(mydata, pollutant = "so2", type = "season")
 ```
 
@@ -83,7 +89,8 @@ A seemingly easy thing to do that has relevance to air pollution episodes is to 
 
 As an example we are going to consider O~3~ concentrations at a semi-rural site in south-west London (Teddington). The data can be downloaded as follows:
 
-```{r importTed}
+```{r}
+#| label: importTed
 ted <- importKCL(site = "td0", year = 2005:2009, met = TRUE)
 ## see how many rows there are
 nrow(ted)
@@ -91,7 +98,8 @@ nrow(ted)
 
 We are going to contrast two pollution roses of O~3~ concentration. The first shows hours where the criterion is not met, and the second where it is met. The subset of hours is defined by O~3~ concentrations above 90 ppb for periods of at least 8-hours i.e. what might be considered as ozone episode conditions.
 
-```{r episodeSelect}
+```{r}
+#| label: episodeSelect
 ted <- selectRunning(ted, pollutant = "o3", 
                          threshold = 90, 
                          run.len = 8)
@@ -99,7 +107,8 @@ ted <- selectRunning(ted, pollutant = "o3",
 
 The `selectRunning` function returns a new column `criterion` that flags whether the condition is met or not. The user can control the text provided, which by default is "yes" and "no".
 
-```{r criterion}
+```{r}
+#| label: criterion
 table(ted$criterion)
 ```
 
@@ -119,7 +128,8 @@ The results are shown in @fig-RunningRes. The pollution rose for for the "no" cr
 
 The code below shows (as an example), that the summer of 2006 had a high proportion of conditions where the criterion was met.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 timeProp(ted, pollutant = "o3", 
          proportion = "criterion", 
          avg.time = "month", 
@@ -128,7 +138,9 @@ timeProp(ted, pollutant = "o3",
 
 It is also useful to consider what controls the highest NO~x~ concentrations at a central London roadside site. For example, the code below (not plotted) shows very strongly that the persistently highest NO~x~ concentrations are dominated by south-westerly winds. As mentioned earlier, there are many other types of analysis that can be carried out now the data set identifies where the criterion is or is not met.
 
-```{r runningNOx,eval=FALSE}
+```{r}
+#| label: runningNOx
+#| eval: false
 episode <- selectRunning(mydata, pollutant = "nox", 
                          threshold = 500, 
                          run.len = 5)
@@ -142,7 +154,8 @@ Some air pollution statistics such as for O~3~ and particulate matter are expres
 
 The function is called as follows; in this case to calculate 8-hour rolling mean concentrations of O~3~.
 
-```{r selectBydate}
+```{r}
+#| label: selectBydate
 mydata <- rollingMean(mydata, pollutant = "o3", width = 8,
                        new.name = "rollingo3", data.thresh = 75)
 tail(mydata)
@@ -174,14 +187,16 @@ All these issues are (hopefully) dealt with by the `timeAverage` function. The o
 
 To calculate daily means from hourly (or higher resolution) data:
 
-```{r dailyAve}
+```{r}
+#| label: dailyAve
 daily <- timeAverage(mydata, avg.time = "day")
 daily
 ```
 
 Monthly 95th percentile values:
 
-```{r percentile95}
+```{r}
+#| label: percentile95
 monthly <- timeAverage(mydata, avg.time = "month", 
                        statistic = "percentile",
                        percentile = 95)
@@ -190,7 +205,8 @@ monthly
 
 2-week averages but only calculate if at least 75% of the data are available:
 
-```{r twoweek}
+```{r}
+#| label: twoweek
 twoweek <- timeAverage(mydata, avg.time = "2 week", 
                        data.thresh = 75)
 twoweek
@@ -200,7 +216,8 @@ Note that `timeAverage` has a `type` option to allow for the splitting of variab
 
 First, retaining by site averages:
 
-```{r timeAvType}
+```{r}
+#| label: timeAvType
 # import some data for two sites
 dat <- importAURN(c("kc1", "my1"), year = 2011:2013)
 
@@ -210,20 +227,23 @@ timeAverage(dat, avg.time = "year", type = "site")
 
 Retain site name and site code:
 
-```{r timeAvTypeCode}
+```{r}
+#| label: timeAvTypeCode
 # can also retain site code
 timeAverage(dat, avg.time = "year", type = c("site", "code"))
 ```
 
 Average all data across sites (drops site and code):
 
-```{r timeAvNoType}
+```{r}
+#| label: timeAvNoType
 timeAverage(dat, avg.time = "year")
 ```
 
 `timeAverage` also works the other way in that it can be used to derive higher temporal resolution data e.g. hourly from daily data or 15-minute from hourly data. An example of usage would be the combining of daily mean particle data with hourly meteorological data. There are two ways these two data sets can be combined: either average the meteorological data to daily means or calculate hourly means from the particle data. The `timeAverage` function when used to 'expand' data in this way will repeat the original values the number of times required to fill the new time scale. In the example below we calculate 15-minute data from hourly data. As it can be seen, the first line is repeated four times and so on.
 
-```{r timeAvgFill}
+```{r}
+#| label: timeAvgFill
 data15 <- timeAverage(mydata, 
                       avg.time = "15 min", 
                       fill = TRUE)
@@ -238,7 +258,8 @@ The `timePlot` can apply this function directly to make it very easy to plot dat
 
 For example, to calculate the 25, 50, 75 and 95th percentiles of O~3~ concentration by year:
 
-```{r calcpercentile}
+```{r}
+#| label: calcpercentile
 calcPercentile(mydata, pollutant  = "o3", 
                percentile = c(25, 50, 75, 95),
                avg.time = "year")
@@ -267,13 +288,15 @@ corPlot(mydata, dendrogram = TRUE)
 
 Note also that the `corPlot` accepts a `type` option, so it possible to condition the data in many flexible ways, although this may become difficult to visualise with too many panels. For example:
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 corPlot(mydata, type = "season")
 ```
 
 When there are a very large number of variables present, the `corPlot` is a very effective way of quickly gaining an idea of how variables are related. As an example (not plotted) it is useful to consider the hydrocarbons measured at Marylebone Road. There is a lot of information in the hydrocarbon plot (about 40 species), but due to the hierarchical clustering it is possible to see that isoprene, ethane and propane behave differently to most of the other hydrocarbons. This is because they have different (non-vehicle exhaust) origins. Ethane and propane results from natural gas leakage whereas isoprene is biogenic in origin (although some is from vehicle exhaust too). It is also worth considering how the relationships change between the species over the years as hydrocarbon emissions are increasingly controlled, or maybe the difference between summer and winter blends of fuels and so on.
 
-```{r eval=FALSE}
+```{r}
+#| eval: false
 hc <- importAURN(site = "my1", year = 2005, hc = TRUE)
 ## now it is possible to see the hydrocarbons that behave most
 ## similarly to one another
