@@ -602,10 +602,12 @@ Plot an interactive map.
 #| fig-cap: Interactive map of polar plots with default map.
 #| column: screen-inset-shaded
 #| results: asis
-polarMap(polar_data, 
-         latitude = "lat", 
-         longitude = "lon",
-         type = "site")
+polarMap(
+  polar_data,
+  latitude = "lat",
+  longitude = "lon",
+  pollutant = "nox"
+)
 ```
 
 The `polarMap` function allows for control of many parts of the [leaflet]{.pkg} map. For example, you can provide one (or more) different base map(s) --- there are many! You may also visualise multiple pollutants at once which can then be toggled between.
@@ -619,7 +621,6 @@ polarMap(openairmaps::polar_data,
          pollutant = c("nox", "no2"),
          latitude = "lat",
          longitude = "lon",
-         type = "site", 
          provider = "CartoDB.Positron")
 ```
 

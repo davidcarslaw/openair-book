@@ -158,7 +158,7 @@ networkMap(source = "aurn")
 
 -   `source`: Any of the `importMeta` sources --- can be "aurn", "saqn" (or "saqd"), "aqe", "waqn", "ni", "kcl" or "europe".
 
--   `control`: Any column of the equivalent `importMeta` dataset, which is used to create a "layer control" menu to allow readers to filter for certain sites. The `control` option is quite opinionated, and selects an appropriate style of layer control depending on the column selected (e.g., pollutants are switched between, wheres multiple site types can be selected at once)
+-   `control`: Any column of the equivalent `importMeta` dataset, which is used to create a "layer control" menu to allow readers to filter for certain sites. The `control` option is quite opinionated, and selects an appropriate style of layer control depending on the column selected (e.g., pollutants are switched between, whereas multiple site types can be selected at once)
 
 -   `date`: By default, `networkMap` shows currently active monitoring sites. By specifying `date`, sites active *at that date* will be shown. This may be of interest if you want to explore the history of your chosen monitoring site.
 
@@ -191,15 +191,16 @@ dplyr::glimpse(polar_data)
 
 ```{r summaryPolar}
 #| label: tbl-polardata
-#| tbl-cap: "A statistical summary of the"
+#| echo: false
+#| tbl-cap: "A statistical summary of the `polar_data` dataset."
 polar_data %>%
   select(-site_type) %>%
   gtsummary::tbl_summary(
-  missing = "no", 
-  by = "site",
-  type = list(lat ~ "continuous", lon ~ "continuous"),
-  statistic = list(lat ~ "{median}", lon ~ "{median}")
-)
+    missing = "no", 
+    by = "site",
+    type = list(lat ~ "continuous", lon ~ "continuous"),
+    statistic = list(lat ~ "{median}", lon ~ "{median}")
+  )
 ```
 
 By "directional analysis", we are referring to the outputs from [openair]{.pkg} functions like `polarPlot`. As a reminder as to what these figures look like, see @fig-openairplots.
@@ -250,9 +251,15 @@ Effectively all of these functions have very similar arguments, although some ar
 
 -   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
--   `latitude`, `longitude`: The lat/lon column names.
+-   `latitude`, `longitude`: The lat/lon column names. If they are not 
 
--   `type`: The `type` column should distinguish between different lat/lon combinations. Commonly this will be "site", "site_code", "site_name" or something to that effect!
+-   `control`: A column to use to create a "layer control" menu. Specifying `control` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `control` will be those created by `openair::cutData` or `openair::splitByDate`.[^appendix-openairmaps-1]
+
+[^appendix-openairmaps-1]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `control`, but never both. If multiple pollutants *and* `control` are specified, `control` will be ignored.
+
+-   `popup`: A column to be used to create a HTML "popup" that appears when users click the markers. This would be useful to label each marker with its corresponding site name or code, although other information could be usefully included (e.g., site type, average pollutant concentrations, and so on).
+
+-   `label`: Much the same as "popup", but the message will appear when users hover-over the marker rather than click on it. Labels are often much shorter than popups.
 
 -   `provider`: The [leaflet]{.pkg} base map provider(s) you'd like to use. If multiple providers are provided, a "layer control" menu will allow readers to swap between them. Note that you can provide multiple pollutants *and* providers!
 
@@ -263,7 +270,12 @@ Effectively all of these functions have very similar arguments, although some ar
 ```{r polarMap}
 #| label: fig-polarMap
 #| fig-cap: "A demonstration of `polarMap`."
-polarMap(polar_data, pollutant = "nox", type = "site")
+polarMap(
+  polar_data,
+  pollutant = "nox",
+  latitude = "lat",
+  longitude = "lon"
+)
 ```
 
 Another example, this time using `annulusMap`, is given in @fig-annulusMap. Note that this time there are two different pollutants plotted, which can be swapped between using the layer control menu. Note that [openairmaps]{.pkg} automatically deals with subscripts in common pollutant names.
@@ -273,17 +285,38 @@ Another example, this time using `annulusMap`, is given in @fig-annulusMap. Note
 #| fig-cap: "A more complex demonstration, this time using `annulusMap`."
 annulusMap(
   polar_data,
-  pollutant = c("nox", "no2"),
-  type = "site",
+  pollutant = c("nox", "no2"), 
   provider = "CartoDB.Positron",
+  latitude = "lat",
+  longitude = "lon"
 )
+```
+
+A third example is shown in @fig-controlMap. This uses `percentileMap` and demonstrates how to use the "control" option to create a custom "layer control" menu and "label" and "popup" to label the markers, as well as passing on arguments to the equivalent [openair]{.pkg} function --- in this case, passing the "intervals" argument to `percentileRose` so that all of the markers are on the same radial axis.
+
+```{r annulus}
+#| label: fig-controlMap
+#| fig-cap: "A demonstration of `percentileMap` using the 'control' option and passing arguments to `openair::percentileRose`."
+polar_data %>%
+  openair::cutData("weekend") %>% 
+  percentileMap(
+    pollutant = "nox",
+    control = "weekend",
+    latitude = "lat",
+    longitude = "lon", 
+    provider = "Esri.WorldTopoMap",
+    cols = "viridis",
+    popup = "site",
+    label = "site_type",
+    intervals = c(0, 200, 400, 600, 800, 1000)
+  )
 ```
 
 ### Marker Function
 
-The directional analysis marker function is `addPolarMarkers`, which behaves similarly (but not identically) to `leaflet::addMarkers`. You will need to define the `data` you're using, the `lat`/`lng`[^appendix-openairmaps-1] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
+The directional analysis marker function is `addPolarMarkers`, which behaves similarly (but not identically) to `leaflet::addMarkers`. You will need to define the `data` you're using, the `lat`/`lng`[^appendix-openairmaps-2] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
 
-[^appendix-openairmaps-1]: Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.
+[^appendix-openairmaps-2]: Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.
 
 To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq` function to plot multiple polar pollutant frequency plots for oxides of nitrogen. What is different about this map is that users can select the specific statistic they are interested in -- in this case, mean, median or maximum. This is achieved by using the `group` arguments and `addLayersControl`.
 
@@ -296,25 +329,25 @@ leaflet() %>%
   ) %>% 
   addPolarMarkers(
     lng = "lon", lat = "lat",
+    pollutant = "nox",
     group = "Mean",
     data = polar_data,
-    type = "site",
     fun = polarFreq,
     statistic = "mean"
   ) %>% 
   addPolarMarkers(
     lng = "lon", lat = "lat",
+    pollutant = "nox",
     group = "Median",
     data = polar_data,
-    type = "site",
     fun = polarFreq,
     statistic = "median"
   ) %>% 
   addPolarMarkers(
     lng = "lon", lat = "lat",
+    pollutant = "nox",
     group = "Max",
     data = polar_data,
-    type = "site",
     fun = polarFreq,
     statistic = "max"
   ) %>%
@@ -328,8 +361,6 @@ One could imagine different applications, using this approach. For example:
 -   Giving users the option to swap between different `period`s for a `polarAnnulus` map, or different polar coordinates in a `polarPlot` map (i.e., different `x` arguments).
 
 -   Allowing users to swap between different plot types (e.g., have "Wind Rose", "Pollution Rose" and "Polar Plot" on the layer control menu).
-
--   Letting users switch between different years, to see how pollutant sources might have changed over time.
 
 The options are pretty much endless for the kinds of things you could achieve using this approach. If one of the all-in-one functions doesn't give you the flexibility you need, try to see if you can create your vision yourself from scratch using [leaflet]{.pkg} and the `addPolarMarkers` function.
 
@@ -351,12 +382,12 @@ There are two all-in-one functions for trajectory mapping in [openairmaps]{.pkg}
 
 2.  `trajLevelMap`, which is an analogue to `openair::trajLevel`.
 
-By default, `trajMap()` will plot your trajectories in black on a default "OpenStreetMap" base map, as shown in @fig-trajMap. A popup is also automatically generated --- try clicking on the points to get information about that particular air mass.
+By default, `trajMap()` will plot your trajectories in black on a default "OpenStreetMap" base map, but the `colour` argument allows you to colour by any column of your data. For example, @fig-trajMap shows the trajectory paths coloured by arrival date. A popup is also automatically generated --- try clicking on the points to get information about that particular air mass.
 
 ```{r trajMap1}
 #| label: fig-trajMap
 #| fig-cap: "A simple demonstration of `trajMap`."
-trajMap(traj_data)
+trajMap(traj_data, colour = "date")
 ```
 
 What may be of greater interest is colouring the trajectories by the concentration of pollutant on their arrival. The `colour` argument can be used for this. When `colour` is specified, trajectory paths are plotted in order of the numeric value of the "colour" column, so the highest concentrations (which are assumed to be of most interest) are most easily accessible. Specifying `colour` also creates a legend and appends a relevant line to the popup --- explore the example in @fig-trajPM.
@@ -368,7 +399,7 @@ trajMap(
   traj_data,
   colour = "pm10",
   npoints = 6,
-  cols = "viridis",
+  cols = "magma",
   provider = "CartoDB.Positron"
 )
 ```
@@ -402,8 +433,8 @@ trajMap(
 trajLevelMap(
   traj_data,
   statistic = "pscf",
-  pollutant = "pm10", 
-  cols = "inferno",
+  pollutant = "pm10",
+  cols = "viridis",
   provider = "Esri"
 )
 ```
