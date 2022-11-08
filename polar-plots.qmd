@@ -380,7 +380,7 @@ polarPlot(har,
 
 Polar plots can be useful for characterising the presence of different source types. Often the interest is in knowing how things have changed over time. It can be difficult from time series data alone to characterise these changes --- and especially whether there is evidence that particular sources have changed their strength.
 
-The `polarDiff` function has been written to compare polar plot surfaces between two time periods. The main purpose is to highlight whether there is evidence that source strengths may have changed. To illustrate the use of `polarDiff` data from a site close to a complex steelworks is used ([Port Talbot](https://www.google.co.uk/maps/place/Tata+Steel+Port+Talbot/@51.5696918,-3.7659959,3447m/data=!3m1!1e3!4m5!3m4!1s0x486e6716f44ca7c3:0x9eec15ac83c4648c!8m2!3d51.5679565!4d-3.7594051) in Wales). Two years will be compared as an example: 2012 and 2013. First, we need to import the air quality data for these two years:
+The `polarDiff` function has been written to compare polar plot surfaces between two time periods. The main purpose is to highlight whether there is evidence that source strengths may have changed. To illustrate the use of `polarDiff` data from a site close to a complex steelworks is used ([Port Talbot](https://www.google.co.uk/maps/place/Tata+Steel+Port+Talbot/@51.5696918,-3.7659959,3447m/data=!3m1!1e3!4m5!3m4!1s0x486e6716f44ca7c3:0x9eec15ac83c4648c!8m2!3d51.5679565!4d-3.7594051) in Wales). Two years will be compared as an example: 2012 and 2019. First, we need to import the air quality data for these two years:
 
 ```{r}
 #| label: import-PT4
@@ -388,6 +388,8 @@ port_talbot <- importAURN(site = "pt4", year = c(2012, 2019))
 
 port_talbot
 ```
+
+### Differences in absolute concentrations
 
 We can now generate a polar plot of the difference between the two years (2019 with 2012 subtracted). The first example if for SO~2~. The three main arguments for the function are the 'before' data, the 'after' data and pollutant name.
 
@@ -419,7 +421,30 @@ polarDiff(before = selectByDate(port_talbot, year = 2012),
 
 When selecting the periods, it is possible to refine the specific periods of interest using the `selectByDate` function described in @sec-selectByDate. For example, a comparison might usefully consider weekdays only, or certain hours of the year, and so on. Such time period selections can quickly 'home in' on specific source types by focusing on the periods they are likely to be most active.
 
+### Differences in probability that a concentration is exceeded
+
 The `polarDiff` function is also not restricted to comparing two time periods. Any two surfaces can be compared (provided the same pollutant is in each data set). For example, it is possible to consider the difference between two nearby sites or two co-located instruments.
+
+Differences between two time periods can also be considered using the `statistic = "cpf"` option, which would highlight how the probability that a concentration is exceeded between two time periods changes. This approach has also been considered for back trajectories @masiol2019. Some care is needed to ensure the probabilities that a specific concentration is exceeded because (for example) the 90th percentile concentration in one period will likely not be the same in another period.
+
+Using the example of SO~2~ we can consider the probability that 10 μg m^-3^ (close to the 90th percentile in 2012 --- but could be an air quality standard for example) is exceeded and how this changes over time. In this case, the percentile has length 3 (`percentile = c(10, 100, -1)`). The last negative number instructs `polarPlot` to interpret the the previous two numbers in an absolute sense --- in this case that the SO~2~ concentration is more than 10 and less than 100 μg m^-3^. Note that the 100 μg m^-3^ is higher than the maximum concentration, which effectively means it provides the probability that the SO~2~ concentration is above 10 μg m^-3^; so it could be any number higher than the maximum value that exists in the data.
+
+```{r}
+#| label: fig-polarPlotCPFDiff
+#| fig-cap: Change in probability that 10 μg m^-3^ is exceeded from 2012 to 2019.
+#| fig-width: 5
+#| fig-height: 5
+#| out-width: 60%
+#| fig.keep: 'last'
+polarDiff(before = selectByDate(port_talbot, year = 2012), 
+          after = selectByDate(port_talbot, year = 2019), 
+          pollutant = "so2", 
+          statistic = "cpf", 
+          percentile = c(10, 100, -1), 
+          limits = c(-0.5, 0.5))
+```
+
+@fig-polarPlotCPFDiff effectively shows there has been a clear reduction in the probability that 10 μg m^-3^ is exceeded between 2012 and 2019 when the wind is from the south-west.
 
 ## Clustering {#sec-polarCluster}
 
