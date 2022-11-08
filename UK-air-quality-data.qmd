@@ -43,6 +43,18 @@ include:
 -   `importNI` For accessing data from the [Northern
     Ireland](https://www.airqualityni.co.uk) network of sites.
 
+-   `importLocal` Import data from locally managed AQ networks in
+    England. These are sites operated in most cases by Local Authorities
+    but may also include monitoring from other programmes, industry and
+    airports. The location and purpose of these sites differs from the
+    national network which is governed by strict rules of the air
+    quality directives. As a result there is a broad range of site
+    types, equipment and data quality practices. For more information
+    see
+    [here](https://uk-air.defra.gov.uk/networks/network-info?view=nondefraaqmon).
+    These data represent information from about 15 different local air
+    quality networks.
+
 -   `importEurope` A simplified version of a function to give basic
     access to hourly European data based on Stuart Grange's
     [saqgetr]{.pkg} package --- see
@@ -88,6 +100,8 @@ library(tidyverse)
 ```
 
 ## Site Meta Data
+
+### National networks
 
 The first question is, what sites are available and what do they
 measure? Users can access the details of air pollution monitoring sites
@@ -181,6 +195,17 @@ It is also possible to return information on whether the data have been
 ratified or not using the option `ratified` (`FALSE` by default). So,
 add the option `ratified = TRUE` if you want this information.
 
+### Local networks
+
+In the case of **locally available data**, it is useful to know who the
+data providers are, which are shown below.
+
+```{r}
+# access local meta data to get provider
+meta_local <- importMeta("local", all = TRUE)
+unique(meta_local$provider)
+```
+
 ## Plot Sites on a Map
 
 To easily visualise entire monitoring networks, consider using the
@@ -205,7 +230,7 @@ types, shown below).
 #| fig-cap: Plotting the AURN using the `openairmaps` package.
 #| results: asis
 library(openairmaps)
-networkMap(source = "aurn", cluster = TRUE, control = "site_type")
+networkMap(source = "aurn", control = "site_type")
 ```
 
 For more information about [openairmaps]{.pkg} please refer to [Appendix

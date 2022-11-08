@@ -257,7 +257,7 @@ Effectively all of these functions have very similar arguments, although some ar
 
 -   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
--   `latitude`, `longitude`: The lat/lon column names. If they are not 
+-   `latitude`, `longitude`: The lat/lon column names. If they are not
 
 -   `control`: A column to use to create a "layer control" menu. Specifying `control` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `control` will be those created by `openair::cutData` or `openair::splitByDate`.[^appendix-openairmaps-1]
 
