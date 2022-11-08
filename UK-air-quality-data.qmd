@@ -23,8 +23,9 @@ data.
 extensive access to UK air quality data. Ricardo Energy & Environment
 have provided .RData files (R workspaces) for several important air
 quality networks in the UK. These files are updated on a daily basis.
-This approach requires a link to the Internet to work. The networks
-include:
+This approach requires a link to the Internet to work. The work of
+Trevor Davies at Ricardo Energy & Environment is greatly appreciated in
+making all the data avilable. The networks include:
 
 -   `importAURN` For importing data from the UK national network called
     [Automatic Urban and Rural
