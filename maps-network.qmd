@@ -51,13 +51,15 @@ networkMap(source = "aurn")
 
 -   `date`: By default, `networkMap()` shows currently active monitoring sites. By specifying `date`, sites active *at that date* will be shown. This may be of interest if you want to explore the history of your chosen monitoring site. Dates can either be provided as a character string in the "YYYY-MM-DD" format, or alternatively as a single year (e.g., `date = 2020`) which will show sites still operational at the *end* of that year.
 
--   `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.^[This feature cannot be turned off when `network = "europe"` due to the number of markers creating performance issues.]
+-   `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.[^maps-network-1]
 
 -   `provider`: Any number of the [leaflet]{.pkg} providers (see `leaflet::providers` or the list in the [openairmaps overview page](maps-overview.qmd)).
 
-Some of these arguments are demonstrated in @fig-networkMap2, which shows the AURN, AQE Network, and locally managed English networks[^appendix-openairmaps-1]. Pay particular attention to the layer control menu, which allows you to toggle different site types on and off.
+[^maps-network-1]: This feature cannot be turned off when `network = "europe"` due to the number of markers creating performance issues.
 
-[^appendix-openairmaps-1] Note that networks can overlap --- AQE sites can be part of the AURN. `networkMap()` uses the user-provided order as a hierarchy, so if "aurn" is listed first, an AURN & AQE site will be labelled as part of the AURN and its AURN code will be displayed.
+Some of these arguments are demonstrated in @fig-networkMap2, which shows the AURN, AQE Network, and locally managed English networks.[^maps-network-2] Pay particular attention to the layer control menu, which allows you to toggle different site types on and off.
+
+[^maps-network-2]: Note that networks can overlap --- AQE sites can be part of the AURN. `networkMap()` uses the user-provided order as a hierarchy, so if "aurn" is listed first, an AURN & AQE site will be labelled as part of the AURN and its AURN code will be displayed
 
 ```{r}
 #| label: fig-networkMap2
@@ -102,4 +104,3 @@ leaflet(map_data) %>%
   addTiles() %>%
   addMarkers(popup = ~popup)
 ```
-
