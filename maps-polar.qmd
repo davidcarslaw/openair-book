@@ -89,9 +89,9 @@ Effectively all of these functions have very similar arguments, although some ar
 
 -   `latitude`, `longitude`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`).
 
--   `control`: A column to use to create a "layer control" menu. Specifying `control` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `control` will be those created by `openair::cutData()` or `openair::splitByDate()`.[^appendix-openairmaps-2]
+-   `control`: A column to use to create a "layer control" menu. Specifying `control` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `control` will be those created by `openair::cutData()` or `openair::splitByDate()`.[^maps-polar-1]
 
-[^appendix-openairmaps-2]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `control`, but never both. If multiple pollutants *and* `control` are specified, `control` will be ignored.
+[^maps-polar-1]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `control`, but never both. If multiple pollutants *and* `control` are specified, `control` will be ignored.
 
 -   `popup`: A column to be used to create a HTML "popup" that appears when users click the markers. This would be useful to label each marker with its corresponding site name or code, although other information could be usefully included (e.g., site type, average pollutant concentrations, and so on). A more complicated popup can be created using the `buildPopup()` function.
 
@@ -241,9 +241,9 @@ polar_data %>%
 
 ## Marker Function
 
-The directional analysis marker function is `addPolarMarkers()`, which behaves similarly (but not identically) to `leaflet::addMarkers()`. You will need to define the `data` you're using, the `lat`/`lng`[^appendix-openairmaps-3] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers()` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
+The directional analysis marker function is `addPolarMarkers()`, which behaves similarly (but not identically) to `leaflet::addMarkers()`. You will need to define the `data` you're using, the `lat`/`lng`[^maps-polar-2] columns, a column to distinguish different sites (`type`), and an [openair]{.pkg} function (`fun`). As with `leaflet::addMarkers()` and similar functions, you can define `group` and `layerId`, which allows you to create more complex maps than can be achieved using the all-in-one [openairmaps]{.pkg} functions.
 
-[^appendix-openairmaps-3]: Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.
+[^maps-polar-2]: Marker functions use "lat" and "lng" as argument names for consistency with the leaflet package.
 
 To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq()` function to plot multiple polar pollutant frequency plots for oxides of nitrogen. What is different about this map is that users can select the specific statistic they are interested in -- in this case, mean, median or maximum. This is achieved by using the `group` arguments and `addLayersControl()`.
 
