@@ -41,6 +41,12 @@ book:
         - mod-stats.qmd
         - taylor-diagram.qmd
         - conditional-quantiles.qmd
+    - part: "Interactive Maps"
+      chapters:
+        - maps-overview.qmd
+        - maps-network.qmd
+        - maps-polar.qmd
+        - maps-traj.qmd
     - part: "Utility functions"
       chapters:
         - utility-functions.qmd
@@ -50,7 +56,6 @@ book:
    - appendix-annotate.qmd
    - appendix-hysplit.qmd
    - appendix-trends.qmd
-   - appendix-openairmaps.qmd
 
 bibliography: [DCC-refs.bib, packages.bib]
 

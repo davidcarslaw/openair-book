@@ -234,8 +234,7 @@ library(openairmaps)
 networkMap(source = "aurn", control = "site_type")
 ```
 
-For more information about [openairmaps]{.pkg} please refer to [Appendix
--@sec-openairmaps].
+For more information about using [openairmaps]{.pkg} to build maps of monitoring networks, please refer to the [Network Visualisation Page](maps-network.qmd).
 
 ## Annual and other statistics
 

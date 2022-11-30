@@ -1,0 +1,105 @@
+---
+title: Network Visualisation
+subtitle: Interactive maps of entire UK air quality monitoring networks 
+author: Jack Davison
+abstract: "Using `importMeta()` provides a simple, tabular data set of monitoring stations. This is useful if users have specific sites, pollutants or local authorities in mind, but it is difficult to get a feel for the geographic distribution of a monitoring network. This section details how `networkMap()` can allow readers to visualise and explore any UK monitoring network."
+execute: 
+  cache: false
+---
+
+## Introduction
+
+[openair]{.pkg} makes it easy to access any of the UK's air quality monitoring networks. The following networks are available:
+
+-   The Automatic Urban and Rural Network (AURN), the UK's national network.
+
+-   The devolved UK networks; Air Quality England (AQE), Scotland (SAQN), Wales (WAQN) and Northern Ireland (NI).
+
+-   Locally managed English networks operated by individual local authorities.
+
+-   The Imperial College London (formerly Kings College London) network.
+
+-   A simplified Europe-wide air quality network (although the [saqgetr](https://github.com/skgrange/saqgetr) package better serves obtaining European AQ data).
+
+Lets consider the metadata available for the AURN.
+
+```{r}
+#| label: importMeta
+library(openair)
+aurn_meta <- importMeta(source = "aurn", all = TRUE)
+dplyr::glimpse(aurn_meta)
+```
+
+This dataset has `r nrow(aurn_meta)` rows and `r ncol(aurn_meta)` columns, which is a lot of information to explore in a tabular format. A more effective way to communicate this information could be a map, which can be created automatically using [openairmaps]{.pkg}.
+
+## The `networkMap()` function
+
+Network visualisation is the simplest family of functions in [openairmaps]{.pkg} --- in fact, it only has one member. `networkMap()` is a function which you can consider as an analogue to `importMeta()` from [openair]{.pkg}. Consider `networkMap()` as an analogue to `importMeta()` --- it can map any of the `source`s that `importMeta()` can, using the same codes (`"aurn"`, `"saqn"`, `"local"`, `"kcl"`, etc.) to select sites. @fig-networkMap visualises the active AURN sites as of `r Sys.Date()`.
+
+```{r}
+#| label: fig-networkMap
+#| fig-cap: "An interactive map of the AURN monitoring network."
+library(openairmaps)
+networkMap(source = "aurn")
+```
+
+`networkMap()` is a quite simple function, with the following arguments for customisation:
+
+-   `source`: Any number of the `importMeta()` sources --- can be "aurn", "saqn" (or "saqd"), "aqe", "waqn", "ni", "local", "kcl" or "europe".
+
+-   `control`: Any column of the equivalent `importMeta()` dataset, which is used to create a "layer control" menu to allow readers to filter for certain sites. The `control` option is quite opinionated, and selects an appropriate style of layer control depending on the column selected (e.g., pollutants are switched between, whereas multiple site types can be selected at once)
+
+-   `date`: By default, `networkMap()` shows currently active monitoring sites. By specifying `date`, sites active *at that date* will be shown. This may be of interest if you want to explore the history of your chosen monitoring site. Dates can either be provided as a character string in the "YYYY-MM-DD" format, or alternatively as a single year (e.g., `date = 2020`) which will show sites still operational at the *end* of that year.
+
+-   `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.^[This feature cannot be turned off when `network = "europe"` due to the number of markers creating performance issues.]
+
+-   `provider`: Any number of the [leaflet]{.pkg} providers (see `leaflet::providers` or the list in the [openairmaps overview page](maps-overview.qmd)).
+
+Some of these arguments are demonstrated in @fig-networkMap2, which shows the AURN, AQE Network, and locally managed English networks[^appendix-openairmaps-1]. Pay particular attention to the layer control menu, which allows you to toggle different site types on and off.
+
+[^appendix-openairmaps-1] Note that networks can overlap --- AQE sites can be part of the AURN. `networkMap()` uses the user-provided order as a hierarchy, so if "aurn" is listed first, an AURN & AQE site will be labelled as part of the AURN and its AURN code will be displayed.
+
+```{r}
+#| label: fig-networkMap2
+#| fig-cap: "Demonstrating more features of `networkMap()`."
+networkMap(source = c("aurn", "aqe", "local"),
+           control = "site_type")
+```
+
+## "Do It Yourself" Network Maps
+
+If you are only interested in a few sites, you may wish to create your own, smaller network map. Currently, [openairmaps]{.pkg} only contains functionality to visualise entire networks, but it is relatively easy to create a map of your own using [leaflet]{.pkg}. While @fig-diyNetwork shows a network map of *just* sites in York, its associated code chunk can be used as a template for other small network maps. It uses the `buildPopup()` function from [openairmaps]{.pkg} which was written for use with the [directional analysis mapping functions](maps-polar.qmd), so is described in greater detail on the next page.
+
+```{r}
+#| label: fig-diyNetwork
+#| fig-cap: "Demonstrating more features of `networkMap()`."
+library(leaflet)
+library(dplyr)
+library(stringr)
+
+# import all Meta data for the AURN
+aurn_meta <- importMeta("aurn", all = TRUE)
+
+# prep data for leaflet
+map_data <- 
+  aurn_meta %>%
+  # get sites in York
+  filter(local_authority == "York") %>% 
+  # build a popup
+  buildPopup(
+    latitude = "latitude",
+    longitude = "longitude",
+    cols = c("code", "site", "site_type", "zone", "local_authority"), 
+    names = c("AURN Code" = "code", "Name" = "site", 
+              "Site Type" = "site_type", 
+              "Zone" = "zone", "LA" = "local_authority")
+  ) %>%
+  # get unique sites
+  distinct(site, .keep_all = TRUE)
+
+# create a basic leaflet map
+leaflet(map_data) %>%
+  addTiles() %>%
+  addMarkers(popup = ~popup)
+```
+

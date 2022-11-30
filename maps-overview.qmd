@@ -1,0 +1,142 @@
+---
+title: openairmaps primer
+subtitle: An introduction to `openairmaps` and the `leaflet` package
+author: Jack Davison
+abstract: "The `openairmaps` package has been designed to create interactive HTML air quality maps. These are useful to understand the geospatial context of `openair`-type analysis, and to present data in an engaging way in dashboards and websites. This page gives a broad overview of `openairmaps` as well as `leaflet`, the package on which it is built."
+execute: 
+  cache: false
+---
+
+## Installation
+
+[openairmaps]{.pkg} is on CRAN, so can be simply downloaded using `install.packages()`.
+
+```{r}
+#| label: install
+#| eval: false
+install.packages("openairmaps")
+```
+
+If you would like to access new features and bug fixes before they're pushed to CRAN, the development version of [openairmaps]{.pkg} can be downloaded directly from GitHub.
+
+```{r}
+#| label: remotes
+#| eval: false
+library(remotes)
+install_github("davidcarslaw/openairmaps")
+```
+
+If you would like to use [openairmaps]{.pkg} in your analysis, don't forget to load it using the `library()` function.
+
+```{r}
+#| label: library
+#| cache: false
+library(openairmaps)
+library(tidyverse)
+```
+
+::: {.callout-note appearance="simple"}
+This chapter was produced using R version `r getRversion()` and [openairmaps]{.pkg} version `r packageDescription("openairmaps", field = "Version")`.
+:::
+
+## Background
+
+As the R ecosystem developed, `{rmarkdown}` and, more recently, [Quarto](https://quarto.org/)) emerged as capable tools for combining data analysis with document preparation. While these approaches can render typical .docx and .pdf outputs, one of their most common output formats is the HTML document. This format has many strengths, but a key one is interactivity; HTML widgets allow documents to be more informative and engaging. Numerous packages have been developed to easily develop these interactive widgets, such as `{plotly}` for plots, `{DT}` for tables, and `{leaflet}` for maps. The [openairmaps]{.pkg} package concerns itself with making [leaflet]{.pkg} maps.
+
+Air quality data analysis --- particularly as it pertains to long term monitoring data --- naturally lends itself to being visualised spatially on a map. Monitoring networks are geographically distributed, and ignoring their geographical context may lead to incomplete insights at best and incorrect conclusions at worst! Furthermore, many air quality analysis tools are *directional*, asking questions of the data along the lines of "do elevated concentrations come from the North, South, East or West?" The natural question that follows is "well, what actually is it to the North/South/East/West that could be causing elevated concentrations?" --- a map can help answer that question straightforwardly.
+
+## [leaflet]{.pkg} Primer
+
+While [openairmaps]{.pkg} can be used without a thorough understanding of the [leaflet]{.pkg} package, some knowledge can definitely help! @fig-leafletdemo shows an example leaflet map. Try the following:
+
+-   Click and drag to move the map around --- you can go anywhere in the world!
+
+-   Use your scroll wheel or the +/- options (top left) to zoom in and out.
+
+-   Hover over the marker to see its label.
+
+-   Click on the marker to see a popup.
+
+-   Use the "layer control" menu (top right) to show and hide the marker, and swap between base maps.
+
+```{r}
+#| label: fig-leafletdemo
+#| fig-cap: "An example of a leaflet map."
+library(leaflet)
+
+leaflet() %>%
+  addTiles(group = "OSM") %>%
+  addProviderTiles("CartoDB.Positron", group = "CartoDB.Positron") %>%
+  addMarkers(
+    lat = 51.5034,
+    lng = -0.1276,
+    label = "10 Downing Street",
+    popup = "This is where the UK Prime Minister lives!",
+    group = "Marker"
+  ) %>%
+  addLayersControl(
+    baseGroups = c("CartoDB.Positron", "OSM"), 
+    overlayGroups = "Marker"
+  )
+```
+
+The anatomy of a leaflet map may look a little unusual, so to unpack:
+
+-   Every leaflet map starts with the `leaflet()` function.
+
+-   Different base maps can be added using `addTiles()` and `addProviderTiles()`. There are many of these base maps --- some are minimalist and some are busy, some are colourful and some are black-and-white, some are plain and some are highly stylised!
+
+-   Markers can be added using `addMarkers()` and other similar functions. These markers can have different features such as hover labels and popups.
+
+-   The `addLayersControl()` function creates a menu which allows users to show/hide or swap between certain features of the map.
+
+Don't worry if you don't fully understand all of this --- the "all-in-one" functions in [openairmaps]{.pkg} deal with much of this for you! The only [leaflet]{.pkg} awareness you'll need to use these functions is knowledge of the available base map providers, which can be accessed using `leaflet::providers`. These are shown in the collapsible below (the list is very long!).
+
+::: {.callout-note collapse="true"}
+### View Providers
+
+```{r}
+#| label: leafletproviders
+leaflet::providers
+```
+:::
+
+If you would like to use [openairmaps]{.pkg} in a more advanced way (for example, using the "marker" class of functions), you may find it useful to learn some [leaflet]{.pkg}. Its authors have written an excellent free [guide](https://rstudio.github.io/leaflet/) to help you get started.
+
+## Functions {#sec-functions}
+
+[openairmaps]{.pkg} currently has three main families of functions --- those being network visualisation, directional analysis, and trajectory analysis --- plus a handful of "utility" functions. These are summarised in @tbl-openairmaps-overview. The functions are further divided into two categories:
+
+-   **"All-in-one"** functions are most like [openair]{.pkg} functions in that they will construct a map from the ground-up. These functions provide the quickest route from data to a HTML map.
+
+-   **"Marker"** functions are most like [leaflet]{.pkg} functions in that they add layers onto pre-existing `leaflet` maps. These are more complicated to use, but are more powerful if you are more familiar with how [leaflet]{.pkg} works.
+
+```{r}
+#| label: tbl-openairmaps-overview
+#| tbl-cap: The [openairmaps]{.pkg} toolkit.
+#| echo: false
+#| cache: false
+library(gt)
+library(dplyr)
+
+desc <-
+  c(
+    "Visualises any of the networks made available by `importMeta()`.",
+    "Uses any of the `openair` directional analysis plots (e.g., `polarPlot()`) as markers, allowing them to be viewed in their geospatial context.",
+    "Creates interactive visualisations of HYSPLIT trajectories, allowing for finer investigations when compared with their static `openair` counterparts."
+  )
+
+tribble(
+  ~Family, ~`All-in-one`, ~Markers,
+  "Network Visualisation", "`networkMap()`", "",
+  "Directional Analysis", paste(c("`annulusMap()`", "`freqMap()`", "`percentileMap()`", "`polarMap()`", "`pollroseMap()`", "`windroseMap()`"), collapse = "<br>"), "`addPolarMarkers()`",
+  "Trajectory Analysis", paste(c("`trajMap()`", "`trajLevelMap()`"), collapse = "<br>"), "`addTrajPaths()`"
+) %>%
+  mutate(Description = desc) %>%
+  gt() %>%
+  fmt_markdown(columns = everything()) %>%
+  cols_move_to_start(c(Family, Description))
+
+```
+
+The next few pages will discuss each of these function families in turn, starting with network visualisation.
