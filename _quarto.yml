@@ -3,8 +3,9 @@ project:
   output-dir: docs
 
 book:
-  title: "openair book"
-  author: "David C Carslaw"
+  title: "The openair book"
+  subtitle: "A Guide to the Analysis of Air Pollution Data"
+  author: "David C Carslaw and Jack Davison"
   date: today
   date-format: long
   repo-url: https://github.com/davidcarslaw/openair-book/
