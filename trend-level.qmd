@@ -34,7 +34,7 @@ trendLevel(mydata, pollutant = "nox")
 #| fig-height: 8
 trendLevel(mydata, pollutant = "nox", y = "wd", 
            border = "white", 
-           cols = "jet")
+           cols = "turbo")
 ```
 
 @fig-trendLevel3 indicates that the highest NO~x~ concentrations most strongly associate with wind sectors about 200 degrees, appear to be decreasing over the years, but do not appear to associate with an SO~2~ rich NO~x~ source. Using `type = "so2"` would have conditioned by absolute SO~2~ concentration. As both a moderate contribution from an SO~2~ rich source and a high contribution from an SO~2~ poor source could generate similar SO~2~ concentrations, such conditioning can sometimes blur interpretations. The use of this type of 'over pollutant' ratio reduces this blurring by focusing conditioning on cases when NO~x~ concentrations (be they high or low) associate with relatively high or low SO~2~ concentrations.

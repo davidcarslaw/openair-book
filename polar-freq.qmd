@@ -68,7 +68,7 @@ Users are encouraged to try out other plot options. However, one potentially use
 #| eval: false
 # wind rose for just 2000 and 2003
 polarFreq(selectByDate(mydata, year = c(2000, 2003)),
-          cols = "jet",
+          cols = "turbo",
           type = "year")
 ```
 

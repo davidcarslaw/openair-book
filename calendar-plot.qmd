@@ -117,7 +117,7 @@ labels <- c(
 calendarPlot(mydata,
   pollutant = "no2", year = 2003,
   breaks = breaks, labels = labels,
-  cols = "jet", statistic = "max"
+  cols = "turbo", statistic = "max"
 )
 ```
 
@@ -137,7 +137,7 @@ labels <- c(
 calendarPlot(dat,
   pollutant = "rolling8o3", year = 2003,
   breaks = breaks, labels = labels,
-  cols = "jet", statistic = "max"
+  cols = "turbo", statistic = "max"
 )
 ```
 
@@ -169,19 +169,19 @@ dat <- importAURN(site = "kc1", year = 2010)
 ## no2 index example
 calendarPlot(dat,
   year = 2010, pollutant = "no2", labels = labels,
-  breaks = no2.breaks, statistic = "max", cols = "jet"
+  breaks = no2.breaks, statistic = "max", cols = "turbo"
 )
 
 ## for PM10 or PM2.5 we need the daily mean concentration
 calendarPlot(dat,
   year = 2010, pollutant = "pm10", labels = labels,
-  breaks = pm10.breaks, statistic = "mean", cols = "jet"
+  breaks = pm10.breaks, statistic = "mean", cols = "turbo"
 )
 
 ## for ozone, need the rolling 8-hour mean
 dat <- rollingMean(dat, pollutant = "o3", hours = 8)
 calendarPlot(dat,
   year = 2010, pollutant = "rolling8o3", labels = labels,
-  breaks = o3.breaks, statistic = "max", cols = "jet"
+  breaks = o3.breaks, statistic = "max", cols = "turbo"
 )
 ```

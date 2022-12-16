@@ -341,7 +341,7 @@ arc <- function(theta1 = 30, theta2 = 60, theta3 =theta1, theta4 = theta2,
 
 }
 
-plt <- polarPlot(mydata, pollutant = "so2", col = "jet")$plot
+plt <- polarPlot(mydata, pollutant = "so2", col = "turbo")$plot
 plt <- plt + layer(ltext(-12, -12, "A", cex = 2))
 plt <- plt + layer(ltext(10, 1, "B", cex = 2, col= "white"))
 plt <- plt + layer(lsegments(0, 0, -11.5, -11.5, lty = 5))
@@ -358,7 +358,7 @@ Following on from the previous examples, some annotations have been added to the
 ```{r}
 #| label: annotatePolar1
 #| eval: false
-polarPlot(mydata, pollutant = "so2", col = "jet")
+polarPlot(mydata, pollutant = "so2", col = "turbo")
 trellis.last.object() + layer(ltext(-12, -12, "A", cex = 2))
 trellis.last.object() + layer(ltext(10, 2, "B", cex = 2, col = "white"))
 trellis.last.object() + layer(lsegments(0, 0, -11.5, -11.5, lty = 5))

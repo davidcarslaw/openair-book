@@ -145,7 +145,7 @@ The default however is to down-weight the bins with few data points when fitting
 #| fig-width: 5
 #| out-width: 50%
 ## NOx plot
-polarPlot(mydata, pollutant = "nox", col = "jet", 
+polarPlot(mydata, pollutant = "nox", col = "turbo", 
           key.position = "bottom",
           key.header = "mean nox (ug/m3)", 
           key.footer = NULL)
@@ -342,7 +342,7 @@ A simple scatter plot between PM~2.5~ and PM~10~ strongly suggests a 1:1 relatio
 polarPlot(har,
   poll = c("pm2.5", "pm10"),
   statistic = "robust_slope",
-  col = "jet",
+  col = "turbo",
   limits = c(0, 1),
   ws_spread = 1.5,
   wd_spread = 10
@@ -367,7 +367,7 @@ har <- mutate(har, pm10_error = 2, pm2.5_error = 2)
 polarPlot(har,
   poll = c("pm2.5", "pm10"),
   statistic = "york_slope",
-  col = "jet",
+  col = "turbo",
   limits = c(0, 1),
   ws_spread = 1.5,
   wd_spread = 10,

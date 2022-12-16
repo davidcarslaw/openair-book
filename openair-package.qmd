@@ -284,7 +284,7 @@ plot(1, xlim = c(0, 1), ylim = c(0, 1.6), type = "n", xlab = "", ylab = "",
 printCols("default", 0)
 printCols("increment", 0.2)
 printCols("heat", 0.4)
-printCols("jet", 0.6)
+printCols("turbo", 0.6)
 printCols("viridis", 0.8)
 printCols("inferno", 1.0)
 printCols("greyscale", 1.2)
@@ -298,8 +298,8 @@ The user-defined scheme is very flexible and the following provides examples of 
 # use default colours - no need to specify
 polarPlot(mydata)
 
-# use pre-defined "jet" colours
-polarPlot(mydata, cols = "jet")
+# use pre-defined "turbo" colours
+polarPlot(mydata, cols = "turbo")
 
 # define own colours going from yellow to green
 polarPlot(mydata, cols = c("yellow", "green"))

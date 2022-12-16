@@ -56,7 +56,7 @@ Now it should be possible to make the plot by setting the method option to `meth
 #| fig-width: 5
 #| fig-height: 5
 #| out-width: 60%
-scatterPlot(data2003, x = "nox", y = "no2", method = "hexbin", col= "jet")
+scatterPlot(data2003, x = "nox", y = "no2", method = "hexbin", col= "turbo")
 ```
 
 Note that when `method = "hexbin"` there are various options that are useful e.g. a border around each bin and the number of bins. For example, to place a grey border around each bin and set the bin size try:
@@ -65,7 +65,7 @@ Note that when `method = "hexbin"` there are various options that are useful e.g
 #| label: hexbinAlt
 #| eval: false
 scatterPlot(mydata, x = "nox", y = "no2", 
-            method = "hexbin", col = "jet",
+            method = "hexbin", col = "turbo",
             border = "grey", xbin = 15)
 ```
 
@@ -80,7 +80,7 @@ The hexagonal binning and other binning methods are useful but often the choice 
 scatterPlot(selectByDate(mydata, year = 2003),
             x = "nox", y = "no2",
             method = "density", 
-            cols = "jet")
+            cols = "turbo")
 ```
 
 Sometimes it is useful to consider how the relationship between two variables varies by levels of a third. In [openair]{.pkg} this approach is possible by setting the option `type`. When `type` is another numeric variables, four plots are produced for different quantiles of that variable. We illustrate this point by considering how the relationship between NO~x~ and NO~2~ varies with different levels of O~3~. We also take the opportunity to not plot the smooth line, but plot a linear fit instead and force the layout to be a 2 by 2 grid.
