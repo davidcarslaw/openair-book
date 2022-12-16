@@ -16,7 +16,7 @@ The book is split into broad sections that cover common aspects of air quality d
 
 -   **Model Evaluation** Functions such as Taylor Diagrams, common model evaluation statistics and conditional quantile plots.
 
--   **Interactive Maps** Considers effective ways of views UK air quality networks and plotting directional analyses on interactive plots; particularly useful for source characterisation.
+-   **Interactive Maps** Considers effective ways of viewing UK air quality networks and plotting directional analyses on interactive plots; particularly useful for source characterisation.
 
 -   **Utility functions** various functions to flexibly carry out time-averaging, correlation analysis and other common tasks of relevance to air pollution.
 
