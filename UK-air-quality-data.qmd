@@ -234,7 +234,9 @@ library(openairmaps)
 networkMap(source = "aurn", control = "site_type")
 ```
 
-For more information about using [openairmaps]{.pkg} to build maps of monitoring networks, please refer to the [Network Visualisation Page](maps-network.qmd).
+For more information about using [openairmaps]{.pkg} to build maps of
+monitoring networks, please refer to the [Network Visualisation
+Page](maps-network.qmd).
 
 ## Annual and other statistics
 
@@ -249,7 +251,12 @@ option. The values `data_type` can take include:
 -   **"hourly"** This is the default and specific site(s) must be
     provided.
 -   **"daily"** Daily means returned and specific site(s) must be
-    provided.
+    provided. Note that in the case of PM~10~ and PM~2.5~ daily
+    measurements can be available from those derived from hourly
+    measurements (using instruments such as TEOM, BAM and FIDAS) our
+    daily gravimetric measurements such as from a Partisol. In the
+    returned data the gravimetric daily measurements are shown as
+    `gr_pm10` and `gr_pm2.5`, respectively.
 -   **"monthly"** Monthly means returned. No site code is needed because
     all data for a particular year are returned. Data capture statistics
     are also given.
