@@ -25,7 +25,7 @@ have provided .RData files (R workspaces) for several important air
 quality networks in the UK. These files are updated on a daily basis.
 This approach requires a link to the Internet to work. The work of
 Trevor Davies at Ricardo Energy & Environment is greatly appreciated in
-making all the data avilable. The networks include:
+making all the data available. The networks include:
 
 -   `importAURN` For importing data from the UK national network called
     [Automatic Urban and Rural
@@ -107,8 +107,9 @@ library(tidyverse)
 The first question is, what sites are available and what do they
 measure? Users can access the details of air pollution monitoring sites
 using the `importMeta` function. The user only needs to provide the
-network name and (optionally) whether all data should be returned. By
-default only site type, latitude and longitude are returned.
+network name and (optionally) whether all data should be returned and
+whether certain periods should be considered. By default only site type,
+latitude and longitude are returned.
 
 ```{r}
 #| label: importMeta
@@ -124,9 +125,40 @@ measured at each site and site start / end dates. The option
 
 ```{r}
 #| label: importMetaAll
-#| eval: false
+#| eval: true
 aurn_meta <- importMeta(source = "aurn", all = TRUE) 
-aurn_meta
+
+# what comes back?
+glimpse(aurn_meta)
+```
+
+Note that `importMeta` can import information for several networks at
+once e.g. `source = c("aurn", "saqn")`.
+
+Often it is useful to consider sites that were open in a particular year
+or were open for a duration of years. This can be done using the `year`
+argument. When `year` is a range such as `year = 2010:2020`, only sites
+that were open across that range of years will be returned. This option
+is especially useful for trend analysis when there might be an interest
+in extracting only sites that were measuring over the period of
+interest. Furthermore, if `all = TRUE` is used, supplying a year (or
+years) will select only specific pollutants that were measured during
+the period of interest.[^uk-air-quality-data-2]
+
+[^uk-air-quality-data-2]: Note that while I site may have been in
+    operation for a long time, it is not necessarily the case that all
+    pollutants were measured since the start of the site.
+
+For example, to check the number of sites that were open from 2010 to
+2022 in the AURN and SAQN combined:
+
+```{r}
+sites_2010_2022 <- importMeta(
+  source = c("aurn", "saqn"),
+  year = 2010:2022
+)
+
+nrow(sites_2010_2022)
 ```
 
 The example below uses sites on the AURN that measure NO~2~, but can
@@ -149,6 +181,27 @@ no2_sites <- filter(
 nrow(no2_sites)
 ```
 
+::: callout-tip
+## Use `importMeta` as a way to select sites to import
+
+One of the most useful aspects of `importMeta` is to use it as a basis
+to identify site codes to then import data. For example, to import data
+from the AURN for sites that have been in operation from 2005 to 2020:
+
+```{r}
+#| eval: false
+sites_2005_2020 <- importMeta(
+  source = "aurn",
+  year = 2005:2020
+)
+
+all_aq_data <- importAURN(
+  site = sites_2005_2020$code,
+  year = 2005:2020
+)
+```
+:::
+
 To import data, you can use the different versions of `importAURN`. Some
 examples are below.
 
@@ -163,6 +216,7 @@ thedata <- importAURN(site = c("my1", "nott"), year = 2000,
 
 ## import over 30 years of Mace Head O3 data!
 o3 <- importAURN(site = "mh", year = 1987:2019)
+
 ## import hydrocarbon data from Marylebone Road
 hc <- importAURN(site = "my1", year = 2008, hc = TRUE)
 
@@ -178,9 +232,6 @@ kc1 <- importAURN(site = "kc1", year = 2018, meta = TRUE)
 
 glimpse(kc1)
 ```
-
-The latter is useful if you then want to plot the sites on a map, as
-shown below.
 
 By default, the function returns data where each pollutant is in a
 separate column. However, it is possible to return the data in a *tidy*
@@ -295,10 +346,12 @@ Below is an example of obtaining annual mean data for 2020.
 
 ```{r}
 #| label: importAnnual
-uk_2020 <- importAURN(year = 2020, 
-                      data_type = "annual",
-                      meta = TRUE,
-                      to_narrow = TRUE)
+uk_2020 <- importAURN(
+  year = 2020,
+  data_type = "annual",
+  meta = TRUE,
+  to_narrow = TRUE
+)
 
 uk_2020
 ```
@@ -314,7 +367,7 @@ NO~2~ with a data capture rate of at least 80%:
 
 ```{r}
 #| label: filterNO2
-uk_2020 %>% 
+uk_2020 %>%
   filter(species == "no2", data_capture >= 0.8)
 ```
 
@@ -323,6 +376,10 @@ Index) by pollutant to save deriving it.
 
 ```{r}
 #| label: daqi
-daqi_2020 <- importAURN(year = 2020, data_type = "daqi", meta = TRUE)
+daqi_2020 <- importAURN(
+  year = 2020,
+  data_type = "daqi", meta = TRUE
+)
+
 daqi_2020
 ```
