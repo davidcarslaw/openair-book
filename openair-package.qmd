@@ -107,7 +107,7 @@ time_local
 hour(time_local)
 ```
 
-In the above example, `date_time` and `local_time` are the same absolute time --- we are just changing how the time is displayed. In practice, given a data frame with a `date` column in GMT and there interest in making sure [openair]{.pkg} uses the local time, some formatting such as `mydata$date -> with_tz(mydata$date, tz = "Europe/London")` is what is needed.
+In the above example, `date_time` and `time_local` are the same absolute time --- we are just changing how the time is displayed. In practice, given a data frame with a `date` column in GMT and there interest in making sure [openair]{.pkg} uses the local time, some formatting such as `mydata$date -> with_tz(mydata$date, tz = "Europe/London")` is what is needed.
 
 Another scenario is you import data using a function such as `read_csv` from the [readr]{.pkg} package and it recognises a date-time in the data and by default assumes it is GMT/UTC. This might be wrong even though it is now formatted correctly in R. In this case you can *force* a new time zone using the `force_tz` function. For example:
 
