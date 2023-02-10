@@ -130,7 +130,7 @@ This section gives a brief overview of the functions in [openair]{.pkg}. Having 
 functionName(thedata, options, ...)
 ```
 
-The usage is best illustrated through a specific example, in this case the `polarPlot` function. The details of the function are shown in @sec-polarPlot) and through the help pages (type ?polarPlot). As it can be seen there are numerous options associated with `polarPlot` --- and most other functions and each of these has a default. For example, the default pollutant considered in `polarPlot` is `nox`. If the user has a data frame called `theData` then `polarPlot` could minimally be called by:
+The usage is best illustrated through a specific example, in this case the `polarPlot` function. The details of the function are shown in @sec-polarPlot and through the help pages (type ?polarPlot). As it can be seen there are numerous options associated with `polarPlot` --- and most other functions and each of these has a default. For example, the default pollutant considered in `polarPlot` is `nox`. If the user has a data frame called `theData` then `polarPlot` could minimally be called by:
 
 ```{r}
 #| eval: false
