@@ -335,7 +335,7 @@ a <- windRose(mydata)
 b <- polarPlot(mydata)
 ```
 
-Now we can plot them using the split option:
+Now we can plot them using the `split` option:
 
 ```{r}
 #| eval: false
