@@ -325,7 +325,7 @@ Users can override this option by setting it to FALSE.
 
 ## Multiple plots on a page {#sec-multiple-plots-page}
 
-We often get asked how to combine multiple plots on one page. Recent changes to [openair]{.pkg} makes this a bit easier. Note that because [openair]{.pkg} uses [lattice]{.pkg} graphics the base graphics \`par} settings will not work.
+We often get asked how to combine multiple plots on one page. Recent changes to [openair]{.pkg} makes this a bit easier. Note that because [openair]{.pkg} uses [lattice]{.pkg} graphics the base graphics `par` settings will not work.
 
 It is possible to arrange plots based on a column $\times$ row layout. Let's put two plots side by side (2 columns, 1 row). First it is necessary to assign the plots to a variable:
 
