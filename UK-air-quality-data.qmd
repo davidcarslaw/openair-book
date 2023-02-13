@@ -29,7 +29,7 @@ making all the data available. The networks include:
 
 -   `importAURN` For importing data from the UK national network called
     [Automatic Urban and Rural
-    Network}](https://uk-air.defra.gov.uk/networks/network-info?view=aurn).
+    Network](https://uk-air.defra.gov.uk/networks/network-info?view=aurn).
     This is the main UK network.
 
 -   `importSAQN` For accessing data from [Air Quality
