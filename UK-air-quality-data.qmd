@@ -271,7 +271,7 @@ install.packages("openairmaps")
 
 This package contains the `networkMap` function which acts as a wrapper
 around `importMeta` and returns a detailed map similar to the one
-produced above, with many options for customisation. For example, sites
+produced below, with many options for customisation. For example, sites
 can be clustered together to avoid clutter, and an optional "control
 menu" can be added to filter for certain sites (e.g., different site
 types, shown below).
