@@ -145,7 +145,7 @@ interest. Furthermore, if `all = TRUE` is used, supplying a year (or
 years) will select only specific pollutants that were measured during
 the period of interest.[^uk-air-quality-data-2]
 
-[^uk-air-quality-data-2]: Note that while I site may have been in
+[^uk-air-quality-data-2]: Note that while a site may have been in
     operation for a long time, it is not necessarily the case that all
     pollutants were measured since the start of the site.
 
