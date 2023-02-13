@@ -304,7 +304,7 @@ option. The values `data_type` can take include:
 -   **"daily"** Daily means returned and specific site(s) must be
     provided. Note that in the case of PM~10~ and PM~2.5~ daily
     measurements can be available from those derived from hourly
-    measurements (using instruments such as TEOM, BAM and FIDAS) our
+    measurements (using instruments such as TEOM, BAM and FIDAS) and our
     daily gravimetric measurements such as from a Partisol. In the
     returned data the gravimetric daily measurements are shown as
     `gr_pm10` and `gr_pm2.5`, respectively.
