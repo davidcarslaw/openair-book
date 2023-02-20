@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="David Carslaw">
+<title>The openair book - 8&nbsp; Polar plots</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./polar-annulus.html" rel="next">
+<link href="./percentile-roses.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="site_libs/jquery-1.12.4/jquery.min.js"></script><link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script><link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script><script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="site_libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Polar plots</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">The openair book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/davidcarslaw/openair-book/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./openair-package.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The openair package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Data Access</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UK-air-quality-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Accessing UK Air Quality Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./access-met-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Access meteorological data</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Directional Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wind-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wind and Pollution Roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-freq.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polar frequencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./percentile-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Percentile roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-plots.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Polar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-annulus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Polar annulus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trajectory-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trajectory analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Time Series and Trends</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time series plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-variation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Temporal variations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-proportion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Time proportion plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trend-level.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Trend heat maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./calendar-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Calendar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./theil-sen.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Theil-Sen trends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smooth-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Smooth trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Model Evaluation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mod-stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Model evaluation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taylor-diagram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Taylor Diagam</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-quantiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Conditional quantiles</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Interactive Maps</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">openairmaps primer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-network.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Network Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-polar.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Directional Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-traj.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Trajectory Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Utility functions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utility-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Utility functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scatter-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Scatter plots</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-annotate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Annotating openair plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-hysplit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Production of HYSPLIT trajectory files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-trends.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">A closer look at trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#introduction-to-polar-plots" id="toc-introduction-to-polar-plots" class="nav-link active" data-scroll-target="#introduction-to-polar-plots"><span class="toc-section-number">8.1</span>  Introduction to polar plots</a></li>
+  <li>
+<a href="#polar-plots-from-an-air-pollution-dispersion-perspective" id="toc-polar-plots-from-an-air-pollution-dispersion-perspective" class="nav-link" data-scroll-target="#polar-plots-from-an-air-pollution-dispersion-perspective"><span class="toc-section-number">8.2</span>  Polar plots from an air pollution dispersion perspective</a>
+  <ul class="collapse">
+<li><a href="#sec-effect-of-source" id="toc-sec-effect-of-source" class="nav-link" data-scroll-target="#sec-effect-of-source"><span class="toc-section-number">8.2.1</span>  Effect of source type</a></li>
+  <li><a href="#atmospheric-stability-on-the-radial-axis" id="toc-atmospheric-stability-on-the-radial-axis" class="nav-link" data-scroll-target="#atmospheric-stability-on-the-radial-axis"><span class="toc-section-number">8.2.2</span>  Atmospheric stability on the radial axis</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-polar-plot-examples" id="toc-sec-polar-plot-examples" class="nav-link" data-scroll-target="#sec-polar-plot-examples"><span class="toc-section-number">8.3</span>  Examples</a></li>
+  <li><a href="#nonparametric-wind-regression-nwr" id="toc-nonparametric-wind-regression-nwr" class="nav-link" data-scroll-target="#nonparametric-wind-regression-nwr"><span class="toc-section-number">8.4</span>  Nonparametric Wind Regression, NWR</a></li>
+  <li><a href="#conditional-probability-function-cpf-plot" id="toc-conditional-probability-function-cpf-plot" class="nav-link" data-scroll-target="#conditional-probability-function-cpf-plot"><span class="toc-section-number">8.5</span>  Conditional Probability Function (CPF) plot</a></li>
+  <li><a href="#sec-polar-pairwise" id="toc-sec-polar-pairwise" class="nav-link" data-scroll-target="#sec-polar-pairwise"><span class="toc-section-number">8.6</span>  Pairwise statistics</a></li>
+  <li>
+<a href="#sec-polar-compare" id="toc-sec-polar-compare" class="nav-link" data-scroll-target="#sec-polar-compare"><span class="toc-section-number">8.7</span>  Comparing two time periods</a>
+  <ul class="collapse">
+<li><a href="#differences-in-absolute-concentrations" id="toc-differences-in-absolute-concentrations" class="nav-link" data-scroll-target="#differences-in-absolute-concentrations"><span class="toc-section-number">8.7.1</span>  Differences in absolute concentrations</a></li>
+  <li><a href="#differences-in-probability-that-a-concentration-is-exceeded" id="toc-differences-in-probability-that-a-concentration-is-exceeded" class="nav-link" data-scroll-target="#differences-in-probability-that-a-concentration-is-exceeded"><span class="toc-section-number">8.7.2</span>  Differences in probability that a concentration is exceeded</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-polarCluster" id="toc-sec-polarCluster" class="nav-link" data-scroll-target="#sec-polarCluster"><span class="toc-section-number">8.8</span>  Clustering</a>
+  <ul class="collapse">
+<li><a href="#clustering-concentrations" id="toc-clustering-concentrations" class="nav-link" data-scroll-target="#clustering-concentrations"><span class="toc-section-number">8.8.1</span>  Clustering concentrations</a></li>
+  <li><a href="#clustering-differences-in-concentrations" id="toc-clustering-differences-in-concentrations" class="nav-link" data-scroll-target="#clustering-differences-in-concentrations"><span class="toc-section-number">8.8.2</span>  Clustering differences in concentrations</a></li>
+  </ul>
+</li>
+  <li><a href="#polar-plots-on-an-interactive-map" id="toc-polar-plots-on-an-interactive-map" class="nav-link" data-scroll-target="#polar-plots-on-an-interactive-map"><span class="toc-section-number">8.9</span>  Polar plots on an interactive map</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/davidcarslaw/openair-book/edit/master/polar-plots.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-polarPlot" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Polar plots</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>David Carslaw </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header><p>This Section considers the flexible <code>polarPlot</code> function that is used to provide information about source characteristics. The clustering of polar plots is also considered using <code>polarCluster</code>.</p>
+<section id="introduction-to-polar-plots" class="level2 page-columns page-full" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="introduction-to-polar-plots">
+<span class="header-section-number">8.1</span> Introduction to polar plots</h2>
+<p>The <code>polarPlot</code> function plots a <em>bivariate polar plot</em> of concentrations. Concentrations are shown to vary by wind speed and wind direction. In many respects they are similar to the plots shown in <a href="polar-freq.html"><span>Chapter&nbsp;6</span></a> but include some additional enhancements. These enhancements include: plots are shown as a continuous surface and surfaces are calculated through modelling using smoothing techniques. These plots are not entirely new as others have considered the joint wind speed-direction dependence of concentrations (see for example Yu et al. <span class="citation" data-cites="Yu2004">(<a href="references.html#ref-Yu2004" role="doc-biblioref">2004</a>)</span>). However, plotting the data in polar coordinates and for the purposes of source identification is new. Furthermore, the basic polar plot is since been enhanced in many ways as described below. Publications that describe or use the technique are Carslaw et al. <span class="citation" data-cites="Carslaw2006a">(<a href="references.html#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> and Westmoreland et al. <span class="citation" data-cites="Westmoreland2007">(<a href="references.html#ref-Westmoreland2007" role="doc-biblioref">2007</a>)</span>. These plots have proved to be useful for quickly gaining a graphical impression of potential sources influences at a location.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Yu2004" class="csl-entry" role="doc-biblioentry">
+Yu, K. N., Y. P. Cheung, T. Cheung, and R. C. Henry. 2004. <span>“Identifying the Impact of Large Urban Airports on Local Air Quality by Nonparametric Regression.”</span> <em>Atmospheric Environment</em> 38 (27): 4501–7.
+</div><div id="ref-Westmoreland2007" class="csl-entry" role="doc-biblioentry">
+Westmoreland, E. J., N Carslaw, D. C. Carslaw, A. Gillah, and E. Bates. 2007. <span>“Analysis of Air Quality Within a Street Canyon Using Statistical and Dispersion Modelling Techniques.”</span> <em>Atmospheric Environment</em> 41 (39): 9195–205.
+</div></div><p>The <code>polarPlot</code> function is described in more detail in Carslaw et al. <span class="citation" data-cites="Carslaw2006a">(<a href="references.html#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> where it is used to triangulate sources in an airport setting, Carslaw and Beevers <span class="citation" data-cites="CarslawClust2013">(<a href="references.html#ref-CarslawClust2013" role="doc-biblioref">2013</a>)</span> where it is used with a clustering technique to identify features in a polar plot with similar characteristics and Uria-Tellaetxe and Carslaw <span class="citation" data-cites="Uria2014">(<a href="references.html#ref-Uria2014" role="doc-biblioref">2014</a>)</span> where it is extended to include a conditional probability function to extract more information from the plots.</p>
+<p>For many, maybe most situations, increasing wind speed generally results in lower concentrations due to increased dilution through advection and increased mechanical turbulence. There are, however, many processes that can lead to interesting concentration-wind speed dependencies, and we will provide a more theoretical treatment of this in due course. However, below are a few reasons why concentrations can change with increasing wind speeds.</p>
+<ul>
+<li><p>Buoyant plumes from tall stacks can be brought down to ground-level resulting in high concentrations under high wind speed conditions.</p></li>
+<li><p>Particle suspension increases with increasing wind speeds e.g.&nbsp;PM<sub>10</sub> from spoil heaps and the like.</p></li>
+<li><p>‘Particle’ suspension can be important close to coastal areas where higher wind speeds generate more sea spray.</p></li>
+<li><p>The wind speed dependence of concentrations in a street canyon can be very complex: higher wind speeds do not always results in lower concentrations due to re-circulation. Bivariate polar plots are very good at revealing these complexities.</p></li>
+<li><p>As Carslaw et al. <span class="citation" data-cites="Carslaw2006a">(<a href="references.html#ref-Carslaw2006a" role="doc-biblioref">2006</a>)</span> showed, aircraft emissions have an unusual wind speed dependence and this can help distinguish them from other sources. If several measurement sites are available, polar plots can be used to triangulate different sources.</p></li>
+<li><p>Concentrations of NO<sub>2</sub> can increase with increasing wind speed — or at least not decline steeply due to increased mixing. This mixing can result in O<sub>3</sub>-rich air converting NO to NO<sub>2</sub>.</p></li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="ref-Carslaw2006a" class="csl-entry" role="doc-biblioentry">
+Carslaw, D. C., S. D. Beevers, K. Ropkins, and M. C. Bell. 2006. <span>“Detecting and Quantifying Aircraft and Other on-Airport Contributions to Ambient Nitrogen Oxides in the Vicinity of a Large International Airport.”</span> <em>Atmospheric Environment</em> 40 (28): 5424–34.
+</div></div><p>The function has been developed to allow variables other than wind speed to be plotted with wind direction in polar coordinates. The key issue is that the other variable plotted against wind direction should be discriminating in some way. For example, temperature can help reveal high-level sources brought down to ground level in unstable atmospheric conditions, or show the effect a source emission dependent on temperature e.g.&nbsp;biogenic isoprene. For research applications where many more variables could be available, discriminating sources by these other variables could be very insightful.</p>
+<p>Bivariate polar plots are constructed in the following way. First, wind speed, wind direction and concentration data are partitioned into wind speed-direction bins and the mean concentration calculated for each bin. Testing on a wide range of data suggests that wind direction intervals at 5–10<span class="math inline">\(^\circ\)</span> and 40 wind speed intervals capture sufficient detail of the concentration distribution. The wind direction data typically available are generally rounded to 10<span class="math inline">\(^\circ\)</span> and for typical surface measurements. Binning the data in this way is not strictly necessary but acts as an effective data reduction technique without affecting the fidelity of the plot itself. Furthermore, because of the inherent wind direction variability in the atmosphere, data from several weeks, months or years typically used to construct a bivariate polar plot tends to be diffuse and does not vary abruptly with either wind direction or speed and more finely resolved bin sizes or working with the raw data directly does not yield more information.</p>
+<p>The wind components, <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are calculated i.e.</p>
+<p><span id="eq-wind-comp"><span class="math display">\[
+u = \overline{u} . sin\left(\frac{2\pi}{\theta}\right), v = \overline{u} . cos\left(\frac{2\pi}{\theta}\right)
+\tag{8.1}\]</span></span></p>
+<p>with <span class="math inline">\(\overline{u}\)</span> is the mean hourly wind speed and <span class="math inline">\(\theta\)</span> is the mean wind direction in degrees with 90<span class="math inline">\(^\circ\)</span> as being from the east.</p>
+<p>The calculations above provides a <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span>, concentration (<span class="math inline">\(C\)</span>) surface. While it would be possible to work with this surface data directly a better approach is to apply a model to the surface to describe the concentration as a function of the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> to extract real source features rather than noise. A flexible framework for fitting a surface is to use a Generalized Additive Model (GAM) e.g. <span class="citation" data-cites="Hastie1990">(<a href="references.html#ref-Hastie1990" role="doc-biblioref">Hastie and Tibshirani 1990</a>)</span>, <span class="citation" data-cites="Wood2006">(<a href="references.html#ref-Wood2006" role="doc-biblioref">Wood 2006</a>)</span>. GAMs are a useful modelling framework with respect to air pollution prediction because typically the relationships between variables are non-linear and variable interactions are important, both of which issues can be addressed in a GAM framework. GAMs can be expressed as shown in <a href="#eq-gam">Equation&nbsp;<span>8.2</span></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Hastie1990" class="csl-entry" role="doc-biblioentry">
+Hastie, T. J., and R. J. Tibshirani. 1990. <em>Generalized Additive Models</em>. London: Chapman; Hall.
+</div><div id="ref-Wood2006" class="csl-entry" role="doc-biblioentry">
+Wood, S. N. 2006. <em>Generalized Additive Models: An Introduction with r</em>. Chapman; Hall/CRC.
+</div></div><p><span id="eq-gam"><span class="math display">\[
+\sqrt{C_i} = \beta_0 + \sum_{j=1}^{n}s_j(x_{ij}) + e_i
+\tag{8.2}\]</span></span></p>
+<p>where <span class="math inline">\(C_i\)</span> is the ith pollutant concentration, <span class="math inline">\(\beta_0\)</span> is the overall mean of the response, <span class="math inline">\(s_j(x_{ij})\)</span> is the smooth function of ith value of covariate <span class="math inline">\(j\)</span>, <span class="math inline">\(n\)</span> is the total number of covariates, and <span class="math inline">\(e_i\)</span> is the <span class="math inline">\(i\)</span>th residual. Note that <span class="math inline">\(C_i\)</span> is square-root transformed as the transformation generally produces better model diagnostics e.g.&nbsp;normally distributed residuals.</p>
+<p>The model chosen for the estimate of the concentration surface is given by <a href="#eq-gam-2">Equation&nbsp;<span>8.3</span></a>. In this model the square root-transformed concentration is a smooth function of the bivariate wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. Note that the smooth function used is <em>isotropic</em> because <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are on the same scales. The isotropic smooth avoids the potential difficulty of smoothing two variables on different scales e.g.&nbsp;wind speed and direction, which introduces further complexities.</p>
+<p><span id="eq-gam-2"><span class="math display">\[
+\sqrt{C_i} = s(u, v) + e_i
+\tag{8.3}\]</span></span></p>
+</section><section id="polar-plots-from-an-air-pollution-dispersion-perspective" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="polar-plots-from-an-air-pollution-dispersion-perspective">
+<span class="header-section-number">8.2</span> Polar plots from an air pollution dispersion perspective</h2>
+<p>This section considers some of the common features that can be observed in polar plots that can be related to the underlying characteristics of dispersion. Hourly dispersion model output can be analysed in the same way as measurements of air pollution but has the advantage of simplifying the types and number of sources considered.</p>
+<section id="sec-effect-of-source" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="sec-effect-of-source">
+<span class="header-section-number">8.2.1</span> Effect of source type</h3>
+<p>As an example of different dispersion behaviours two source types have been modelled using the ADMS 5.2 model: a small shallow volume source and a single stack. The volume source is assumed to be 10 m deep and cover an area of 50x50 m with the receptor located at (0, 0) and the source centred at (-500, -500). This type of source is a simple representation of urban area sources e.g.&nbsp;road traffic and domestic combustion. The point source is assumed to have a height of 60 m, and efflux velocity of 10 m s<sup>-1</sup> and a temperature of 150 °C. The receptor is located about 1 km to the north-west of the source (i.e.&nbsp;the source is to the south-west of the receptor). Hourly meteorological data from the London Heathrow site for 2019 were used in the model.</p>
+<p>The hourly output from the model was processed and polar plots produced for each source type as shown in <a href="#fig-dispersion-ws">Figure&nbsp;<span>8.1</span></a>. The shallow volume source (<a href="#fig-volume-ws">Figure&nbsp;<span>8.1 (a)</span></a>) shows a characteristic dispersion pattern where concentrations are highest at low wind speeds (shown by the high values at the centre of the plot), which decrease with increasing wind speed (away from the centre of the plot). This type of pattern is frequently seen in monitoring data and often in urban areas where there are lots of ground-level, non-buoyant sources.</p>
+<p>By contrast, the pattern from the stack shown in <a href="#fig-stack-ws">Figure&nbsp;<span>8.1 (b)</span></a> is markedly different compared to the shallow volume source. In this case, it is clear the source is located to the south-west and is detected at a range of wind speeds, even up to very high values. This sort of behaviour is typical of a stack source plume being brought down to ground level under higher wind speed conditions. The pattern seen in <a href="#fig-stack-ws">Figure&nbsp;<span>8.1 (b)</span></a> will depend on many factors such as distance to the stack, the nature of the release (efflux velocity and plume exit temperature) and the effect of the atmosphere itself, which is discussed more in the next section.</p>
+<div id="fig-dispersion-ws" class="quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-volume-ws" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/volume-ws.png" class="img-fluid figure-img" data-ref-parent="fig-dispersion-ws"></p>
+<p></p><figcaption class="figure-caption">(a) Shallow volume source.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-stack-ws" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/plume-ws.png" class="img-fluid figure-img" data-ref-parent="fig-dispersion-ws"></p>
+<p></p><figcaption class="figure-caption">(b) Stack source.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.1: Effect of source type on plume dispersion with wind speed on the radial axis. In these plots the wind direction is the direction the wind is coming from and wind speed forms the radial axis such that zero wind speed is at the centre of the plot and increases away from the centre to 14 m s<sup>-1</sup>. The concentration of a pollutant is shown by the colour scale.</figcaption><p></p>
+</figure>
+</div>
+</section><section id="atmospheric-stability-on-the-radial-axis" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="atmospheric-stability-on-the-radial-axis">
+<span class="header-section-number">8.2.2</span> Atmospheric stability on the radial axis</h3>
+<p>By default, polar plots use wind speed on the radial axis. However, any numeric variable can be used if it is helpful in distinguishing between different types of source. For example, if a source is known to have an ambient temperature dependence (such as biogenic isoprene emissions), then temperature on the radial axis can usefully highlight these types of source. Similarly, relative humidity might be useful in highlighting re-suspended sources where particles are bound by water and remain on the surface at higher relative humidities.</p>
+<p>From a dispersion perspective, atmospheric stability is of fundamental importance to how plumes disperse. Originally, categorical stability classes such as the Pasquill-Gifford were widely used in dispersion modelling, with classes from A to G (A = extremely unstable, D = neutral and G = extremely stable. However, ‘modern’ dispersion models such as the Atmospheric Dispersion Modelling System (ADMS) and the USEPA AERMOD models use the Monin-Obukhov length (L<sub>MO</sub>) and boundary layer height (H) as the basis of describing the boundary layer and its stability. In particular, the ratio of H/L<sub>MO</sub> represents a continuous scale of atmospheric stability. Ranges of H/L<sub>MO</sub> can provide a guide as to whether the atmosphere is unstable, neutral or stable, as shown in <a href="#tbl-stability">Table&nbsp;<span>8.1</span></a>. The choice of values to partition H/L<sub>MO</sub> is somewhat arbitrary but the values given in <a href="#tbl-stability">Table&nbsp;<span>8.1</span></a> are commonly used values.</p>
+<div id="tbl-stability" class="anchored">
+<table class="table">
+<caption>Table&nbsp;8.1: Stability conditions using the Monin-Obukhov length.</caption>
+<thead><tr class="header">
+<th>Condition</th>
+<th>Range</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Convective (unstable)</td>
+<td>H/L<sub>MO</sub> &lt; -0.6</td>
+</tr>
+<tr class="even">
+<td>Neutral</td>
+<td>-0.6 &lt; H/L<sub>MO</sub> &lt; 2</td>
+</tr>
+<tr class="odd">
+<td>Stable</td>
+<td>H/L<sub>MO</sub> &gt; 2</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A continuous measure of atmospheric stability available through H/L<sub>MO</sub> makes it possible to use atmospheric stability on the radial axis. It should be noted that both ADMS and AERMOD use meteorological pre-processors to calculate these parameters, allowing them to be used in any analysis of dispersion model output or ambient measurements.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The influence of atmospheric stability on plume dispersion can be seen in <a href="#fig-atmos-stability">Figure&nbsp;<span>8.2</span></a>, which shows the average plume height and spread (σ<sub>z</sub>) across all conditions modelled. This Figure highlights several important characteristics: that an elevated plume under stable conditions may not reach ground level in proximity to the stack, that plume spread is much less under stable conditions and when the atmosphere is unstable (convective) there is a greater chance of a plume being brought down to ground level close to the source. As discussed in the previous section, the actual variation in these characteristics will depend on many factors, but they do highlight some common behaviours.</p>
+<div id="fig-atmos-stability" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/stability_plume.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.2: Behaviour of a dispersing plume from a 60 m stack under different conditions of atmospheric stability. The line corresponds to the mean plume centreline height and the shaded area indicates the mean plume spread (σ<sub>z</sub>).</figcaption><p></p>
+</figure>
+</div>
+<p>Just as in <a href="#sec-effect-of-source"><span>Section&nbsp;8.2.1</span></a>, we can illustrate the how concentrations are represented on polar plots when the radial axis is atmospheric stability (H/L<sub>MO</sub>). <a href="#fig-volume-stability">Figure&nbsp;<span>8.3 (a)</span></a> shows how predicted concentrations vary with atmospheric stability with values close to zero corresponding to neutral conditions and positive values representing stable conditions. For the shallow volume source it is clear that the highest concentrations are observed under stable atmospheric conditions, which tend to also be conditions where the wind speed is low, as shown previously in <a href="#fig-volume-ws">Figure&nbsp;<span>8.1 (a)</span></a>.</p>
+<p>By contrast, the stack dispersion pattern is very different (<a href="#fig-stack-stability">Figure&nbsp;<span>8.3 (b)</span></a>) compared to the shallow volume source. Again, like <a href="#fig-stack-ws">Figure&nbsp;<span>8.1 (b)</span></a> the plume is obvious, but in this case the highest concentrations are seen under <em>unstable</em> atmospheric conditions shown by negative values of H/L<sub>MO</sub> on the radial axis. These results show that the plume is being mixed down to the receptor when the atmosphere is unstable as illustrated in <a href="#fig-atmos-stability">Figure&nbsp;<span>8.2</span></a>.</p>
+<div id="fig-dispersion-monin" class="quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-volume-stability" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/volume-stability.png" class="img-fluid figure-img" data-ref-parent="fig-dispersion-monin"></p>
+<p></p><figcaption class="figure-caption">(a) Shallow volume source.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-stack-stability" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="images/stack_stability.png" class="img-fluid figure-img" data-ref-parent="fig-dispersion-monin"></p>
+<p></p><figcaption class="figure-caption">(b) Stack source.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.3: Effect of source type on plume dispersion with atmospheric stability (H/L<sub>MO</sub>) on the radial axis.</figcaption><p></p>
+</figure>
+</div>
+<p>The patterns seen from the examples in this section provide some guidance on how to interpret polar plots. There are of course many other source types and situations that can be considered, but the ability to understand the patterns observed in real data in terms of underlying dispersion (or chemistry) is an important aspect of using these types of analysis effectively.</p>
+</section></section><section id="sec-polar-plot-examples" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="sec-polar-plot-examples">
+<span class="header-section-number">8.3</span> Examples</h2>
+<p>We first use the function in its simplest form to make a polar plot of NO<sub>x</sub>. The code is very simple as shown in <a href="#fig-polarPlot">Figure&nbsp;<span>8.4</span></a>.</p>
+<p>First, load the packages we need.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidcarslaw.github.io/openair/">openair</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarPlot_6b86063de08bb160003f1e7379ba78eb">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"nox"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPlot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlot-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.4: Default use of the <code>polarPlot</code> function applied to Marylebone Road NO<sub>x</sub> concentrations.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This produces <a href="#fig-polarPlot">Figure&nbsp;<span>8.4</span></a>. The scale is automatically set using whatever units the original data are in. This plot clearly shows highest NO<sub>x</sub> concentrations when the wind is from the south-west. Given that the monitor is on the <em>south</em> side of the street and the highest concentrations are recorded when the wind is blowing <em>away</em> from the monitor is strong evidence of street canyon recirculation.</p>
+<p><a href="#fig-polarPlot2">Figure&nbsp;<span>8.5</span></a> and <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a> shows polar plots using different defaults and for other pollutants. In the first (<a href="#fig-polarPlot2">Figure&nbsp;<span>8.5</span></a>), a different colour scheme is used and some adjustments are made to the key. In <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a>, SO<sub>2</sub> concentrations are shown. What is interesting about this plot compared with either <a href="#fig-polarPlot2">Figure&nbsp;<span>8.5</span></a> or <a href="#fig-polarPlot">Figure&nbsp;<span>8.4</span></a> is that the concentration pattern is very different i.e.&nbsp;high concentrations with high wind speeds from the east. The most likely source of this SO<sub>2</sub> are industrial sources to the east of London. The plot does still however show evidence of a source to the south-west, similar to the plot for NO<sub>x</sub>, which implies that road traffic sources of SO<sub>2</sub> can also be detected.</p>
+<p>These plots often show interesting features at higher wind speeds. For these conditions there can be very few measurements and therefore greater uncertainty in the calculation of the surface. There are several ways in which this issue can be tackled. First, it is possible to avoid smoothing altogether and use <code>polarFreq</code>. The problem with this approach is that it is difficult to know how best to bin wind speed and direction: the choice of interval tends to be arbitrary. Second, the effect of setting a minimum number of measurements in each wind speed-direction bin can be examined through <code>min.bin</code>. It is possible that a single point at high wind speed conditions can strongly affect the surface prediction. Therefore, setting <code>min.bin = 3</code>, for example, will remove all wind speed-direction bins with fewer than 3 measurements <em>before</em> fitting the surface. This is a useful strategy for testing how sensitive the plotted surface is to the number of measurements available. While this is a useful strategy to get a feel for how the surface changes with different <code>min.bin</code> settings, it is still difficult to know how many points should be used as a minimum. Third, consider setting <code>uncertainty = TRUE</code>. This option will show the predicted surface together with upper and lower 95% confidence intervals, which take account of the frequency of measurements. The uncertainty approach ought to be the most robust and removes any arbitrary setting of other options. There is a close relationship between the amount of smoothing and the uncertainty: more smoothing will tend to reveal less detail and lower uncertainties in the fitted surface and vice-versa.</p>
+<p>The default however is to down-weight the bins with few data points when fitting a surface. Weights of 0.25, 0.5 and 0.75 are used for bins containing 1, 2 and 3 data points respectively. The advantage of this approach is that no data are actually removed (which is what happens when using <code>min.bin</code>). This approach should be robust in a very wide range of situations and is also similar to the approaches used when trying to locate sources when using back trajectories as described in <a href="trajectory-analysis.html"><span>Chapter&nbsp;10</span></a>. Users can ignore the automatic weighting by supplying the option <code>weights = c(1, 1, 1)</code>.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarPlot2_911d461a8f86034a14b51694c1fda6ef">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## NOx plot</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"nox"</span>, col <span class="op">=</span> <span class="st">"turbo"</span>, </span>
+<span>          key.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>          key.header <span class="op">=</span> <span class="st">"mean nox (ug/m3)"</span>, </span>
+<span>          key.footer <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPlot2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlot2-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.5: Example plots using the <code>polarPlot</code> function with different options for the mean concentration of NO<sub>x</sub>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarPlot3_55c0cc627b31bc602bd303855ae7dda4">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"so2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPlot3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlot3-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.6: Example plots using the <code>polarPlot</code> function for the mean concentration of SO<sub>2</sub>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A very useful approach for understanding air pollution is to consider ratios of pollutants. One reason is that pollutant ratios can be largely independent of meteorological variation. In many circumstances it is possible to gain a lot of insight into sources if pollutant ratios are considered. First, it is necessary to calculate a ratio, which is easy in R. In this example we consider the ratio of SO<sub>2</sub>/NO<sub>x</sub>:</p>
+<div class="cell" data-hash="polar-plots_cache/html/unnamed-chunk-5_440c98f4ae505e3e8a37950052f99055">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">mydata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">mydata</span>, ratio <span class="op">=</span> <span class="va">so2</span> <span class="op">/</span> <span class="va">nox</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This makes a new variable called <code>ratio</code>. Sometimes it can be problematic if there are values equal to zero on the denominator, as is the case here. The mean and maximum value of the ratio is infinite, as shown by the <code>Inf</code> in the statistics below. Luckily, R can deal with infinity and the <span class="pkg">openair</span> functions will remove these values before performing calculations. It is very simple therefore to calculate ratios.</p>
+<div class="cell" data-hash="polar-plots_cache/html/unnamed-chunk-6_009b288d886fad4d7917398cca1f10ba">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mydata</span><span class="op">$</span><span class="va">ratio</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  0.000   0.018   0.024     Inf   0.034     Inf   11782 </code></pre>
+</div>
+</div>
+<p>A polar plot of the SO<sub>2</sub>/NO<sub>x</sub> ratio is shown in <a href="#fig-polarRatio">Figure&nbsp;<span>8.7</span></a>. The plot highlights some new features not seen before. First, to the north there seems to be evidence that the air tends to have a higher SO<sub>2</sub>/NO<sub>x</sub> ratio. Also, the source to the east has a higher SO<sub>2</sub>/NO<sub>x</sub> ratio compared with that when the wind is from the south-west i.e.&nbsp;dominated by road sources. It seems therefore that the easterly source(s), which are believed to be industrial sources have a different SO<sub>2</sub>/NO<sub>x</sub> ratio compared with road sources. This is a very simple analysis, but ratios can be used effectively in many functions and are particularly useful in the presence of high source complexity.</p>
+<p>Arguably a better approach would be to calculate the ratio (slope) from a regression, as described in <a href="#sec-polar-pairwise"><span>Section&nbsp;8.6</span></a>. One reason is that simply dividing one concentration by another would include the effect of background concentrations, which could be large. A regression-based approach avoids this problem.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarRatio_9cbca04eae80c70a62b9df578c5021e2">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"ratio"</span>, main <span class="op">=</span> <span class="st">"so2/nox ratio"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarRatio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarRatio-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.7: Bivariate polar plot of the ratio of SO<sub>2</sub>/NO<sub>x</sub>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sometimes when considering ratios it might be necessary to limit the values in some way; perhaps due to some unusually low value denominator data resulting in a few very high values for the ratio. This is easy to do with the <span class="pkg">dplyr</span> <code>filter</code> command. The code below selects ratios less than 0.1.</p>
+<div class="cell" data-hash="polar-plots_cache/html/unnamed-chunk-8_fc9447447a940df59022127008a4917d">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">mydata</span>, <span class="va">ratio</span> <span class="op">&lt;</span> <span class="fl">0.1</span><span class="op">)</span>, pollutant <span class="op">=</span> <span class="st">"ratio"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The uncertainties in the surface can be calculated by setting the option <code>uncertainty = TRUE</code>. The details are described above and here we show the example of SO<sub>2</sub> concentrations (<a href="#fig-polarUncer">Figure&nbsp;<span>8.8</span></a>). In general the uncertainties are higher at high wind speeds i.e.&nbsp;at the ‘fringes’ of a plot where there are fewer data. However, the magnitude depends on both the frequency and magnitude of the concentration close to the points of interest. The pattern of uncertainty is not always obvious and it can differ markedly for different pollutants.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarUncer_a21cdbe3fff13b7df10db1bb229e62bb">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"so2"</span>, uncertainty <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarUncer" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarUncer-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.8: Bivariate polar plot of SO<sub>2</sub> concentrations at Marylebone Road. Three surfaces are shown: the central prediction (middle) and the lower and upper 95% estimated uncertainties. These plots help to show that in this particular case, some of the concentrations for strong easterly and south-easterly winds are rather uncertain. However, the central feature to the east remains, suggesting this feature is real and not an artifact of there being too few data.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>polarPlot</code> function can also produce plots dependent on another variable (see the <code>type</code> option). For example, the variation of SO<sub>2</sub> concentrations at Marylebone Road by hour of the day in the code below. The function was called as shown in below, and in this case the minimum number of points in each wind speed/direction was set to 2.</p>
+<div class="cell" data-hash="polar-plots_cache/html/polarCondSO2_5e774154f15ade4c79f7744d366caed7">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"so2"</span>, type <span class="op">=</span> <span class="st">"hour"</span>, min.bin <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This plot shows that concentrations of SO<sub>2</sub> tend to be highest from the east (as also shown in <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a> and for hours in the morning. Together these plots can help better understand different source types. For example, does a source only seem to be present during weekdays, or winter months etc. In the case of <code>type = "hour"</code>, the more obvious presence during the morning hours could be due to meteorological factors and this possibility should be investigated as well. In other settings where there are many sources that vary in their source emission and temporal characteristics, the <code>polarPlot</code> function should prove to be very useful.</p>
+<p>One issue to be aware of is the amount of data required to generate some of these plots; particularly the hourly plots. If only a relatively short time series is available there may not be sufficient information to produce useful plots. Whether this is important or not will depend on the specific circumstances e.g.&nbsp;the prevalence of wind speeds and directions from the direction of interest. When used to produce many plots (e.g.&nbsp;<code>type = "hour"</code>), the run time can be quite long.</p>
+</section><section id="nonparametric-wind-regression-nwr" class="level2 page-columns page-full" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="nonparametric-wind-regression-nwr">
+<span class="header-section-number">8.4</span> Nonparametric Wind Regression, NWR</h2>
+<p>An alternative approach to modelling the surface concentrations with a GAM is to use kernel smoothers, as described by Henry et al.&nbsp;<span class="citation" data-cites="henry2009">(<a href="references.html#ref-henry2009" role="doc-biblioref">2009</a>)</span>. In NWR, smoothing is achieved using nonparametric kernel smoothers that weight concentrations on a surface according to their proximity to defined wind speed and direction intervals. In the approach adopted in <span class="pkg">openair</span> (which is not identical to Henry et al.&nbsp;<span class="citation" data-cites="henry2009">(<a href="references.html#ref-henry2009" role="doc-biblioref">2009</a>)</span>), Gaussian smoothers are used for both wind direction and wind speed. Unlike the default GAM approach in <span class="pkg">openair</span>, the NWR technique works directly with the raw (often hourly) data. It tends to provide similar results to <span class="pkg">openair</span> but may have advantages in certain situations e.g.&nbsp;when there is insufficient data available to use a GAM. The width of the Gaussian kernels (𝜎) is controlled by the options <code>wd_spread</code> and <code>ws_spread</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-henry2009" class="csl-entry" role="doc-biblioentry">
+Henry, Ronald, Gary A. Norris, Ram Vedantham, and Jay R. Turner. 2009. <span>“<span>Source Region Identification Using Kernel Smoothing</span>.”</span> {Article}. <em><span>Environmental Science &amp; Technology</span></em> <span>43</span> (<span>11</span>): 4090–97. <a href="https://doi.org/%7B10.1021/es8011723%7D">https://doi.org/{10.1021/es8011723}</a>.
+</div></div><p>An example for SO<sub>2</sub> concentrations is shown in <a href="#fig-polarNWR">Figure&nbsp;<span>8.9</span></a>, which can be compared with <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a>.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarNWR_63a4ff523ac25f895c62fadcaaf6d841">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant <span class="op">=</span> <span class="st">"so2"</span>, statistic <span class="op">=</span> <span class="st">"nwr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarNWR" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarNWR-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.9: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the NWR approach.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="conditional-probability-function-cpf-plot" class="level2 page-columns page-full" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="conditional-probability-function-cpf-plot">
+<span class="header-section-number">8.5</span> Conditional Probability Function (CPF) plot</h2>
+<p>The conditional probability functions (CPF) was described in <a href="percentile-roses.html#sec-CPF"><span>Section&nbsp;7.3</span></a> in the context of the <code>percentileRose</code> function. The CPF was originally used to show the wind directions that dominate a (specified) high concentration of a pollutant; showing the probability of such concentrations occurring by wind direction Ashbaugh et al.&nbsp;<span class="citation" data-cites="Ashbaugh1985">(<a href="references.html#ref-Ashbaugh1985" role="doc-biblioref">1985</a>)</span>. However, these ideas can very usefully be applied to bivariate polar plots. In this case the CPF is defined as CPF = <span class="math inline">\(m_{\theta,j}/n_{\theta,j}\)</span>, where <span class="math inline">\(m_{\theta,j}\)</span> is the number of samples in the wind sector <span class="math inline">\(\theta\)</span> and wind speed interval <span class="math inline">\(j\)</span> with mixing ratios greater than some ‘high’ concentration, and <span class="math inline">\(n_{\theta, j}\)</span> is the total number of samples in the same wind direction-speed interval. Note that <span class="math inline">\(j\)</span> does not have to be wind speed but could be any numeric variable e.g.&nbsp;ambient temperature. CPF analysis is very useful for showing which wind direction, wind speed intervals are dominated by high concentrations and give the probability of doing so. A full explanation of the development and use of the bivariate case of the CPF is described in Uria-Tellaetxe and Carslaw <span class="citation" data-cites="Uria2014">(<a href="references.html#ref-Uria2014" role="doc-biblioref">2014</a>)</span> where it is applied to monitoring data close to steelworks.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Ashbaugh1985" class="csl-entry" role="doc-biblioentry">
+Ashbaugh, Lowell L., William C. Malm, and Willy Z. Sadeh. 1985. <span>“<span class="nocase">A residence time probability analysis of sulfur concentrations at grand Canyon National Park</span>.”</span> <em>Atmospheric Environment (1967)</em> 19 (8): 1263–70. <a href="https://doi.org/10.1016/0004-6981(85)90256-2">https://doi.org/10.1016/0004-6981(85)90256-2</a>.
+</div></div><div class="cell" data-hash="polar-plots_cache/html/fig-polarPlotCPF_f8142e634fa61ebd786cc6376c136e9b">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"so2"</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"cpf"</span>,</span>
+<span>  percentile <span class="op">=</span> <span class="fl">90</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPlotCPF" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPF-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.10: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An example of a CPF polar plot is shown in <a href="#fig-polarPlotCPF">Figure&nbsp;<span>8.10</span></a> for the 90th percentile concentration of SO<sub>2</sub>. This plot shows that for most wind speed-directions the probability of SO<sub>2</sub> concentrations being greater than the 90th percentile is zero. The clearest areas where the probability is higher is to the east. Indeed, the plot now clearly reveals two potential sources of SO<sub>2</sub>, which are not as apparent in the ‘standard’ plot shown in <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a>. Note that <a href="#fig-polarPlotCPF">Figure&nbsp;<span>8.10</span></a> also gives the calculated percentile at the bottom of the plot (9.2 ppb in this case). <a href="#fig-polarPlotCPF">Figure&nbsp;<span>8.10</span></a> can also be compared with the CPF plot based only on wind direction shown in <a href="percentile-roses.html#fig-percentileRoseCPF">Figure&nbsp;<span>7.4</span></a>. While <a href="percentile-roses.html#fig-percentileRoseCPF">Figure&nbsp;<span>7.4</span></a> very clearly shows that easterly wind dominate high concentrations of SO<sub>2</sub>, <a href="#fig-polarPlotCPF">Figure&nbsp;<span>8.10</span></a> provides additional valuable information by also considering wind speed, which in this case is able to discriminate between two sources (or groups of sources) to the east.</p>
+<p>The polar CPF plot is therefore potentially very useful for source identification and characterisation. It is, for example, worth also considering other percentile levels and other pollutants. For example, considering the 95th percentile for SO<sub>2</sub> ‘removes’ one of the sources (the one at highest wind speed). This helps to show some maybe important differences between the sources that could easily have been missed. Similarly, considering other pollutants can help build up a good understanding of these sources. A CPF plot for NO<sub>2</sub> at the 90th percentile shows the single dominance of the road source. However, a CPF plot at the 75th percentile level indicates source contributions from the east (likely tall stacks), which again are not as clear in the standard bivariate polar plot. Considering a range of percentile values can therefore help to build up a more complete understanding of source contributions.</p>
+<div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">60</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">70</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">80</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">mydata</span>, poll <span class="op">=</span> <span class="st">"so2"</span>, stati <span class="op">=</span> <span class="st">"cpf"</span>, percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-polarPlotCPFInt" class="cell quarto-layout-panel" data-hash="polar-plots_cache/html/fig-polarPlotCPFInt_882f2dce8e72c74748fc3a673cf97ed1">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-1.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(a) Percentile 0-10%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-2.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(b) Percentile 10-20%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-3.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(c) Percentile 20-30%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-4.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(d) Percentile 30-40%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-5" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-5.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(e) Percentile 40-50%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-6" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-6.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(f) Percentile 50-60%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-7" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-7.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(g) Percentile 60-70%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-8" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-8.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(h) Percentile 70-80%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-9" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-9.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(i) Percentile 80-90%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 33.3%;justify-content: center;">
+<div id="fig-polarPlotCPFInt-10" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFInt-10.png" class="img-fluid figure-img" data-ref-parent="fig-polarPlotCPFInt"></p>
+<p></p><figcaption class="figure-caption">(j) Percentile 90-100%.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.11: <code>polarPlot</code> of SO<sub>2</sub> concentrations at Marylebone Road based on the CPF function for a range of percentile intervals from 0–10, 10–20, … , 90–100.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>However, even more useful information can be gained by considering <em>intervals</em> of percentiles e.g.&nbsp;50–60, 60–70 etc. By considering intervals of percentiles it becomes clear that some sources only affect a limited percentile range. <code>polarPlot</code> can accept a <code>percentile</code> argument of length two e.g.&nbsp;<code>percentile =  c(80, 90)</code>. In this case concentrations in the range from the lower to upper percentiles will be considered. In <a href="#fig-polarPlotCPFInt">Figure&nbsp;<span>8.11</span></a> for example, it is apparent that the road source to the south west is only important between the 60 to 90th percentiles. As mentioned previously, the chimney stacks to the east are important for the higher percentiles (90 to 100). What is interesting though is the emergence of what appears to be other sources at the lower percentile intervals. These potential sources are not apparent in <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a>. The other interesting aspect is that it does seem that specific sources tend to be prominent for specific percentile ranges. If this characteristic is shown to be the case more generally, then CPF intervals could be a powerful way in which to identify many sources. Whether these particular sources are important or not is questionable and depends on the aims of the analysis. However, there is no reason to believe that the potential sources shown in the percentile ranges 0 to 50 are artefacts. They could for example be signals from more distant point sources whose plumes have diluted more over longer distances. Such sources would be ‘washed out’ in an ordinary polar plot. For a fuller example of this approach see Uria-Tellaetxe and Carslaw <span class="citation" data-cites="Uria2014">(<a href="references.html#ref-Uria2014" role="doc-biblioref">2014</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Uria2014" class="csl-entry" role="doc-biblioentry">
+Uria-Tellaetxe, I, and D. C. Carslaw. 2014. <span>“Conditional Bivariate Probability Function for Source Identification.”</span> <em>Environmental Modelling &amp; Software</em> 59: 1–9. <a href="https://doi.org/10.1016/j.envsoft.2014.05.002">https://doi.org/10.1016/j.envsoft.2014.05.002</a>.
+</div></div><p>Note that it is easy to work out what the concentration intervals are for the percentiles shown in <a href="#fig-polarPlotCPFInt">Figure&nbsp;<span>8.11</span></a>:</p>
+<div class="cell" data-hash="polar-plots_cache/html/quantInt_896ed77a8fba802906dc65bcba30a6da">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">mydata</span><span class="op">$</span><span class="va">so2</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     0%     10%     20%     30%     40%     50%     60%     70%     80%     90% 
+ 0.0000  1.0125  1.8825  2.5000  3.2500  4.0000  4.9375  5.9100  7.2375  9.2500 
+   100% 
+63.2050 </code></pre>
+</div>
+</div>
+<p>To plot the Figures on one page it is necessary to make the plot objects first and then decide how to plot them. To plot the Figures in a particular layout see <a href="openair-package.html#sec-multiple-plots-page"><span>Section&nbsp;2.9</span></a>.</p>
+</section><section id="sec-polar-pairwise" class="level2 page-columns page-full" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="sec-polar-pairwise">
+<span class="header-section-number">8.6</span> Pairwise statistics</h2>
+<p>Grange et al. <span class="citation" data-cites="grange2016">(<a href="references.html#ref-grange2016" role="doc-biblioref">2016</a>)</span> further developed the capabilities of the <code>polarPlot</code> function by allowing pairwise statistics to be used. This method makes it possible to consider the relationship between two pollutants to be considered. The relationship between two pollutants often yields useful source apportionment information and when combined with the <code>polarPlot</code> function can provide enhanced information. The pairwise statistics that can be considered include:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-grange2016" class="csl-entry" role="doc-biblioentry">
+Grange, Stuart K, Alastair C Lewis, and David C Carslaw. 2016. <span>“Source Apportionment Advances Using Polar Plots of Bivariate Correlation and Regression Statistics.”</span> <em>Atmospheric Environment</em> 145: 128–34.
+</div></div><ul>
+<li><p>The Pearson or Spearman correlation coefficient, <span class="math inline">\(r\)</span>;</p></li>
+<li><p>The robust slope (gradient) resulting from a linear regressions between two pollutants.</p></li>
+<li><p>The quantile slope from a quantile regression applied to two variables with a quantile value of <span class="math inline">\(tau\)</span>. By default, the median slope (i.e.&nbsp;<span class="math inline">\(tau\)</span> = 0.5) is used by the actual level can be set by the user.</p></li>
+<li><p>‘York’ regression that accounts for errors in the ‘x’ and the ‘y’ variables.</p></li>
+</ul>
+<p>The calculation involves a weighted Pearson correlation coefficient, which is weighted by Gaussian kernels for wind direction and the radial variable (by default wind speed). More weight is assigned to values close to a wind speed-direction interval. Kernel weighting is used to ensure that all data are used rather than relying on the potentially small number of values in a wind speed-direction interval. Two important settings are <code>ws_spread</code> and <code>wd_spread</code> that determine the σ value used in the Gaussian kernel weightings. Setting these values too low will result in potentially noisy results. As a guide, values of <code>ws_spread</code> around a tenth of the maximum wind speed seem reasonable and 5-10° for <code>wd_spread</code>.</p>
+<p>An example usage scenario is that measurements of metal concentrations are made close to a steelworks where there is interest in understanding the principal sources. While it is useful to consider the correlation between potentially many metal concentrations, the contention is that if the correlation is also considered as a function of wind speed and direction, improved information will be available of the types of sources contributing. For example, it may be that Fe and Mn are quite strongly correlated overall, but they tend to be most correlated under specific wind speed and direction ranges — suggesting a specific source origin.</p>
+<p>As an example of usage we will consider the relationship between PM<sub>2.5</sub> and PM<sub>10</sub> at the rural Harwell site in Oxfordshire. Additionally, we will use meteorological data from a nearby site rather than rely on modelled values that are provided in <code>importAURN</code>.</p>
+<div class="cell" data-hash="polar-plots_cache/html/importPolarData_2b4a773eff2d2e2d9ae9c6df41942a62">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidcarslaw.github.io/worldmet/index.html">worldmet</a></span><span class="op">)</span> <span class="co"># to access met data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">har</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/importAURN.html">importAURN</a></span><span class="op">(</span><span class="st">"har"</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># import met data from nearby site (Benson)</span></span>
+<span><span class="va">met</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/worldmet/man/importNOAA.html">importNOAA</a></span><span class="op">(</span>code <span class="op">=</span> <span class="st">"036580-99999"</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># merge AQ and met but don't use modelled ws and wd</span></span>
+<span><span class="va">har</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">har</span>, <span class="op">-</span><span class="va">ws</span>, <span class="op">-</span><span class="va">wd</span>, <span class="op">-</span><span class="va">air_temp</span><span class="op">)</span>,</span>
+<span>  <span class="va">met</span>,</span>
+<span>  by <span class="op">=</span> <span class="st">"date"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>An example pairwise regression surface relationship relating PM<sub>2.5</sub> and PM<sub>10</sub> is shown in <a href="#fig-polarPair">Figure&nbsp;<span>8.12</span></a>. This plot reveals that almost all the PM<sub>10</sub> is in the form of PM<sub>2.5</sub> when the wind has an easterly component, which is attributed to the large secondary contribution likely dominated by ammonium nitrate.</p>
+<p>A simple scatter plot between PM<sub>2.5</sub> and PM<sub>10</sub> strongly suggests a 1:1 relationship and it is not obvious that there is a higher PM<sub>2.5</sub>/PM<sub>10</sub> ratio when the wind is from the east.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarPair_82e04bcd4acc6b67ff3dc238239a6eac">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">har</span>,</span>
+<span>  poll <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pm2.5"</span>, <span class="st">"pm10"</span><span class="op">)</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"robust_slope"</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"turbo"</span>,</span>
+<span>  limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  ws_spread <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  wd_spread <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPair" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPair-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.12: Use of the <code>polarPlot</code> function to investigate the linear regression slope between PM<sub>2.5</sub> and PM<sub>10</sub> at Harwell in 2013. In this case the robust slope is calculated.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The York regression option requires special mention. In ordinary linear regression it is assumed there is no error in the ‘x’ variable. However, in atmospheric science, the interest is often in regressing two variables that both have uncertainty. There are various methods available, such as Reduced Major Axis (RMA) regression. However, a more general solution to this problem was solved a long time ago by the geophysicist Derek York from the University of Toronto <span class="citation" data-cites="york1968a york2004a">(<a href="references.html#ref-york1968a" role="doc-biblioref">York 1968</a>; <a href="references.html#ref-york2004a" role="doc-biblioref">York et al. 2004</a>)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> While the York approach is ideally suited to atmospheric applications, the challenge may be obtaining the uncertainties in the measurements themselves. As discussed in <span class="citation" data-cites="wu2018">Wu and Yu (<a href="references.html#ref-wu2018" role="doc-biblioref">2018</a>)</span>, the York approach can still work well if the error in one of the variables is unknown or the measurement error cannot be trusted. In the example below, the errors are estimated and fixed for illustration purposes, but in many applications could be provided directly based on how well an instrument performs.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-york1968a" class="csl-entry" role="doc-biblioentry">
+York, Derek. 1968. <span>“Least Squares Fitting of a Straight Line with Correlated Errors.”</span> <em>Earth and Planetary Science Letters</em> 5 (January): 320–24. <a href="https://doi.org/10.1016/s0012-821x(68)80059-7">https://doi.org/10.1016/s0012-821x(68)80059-7</a>.
+</div><div id="ref-york2004a" class="csl-entry" role="doc-biblioentry">
+York, Derek, Norman M. Evensen, Margarita López Martıńez, and Jonás De Basabe Delgado. 2004. <span>“Unified Equations for the Slope, Intercept, and Standard Errors of the Best Straight Line.”</span> <em>American Journal of Physics</em> 72 (3): 367–75. <a href="https://doi.org/10.1119/1.1632486">https://doi.org/10.1119/1.1632486</a>.
+</div><div id="ref-wu2018" class="csl-entry" role="doc-biblioentry">
+Wu, Cheng, and Jian Zhen Yu. 2018. <span>“Evaluation of Linear Regression Techniques for Atmospheric Applications: The Importance of Appropriate Weighting.”</span> <em>Atmospheric Measurement Techniques</em> 11 (2): 1233–50. <a href="https://doi.org/10.5194/amt-11-1233-2018">https://doi.org/10.5194/amt-11-1233-2018</a>.
+</div></div><div class="cell" data-hash="polar-plots_cache/html/fig-polarPairYork_98934f7ca1c564231c25060ee05fe521">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># assign simple / fixed uncertainties</span></span>
+<span></span>
+<span><span class="va">har</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">har</span>, pm10_error <span class="op">=</span> <span class="fl">2</span>, pm2.5_error <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarPlot.html">polarPlot</a></span><span class="op">(</span><span class="va">har</span>,</span>
+<span>  poll <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pm2.5"</span>, <span class="st">"pm10"</span><span class="op">)</span>,</span>
+<span>  statistic <span class="op">=</span> <span class="st">"york_slope"</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"turbo"</span>,</span>
+<span>  limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  ws_spread <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  wd_spread <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  x_error <span class="op">=</span> <span class="st">"pm10_error"</span>, </span>
+<span>  y_error <span class="op">=</span> <span class="st">"pm2.5_error"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPairYork" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPairYork-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.13: Use of the <code>polarPlot</code> function to investigate the linear regression slope between PM<sub>2.5</sub> and PM<sub>10</sub> at Harwell in 2013. In this case the York regression slope is calculated.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="sec-polar-compare" class="level2 page-columns page-full" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="sec-polar-compare">
+<span class="header-section-number">8.7</span> Comparing two time periods</h2>
+<p>Polar plots can be useful for characterising the presence of different source types. Often the interest is in knowing how things have changed over time. It can be difficult from time series data alone to characterise these changes — and especially whether there is evidence that particular sources have changed their strength.</p>
+<p>The <code>polarDiff</code> function has been written to compare polar plot surfaces between two time periods. The main purpose is to highlight whether there is evidence that source strengths may have changed. To illustrate the use of <code>polarDiff</code> data from a site close to a complex steelworks is used (<a href="https://www.google.co.uk/maps/place/Tata+Steel+Port+Talbot/@51.5696918,-3.7659959,3447m/data=!3m1!1e3!4m5!3m4!1s0x486e6716f44ca7c3:0x9eec15ac83c4648c!8m2!3d51.5679565!4d-3.7594051">Port Talbot</a> in Wales). Two years will be compared as an example: 2012 and 2019. First, we need to import the air quality data for these two years:</p>
+<div class="cell" data-hash="polar-plots_cache/html/import-PT4_0d8c26016660876c87641c3bb5e98b9b">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">port_talbot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/importAURN.html">importAURN</a></span><span class="op">(</span>site <span class="op">=</span> <span class="st">"pt4"</span>, year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2012</span>, <span class="fl">2019</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">port_talbot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17,544 × 18
+   site      code  date                   co   nox   no2    no    o3   so2  pm10
+   &lt;chr&gt;     &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Port Tal… PT4   2012-01-01 00:00:00  0.12    11    11     0    44     3    13
+ 2 Port Tal… PT4   2012-01-01 01:00:00  0.12    11    11     0    44     0    17
+ 3 Port Tal… PT4   2012-01-01 02:00:00  0.12    11    11     0    46     0    16
+ 4 Port Tal… PT4   2012-01-01 03:00:00  0.47    15    15     0    42     3    40
+ 5 Port Tal… PT4   2012-01-01 04:00:00  0.81    13    13     0    40     5    48
+ 6 Port Tal… PT4   2012-01-01 05:00:00  1.05    13    13     0    40     8    40
+ 7 Port Tal… PT4   2012-01-01 06:00:00  1.16    15    13     1    40     8    45
+ 8 Port Tal… PT4   2012-01-01 07:00:00  1.05    21    19     1    40    11    47
+ 9 Port Tal… PT4   2012-01-01 08:00:00  1.28    19    17     1    40    11    44
+10 Port Tal… PT4   2012-01-01 09:00:00  1.28    23    19     2    38     8    46
+# … with 17,534 more rows, and 8 more variables: pm2.5 &lt;dbl&gt;, v10 &lt;dbl&gt;,
+#   v2.5 &lt;dbl&gt;, nv10 &lt;dbl&gt;, nv2.5 &lt;dbl&gt;, ws &lt;dbl&gt;, wd &lt;dbl&gt;, air_temp &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<section id="differences-in-absolute-concentrations" class="level3" data-number="8.7.1"><h3 data-number="8.7.1" class="anchored" data-anchor-id="differences-in-absolute-concentrations">
+<span class="header-section-number">8.7.1</span> Differences in absolute concentrations</h3>
+<p>We can now generate a polar plot of the difference between the two years (2019 with 2012 subtracted). The first example if for SO<sub>2</sub>. The three main arguments for the function are the ‘before’ data, the ‘after’ data and pollutant name.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarDiff-SO2_fffef7bc1b1287b1d7018770dffeb935">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarDiff.html">polarDiff</a></span><span class="op">(</span>before <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2012</span><span class="op">)</span>, </span>
+<span>          after <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>, </span>
+<span>          pollutant <span class="op">=</span> <span class="st">"so2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarDiff-SO2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarDiff-SO2-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.14: A difference plot for SO<sub>2</sub> concentrations at Port Talbot between 2012 and 2019.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-polarDiff-SO2">Figure&nbsp;<span>8.14</span></a> shows very clearly an area to the south-west where concentrations of SO<sub>2</sub> have decreased considerably between 2012 and 2019, perhaps due to mitigation measures on the steelworks. Interestingly, the analysis for PM<sub>10</sub> shown in <a href="#fig-polarDiff-PM10">Figure&nbsp;<span>8.15</span></a> shows a distinct area of increased concentration to the WSW, which would merit further investigation.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarDiff-PM10_87d4ce56bd04b39cd09a0b002152890e">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarDiff.html">polarDiff</a></span><span class="op">(</span>before <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2012</span><span class="op">)</span>, </span>
+<span>          after <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>, </span>
+<span>          pollutant <span class="op">=</span> <span class="st">"pm10"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarDiff-PM10" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarDiff-PM10-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.15: A difference plot for PM<sub>10</sub> concentrations at Port Talbot between 2012 and 2019.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When selecting the periods, it is possible to refine the specific periods of interest using the <code>selectByDate</code> function described in <a href="utility-functions.html#sec-selectByDate"><span>Section&nbsp;25.1</span></a>. For example, a comparison might usefully consider weekdays only, or certain hours of the year, and so on. Such time period selections can quickly ‘home in’ on specific source types by focusing on the periods they are likely to be most active.</p>
+</section><section id="differences-in-probability-that-a-concentration-is-exceeded" class="level3 page-columns page-full" data-number="8.7.2"><h3 data-number="8.7.2" class="anchored" data-anchor-id="differences-in-probability-that-a-concentration-is-exceeded">
+<span class="header-section-number">8.7.2</span> Differences in probability that a concentration is exceeded</h3>
+<p>The <code>polarDiff</code> function is also not restricted to comparing two time periods. Any two surfaces can be compared (provided the same pollutant is in each data set). For example, it is possible to consider the difference between two nearby sites or two co-located instruments.</p>
+<p>Differences between two time periods can also be considered using the <code>statistic = "cpf"</code> option, which would highlight how the probability that a concentration is exceeded between two time periods changes. This approach has also been considered for back trajectories <span class="citation" data-cites="masiol2019">Masiol et al. (<a href="references.html#ref-masiol2019" role="doc-biblioref">2019</a>)</span>. Some care is needed to ensure the probabilities that a specific concentration is exceeded because (for example) the 90th percentile concentration in one period will likely not be the same in another period.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-masiol2019" class="csl-entry" role="doc-biblioentry">
+Masiol, Mauro, Stefania Squizzato, Meng-Dawn Cheng, David Q. Rich, and Philip K. Hopke. 2019. <span>“Differential Probability Functions for Investigating Long-Term Changes in Local and Regional Air Pollution Sources.”</span> <em>Aerosol and Air Quality Research</em> 19 (4): 724–36. <a href="https://doi.org/10.4209/aaqr.2018.09.0327">https://doi.org/10.4209/aaqr.2018.09.0327</a>.
+</div></div><p>Using the example of SO<sub>2</sub> we can consider the probability that 10 μg m<sup>-3</sup> (close to the 90th percentile in 2012 — but could be an air quality standard for example) is exceeded and how this changes over time. In this case, the percentile has length 3 (<code>percentile = c(10, 100, -1)</code>). The last negative number instructs <code>polarPlot</code> to interpret the the previous two numbers in an absolute sense — in this case that the SO<sub>2</sub> concentration is more than 10 and less than 100 μg m<sup>-3</sup>. Note that the 100 μg m<sup>-3</sup> is higher than the maximum concentration, which effectively means it provides the probability that the SO<sub>2</sub> concentration is above 10 μg m<sup>-3</sup>; so it could be any number higher than the maximum value that exists in the data.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarPlotCPFDiff_7928996758bd468dac7a78b7c174210e">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarDiff.html">polarDiff</a></span><span class="op">(</span>before <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2012</span><span class="op">)</span>, </span>
+<span>          after <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>, </span>
+<span>          pollutant <span class="op">=</span> <span class="st">"so2"</span>, </span>
+<span>          statistic <span class="op">=</span> <span class="st">"cpf"</span>, </span>
+<span>          percentile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">100</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, </span>
+<span>          limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarPlotCPFDiff" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarPlotCPFDiff-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.16: Change in probability that 10 μg m<sup>-3</sup> is exceeded from 2012 to 2019.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-polarPlotCPFDiff">Figure&nbsp;<span>8.16</span></a> effectively shows there has been a clear reduction in the probability that 10 μg m<sup>-3</sup> is exceeded between 2012 and 2019 when the wind is from the south-west.</p>
+</section></section><section id="sec-polarCluster" class="level2 page-columns page-full" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="sec-polarCluster">
+<span class="header-section-number">8.8</span> Clustering</h2>
+<section id="clustering-concentrations" class="level3 page-columns page-full" data-number="8.8.1"><h3 data-number="8.8.1" class="anchored" data-anchor-id="clustering-concentrations">
+<span class="header-section-number">8.8.1</span> Clustering concentrations</h3>
+<p>The <code>polarPlot</code> function will often identify interesting features that would be useful to analyse further. It is possible to select areas of interest based only on a consideration of a plot. Such a selection could be based on wind direction and wind speed intervals for example e.g.</p>
+<div class="cell" data-hash="polar-plots_cache/html/selectPolar_9028ec248a36320372bcb30bcc9ac69e">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">subdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">mydata</span>, <span class="va">ws</span> <span class="op">&gt;</span> <span class="fl">3</span>, <span class="va">wd</span> <span class="op">&gt;=</span> <span class="fl">180</span>, <span class="va">wd</span> <span class="op">&lt;=</span> <span class="fl">270</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>which would select wind speeds &gt;3 m s<sup>-1</sup> and wind directions from 180 to 270 degrees from <code>mydata</code>. That subset of data, <code>subdata</code>, could then be analysed using other functions. While this approach may be useful in many circumstances it is rather arbitrary. In fact, the choice of ‘interesting feature’ in the first place can even depend on the colour scale used, which is not very robust. Furthermore, many interesting patterns can be difficult to select and won’t always fall into convenient intervals of other variables such as wind speed and direction.</p>
+<p>A better approach is to use a method that can select group similar features together. One such approach is to use <em>cluster analysis</em>. <span class="pkg">openair</span> uses k-means clustering as a way in which bivariate polar plot features can be identified and grouped. The main purpose of grouping data in this way is to identify records in the original time series data by cluster to enable post-processing to better understand potential source characteristics. The process of grouping data in k-means clustering proceeds as follows. First, <span class="math inline">\(k\)</span> points are randomly chosen form the space represented by the objects that are being clustered into <span class="math inline">\(k\)</span> groups. These points represent initial group centroids. Each object is assigned to the group that has the closest centroid. When all objects have been assigned, the positions of the <span class="math inline">\(k\)</span> centroids is re-calculated. The previous two steps are repeated until the centroids no longer move. This produces a separation of the objects into groups from which the metric to be minimised can be calculated.</p>
+<p>Central to the idea of clustering data is the concept of distance i.e.&nbsp;some measure of similarity or dissimilarity between points. Clusters should be comprised of points separated by small distances relative to the distance between the clusters. Careful consideration is required to define the distance measure used because the effectiveness of clustering itself fundamentally depends on its choice. The similarity of concentrations shown in <a href="#fig-polarPlot">Figure&nbsp;<span>8.4</span></a> for example is determined by three variables: the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> wind components and the concentration. All three variables are equally important in characterising the concentration-location information, but they exist on different scales i.e.&nbsp;a wind speed-direction measure and a concentration. Let <span class="math inline">\(X = \{x_i\}, i = 1,\ldots,n\)</span> be a set of <span class="math inline">\(n\)</span> points to be clustered into <span class="math inline">\(K\)</span> clusters, <span class="math inline">\(C = \{c_k, k = 1,\ldots,K\}\)</span>. The basic k-means algorithm for <span class="math inline">\(K\)</span> clusters is obtained by minimising:</p>
+<p><span id="eq-clust-1"><span class="math display">\[
+\sum_{k=1}^{K} \sum_{x_i \in c_k} || x_i - \mu_k ||^2
+\tag{8.4}\]</span></span></p>
+<p>where <span class="math inline">\(|| x_i - \mu_k ||^2\)</span> is a chosen distance measure, <span class="math inline">\(\mu_k\)</span> is the mean of cluster <span class="math inline">\(c_k\)</span>.</p>
+<p>The distance measure is defined as the Euclidean distance:</p>
+<p><span id="eq-clust-2"><span class="math display">\[
+d_{x, y} = \left({\sum_{j=1}^{J} (x_j - y_j) ^ 2}\right)^{1/2}
+\tag{8.5}\]</span></span></p>
+<p>Where <strong>x</strong> and <strong>y</strong> are two J-dimensional vectors, which have been standardized by subtracting the mean and dividing by the standard deviation. In the current case <span class="math inline">\(J\)</span> is of length three i.e.&nbsp;the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> and the concentration <span class="math inline">\(C\)</span>, each of which is standardized e.g.:</p>
+<p><span id="eq-clust-3"><span class="math display">\[
+x_j = \left(\frac{x_j - \overline{x}}{\sigma_x}\right)
+\tag{8.6}\]</span></span></p>
+<p>Standardization is necessary because the wind components <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are on different scales to the concentration. In principle, more weight could be given to the concentration rather than the <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> components, although this would tend to identify clusters with similar concentrations but different source origins.</p>
+<p><code>polarCluster</code> can be thought of as the ‘local’ version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. <a href="trajectory-analysis.html#sec-trajCluster"><span>Section&nbsp;10.8</span></a> provides the details of clustering back trajectories in <span class="pkg">openair</span>. A fuller description of the clustering approach is described in <span class="citation" data-cites="CarslawClust2013">(<a href="references.html#ref-CarslawClust2013" role="doc-biblioref">Carslaw and Beevers 2013</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-CarslawClust2013" class="csl-entry" role="doc-biblioentry">
+Carslaw, D. C., and S. D. Beevers. 2013. <span>“Characterising and Understanding Emission Sources Using Bivariate Polar Plots and k-Means Clustering.”</span> <em>Environmental Modelling &amp; Software</em> 40 (0): 325–29. <a href="https://doi.org/10.1016/j.envsoft.2012.09.005">https://doi.org/10.1016/j.envsoft.2012.09.005</a>.
+</div></div><p>The use of the <code>polarCluster</code> is very similar to the use of all <span class="pkg">openair</span> functions. While there are many techniques available to try and find the optimum number of clusters, it is difficult for these approaches to work in a consistent way for identifying features in bivariate polar plots. For this reason it is best to consider a range of solutions that covers a number of clusters.</p>
+<p>Cluster analysis is computationally intensive and the <code>polarCluster</code> function can take a comparatively long time to run. The basic idea is to calculate the solution to several cluster levels and then choose one that offers the most appropriate solution for post-processing.</p>
+<p>The example given below is for concentrations of SO<sub>2</sub>, shown in <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a> and the aim is to identify features in that plot. A range of numbers of clusters will be calculated — in this case from two to ten.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarClust_0fbad231c12097db6dbd43db48595d0b">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarCluster.html">polarCluster</a></span><span class="op">(</span><span class="va">mydata</span>, pollutant<span class="op">=</span><span class="st">"so2"</span>, n.clusters<span class="op">=</span><span class="fl">2</span><span class="op">:</span><span class="fl">10</span>, cols<span class="op">=</span> <span class="st">"Set2"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarClust" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarClust-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.17: Use of the <code>polarCluster</code> function applied to SO<sub>2</sub> concentrations at Marylebone Road. In this case 2 to 10 clusters have been chosen.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarClustn6_53717a684eef692697e03a9bef3b5dbe">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarCluster.html">polarCluster</a></span><span class="op">(</span><span class="va">mydata</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"so2"</span>,</span>
+<span>  n.clusters <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  cols <span class="op">=</span> <span class="st">"Set2"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarClustn6" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarClustn6-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.18: Use of the <code>polarCluster</code> function applied to SO<sub>2</sub> concentrations at Marylebone Road. In this case 8 clusters have been chosen.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The real benefit of <code>polarCluster</code> is being able to identify clusters in the original data frame. To do this, the results from the analysis must be read into a new variable, as in <a href="#fig-polarClustn6">Figure&nbsp;<span>8.18</span></a>, where the results are read into a data frame <code>results</code>. Now it is possible to use this new information. In the 8-cluster solution to <a href="#fig-polarClustn6">Figure&nbsp;<span>8.18</span></a>, cluster 6 seems to capture the elevated SO<sub>2</sub> concentrations to the east well (see <a href="#fig-polarPlot3">Figure&nbsp;<span>8.6</span></a> for comparison), while cluster 5 will strongly represent the road contribution.</p>
+<p>The results are here:</p>
+<div class="cell" data-hash="polar-plots_cache/html/showClustResults_bd1567fe34d038fde25d676432313c9d">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">results</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+  date                   ws    wd   nox   no2    o3  pm10   so2    co  pm25
+  &lt;dttm&gt;              &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1 1998-01-01 00:00:00  0.6    280   285    39     1    29  4.72  3.37    NA
+2 1998-01-01 01:00:00  2.16   230    NA    NA    NA    37 NA    NA       NA
+3 1998-01-01 02:00:00  2.76   190    NA    NA     3    34  6.83  9.60    NA
+4 1998-01-01 03:00:00  2.16   170   493    52     3    35  7.66 10.2     NA
+5 1998-01-01 04:00:00  2.4    180   468    78     2    34  8.07  8.91    NA
+6 1998-01-01 05:00:00  3      190   264    42     0    16  5.50  3.05    NA
+# … with 3 more variables: ratio &lt;dbl&gt;, .id &lt;int&gt;, cluster &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Note that there is an additional column <code>cluster</code> that gives the cluster a particular row belongs to and that this is a <em>character</em> variable. It might be easier to read these results into a new data frame:</p>
+<div class="cell" data-hash="polar-plots_cache/html/unnamed-chunk-26_a0da6f25d6fdb2a8051fc1411928ae49">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">results</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It is easy to find out how many points are in each cluster:</p>
+<div class="cell" data-hash="polar-plots_cache/html/nResClust_43735d904d6d43fd3befed96cf147615">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">[[</span><span class="st">"cluster"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   C1    C2    C3    C4    C5    C6    C7    C8 
+  247   424   125 24241 16161  2590  7764  2755 </code></pre>
+</div>
+</div>
+<p>Now other <span class="pkg">openair</span> analysis functions can be used to analyse the results. For example, to consider the temporal variations by cluster:</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-tempEvalClust_81ef7c2b958899b43a3a62cfb401f4f9">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/timeVariation.html">timeVariation</a></span><span class="op">(</span><span class="va">results</span>, pollutant <span class="op">=</span> <span class="st">"so2"</span>, group <span class="op">=</span> <span class="st">"cluster"</span>,</span>
+<span>              key.columns <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>              col <span class="op">=</span> <span class="st">"Set2"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tempEvalClust" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-tempEvalClust-1.png" class="img-fluid figure-img" width="864"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.19: Temporal variation in SO<sub>2</sub> split by cluster.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Or if we just want to plot a couple of clusters (5 and 6) <em>using the same colours</em> as in <a href="#fig-polarClustn6">Figure&nbsp;<span>8.18</span></a>:</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-clustTV_9025bbdb778350c2b3be3fded6c31472">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/timeVariation.html">timeVariation</a></span><span class="op">(</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">results</span>, <span class="va">cluster</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C5"</span>, <span class="st">"C6"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"so2"</span>,</span>
+<span>  group <span class="op">=</span> <span class="st">"cluster"</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/openColours.html">openColours</a></span><span class="op">(</span><span class="st">"Set2"</span>, <span class="fl">8</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span>
+<span>  lwd <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-clustTV" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-clustTV-1.png" class="img-fluid figure-img" width="864"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.20: Temporal variation in SO<sub>2</sub> split by cluster — showing only two clusters.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>polarCluster</code> will work on any surface that can be plotted by <code>polarPlot</code> e.g.&nbsp;the radial variable does not have to be wind speed but could be another variable such as temperature. While it is not always possible for <code>polarCluster</code> to identify all features in a surface it certainly makes it easier to post-process <code>polarPlot</code>s using other <span class="pkg">openair</span> functions or indeed other analyses altogether.</p>
+<p>Another useful way of understanding the clusters is to use the <code>timeProp</code> function, which can display a time series as a bar chart split by a categorical variable (in this case the cluster). In this case it is useful to plot the time series of SO<sub>2</sub><em>and</em> show how much of the concentration is contributed to by each cluster. Such a plot is shown in <a href="#fig-timePropPolar">Figure&nbsp;<span>8.21</span></a>. It is now easy to see for example that many of the peaks in SO<sub>2</sub> are associated with cluster 6 (power station sources from the east), seen in <a href="#fig-polarClustn6">Figure&nbsp;<span>8.18</span></a>. Cluster 6 is particularly prominent during springtime, but those sources also make important contributions through the whole year.</p>
+<div class="cell page-columns page-full" data-hash="polar-plots_cache/html/fig-timePropPolar_31e01f91bd50875341c599f9831d8160">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/timeProp.html">timeProp</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">results</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">)</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"so2"</span>,</span>
+<span>  avg.time <span class="op">=</span> <span class="st">"day"</span>,</span>
+<span>  proportion <span class="op">=</span> <span class="st">"cluster"</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"Set2"</span>,</span>
+<span>  key.position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>  key.columns <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  date.breaks <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"so2 (ug/m3)"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display column-screen-inset-right">
+<div id="fig-timePropPolar" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-timePropPolar-1.png" class="img-fluid figure-img" width="1440"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.21: Temporal variation in daily SO<sub>2</sub> concentration at the Marylebone Road site show by contribution of each cluster for 2003.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="clustering-differences-in-concentrations" class="level3" data-number="8.8.2"><h3 data-number="8.8.2" class="anchored" data-anchor-id="clustering-differences-in-concentrations">
+<span class="header-section-number">8.8.2</span> Clustering differences in concentrations</h3>
+<p><a href="#sec-polar-compare"><span>Section&nbsp;8.7</span></a> showed how to consider differences in polar plot surfaces, which can be useful for considering how source strengths may have changed in time. This section considers how to apply cluster analysis to these difference surfaces. The clustering works in the same way as shown earlier in this section but with an additional argument (<code>after</code>) which represents the second data frame used to calculate the difference between two surfaces.</p>
+<p>The function is called as shown in <a href="#fig-polarClust-diff">Figure&nbsp;<span>8.22</span></a>. Note that the output is recorded in <code>clust_out</code>. The clustering is applied to the difference plots shown in <a href="#fig-polarDiff-SO2">Figure&nbsp;<span>8.14</span></a>.</p>
+<div class="cell" data-hash="polar-plots_cache/html/fig-polarClust-diff_374acaa2d5b805bda7c1afc99e365757">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clust_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/polarCluster.html">polarCluster</a></span><span class="op">(</span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2012</span><span class="op">)</span>,</span>
+<span>  after <span class="op">=</span> <span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/selectByDate.html">selectByDate</a></span><span class="op">(</span><span class="va">port_talbot</span>, year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"so2"</span>,</span>
+<span>  n.clusters <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polarClust-diff" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="polar-plots_files/figure-html/fig-polarClust-diff-1.png" class="img-fluid figure-img" width="480"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8.22: Clustering differences in polar plot concentrations of SO<sub>2</sub> concentrations at Port Talbot between 2012 and 2019.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>clust_out</code> usefully contains the two original data sets that were used to make the difference surface as well as the assigned cluster. These two outputs can be combined and post-processed in different ways. In the code below the mean concentrations by cluster are calculated but other useful analyses could be considered knowing that Cluster 3 is most strongly associated with the <em>change</em> in SO<sub>2</sub> concentration. The latter point is important because clustering features by how they change ought to provide an improved analysis of the effect of interventions — rather than just considering absolute concentrations in a before or after period.</p>
+<div class="cell" data-hash="polar-plots_cache/html/extract-clust-diff_e51b7ad3ed9c9242962cd45a12d40392">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clust_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">clust_out</span><span class="op">$</span><span class="va">data</span>, <span class="va">clust_out</span><span class="op">$</span><span class="va">after</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># consider mean SO2 by cluster</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">clust_data</span>, <span class="va">cluster</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_so2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">so2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+   cluster mean_so2
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 1          10.1 
+ 2 2           3.33
+ 3 3          10.6 
+ 4 4           1.93
+ 5 5           1.32
+ 6 C1          5.99
+ 7 C2          4.10
+ 8 C3         16.6 
+ 9 C4          2.27
+10 C5          1.02
+11 &lt;NA&gt;        5.17</code></pre>
+</div>
+</div>
+</section></section><section id="polar-plots-on-an-interactive-map" class="level2 page-columns page-full" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="polar-plots-on-an-interactive-map">
+<span class="header-section-number">8.9</span> Polar plots on an interactive map</h2>
+<p>An R package called <span class="pkg">openairmaps</span> has been developed to plot polar plots and other “directional analysis” visualisations on interactive <span class="pkg">leaflet</span> maps. This package can be installed from CRAN, similar to <span class="pkg">openair</span>.</p>
+<div class="cell" data-hash="polar-plots_cache/html/unnamed-chunk-33_9473d45dd53d279697f0b5e9103da47b">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openairmaps"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function <code>polarMap</code> requires information on the site (name or code), latitude and longitude in addition to the usual information required by the <code>polarPlot</code> function. The package comes with some example data (<code>polar_data</code>) that can be used as a template for using different data. This function can plot <em>any</em> type of polar plot, e.g., with different options for <code>statistic</code>.</p>
+<p>First, load the package and check out the data format.</p>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidcarslaw.github.io/openairmaps/">openairmaps</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">polar_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 35,040
+Columns: 13
+$ date       &lt;dttm&gt; 2009-01-01 00:00:00, 2009-01-01 01:00:00, 2009-01-01 02:00…
+$ nox        &lt;dbl&gt; 113, 40, 48, 36, 40, 50, 50, 53, 80, 111, 206, 113, 86, 82,…
+$ no2        &lt;dbl&gt; 46, 32, 36, 29, 32, 36, 34, 34, 50, 59, 67, 61, 52, 53, 52,…
+$ pm2.5      &lt;dbl&gt; 42, 45, 43, 37, 36, 33, 33, 31, 27, 28, 37, 30, 27, 29, 27,…
+$ pm10       &lt;dbl&gt; 46, 49, 46, NA, 38, 32, 36, 32, 30, 32, 39, 37, 32, 33, 34,…
+$ site       &lt;chr&gt; "London Bloomsbury", "London Bloomsbury", "London Bloomsbur…
+$ lat        &lt;dbl&gt; 51.52229, 51.52229, 51.52229, 51.52229, 51.52229, 51.52229,…
+$ lon        &lt;dbl&gt; -0.125889, -0.125889, -0.125889, -0.125889, -0.125889, -0.1…
+$ site_type  &lt;chr&gt; "Urban Background", "Urban Background", "Urban Background",…
+$ wd         &lt;dbl&gt; 58.92536, 74.46675, 30.00000, 45.00000, 70.00000, 46.63627,…
+$ ws         &lt;dbl&gt; 2.066667, 1.900000, 1.550000, 2.100000, 1.500000, 2.100000,…
+$ visibility &lt;dbl&gt; 5000.000, 4933.333, 5000.000, 4900.000, 5000.000, 6000.000,…
+$ air_temp   &lt;dbl&gt; 0.8666667, 0.8666667, 0.8000000, 0.8500000, 0.8666667, 0.96…</code></pre>
+</div>
+</div>
+<p>Plot an interactive map.</p>
+<div class="cell page-columns page-full">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openairmaps/reference/polarMap.html">polarMap</a></span><span class="op">(</span></span>
+<span>  <span class="va">polar_data</span>,</span>
+<span>  latitude <span class="op">=</span> <span class="st">"lat"</span>,</span>
+<span>  longitude <span class="op">=</span> <span class="st">"lon"</span>,</span>
+<span>  pollutant <span class="op">=</span> <span class="st">"nox"</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-interMap" class="quarto-figure quarto-figure-center column-screen-inset-shaded anchored">
+<figure class="figure"><div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bec4500f578870cb8845" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-bec4500f578870cb8845">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[51.52229,51.495483,51.52253,51.52105],[-0.125889,-0.178709,-0.154611,-0.213492],{"iconUrl":{"data":["/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52229_-0.125889_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.495483_-0.178709_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52253_-0.154611_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52105_-0.213492_nox.png"],"index":[0,1,2,3]},"iconWidth":200,"iconHeight":200,"iconAnchorX":100,"iconAnchorY":100},null,["NO<sub>x<\/sub>","NO<sub>x<\/sub>","NO<sub>x<\/sub>","NO<sub>x<\/sub>"],{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[51.495483,51.52253],"lng":[-0.213492,-0.125889]}},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Figure&nbsp;8.23: Interactive map of polar plots with default map.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>The <code>polarMap</code> function allows for control of many parts of the <span class="pkg">leaflet</span> map. For example, you can provide one (or more) different base map(s) — there are many! You may also visualise multiple pollutants at once which can then be toggled between.</p>
+<div class="cell page-columns page-full">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openairmaps/reference/polarMap.html">polarMap</a></span><span class="op">(</span><span class="fu">openairmaps</span><span class="fu">::</span><span class="va"><a href="https://davidcarslaw.github.io/openairmaps/reference/polar_data.html">polar_data</a></span>, </span>
+<span>         pollutant <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nox"</span>, <span class="st">"no2"</span><span class="op">)</span>,</span>
+<span>         latitude <span class="op">=</span> <span class="st">"lat"</span>,</span>
+<span>         longitude <span class="op">=</span> <span class="st">"lon"</span>,</span>
+<span>         provider <span class="op">=</span> <span class="st">"CartoDB.Positron"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-interMap2" class="quarto-figure quarto-figure-center column-screen-inset-shaded anchored">
+<figure class="figure"><div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a4468bae726ecb0b3716" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a4468bae726ecb0b3716">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[51.52229,51.52229,51.495483,51.495483,51.52253,51.52253,51.52105,51.52105],[-0.125889,-0.125889,-0.178709,-0.178709,-0.154611,-0.154611,-0.213492,-0.213492],{"iconUrl":{"data":["/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52229_-0.125889_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52229_-0.125889_no2.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.495483_-0.178709_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.495483_-0.178709_no2.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52253_-0.154611_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52253_-0.154611_no2.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52105_-0.213492_nox.png","/var/folders/lq/zhc5b_wd74v08qk87g0w_k7h0000gn/T//RtmpVkBYfd/51.52105_-0.213492_no2.png"],"index":[0,1,2,3,4,5,6,7]},"iconWidth":200,"iconHeight":200,"iconAnchorX":100,"iconAnchorY":100},null,["NO<sub>x<\/sub>","NO<sub>2<\/sub>","NO<sub>x<\/sub>","NO<sub>2<\/sub>","NO<sub>x<\/sub>","NO<sub>2<\/sub>","NO<sub>x<\/sub>","NO<sub>2<\/sub>"],{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["NO<sub>x<\/sub>","NO<sub>2<\/sub>"],[],{"collapsed":false,"autoZIndex":false,"position":"topright"}]}],"limits":{"lat":[51.495483,51.52253],"lng":[-0.213492,-0.125889]}},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Figure&nbsp;8.24: Interactive map of polar plots for multiple pollutants with a different base map.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>Note that if you are using the <code>importAURN</code> family of functions it is useful to add the option <code>meta = TRUE</code>, which will return the latitude and longitude of the site together with the air quality data.</p>
+<p><span class="pkg">openairmaps</span> isn’t limited to just <code>polarMap</code> — almost any kind of “directional analysis” plot can be placed on a map. There are many similar functions which correspond to other <span class="pkg">openair</span> plotting functions; <code>annulusMap</code>, <code>freqMap</code>, <code>percentileMap</code>, <code>polarMap</code>, <code>pollroseMap</code>, and <code>windroseMap</code>.</p>
+<p>For more information about using <span class="pkg">openairmaps</span> to create maps with polar plots as markers, please refer to the <a href="./maps-polar.html">Directional Analysis Maps Page</a>].</p>
+
+
+
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>For example, when ADMS is run, a .MOP file is produced, which is a simple text file that can be read into R to access L<sub>MO</sub> and H and combined with directly measured quantities such as wind speed and direction.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>There is a lot of opportunity for confusion over the ‘York’ regression approach given this document is written while being based at the University of York! Derek was also born in in Yorkshire in the UK — so even more cause for potential confusion. Sadly, Derek York has now passed, but he made an enormous contribution to his field and beyond and his work has a lasting and important legacy.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./percentile-roses.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Percentile roses</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./polar-annulus.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Polar annulus</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
