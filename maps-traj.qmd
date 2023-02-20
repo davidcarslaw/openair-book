@@ -62,6 +62,7 @@ clustdata <- openair::trajCluster(traj_data)
 ```{r}
 #| label: fig-trajNeon
 #| fig-cap: Interactive map of clustered trajectories, with a cool neon colour scheme!
+#| eval: false
 trajMap(
   data = clustdata$data$traj,
   colour = "cluster",

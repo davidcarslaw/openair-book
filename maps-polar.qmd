@@ -327,6 +327,7 @@ An example "static map" is provided in @fig-polarMapStatic.
 ```{r}
 #| label: fig-polarMapStatic
 #| fig-cap: "A demonstration of `polarMapStatic()`."
+#| eval: false
 polarMapStatic(
   polar_data,
   pollutant = c("nox","pm2.5"),
