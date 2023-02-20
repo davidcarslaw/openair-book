@@ -8,7 +8,6 @@ packages.bib
 rsconnect
 site_libs/
 _book/
-docs/
 _bookdown_files/
 *_cache/
 *_files/
