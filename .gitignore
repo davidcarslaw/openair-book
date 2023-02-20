@@ -5,7 +5,6 @@
 packages.bib
 .DS_Store
 rsconnect
-site_libs/
 _book/
 _bookdown_files/
 *_cache/
