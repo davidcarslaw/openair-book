@@ -698,7 +698,6 @@ clustdata <- trajCluster(traj_data)
 #| cache: false
 #| fig-cap: Interactive map of clustered trajectories on a new basemap.
 #| results: asis
-#| eval: false
 trajMap(
   data = clustdata$data$traj,
   colour = "cluster",
