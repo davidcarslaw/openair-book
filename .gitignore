@@ -10,3 +10,5 @@ _bookdown_files/
 *_cache/
 _freeze/
 /.quarto/
+/.quarto/
+/_site/
