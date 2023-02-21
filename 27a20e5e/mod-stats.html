@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="David Carslaw">
+<title>The openair book - 18&nbsp; Model evaluation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./taylor-diagram.html" rel="next">
+<link href="./smooth-trend.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Model evaluation</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">The openair book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/davidcarslaw/openair-book/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./openair-package.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The openair package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Data Access</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UK-air-quality-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Accessing UK Air Quality Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./access-met-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Access meteorological data</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Directional Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wind-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wind and Pollution Roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-freq.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polar frequencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./percentile-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Percentile roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Polar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-annulus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Polar annulus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trajectory-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trajectory analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Time Series and Trends</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time series plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-variation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Temporal variations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-proportion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Time proportion plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trend-level.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Trend heat maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./calendar-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Calendar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./theil-sen.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Theil-Sen trends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smooth-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Smooth trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Model Evaluation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mod-stats.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Model evaluation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taylor-diagram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Taylor Diagam</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-quantiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Conditional quantiles</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Interactive Maps</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">openairmaps primer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-network.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Network Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-polar.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Directional Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-traj.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Trajectory Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Utility functions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utility-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Utility functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scatter-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Scatter plots</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-annotate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Annotating openair plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-hysplit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Production of HYSPLIT trajectory files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-trends.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">A closer look at trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#sec-ModBack" id="toc-sec-ModBack" class="nav-link active" data-scroll-target="#sec-ModBack"><span class="toc-section-number">18.1</span>  Background</a></li>
+  <li><a href="#ModEx" id="toc-ModEx" class="nav-link" data-scroll-target="#ModEx"><span class="toc-section-number">18.2</span>  Example of use</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/davidcarslaw/openair-book/edit/master/mod-stats.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-modStats" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Model evaluation</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>David Carslaw </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header><section id="sec-ModBack" class="level2 page-columns page-full" data-number="18.1"><h2 data-number="18.1" class="anchored" data-anchor-id="sec-ModBack">
+<span class="header-section-number">18.1</span> Background</h2>
+<p>The <code>modStats</code> function provides key model evaluation statistics for comparing models against measurements and models against other models.</p>
+<p>There are a very wide range of evaluation statistics that can be used to assess model performance. There is, however, no single statistic that encapsulates all aspects of interest. For this reason it is useful to consider several performance statistics and also to understand the sort of information or insight they might provide.</p>
+<p>In the following definitions, <span class="math inline">\(O_i\)</span> represents the <span class="math inline">\(i\)</span>th observed value and <span class="math inline">\(M_i\)</span> represents the <span class="math inline">\(i\)</span>th modelled value for a total of <span class="math inline">\(n\)</span> observations.</p>
+<p><strong>Fraction of predictions within a factor or two, <em>FAC2</em></strong></p>
+<p>The fraction of modelled values within a factor of two of the observed values are the fraction of model predictions that satisfy:</p>
+<p><span id="eq-FAC2"><span class="math display">\[
+   0.5 \leq \frac{M_i}{O_i} \leq 2.0
+\tag{18.1}\]</span></span></p>
+<p><strong>Mean bias, <em>MB</em></strong></p>
+<p>The mean bias provides a good indication of the mean over or under estimate of predictions. Mean bias in the same units as the quantities being considered.</p>
+<p><span id="eq-MB"><span class="math display">\[
+MB = \frac{1}{n}\sum_{i=1}^{N} M_i - O_i  
+\tag{18.2}\]</span></span></p>
+<p><strong>Mean Gross Error, <em>MGE</em></strong></p>
+<p>The mean gross error provides a good indication of the mean error regardless of whether it is an over or under estimate. Mean gross error is in the same units as the quantities being considered.</p>
+<p><span id="eq-MGE"><span class="math display">\[
+MGE = \frac{1}{n}\sum_{i=1}^{N} |M_i - O_i|  
+\tag{18.3}\]</span></span></p>
+<p><strong>Normalised mean bias, <em>NMB</em></strong></p>
+<p>The normalised mean bias is useful for comparing pollutants that cover different concentration scales and the mean bias is normalised by dividing by the observed concentration.</p>
+<p><span id="eq-NMB"><span class="math display">\[
+NMB = \frac{\sum\limits_{i=1}^{n} M_i - O_i}{\sum\limits_{i=1}^{n} O_i}
+\tag{18.4}\]</span></span></p>
+<p><strong>Normalised mean gross error, <em>NMGE</em></strong></p>
+<p>The normalised mean gross error further ignores whether a prediction is an over or under estimate.</p>
+<p><span id="eq-NMGE"><span class="math display">\[
+NMGE = \frac{\sum\limits_{i=1}^{n} |M_i - O_i|}{\sum\limits_{i=1}^{n} O_i}
+\tag{18.5}\]</span></span></p>
+<p><strong>Root mean squared error, <em>RMSE</em></strong></p>
+<p>The RMSE is a commonly used statistic that provides a good overall measure of how close modelled values are to predicted values.</p>
+<p><span id="eq-RMSE"><span class="math display">\[
+   RMSE = \left({\frac{\sum\limits_{i=1}^{n} (M_i - O_i)^2}{n}}\right)^{1/2}   
+\tag{18.6}\]</span></span></p>
+<p><strong>Correlation coefficient, <em>r</em></strong></p>
+<p>The (Pearson) correlation coefficient is a measure of the strength of the linear relationship between two variables. If there is perfect linear relationship with positive slope between the two variables, <span class="math inline">\(r\)</span> = 1. If there is a perfect linear relationship with negative slope between the two variables <span class="math inline">\(r\)</span> = -1. A correlation coefficient of 0 means that there is no linear relationship between the variables. Note that <code>modStats</code> accepts an option <code>method</code>, which can be set to “kendall” and “spearman” for alternative calculations of <span class="math inline">\(r\)</span>.</p>
+<p><span id="eq-r"><span class="math display">\[
+r = \frac{1}{(n-1)}\sum\limits_{i=1}^{n}\left(\frac{M_i - \overline{M}}{\sigma_M}\right)\left(\frac{O_i - \overline{O}}{\sigma_O}\right)   
+\tag{18.7}\]</span></span></p>
+<p><strong>Coefficient of Efficiency, <em>COE</em></strong></p>
+<p>The <em>Coefficient of Efficiency</em> based on <span class="citation" data-cites="legates2012">Legates and McCabe (<a href="references.html#ref-legates2012" role="doc-biblioref">2012</a>)</span> and <span class="citation" data-cites="legates1999">Legates and McCabe Jr (<a href="references.html#ref-legates1999" role="doc-biblioref">1999</a>)</span>. There have been many suggestions for measuring model performance over the years, but the <span class="math inline">\(COE\)</span> is a simple formulation which is easy to interpret.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-legates2012" class="csl-entry" role="doc-biblioentry">
+Legates, D. R., and G. J. McCabe. 2012. <span>“A Refined Index of Model Performance: A Rejoinder.”</span> <em>International Journal of Climatology</em>.
+</div><div id="ref-legates1999" class="csl-entry" role="doc-biblioentry">
+Legates, D. R., and G. J. McCabe Jr. 1999. <span>“Evaluating the Use of <span>‘Goodness-of-Fit’</span> Measures in Hydrologic and Hydroclimatic Model Validation.”</span> <em>Water Resources Research</em> 35 (1): 233–41.
+</div></div><p>A perfect model has a <span class="math inline">\(COE\)</span> = 1. As noted by Legates and McCabe although the <span class="math inline">\(COE\)</span> has no lower bound, a value of <span class="math inline">\(COE\)</span> = 0.0 has a fundamental meaning. It implies that the model is no more able to predict the observed values than does the observed mean. Therefore, since the model can explain no more of the variation in the observed values than can the observed mean, such a model can have no predictive advantage.</p>
+<p>For negative values of <span class="math inline">\(COE\)</span>, the model is less effective than the observed mean in predicting the variation in the observations.</p>
+<p><span id="eq-COE"><span class="math display">\[
+COE = 1.0 - \frac{\sum\limits_{i=1}^{n} |M_i
+             -O_i|}{\sum\limits_{i=1}^{n} |O_i - \overline{O}|}  
+\tag{18.8}\]</span></span></p>
+<p><strong>Index of Agreement, <em>IOA</em></strong></p>
+<p>The <em>Index of Agreement</em>, <span class="math inline">\(IOA\)</span> is commonly used in model evaluation <span class="citation" data-cites="Willmott2011">(<a href="references.html#ref-Willmott2011" role="doc-biblioref">Willmott, Robeson, and Matsuura 2011</a>)</span>. It spans between -1 and +1 with values approaching +1 representing better model performance. An <span class="math inline">\(IOA\)</span> of 0.5, for example, indicates that the sum of the error-magnitudes is one half of the sum of the observed-deviation magnitudes. When <span class="math inline">\(IOA\)</span> = 0.0, it signifies that the sum of the magnitudes of the errors and the sum of the observed-deviation magnitudes are equivalent. When <span class="math inline">\(IOA\)</span> = -0.5, it indicates that the sum of the error-magnitudes is twice the sum of the perfect model-deviation and observed-deviation magnitudes. Values of <span class="math inline">\(IOA\)</span> near -1.0 can mean that the model-estimated deviations about <span class="math inline">\(O\)</span> are poor estimates of the observed deviations; but, they also can mean that there simply is little observed variability — so some caution is needed when the <span class="math inline">\(IOA\)</span> approaches -1. It is defined as (with <span class="math inline">\(c = 2\)</span>):</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Willmott2011" class="csl-entry" role="doc-biblioentry">
+Willmott, Cort J, Scott M Robeson, and Kenji Matsuura. 2011. <span>“A Refined Index of Model Performance.”</span> <em>International Journal of Climatology</em>.
+</div></div><p><span id="eq-IOA"><span class="math display">\[
+IOA = \left\{
+   \begin{array}{l}
+     1.0 - \frac{\displaystyle \sum\limits_{i=1}^{n} |M_i-O_i|}
+{\displaystyle c\sum\limits_{i=1}^{n} |O_i - \overline{O}|}, when \\
+           \sum\limits_{i=1}^{n} |M_i-O_i| \le c\sum\limits_{i=1}^{n} |O_i - \overline{O}| \\
+          \frac{\displaystyle c\sum\limits_{i=1}^{n} |O_i - \overline{O}|}
+{\displaystyle \sum\limits_{i=1}^{n} |M_i-O_i|} - 1.0, when \\
+           \sum\limits_{i=1}^{n} |M_i-O_i| &gt; c\sum\limits_{i=1}^{n} |O_i - \overline{O}|
+   \end{array}
+\right.
+\tag{18.9}\]</span></span></p>
+</section><section id="ModEx" class="level2" data-number="18.2"><h2 data-number="18.2" class="anchored" data-anchor-id="ModEx">
+<span class="header-section-number">18.2</span> Example of use</h2>
+<p>The function can be called very simply and only requires two numeric fields to compare. To show how the function works, some synthetic data will be generated for 5 models.</p>
+<div class="cell" data-hash="mod-stats_cache/html/modStats_0cdb7c93fab8edbf52a90227dbb28c6e">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## observations; 100 random numbers</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">obs</span> <span class="op">&lt;-</span> <span class="fl">100</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">obs</span>, mod <span class="op">=</span> <span class="va">obs</span> <span class="op">+</span> <span class="fl">10</span>, model <span class="op">=</span> <span class="st">"model 1"</span><span class="op">)</span></span>
+<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">obs</span>, mod <span class="op">=</span> <span class="va">obs</span> <span class="op">+</span> <span class="fl">20</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, model <span class="op">=</span> <span class="st">"model 2"</span><span class="op">)</span></span>
+<span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">obs</span>, mod <span class="op">=</span> <span class="va">obs</span> <span class="op">-</span> <span class="fl">10</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, model <span class="op">=</span> <span class="st">"model 3"</span><span class="op">)</span></span>
+<span><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">obs</span>, mod <span class="op">=</span> <span class="va">obs</span> <span class="op">/</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">10</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, model <span class="op">=</span> <span class="st">"model 4"</span><span class="op">)</span></span>
+<span><span class="va">mod5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">obs</span>, mod <span class="op">=</span> <span class="va">obs</span> <span class="op">*</span> <span class="fl">1.5</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, model <span class="op">=</span> <span class="st">"model 5"</span><span class="op">)</span></span>
+<span><span class="va">modData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">mod1</span>, <span class="va">mod2</span>, <span class="va">mod3</span>, <span class="va">mod4</span>, <span class="va">mod5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">modData</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        obs      mod   model
+1 50.747820 60.74782 model 1
+2 30.676851 40.67685 model 1
+3 42.690767 52.69077 model 1
+4 69.310208 79.31021 model 1
+5  8.513597 18.51360 model 1
+6 22.543662 32.54366 model 1</code></pre>
+</div>
+</div>
+<p>We now have a data frame with observations and predictions for 5 models. The evaluation of the statistics is given by:</p>
+<div class="cell" data-hash="mod-stats_cache/html/evalModStats_fe39046c48ffa1f9b18c62608370888b">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidcarslaw.github.io/openair/">openair</a></span><span class="op">)</span> <span class="co"># load package</span></span>
+<span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/modStats.html">modStats</a></span><span class="op">(</span><span class="va">modData</span>, obs <span class="op">=</span> <span class="st">"obs"</span>, mod <span class="op">=</span> <span class="st">"mod"</span>, type <span class="op">=</span> <span class="st">"model"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 12
+  model       n  FAC2      MB   MGE     NMB  NMGE  RMSE     r         P      COE
+  &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 model 1   100  0.89  10     10     0.225  0.225 10    1     0          0.538  
+2 model 2   100  0.79   0.922 16.6   0.0207 0.373 19.3  0.826 4.04e- 26  0.234  
+3 model 3   100  0.88   1.01   7.89  0.0228 0.177  9.45 0.937 1.35e- 46  0.636  
+4 model 4   100  0.56 -20.6   21.9  -0.463  0.491 25.8  0.814 6.97e- 25 -0.00933
+5 model 5   100  0.96  22.5   22.6   0.506  0.507 26.1  0.996 1.05e-106 -0.0420 
+# … with 1 more variable: IOA &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>It is possible to rank the statistics based on the , which is a good general indicator of model performance.</p>
+<div class="cell" data-hash="mod-stats_cache/html/evalModStatsRank_a7d3d72cd572d509c47fdfce5c2ea7dd">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/modStats.html">modStats</a></span><span class="op">(</span><span class="va">modData</span>, obs <span class="op">=</span> <span class="st">"obs"</span>, mod <span class="op">=</span> <span class="st">"mod"</span>, type <span class="op">=</span> <span class="st">"model"</span>, </span>
+<span>         rank.name <span class="op">=</span> <span class="st">"model"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 12
+  model       n  FAC2      MB   MGE     NMB  NMGE  RMSE     r         P      COE
+  &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 model 3   100  0.88   1.01   7.89  0.0228 0.177  9.45 0.937 1.35e- 46  0.636  
+2 model 1   100  0.89  10     10     0.225  0.225 10    1     0          0.538  
+3 model 2   100  0.79   0.922 16.6   0.0207 0.373 19.3  0.826 4.04e- 26  0.234  
+4 model 4   100  0.56 -20.6   21.9  -0.463  0.491 25.8  0.814 6.97e- 25 -0.00933
+5 model 5   100  0.96  22.5   22.6   0.506  0.507 26.1  0.996 1.05e-106 -0.0420 
+# … with 1 more variable: IOA &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The <code>modStats</code> function is however much more flexible than indicated above. While it is useful to calculate model evaluation statistics in a straightforward way it can be much more informative to consider the statistics split by different periods.</p>
+<p>Data have been assembled from a Defra model evaluation exercise which consists of hourly O<sub>3</sub> predictions at 15 receptor points around the UK for 2006. The aim here is not to identify a particular model that is ‘best’ and for this reason the models are simply referred to as <code>model 1</code>, <code>model 2</code> and so on. We will aim to make the data more widely available. However, data set has this form:</p>
+<div class="cell" data-hash="mod-stats_cache/html/showModData_c8d6fe5cefac31d26773904c8b3627cf">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"book_data/modelData.RData"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">modTest</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        site                date o3   mod   group
+1 Aston.Hill 2006-01-01 00:00:00 NA    NA model 1
+2 Aston.Hill 2006-01-01 01:00:00 74 65.28 model 1
+3 Aston.Hill 2006-01-01 02:00:00 72 64.64 model 1
+4 Aston.Hill 2006-01-01 03:00:00 72 64.46 model 1
+5 Aston.Hill 2006-01-01 04:00:00 70 64.88 model 1
+6 Aston.Hill 2006-01-01 05:00:00 66 65.80 model 1</code></pre>
+</div>
+</div>
+<p>There are columns representing the receptor location (<code>site</code>), the date, measured values (<code>o3</code>), model predictions (<code>mod</code>) and the model itself (<code>group</code>). There are numerous ways in which the statistics can be calculated. However, of interest here is how the models perform at a single receptor by season. The seasonal nature of O<sub>3</sub> is a very important characteristic and it is worth considering in more detail. The statistics are easy enough to calculate as shown below. In this example a subset of the data is selected to consider only the Harwell site. Second, the <code>type</code> option is used to split the calculations by season and model. Finally, the statistics are grouped by the <span class="math inline">\(IOA\)</span> for each season. It is now very easy how model performance changes by season and which models perform best in each season.</p>
+<div class="cell" data-hash="mod-stats_cache/html/modStatsDefra_ff60ee1c55ab4b7c35212c7c1dca60a6">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co">## don't display too many decimal places</span></span>
+<span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/modStats.html">modStats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">modTest</span>, <span class="va">site</span> <span class="op">==</span> <span class="st">"Harwell"</span><span class="op">)</span>, </span>
+<span>         obs <span class="op">=</span> <span class="st">"o3"</span>, mod <span class="op">=</span> <span class="st">"mod"</span>,</span>
+<span>         type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"season"</span>, <span class="st">"group"</span><span class="op">)</span>, rank <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 13
+   season     group     n  FAC2     MB   MGE     NMB  NMGE  RMSE     r         P
+   &lt;ord&gt;      &lt;fct&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+ 1 spring (M… mode…  1905 0.875   8.58  16.5  0.137  0.263  21.9 0.576 1.10e-168
+ 2 spring (M… mode…  1905 0.876  -2.04  16.8 -0.0325 0.268  21.8 0.452 1.50e- 96
+ 3 spring (M… mode…  1905 0.872  11.9   17.7  0.190  0.282  23.7 0.519 9.23e-132
+ 4 spring (M… mode…  1905 0.885   4.98  18.1  0.0793 0.289  23.9 0.361 9.74e- 60
+ 5 spring (M… mode…  1905 0.870  10.8   19.5  0.172  0.311  24.0 0.588 1.60e-177
+ 6 spring (M… mode…  1825 0.821   7.79  20.0  0.123  0.317  25.8 0.480 1.36e-105
+ 7 spring (M… mode…  1905 0.786 -13.7   21.4 -0.218  0.340  26.1 0.531 6.17e-139
+ 8 spring (M… mode…  1905 0.732 -13.4   24.3 -0.213  0.388  29.8 0.312 3.08e- 44
+ 9 spring (M… mode…  1905 0.743   1.01  24.9  0.0161 0.396  32.8 0.264 8.39e- 32
+10 summer (J… mode…  2002 0.918   3.83  15.5  0.0632 0.256  20.9 0.750 0        
+# … with 26 more rows, and 2 more variables: COE &lt;dbl&gt;, IOA &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Note that it is possible to read the results of the <code>modStats</code> function into a data frame, which then allows the results to be plotted. This is generally a good idea when there is a lot of numeric data to consider and plots will convey the information better.</p>
+<p>The <code>modStats</code> function is much more flexible than indicated above and can be used in lots of interesting ways. The <code>type</code> option in particular makes it possible to split the statistics in numerous ways. For example, to summarise the performance of models by site, model and day of the week:</p>
+<div class="cell" data-hash="mod-stats_cache/html/modStatsEx_39f55c280faf3b1631ca309d2385450f">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://davidcarslaw.github.io/openair/reference/modStats.html">modStats</a></span><span class="op">(</span><span class="va">modStats</span>, obs <span class="op">=</span> <span class="st">"o3"</span>, mod <span class="op">=</span> <span class="st">"mod"</span>,</span>
+<span>         type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"site"</span>, <span class="st">"weekday"</span>, <span class="st">"group"</span><span class="op">)</span>, </span>
+<span>         rank <span class="op">=</span> <span class="st">"group"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similarly, if other data are available e.g.&nbsp;meteorological data or other pollutant species then these variables can also be used to test models against ranges in their values. This capability is potentially very useful because it allows for a much more probing analysis into model evaluation. For example, with wind speed and direction it is easy to consider how model performance varies by wind speed intervals or wind sectors, both of which could reveal important performance characteristics.</p>
+
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./smooth-trend.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Smooth trends</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./taylor-diagram.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Taylor Diagam</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

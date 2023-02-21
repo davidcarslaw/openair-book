@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Jack Davison">
+<title>The openair book - 21&nbsp; openairmaps primer</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./maps-network.html" rel="next">
+<link href="./conditional-quantiles.html" rel="prev">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="site_libs/jquery-1.12.4/jquery.min.js"></script><link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script><link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script><script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="site_libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><link rel="stylesheet" href="style.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">21</span>&nbsp; <span class="chapter-title">openairmaps primer</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">The openair book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/davidcarslaw/openair-book/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./openair-package.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The openair package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Data Access</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UK-air-quality-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Accessing UK Air Quality Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./access-met-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Access meteorological data</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Directional Analysis</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wind-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Wind and Pollution Roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-freq.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polar frequencies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./percentile-roses.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Percentile roses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Polar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./polar-annulus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Polar annulus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trajectory-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Trajectory analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Time Series and Trends</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time series plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-variation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Temporal variations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time-proportion.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Time proportion plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trend-level.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Trend heat maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./calendar-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Calendar plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./theil-sen.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Theil-Sen trends</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smooth-trend.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Smooth trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Model Evaluation</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mod-stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Model evaluation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taylor-diagram.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Taylor Diagam</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditional-quantiles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Conditional quantiles</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Interactive Maps</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-overview.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">openairmaps primer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-network.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Network Visualisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-polar.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Directional Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps-traj.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Trajectory Analysis</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Utility functions</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./utility-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Utility functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scatter-plot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Scatter plots</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-annotate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Annotating openair plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-hysplit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Production of HYSPLIT trajectory files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-trends.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">A closer look at trends</span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="toc-section-number">21.1</span>  Installation</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="toc-section-number">21.2</span>  Background</a></li>
+  <li><a href="#leaflet-primer" id="toc-leaflet-primer" class="nav-link" data-scroll-target="#leaflet-primer"><span class="toc-section-number">21.3</span>  <span class="pkg">leaflet</span> Primer</a></li>
+  <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions"><span class="toc-section-number">21.4</span>  Functions</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/davidcarslaw/openair-book/edit/master/maps-overview.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">21</span>&nbsp; <span class="chapter-title">openairmaps primer</span>
+</h1>
+<p class="subtitle lead">An introduction to <code>openairmaps</code> and the <code>leaflet</code> package</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jack Davison </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="abstract-title">Abstract</div>
+    The <code>openairmaps</code> package has been designed to create interactive HTML air quality maps. These are useful to understand the geospatial context of <code>openair</code>-type analysis, and to present data in an engaging way in dashboards and websites. This page gives a broad overview of <code>openairmaps</code> as well as <code>leaflet</code>, the package on which it is built.
+  </div>
+</div>
+
+</header><section id="installation" class="level2" data-number="21.1"><h2 data-number="21.1" class="anchored" data-anchor-id="installation">
+<span class="header-section-number">21.1</span> Installation</h2>
+<p><span class="pkg">openairmaps</span> is on CRAN, so can be simply downloaded using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"openairmaps"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you would like to access new features and bug fixes before they’re pushed to CRAN, the development version of <span class="pkg">openairmaps</span> can be downloaded directly from GitHub.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"davidcarslaw/openairmaps"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you would like to use <span class="pkg">openairmaps</span> in your analysis, don’t forget to load it using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://davidcarslaw.github.io/openairmaps/">openairmaps</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>This chapter was produced using R version 4.2.2 and <span class="pkg">openairmaps</span> version 0.7.0.</p>
+</div>
+</div>
+</div>
+</section><section id="background" class="level2" data-number="21.2"><h2 data-number="21.2" class="anchored" data-anchor-id="background">
+<span class="header-section-number">21.2</span> Background</h2>
+<p>As the R ecosystem developed, <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a> and, more recently, <a href="https://quarto.org/">Quarto</a>) emerged as capable tools for combining data analysis with document preparation. While these approaches can render typical .docx and .pdf outputs, one of their most common output formats is the HTML document. This format has many strengths, but a key one is interactivity; HTML widgets allow documents to be more informative and engaging. Numerous packages have been developed to easily develop these interactive widgets, such as <a href="https://plotly-r.com">plotly</a> for plots, <a href="https://github.com/rstudio/DT">DT</a> for tables, and <a href="https://rstudio.github.io/leaflet/">leaflet</a> for maps. The <span class="pkg">openairmaps</span> package concerns itself with making <span class="pkg">leaflet</span> maps.</p>
+<p>Air quality data analysis — particularly as it pertains to long term monitoring data — naturally lends itself to being visualised spatially on a map. Monitoring networks are geographically distributed, and ignoring their geographical context may lead to incomplete insights at best and incorrect conclusions at worst! Furthermore, many air quality analysis tools are <em>directional</em>, asking questions of the data along the lines of “do elevated concentrations come from the North, South, East or West?” The natural question that follows is “well, what actually is it to the North/South/East/West that could be causing elevated concentrations?” — a map can help answer that question straightforwardly.</p>
+</section><section id="leaflet-primer" class="level2" data-number="21.3"><h2 data-number="21.3" class="anchored" data-anchor-id="leaflet-primer">
+<span class="header-section-number">21.3</span> <span class="pkg">leaflet</span> Primer</h2>
+<p>While <span class="pkg">openairmaps</span> can be used without a thorough understanding of the <span class="pkg">leaflet</span> package, some knowledge can definitely help! <a href="#fig-leafletdemo">Figure&nbsp;<span>21.1</span></a> shows an example leaflet map. Try the following:</p>
+<ul>
+<li><p>Click and drag to move the map around — you can go anywhere in the world!</p></li>
+<li><p>Use your scroll wheel or the +/- options (top left) to zoom in and out.</p></li>
+<li><p>Hover over the marker to see its label.</p></li>
+<li><p>Click on the marker to see a popup.</p></li>
+<li><p>Use the “layer control” menu (top right) to show and hide the marker, and swap between base maps.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"OSM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/addProviderTiles.html">addProviderTiles</a></span><span class="op">(</span><span class="st">"CartoDB.Positron"</span>, group <span class="op">=</span> <span class="st">"CartoDB.Positron"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span></span>
+<span>    lat <span class="op">=</span> <span class="fl">51.5034</span>,</span>
+<span>    lng <span class="op">=</span> <span class="op">-</span><span class="fl">0.1276</span>,</span>
+<span>    label <span class="op">=</span> <span class="st">"10 Downing Street"</span>,</span>
+<span>    popup <span class="op">=</span> <span class="st">"This is where the UK Prime Minister lives!"</span>,</span>
+<span>    group <span class="op">=</span> <span class="st">"Marker"</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/addLayersControl.html">addLayersControl</a></span><span class="op">(</span></span>
+<span>    baseGroups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CartoDB.Positron"</span>, <span class="st">"OSM"</span><span class="op">)</span>, </span>
+<span>    overlayGroups <span class="op">=</span> <span class="st">"Marker"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-leafletdemo" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-e200f237dee18058e2ae" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e200f237dee18058e2ae">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[51.5034,-0.1276,null,null,"Marker",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"This is where the UK Prime Minister lives!",null,null,null,"10 Downing Street",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["CartoDB.Positron","OSM"],"Marker",{"collapsed":true,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[51.5034,51.5034],"lng":[-0.1276,-0.1276]}},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Figure&nbsp;21.1: An example of a leaflet map.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>The anatomy of a leaflet map may look a little unusual, so to unpack:</p>
+<ul>
+<li><p>Every leaflet map starts with the <code><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet()</a></code> function.</p></li>
+<li><p>Different base maps can be added using <code><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles()</a></code> and <code><a href="https://rdrr.io/pkg/leaflet/man/addProviderTiles.html">addProviderTiles()</a></code>. There are many of these base maps — some are minimalist and some are busy, some are colourful and some are black-and-white, some are plain and some are highly stylised!</p></li>
+<li><p>Markers can be added using <code><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers()</a></code> and other similar functions. These markers can have different features such as hover labels and popups.</p></li>
+<li><p>The <code><a href="https://rdrr.io/pkg/leaflet/man/addLayersControl.html">addLayersControl()</a></code> function creates a menu which allows users to show/hide or swap between certain features of the map.</p></li>
+</ul>
+<p>Don’t worry if you don’t fully understand all of this — the “all-in-one” functions in <span class="pkg">openairmaps</span> deal with much of this for you! The only <span class="pkg">leaflet</span> awareness you’ll need to use these functions is knowledge of the available base map providers, which can be accessed using <code><a href="https://rdrr.io/pkg/leaflet/man/providers.html">leaflet::providers</a></code>. These are shown in the collapsible below (the list is very long!).</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+View Providers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">leaflet</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/leaflet/man/providers.html">providers</a></span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$OpenStreetMap
+[1] "OpenStreetMap"
+
+$OpenStreetMap.Mapnik
+[1] "OpenStreetMap.Mapnik"
+
+$OpenStreetMap.DE
+[1] "OpenStreetMap.DE"
+
+$OpenStreetMap.CH
+[1] "OpenStreetMap.CH"
+
+$OpenStreetMap.France
+[1] "OpenStreetMap.France"
+
+$OpenStreetMap.HOT
+[1] "OpenStreetMap.HOT"
+
+$OpenStreetMap.BZH
+[1] "OpenStreetMap.BZH"
+
+$OpenSeaMap
+[1] "OpenSeaMap"
+
+$OpenPtMap
+[1] "OpenPtMap"
+
+$OpenTopoMap
+[1] "OpenTopoMap"
+
+$OpenRailwayMap
+[1] "OpenRailwayMap"
+
+$OpenFireMap
+[1] "OpenFireMap"
+
+$SafeCast
+[1] "SafeCast"
+
+$Thunderforest
+[1] "Thunderforest"
+
+$Thunderforest.OpenCycleMap
+[1] "Thunderforest.OpenCycleMap"
+
+$Thunderforest.Transport
+[1] "Thunderforest.Transport"
+
+$Thunderforest.TransportDark
+[1] "Thunderforest.TransportDark"
+
+$Thunderforest.SpinalMap
+[1] "Thunderforest.SpinalMap"
+
+$Thunderforest.Landscape
+[1] "Thunderforest.Landscape"
+
+$Thunderforest.Outdoors
+[1] "Thunderforest.Outdoors"
+
+$Thunderforest.Pioneer
+[1] "Thunderforest.Pioneer"
+
+$Thunderforest.MobileAtlas
+[1] "Thunderforest.MobileAtlas"
+
+$Thunderforest.Neighbourhood
+[1] "Thunderforest.Neighbourhood"
+
+$OpenMapSurfer
+[1] "OpenMapSurfer"
+
+$OpenMapSurfer.Roads
+[1] "OpenMapSurfer.Roads"
+
+$OpenMapSurfer.Hybrid
+[1] "OpenMapSurfer.Hybrid"
+
+$OpenMapSurfer.AdminBounds
+[1] "OpenMapSurfer.AdminBounds"
+
+$OpenMapSurfer.ContourLines
+[1] "OpenMapSurfer.ContourLines"
+
+$OpenMapSurfer.Hillshade
+[1] "OpenMapSurfer.Hillshade"
+
+$OpenMapSurfer.ElementsAtRisk
+[1] "OpenMapSurfer.ElementsAtRisk"
+
+$Hydda
+[1] "Hydda"
+
+$Hydda.Full
+[1] "Hydda.Full"
+
+$Hydda.Base
+[1] "Hydda.Base"
+
+$Hydda.RoadsAndLabels
+[1] "Hydda.RoadsAndLabels"
+
+$MapBox
+[1] "MapBox"
+
+$Stamen
+[1] "Stamen"
+
+$Stamen.Toner
+[1] "Stamen.Toner"
+
+$Stamen.TonerBackground
+[1] "Stamen.TonerBackground"
+
+$Stamen.TonerHybrid
+[1] "Stamen.TonerHybrid"
+
+$Stamen.TonerLines
+[1] "Stamen.TonerLines"
+
+$Stamen.TonerLabels
+[1] "Stamen.TonerLabels"
+
+$Stamen.TonerLite
+[1] "Stamen.TonerLite"
+
+$Stamen.Watercolor
+[1] "Stamen.Watercolor"
+
+$Stamen.Terrain
+[1] "Stamen.Terrain"
+
+$Stamen.TerrainBackground
+[1] "Stamen.TerrainBackground"
+
+$Stamen.TerrainLabels
+[1] "Stamen.TerrainLabels"
+
+$Stamen.TopOSMRelief
+[1] "Stamen.TopOSMRelief"
+
+$Stamen.TopOSMFeatures
+[1] "Stamen.TopOSMFeatures"
+
+$TomTom
+[1] "TomTom"
+
+$TomTom.Basic
+[1] "TomTom.Basic"
+
+$TomTom.Hybrid
+[1] "TomTom.Hybrid"
+
+$TomTom.Labels
+[1] "TomTom.Labels"
+
+$Esri
+[1] "Esri"
+
+$Esri.WorldStreetMap
+[1] "Esri.WorldStreetMap"
+
+$Esri.DeLorme
+[1] "Esri.DeLorme"
+
+$Esri.WorldTopoMap
+[1] "Esri.WorldTopoMap"
+
+$Esri.WorldImagery
+[1] "Esri.WorldImagery"
+
+$Esri.WorldTerrain
+[1] "Esri.WorldTerrain"
+
+$Esri.WorldShadedRelief
+[1] "Esri.WorldShadedRelief"
+
+$Esri.WorldPhysical
+[1] "Esri.WorldPhysical"
+
+$Esri.OceanBasemap
+[1] "Esri.OceanBasemap"
+
+$Esri.NatGeoWorldMap
+[1] "Esri.NatGeoWorldMap"
+
+$Esri.WorldGrayCanvas
+[1] "Esri.WorldGrayCanvas"
+
+$OpenWeatherMap
+[1] "OpenWeatherMap"
+
+$OpenWeatherMap.Clouds
+[1] "OpenWeatherMap.Clouds"
+
+$OpenWeatherMap.CloudsClassic
+[1] "OpenWeatherMap.CloudsClassic"
+
+$OpenWeatherMap.Precipitation
+[1] "OpenWeatherMap.Precipitation"
+
+$OpenWeatherMap.PrecipitationClassic
+[1] "OpenWeatherMap.PrecipitationClassic"
+
+$OpenWeatherMap.Rain
+[1] "OpenWeatherMap.Rain"
+
+$OpenWeatherMap.RainClassic
+[1] "OpenWeatherMap.RainClassic"
+
+$OpenWeatherMap.Pressure
+[1] "OpenWeatherMap.Pressure"
+
+$OpenWeatherMap.PressureContour
+[1] "OpenWeatherMap.PressureContour"
+
+$OpenWeatherMap.Wind
+[1] "OpenWeatherMap.Wind"
+
+$OpenWeatherMap.Temperature
+[1] "OpenWeatherMap.Temperature"
+
+$OpenWeatherMap.Snow
+[1] "OpenWeatherMap.Snow"
+
+$HERE
+[1] "HERE"
+
+$HERE.normalDay
+[1] "HERE.normalDay"
+
+$HERE.normalDayCustom
+[1] "HERE.normalDayCustom"
+
+$HERE.normalDayGrey
+[1] "HERE.normalDayGrey"
+
+$HERE.normalDayMobile
+[1] "HERE.normalDayMobile"
+
+$HERE.normalDayGreyMobile
+[1] "HERE.normalDayGreyMobile"
+
+$HERE.normalDayTransit
+[1] "HERE.normalDayTransit"
+
+$HERE.normalDayTransitMobile
+[1] "HERE.normalDayTransitMobile"
+
+$HERE.normalDayTraffic
+[1] "HERE.normalDayTraffic"
+
+$HERE.normalNight
+[1] "HERE.normalNight"
+
+$HERE.normalNightMobile
+[1] "HERE.normalNightMobile"
+
+$HERE.normalNightGrey
+[1] "HERE.normalNightGrey"
+
+$HERE.normalNightGreyMobile
+[1] "HERE.normalNightGreyMobile"
+
+$HERE.normalNightTransit
+[1] "HERE.normalNightTransit"
+
+$HERE.normalNightTransitMobile
+[1] "HERE.normalNightTransitMobile"
+
+$HERE.reducedDay
+[1] "HERE.reducedDay"
+
+$HERE.reducedNight
+[1] "HERE.reducedNight"
+
+$HERE.basicMap
+[1] "HERE.basicMap"
+
+$HERE.mapLabels
+[1] "HERE.mapLabels"
+
+$HERE.trafficFlow
+[1] "HERE.trafficFlow"
+
+$HERE.carnavDayGrey
+[1] "HERE.carnavDayGrey"
+
+$HERE.hybridDay
+[1] "HERE.hybridDay"
+
+$HERE.hybridDayMobile
+[1] "HERE.hybridDayMobile"
+
+$HERE.hybridDayTransit
+[1] "HERE.hybridDayTransit"
+
+$HERE.hybridDayGrey
+[1] "HERE.hybridDayGrey"
+
+$HERE.hybridDayTraffic
+[1] "HERE.hybridDayTraffic"
+
+$HERE.pedestrianDay
+[1] "HERE.pedestrianDay"
+
+$HERE.pedestrianNight
+[1] "HERE.pedestrianNight"
+
+$HERE.satelliteDay
+[1] "HERE.satelliteDay"
+
+$HERE.terrainDay
+[1] "HERE.terrainDay"
+
+$HERE.terrainDayMobile
+[1] "HERE.terrainDayMobile"
+
+$FreeMapSK
+[1] "FreeMapSK"
+
+$MtbMap
+[1] "MtbMap"
+
+$CartoDB
+[1] "CartoDB"
+
+$CartoDB.Positron
+[1] "CartoDB.Positron"
+
+$CartoDB.PositronNoLabels
+[1] "CartoDB.PositronNoLabels"
+
+$CartoDB.PositronOnlyLabels
+[1] "CartoDB.PositronOnlyLabels"
+
+$CartoDB.DarkMatter
+[1] "CartoDB.DarkMatter"
+
+$CartoDB.DarkMatterNoLabels
+[1] "CartoDB.DarkMatterNoLabels"
+
+$CartoDB.DarkMatterOnlyLabels
+[1] "CartoDB.DarkMatterOnlyLabels"
+
+$CartoDB.Voyager
+[1] "CartoDB.Voyager"
+
+$CartoDB.VoyagerNoLabels
+[1] "CartoDB.VoyagerNoLabels"
+
+$CartoDB.VoyagerOnlyLabels
+[1] "CartoDB.VoyagerOnlyLabels"
+
+$CartoDB.VoyagerLabelsUnder
+[1] "CartoDB.VoyagerLabelsUnder"
+
+$HikeBike
+[1] "HikeBike"
+
+$HikeBike.HikeBike
+[1] "HikeBike.HikeBike"
+
+$HikeBike.HillShading
+[1] "HikeBike.HillShading"
+
+$BasemapAT
+[1] "BasemapAT"
+
+$BasemapAT.basemap
+[1] "BasemapAT.basemap"
+
+$BasemapAT.grau
+[1] "BasemapAT.grau"
+
+$BasemapAT.overlay
+[1] "BasemapAT.overlay"
+
+$BasemapAT.highdpi
+[1] "BasemapAT.highdpi"
+
+$BasemapAT.orthofoto
+[1] "BasemapAT.orthofoto"
+
+$nlmaps
+[1] "nlmaps"
+
+$nlmaps.standaard
+[1] "nlmaps.standaard"
+
+$nlmaps.pastel
+[1] "nlmaps.pastel"
+
+$nlmaps.grijs
+[1] "nlmaps.grijs"
+
+$nlmaps.luchtfoto
+[1] "nlmaps.luchtfoto"
+
+$NASAGIBS
+[1] "NASAGIBS"
+
+$NASAGIBS.ModisTerraTrueColorCR
+[1] "NASAGIBS.ModisTerraTrueColorCR"
+
+$NASAGIBS.ModisTerraBands367CR
+[1] "NASAGIBS.ModisTerraBands367CR"
+
+$NASAGIBS.ViirsEarthAtNight2012
+[1] "NASAGIBS.ViirsEarthAtNight2012"
+
+$NASAGIBS.ModisTerraLSTDay
+[1] "NASAGIBS.ModisTerraLSTDay"
+
+$NASAGIBS.ModisTerraSnowCover
+[1] "NASAGIBS.ModisTerraSnowCover"
+
+$NASAGIBS.ModisTerraAOD
+[1] "NASAGIBS.ModisTerraAOD"
+
+$NASAGIBS.ModisTerraChlorophyll
+[1] "NASAGIBS.ModisTerraChlorophyll"
+
+$NLS
+[1] "NLS"
+
+$JusticeMap
+[1] "JusticeMap"
+
+$JusticeMap.income
+[1] "JusticeMap.income"
+
+$JusticeMap.americanIndian
+[1] "JusticeMap.americanIndian"
+
+$JusticeMap.asian
+[1] "JusticeMap.asian"
+
+$JusticeMap.black
+[1] "JusticeMap.black"
+
+$JusticeMap.hispanic
+[1] "JusticeMap.hispanic"
+
+$JusticeMap.multi
+[1] "JusticeMap.multi"
+
+$JusticeMap.nonWhite
+[1] "JusticeMap.nonWhite"
+
+$JusticeMap.white
+[1] "JusticeMap.white"
+
+$JusticeMap.plurality
+[1] "JusticeMap.plurality"
+
+$Wikimedia
+[1] "Wikimedia"
+
+$GeoportailFrance
+[1] "GeoportailFrance"
+
+$GeoportailFrance.parcels
+[1] "GeoportailFrance.parcels"
+
+$GeoportailFrance.ignMaps
+[1] "GeoportailFrance.ignMaps"
+
+$GeoportailFrance.maps
+[1] "GeoportailFrance.maps"
+
+$GeoportailFrance.orthos
+[1] "GeoportailFrance.orthos"
+
+$OneMapSG
+[1] "OneMapSG"
+
+$OneMapSG.Default
+[1] "OneMapSG.Default"
+
+$OneMapSG.Night
+[1] "OneMapSG.Night"
+
+$OneMapSG.Original
+[1] "OneMapSG.Original"
+
+$OneMapSG.Grey
+[1] "OneMapSG.Grey"
+
+$OneMapSG.LandLot
+[1] "OneMapSG.LandLot"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>If you would like to use <span class="pkg">openairmaps</span> in a more advanced way (for example, using the “marker” class of functions), you may find it useful to learn some <span class="pkg">leaflet</span>. Its authors have written an excellent free <a href="https://rstudio.github.io/leaflet/">guide</a> to help you get started.</p>
+</section><section id="sec-functions" class="level2" data-number="21.4"><h2 data-number="21.4" class="anchored" data-anchor-id="sec-functions">
+<span class="header-section-number">21.4</span> Functions</h2>
+<p><span class="pkg">openairmaps</span> currently has three main families of functions — those being network visualisation, directional analysis, and trajectory analysis — plus a handful of “utility” functions. These are summarised in <a href="#tbl-openairmaps-overview">Table&nbsp;<span>21.1</span></a>. The functions are further divided into two categories:</p>
+<ul>
+<li><p><strong>“All-in-one”</strong> functions are most like <span class="pkg">openair</span> functions in that they will construct a map from the ground-up. These functions provide the quickest route from data to a HTML map.</p></li>
+<li><p><strong>“Marker”</strong> functions are most like <span class="pkg">leaflet</span> functions in that they add layers onto pre-existing <code>leaflet</code> maps. These are more complicated to use, but are more powerful if you are more familiar with how <span class="pkg">leaflet</span> works.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="tbl-openairmaps-overview" class="anchored">
+
+<div id="vanwnqfdnj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#vanwnqfdnj) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#vanwnqfdnj) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#vanwnqfdnj) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#vanwnqfdnj) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#vanwnqfdnj) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#vanwnqfdnj) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#vanwnqfdnj) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#vanwnqfdnj) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#vanwnqfdnj) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#vanwnqfdnj) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#vanwnqfdnj) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#vanwnqfdnj) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#vanwnqfdnj) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#vanwnqfdnj) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#vanwnqfdnj) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#vanwnqfdnj) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#vanwnqfdnj) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#vanwnqfdnj) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#vanwnqfdnj) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_left {
+  text-align: left;
+}
+
+:where(#vanwnqfdnj) .gt_center {
+  text-align: center;
+}
+
+:where(#vanwnqfdnj) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#vanwnqfdnj) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#vanwnqfdnj) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#vanwnqfdnj) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#vanwnqfdnj) .gt_super {
+  font-size: 65%;
+}
+
+:where(#vanwnqfdnj) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#vanwnqfdnj) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#vanwnqfdnj) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#vanwnqfdnj) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#vanwnqfdnj) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#vanwnqfdnj) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#vanwnqfdnj) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+<caption>Table&nbsp;21.1:  The openairmaps toolkit. </caption>
+  
+  <thead class="gt_col_headings"><tr>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Family">Family</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="All-in-one">All-in-one</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Markers">Markers</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="Family" class="gt_row gt_left"><div class="gt_from_md">
+<p>Network Visualisation</p>
+</div></td>
+<td headers="Description" class="gt_row gt_left"><div class="gt_from_md">
+<p>Visualises any of the networks made available by <code>importMeta()</code>.</p>
+</div></td>
+<td headers="All-in-one" class="gt_row gt_left"><div class="gt_from_md">
+<p><code><a href="https://davidcarslaw.github.io/openairmaps/reference/networkMap.html">networkMap()</a></code></p>
+</div></td>
+<td headers="Markers" class="gt_row gt_left"><div class="gt_from_md"></div></td>
+</tr>
+<tr>
+<td headers="Family" class="gt_row gt_left"><div class="gt_from_md">
+<p>Directional Analysis</p>
+</div></td>
+<td headers="Description" class="gt_row gt_left"><div class="gt_from_md">
+<p>Uses any of the <code>openair</code> directional analysis plots (e.g., <code>polarPlot()</code>) as markers, allowing them to be viewed in their geospatial context.</p>
+</div></td>
+<td headers="All-in-one" class="gt_row gt_left"><div class="gt_from_md">
+<p><code><a href="https://davidcarslaw.github.io/openairmaps/reference/annulusMap.html">annulusMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/freqMap.html">freqMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/percentileMap.html">percentileMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/polarMap.html">polarMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/pollroseMap.html">pollroseMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/windroseMap.html">windroseMap()</a></code></p>
+</div></td>
+<td headers="Markers" class="gt_row gt_left"><div class="gt_from_md">
+<p><code><a href="https://davidcarslaw.github.io/openairmaps/reference/addPolarMarkers.html">addPolarMarkers()</a></code></p>
+</div></td>
+</tr>
+<tr>
+<td headers="Family" class="gt_row gt_left"><div class="gt_from_md">
+<p>Trajectory Analysis</p>
+</div></td>
+<td headers="Description" class="gt_row gt_left"><div class="gt_from_md">
+<p>Creates interactive visualisations of HYSPLIT trajectories, allowing for finer investigations when compared with their static <code>openair</code> counterparts.</p>
+</div></td>
+<td headers="All-in-one" class="gt_row gt_left"><div class="gt_from_md">
+<p><code><a href="https://davidcarslaw.github.io/openairmaps/reference/trajMap.html">trajMap()</a></code><br><code><a href="https://davidcarslaw.github.io/openairmaps/reference/trajLevelMap.html">trajLevelMap()</a></code></p>
+</div></td>
+<td headers="Markers" class="gt_row gt_left"><div class="gt_from_md">
+<p><code><a href="https://davidcarslaw.github.io/openairmaps/reference/addTrajPaths.html">addTrajPaths()</a></code></p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>The next few pages will discuss each of these function families in turn, starting with network visualisation.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./conditional-quantiles.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Conditional quantiles</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./maps-network.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Network Visualisation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
