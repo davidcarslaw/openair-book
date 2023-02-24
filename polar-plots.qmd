@@ -556,10 +556,12 @@ Or if we just want to plot a couple of clusters (5 and 6) *using the same colour
 #| fig-cap: Temporal variation in SO~2~ split by cluster --- showing only two clusters.
 #| fig-width: 9
 #| fig-height: 7
-timeVariation(filter(results, cluster %in% c("5", "6")),
+timeVariation(
+  dplyr::filter(results, cluster %in% c("C5", "C6")),
   pollutant = "so2",
   group = "cluster",
-  col = openColours("Set2", 8)[5:6], lwd = 3
+  col = openColours("Set2", 8)[5:6],
+  lwd = 3
 )
 ```
 
@@ -573,11 +575,15 @@ Another useful way of understanding the clusters is to use the `timeProp` functi
 #| fig-width: 15
 #| fig-height: 5
 #| column: screen-inset-right
-timeProp(selectByDate(results, year = 2003),
-  pollutant = "so2", avg.time = "day",
-  proportion = "cluster", col = "Set2",
+timeProp(
+  selectByDate(results, year = 2003),
+  pollutant = "so2",
+  avg.time = "day",
+  proportion = "cluster",
+  col = "Set2",
   key.position = "top",
-  key.columns = 8, date.breaks = 10,
+  key.columns = 8,
+  date.breaks = 10,
   ylab = "so2 (ug/m3)"
 )
 ```

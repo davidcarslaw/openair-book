@@ -62,7 +62,7 @@ clustdata <- openair::trajCluster(traj_data)
 ```{r}
 #| label: fig-trajNeon
 #| fig-cap: Interactive map of clustered trajectories, with a cool neon colour scheme!
-#| results: asis
+#| eval: false
 trajMap(
   data = clustdata$data$traj,
   colour = "cluster",
@@ -79,7 +79,6 @@ trajMap(
 ```{r}
 #| label: fig-trajLevel
 #| fig-cap: An interactive 'frequency' map plotted by `trajLevelMap`.
-#| results: asis
 trajLevelMap(
   traj_data,
   statistic = "pscf",
