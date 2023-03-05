@@ -12,7 +12,7 @@ This section shows an example output and use, using our data frame `mydata`. The
 
 ```{r}
 #| label: fig-polarFreqa
-#| fig-cap: Use of `polarFreq` function to plot wind speed/directions. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. The date range  covered by the data is shown in the strip.
+#| fig-cap: Use of `polarFreq` function to plot wind speed/directions. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. 
 #| fig-width: 5
 #| fig-height: 5
 #| out-width: 60%
@@ -25,7 +25,7 @@ By setting `type = "year"`, the frequencies are shown separately by year as show
 
 ```{r}
 #| label: fig-polarFreqYear
-#| fig-cap: Use of `polarFreq` function to plot wind speed/directions by year. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale.
+#| fig-cap: Use of `polarFreq` function to plot wind speed/directions by year. Each cell gives the total number of hours the wind was from that wind speed/direction in a particular year. The number of hours is coded as a colour scale shown to the right. The scale itself is non-linear to help show the overall distribution. The dashed circular grey lines show the wind speed scale. The date range covered by the data is shown in the strip.
 #| fig-width: 8
 #| fig-height: 8
 polarFreq(mydata, type = "year")

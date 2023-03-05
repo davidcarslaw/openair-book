@@ -29,7 +29,7 @@ making all the data available. The networks include:
 
 -   `importAURN` For importing data from the UK national network called
     [Automatic Urban and Rural
-    Network}](https://uk-air.defra.gov.uk/networks/network-info?view=aurn).
+    Network](https://uk-air.defra.gov.uk/networks/network-info?view=aurn).
     This is the main UK network.
 
 -   `importSAQN` For accessing data from [Air Quality
@@ -145,7 +145,7 @@ interest. Furthermore, if `all = TRUE` is used, supplying a year (or
 years) will select only specific pollutants that were measured during
 the period of interest.[^uk-air-quality-data-2]
 
-[^uk-air-quality-data-2]: Note that while I site may have been in
+[^uk-air-quality-data-2]: Note that while a site may have been in
     operation for a long time, it is not necessarily the case that all
     pollutants were measured since the start of the site.
 
@@ -271,7 +271,7 @@ install.packages("openairmaps")
 
 This package contains the `networkMap` function which acts as a wrapper
 around `importMeta` and returns a detailed map similar to the one
-produced above, with many options for customisation. For example, sites
+produced below, with many options for customisation. For example, sites
 can be clustered together to avoid clutter, and an optional "control
 menu" can be added to filter for certain sites (e.g., different site
 types, shown below).
@@ -304,7 +304,7 @@ option. The values `data_type` can take include:
 -   **"daily"** Daily means returned and specific site(s) must be
     provided. Note that in the case of PM~10~ and PM~2.5~ daily
     measurements can be available from those derived from hourly
-    measurements (using instruments such as TEOM, BAM and FIDAS) our
+    measurements (using instruments such as TEOM, BAM and FIDAS) and our
     daily gravimetric measurements such as from a Partisol. In the
     returned data the gravimetric daily measurements are shown as
     `gr_pm10` and `gr_pm2.5`, respectively.

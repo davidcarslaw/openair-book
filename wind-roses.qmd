@@ -79,7 +79,7 @@ windRose(mydata, type = "year", layout = c(4, 2))
 ```
 
 The `type` option is very flexible in [openair]{.pkg} and can be used to
-quickly consider the dependencies between variables. @sec-cutData)
+quickly consider the dependencies between variables. @sec-cutData
 describes the basis of this option in [openair]{.pkg} plot. As an
 example, consider the question: what are the meteorological conditions
 that control high and low concentrations of PM~10~? By setting
@@ -208,7 +208,7 @@ between 0 and 1 to help show the variation within each wind sector more
 clearly. An example is shown in @fig-pollRoseNorm where for easterly
 winds it is now clearer that a greater proportion of the time the
 concentration is made up of high SO~2~ concentrations. In this plot each
-wind sector is scaled between 0 and 1. Also shown with a black like is
+wind sector is scaled between 0 and 1. Also shown with a black line is
 an indication of the wind direction frequency to remind us that winds
 from the east occur with a low frequency.
 
