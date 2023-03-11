@@ -5,9 +5,12 @@ project:
 book:
   title: "The openair book"
   subtitle: "A Guide to the Analysis of Air Pollution Data"
-  author: "David C Carslaw and Jack Davison"
+  author: 
+  - David C Carslaw
+  - Jack Davison
   date: today
   date-format: long
+  site-url: "https://bookdown.org/david_carslaw/openair/"
   repo-url: https://github.com/davidcarslaw/openair-book/
   repo-branch: master
   repo-actions: [edit]
