@@ -18,49 +18,49 @@ book:
   sharing: [twitter, facebook, linkedin]
   chapters:
     - index.qmd
-    - intro.qmd
-    - openair-package.qmd
+    - sections/intro/intro.qmd
+    - sections/intro/openair-package.qmd
     - part: "Data Access"
       chapters:
-        - UK-air-quality-data.qmd
-        - access-met-data.qmd
+        - sections/data-access/UK-air-quality-data.qmd
+        - sections/data-access/access-met-data.qmd
     - part: "Directional Analysis"
       chapters:
-        - wind-roses.qmd
-        - polar-freq.qmd
-        - percentile-roses.qmd
-        - polar-plots.qmd
-        - polar-annulus.qmd
-        - trajectory-analysis.qmd
+        - sections/directional-analysis/wind-roses.qmd
+        - sections/directional-analysis/polar-freq.qmd
+        - sections/directional-analysis/percentile-roses.qmd
+        - sections/directional-analysis/polar-plots.qmd
+        - sections/directional-analysis/polar-annulus.qmd
+        - sections/directional-analysis/trajectory-analysis.qmd
     - part: "Time Series and Trends"
       chapters:
-        - time-plot.qmd
-        - time-variation.qmd
-        - time-proportion.qmd
-        - trend-level.qmd
-        - calendar-plot.qmd
-        - theil-sen.qmd
-        - smooth-trend.qmd
+        - sections/trend-analysis/time-plot.qmd
+        - sections/trend-analysis/time-variation.qmd
+        - sections/trend-analysis/time-proportion.qmd
+        - sections/trend-analysis/trend-level.qmd
+        - sections/trend-analysis/calendar-plot.qmd
+        - sections/trend-analysis/theil-sen.qmd
+        - sections/trend-analysis/smooth-trend.qmd
     - part: "Model Evaluation"
       chapters:
-        - mod-stats.qmd
-        - taylor-diagram.qmd
-        - conditional-quantiles.qmd
+        - sections/model-evaluation/mod-stats.qmd
+        - sections/model-evaluation/taylor-diagram.qmd
+        - sections/model-evaluation/conditional-quantiles.qmd
     - part: "Interactive Maps"
       chapters:
-        - maps-overview.qmd
-        - maps-network.qmd
-        - maps-polar.qmd
-        - maps-traj.qmd
+        - sections/maps/maps-overview.qmd
+        - sections/maps/maps-network.qmd
+        - sections/maps/maps-polar.qmd
+        - sections/maps/maps-traj.qmd
     - part: "Utility functions"
       chapters:
-        - utility-functions.qmd
-        - scatter-plot.qmd
-    - references.qmd
+        - sections/utilities/utility-functions.qmd
+        - sections/utilities/scatter-plot.qmd
+    - sections/references.qmd
   appendices:
-   - appendix-annotate.qmd
-   - appendix-hysplit.qmd
-   - appendix-trends.qmd
+   - sections/appendices/appendix-annotate.qmd
+   - sections/appendices/appendix-hysplit.qmd
+   - sections/appendices/appendix-trends.qmd
 
 bibliography: [DCC-refs.bib, packages.bib]
 csl: atmospheric-environment.csl

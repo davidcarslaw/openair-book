@@ -53,7 +53,7 @@ networkMap(source = "aurn")
 
 -   `cluster`: By default, markers are clustered together until users zoom in close. This default behaviour improves the appearance and performance of the HTML map widget. The `cluster` argument allows you to turn this feature off.[^maps-network-1]
 
--   `provider`: Any number of the [leaflet]{.pkg} providers (see `leaflet::providers` or the list in the [openairmaps overview page](maps-overview.qmd)).
+-   `provider`: Any number of the [leaflet]{.pkg} providers (see `leaflet::providers` or the list in the [openairmaps overview page](../maps/maps-overview.qmd)).
 
 [^maps-network-1]: This feature cannot be turned off when `network = "europe"` due to the number of markers creating performance issues.
 
@@ -70,7 +70,7 @@ networkMap(source = c("aurn", "aqe", "local"),
 
 ## "Do It Yourself" Network Maps
 
-If you are only interested in a few sites, you may wish to create your own, smaller network map. Currently, [openairmaps]{.pkg} only contains functionality to visualise entire networks, but it is relatively easy to create a map of your own using [leaflet]{.pkg}. While @fig-diyNetwork shows a network map of *just* sites in York, its associated code chunk can be used as a template for other small network maps. It uses the `buildPopup()` function from [openairmaps]{.pkg} which was written for use with the [directional analysis mapping functions](maps-polar.qmd), so is described in greater detail on the next page.
+If you are only interested in a few sites, you may wish to create your own, smaller network map. Currently, [openairmaps]{.pkg} only contains functionality to visualise entire networks, but it is relatively easy to create a map of your own using [leaflet]{.pkg}. While @fig-diyNetwork shows a network map of *just* sites in York, its associated code chunk can be used as a template for other small network maps. It uses the `buildPopup()` function from [openairmaps]{.pkg} which was written for use with the [directional analysis mapping functions](../maps/maps-polar.qmd), so is described in greater detail on the next page.
 
 ```{r}
 #| label: fig-diyNetwork
