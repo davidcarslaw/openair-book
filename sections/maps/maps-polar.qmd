@@ -216,6 +216,31 @@ polar_data %>%
   )
 ```
 
+## Adding Extra Markers
+
+As `{openairmaps}` is built using `{leaflet}`, it is easy to add to your directional analysis maps using `{leaflet}` functions. For example, you may have the latitude and longitude information of different potential nearby sources like busy roads, industrial activity, transport hubs, and so on. @fig-addmarkers shows how you can add an extra marker with an optional popup/label.
+
+Note that, here, the `sources` data frame only has one row, but there is nothing to stop you from having any number of rows corresponding to different potential sources. As long as each source has a distinct latitude and longitude, a unique marker will be placed on the map. 
+
+```{r}
+#| label: fig-addmarkers
+#| fig-cap: "Adding a `{leaflet}` marker to show nearby sources."
+# data frame of lat/lon
+sources <-
+  data.frame(lat = 51.5167,
+             lng = -0.1769,
+             site = "Paddington Station")
+
+# make map
+polarMap(polar_data, "nox") %>%
+  # add markers
+  leaflet::addMarkers(data = sources,
+                      popup = ~ site,
+                      label = ~ site)
+```
+
+`{leaflet}` is well documented [here](https://rstudio.github.io/leaflet/), which details many of the other elements you can add to your maps. Just think of the output of the `polarMap()` family to be like the output of `leaflet() %>% addTiles()` and you'll quickly find yourself layering on more markers, shapes, and other useful map features.
+
 ## Building Popups
 
 So far, popups have used a single column to label the markers, but you will often want to encode more data than just the site name or type. For example, you may want to use the site name *and* type *and* the average wind speed *and* the dates it was active! To do so, you can use the `buildPopup()` function. This function has a handful of arguments:
