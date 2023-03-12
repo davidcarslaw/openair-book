@@ -1,0 +1,73 @@
+---
+author: Jack Davison
+---
+
+# Getting help
+
+The [openair]{.pkg} family was written to be as easy as possible to use for people who don't necessarily know a lot of R, and much of its core functionality is outlined in this book. However, we know from experience that sometimes things don't behave as they should! Whether the issue is dodgy data, a sneaky bug in the code, or functionality that isn't yet catered for, this page should guide you through the best way to find help.
+
+## Where to get help {#sec-where}
+
+The best place to ask for help is by posting an issue on GitHub. Don't worry if you haven't used it before - simply sign up, navigate to one of the repositories, and then click "Issues". There'll be a big green "New Issue" button that'll present you with a box to fill in to ask your questions. The GitHub repositories for the [openair]{.pkg} family of packages can be found at:
+
+* <https://github.com/davidcarslaw/openair>
+
+* <https://github.com/davidcarslaw/openairmaps>
+
+* <https://github.com/davidcarslaw/worldmet>
+
+If your problems are with R more generally rather than being specific to [openair]{.pkg}, you might also consider posting to these other communities. Users there will be much less familiar with [openair]{.pkg} and air quality, but they are much greater in number. 
+
+* [Posit Community](https://community.rstudio.com/), an R-specific forum for R users to ask any and all questions relating to R and RStudio.
+
+* [Stack Overflow](https://stackoverflow.com/), a more general programming community for coders to ask questions. This can be a little more intimidating than the Posit Community Forum, but the user base is a lot bigger!
+
+Regardless of where you choose to find answers, it is best to provide others with a "reproducible example". This means you need to provide code that will recreate your issue on someone else's computer.
+
+## Reproducible Examples {#sec-reprex}
+
+While the [openair]{.pkg} authors can run code on our computers, we can't run *your* code on *your* computer using *your* data. To help us help you, you need to help bridge that gap - this is called providing a "reproducible example".
+
+Reproducible examples need to be three things; *minimal*, *complete*, and *reproducible*.
+
+#### Minimal {-}
+
+This means that you only need to provide just enough data to reproduce your problem. It also means that any code you provide should reproduce your problem in as few steps as possible. We don't need to see every step of your analysis up until the problem *unless it is relevant*.
+
+> For example, if your issue is that `windRose()` isn't working as expected, simply provide wind speed and wind direction data. We won't need a hundred columns of concentrations, and we don't need to see the hundred lines of code you used to read it in and tidy it!
+
+#### Complete {-}
+
+This means that the example has all the information needed to reproduce your problem. We should be able to run the code on our computers successfully! Also **do not** provide screenshots or other images of code - copy and paste the lines so we can copy them into our R console.
+
+> For example, if your issue relates to some of your own data, don't send us code that contains `read_csv("my_data.csv")` if you haven't also provided "my_data.csv", else there's not a lot we can do!
+
+#### Reproducible {-}
+
+This means that we can actually recreate and understand the problem you're having! Ensure that your code doesn't encounter any *other* problems when it is run, and you clearly describe what you think is going wrong.
+
+> For example, an issue that states "timeaverage isn't working" isn't nearly as useful as "when `timeAverage(mydata, type = "month")` is run, the returned data isn't conditioned by month."
+
+::: {.callout-tip}
+## The `{reprex}` package
+
+An easy way to check if your reproducible example is actually reproducible is by using the `{reprex}` package. Create your code, copy it, and then run `reprex::reprex()`. This will create a nicely formatted reproducible example that is immediately copied to your clipboard, which can then be pasted into GitHub.
+
+The package is also very strict, so if the resulting output doesn't look right your example probably isn't actually reproducible!
+:::
+
+## Providing data
+
+Sometimes the hardest thing about producing a reproducible example is providing data. There are many different ways of doing so when getting help with `{openair}`:
+
+* **Write your example with `openair::mydata`, `openairmaps::polar_data` or `openairmaps::traj_data`.** These data are built in to their respective packages so are easily accessible to anyone.
+
+* **Obtain data through `openair::importAURN()` or `worldmet::importNOAA()`.** These functions pull data straight into R from online databases, so will once again make your issue reproducible on other computers.
+
+* **Attach your data (e.g., as a .csv file).** If your problem is specific to your data, you can attach your data to your GitHub issue. Remember that reproducible examples are *minimal* so you don't need to provide literally every column or row, only enough to recreate your issue. This also means you can remove private/personal data if it is a concern (e.g., we don't need real site names or locations, or even the specific species being measured).
+
+* **Use `dput()`**. If your data is quite small, you can use the `dput()` function to generate a line of code that will recreate your data in someone else's R session.
+
+```{r}
+dput(head(openair::mydata))
+```

@@ -61,6 +61,7 @@ book:
    - sections/appendices/appendix-annotate.qmd
    - sections/appendices/appendix-hysplit.qmd
    - sections/appendices/appendix-trends.qmd
+   - sections/appendices/appendix-gethelp.qmd
 
 bibliography: [DCC-refs.bib, packages.bib]
 csl: atmospheric-environment.csl
