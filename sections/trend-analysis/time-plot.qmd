@@ -86,7 +86,7 @@ An example of normalising data is shown in @fig-timePlotNorm. In this plot we ha
 ```{r}
 #| label: fig-timePlotNorm
 #| fig-cap: An example of normalising time series data to fix values to equal 100 at the beginning of 1998
-#| fig-width: 7
+#| fig-width: 8
 #| fig-height: 5
 #| out-width: 70%
 timePlot(mydata, 
