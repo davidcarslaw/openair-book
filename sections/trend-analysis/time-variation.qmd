@@ -38,12 +38,6 @@ The `timeVariation` function is probably one of the most useful functions that c
 
 We apply the `timeVariation` function to PM~10~ concentrations and take the opportunity to filter the data to maximise the signal from the road. The `polarPlot` function described in Section (@sec-polarPlot) is very useful in this respect in highlighting the conditions under which different sources have their greatest impact. A subset of data is used filtering for wind speeds \> 3 m s^-1^ and wind directions from 100--270 degrees. The code used is:
 
-The results are shown in @fig-timeVar1. The plot shown at the top-left shows the diurnal variation of concentrations for all days. It shows for example that PM~10~ concentrations tend to peak around 9 am. The shading shows the 95% confidence intervals of the mean. The plot at the top-right shows how PM~10~ concentrations vary by day of the week. Here there is strong evidence that PM~10~ is much lower at the weekends and that there is a significant difference compared with weekdays. It also shows that concentrations tend to increase during the weekdays. Finally, the plot at the bottom shows both sets of information together to provide an overview of how concentrations vary.
-
-Note that the plot need not just consider pollutant concentrations. Other useful variables (if available) are meteorological and traffic flow or speed data. Often, the combination of several sets of data can be very revealing.
-
-The `filter` function is extremely useful in this respect. For example, if it were believed that a source had an effect under specific conditions; they can be isolated with the `filter` function. It is also useful if it is suspected that two or more sources are important that they can be isolated to some degree and compared. This is where the uncertainty intervals help --- they provide an indication whether the behaviour of one source differs significantly from another.
-
 ```{r}
 #| label: fig-timeVar1
 #| fig-cap: Example plot using the `timeVariation` function to plot PM~10~ concentrations at Marylebone Road.
@@ -55,6 +49,12 @@ library(tidyverse)
 timeVariation(filter(mydata, ws > 3,  wd > 100, wd < 270),
               pollutant = "pm10", ylab = "pm10 (ug/m3)")
 ```
+
+The results are shown in @fig-timeVar1. The plot shown at the bottom-left shows the diurnal variation of concentrations for all days. It shows for example that PM~10~ concentrations tend to peak around 9 am. The shading shows the 95% confidence intervals of the mean. The plot at the bottom-right shows how PM~10~ concentrations vary by day of the week. Here there is strong evidence that PM~10~ is much lower at the weekends and that there is a significant difference compared with weekdays. It also shows that concentrations tend to increase during the weekdays. Finally, the plot at the top shows both sets of information together to provide an overview of how concentrations vary.
+
+Note that the plot need not just consider pollutant concentrations. Other useful variables (if available) are meteorological and traffic flow or speed data. Often, the combination of several sets of data can be very revealing.
+
+The `filter` function is extremely useful in this respect. For example, if it were believed that a source had an effect under specific conditions; they can be isolated with the `filter` function. It is also useful if it is suspected that two or more sources are important that they can be isolated to some degree and compared. This is where the uncertainty intervals help --- they provide an indication whether the behaviour of one source differs significantly from another.
 
 @fig-timeVar2 shows the function applied to concentrations of NO~x~, CO, NO~2~ and O~3~ concentrations. In this case the concentrations have been normalised. The plot clearly shows the markedly different temporal trends in concentration. For CO, there is a very pronounced increase in concentrations during the peak pm rush hour. The other important difference is on Sundays when CO concentrations are relatively much higher than NO~x~. This is because flows of cars (mostly petrol) do not change that much by day of the week, but flows of vans and HGVs (diesel vehicles) are much less on Sundays. Note, however, that the monthly trend is very similar in each case --- which indicates very similar source origins. Taken together, the plots highlight that traffic emissions dominate this site for CO and NO~x~, but there are important difference in how these emissions vary by hour of day and day of week.
 
