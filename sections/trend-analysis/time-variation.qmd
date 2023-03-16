@@ -109,7 +109,7 @@ By default `timeVariation` shows the mean variation in different temporal compon
 
 ```{r}
 #| label: fig-timeVarMedian
-#| fig-cap: Example plot using the `timeVariation` function to show the variation in the median, 25/75th and 5/95th quantile values for PM~10~. The shading shows the extent to the 25/75th and 5/95th  quantiles.
+#| fig-cap: Example plot using the `timeVariation` function to show the variation in the median. The shading shows the extent to the 25/75th and 5/95th  quantiles.
 #| fig-width: 12
 #| fig-height: 7
 timeVariation(mydata, pollutant = "pm10", 
