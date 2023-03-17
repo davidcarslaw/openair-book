@@ -14,7 +14,7 @@ If the $x$ and $y$ variables are not categorical they are made so by splitting t
 
 ## Examples {#sec-TrendLevelEx}
 
-The standard output from `trendLevel` is shown in @fig-trendLevel1, which shows the variation in NO~x~ concentrations by year and hour of the day. By default the function will use "month" for the x-axis and "hour" for the y-axis.
+The standard output from `trendLevel` is shown in @fig-trendLevel1, which shows the variation in NO~x~ concentrations by month and hour of the day. By default the function will use "month" for the x-axis and "hour" for the y-axis.
 
 ```{r}
 #| label: fig-trendLevel1
