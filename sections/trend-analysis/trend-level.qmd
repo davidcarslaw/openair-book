@@ -48,7 +48,7 @@ trendLevel(mydata, pollutant = "nox", y = "wd",
 ## new field: so2/nox ratio
 mydata <- mutate(mydata, ratio =  so2 / nox)
 
-## condition by mydata$new
+## condition by mydata$ratio
 trendLevel(mydata, "nox", x = "year", y = "wd", 
            type = "ratio",
            cols = "inferno")
