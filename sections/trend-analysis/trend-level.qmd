@@ -103,7 +103,7 @@ As a simple example, consider the above plot which summarises by mean. This tell
 
 ```{r}
 #| label: fig-trendlevel4
-#| fig-cap: '`trendLevel` using locally defined    `statistic`.'
+#| fig-cap: '`trendLevel` using locally defined `statistic`.'
 #| fig-width: 8
 #| fig-height: 8
 #| out-width: 80%
