@@ -31,8 +31,6 @@ It is sometimes useful to annotate the plots with other information. It is possi
 
 Other [openair]{.pkg} functions can be used to plot other statistics. For example, `rollingMean` could be used to calculate rolling 8-hour mean O~3~ concentrations. Then, `calendarPlot` could be used with `statistic = "max"` to show days where the maximum daily rolling 8-hour mean O~3~ concentration is greater than a certain threshold e.g. 100 or 120 μg m^-3^.
 
-`calendarPlot` for PM~10~ concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ \>50 μg m^-3^. The numbers show the PM~10~ concentration in μg m^-3^.
-
 ```{r}
 #| label: fig-calendarPlotExceed
 #| fig-cap: '`calendarPlot` for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ >50 μg m^-3^. The numbers show the PM~10~ concentration in μg m^-3^.'
