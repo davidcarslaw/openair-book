@@ -66,7 +66,7 @@ Note again that `selectByDate` can be useful. For example, to plot select months
 #| eval: false
 calendarPlot(selectByDate(mydata,
   year = 2003,
-  month = c("jun", "jul", "aug")
+  month = c(6, 7, 8)
 ),
 pollutant = "o3", year = 2003
 )
