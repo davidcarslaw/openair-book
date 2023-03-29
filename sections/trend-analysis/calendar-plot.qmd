@@ -50,7 +50,7 @@ To show wind angle, scaled to wind speed (@fig-calendarPlot2).
 
 ```{r}
 #| label: fig-calendarPlot2
-#| fig-cap: '`calendarPlot` for O~3~ concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O~3~ concentrations on the 17 and 18th of April were associated with strong north-easterly winds.'
+#| fig-cap: '`calendarPlot` for O~3~ concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O~3~ concentrations on the 18 and 19th of April were associated with strong north-easterly winds.'
 #| fig-height: 8
 #| fig-width: 6
 #| out-width: 80%
