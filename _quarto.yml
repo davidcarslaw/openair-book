@@ -16,6 +16,9 @@ book:
   repo-actions: [edit]
   favicon: "favicon.png"
   sharing: [twitter, facebook, linkedin]
+  sidebar: 
+    search: true
+    logo: images/plume.png
   chapters:
     - index.qmd
     - sections/intro/intro.qmd
