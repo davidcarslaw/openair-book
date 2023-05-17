@@ -10,7 +10,7 @@ The `timePlot` function is designed to quickly plot time series of data, perhaps
 
 With packages such as [ggplot2]{.pkg} it is very easy to plot time series. However, there are a few enhancements in `timePlot` such as flexible time-averaging and adding annotations for wind speed and direction that make it useful in some situations.
 
-The function offers fine control over many of the plot settings such as line type, colour and width. If more than one pollutant is selected, then the time series are shown compactly in different panels with different scales. Sometimes it is useful to get and idea of whether different variables 'go up and down' together. Such comparisons in `timePlot` are made easy by setting `group =   TRUE`, and maybe also `normalise = "mean"`. The latter setting divides each variable by its mean value, thus enabling several variables to be plotted together using *the same scale*. The `normalise` option will also take a date as a string (in British format dd/mm/YYYY), in which case all data are normalise to equal 100 at that time. Normalising data like this makes it easy to compare time series on different scales e.g. emissions and ambient measurements.
+The function offers fine control over many of the plot settings such as line type, colour and width. If more than one pollutant is selected, then the time series are shown compactly in different panels with different scales. Sometimes it is useful to get and idea of whether different variables 'go up and down' together. Such comparisons in `timePlot` are made easy by setting `group = TRUE`, and maybe also `normalise = "mean"`. The latter setting divides each variable by its mean value, thus enabling several variables to be plotted together using *the same scale*. The `normalise` option will also take a date as a string (in British format dd/mm/YYYY), in which case all data are normalise to equal 100 at that time. Normalising data like this makes it easy to compare time series on different scales e.g. emissions and ambient measurements.
 
 `timePlot` works very well in conjunction with `selectByDate`, which makes it easy to select specific time series intervals. See @sec-selectByDate for examples of how to select parts of a data frame based on the date.
 
@@ -86,7 +86,7 @@ An example of normalising data is shown in @fig-timePlotNorm. In this plot we ha
 ```{r}
 #| label: fig-timePlotNorm
 #| fig-cap: An example of normalising time series data to fix values to equal 100 at the beginning of 1998
-#| fig-width: 7
+#| fig-width: 8
 #| fig-height: 5
 #| out-width: 70%
 timePlot(mydata, 
