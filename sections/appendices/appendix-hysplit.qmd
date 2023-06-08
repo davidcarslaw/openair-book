@@ -27,7 +27,7 @@ getMet <- function(year = 2013, month = 1,
     for (j in seq_along(month)) {
       download.file(
         url = paste0(
-          "ftp://arlftp.arlhq.noaa.gov/archives/reanalysis/RP",
+          "https://www.ready.noaa.gov/data/archives/reanalysis/RP",
           year[i], sprintf("%02d", month[j]), ".gbl"
         ),
         destfile = paste0(
