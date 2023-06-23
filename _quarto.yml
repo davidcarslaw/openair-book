@@ -11,6 +11,7 @@ book:
   date: today
   date-format: long
   site-url: "https://bookdown.org/david_carslaw/openair/"
+  site-path: "/david_carslaw/openair/"
   repo-url: https://github.com/davidcarslaw/openair-book/
   repo-branch: master
   repo-actions: [edit]
