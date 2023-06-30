@@ -1,0 +1,161 @@
+---
+author: David Carslaw
+---
+
+# Dilution lines and pollutant ratios {#sec-runRegression}
+
+## Background {#sec-timePropBack}
+
+The behaviour of pollutants in the atmosphere is highly complex, which can make it difficult to understand the influence that different sources have on concentrations. Across all time scales dispersion processes have a strong influence on how emissions dilute in the atmosphere. However, when considering two pollutants, some of these complexities can be reduced. In a dispersion plume from a single source, the ratio between two pollutant concentrations will remain constant in the absence of loss e.g. through deposition or through chemical reaction. This characteristic of constant ratios in dispersing plumes can be exploited through different analysis approaches.
+
+@bentley2004 considered the relationship between two pollutants in a range of interesting ways, which have not been widely adopted but are nevertheless useful. @bentley2004 considered the relationship between two pollutants with the aim of understanding the ratio, which can then be compared with emission inventories. The approach is to consider the issue from the perspective of a local source being mixed into background air. Both the background air and source contributions in terms of concentrations will vary, which can make it difficult to establish a pollutant ratio for a dominant source. This approach has also been used to consider vehicle emission quantification using high time resolution data (at 1-Hz) by @farren2023a.
+
+The idea is to exploit the fact that for a local dispersing plume, the ratio between two pollutants would be expected to be invariant. The main approach is to look in time series data over short periods of time where, in a dispersing plume, the ratio between two pollutants is constant. For hourly data for example, considering the relationship between two pollutants over three consecutive hours using a linear regression can be used to identify short periods where the ratio (the slope from a regression) is constant (or close to constant). By considering high R^2^ values (typically \> 0.9 to 0.95), these conditions correspond to constant ratios between two pollutants, which would be indicative of the behaviour of a diluting plume. The regression itself is a rolling regression e.g. first consider hours 1 to3, then 2 to 4 and so on. The approach becomes clearer by considering an example.
+
+## Examples {#sec-timePropEx}
+
+As an example we will import some roadside monitoring data for 2022 and combine it with measured meteorological data rather than modelled (hence `meteo = FALSE`).
+
+```{r}
+#| label: importRunRegres
+#| eval: false
+# load packages for this section
+library(tidyverse)
+library(openair)
+library(worldmet)
+
+my1 <- importAURN("my1", year = 2022, meteo = FALSE)
+met <- importNOAA(year = 2022)
+my1 <- left_join(my1, met, by = "date")
+
+```
+
+```{r}
+#| echo: false
+#| cache: false
+library(tidyverse)
+library(openair)
+library(worldmet)
+
+my1 <- readRDS(here::here("data/my1_2022.rds"))
+```
+
+Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour rolling regression window. The data frame returned (`out`) has the rolling 3-hour regression fit information and other variables that can be used for plotting and post-processing.
+
+```{r}
+x <- "nox"
+y <- "pm2.5"
+out <- runRegression(my1, x = x, y = y, run.len = 3)
+
+# look at returned data
+out
+```
+
+The output contains all regression fits, but it is useful to filter the data to extract the good fits (R^2^ \> 0.95), as well as some other filtering. For this example, we also filter for quite large changes in NO~x~ over 3 hours (\> 100 μg m^-3^), which will be dominated by changes in concentrations due to local sources (the main interest) --- and also to make the plots below a bit clearer. The filtering of the slopes trims some extreme values and again make the plots easier to interpret.
+
+```{r}
+# select good fits
+out_filter <- filter(
+  out,
+  r_squared > 0.95,
+  slope > quantile(slope, probs = .01, na.rm = TRUE),
+  slope < quantile(slope, probs = .99, na.rm = TRUE),
+  delta_nox > 100
+)
+```
+
+Another step that is useful is to identify the filtered data (`out_filter`) in the original data set so that can be processed in different ways. The code below identified all the 3-hour periods and combines them into a single data frame.
+
+```{r}
+# original data in selection
+my1_select <-
+  map(1:nrow(out_filter), function (i)
+    filter(
+      my1,
+      date >= out_filter$date_start[i],
+      date <= out_filter$date_end[i]
+    ) %>%
+      mutate(slope = out_filter$slope[i])) %>%
+  list_rbind()
+```
+
+The next few plots should make the purpose of this analysis clearer. @fig-nox-pm25 shows the relationship between NO~x~ and PM~2.5~ for the filtered data, illustrating that there is quite a lot of variation in the concentration of PM~2.5~ for a particular concentration of NO~x~.
+
+```{r}
+#| label: fig-nox-pm25
+#| fig-cap: Relationship between hourly NO~x~ and PM~2.5~ for filtered data at Marylebone Road for 2022.
+#| fig-width: 4.5
+#| fig-height: 4.5
+#| cache: false
+# use a light theme
+theme_set(theme_light())
+
+ggplot(my1_select, aes(.data[[x]], .data[[y]])) + 
+  geom_point() +
+  ylab(quickText("pm2.5 (ug/m3)")) +
+  xlab(quickText("nox (ug/m3)"))
+```
+
+Next, we will plot the 'dilution lines' --- the result of the rolling regressions for the filtered data. The plot is shown in @fig-dilution-lines, which uses the **same** data as @fig-nox-pm25. What is striking about @fig-dilution-lines is that over 3-hour periods there are so many lines that have a similar slope, which changes the impression of the data shown in @fig-nox-pm25. Remember that the data were filtered for quite large changes in NO~x~, so @fig-dilution-lines shows the corresponding change in PM~2.5~ , which highlights consistent behaviour.
+
+The dilution lines shown in @fig-dilution-lines have also been coloured by the minimum value of PM~2.5~ in each case, which can be thought of as the prevailing background concentration of PM~2.5~ (the y-intercept of the individual regressions). An interpretation of @fig-dilution-lines is that the background PM~2.5~ can vary a lot but there is a local source in addition to the background air that has a rather consistent behaviour with similar rations of PM~2.5~ to NO~x~.
+
+```{r}
+#| label: fig-dilution-lines
+#| fig-cap: Relationship between hourly NO~x~ and PM~2.5~ for filtered data at Marylebone Road for 2022. In this case the 3-hour 'dilution lines' are shown where the lnear regression R^2^ is > 0.95 and the change in NO~x~ is > 100 μg m^-3^.
+#| cache: false
+#| fig-width: 5.4
+#| fig-height: 4
+# sticks
+x1 <- paste0(x, "_1")
+x2 <- paste0(x, "_2")
+y1 <- paste0(y, "_1")
+y2 <- paste0(y, "_2")
+
+ggplot(out_filter, aes(
+  x = .data[[x1]],
+  y = .data[[y1]],
+  xend = .data[[x2]],
+  yend = .data[[y2]], 
+  colour = .data[[y1]]
+)) +
+  geom_segment() +
+  scale_color_gradientn(colours = openColours("turbo", 100)) +
+  guides(col = guide_colourbar(title = "Background\nPM2.5")) +
+  ylab(quickText("pm2.5 (ug/m3)")) +
+  xlab(quickText("nox (ug/m3)"))
+```
+
+To get more quantittaive information from @fig-dilution-lines, the slope can be extracted and plotted as a density plot distribution. Furthermore, the mode of the distribution can also be estimated, as shown in @fig-mode-plot. These results show that the mode is about 0.04 for the mass ratio of PM~2.5~/NO~x~. Given that this estimate is based on 'dilution events' when the change in NO~x~ concentrations is quite large, the value of 0.04 is an estimate of the traffic emissions ratio of PM~2.5~/NO~x~, which could consist of both direct exhaust emissions and non-exhaust emissions. Note that if a NO~x~ change of 50 μg m^-3^ had been used, the mode estimate is very similar (0.039) to the case where the change was μg m^-3^. This result seems reasonable in that a change of 50 or 100μg m^-3^ are both quite large and would both be indicative of a change in concentration due to a proximate source.[^run-regression-1]
+
+[^run-regression-1]: A value of 100 μg m^-3^ was used to make the plots clearer.
+
+It should be noted in @fig-dilution-lines and @fig-mode-plot there is still a distribution of slopes, even if they look reasonably consistent. This is expected for a few reasons. First, even if the extracted dilution lines were 100% associated with a road traffic source, the emission rate and relationship between NO~x~ and PM~2.5~ would not be expected to be constant. Second, it is still possible that dilution lines can be affected by changing background concentrations to some extent, and third, there could still be an influence from other sources. However, its is clear there is a remarkable consistency in the dilution line slopes shown in @fig-dilution-lines.
+
+```{r}
+#| label: fig-mode-plot
+#| fig-cap: Distribution of slopes as a density plot with the estimated mode value of the slopes shown.
+#| cache: false
+#| fig-width: 4.5
+#| fig-height: 4.5
+# mode estimate
+density_estimate <- density(out_filter$slope)
+mode_value <- density_estimate$x[which.max(density_estimate$y)]
+
+# density plot
+ggplot(out_filter, aes(x = slope)) +
+  geom_density() +
+  theme_minimal() +
+  geom_vline(xintercept = mode_value,
+             lty = 5,
+             colour = "tomato") +
+  geom_text(
+    x = 0.11,
+    y = 8,
+    label = paste("Mode =", round(mode_value, 3)),
+    colour = "tomato",
+    size = 4
+  ) +
+  coord_cartesian(xlim = c(0, 0.2))
+
+```
