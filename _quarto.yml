@@ -40,11 +40,12 @@ book:
       chapters:
         - sections/trend-analysis/time-plot.qmd
         - sections/trend-analysis/time-variation.qmd
-        - sections/trend-analysis/time-proportion.qmd
-        - sections/trend-analysis/trend-level.qmd
         - sections/trend-analysis/calendar-plot.qmd
+        - sections/trend-analysis/time-proportion.qmd
         - sections/trend-analysis/theil-sen.qmd
         - sections/trend-analysis/smooth-trend.qmd
+        - sections/trend-analysis/run-regression.qmd
+        - sections/trend-analysis/trend-level.qmd
     - part: "Model Evaluation"
       chapters:
         - sections/model-evaluation/mod-stats.qmd
