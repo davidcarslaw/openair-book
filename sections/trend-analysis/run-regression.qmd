@@ -24,9 +24,9 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-my1 <- importAURN("my1", year = 2022, meteo = FALSE)
+aq <- importAURN("my1", year = 2022, meteo = FALSE)
 met <- importNOAA(year = 2022)
-my1 <- left_join(my1, met, by = "date")
+aq <- left_join(aq, met, by = "date")
 
 ```
 
@@ -37,7 +37,7 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-my1 <- readRDS(here::here("data/my1_2022.rds"))
+aq <- readRDS(here::here("data/my1_2022.rds"))
 ```
 
 Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour rolling regression window. The data frame returned (`out`) has the rolling 3-hour regression fit information and other variables that can be used for plotting and post-processing.
@@ -45,7 +45,7 @@ Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour r
 ```{r}
 x <- "nox"
 y <- "pm2.5"
-out <- runRegression(my1, x = x, y = y, run.len = 3)
+out <- runRegression(aq, x = x, y = y, run.len = 3)
 
 # look at returned data
 out
@@ -68,10 +68,10 @@ Another step that is useful is to identify the filtered data (`out_filter`) in t
 
 ```{r}
 # original data in selection
-my1_select <-
+aq_select <-
   map(1:nrow(out_filter), function (i)
     filter(
-      my1,
+      aq,
       date >= out_filter$date_start[i],
       date <= out_filter$date_end[i]
     ) %>%
@@ -90,7 +90,7 @@ The next few plots should make the purpose of this analysis clearer. @fig-nox-pm
 # use a light theme
 theme_set(theme_light())
 
-ggplot(my1_select, aes(.data[[x]], .data[[y]])) + 
+ggplot(aq_select, aes(.data[[x]], .data[[y]])) + 
   geom_point() +
   ylab(quickText("pm2.5 (ug/m3)")) +
   xlab(quickText("nox (ug/m3)"))
@@ -158,4 +158,15 @@ ggplot(out_filter, aes(x = slope)) +
   ) +
   coord_cartesian(xlim = c(0, 0.2))
 
+```
+
+As a final step, we can explore the filtered data further. For example, we might want to explore the extent to which the ratio of PM~2.5~/NO~x~ varies by wind direction and wind speed. A polar plot of NO~x~ concentrations (not shown for 2022 data but easily plotted), shows the dominance of southerly winds and the influence of vehicles on Marylebone Road. This is shown in @fig-polar-slope, which highlights that there is quite a lot of variation in the slope value by wind direction. Focusing only on southerly winds (where there is a dominant traffic effect), the ratio of PM\~2.5\~/NO\~x\~ is lower in the south-west quadrant than the south-east quadrant, which might reflect different vehicle emissions behaviour along the road. Note that in plotting @fig-polar-slope, Nonparametric Wind Regression (see @sec-polar-NWR) was used because the filtered data does not contain enough information to use a GAM.
+
+```{r}
+#| label: fig-polar-slope
+#| fig-cap: Polar plot of the slope of PM~2.5~/NO~x~ from the run-regression analysis using filtered data. Note that 
+#| cache: false
+#| fig-width: 4.5
+#| fig-height: 4.5
+polarPlot(aq_select, pollutant = "slope", statistic = "nwr")
 ```
