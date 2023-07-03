@@ -121,7 +121,7 @@ ggplot(out_filter, aes(
 )) +
   geom_segment() +
   scale_color_gradientn(colours = openColours("turbo", 100)) +
-  guides(col = guide_colourbar(title = "Background\nPM2.5")) +
+  guides(col = guide_colourbar(title = quickText("Background\nPM2.5"))) +
   ylab(quickText("pm2.5 (ug/m3)")) +
   xlab(quickText("nox (ug/m3)"))
 ```
