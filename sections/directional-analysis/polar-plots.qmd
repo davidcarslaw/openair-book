@@ -215,7 +215,7 @@ This plot shows that concentrations of SO~2~ tend to be highest from the east (a
 
 One issue to be aware of is the amount of data required to generate some of these plots; particularly the hourly plots. If only a relatively short time series is available there may not be sufficient information to produce useful plots. Whether this is important or not will depend on the specific circumstances e.g. the prevalence of wind speeds and directions from the direction of interest. When used to produce many plots (e.g. `type = "hour"`), the run time can be quite long.
 
-## Nonparametric Wind Regression, NWR
+## Nonparametric Wind Regression, NWR {#sec-polar-NWR}
 
 An alternative approach to modelling the surface concentrations with a GAM is to use kernel smoothers, as described by Henry et al. [-@henry2009]. In NWR, smoothing is achieved using nonparametric kernel smoothers that weight concentrations on a surface according to their proximity to defined wind speed and direction intervals. In the approach adopted in [openair]{.pkg} (which is not identical to Henry et al. [-@henry2009]), Gaussian smoothers are used for both wind direction and wind speed. Unlike the default GAM approach in [openair]{.pkg}, the NWR technique works directly with the raw (often hourly) data. It tends to provide similar results to [openair]{.pkg} but may have advantages in certain situations e.g. when there is insufficient data available to use a GAM. The width of the Gaussian kernels (𝜎) is controlled by the options `wd_spread` and `ws_spread`.
 
