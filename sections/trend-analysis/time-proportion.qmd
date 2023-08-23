@@ -12,7 +12,7 @@ The plot shows the value of `pollutant` on the y-axis (averaged according to `av
 
 ## Examples {#sec-timePropEx}
 
-An example of the `timeProp` function is shown in @fig-timeProp. In this example SO~2~ concentrations are considered for 2003 (using the `selectByDate` function). The averaging period is set to 3 days and the mean concentration is plotted and the proportion contribution by wind sector is given. Other options are chosen to place the key at the top and choose the number of columns used in the key. It is apparent from @fig-timeProp) that the highest SO~2~ concentrations are dominated by winds from an easterly sector, but actually occur throughout the year.
+An example of the `timeProp` function is shown in @fig-timeProp. In this example SO~2~ concentrations are considered for 2003 (using the `selectByDate` function). The averaging period is set to 3 days and the mean concentration is plotted and the proportion contribution by wind sector is given. Other options are chosen to place the key at the top and choose the number of columns used in the key. It is apparent from @fig-timeProp that the highest SO~2~ concentrations are dominated by winds from an easterly sector, but actually occur throughout the year.
 
 ```{r}
 #| label: fig-timeProp
