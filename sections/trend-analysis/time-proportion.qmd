@@ -29,7 +29,7 @@ timeProp(selectByDate(mydata, year = 2003),
          key.columns = 8, ylab = "so2 (ug/m3)")
 ```
 
-Note that `proportion` can be an existing categorical (i.e. factor or character) variable in a data frame. If a numeric variable is supplied, then it is typically cut into four quantile levels. So, for example, the plot below would show four intervals of wind speed, which would help show the wind speed conditions that control high SO~2~ concentration --- and importantly, when they occur.
+Note that `proportion` can be an existing categorical (i.e. factor or character) variable in a data frame. If a numeric variable is supplied, then it is typically cut into four quantile levels. So, for example, the plot below would show intervals of wind speed, which would help show the wind speed conditions that control high SO~2~ concentration --- and importantly, when they occur.
 
 An example of using `timeProp` with a continuous variable is shown in @fig-timePropws. In this case the wind speed values are split into 3 quantile levels. The number of quantiles used is determined by the option `n.levels`. This approach can be used for any numeric variables.
 
