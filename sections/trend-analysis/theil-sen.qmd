@@ -25,7 +25,7 @@ One commonly used approach for trend calculation in studies of air
 pollution is the non-parametric *Mann-Kendall* approach [@Hirsch1982].
 @Wilcox2010 provides an excellent case for using 'modern methods' for
 regression including the benefits of non-parametric approaches and
-bootstrap simulations. Note also that the all the regression parameters
+bootstrap simulations. Note also that all the regression parameters
 are estimated through bootstrap resampling.
 
 The Theil-Sen method dates back to 1950, but the basic idea pre-dates
@@ -35,7 +35,7 @@ follows. Given a set of $n$ $x$, $y$ pairs, the slopes between all pairs
 of points are calculated. Note, the number of slopes can increase by
 $\approx$ $n^2$ so that the number of slopes can increase rapidly as the
 length of the data set increases. The Theil-Sen estimate of the slope is
-the median of all these slopes. The advantage of the using the Theil-Sen
+the median of all these slopes. The advantage of using the Theil-Sen
 estimator is that it tends to yield accurate confidence intervals even
 with non-normal data and heteroscedasticity (non-constant error
 variance). It is also resistant to outliers --- both characteristics can
@@ -97,7 +97,7 @@ very much on the data. It may well be that statistically significant
 trends can be detected over relatively short periods but it is another
 matter whether it matters. Because seasonal effects can be important for
 monthly data, there is the option to deseasonalise the data first. The
-`timeVariation` function are both useful to determine whether there is a
+`timeVariation` function is useful to determine whether there is a
 seasonal cycle that should be removed.
 
 Note also that the symbols shown next to each trend estimate relate to
@@ -207,7 +207,7 @@ T [\%.yr^{-1}] = 100.\left(\frac{C_{End}}{C_{Start}}
 $$
 
 where $C_{End}$ and $C_{Start}$ are the mean concentrations for the end
-and start date, respectfully. $N_{years}$ is the number of years (or
+and start date, respectively. $N_{years}$ is the number of years (or
 fractions of) the time series spans.
 
 ```{r}
