@@ -114,14 +114,14 @@ concentrations of O~3~. The function is called as shown in
 The plot shows the deseasonalised monthly mean concentrations of O~3~.
 The solid red line shows the trend estimate and the dashed red lines
 show the 95% confidence intervals for the trend based on resampling
-methods. The overall trend is shown at the top-left as 0.38 (ppb) per
-year and the 95% confidence intervals in the slope from 0.21--0.51
+methods. The overall trend is shown at the top-left as 0.37 (ppb) per
+year and the 95% confidence intervals in the slope from 0.22--0.50
 ppb/year. The $\ast\ast\ast$ show that the trend is significant to the
 0.001 level.
 
 ```{r}
 #| label: fig-TheilSen1
-#| fig-cap:  Trends in ozone at Marylebone Road. The plot shows the deseasonalised monthly mean concentrations of O3. The solid red line shows the trend estimate and the dashed red lines show the 95% confidence intervals for the trend based on resampling methods. The overall trend is shown at the top-left as 0.38 (ppb) per year and the 95% confidence intervals in the slope from 0.21–0.51 ppb/year. The '∗∗∗' show that the trend is significant to the 0.001 level.
+#| fig-cap:  Trends in ozone at Marylebone Road. The plot shows the deseasonalised monthly mean concentrations of O3. The solid red line shows the trend estimate and the dashed red lines show the 95% confidence intervals for the trend based on resampling methods. The overall trend is shown at the top-left as 0.37 (ppb) per year and the 95% confidence intervals in the slope from 0.22–0.50 ppb/year. The '∗∗∗' show that the trend is significant to the 0.001 level.
 #| fig-width: 5
 #| fig-height: 4
 #| out-width: 70%
@@ -134,10 +134,10 @@ TheilSen(mydata, pollutant = "o3",
 
 Because the function runs simulations to estimate the uncertainty in the
 slope, it can take a little time for all the calculations to finish.
-These printed results show that in this case the trend in O~3~ was +0.38
+These printed results show that in this case the trend in O~3~ was +0.37
 units (i.e. ppb) per year as an average over the entire period. It also
-shows the 95% confidence intervals in the trend ranged between 0.21 to
-0.51 ppb/year. Finally, the significance level in this case is very
+shows the 95% confidence intervals in the trend ranged between 0.22 to
+0.50 ppb/year. Finally, the significance level in this case is very
 high; providing very strong evidence that concentrations of O~3~
 increased over the period. The plot together with the summary results is
 shown in @fig-TheilSen1. Note that if one wanted to display the
