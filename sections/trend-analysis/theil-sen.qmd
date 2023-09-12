@@ -142,7 +142,7 @@ high; providing very strong evidence that concentrations of O~3~
 increased over the period. The plot together with the summary results is
 shown in @fig-TheilSen1. Note that if one wanted to display the
 confidence intervals in the slope at the 99% confidence intervals, the
-code would be @fig-TheilSen2.
+code would be as follows.
 
 ```{r}
 #| eval: false
