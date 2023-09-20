@@ -515,7 +515,7 @@ results <- polarCluster(mydata,
 )
 ```
 
-The real benefit of `polarCluster` is being able to identify clusters in the original data frame. To do this, the results from the analysis must be read into a new variable, as in @fig-polarClustn6, where the results are read into a data frame `results`. Now it is possible to use this new information. In the 8-cluster solution to @fig-polarClustn6, cluster 6 seems to capture the elevated SO~2~ concentrations to the east well (see @fig-polarPlot3 for comparison), while cluster 5 will strongly represent the road contribution.
+The real benefit of `polarCluster` is being able to identify clusters in the original data frame. To do this, the results from the analysis must be read into a new variable, as in @fig-polarClustn6, where the results are read into a data frame `results`. Now it is possible to use this new information. In the 8-cluster solution to @fig-polarClustn6, cluster 6 seems to capture the elevated SO~2~ concentrations to the east well (see @fig-polarPlot3 for comparison), while cluster 4 will strongly represent the road contribution.
 
 The results are here:
 
