@@ -194,7 +194,7 @@ selectByDate(traj,
 
 Which, interestingly still clearly shows elevated PM~10~ concentrations for those two days that cross Iceland. The same is also true for PM~2.5~. However, as mentioned previously, checking other sites in more rural areas would be a good idea.
 
-## Trajectory gridded frequencies {#trajLevel}
+## Trajectory gridded frequencies {#trajectory-analysis-trajLevel}
 
 The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. sec- The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the North Kensington data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
 
@@ -522,14 +522,14 @@ The analysis above was demonstrated for a single site. However, to exploit the f
 
 The results returned from multiple site analysis are normalised by each site individually by dividing the output by the mean of the pollutant concentration. This approach ensures that sites with potentially very different mean concentrations can be used in a consistent way to identify source regions, without single sites dominating the output.
 
-## Trajectory clustering {#sec-trajCluster}
+## Trajectory clustering {#trajectory-analysis-sec-trajCluster}
 
 Often it is useful to use cluster analysis on back trajectories to group similar air mass origins together. The principal purpose of clustering back trajectories is to post-process data according to cluster origin. By grouping data with similar geographic origins it is possible to gain information on pollutant species with similar chemical histories. There are several ways in which clustering can be carried out and several measures of the similarity of different clusters. A key issue is how the *distance matrix* is calculated, which determines the similarity (or dissimilarity) of different back trajectories. The simplest measure is the Euclidean distance. However, an angle-based measure is also often used. The two distance measures are defined below. In [openair]{.pkg} the distance matrices are calculated using C$++$ code because their calculation is computationally intensive. Note that these calculations can also be performed directly in the Hysplit model itself.
 
-The Euclidean distance between two trajectories is given by Equation \@eq-Euclid. Where $X_1$, $Y_1$ and $X_2$, $Y_2$ are the latitude and longitude coordinates of back trajectories $1$ and $2$, respectively. $n$ is the number of back trajectory points (96 hours in this case).
+The Euclidean distance between two trajectories is given by @eq-Euclid. Where $X_1$, $Y_1$ and $X_2$, $Y_2$ are the latitude and longitude coordinates of back trajectories $1$ and $2$, respectively. $n$ is the number of back trajectory points (96 hours in this case). Note that a simpler formula is sufficient for this calculation than the more accurate Haversine formula.
 
 $$
-d_{1, 2} = \left({\sum_{i=1}^{n} ((X_{1i} - X_{2i}) ^ 2 + (Y_{1i} - Y_{2i})) ^ 2}\right)^{1/2} 
+d_{1, 2} = \left({\sum_{i=1}^{n} 111((X_{1i} - X_{2i}) ^ 2 + ((Y_{1i} - Y_{2i})cos(X_{1i})) ^ 2}\right)^{1/2} 
 $$ {#eq-Euclid}
 
 The *angle* distance matrix is a measure of how similar two back trajectory points are in terms of their angle from the origin i.e. the starting location of the back trajectories. The angle-based measure will often capture some of the important circulatory features in the atmosphere e.g. situations where there is a high pressure located to the east of the UK. However, the most appropriate distance measure will be application dependent and is probably best tested by the extent to which they are able to differentiate different air-mass characteristics, which can be tested through post-processing. The angle-based distance measure is defined as:
