@@ -258,7 +258,7 @@ trajLevel(traj,
 
 ### Allocating trajectories to different wind sectors
 
-One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in @sec-trajCluster. A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
+One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in @trajectory-analysis-sec-trajCluster. A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
 
 ```{r}
 #| echo: false
