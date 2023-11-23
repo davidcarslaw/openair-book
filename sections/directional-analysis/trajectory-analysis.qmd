@@ -457,7 +457,7 @@ $$
 \widetilde{T}(x|x') = \sum_{l=1}^{l=L}\overline{T_l}(x|x')c_l 
 $$
 
-c~l~: Receptor concentration of back trajectory I
+c~l~: Receptor concentration of back trajectory l
 
 L: Total number of back trajectories
 
