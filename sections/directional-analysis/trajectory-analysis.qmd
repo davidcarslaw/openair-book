@@ -445,7 +445,7 @@ x' y': Centreline of trajectory
 
 This means at each trajectory point, the probability is calculated across a pre-defined grid. These calculations can take some time to run. For example, with 96 hour back trajectories calculated every 3 hours in a year, there are 840,960 trajectory end points. Each one of these points is used to estimate the probability on a grid, which itself can be large (a one degree grid from 35 to 80°N and -55 to 25°W is 3600 grid points).
 
-A *potential mass transfer potential field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
+A *potential mass transfer field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
 
 $$
 \overline{T_l}(x | x') = \frac{\int_{t-\tau}^{t} Q(x,t| x', t')dt'}{\int_{t-\tau}^{t}dt'} 
