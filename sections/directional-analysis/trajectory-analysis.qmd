@@ -588,14 +588,14 @@ clust <- trajCluster(traj, method = "Angle",
 
 ```{r}
 #| eval: false
-trajPlot(clust$data, group = "cluster")
+trajPlot(clust$data$traj, group = "cluster")
 ```
 
 A useful way in which to see where these air masses come from by trajectory is to produce a frequency plot by cluster. Such a plot (not shown, but code below) provides a good indication of the spread of the different trajectory clusters as well as providing an indication of where air masses spend most of their time. For the London 2011 data it can be seen cluster 1 is dominated by air from the European mainland to the south.
 
 ```{r}
 #| eval: false
-trajLevel(clust$data, type = "cluster", 
+trajLevel(clust$data$traj, type = "cluster", 
           col = "increment", 
           border = NA)
 ```
