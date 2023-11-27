@@ -31,7 +31,7 @@ poly.na <- function(x1, y1, x2, y2, col = "black", alpha= 0.2) {
 library(latticeExtra)
 
 ## multi-panel time plot
-plt <- timePlot(selectByDate(mydata, year = 2003, month = "aug"),
+plt <- timePlot(selectByDate(mydata, year = 2003, month = 8),
          pollutant = c("nox", "o3", "pm25", "pm10", "ws"), y.relation = "free")$plot
 
 ## [1]
