@@ -114,7 +114,7 @@ timePlot(selectByDate(mydata, year = 2003, month = "aug"),
          y.relation = "free")
 ```
 
-So, considering \@ref(fig:timePlotAnnotate), this is how the text \`some missing data' was added to the top panel.
+So, considering @fig-timePlotAnnotate , this is how the text 'some missing data' was added to the top panel.
 
 ```{r}
 #| label: annotateP1
