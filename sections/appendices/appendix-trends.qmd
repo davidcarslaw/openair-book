@@ -8,7 +8,7 @@ Understanding trends is a core component of air quality and the atmospheric scie
 
 Generalized Additive Models (GAMs) offer a flexible approach to calculating trends and in particular, the [mgcv]{.pkg} package contains many functions that are very useful for such modelling. Some of the details of this type of model are presented in @Wood2006 and the [mgcv]{.pkg} package itself.
 
-The example considered is 23 years of O~3~ measurements at Mace Head on the West coast of Ireland. The example shows the sorts of steps that might be taken to build a model to explain the trend. The data are first imported and then the year, month and `trend' estimated. Note that`trend' here is simply a decimal date that can be used to construct various explanatory models.
+The example considered is 23 years of O~3~ measurements at Mace Head on the West coast of Ireland. The example shows the sorts of steps that might be taken to build a model to explain the trend. The data are first imported and then the year, month and `trend` estimated. Note that `trend` here is simply a decimal date that can be used to construct various explanatory models.
 
 First we import the data:
 
