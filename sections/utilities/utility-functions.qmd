@@ -31,7 +31,7 @@ sub.data <- selectByDate(mydata, day = "weekday", hour = 7:19)
 
 ## select weekends between the hours of 7 am to 7 pm in winter (Dec, Jan, Feb)
 sub.data <- selectByDate(mydata, day = "weekend", hour = 7:19,
-                           month = c("dec", "jan", "feb"))
+                           month = c(12, 1, 2))
 ```
 
 The function can be used directly in other functions. For example, to make a polar plot using year 2000 data:
