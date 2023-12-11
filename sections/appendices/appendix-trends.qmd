@@ -58,7 +58,7 @@ M0 <- gam(o3 ~ s(trend), data = monthly)
 summary(M0)
 ```
 
-This model only explains about 2% of the variation as shown by the adjusted r^2^. More of a problem however is that no account has been taken of the seasonal variation. An easy way of seeing the effect of this omission is to plot the autocorrelation function (ACF) of the residuals, shown in @fig-M0ACF). This Figure clearly shows the residuals have a strong seasonal pattern. @Chatfield2004 provides lots of useful information on time series modelling.
+This model only explains about 2% of the variation as shown by the adjusted r^2^. More of a problem however is that no account has been taken of the seasonal variation. An easy way of seeing the effect of this omission is to plot the autocorrelation function (ACF) of the residuals, shown in @fig-M0ACF. This Figure clearly shows the residuals have a strong seasonal pattern. @Chatfield2004 provides lots of useful information on time series modelling.
 
 ```{r}
 #| label: fig-M0ACF
