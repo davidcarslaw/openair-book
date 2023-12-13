@@ -31,7 +31,7 @@ poly.na <- function(x1, y1, x2, y2, col = "black", alpha= 0.2) {
 library(latticeExtra)
 
 ## multi-panel time plot
-plt <- timePlot(selectByDate(mydata, year = 2003, month = "aug"),
+plt <- timePlot(selectByDate(mydata, year = 2003, month = 8),
          pollutant = c("nox", "o3", "pm25", "pm10", "ws"), y.relation = "free")$plot
 
 ## [1]
@@ -54,7 +54,7 @@ plt <- plt + layer(lpolygon(x = c(ymd("2003-08-21", tz = "GMT"), ymd("2003-08-21
                                        alpha = 0.2), rows = 5)
 ## [4]
 ## arrows and text
-plt <- plt + layer(larrows(ymd("2003-08-01"), 100, ymd_hm("2003-08-08 14:00"), 100,
+plt <- plt + layer(larrows(ymd_hm("2003-08-01 00:00"), 100, ymd_hm("2003-08-08 14:00"), 100,
                                      code = 3), rows = 1)
 
 plt <- plt + layer(ltext(x = ymd("2003-08-04", tz = "GMT"), y = 200, labels = "some missing data"),
@@ -114,7 +114,7 @@ timePlot(selectByDate(mydata, year = 2003, month = "aug"),
          y.relation = "free")
 ```
 
-So, considering \@ref(fig:timePlotAnnotate), this is how the text \`some missing data' was added to the top panel.
+So, considering @fig-timePlotAnnotate , this is how the text 'some missing data' was added to the top panel.
 
 ```{r}
 #| label: annotateP1

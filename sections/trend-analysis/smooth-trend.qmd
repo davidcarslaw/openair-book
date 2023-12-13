@@ -14,7 +14,7 @@ The user can select to deseasonalise the data first to provide a clearer indicat
 
 ## Examples of trend analysis
 
-We apply the function to concentrations of O~3~ and NO~2~ using the code below. The first plot shows the smooth trend in raw O~3~ concentrations, which shows a very clear seasonal cycle. By removing the seasonal cycle of O~3~, a better indication of the trend is given, shown in the second plot. Removing the seasonal cycle is more effective for pollutants (or locations) where the seasonal cycle is stronger e.g. for ozone and background sites. @fig-smoothTrendComp shows the results of the simulations for NO~2~ without the seasonal cycle removed. It is clear from this plot that there is little evidence of a seasonal cycle. The principal advantage of the smoothing approach compared with the Theil-Sen method is also clearly shown in this plot. Concentrations of NO~2~ first decrease, then increase strongly. The trend is therefore not monotonic, violating the Theil-Sen assumptions. Finally, the last plot shows the effects of first deaseasonalising the data: in this case with little effect.
+We apply the function to concentrations of O~3~ and NO~2~ using the code below. The first plot shows the smooth trend in raw O~3~ concentrations, which shows a very clear seasonal cycle. By removing the seasonal cycle of O~3~, a better indication of the trend is given, shown in the second plot. Removing the seasonal cycle is more effective for pollutants (or locations) where the seasonal cycle is stronger e.g. for ozone and background sites. @fig-smoothTrendComp shows the results of the simulations for NO~2~ without the seasonal cycle removed. It is clear from this plot that there is little evidence of a seasonal cycle. The principal advantage of the smoothing approach compared with the Theil-Sen method is also clearly shown in this plot. Concentrations of NO~2~ first decrease, then increase strongly. The trend is therefore not monotonic, violating the Theil-Sen assumptions. Finally, the last plot shows the effects of first deseasonalising the data: in this case with little effect.
 
 ```{r}
 #| label: fig-smoothTrendComp
@@ -44,7 +44,7 @@ smoothTrend(mydata, pollutant = "no2", deseason = TRUE, simulate =TRUE,
             main = "monthly mean deseasonalised no2 (bootstrap uncertainties)")
 ```
 
-The `smoothTrend` function share many of the functionalities of the `TheilSen` function. @fig-smoothwd shows the result of applying this function to O~3~ concentrations. The code that produced @fig-smoothwd) was:
+The `smoothTrend` function share many of the functionalities of the `TheilSen` function. @fig-smoothwd shows the result of applying this function to O~3~ concentrations. The code that produced @fig-smoothwd was:
 
 ```{r}
 #| label: fig-smoothwd

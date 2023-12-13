@@ -14,7 +14,7 @@ There is less need for this function now that [ggplot2]{.pkg} is available, but 
 
 -   It is easy to add a linear regression line. The resulting equation is shown on the plot together with the R$^2$ value.
 
--   For large data sets there is the possibility to \`bin' the data using hexagonal binning or kernel density estimates. This approach is very useful when there is considerable over-plotting.
+-   For large data sets there is the possibility to 'bin' the data using hexagonal binning or kernel density estimates. This approach is very useful when there is considerable over-plotting.
 
 -   It is easy to show how two variables are related to one another dependent on levels of a third variable. This capability is very useful for exploring how different variables depend on one another and can help reveal the underlying important relationships.
 
@@ -22,7 +22,7 @@ There is less need for this function now that [ggplot2]{.pkg} is available, but 
 
 -   It can handle date/time x-axis formats to provide an alternative way of showing time series, which again can be colour-coded by a third variable.
 
-The `scatterPlot` function isn't really specific to atmospheric sciences, in the same way as other plots. It is more a function for convenience, written in a style that is consistent with other [openair]{.pkg} functions. Nevertheless, along with the `timePlot` function they do form an important part of [openair]{.pkg} because of the usefulness of understanding show variables relate to one another. Furthermore, there are many options to make it easy to explore data in an interactive way without worrying about processing data or formatting plots.
+The `scatterPlot` function isn't really specific to atmospheric sciences, in the same way as other plots. It is more a function for convenience, written in a style that is consistent with other [openair]{.pkg} functions. Nevertheless, along with the `timePlot` function they do form an important part of [openair]{.pkg} because of the usefulness of understanding how variables relate to one another. Furthermore, there are many options to make it easy to explore data in an interactive way without worrying about processing data or formatting plots.
 
 ## Examples {#sec-ScatterEx}
 
@@ -48,7 +48,7 @@ Often with several years of data, points are over-plotted and it can be very dif
 
 ### Hexaganol binning {#sec-hexbin}
 
-Now it should be possible to make the plot by setting the method option to `method = "hexbin"`, as shown in Figure \@ref(fig:scatterPlot2). The benefit of hexagonal binning is that it works equally well with enormous data sets e.g. several million records. In this case @fig-scatterPlot2 provides a clearer indication of the relationship between NO~x~ and NO~2~ than @fig-scatterPlot1 because it reveals where most of the points lie, which is not apparent from @fig-scatterPlot1. Note that For `method = "hexbin"` it can be useful to transform the scale if it is dominated by a few very high values. This is possible by supplying two functions: one that that applies the transformation and the other that inverses it. For log scaling for example (the default), `trans = function(x) log(x)` and `inv = function(x) exp(x)`. For a square root transform use `trans = sqrt` and `inv =  function(x) x^2`. To not apply any transformation `trans = NULL` and `inv = NULL` should be used.
+Now it should be possible to make the plot by setting the method option to `method = "hexbin"`, as shown in @fig-scatterPlot2. The benefit of hexagonal binning is that it works equally well with enormous data sets e.g. several million records. In this case @fig-scatterPlot2 provides a clearer indication of the relationship between NO~x~ and NO~2~ than @fig-scatterPlot1 because it reveals where most of the points lie, which is not apparent from @fig-scatterPlot1. Note that For `method = "hexbin"` it can be useful to transform the scale if it is dominated by a few very high values. This is possible by supplying two functions: one that applies the transformation and the other that inverses it. For log scaling for example (the default), `trans = function(x) log(x)` and `inv = function(x) exp(x)`. For a square root transform use `trans = sqrt` and `inv =  function(x) x^2`. To not apply any transformation `trans = NULL` and `inv = NULL` should be used.
 
 ```{r}
 #| label: fig-scatterPlot2
@@ -177,7 +177,7 @@ scatterPlot(data2003,
             limits = c(0, 30))
 ```
 
-@fig-scatterPlot5 shows that `scatterPlot` can also handles dates on the x-axis; in this case shown for SO~2~ concentrations coloured by wind direction for August 2003.
+@fig-scatterPlot5 shows that `scatterPlot` can also handle dates on the x-axis; in this case shown for SO~2~ concentrations coloured by wind direction for August 2003.
 
 ```{r}
 #| label: fig-scatterPlot5
