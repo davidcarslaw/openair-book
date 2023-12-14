@@ -31,6 +31,7 @@ aq <- left_join(aq, met, by = "date")
 ```
 
 ```{r}
+#| label: importRunRegresReal
 #| echo: false
 #| cache: false
 library(tidyverse)
@@ -43,6 +44,7 @@ aq <- readRDS(here::here("data/my1_2022.rds"))
 Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour rolling regression window. The data frame returned (`out`) has the rolling 3-hour regression fit information and other variables that can be used for plotting and post-processing.
 
 ```{r}
+#| label: runRegnoxpm25
 x <- "nox"
 y <- "pm2.5"
 out <- runRegression(aq, x = x, y = y, run.len = 3)
@@ -54,6 +56,7 @@ out
 The output contains all regression fits, but it is useful to filter the data to extract the good fits (R^2^ \> 0.95), as well as some other filtering. For this example, we also filter for quite large changes in NO~x~ over 3 hours (\> 100 μg m^-3^), which will be dominated by changes in concentrations due to local sources (the main interest) --- and also to make the plots below a bit clearer. The filtering of the slopes trims some extreme values and again make the plots easier to interpret.
 
 ```{r}
+#| label: selectFits
 # select good fits
 out_filter <- filter(
   out,
@@ -67,6 +70,7 @@ out_filter <- filter(
 Another step that is useful is to identify the filtered data (`out_filter`) in the original data set so that can be processed in different ways. The code below identified all the 3-hour periods and combines them into a single data frame.
 
 ```{r}
+#| label: selectaq
 # original data in selection
 aq_select <-
   map(1:nrow(out_filter), function (i)
