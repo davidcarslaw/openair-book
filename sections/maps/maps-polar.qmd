@@ -92,9 +92,6 @@ Effectively all of these functions have very similar arguments, although some ar
 
 [^maps-polar-1]: `data` is an option for all of the directional analysis maps, with the exception of `diffMap()` which shares the `before` and `after` arguments with `openair::polarDiff()`.
 
-```{=html}
-<!-- -->
-```
 -   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
 -   `latitude`, `longitude`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`).
@@ -103,9 +100,6 @@ Effectively all of these functions have very similar arguments, although some ar
 
 [^maps-polar-2]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `control`, but never both. If multiple pollutants *and* `control` are specified, `control` will be ignored.
 
-```{=html}
-<!-- -->
-```
 -   `popup`: A column to be used to create a HTML "popup" that appears when users click the markers. This would be useful to label each marker with its corresponding site name or code, although other information could be usefully included (e.g., site type, average pollutant concentrations, and so on). A more complicated popup can be created using the `buildPopup()` function.
 
 -   `label`: Much the same as "popup", but the message will appear when users hover-over the marker rather than click on it. Labels are often much shorter than popups.
@@ -344,21 +338,32 @@ The static maps are designed to be *almost* identical to the interactive maps, w
 
 -   HTML maps have the `control` argument, whereas static maps have the `facet` argument. `facet` creates separate panels in the same figure in place of having a menu to switch between marker sets. Different panels are also created when multiple `pollutant`s are provided. The arrangement of these panels can be controlled using `facet.nrow`.
 
--   HTML maps use [leaflet]{.pkg}, whereas static maps use [ggplot2]{.pkg} and [ggmap]{.pkg}. The functions automatically attempt to estimate an appropriate bounding box to draw the map. THe zoom of this map can be controlled using `zoom`, or users can provide their own map themselves using the `ggmap` argument. This latter argument takes the output of `ggmap::get_stamenmap()`.
-
 -   Static maps naturally do not have the `popup` and `label` arguments. However, a benefit of being based in [ggplot2]{.pkg} is that limited further customisation is possible, such as manually adding labels using `ggplot2::geom_label()`.
 
 -   HTML maps have different default `d.icon` and `d.fig` values.
 
-An example "static map" is provided in @fig-polarMapStatic.
+-   HTML maps use [leaflet]{.pkg}, whereas static maps use [ggplot2]{.pkg} and [ggmap]{.pkg}. Please see the note below for more information.
+
+::: {.callout-note}
+## API Keys
+
+The "static" directional analysis maps are powered using `{ggmap}`. Formerly, `{ggmap}` could freely access the "Stamen" tiles to use as a basemap, but [recent events](https://maps.stamen.com/stadia-partnership/) mean this is no longer possible. `{openairmaps}` users are now required to create an API key for Stadia maps, use `{ggmap}` manually to import a basemap, and provide this ggmap object to the `ggmap` argument. Note that Stadia is free for non-commercial purposes.
+
+More information about `{ggmap}` can be found [here](https://github.com/dkahle/ggmap).
+:::
 
 ```{r}
-#| label: fig-polarMapStatic
-#| fig-cap: "A demonstration of `polarMapStatic()`."
-#| eval: true
+#| label: polarMapStaticDemo
+#| eval: false
+
+# import a stadia/googlemap (NB: requires API key)
+tilemap <- ggmap::get_stadiamap(...)
+
+# use in polarMapStatic
 polarMapStatic(
   polar_data,
   pollutant = c("nox","pm2.5"),
+  ggmap = tilemap,
   latitude = "lat",
   longitude = "lon",
   d.icon = 100,
