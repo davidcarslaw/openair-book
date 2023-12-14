@@ -484,7 +484,7 @@ $$ {#eq-clust-3}
 
 Standardization is necessary because the wind components $u$ and $v$ are on different scales to the concentration. In principle, more weight could be given to the concentration rather than the $u$ and $v$ components, although this would tend to identify clusters with similar concentrations but different source origins.
 
-`polarCluster` can be thought of as the 'local' version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. @sec-trajCluster provides the details of clustering back trajectories in [openair]{.pkg}. A fuller description of the clustering approach is described in [@CarslawClust2013].
+`polarCluster` can be thought of as the 'local' version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. @sec-trajCluster-trajectory-analysis provides the details of clustering back trajectories in [openair]{.pkg}. A fuller description of the clustering approach is described in [@CarslawClust2013].
 
 The use of the `polarCluster` is very similar to the use of all [openair]{.pkg} functions. While there are many techniques available to try and find the optimum number of clusters, it is difficult for these approaches to work in a consistent way for identifying features in bivariate polar plots. For this reason it is best to consider a range of solutions that covers a number of clusters.
 
