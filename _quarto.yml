@@ -62,6 +62,7 @@ book:
         - sections/utilities/utility-functions.qmd
         - sections/utilities/scatter-plot.qmd
     - sections/references.qmd
+    - cheatsheet.qmd
   appendices:
    - sections/appendices/appendix-annotate.qmd
    - sections/appendices/appendix-hysplit.qmd
