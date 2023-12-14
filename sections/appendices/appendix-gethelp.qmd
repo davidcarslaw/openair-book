@@ -71,3 +71,4 @@ Sometimes the hardest thing about producing a reproducible example is providing 
 ```{r}
 dput(head(openair::mydata))
 ```
+
