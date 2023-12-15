@@ -67,7 +67,7 @@ trajMap(
   colour = "cluster",
   control = "cluster",
   cols = c("#9B5DE5", "#F15BB5", "#FEE440", "#00BBF9", "#00F5D4"),
-  provider = "Stamen.Toner"
+  provider = "CartoDB.DarkMatter"
 )
 ```
 

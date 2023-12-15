@@ -290,9 +290,7 @@ To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq()` 
 library(leaflet)
 library(openair)
 leaflet() %>%
-  addProviderTiles(
-    "Stamen.Toner"
-  ) %>% 
+  addProviderTiles("CartoDB.Voyager") %>% 
   addPolarMarkers(
     lng = "lon", lat = "lat",
     pollutant = "nox",
