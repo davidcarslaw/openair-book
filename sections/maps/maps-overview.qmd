@@ -96,8 +96,15 @@ Don't worry if you don't fully understand all of this --- the "all-in-one" funct
 ### View Providers
 
 ```{r}
-#| label: leafletproviders
+#| label: leafletprovidersfake
+#| eval: false
 leaflet::providers
+```
+
+```{r}
+#| label: leafletproviders
+#| echo: false
+purrr::list_c(as.vector(leaflet::providers))
 ```
 :::
 
