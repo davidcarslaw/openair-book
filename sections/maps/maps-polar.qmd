@@ -94,7 +94,7 @@ Effectively all of these functions have very similar arguments, although some ar
 
 -   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
--   `latitude`, `longitude`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`).
+-   `latitude`, `longitude`, `crs`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`). `crs` can be changed from the default if your data uses a different coordinate system, e.g., `crs = 27700` for the British National Grid.
 
 -   `type`: A column to use to create a "layer control" menu. Specifying `type` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `type` will be those created by `openair::cutData()` or `openair::splitByDate()`.[^maps-polar-2]
 
