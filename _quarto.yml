@@ -91,6 +91,7 @@ format:
     link-external-newwindow: true
     citation-location: margin
     css: style.css
+    lightbox: true
     
 editor_options: 
   chunk_output_type: console
