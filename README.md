@@ -1,1 +1,0 @@
-This is work in progress to produce a book on the openair R package. It is published https://bookdown.org/david_carslaw/openair/
