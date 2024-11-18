@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="background" class="level2" data-number="22.2"><h2 data-number="22.2" class="anchored" data-anchor-id="background">
 <span class="header-section-number">22.2</span> Background</h2>
-<p>As the R ecosystem developed, <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a> and, more recently, <a href="https://quarto.org/">Quarto</a>) emerged as capable tools for combining data analysis with document preparation. While these approaches can render typical .docx and .pdf outputs, one of their most common output formats is the HTML document. This format has many strengths, but a key one is interactivity; HTML widgets allow documents to be more informative and engaging. Numerous packages have been developed to easily develop these interactive widgets, such as <a href="https://plotly-r.com">plotly</a> for plots, <a href="https://github.com/rstudio/DT">DT</a> for tables, and <a href="https://rstudio.github.io/leaflet/">leaflet</a> for maps. The <span class="pkg">openairmaps</span> package concerns itself with making <span class="pkg">leaflet</span> maps.</p>
+<p>As the R ecosystem developed, <a href="https://github.com/rstudio/rmarkdown">rmarkdown</a> and, more recently, <a href="https://quarto.org/">Quarto</a> emerged as capable tools for combining data analysis with document preparation. While these approaches can render typical .docx and .pdf outputs, one of their most common output formats is the HTML document. This format has many strengths, but a key one is interactivity; HTML widgets allow documents to be more informative and engaging. Numerous packages have been developed to easily develop these interactive widgets, such as <a href="https://plotly-r.com">plotly</a> for plots, <a href="https://github.com/rstudio/DT">DT</a> for tables, and <a href="https://rstudio.github.io/leaflet/">leaflet</a> for maps. The <span class="pkg">openairmaps</span> package concerns itself with making <span class="pkg">leaflet</span> maps.</p>
 <p>Air quality data analysis — particularly as it pertains to long term monitoring data — naturally lends itself to being visualised spatially on a map. Monitoring networks are geographically distributed, and ignoring their geographical context may lead to incomplete insights at best and incorrect conclusions at worst! Furthermore, many air quality analysis tools are <em>directional</em>, asking questions of the data along the lines of “do elevated concentrations come from the North, South, East or West?” The natural question that follows is “well, what actually is it to the North/South/East/West that could be causing elevated concentrations?” — a map can help answer that question straightforwardly.</p>
 </section><section id="leaflet-primer" class="level2" data-number="22.3"><h2 data-number="22.3" class="anchored" data-anchor-id="leaflet-primer">
 <span class="header-section-number">22.3</span> <span class="pkg">leaflet</span> Primer</h2>
@@ -539,8 +539,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-leafletdemo" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-leafletdemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-7710a97d61fda606d662" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7710a97d61fda606d662">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[51.5034,-0.1276,null,null,"Marker",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"This is where the UK Prime Minister lives!",null,null,null,"10 Downing Street",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["CartoDB.Positron","OSM"],"Marker",{"collapsed":true,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[51.5034,51.5034],"lng":[-0.1276,-0.1276]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4eaaf808fe8701724fb2" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4eaaf808fe8701724fb2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,"OSM",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,"CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[51.5034,-0.1276,null,null,"Marker",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"This is where the UK Prime Minister lives!",null,null,null,"10 Downing Street",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["CartoDB.Positron","OSM"],"Marker",{"collapsed":true,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[51.5034,51.5034],"lng":[-0.1276,-0.1276]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leafletdemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;22.1: An example of a leaflet map.
@@ -824,23 +824,23 @@ View Providers
 Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
 </figcaption><div aria-describedby="tbl-openairmaps-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="aobpwsselz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aobpwsselz table {
+<div id="ayhpppydoh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ayhpppydoh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aobpwsselz thead, #aobpwsselz tbody, #aobpwsselz tfoot, #aobpwsselz tr, #aobpwsselz td, #aobpwsselz th {
+#ayhpppydoh thead, #ayhpppydoh tbody, #ayhpppydoh tfoot, #ayhpppydoh tr, #ayhpppydoh td, #ayhpppydoh th {
   border-style: none;
 }
 
-#aobpwsselz p {
+#ayhpppydoh p {
   margin: 0;
   padding: 0;
 }
 
-#aobpwsselz .gt_table {
+#ayhpppydoh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -866,12 +866,12 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-left-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_caption {
+#ayhpppydoh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aobpwsselz .gt_title {
+#ayhpppydoh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -883,7 +883,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-bottom-width: 0;
 }
 
-#aobpwsselz .gt_subtitle {
+#ayhpppydoh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -895,7 +895,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-top-width: 0;
 }
 
-#aobpwsselz .gt_heading {
+#ayhpppydoh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -907,13 +907,13 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-right-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_bottom_border {
+#ayhpppydoh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_col_headings {
+#ayhpppydoh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -928,7 +928,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-right-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_col_heading {
+#ayhpppydoh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -948,7 +948,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   overflow-x: hidden;
 }
 
-#aobpwsselz .gt_column_spanner_outer {
+#ayhpppydoh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -960,15 +960,15 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 4px;
 }
 
-#aobpwsselz .gt_column_spanner_outer:first-child {
+#ayhpppydoh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aobpwsselz .gt_column_spanner_outer:last-child {
+#ayhpppydoh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aobpwsselz .gt_column_spanner {
+#ayhpppydoh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -980,11 +980,11 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   width: 100%;
 }
 
-#aobpwsselz .gt_spanner_row {
+#ayhpppydoh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aobpwsselz .gt_group_heading {
+#ayhpppydoh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1010,7 +1010,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   text-align: left;
 }
 
-#aobpwsselz .gt_empty_group_heading {
+#ayhpppydoh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1025,15 +1025,15 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   vertical-align: middle;
 }
 
-#aobpwsselz .gt_from_md > :first-child {
+#ayhpppydoh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aobpwsselz .gt_from_md > :last-child {
+#ayhpppydoh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aobpwsselz .gt_row {
+#ayhpppydoh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1052,7 +1052,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   overflow-x: hidden;
 }
 
-#aobpwsselz .gt_stub {
+#ayhpppydoh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1065,7 +1065,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 5px;
 }
 
-#aobpwsselz .gt_stub_row_group {
+#ayhpppydoh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1079,15 +1079,15 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   vertical-align: top;
 }
 
-#aobpwsselz .gt_row_group_first td {
+#ayhpppydoh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aobpwsselz .gt_row_group_first th {
+#ayhpppydoh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aobpwsselz .gt_summary_row {
+#ayhpppydoh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1097,16 +1097,16 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 5px;
 }
 
-#aobpwsselz .gt_first_summary_row {
+#ayhpppydoh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_first_summary_row.thick {
+#ayhpppydoh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aobpwsselz .gt_last_summary_row {
+#ayhpppydoh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1116,7 +1116,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-bottom-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_grand_summary_row {
+#ayhpppydoh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1126,7 +1126,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 5px;
 }
 
-#aobpwsselz .gt_first_grand_summary_row {
+#ayhpppydoh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1136,7 +1136,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-top-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_last_grand_summary_row_top {
+#ayhpppydoh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1146,11 +1146,11 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-bottom-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_striped {
+#ayhpppydoh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aobpwsselz .gt_table_body {
+#ayhpppydoh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1159,7 +1159,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-bottom-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_footnotes {
+#ayhpppydoh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1173,7 +1173,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-right-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_footnote {
+#ayhpppydoh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1182,7 +1182,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 5px;
 }
 
-#aobpwsselz .gt_sourcenotes {
+#ayhpppydoh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1196,7 +1196,7 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   border-right-color: #D3D3D3;
 }
 
-#aobpwsselz .gt_sourcenote {
+#ayhpppydoh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1204,72 +1204,72 @@ Table&nbsp;22.1: The <span class="pkg">openairmaps</span> toolkit.
   padding-right: 5px;
 }
 
-#aobpwsselz .gt_left {
+#ayhpppydoh .gt_left {
   text-align: left;
 }
 
-#aobpwsselz .gt_center {
+#ayhpppydoh .gt_center {
   text-align: center;
 }
 
-#aobpwsselz .gt_right {
+#ayhpppydoh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aobpwsselz .gt_font_normal {
+#ayhpppydoh .gt_font_normal {
   font-weight: normal;
 }
 
-#aobpwsselz .gt_font_bold {
+#ayhpppydoh .gt_font_bold {
   font-weight: bold;
 }
 
-#aobpwsselz .gt_font_italic {
+#ayhpppydoh .gt_font_italic {
   font-style: italic;
 }
 
-#aobpwsselz .gt_super {
+#ayhpppydoh .gt_super {
   font-size: 65%;
 }
 
-#aobpwsselz .gt_footnote_marks {
+#ayhpppydoh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aobpwsselz .gt_asterisk {
+#ayhpppydoh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aobpwsselz .gt_indent_1 {
+#ayhpppydoh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aobpwsselz .gt_indent_2 {
+#ayhpppydoh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aobpwsselz .gt_indent_3 {
+#ayhpppydoh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aobpwsselz .gt_indent_4 {
+#ayhpppydoh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aobpwsselz .gt_indent_5 {
+#ayhpppydoh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#aobpwsselz .katex-display {
+#ayhpppydoh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#aobpwsselz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ayhpppydoh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
