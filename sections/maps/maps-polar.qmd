@@ -44,7 +44,7 @@ By "directional analysis", we are referring to the outputs from [openair]{.pkg} 
 ```{r}
 #| label: fig-openairplots
 #| fig-cap: "All of the directional analysis figures which can be plotted on a map."
-#| column: body-outset
+#| column: body-outset-right
 #| fig-subcap: 
 #| - "Polar Annulus"
 #| - "Polar Frequency"
