@@ -310,7 +310,7 @@ As an example, to import 5 years of annual mean data from the AURN:
 
 ```{r}
 #| eval: false
-uk_annual <- importUKAQ(year = 2016:2020, data_type = "annual")
+uk_annual <- importUKAQ(year = 2016:2020, data_type = "annual", source = "AURN")
 ```
 
 By default, this will return data in "wide" format with a pollutant and
@@ -325,6 +325,7 @@ Below is an example of obtaining annual mean data for 2020.
 #| label: importAnnual
 uk_2020 <- importUKAQ(
   year = 2020,
+  source = "aurn",
   data_type = "annual",
   meta = TRUE,
   to_narrow = TRUE
@@ -355,6 +356,7 @@ Index) by pollutant to save deriving it.
 #| label: daqi
 daqi_2020 <- importUKAQ(
   year = 2020,
+  source = "aurn",
   data_type = "daqi",
   meta = TRUE
 )
