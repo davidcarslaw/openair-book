@@ -19,8 +19,6 @@ execute:
 
 -   The Imperial College London (formerly Kings College London) network.
 
--   A simplified Europe-wide air quality network (although the [saqgetr](https://github.com/skgrange/saqgetr) package better serves obtaining European AQ data).
-
 Lets consider the metadata available for the AURN.
 
 ```{r}
@@ -68,25 +66,25 @@ networkMap(source = c("aurn", "aqe", "local"),
            control = "site_type")
 ```
 
-## "Do It Yourself" Network Maps
+### "Do It Yourself" Network Maps
 
 If you are only interested in a few sites, you may wish to create your own, smaller network map. Currently, [openairmaps]{.pkg} only contains functionality to visualise entire networks, but it is relatively easy to create a map of your own using [leaflet]{.pkg}. While @fig-diyNetwork shows a network map of *just* sites in York, its associated code chunk can be used as a template for other small network maps. It uses the `buildPopup()` function from [openairmaps]{.pkg} which was written for use with the [directional analysis mapping functions](../maps/maps-polar.qmd), so is described in greater detail on the next page.
 
 ```{r}
 #| label: fig-diyNetwork
-#| fig-cap: "Building a popup with `buildPopup()`."
+#| fig-cap: "Demonstrating more features of `networkMap()`."
 library(leaflet)
 library(dplyr)
 library(stringr)
 
 # import all Meta data for the AURN
-aurn_meta <- importMeta("aurn", all = TRUE)
+aurn_meta <- openair::importMeta("aurn", all = TRUE)
 
 # prep data for leaflet
-map_data <-
+map_data <- 
   aurn_meta %>%
   # get sites in York
-  filter(local_authority == "York") %>%
+  filter(local_authority == "York") %>% 
   # build a popup
   buildPopup(
     latitude = "latitude",
@@ -105,5 +103,80 @@ map_data <-
 # create a basic leaflet map
 leaflet(map_data) %>%
   addTiles() %>%
-  addMarkers(label = ~ site, popup = ~ popup)
+  addMarkers(popup = ~popup)
 ```
+
+## Searching Networks
+
+`networkMap()` is a useful function to view entire monitoring networks, but your specific use-case may be much more local. The `searchNetwork()` function is designed to find sites local to a specific location of interest, defined using latitude/longitude (or other Y/X) coordinates. You may wish to define your location of interest to be a likely *source*, like an industrial installation, quarry, or the site of a (wild)fire. Alternatively, if you are examining pollutant *exposure* at a specific location (e.g., a school or a hospital) you may wish to find out where the closest air quality monitors are.
+
+For example, let's imagine that we're interested in pollutant concentrations near to Great Ormond Street Hospital, a famous children's hospital in the UK. `{openairmaps}` provides the `convertPostcode()` function to let us easily get the coordinates of this site.
+
+```{r}
+#| label: getpostcode
+hospital <- convertPostcode("WC1N 3JH")
+hospital
+```
+
+Let's plug this straight into `searchNetwork()` looking at AURN and AQE sites. @fig-hospitalmap1 is the result - you'll see by default the whole network is returned, far too much detail than we require!
+
+```{r}
+#| label: fig-hospitalmap1
+#| fig-cap: Searching the whole network!
+searchNetwork(
+  lat = hospital$lat,
+  lng = hospital$lng,
+  source = c("aurn", "aqe")
+)
+```
+
+`searchNetwork()` provides a few arguments to filter down the sites to a more sensible level. These include `site_type` and `variable` which can filter based on the site type and the pollutants measured, `max_dist` to define a maximum distance from the location of interest, and `n` which defines a maximum number of sites to show. All of these constraints are shown on the map at the bottom-right. This is all shown on @fig-hospitalmap2.
+
+```{r}
+#| label: fig-hospitalmap2
+#| fig-cap: Filtering the metadata down to a sensible level.
+searchNetwork(
+  lat = hospital$lat,
+  lng = hospital$lng,
+  source = c("aurn", "aqe"),
+  year = 2022,
+  max_dist = 2,
+  n = 4
+)
+```
+
+Now we've found our sites, we can instead return them in a table. These could then be plugged straight into `importUKAQ()` and analysed using `{openair}`.
+
+```{r}
+#| label: hospitaltbl
+hospital_meta <-
+  searchNetwork(
+    lat = hospital$lat,
+    lng = hospital$lng,
+    source = c("aurn", "aqe"),
+    year = 2022,
+    max_dist = 2,
+    n = 4,
+    map = FALSE
+  )
+
+# view table of metadata
+hospital_meta
+```
+
+```{r}
+#| label: fig-hospitalread
+#| fig-cap: A timeplot of air quality near Great Ormond Street Hospital.
+hospital_aq <-
+  openair::importUKAQ(site = hospital_meta$code,
+                      year = 2022,
+                      source = hospital_meta$source)
+
+openair::timePlot(
+  hospital_aq,
+  pollutant = c("pm2.5"),
+  type = "site",
+  avg.time = "day"
+)
+```
+
