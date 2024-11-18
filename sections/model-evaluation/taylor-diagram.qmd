@@ -19,7 +19,7 @@ library(tidyverse)
 
 ```{r}
 #| label: showModData
-load("../../book_data/modelData.RData")
+load("../../data/modelData.RData")
 head(modTest)
 ```
 
