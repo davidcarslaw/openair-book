@@ -140,7 +140,7 @@ Data have been assembled from a Defra model evaluation exercise which consists o
 
 ```{r}
 #| label: showModData
-load("../../data/modelData.RData")
+load("../../assets/data/modelData.RData")
 head(modTest)
 ```
 

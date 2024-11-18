@@ -19,7 +19,7 @@ First we import the data:
 #| cache: false
 library(mgcv)
 library(openair) # load openair
-load("../../data/MaceHead.RData")
+load("../../assets/data/MaceHead.RData")
 ```
 
 ```{r}

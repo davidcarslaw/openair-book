@@ -400,7 +400,7 @@ write.csv(x = marylebone, file = "my1_annual-stats_2022.csv")
 
 Plots are slightly more complicated. If you do use RStudio, the simplest way to save an openair plot is to use the plots pane, visualised in @fig-rstudiosave. This menu will allow you to copy your plot to the clipboard, or save it as an image or PDF.
 
-![A screenshot of the 'Export' menu of the RStudio plots pane.](../../images/rstudio-saving.png){#fig-rstudiosave}
+![A screenshot of the 'Export' menu of the RStudio plots pane.](../../assets/media/rstudio-saving.png){#fig-rstudiosave}
 
 This may be useful in some scenarios, but using the RStudio GUI is not very reproducible. For sake of example, say you make a new set of plots every week for a weekly report. You may not want to have to repeatedly go into the plots pane, click 'export', set the correct dimensions, and so on every time a new plot needs to be saved. It would be preferable if your script created the plots *and* saved them! 
 

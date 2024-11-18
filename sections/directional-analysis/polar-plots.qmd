@@ -65,9 +65,9 @@ The hourly output from the model was processed and polar plots produced for each
 By contrast, the pattern from the stack shown in @fig-stack-ws is markedly different compared to the shallow volume source. In this case, it is clear the source is located to the south-west and is detected at a range of wind speeds, even up to very high values. This sort of behaviour is typical of a stack source plume being brought down to ground level under higher wind speed conditions. The pattern seen in @fig-stack-ws will depend on many factors such as distance to the stack, the nature of the release (efflux velocity and plume exit temperature) and the effect of the atmosphere itself, which is discussed more in the next section.
 
 ::: {#fig-dispersion-ws layout-ncol="2"}
-![Shallow volume source.](../../images/volume-ws.png){#fig-volume-ws}
+![Shallow volume source.](../../assets/media/volume-ws.png){#fig-volume-ws}
 
-![Stack source.](../../images/plume-ws.png){#fig-stack-ws}
+![Stack source.](../../assets/media/plume-ws.png){#fig-stack-ws}
 
 Effect of source type on plume dispersion with wind speed on the radial axis. In these plots the wind direction is the direction the wind is coming from and wind speed forms the radial axis such that zero wind speed is at the centre of the plot and increases away from the centre to 14 m s^-1^. The concentration of a pollutant is shown by the colour scale.
 :::
@@ -93,16 +93,16 @@ A continuous measure of atmospheric stability available through H/L~MO~ makes it
 
 The influence of atmospheric stability on plume dispersion can be seen in @fig-atmos-stability, which shows the average plume height and spread (σ~z~) across all conditions modelled. This Figure highlights several important characteristics: that an elevated plume under stable conditions may not reach ground level in proximity to the stack, that plume spread is much less under stable conditions and when the atmosphere is unstable (convective) there is a greater chance of a plume being brought down to ground level close to the source. As discussed in the previous section, the actual variation in these characteristics will depend on many factors, but they do highlight some common behaviours.
 
-![Behaviour of a dispersing plume from a 60 m stack under different conditions of atmospheric stability. The line corresponds to the mean plume centreline height and the shaded area indicates the mean plume spread (σ~z~).](../../images/stability_plume.png){#fig-atmos-stability}
+![Behaviour of a dispersing plume from a 60 m stack under different conditions of atmospheric stability. The line corresponds to the mean plume centreline height and the shaded area indicates the mean plume spread (σ~z~).](../../assets/media/stability_plume.png){#fig-atmos-stability}
 
 Just as in @sec-effect-of-source, we can illustrate how concentrations are represented on polar plots when the radial axis is atmospheric stability (H/L~MO~). @fig-volume-stability shows how predicted concentrations vary with atmospheric stability with values close to zero corresponding to neutral conditions and positive values representing stable conditions. For the shallow volume source it is clear that the highest concentrations are observed under stable atmospheric conditions, which tend to also be conditions where the wind speed is low, as shown previously in @fig-volume-ws.
 
 By contrast, the stack dispersion pattern is very different (@fig-stack-stability) compared to the shallow volume source. Again, like @fig-stack-ws the plume is obvious, but in this case the highest concentrations are seen under *unstable* atmospheric conditions shown by negative values of H/L~MO~ on the radial axis. These results show that the plume is being mixed down to the receptor when the atmosphere is unstable as illustrated in @fig-atmos-stability.
 
 ::: {#fig-dispersion-monin layout-ncol="2"}
-![Shallow volume source.](../../images/volume-stability.png){#fig-volume-stability}
+![Shallow volume source.](../../assets/media/volume-stability.png){#fig-volume-stability}
 
-![Stack source.](../../images/stack_stability.png){#fig-stack-stability}
+![Stack source.](../../assets/media/stack_stability.png){#fig-stack-stability}
 
 Effect of source type on plume dispersion with atmospheric stability (H/L~MO~) on the radial axis.
 :::

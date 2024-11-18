@@ -42,7 +42,7 @@ As an example, we will import trajectories for London in 2010. Importing them is
 #| label: loadTraj
 #| echo: false
 ## load from file
-load("../../data/londonTraj.RData")
+load("../../assets/data/londonTraj.RData")
 ```
 
 ```{r}
@@ -263,7 +263,7 @@ One of the key aspects of trajectory analysis is knowing something about where a
 ```{r}
 #| echo: false
 ## load from file
-load("../../data/londonTraj.RData")
+load("../../assets/data/londonTraj.RData")
 ```
 
 First we import the trajectories, which in this case are for London in 2010:
@@ -488,7 +488,7 @@ trajLevel(
 #| fig-cap: SQTBA approach applied to PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-knitr::include_graphics("sqtba.png")
+knitr::include_graphics("../../assets/media/sqtba.png")
 ```
 
 Some further analysis can be carried out on the TEOM FDMS measurements, which separately reports the volatile and non-volatile components of PM. @fig-SQTBA-PMv shows the plot for the volatile PM~2.5~ component, which highlights the source regions of the Benelux counties and (likely) northern Italy.
@@ -511,7 +511,7 @@ trajLevel(traj,
 #| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-knitr::include_graphics("sqtba2.png")
+knitr::include_graphics("../../assets/media/sqtba2.png")
 ```
 
 On the other hand, @fig-SQTBA-PMnv shows the non-volatile PM~2.5~ component, which more clearly shows eastern Europe as the principal source. This plot differs from @fig-SQTBA-PMv and likely highlights the higher sulphur emissions from power generation in this part of Europe. More detailed analysis can be carried out if the components of PM are available at an hourly or daily resolution e.g. particulate nitrate, sulphate.
@@ -535,7 +535,7 @@ trajLevel(
 #| fig-cap: SQTBA approach applied to the non-volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-knitr::include_graphics("sqtba3.png")
+knitr::include_graphics("../../assets/media/sqtba3.png")
 ```
 
 The analysis above was demonstrated for a single site. However, to exploit the full potential of the SQTBA approach, multiple receptors should be considered. The reason why multiple sites should be considered is that there will be better geographic coverage of the trajectories and potential for source regions to be sampled multiple times. To conduct an analysis of multiple sites, trajectories linked to pollutant concentrations should be combined into a single data frame in the format similar to `traj` above but with an additional variable that identifies the different sites. When running `trajLevel` the option `.combine` should be used to identify the relevant column e.g. `.combine = "site"`.
@@ -580,7 +580,7 @@ As an example we will consider back trajectories for London in 2011.
 #| echo: false
 ## load pre-calculated cluster data for kc1
 ## provides traj and kc1
-load("../../data/clusterData.RData")
+load("../../assets/data/clusterData.RData")
 ```
 
 First, the back trajectory data for London is imported together with the air pollution data for the North Kensington site (KC1).

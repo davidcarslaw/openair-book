@@ -38,7 +38,7 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-aq <- readRDS(here::here("data/my1_2022.rds"))
+aq <- readRDS(here::here("assets/data/my1_2022.rds"))
 ```
 
 Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour rolling regression window. The data frame returned (`out`) has the rolling 3-hour regression fit information and other variables that can be used for plotting and post-processing.
