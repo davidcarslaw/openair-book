@@ -12,7 +12,7 @@ Perhaps one of the reasons why back trajectory analysis is not carried out more 
 
 Currently these functions allow for the import of pre-calculated back trajectories are several pre-define locations and some trajectory plotting functions. In time all of these functions will be developed to allow more sophisticated analyses to be undertaken. .
 
-The `importTraj` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#sec-importAURN), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
+The `importTraj()` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importUKAQ](#sec-importUKAQ), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
 
 [^trajectory-analysis-1]: Note --- the back trajectories have been pre-calculated for specific locations and stored as .RData objects. Users should contact David Carslaw to request the addition of other locations.
 
@@ -129,7 +129,7 @@ So far the plots have provided information on where the back trajectories come f
 ```{r}
 #| label: mergeTraj
 ## import data for North Kensington
-kc1 <- importAURN("kc1", year = 2010)
+kc1 <- importUKAQ("kc1", year = 2010)
 # now merge with trajectory data by 'date'
 traj <- left_join(traj, kc1, by = "date")
 ## look at first few lines
@@ -588,7 +588,7 @@ First, the back trajectory data for London is imported together with the air pol
 ```{r}
 #| label: importTrajKC1
 traj <- importTraj(site = "london", year = 2011)
-kc1 <- importAURN(site = "kc1", year = 2011)
+kc1 <- importUKAQ(site = "kc1", year = 2011)
 ```
 
 The clusters are straightforward to calculate. In this case the back trajectory data (`traj`) is supplied and the angle-based distance matrix is used. Furthermore, we choose to calculate 6 clusters and choose a specific colour scheme. In this case we read the output from `trajCluster` into a variable `clust` so that the results can be post-processed.

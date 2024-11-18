@@ -156,13 +156,13 @@ pm10.breaks <- c(0, 17, 34, 50, 59, 67, 75, 84, 92, 100, 1000)
 pm25.breaks <- c(0, 12, 24, 35, 42, 47, 53, 59, 65, 70, 1000)
 ```
 
-Remember it is necessary to use the correct averaging time. Assuming data are imported using `importAURN` or similar, then the units will be in μg m^-3^ --- if not the user should ensure this is the case. Note that rather than showing the day of the month (the default), `annotate = "value"` can be used to show the actual numeric value on each day. In this way, the colours represent the categorical interval the concentration on a day corresponds to *and* the actual value itself is shown.
+Remember it is necessary to use the correct averaging time. Assuming data are imported using `importUKAQ()` or similar, then the units will be in μg m^-3^ --- if not the user should ensure this is the case. Note that rather than showing the day of the month (the default), `annotate = "value"` can be used to show the actual numeric value on each day. In this way, the colours represent the categorical interval the concentration on a day corresponds to *and* the actual value itself is shown.
 
 ```{r}
 #| label: AQIndexPlots
 #| eval: false
 ## import test data
-dat <- importAURN(site = "kc1", year = 2010)
+dat <- importUKAQ(site = "kc1", year = 2010)
 
 ## no2 index example
 calendarPlot(dat,

@@ -24,7 +24,7 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-aq <- importAURN("my1", year = 2022, meteo = FALSE)
+aq <- importUKAQ("my1", year = 2022, meteo = FALSE)
 met <- importNOAA(year = 2022)
 aq <- left_join(aq, met, by = "date")
 

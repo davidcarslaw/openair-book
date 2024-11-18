@@ -73,7 +73,7 @@ If the interest is in considering seasonal trends, it makes sense to set the ave
 
 ```{r}
 #| label: importLul
-lh <- importAURN(site = "lh", year = 2000:2019)
+lh <- importUKAQ(site = "lh", year = 2000:2019)
 ```
 
 ```{r}

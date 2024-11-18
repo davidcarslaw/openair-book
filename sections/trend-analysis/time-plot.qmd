@@ -104,7 +104,7 @@ Another example is grouping pollutants from *several sites* on one plot. It is e
 #| fig-width: 7
 #| fig-height: 4
 ## import data from 3 sites
-aq <- importAURN(site = c("kc1", "my1", "nott"), 
+aq <- importUKAQ(site = c("kc1", "my1", "nott"), 
                       year = 2005:2010)
 
 ## plot it

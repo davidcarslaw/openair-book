@@ -31,11 +31,11 @@ polar_data %>%
   )
 ```
 
-If you would prefer to use data from different sites or years, the `import*()` functions from [openair]{.pkg} make it easy to obtain pollution data with associated site latitude/longitude. The key thing to remember is to use the `meta = TRUE` argument when using a function like `importAURN()` to have the lat/lon (& site type) appended to your imported data.
+If you would prefer to use data from different sites or years, the `import*()` functions from [openair]{.pkg} make it easy to obtain pollution data with associated site latitude/longitude. The key thing to remember is to use the `meta = TRUE` argument when using a function like `importUKAQ()` to have the lat/lon (& site type) appended to your imported data.
 
 ```{r}
 #| label: importlatlon
-sunderland <- openair::importAURN(site = c("sun2", "sunr"), year = 2015, meta = TRUE)
+sunderland <- openair::importUKAQ(site = c("sun2", "sunr"), year = 2015, meta = TRUE)
 names(sunderland)
 ```
 
