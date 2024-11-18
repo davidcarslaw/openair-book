@@ -219,7 +219,7 @@ First, retaining by site averages:
 ```{r}
 #| label: timeAvType
 # import some data for two sites
-dat <- importAURN(c("kc1", "my1"), year = 2011:2013)
+dat <- importUKAQ(c("kc1", "my1"), year = 2011:2013)
 
 # annual averages by site
 timeAverage(dat, avg.time = "year", type = "site")
@@ -295,7 +295,7 @@ When there are a very large number of variables present, the `corPlot` is a very
 
 ```{r}
 #| eval: false
-hc <- importAURN(site = "my1", year = 2005, hc = TRUE)
+hc <- importUKAQ(site = "my1", year = 2005, hc = TRUE)
 ## now it is possible to see the hydrocarbons that behave most
 ## similarly to one another
 corPlot(hc)

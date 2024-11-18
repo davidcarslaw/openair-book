@@ -24,7 +24,7 @@ angle and wind speed range.
 The `windRose` function also calculates the percentage of 'calms' i.e.
 when the wind speed is zero. UK Met Office data assigns these periods to
 0 degrees wind direction with valid northerly winds being assigned to
-360$^\circ$.
+360$^\circ$. The option `calm.thresh` can be used to assign calms to non-zero wind speeds. For example `calm.thresh = 0.5` will assign wind speeds *below* 0.5 as calm.
 
 The `windRose` function will also correct for bias when wind directions
 are rounded to the nearest 10 degrees but are displayed at angles that

@@ -25,7 +25,7 @@ load("../../book_data/MaceHead.RData")
 ```{r}
 #| eval: false
 library(mgcv)
-dat <- importAURN(site = "mh", year = 1988:2010)
+dat <- importUKAQ(site = "mh", year = 1988:2010)
 ```
 
 ```{r}

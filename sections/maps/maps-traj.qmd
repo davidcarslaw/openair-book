@@ -51,7 +51,7 @@ trajMap(
 )
 ```
 
-There is a `control` option in `trajMap()` which allows for a layer control menu to be generated. This might be useful if you have a lot of trajectory paths and want to let users reduce the clutter. It also pairs nicely with clustered trajectories returned by `openair::trajCluster()`. An example of this is given below, in @fig-trajNeon.
+There is a `type` option in `trajMap()` which allows for a layer control menu to be generated. This might be useful if you have a lot of trajectory paths and want to let users reduce the clutter. It also pairs nicely with clustered trajectories returned by `openair::trajCluster()`. An example of this is given below, in @fig-trajNeon.
 
 ```{r}
 #| label: trajclusters
@@ -65,9 +65,9 @@ clustdata <- openair::trajCluster(traj_data)
 trajMap(
   data = clustdata$data$traj,
   colour = "cluster",
-  control = "cluster",
+  type = "cluster",
   cols = c("#9B5DE5", "#F15BB5", "#FEE440", "#00BBF9", "#00F5D4"),
-  provider = "Stamen.Toner"
+  provider = "CartoDB.DarkMatter"
 )
 ```
 
@@ -77,13 +77,26 @@ trajMap(
 
 ```{r}
 #| label: fig-trajLevel
-#| fig-cap: An interactive 'frequency' map plotted by `trajLevelMap`.
+#| fig-cap: An interactive 'frequency' map plotted by `trajLevelMap()`.
 trajLevelMap(
   traj_data,
   statistic = "pscf",
   pollutant = "pm10",
   cols = "viridis",
   provider = "Esri"
+)
+```
+
+`trajLevelMap()` also supports the `smooth` argument from `trajLevel()`.
+
+```{r}
+#| label: fig-trajlevelsmooth
+#| fig-cap: A smoothed frqeuency map plotted by `trajLevelMap()`.
+trajLevelMap(
+  traj_data,
+  statistic = "pscf",
+  pollutant = "pm10",
+  smooth = TRUE
 )
 ```
 
@@ -119,14 +132,18 @@ leaflet() %>%
                opacity = .25) %>%
   addMarkers(data = dplyr::slice_head(uk, n = 1),
              lat = ~lat, lng = ~lon,
-             group = "London, UK", label = "UK") %>%
+             group = "London, UK", 
+             label = "UK",
+             layerId = "uk") %>%
   addTrajPaths(data = france,
                color = "red",
                group = "Paris, France", 
-               opacity = .25) %>%
+               opacity = .25, 
+               layerId = "france") %>%
   addMarkers(data = dplyr::slice_head(france, n = 1), 
              lat = ~lat, lng = ~lon,
              group = "Paris, France", label = "FR") %>%
   addLayersControl(overlayGroups = c("Paris, France", "London, UK"))
 
 ```
+

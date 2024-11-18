@@ -257,7 +257,7 @@ The polar CPF plot is therefore potentially very useful for source identificatio
 #| layout-ncol: 3
 #| fig-width: 4.5
 #| fig-height: 4
-#| out-width: 33%
+#| out-width: 100%
 #| fig-show: hold
 #| fig-subcap: 
 #|   - "Percentile 0-10%."
@@ -309,14 +309,14 @@ The calculation involves a weighted Pearson correlation coefficient, which is we
 
 An example usage scenario is that measurements of metal concentrations are made close to a steelworks where there is interest in understanding the principal sources. While it is useful to consider the correlation between potentially many metal concentrations, the contention is that if the correlation is also considered as a function of wind speed and direction, improved information will be available of the types of sources contributing. For example, it may be that Fe and Mn are quite strongly correlated overall, but they tend to be most correlated under specific wind speed and direction ranges --- suggesting a specific source origin.
 
-As an example of usage we will consider the relationship between PM~2.5~ and PM~10~ at the rural Harwell site in Oxfordshire. Additionally, we will use meteorological data from a nearby site rather than rely on modelled values that are provided in `importAURN`.
+As an example of usage we will consider the relationship between PM~2.5~ and PM~10~ at the rural Harwell site in Oxfordshire. Additionally, we will use meteorological data from a nearby site rather than rely on modelled values that are provided in `importUKAQ()`.
 
 ```{r}
 #| label: importPolarData
 library(worldmet) # to access met data
 library(tidyverse) 
 
-har <- importAURN("har", year = 2013)
+har <- importUKAQ("har", year = 2013)
 
 # import met data from nearby site (Benson)
 met <- importNOAA(code = "036580-99999", year = 2013)
@@ -384,7 +384,7 @@ The `polarDiff` function has been written to compare polar plot surfaces between
 
 ```{r}
 #| label: import-PT4
-port_talbot <- importAURN(site = "pt4", year = c(2012, 2019))
+port_talbot <- importUKAQ(site = "pt4", year = c(2012, 2019))
 
 port_talbot
 ```
@@ -484,7 +484,7 @@ $$ {#eq-clust-3}
 
 Standardization is necessary because the wind components $u$ and $v$ are on different scales to the concentration. In principle, more weight could be given to the concentration rather than the $u$ and $v$ components, although this would tend to identify clusters with similar concentrations but different source origins.
 
-`polarCluster` can be thought of as the 'local' version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. @sec-trajCluster provides the details of clustering back trajectories in [openair]{.pkg}. A fuller description of the clustering approach is described in [@CarslawClust2013].
+`polarCluster` can be thought of as the 'local' version of clustering of back trajectories. Rather than using air mass origins, wind speed, wind direction and concentration are used to group similar conditions together. @sec-trajCluster-trajectory-analysis provides the details of clustering back trajectories in [openair]{.pkg}. A fuller description of the clustering approach is described in [@CarslawClust2013].
 
 The use of the `polarCluster` is very similar to the use of all [openair]{.pkg} functions. While there are many techniques available to try and find the optimum number of clusters, it is difficult for these approaches to work in a consistent way for identifying features in bivariate polar plots. For this reason it is best to consider a range of solutions that covers a number of clusters.
 
@@ -668,7 +668,7 @@ polarMap(openairmaps::polar_data,
          provider = "CartoDB.Positron")
 ```
 
-Note that if you are using the `importAURN` family of functions it is useful to add the option `meta = TRUE`, which will return the latitude and longitude of the site together with the air quality data.
+Note that if you are using the `importUKAQ()` function it is useful to add the option `meta = TRUE`, which will return the latitude and longitude of the site together with the air quality data.
 
 [openairmaps]{.pkg} isn't limited to just `polarMap` --- almost any kind of "directional analysis" plot can be placed on a map. There are many similar functions which correspond to other [openair]{.pkg} plotting functions; `annulusMap`, `freqMap`, `percentileMap`, `polarMap`, `pollroseMap`, and `windroseMap`.
 

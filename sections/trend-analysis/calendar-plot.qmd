@@ -18,7 +18,7 @@ The function is called in the usual way. As a minimum, a data frame, pollutant a
 
 ```{r}
 #| label: fig-calendarPlot
-#| fig-cap: '`calendarPlot` for O~3~ concentrations in 2003.'
+#| fig-cap: A `calendarPlot()` for O~3~ concentrations in 2003.
 #| fig-width: 6
 #| fig-height: 8
 library(openair)
@@ -33,7 +33,7 @@ Other [openair]{.pkg} functions can be used to plot other statistics. For exampl
 
 ```{r}
 #| label: fig-calendarPlotExceed
-#| fig-cap: '`calendarPlot` for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ >50 μg m^-3^. The numbers show the PM~10~ concentration in μg m^-3^.'
+#| fig-cap: A `calendarPlot()` for PM10 concentrations in 2003 with annotations highlighting those days where the concentration of PM~10~ >50 μg m^-3^. The numbers show the PM~10~ concentration in μg m^-3^.
 #| fig-width: 8
 #| fig-height: 6
 calendarPlot(mydata,
@@ -50,7 +50,7 @@ To show wind angle, scaled to wind speed (@fig-calendarPlot2).
 
 ```{r}
 #| label: fig-calendarPlot2
-#| fig-cap: '`calendarPlot` for O~3~ concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O~3~ concentrations on the 18 and 19th of April were associated with strong north-easterly winds.'
+#| fig-cap: A `calendarPlot()` for O~3~ concentrations in 2003 with annotations showing wind angle scaled to wind speed i.e. the longer the arrow, the higher the wind speed. It shows for example high O~3~ concentrations on the 18 and 19th of April were associated with strong north-easterly winds.
 #| fig-height: 8
 #| fig-width: 6
 #| out-width: 80%
@@ -64,11 +64,12 @@ Note again that `selectByDate` can be useful. For example, to plot select months
 
 ```{r}
 #| eval: false
-calendarPlot(selectByDate(mydata,
-  year = 2003,
-  month = c(6, 7, 8)
-),
-pollutant = "o3", year = 2003
+calendarPlot(
+  selectByDate(mydata,
+    year = 2003,
+    month = c(6, 7, 8)
+  ),
+  pollutant = "o3", year = 2003
 )
 ```
 
@@ -76,7 +77,7 @@ pollutant = "o3", year = 2003
 
 ```{r}
 #| label: fig-calendarPlotCategor
-#| fig-cap: '`calendarPlot` for NO~2~ concentrations in 2003 with a user-defined categorical scale.'
+#| fig-cap: A `calendarPlot()` for NO~2~ concentrations in 2003 with a user-defined categorical scale.
 #| fig-width: 8
 #| fig-height: 6
 calendarPlot(mydata,
@@ -90,8 +91,9 @@ calendarPlot(mydata,
 The user can explicitly set each colour interval:
 
 ```{r}
-#| label: calendarPlotCols
+#| label: fig-calendarPlotCols
 #| eval: false
+#| fig-cap: A `calendarPlot()` with user-defined colour intervals.
 calendarPlot(mydata,
   pollutant = "no2", year = 2003,
   breaks = c(0, 50, 100, 150, 1000),
@@ -104,8 +106,9 @@ calendarPlot(mydata,
 Note that in the case of categorical scales it is possible to define the breaks and labels first and then make the plot. For example:
 
 ```{r}
-#| label: CalendarBreaks
+#| label: fig-CalendarBreaks
 #| eval: false
+#| fig-cap: A `calendarPlot()` with user-defined labels.
 breaks <- c(0, 34, 66, 100, 121, 141, 160, 188, 214, 240, 500)
 labels <- c(
   "Low.1", "Low.2", "Low.3", "Moderate.4", "Moderate.5", "Moderate.6",
@@ -119,11 +122,12 @@ calendarPlot(mydata,
 )
 ```
 
-It is also possible to first use `rollingMean` to calculate statistics. For example, if one was interested in plotting the maximum daily rolling 8-hour mean concentration, the data could be prepared and plotted as follows.
+It is also possible to first use `rollingMean()` to calculate statistics. For example, if one was interested in plotting the maximum daily rolling 8-hour mean concentration, the data could be prepared and plotted as follows.
 
 ```{r}
 #| label: CalendarAvg
 #| eval: false
+#| fig-cap: A `calendarPlot()` showing rolling 8-hour mean ozone concentrations.
 ## makes a new field 'rolling8o3'
 dat <- rollingMean(mydata, pollutant = "o3", hours = 8)
 breaks <- c(0, 34, 66, 100, 121, 141, 160, 188, 214, 240, 500)
@@ -132,54 +136,58 @@ labels <- c(
   "High.7", "High.8", "High.9", "Very High.10"
 )
 
-calendarPlot(dat,
-  pollutant = "rolling8o3", year = 2003,
-  breaks = breaks, labels = labels,
-  cols = "turbo", statistic = "max"
+calendarPlot(
+  dat,
+  pollutant = "rolling8o3",
+  year = 2003,
+  breaks = breaks,
+  labels = labels,
+  cols = "daqi",
+  statistic = "max"
 )
 ```
 
-The UK has an air quality index for O~3~, NO~2~, PM~10~ and PM~2.5~ described in detail at (http://uk-air.defra.gov.uk/air-pollution/daqi) and @COMEAP2011. The index is most relevant to air quality forecasting, but is used widely for public information. Most other countries have similar indexes. Note that the indexes are calculated for different averaging times dependent on the pollutant: rolling 8-hour mean for O~3~, hourly means for NO~2~ and a fixed 24-hour mean for PM~10~ and PM~2.5~.
+The UK has an air quality index for O~3~, NO~2~, PM~10~ and PM~2.5~ described in detail at <http://uk-air.defra.gov.uk/air-pollution/daqi> and @COMEAP2011. The index is most relevant to air quality forecasting, but is used widely for public information. Most other countries have similar indexes. Note that the indexes are calculated for different averaging times dependent on the pollutant: rolling 8-hour mean for O~3~, hourly means for NO~2~ and a fixed 24-hour mean for PM~10~ and PM~2.5~.
 
-In the code below the labels and breaks are defined for each pollutant to make it easier to use the index in the `calendarPlot` function.
+In the code below the labels and breaks are defined for each pollutant to make it easier to use the index in the `calendarPlot()` function.
 
 ```{r}
-#| label: AQIndex
+#| label: fig-AQIndex
+#| fig-cap: A DAQI `calendarPlot()`
+
+## import UK daily air quality info
+pt4_daqi <-
+  importUKAQ(
+    site = "pt4",
+    year = 2021,
+    data_type = "daqi"
+  )
+
 ## the labels - same for all species
 labels <- c(
-  "1 - Low", "2 - Low", "3 - Low", "4 - Moderate", "5 - Moderate",
-  "6 - Moderate", "7 - High", "8 - High", "9 - High", "10 - Very High"
-)
-o3.breaks <- c(0, 34, 66, 100, 121, 141, 160, 188, 214, 240, 500)
-no2.breaks <- c(0, 67, 134, 200, 268, 335, 400, 468, 535, 600, 1000)
-pm10.breaks <- c(0, 17, 34, 50, 59, 67, 75, 84, 92, 100, 1000)
-pm25.breaks <- c(0, 12, 24, 35, 42, 47, 53, 59, 65, 70, 1000)
-```
-
-Remember it is necessary to use the correct averaging time. Assuming data are imported using `importAURN` or similar, then the units will be in μg m^-3^ --- if not the user should ensure this is the case. Note that rather than showing the day of the month (the default), `annotate = "value"` can be used to show the actual numeric value on each day. In this way, the colours represent the categorical interval the concentration on a day corresponds to *and* the actual value itself is shown.
-
-```{r}
-#| label: AQIndexPlots
-#| eval: false
-## import test data
-dat <- importAURN(site = "kc1", year = 2010)
-
-## no2 index example
-calendarPlot(dat,
-  year = 2010, pollutant = "no2", labels = labels,
-  breaks = no2.breaks, statistic = "max", cols = "turbo"
+  "1 - Low",
+  "2 - Low",
+  "3 - Low",
+  "4 - Moderate",
+  "5 - Moderate",
+  "6 - Moderate",
+  "7 - High",
+  "8 - High",
+  "9 - High",
+  "10 - Very High"
 )
 
-## for PM10 or PM2.5 we need the daily mean concentration
-calendarPlot(dat,
-  year = 2010, pollutant = "pm10", labels = labels,
-  breaks = pm10.breaks, statistic = "mean", cols = "turbo"
-)
-
-## for ozone, need the rolling 8-hour mean
-dat <- rollingMean(dat, pollutant = "o3", hours = 8)
-calendarPlot(dat,
-  year = 2010, pollutant = "rolling8o3", labels = labels,
-  breaks = o3.breaks, statistic = "max", cols = "turbo"
+# make calendar plot
+calendarPlot(
+  # just get pm10 data
+  mydata = subset(pt4_daqi, pollutant == "pm10"),
+  # out "pollutant" is the poll_index column
+  pollutant = "poll_index",
+  # our breaks - use 0.5 as the breaks need to be between indices
+  breaks = seq(0.5, 10.5, 1),
+  # set labels (above)
+  labels = labels,
+  # built-in DAQI colours
+  cols = "daqi"
 )
 ```

@@ -12,7 +12,7 @@ Perhaps one of the reasons why back trajectory analysis is not carried out more 
 
 Currently these functions allow for the import of pre-calculated back trajectories are several pre-define locations and some trajectory plotting functions. In time all of these functions will be developed to allow more sophisticated analyses to be undertaken. .
 
-The `importTraj` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#sec-importAURN), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
+The `importTraj()` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importUKAQ](#sec-importUKAQ), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
 
 [^trajectory-analysis-1]: Note --- the back trajectories have been pre-calculated for specific locations and stored as .RData objects. Users should contact David Carslaw to request the addition of other locations.
 
@@ -129,7 +129,7 @@ So far the plots have provided information on where the back trajectories come f
 ```{r}
 #| label: mergeTraj
 ## import data for North Kensington
-kc1 <- importAURN("kc1", year = 2010)
+kc1 <- importUKAQ("kc1", year = 2010)
 # now merge with trajectory data by 'date'
 traj <- left_join(traj, kc1, by = "date")
 ## look at first few lines
@@ -194,7 +194,7 @@ selectByDate(traj,
 
 Which, interestingly still clearly shows elevated PM~10~ concentrations for those two days that cross Iceland. The same is also true for PM~2.5~. However, as mentioned previously, checking other sites in more rural areas would be a good idea.
 
-## Trajectory gridded frequencies {#trajLevel}
+## Trajectory gridded frequencies {#trajectory-analysis-trajLevel}
 
 The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the London data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
 
@@ -258,7 +258,7 @@ trajLevel(traj,
 
 ### Allocating trajectories to different wind sectors
 
-One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in @sec-trajCluster . A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
+One of the key aspects of trajectory analysis is knowing something about where air masses have come from. Cluster analysis can be used to group trajectories based on their origins and this is discussed in @sec-trajCluster-trajectory-analysis. A simple approach is to consider different wind sectors e.g. N, NE, E and calculate the proportion of time a particular back trajectory resides in a specific sector. It is then possible to allocate a particular trajectory to a sector based on some assumption about the proportion of time it is in that sector --- for example, assume a trajectory is from the west sector if it spends at least 50% of its time in that sector or otherwise record the allocation as 'unallocated'. The code below can be used as the basis of such an approach.
 
 ```{r}
 #| echo: false
@@ -470,27 +470,31 @@ $$
 As an example, consideration is given to PM~2.5~ concentrations in a similar way as shown for CWT and the PSCF techniques. This plot indicates several potential sources of PM~2.5~ precursors with the Benelux countries and around the Po Valley in Italy (known high NO~x~ emission regions and potential sources of ammonium nitrate), and also a higher source region in eastern Europe across south Poland.
 
 ```{r}
+#| eval: false
+trajLevel(
+  dplyr::slice_sample(traj, prop = 0.1),
+  pollutant = "pm2.5",
+  statistic =  "sqtba",
+  map.fill = FALSE,
+  cols = "default",
+  lat.inc = 0.5,
+  lon.inc = 0.5
+)
+```
+
+```{r}
+#| echo: false
 #| label: fig-SQTBA
 #| fig-cap: SQTBA approach applied to PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-trajLevel(traj,
-          pollutant = "pm2.5",
-          statistic =  "sqtba",
-          map.fill = FALSE,
-          cols = "default",
-          lat.inc = 0.5,
-          lon.inc = 0.5
-          )
+knitr::include_graphics("sqtba.png")
 ```
 
 Some further analysis can be carried out on the TEOM FDMS measurements, which separately reports the volatile and non-volatile components of PM. @fig-SQTBA-PMv shows the plot for the volatile PM~2.5~ component, which highlights the source regions of the Benelux counties and (likely) northern Italy.
 
 ```{r}
-#| label: fig-SQTBA-PMv
-#| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
-#| fig-height: 6
-#| fig-width: 10
+#| eval: false
 trajLevel(traj,
           pollutant = "v2.5",
           statistic =  "sqtba",
@@ -501,35 +505,51 @@ trajLevel(traj,
           )
 ```
 
+```{r}
+#| label: fig-SQTBA-PMv
+#| echo: false
+#| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
+#| fig-height: 6
+#| fig-width: 10
+knitr::include_graphics("sqtba2.png")
+```
+
 On the other hand, @fig-SQTBA-PMnv shows the non-volatile PM~2.5~ component, which more clearly shows eastern Europe as the principal source. This plot differs from @fig-SQTBA-PMv and likely highlights the higher sulphur emissions from power generation in this part of Europe. More detailed analysis can be carried out if the components of PM are available at an hourly or daily resolution e.g. particulate nitrate, sulphate.
 
 ```{r}
+#| eval: false
+trajLevel(
+  traj,
+  pollutant = "nv2.5",
+  statistic =  "sqtba",
+  map.fill = FALSE,
+  cols = "default",
+  lat.inc = 0.5,
+  lon.inc = 0.5
+)
+```
+
+```{r}
 #| label: fig-SQTBA-PMnv
+#| echo: false
 #| fig-cap: SQTBA approach applied to the non-volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-trajLevel(traj,
-          pollutant = "nv2.5",
-          statistic =  "sqtba",
-          map.fill = FALSE,
-          cols = "default",
-          lat.inc = 0.5,
-          lon.inc = 0.5
-          )
+knitr::include_graphics("sqtba3.png")
 ```
 
 The analysis above was demonstrated for a single site. However, to exploit the full potential of the SQTBA approach, multiple receptors should be considered. The reason why multiple sites should be considered is that there will be better geographic coverage of the trajectories and potential for source regions to be sampled multiple times. To conduct an analysis of multiple sites, trajectories linked to pollutant concentrations should be combined into a single data frame in the format similar to `traj` above but with an additional variable that identifies the different sites. When running `trajLevel` the option `.combine` should be used to identify the relevant column e.g. `.combine = "site"`.
 
 The results returned from multiple site analysis are normalised by each site individually by dividing the output by the mean of the pollutant concentration. This approach ensures that sites with potentially very different mean concentrations can be used in a consistent way to identify source regions, without single sites dominating the output.
 
-## Trajectory clustering {#sec-trajCluster}
+## Trajectory clustering {#sec-trajCluster-trajectory-analysis}
 
 Often it is useful to use cluster analysis on back trajectories to group similar air mass origins together. The principal purpose of clustering back trajectories is to post-process data according to cluster origin. By grouping data with similar geographic origins it is possible to gain information on pollutant species with similar chemical histories. There are several ways in which clustering can be carried out and several measures of the similarity of different clusters. A key issue is how the *distance matrix* is calculated, which determines the similarity (or dissimilarity) of different back trajectories. The simplest measure is the Euclidean distance. However, an angle-based measure is also often used. The two distance measures are defined below. In [openair]{.pkg} the distance matrices are calculated using C$++$ code because their calculation is computationally intensive. Note that these calculations can also be performed directly in the Hysplit model itself.
 
-The Euclidean distance between two trajectories is given by Equation \@eq-Euclid. Where $X_1$, $Y_1$ and $X_2$, $Y_2$ are the latitude and longitude coordinates of back trajectories $1$ and $2$, respectively. $n$ is the number of back trajectory points (96 hours in this case).
+The Euclidean distance between two trajectories is given by @eq-Euclid. Where $X_1$, $Y_1$ and $X_2$, $Y_2$ are the latitude and longitude coordinates of back trajectories $1$ and $2$, respectively. $n$ is the number of back trajectory points (96 hours in this case). Note that a simpler formula is sufficient for this calculation than the more accurate Haversine formula.
 
 $$
-d_{1, 2} = \left({\sum_{i=1}^{n} ((X_{1i} - X_{2i}) ^ 2 + (Y_{1i} - Y_{2i})) ^ 2}\right)^{1/2} 
+d_{1, 2} = \left({\sum_{i=1}^{n} 111((X_{1i} - X_{2i}) ^ 2 + ((Y_{1i} - Y_{2i})cos(X_{1i})) ^ 2}\right)^{1/2} 
 $$ {#eq-Euclid}
 
 The *angle* distance matrix is a measure of how similar two back trajectory points are in terms of their angle from the origin i.e. the starting location of the back trajectories. The angle-based measure will often capture some of the important circulatory features in the atmosphere e.g. situations where there is a high pressure located to the east of the UK. However, the most appropriate distance measure will be application dependent and is probably best tested by the extent to which they are able to differentiate different air-mass characteristics, which can be tested through post-processing. The angle-based distance measure is defined as:
@@ -568,7 +588,7 @@ First, the back trajectory data for London is imported together with the air pol
 ```{r}
 #| label: importTrajKC1
 traj <- importTraj(site = "london", year = 2011)
-kc1 <- importAURN(site = "kc1", year = 2011)
+kc1 <- importUKAQ(site = "kc1", year = 2011)
 ```
 
 The clusters are straightforward to calculate. In this case the back trajectory data (`traj`) is supplied and the angle-based distance matrix is used. Furthermore, we choose to calculate 6 clusters and choose a specific colour scheme. In this case we read the output from `trajCluster` into a variable `clust` so that the results can be post-processed.
