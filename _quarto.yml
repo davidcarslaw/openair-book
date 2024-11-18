@@ -5,6 +5,7 @@ project:
 book:
   title: "The openair book"
   subtitle: "A Guide to the Analysis of Air Pollution Data"
+  cover-image: "assets/media/plume.png"
   author: 
   - David C Carslaw
   - Jack Davison
@@ -89,7 +90,7 @@ format:
     code-copy: true
     link-external-newwindow: true
     citation-location: margin
-    css: style.css
+    css: assets/style/style.css
     lightbox: true
     html-table-processing: none
     
