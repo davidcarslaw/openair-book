@@ -6,15 +6,15 @@ author: David Carslaw
 
 ## Background {#sec-timePlotBack}
 
-The `timePlot` function is designed to quickly plot time series of data, perhaps for several pollutants or variables. This is, or should be, a very common task in the analysis of air pollution. In doing so, it is helpful to be able to plot several pollutants at the same time (and maybe other variables) and quickly choose the time periods of interest. It will plot time series of type `Date` and hourly and high time resolution data.
+The `timePlot()` function is designed to quickly plot time series of data, perhaps for several pollutants or variables. This is, or should be, a very common task in the analysis of air pollution. In doing so, it is helpful to be able to plot several pollutants at the same time (and maybe other variables) and quickly choose the time periods of interest.
 
-With packages such as [ggplot2]{.pkg} it is very easy to plot time series. However, there are a few enhancements in `timePlot` such as flexible time-averaging and adding annotations for wind speed and direction that make it useful in some situations.
+With packages such as [ggplot2]{.pkg} it is very easy to plot time series. However, there are a few enhancements in `timePlot()` such as flexible time-averaging and adding annotations for wind speed and direction that make it useful in some situations.
 
-The function offers fine control over many of the plot settings such as line type, colour and width. If more than one pollutant is selected, then the time series are shown compactly in different panels with different scales. Sometimes it is useful to get and idea of whether different variables 'go up and down' together. Such comparisons in `timePlot` are made easy by setting `group = TRUE`, and maybe also `normalise = "mean"`. The latter setting divides each variable by its mean value, thus enabling several variables to be plotted together using *the same scale*. The `normalise` option will also take a date as a string (in British format dd/mm/YYYY), in which case all data are normalise to equal 100 at that time. Normalising data like this makes it easy to compare time series on different scales e.g. emissions and ambient measurements.
+The function offers fine control over many of the plot settings such as line type, colour and width. If more than one pollutant is selected, then the time series are shown compactly in different panels with different scales. Sometimes it is useful to get and idea of whether different variables 'go up and down' together. Such comparisons in `timePlot()` are made easy by setting `group = TRUE`, and maybe also `normalise = "mean"`. The latter setting divides each variable by its mean value, thus enabling several variables to be plotted together using *the same scale*. The `normalise` option will also take a date as a string (in British format dd/mm/YYYY), in which case all data are normalise to equal 100 at that time. Normalising data like this makes it easy to compare time series on different scales e.g. emissions and ambient measurements.
 
-`timePlot` works very well in conjunction with `selectByDate`, which makes it easy to select specific time series intervals. See @sec-selectByDate for examples of how to select parts of a data frame based on the date.
+`timePlot()` works very well in conjunction with `selectByDate()`, which makes it easy to select specific time series intervals. See @sec-selectByDate for examples of how to select parts of a data frame based on the date.
 
-Another useful feature of `timePlot` is the ability to average the data in several ways. This makes it easy, for example, to plot daily or monthly means from hourly data, or hourly means from 15-minute data. See the option `avg.time` for more details and @sec-timeAverage where a full description of time averaging of data frames is given.
+Another useful feature of `timePlot()` is the ability to average the data in several ways. This makes it easy, for example, to plot daily or monthly means from hourly data, or hourly means from 15-minute data. See the option `avg.time` for more details and @sec-timeAverage where a full description of time averaging of data frames is given.
 
 ## Examples of time series plotting
 
@@ -27,7 +27,7 @@ timePlot(mydata,
          y.relation = "free")
 ```
 
-Often it is necessary to only consider part of a time series and using the [openair]{.pkg} function `selectByDate` makes it easy to do this. Some examples are shown below.
+Often it is necessary to only consider part of a time series and using the [openair]{.pkg} function `selectByDate()` makes it easy to do this. Some examples are shown below.
 
 To plot data only for 2003:
 
@@ -42,7 +42,7 @@ Plots for several pollutants for August 2003, are shown in @fig-timePlot.
 
 ```{r}
 #| label: fig-timePlot
-#| fig-cap: Time series for several variables using the `timePlot` and the `selectByDate` functions. The data shown are for August 2003.
+#| fig-cap: Time series for several variables using the `timePlot()` and the `selectByDate()` functions. The data shown are for August 2003.
 #| fig-width: 8
 #| fig-height: 8
 library(openair)
@@ -104,7 +104,7 @@ Another example is grouping pollutants from *several sites* on one plot. It is e
 #| fig-width: 7
 #| fig-height: 4
 ## import data from 3 sites
-aq <- importAURN(site = c("kc1", "my1", "nott"), 
+aq <- importUKAQ(site = c("kc1", "my1", "nott"), 
                       year = 2005:2010)
 
 ## plot it
@@ -157,7 +157,7 @@ If wind speed `ws` and wind direction `wd` are available they can be used in plo
 
 ```{r}
 #| label: fig-timePlotwswd
-#| fig-cap: An example of using the `windflow` option in `timePlot`.
+#| fig-cap: An example of using the `windflow` option in `timePlot()`.
 #| fig-width: 9
 #| fig-height: 5
 #| out-width: 90%

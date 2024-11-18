@@ -5,21 +5,21 @@ project:
 book:
   title: "The openair book"
   subtitle: "A Guide to the Analysis of Air Pollution Data"
+  cover-image: "assets/media/plume.png"
   author: 
   - David C Carslaw
   - Jack Davison
   date: today
   date-format: long
   site-url: "https://bookdown.org/david_carslaw/openair/"
-  site-path: "/david_carslaw/openair/"
   repo-url: https://github.com/davidcarslaw/openair-book/
   repo-branch: master
   repo-actions: [edit]
-  favicon: "favicon.png"
+  favicon: assets/media/favicon.png
   sharing: [twitter, facebook, linkedin]
   sidebar: 
     search: true
-    logo: images/plume.png
+    logo: assets/media/plume.png
   chapters:
     - index.qmd
     - sections/intro/intro.qmd
@@ -69,8 +69,8 @@ book:
    - sections/appendices/appendix-trends.qmd
    - sections/appendices/appendix-gethelp.qmd
 
-bibliography: [DCC-refs.bib, packages.bib]
-csl: atmospheric-environment.csl
+bibliography: [assets/bib/DCC-refs.bib, assets/bib/packages.bib]
+csl: assets/bib/atmospheric-environment.csl
 
 execute: 
   warning: false
@@ -91,7 +91,9 @@ format:
     code-copy: true
     link-external-newwindow: true
     citation-location: margin
-    css: style.css
+    css: assets/style/style.css
+    lightbox: true
+    html-table-processing: none
     
 editor_options: 
   chunk_output_type: console

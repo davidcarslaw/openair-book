@@ -6,77 +6,51 @@ editor_options:
 abstract: This section outlines the different ways users can access the abundant air quality data in the UK. The main functions provide easy access to hourly data and other statistical summaries such as annual means and data capture rates. Easy access is also provided to site meta data such as longitude, latitude, site type and details of the pollutants measured.
 ---
 
-# Accessing UK Air Quality Data {#sec-importAURN}
+# Accessing UK Air Quality Data {#sec-importUKAQ}
 
 ## Accessing data
 
-The UK has a surprisingly large amount of air quality data that is
-publicly accessible. The main UK AURN archive and regional (England,
-Scotland, Wales and Northern Ireland) together with Imperial College
-London's London Air Quality Network (LAQN) are important and large
-databases of information that allow free public access. Storing and
-managing data in this way has many advantages including consistent data
-format, and underlying high quality methods to process and store the
-data.
+The UK has a surprisingly large amount of air quality data that is publicly
+accessible. The main UK AURN archive and regional (England, Scotland, Wales and
+Northern Ireland) together with Imperial College London's London Air Quality
+Network (LAQN) are important and large databases of information that allow free
+public access. Storing and managing data in this way has many advantages
+including consistent data format, and underlying high quality methods to process
+and store the data.
 
-[openair]{.pkg} has a family of functions that provide users with
-extensive access to UK air quality data. Ricardo Energy & Environment
-have provided .RData files (R workspaces) for several important air
+[openair]{.pkg} has a core function that provides users with
+extensive access to UK air quality data; `importUKAQ()`. Ricardo
+has provided `.RData` files (R workspaces) for several important air
 quality networks in the UK. These files are updated on a daily basis.
 This approach requires a link to the Internet to work. The work of
-Trevor Davies at Ricardo Energy & Environment is greatly appreciated in
-making all the data available. The networks include:
+Trevor Davies at Ricardo is greatly appreciated in
+making all the data available. The networks available through `importUKAQ()` include:
 
--   `importAURN` For importing data from the UK national network called
-    [Automatic Urban and Rural
-    Network](https://uk-air.defra.gov.uk/networks/network-info?view=aurn).
-    This is the main UK network.
+-   The UK national network, the [Automatic Urban and Rural Network](https://uk-air.defra.gov.uk/networks/network-info?view=aurn). This is the main UK network.
 
--   `importSAQN` For accessing data from [Air Quality
-    Scotland](http://www.scottishairquality.scot/) network.
+-   The UK "devolved" networks:
 
--   `importWAQN` For accessing data from the [Air Quality
-    Wales](https://airquality.gov.wales/) network.
+    -   [Air Quality Scotland](http://www.scottishairquality.scot/) network.
 
--   `importAQE` For accessing data from the [Air Quality
-    England](https://www.airqualityengland.co.uk/) network of sites.
+    -   [Air Quality Wales](https://airquality.gov.wales/) network.
 
--   `importNI` For accessing data from the [Northern
-    Ireland](https://www.airqualityni.co.uk) network of sites.
+    -   [Air Quality England](https://www.airqualityengland.co.uk/) network of sites.
 
--   `importLocal` Import data from locally managed AQ networks in
-    England. These are sites operated in most cases by Local Authorities
-    but may also include monitoring from other programmes, industry and
-    airports. The location and purpose of these sites differs from the
-    national network which is governed by strict rules of the air
-    quality directives. As a result there is a broad range of site
-    types, equipment and data quality practices. For more information
-    see
-    [here](https://uk-air.defra.gov.uk/networks/network-info?view=nondefraaqmon).
-    These data represent information from about 15 different local air
-    quality networks.
+    -   [Northern Ireland](https://www.airqualityni.co.uk) network of sites.
 
--   `importEurope` A simplified version of a function to give basic
-    access to hourly European data based on Stuart Grange's
-    [saqgetr]{.pkg} package --- see
-    <https://github.com/skgrange/saqgetr>. The [openair]{.pkg} function
-    has a similar approach to other [openair]{.pkg} import functions
-    i.e. requires a site code(s) and year(s) to be supplied.
+-   Locally managed AQ networks in England. These are sites operated in most cases by Local Authorities but may also include monitoring from other programmes, industry and airports. The location and purpose of these sites differs from the national network which is governed by strict rules of the air quality directives. As a result there is a broad range of site types, equipment and data quality practices. For more information see [here](https://uk-air.defra.gov.uk/networks/network-info?view=nondefraaqmon). These data represent information from about 15 different local air quality networks.
 
--   `importKCL` For accessing data from the sites operated by Imperial
-    College London[^uk-air-quality-data-1], primarily including the [The
-    London Air Quality
-    Network](https://www.londonair.org.uk/LondonAir/Default.aspx).
+Also available is `importKCL()` for accessing data from the sites operated by Imperial College London[^uk-air-quality-data-1], primarily including the [The London Air Quality Network](https://www.londonair.org.uk/LondonAir/Default.aspx).
 
 [^uk-air-quality-data-1]: The data were first accessible when the
     Environmental Research Group was based at King's College London.
 
-Many users download hourly data from the air quality archive at
-<https://www.airquality.co.uk>. Most commonly, the data are emailed to
-the user as .csv files and have a fixed format as shown below. This is a
-useful facility but does have some limitations and frustrations, many of
-which have been overcome using a new way of storing and downloading the
-data described below.
+Many users download hourly data from [UK
+AIR](https://uk-air.defra.gov.uk/data/). Most commonly, the data are emailed to
+the user as .csv files and have a fixed format as shown below. This is a useful
+facility but does have some limitations and frustrations, many of which have
+been overcome using a new way of storing and downloading the data described
+below.
 
 There are several advantages over the web portal approach where .csv
 files are downloaded. First, it is quick to select a range of sites,
@@ -106,7 +80,7 @@ library(tidyverse)
 
 The first question is, what sites are available and what do they
 measure? Users can access the details of air pollution monitoring sites
-using the `importMeta` function. The user only needs to provide the
+using the `importMeta()` function. The user only needs to provide the
 network name and (optionally) whether all data should be returned and
 whether certain periods should be considered. By default only site type,
 latitude and longitude are returned.
@@ -126,13 +100,13 @@ measured at each site and site start / end dates. The option
 ```{r}
 #| label: importMetaAll
 #| eval: true
-aurn_meta <- importMeta(source = "aurn", all = TRUE) 
+aurn_meta <- importMeta(source = "aurn", all = TRUE)
 
 # what comes back?
 glimpse(aurn_meta)
 ```
 
-Note that `importMeta` can import information for several networks at
+Note that `importMeta()` can import information for several networks at
 once e.g. `source = c("aurn", "saqn")`.
 
 Often it is useful to consider sites that were open in a particular year
@@ -182,9 +156,9 @@ nrow(no2_sites)
 ```
 
 ::: callout-tip
-## Use `importMeta` as a way to select sites to import
+## Use `importMeta()` as a way to select sites to import
 
-One of the most useful aspects of `importMeta` is to use it as a basis
+One of the most useful aspects of `importMeta()` is to use it as a basis
 to identify site codes to then import data. For example, to import data
 from the AURN for sites that have been in operation from 2005 to 2020:
 
@@ -195,40 +169,45 @@ sites_2005_2020 <- importMeta(
   year = 2005:2020
 )
 
-all_aq_data <- importAURN(
+all_aq_data <- importUKAQ(
   site = sites_2005_2020$code,
   year = 2005:2020
 )
 ```
 :::
 
-To import data, you can use the different versions of `importAURN`. Some
+To import data, you can use the different versions of `importUKAQ()`. Some
 examples are below.
 
 ```{r}
 #| eval: false
 ## import all pollutants from Marylebone Rd from 2000:2005
-mary <- importAURN(site = "my1", year = 2000:2005)
+mary <- importUKAQ(site = "my1", year = 2000:2005)
 
 ## import nox, no2, o3 from Marylebone Road and Nottingham Centre for 2000
-thedata <- importAURN(site = c("my1", "nott"), year = 2000,
-                      pollutant = c("nox", "no2", "o3"))
+thedata <- importUKAQ(
+  site = c("my1", "nott"), year = 2000,
+  pollutant = c("nox", "no2", "o3")
+)
 
 ## import over 30 years of Mace Head O3 data!
-o3 <- importAURN(site = "mh", year = 1987:2019)
+o3 <- importUKAQ(site = "mh", year = 1987:2019)
 
 ## import hydrocarbon data from Marylebone Road
-hc <- importAURN(site = "my1", year = 2008, hc = TRUE)
+hc <- importUKAQ(site = "my1", year = 2008, hc = TRUE)
 
 ## Import data from the AQE network (York data in this case)
-yk13 <- importAQE(site = "yk13", year = 2018)
+yk13 <- importUKAQ(site = "yk13", year = 2018, source = "aqe")
+
+## Import data from the AURN *and* AQE network!
+duo <- importUKAQ(site = c("my1", "yk13"), year = 2020, source = c("aurn", "aqe"))
 ```
 
 And to include basic meta data when importing air pollution data:
 
 ```{r}
 #| label: importWithMeta
-kc1 <- importAURN(site = "kc1", year = 2018, meta = TRUE)
+kc1 <- importUKAQ(site = "kc1", year = 2018, meta = TRUE)
 
 glimpse(kc1)
 ```
@@ -240,7 +219,7 @@ format (column for pollutant name, column for value) by using the option
 
 ```{r}
 #| eval: false
-my1 <- importAURN("my1", year = 2018, to_narrow = TRUE)
+my1 <- importUKAQ("my1", year = 2018, to_narrow = TRUE)
 ```
 
 It is also possible to return information on whether the data have been
@@ -269,8 +248,8 @@ similar to [openair]{.pkg}.
 install.packages("openairmaps")
 ```
 
-This package contains the `networkMap` function which acts as a wrapper
-around `importMeta` and returns a detailed map similar to the one
+This package contains the `networkMap()` function which acts as a wrapper
+around `importMeta()` and returns a detailed map similar to the one
 produced below, with many options for customisation. For example, sites
 can be clustered together to avoid clutter, and an optional "control
 menu" can be added to filter for certain sites (e.g., different site
@@ -293,7 +272,7 @@ Page](../maps/maps-network.qmd).
 
 By default, all the functions above return hourly data. However, often
 there is a need to return data such as annual means of a long period of
-time. The UK family of functions (but not `importKCL`) can return data
+time. `importUKAQ()` (but not `importKCL()`) can return data
 for averaging times: annual, monthly, daily and for SO~2~ 15-minute. The
 annual and monthly data also provide valuable information on data
 capture rates. The averaging statistic is selected with the `data_type`
@@ -322,9 +301,7 @@ option. The values `data_type` can take include:
     site(s) for PM~10~ and PM~2.5~.
 -   **"daily_max_8"** Maximum daily rolling 8-hour maximum for O~3~ and
     CO.
--   **"daqi"** Daily Air Quality Index (DAQI). See
-    [here](https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=ozone#pollutant)
-    for more details of how the index is defined.
+-   **"daqi"** Daily Air Quality Index (DAQI). See [here](https://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info&pollutant=ozone#pollutant) for more details of how the index is defined.
 
 Note that for annual and monthly statistics all network data is returned
 and the `site` option has no effect.
@@ -333,7 +310,7 @@ As an example, to import 5 years of annual mean data from the AURN:
 
 ```{r}
 #| eval: false
-uk_annual <- importAURN(year = 2016:2020, data_type = "annual")
+uk_annual <- importUKAQ(year = 2016:2020, data_type = "annual", source = "AURN")
 ```
 
 By default, this will return data in "wide" format with a pollutant and
@@ -346,8 +323,9 @@ Below is an example of obtaining annual mean data for 2020.
 
 ```{r}
 #| label: importAnnual
-uk_2020 <- importAURN(
+uk_2020 <- importUKAQ(
   year = 2020,
+  source = "aurn",
   data_type = "annual",
   meta = TRUE,
   to_narrow = TRUE
@@ -376,9 +354,11 @@ Index) by pollutant to save deriving it.
 
 ```{r}
 #| label: daqi
-daqi_2020 <- importAURN(
+daqi_2020 <- importUKAQ(
   year = 2020,
-  data_type = "daqi", meta = TRUE
+  source = "aurn",
+  data_type = "daqi",
+  meta = TRUE
 )
 
 daqi_2020

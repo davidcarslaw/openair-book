@@ -10,7 +10,7 @@ The behaviour of pollutants in the atmosphere is highly complex, which can make 
 
 @bentley2004 considered the relationship between two pollutants in a range of interesting ways, which have not been widely adopted but are nevertheless useful. @bentley2004 considered the relationship between two pollutants with the aim of understanding the ratio, which can then be compared with emission inventories. The approach is to consider the issue from the perspective of a local source being mixed into background air. Both the background air and source contributions in terms of concentrations will vary, which can make it difficult to establish a pollutant ratio for a dominant source. This approach has also been used to consider vehicle emission quantification using high time resolution data (at 1-Hz) by @farren2023a.
 
-The idea is to exploit the fact that for a local dispersing plume, the ratio between two pollutants would be expected to be invariant. The main approach is to look in time series data over short periods of time where, in a dispersing plume, the ratio between two pollutants is constant. For hourly data for example, considering the relationship between two pollutants over three consecutive hours using a linear regression can be used to identify short periods where the ratio (the slope from a regression) is constant (or close to constant). By considering high R^2^ values (typically \> 0.9 to 0.95), these conditions correspond to constant ratios between two pollutants, which would be indicative of the behaviour of a diluting plume. The regression itself is a rolling regression e.g. first consider hours 1 to3, then 2 to 4 and so on. The approach becomes clearer by considering an example.
+The idea is to exploit the fact that for a local dispersing plume, the ratio between two pollutants would be expected to be invariant. The main approach is to look in time series data over short periods of time where, in a dispersing plume, the ratio between two pollutants is constant. For hourly data for example, considering the relationship between two pollutants over three consecutive hours using a linear regression can be used to identify short periods where the ratio (the slope from a regression) is constant (or close to constant). By considering high R^2^ values (typically \> 0.9 to 0.95), these conditions correspond to constant ratios between two pollutants, which would be indicative of the behaviour of a diluting plume. The regression itself is a rolling regression e.g. first consider hours 1 to 3, then 2 to 4 and so on. The approach becomes clearer by considering an example.
 
 ## Examples {#run-regression-sec-timePropEx}
 
@@ -24,7 +24,7 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-aq <- importAURN("my1", year = 2022, meteo = FALSE)
+aq <- importUKAQ("my1", year = 2022, meteo = FALSE)
 met <- importNOAA(year = 2022)
 aq <- left_join(aq, met, by = "date")
 
@@ -38,7 +38,7 @@ library(tidyverse)
 library(openair)
 library(worldmet)
 
-aq <- readRDS(here::here("data/my1_2022.rds"))
+aq <- readRDS(here::here("assets/data/my1_2022.rds"))
 ```
 
 Next we will consider the relationship between PM~2.5~ and NO~x~ with a 3-hour rolling regression window. The data frame returned (`out`) has the rolling 3-hour regression fit information and other variables that can be used for plotting and post-processing.
@@ -106,7 +106,7 @@ The dilution lines shown in @fig-dilution-lines have also been coloured by the m
 
 ```{r}
 #| label: fig-dilution-lines
-#| fig-cap: Relationship between hourly NO~x~ and PM~2.5~ for filtered data at Marylebone Road for 2022. In this case the 3-hour 'dilution lines' are shown where the lnear regression R^2^ is > 0.95 and the change in NO~x~ is > 100 μg m^-3^.
+#| fig-cap: Relationship between hourly NO~x~ and PM~2.5~ for filtered data at Marylebone Road for 2022. In this case the 3-hour 'dilution lines' are shown where the linear regression R^2^ is > 0.95 and the change in NO~x~ is > 100 μg m^-3^.
 #| cache: false
 #| fig-width: 5.4
 #| fig-height: 4
@@ -134,7 +134,7 @@ To get more quantitative information from @fig-dilution-lines, the slope can be 
 
 [^run-regression-1]: A value of 100 μg m^-3^ was used to make the plots clearer.
 
-It should be noted in @fig-dilution-lines and @fig-mode-plot there is still a distribution of slopes, even if they look reasonably consistent. This is expected for a few reasons. First, even if the extracted dilution lines were 100% associated with a road traffic source, the emission rate and relationship between NO~x~ and PM~2.5~ would not be expected to be constant. Second, it is still possible that dilution lines can be affected by changing background concentrations to some extent, and third, there could still be an influence from other sources. However, its is clear there is a remarkable consistency in the dilution line slopes shown in @fig-dilution-lines.
+It should be noted in @fig-dilution-lines and @fig-mode-plot there is still a distribution of slopes, even if they look reasonably consistent. This is expected for a few reasons. First, even if the extracted dilution lines were 100% associated with a road traffic source, the emission rate and relationship between NO~x~ and PM~2.5~ would not be expected to be constant. Second, it is still possible that dilution lines can be affected by changing background concentrations to some extent, and third, there could still be an influence from other sources. However, it is clear there is a remarkable consistency in the dilution line slopes shown in @fig-dilution-lines.
 
 ```{r}
 #| label: fig-mode-plot

@@ -31,7 +31,7 @@ sub.data <- selectByDate(mydata, day = "weekday", hour = 7:19)
 
 ## select weekends between the hours of 7 am to 7 pm in winter (Dec, Jan, Feb)
 sub.data <- selectByDate(mydata, day = "weekend", hour = 7:19,
-                           month = c("dec", "jan", "feb"))
+                           month = c(12, 1, 2))
 ```
 
 The function can be used directly in other functions. For example, to make a polar plot using year 2000 data:
@@ -124,7 +124,7 @@ pollutionRose(ted, pollutant = "o3",
           type = "criterion")
 ```
 
-The results are shown in @fig-RunningRes. The pollution rose for for the "no" criterion (left plot of @fig-RunningRes shows that the highest O~3~ concentrations tend to occur for wind directions from the south-west, where there is a high proportion of measurements. By contrast, the when the criterion is met (right plot of @fig-RunningRes is very different. In this case there is a clear set of conditions where these criteria are met i.e. lengths of at least 8-hours where the O~3~ concentration is at least 90 ppb. It is clear the highest concentrations are dominated by south-easterly conditions i.e. corresponding to easterly flow from continental Europe where there has been time to the O~3~ chemistry to take place.
+The results are shown in @fig-RunningRes. The pollution rose for the "no" criterion (left plot of @fig-RunningRes) shows that the highest O~3~ concentrations tend to occur for wind directions from the south-west, where there is a high proportion of measurements. By contrast, the when the criterion is met (right plot of @fig-RunningRes) is very different. In this case there is a clear set of conditions where these criteria are met i.e. lengths of at least 8-hours where the O~3~ concentration is at least 90 ppb. It is clear the highest concentrations are dominated by south-easterly conditions i.e. corresponding to easterly flow from continental Europe where there has been time to the O~3~ chemistry to take place.
 
 The code below shows (as an example), that the summer of 2006 had a high proportion of conditions where the criterion was met.
 
@@ -219,7 +219,7 @@ First, retaining by site averages:
 ```{r}
 #| label: timeAvType
 # import some data for two sites
-dat <- importAURN(c("kc1", "my1"), year = 2011:2013)
+dat <- importUKAQ(c("kc1", "my1"), year = 2011:2013)
 
 # annual averages by site
 timeAverage(dat, avg.time = "year", type = "site")
@@ -273,8 +273,6 @@ The `corPlot` shows the correlation coded in three ways: by shape (ellipses), co
 
 With many variables it can be difficult to see relationships between variables i.e. which variables tend to behave most like one another. For this reason hierarchical clustering is applied to the correlation matrices to group variables that are most similar to one another (if `cluster = TRUE`.)
 
-It is also possible to use the [openair]{.pkg} type option to condition the data in many flexible ways, although this may become difficult to visualise with too many panels.
-
 An example of the `corPlot` function is shown in @fig-corPlot. In this Figure it can be seen the highest correlation coefficient is between PM~10~ and PM~2.5~ (r = 0. 84) and that the correlations between SO~2~, NO~2~ and NO~x~ are also high. O~3~ has a negative correlation with most pollutants, which is expected due to the reaction between NO and O~3~. It is not that apparent in @fig-corPlot that the order the variables appear is due to their similarity with one another, through hierarchical cluster analysis. In this case we have chosen to also plot a *dendrogram* that appears on the right of the plot. Dendrograms provide additional information to help with visualising how groups of variables are related to one another. Note that dendrograms can only be plotted for `type = "default"` i.e. for a single panel plot.
 
 ```{r}
@@ -297,7 +295,7 @@ When there are a very large number of variables present, the `corPlot` is a very
 
 ```{r}
 #| eval: false
-hc <- importAURN(site = "my1", year = 2005, hc = TRUE)
+hc <- importUKAQ(site = "my1", year = 2005, hc = TRUE)
 ## now it is possible to see the hydrocarbons that behave most
 ## similarly to one another
 corPlot(hc)

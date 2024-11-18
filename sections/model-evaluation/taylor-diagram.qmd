@@ -19,7 +19,7 @@ library(tidyverse)
 
 ```{r}
 #| label: showModData
-load("../../book_data/modelData.RData")
+load("../../assets/data/modelData.RData")
 head(modTest)
 ```
 
@@ -54,9 +54,9 @@ Note that in cases where there is a column `site` it makes sense to use `type = 
 #|   - "Correlation coefficient."
 #|   - "Centred RMS."
 #| layout-ncol: 2
-knitr::include_graphics(c('../../images/TaylorExplainSD.png',
-                          '../../images/TaylorExplainR.png',
-                          '../../images/TaylorExplainRMS.png'))
+knitr::include_graphics(c('../../assets/media/TaylorExplainSD.png',
+                          '../../assets/media/TaylorExplainR.png',
+                          '../../assets/media/TaylorExplainRMS.png'))
 ```
 
 ## Examples of Taylor Diagrams

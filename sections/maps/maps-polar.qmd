@@ -9,7 +9,7 @@ execute:
 
 ## Data Requirements
 
-[openairmaps]{.pkg} contains the `polar_data` dataset to allow users to test the directional analysis functions. The structure of this data set is provided below, and a summary is given in @tbl-polardata. The important feature of this data when compared to `openair::mydata` is latitude and longitude information, which [openairmaps]{.pkg} needs to place the directional analysis markers in the correct positions.
+[openairmaps]{.pkg} contains the `polar_data` dataset to allow users to test the directional analysis functions^[By "directional analysis", we are referring to the outputs from [openair]{.pkg} functions like `polarPlot()`.]. The structure of this data set is provided below, and a summary is given in @tbl-polardata. The important feature of this data when compared to `openair::mydata` is latitude and longitude information, which [openairmaps]{.pkg} needs to place the directional analysis markers in the correct positions.
 
 ```{r}
 #| label: glimpsePolar
@@ -31,37 +31,12 @@ polar_data %>%
   )
 ```
 
-If you would prefer to use data from different sites or years, the `import*()` functions from [openair]{.pkg} make it easy to obtain pollution data with associated site latitude/longitude. The key thing to remember is to use the `meta = TRUE` argument when using a function like `importAURN()` to have the lat/lon (& site type) appended to your imported data.
+If you would prefer to use data from different sites or years, the `import*()` functions from [openair]{.pkg} make it easy to obtain pollution data with associated site latitude/longitude. The key thing to remember is to use the `meta = TRUE` argument when using a function like `importUKAQ()` to have the lat/lon (& site type) appended to your imported data.
 
 ```{r}
 #| label: importlatlon
-sunderland <- openair::importAURN(site = c("sun2", "sunr"), year = 2015, meta = TRUE)
+sunderland <- openair::importUKAQ(site = c("sun2", "sunr"), year = 2015, meta = TRUE)
 names(sunderland)
-```
-
-By "directional analysis", we are referring to the outputs from [openair]{.pkg} functions like `polarPlot()`. As a reminder as to what these figures look like, see @fig-openairplots.
-
-```{r}
-#| label: fig-openairplots
-#| fig-cap: "All of the directional analysis figures which can be plotted on a map."
-#| column: body-outset
-#| fig-subcap: 
-#| - "Polar Annulus"
-#| - "Polar Frequency"
-#| - "Percentile Rose"
-#| - "Polar Plot"
-#| - "Pollution Rose"
-#| - "Wind Rose"
-#| - "Polar Diff"
-#| layout-ncol: 2
-set.seed(123)
-openair::polarAnnulus(polar_data)
-openair::polarFreq(polar_data)
-openair::percentileRose(polar_data)
-openair::polarPlot(polar_data)
-openair::pollutionRose(polar_data)
-openair::windRose(polar_data)
-openair::polarDiff(polar_data, dplyr::mutate(polar_data, nox = jitter(nox, factor = 5)))
 ```
 
 ## Overview
@@ -94,11 +69,11 @@ Effectively all of these functions have very similar arguments, although some ar
 
 -   `pollutant`: The pollutant(s) of interest. If multiple pollutants are provided, a "layer control" menu will allow readers to swap between them.
 
--   `latitude`, `longitude`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`).
+-   `latitude`, `longitude`, `crs`: The lat/lon column names. If they are not specified, the functions will attempt to guess them based on common names (e.g., "lon", "lng", "long" and "longitude" for `longitude`). `crs` can be changed from the default if your data uses a different coordinate system, e.g., `crs = 27700` for the British National Grid.
 
--   `control`: A column to use to create a "layer control" menu. Specifying `control` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `control` will be those created by `openair::cutData()` or `openair::splitByDate()`.[^maps-polar-2]
+-   `type`: A column to use to create a "layer control" menu. Specifying `type` effectively splits the input data along the specified column, creating multiple separate sets of directional analysis plots. Common columns to pass to `type` will be those created by `openair::cutData()` or `openair::splitByDate()`.[^maps-polar-2]
 
-[^maps-polar-2]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `control`, but never both. If multiple pollutants *and* `control` are specified, `control` will be ignored.
+[^maps-polar-2]: Note that maps can only have one "layer control" menu. Users should therefore only provide multiple pollutants *or* an argument to `type`, but never both. If multiple pollutants *and* `type` are specified, `type` will be ignored.
 
 -   `popup`: A column to be used to create a HTML "popup" that appears when users click the markers. This would be useful to label each marker with its corresponding site name or code, although other information could be usefully included (e.g., site type, average pollutant concentrations, and so on). A more complicated popup can be created using the `buildPopup()` function.
 
@@ -188,26 +163,25 @@ polarMap(
 ```
 :::
 
-## Use of `control`
+## Use of `type`
 
-@fig-controlMap uses `percentileMap()` and demonstrates how to use the "control" option to create a custom "layer control" menu and "label" and "popup" to label the markers, as well as passing on arguments to the equivalent [openair]{.pkg} function --- in this case, passing the "intervals" argument to `percentileRose()` so that all of the markers are on the same radial axis.
+@fig-controlMap uses `percentileMap()` and demonstrates how to use the "type" option to create a custom "layer control" menu and "label" and "popup" to label the markers, as well as passing on arguments to the equivalent [openair]{.pkg} function --- in this case, passing the "intervals" argument to `percentileRose()` so that all of the markers are on the same radial axis.
 
 ```{r}
 #| label: fig-controlMap
-#| fig-cap: "A demonstration of `percentileMap()` using the 'control' option and passing arguments to `openair::percentileRose()`."
-polar_data %>%
-  openair::cutData("weekend") %>% 
-  percentileMap(
-    pollutant = "nox",
-    control = "weekend",
-    latitude = "lat",
-    longitude = "lon", 
-    provider = "Esri.WorldTopoMap",
-    cols = "viridis",
-    popup = "site",
-    label = "site_type",
-    intervals = c(0, 200, 400, 600, 800, 1000)
-  )
+#| fig-cap: "A demonstration of `percentileMap()` using the 'type' option and passing arguments to `openair::percentileRose()`."
+percentileMap(
+  polar_data,
+  pollutant = "nox",
+  type = "weekend",
+  latitude = "lat",
+  longitude = "lon", 
+  provider = "Esri.WorldTopoMap",
+  cols = "viridis",
+  popup = "site",
+  label = "site_type",
+  intervals = c(0, 200, 400, 600, 800, 1000)
+)
 ```
 
 ## Adding Extra Markers
@@ -241,13 +215,11 @@ So far, popups have used a single column to label the markers, but you will ofte
 
 -   `data`: the data you are going to use with, e.g., `polarMap()`.
 
--   `cols`: the columns you would like to encode in your popup.
+-   `columns`: the columns you would like to encode in your popup. If this is a named list, the names will replace the raw column names in the popup.
 
 -   `latitude` & `longitude`: the decimal latitude/longitude, which `buildPopup()` will use to identify individual sites to create labels for.
 
--   `names`: a named vector used to rename columns in the popup.
-
--   `control`: optional. This should only be used if you are going to use the `control` option in, e.g., `polarMap()` and you'd expect different popups for the different layers (i.e., it isn't needed for site names/types, but it is needed for pollutant concentrations).
+-   `type`: optional. This should only be used if you are going to use the `type` option in, e.g., `polarMap()` and you'd expect different popups for the different layers (i.e., it isn't needed for site names/types, but it is needed for pollutant concentrations).
 
 -   `fun.character`, `fun.numeric` & `fun.dttm`: the functions used to summarise character/factor, numeric, and date-time columns. These have nice defaults, but you may wish to override them.
 
@@ -261,19 +233,18 @@ Think of `buildPopup()` as an intermediate between your data and the polar mappi
 polar_data %>%
   openair::cutData("weekend") %>%
   buildPopup(
-    cols = c("site", "site_type", "date", "nox"),
-    names = c(
+    columns = c(
       "Site" = "site",
       "Site Type" = "site_type",
       "Date Range" = "date",
       "Average nox" = "nox"
     ),
-    control = "weekend"
+    type = "weekend"
   ) %>%
   pollroseMap(pollutant = "nox",
               popup = "popup",
               breaks = 6,
-              control = "weekend")
+              type = "weekend")
 ```
 
 ## Marker Function
@@ -290,9 +261,7 @@ To demonstrate, @fig-polarFreqMap has been created. This uses the `polarFreq()` 
 library(leaflet)
 library(openair)
 leaflet() %>%
-  addProviderTiles(
-    "Stamen.Toner"
-  ) %>% 
+  addProviderTiles("CartoDB.Voyager") %>% 
   addPolarMarkers(
     lng = "lon", lat = "lat",
     pollutant = "nox",
@@ -332,42 +301,43 @@ The options are pretty much endless for the kinds of things you could achieve us
 
 ## Static Maps
 
-While interactive maps are useful for exploratory analysis and HTML documents/websites, there are numerous situations in which a static directional analysis map may be desired. For example, academic publications often demand submissions which compile to PDF. [openairmaps]{.pkg} provides "static" versions of all seven directional analysis maps, identified by appending the word "Static" to the end of the corresponding interactive map (e.g., `polarMapStatic()`).
+While interactive maps are useful for exploratory analysis and HTML documents/websites, there are numerous situations in which a static directional analysis map may be desired. For example, academic publications often demand submissions which compile to PDF. [openairmaps]{.pkg} provides the `static` argument to facilitate this.
 
 The static maps are designed to be *almost* identical to the interactive maps, with very similar arguments to help easily switch between the two. There are a handful of exceptions, however:
 
--   HTML maps have the `control` argument, whereas static maps have the `facet` argument. `facet` creates separate panels in the same figure in place of having a menu to switch between marker sets. Different panels are also created when multiple `pollutant`s are provided. The arrangement of these panels can be controlled using `facet.nrow`.
+-   Both dynamic and static maps use the `type` argument, but they work in different ways. In static maps, `type` works broadly similarly to the rest of `{openair}` in that it creates separate panels in the same figure in place of having a menu to switch between marker sets. Different panels are also created when multiple `pollutant`s are provided. The arrangement of these panels can be controlled using `static.nrow`.
 
--   Static maps naturally do not have the `popup` and `label` arguments. However, a benefit of being based in [ggplot2]{.pkg} is that limited further customisation is possible, such as manually adding labels using `ggplot2::geom_label()`.
+-   Static maps naturally do not have the `popup` and `label` arguments. However, a benefit of being based in [ggplot2]{.pkg} is that limited further customisation is possible, such as manually adding labels using `ggplot2::geom_sf_label()`.
 
--   HTML maps have different default `d.icon` and `d.fig` values.
+-   HTML maps use [leaflet]{.pkg}, whereas static maps use [ggplot2]{.pkg} and [ggspatial]{.pkg}. The user-facing significance of this is that the `providers` arguments are slightly different.
 
--   HTML maps use [leaflet]{.pkg}, whereas static maps use [ggplot2]{.pkg} and [ggmap]{.pkg}. Please see the note below for more information.
+::: {.callout-note collapse="true"}
+### View Providers
 
-::: {.callout-note}
-## API Keys
-
-The "static" directional analysis maps are powered using `{ggmap}`. Formerly, `{ggmap}` could freely access the "Stamen" tiles to use as a basemap, but [recent events](https://maps.stamen.com/stadia-partnership/) mean this is no longer possible. `{openairmaps}` users are now required to create an API key for Stadia maps, use `{ggmap}` manually to import a basemap, and provide this ggmap object to the `ggmap` argument. Note that Stadia is free for non-commercial purposes.
-
-More information about `{ggmap}` can be found [here](https://github.com/dkahle/ggmap).
+```{r}
+#| label: rosmproviders
+rosm::osm.types()
+```
 :::
 
 ```{r}
-#| label: polarMapStaticDemo
-#| eval: false
-
-# import a stadia/googlemap (NB: requires API key)
-tilemap <- ggmap::get_stadiamap(...)
+#| label: fig-polarMapStatic
+#| fig-cap: A static polar plot map.
+#| column: page-inset-right
+#| fig-width: 12
+#| fig-height: 5
 
 # use in polarMapStatic
-polarMapStatic(
+polarMap(
   polar_data,
-  pollutant = c("nox","pm2.5"),
-  ggmap = tilemap,
+  pollutant = c("nox", "pm2.5"),
+  provider = "cartolight",
   latitude = "lat",
   longitude = "lon",
   d.icon = 100,
   d.fig = 2.5,
-  alpha = .75
+  alpha = .75,
+  static = TRUE
 )
 ```
+

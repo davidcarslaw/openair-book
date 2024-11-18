@@ -7,7 +7,7 @@ abstract: Meteorological data is key to understanding air quality measurements. 
 
 ## The worldmet package
 
-Most of the import functions described in @sec-importAURN return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.
+Most of the import functions described in @sec-importUKAQ return basic modelled hourly meteorological data (wind speed, wind direction and surface temperature). These data are derived from the WRF model that Ricardo runs to provide the data.
 
 Alternatively it may be advantageous to use surface measurements. [worldmet]{.pkg} provides an easy way in which to access surface meteorological data from \>30,000 sites across the world. The package accesses the NOAA webservers to download hourly data. See <https://github.com/davidcarslaw/worldmet> and <https://www.ncdc.noaa.gov/isd> for further information.
 
@@ -71,13 +71,13 @@ windRose(dublin_met)
 
 ## Linking with air quality data {#sec-link-aq}
 
-Having imported some meteorological data it will often be necessary to combine it with air quality data. Quite how this is done depends on the air quality data. The important point is there should be a `date` column in each data set that make the connection between the two. It may also depend on whether the air quality data has existing fields that also exist in the meteorological data e.g. `ws`, `wd` and `air_temp`, as is the case with most data accessible as described in @sec-importAURN. In this case, the aim to to replace any existing meteorological variables in the air quality data with those in the meteorological data. An example is shown below.
+Having imported some meteorological data it will often be necessary to combine it with air quality data. Quite how this is done depends on the air quality data. The important point is there should be a `date` column in each data set that make the connection between the two. It may also depend on whether the air quality data has existing fields that also exist in the meteorological data e.g. `ws`, `wd` and `air_temp`, as is the case with most data accessible as described in @sec-importUKAQ. In this case, the aim to to replace any existing meteorological variables in the air quality data with those in the meteorological data. An example is shown below.
 
 ```{r}
 #| label: linkaqmet
 # import some air quality data and check the variables that exist
 
-aq_2019 <- importAURN(site = "kc1", year = 2019)
+aq_2019 <- importUKAQ(site = "kc1", year = 2019)
 names(aq_2019) # ws, wd, air_temp already exist from WRF model
 
 # import some met data - default is London Heathrow

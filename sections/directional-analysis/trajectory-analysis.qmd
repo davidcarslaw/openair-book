@@ -12,7 +12,7 @@ Perhaps one of the reasons why back trajectory analysis is not carried out more 
 
 Currently these functions allow for the import of pre-calculated back trajectories are several pre-define locations and some trajectory plotting functions. In time all of these functions will be developed to allow more sophisticated analyses to be undertaken. .
 
-The `importTraj` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importAURN](#sec-importAURN), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
+The `importTraj()` function imports pre-calculated back trajectories using the Hysplit trajectory model [Hybrid Single Particle Lagrangian Integrated Trajectory Model](https://ready.arl.noaa.gov/HYSPLIT.php) [@stein2015]. Trajectories are run at 3-hour intervals and stored in yearly files (see below). The trajectories are started at ground-level (10m) and propagated backwards in time. The data are stored on web-servers at Ricardo Energy & Environment similar to that for [importUKAQ](#sec-importUKAQ), which makes it very easy to import pre-processed trajectory data for a range of locations and years. [^trajectory-analysis-1]
 
 [^trajectory-analysis-1]: Note --- the back trajectories have been pre-calculated for specific locations and stored as .RData objects. Users should contact David Carslaw to request the addition of other locations.
 
@@ -42,7 +42,7 @@ As an example, we will import trajectories for London in 2010. Importing them is
 #| label: loadTraj
 #| echo: false
 ## load from file
-load("../../book_data/londonTraj.RData")
+load("../../assets/data/londonTraj.RData")
 ```
 
 ```{r}
@@ -129,7 +129,7 @@ So far the plots have provided information on where the back trajectories come f
 ```{r}
 #| label: mergeTraj
 ## import data for North Kensington
-kc1 <- importAURN("kc1", year = 2010)
+kc1 <- importUKAQ("kc1", year = 2010)
 # now merge with trajectory data by 'date'
 traj <- left_join(traj, kc1, by = "date")
 ## look at first few lines
@@ -196,7 +196,7 @@ Which, interestingly still clearly shows elevated PM~10~ concentrations for thos
 
 ## Trajectory gridded frequencies {#trajectory-analysis-trajLevel}
 
-The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. sec- The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the North Kensington data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
+The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the London data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
 
 ```{r}
 #| label: fig-trajFreq
@@ -263,7 +263,7 @@ One of the key aspects of trajectory analysis is knowing something about where a
 ```{r}
 #| echo: false
 ## load from file
-load("../../book_data/londonTraj.RData")
+load("../../assets/data/londonTraj.RData")
 ```
 
 First we import the trajectories, which in this case are for London in 2010:
@@ -445,7 +445,7 @@ x' y': Centreline of trajectory
 
 This means at each trajectory point, the probability is calculated across a pre-defined grid. These calculations can take some time to run. For example, with 96 hour back trajectories calculated every 3 hours in a year, there are 840,960 trajectory end points. Each one of these points is used to estimate the probability on a grid, which itself can be large (a one degree grid from 35 to 80°N and -55 to 25°W is 3600 grid points).
 
-A *potential mass transfer potential field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
+A *potential mass transfer field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
 
 $$
 \overline{T_l}(x | x') = \frac{\int_{t-\tau}^{t} Q(x,t| x', t')dt'}{\int_{t-\tau}^{t}dt'} 
@@ -457,7 +457,7 @@ $$
 \widetilde{T}(x|x') = \sum_{l=1}^{l=L}\overline{T_l}(x|x')c_l 
 $$
 
-c~l~: Receptor concentration of back trajectory I
+c~l~: Receptor concentration of back trajectory l
 
 L: Total number of back trajectories
 
@@ -470,27 +470,31 @@ $$
 As an example, consideration is given to PM~2.5~ concentrations in a similar way as shown for CWT and the PSCF techniques. This plot indicates several potential sources of PM~2.5~ precursors with the Benelux countries and around the Po Valley in Italy (known high NO~x~ emission regions and potential sources of ammonium nitrate), and also a higher source region in eastern Europe across south Poland.
 
 ```{r}
+#| eval: false
+trajLevel(
+  dplyr::slice_sample(traj, prop = 0.1),
+  pollutant = "pm2.5",
+  statistic =  "sqtba",
+  map.fill = FALSE,
+  cols = "default",
+  lat.inc = 0.5,
+  lon.inc = 0.5
+)
+```
+
+```{r}
+#| echo: false
 #| label: fig-SQTBA
 #| fig-cap: SQTBA approach applied to PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-trajLevel(traj,
-          pollutant = "pm2.5",
-          statistic =  "sqtba",
-          map.fill = FALSE,
-          cols = "default",
-          lat.inc = 0.5,
-          lon.inc = 0.5
-          )
+knitr::include_graphics("../../assets/media/sqtba.png")
 ```
 
 Some further analysis can be carried out on the TEOM FDMS measurements, which separately reports the volatile and non-volatile components of PM. @fig-SQTBA-PMv shows the plot for the volatile PM~2.5~ component, which highlights the source regions of the Benelux counties and (likely) northern Italy.
 
 ```{r}
-#| label: fig-SQTBA-PMv
-#| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
-#| fig-height: 6
-#| fig-width: 10
+#| eval: false
 trajLevel(traj,
           pollutant = "v2.5",
           statistic =  "sqtba",
@@ -501,21 +505,37 @@ trajLevel(traj,
           )
 ```
 
+```{r}
+#| label: fig-SQTBA-PMv
+#| echo: false
+#| fig-cap: SQTBA approach applied to volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
+#| fig-height: 6
+#| fig-width: 10
+knitr::include_graphics("../../assets/media/sqtba2.png")
+```
+
 On the other hand, @fig-SQTBA-PMnv shows the non-volatile PM~2.5~ component, which more clearly shows eastern Europe as the principal source. This plot differs from @fig-SQTBA-PMv and likely highlights the higher sulphur emissions from power generation in this part of Europe. More detailed analysis can be carried out if the components of PM are available at an hourly or daily resolution e.g. particulate nitrate, sulphate.
 
 ```{r}
+#| eval: false
+trajLevel(
+  traj,
+  pollutant = "nv2.5",
+  statistic =  "sqtba",
+  map.fill = FALSE,
+  cols = "default",
+  lat.inc = 0.5,
+  lon.inc = 0.5
+)
+```
+
+```{r}
 #| label: fig-SQTBA-PMnv
+#| echo: false
 #| fig-cap: SQTBA approach applied to the non-volatile PM~2.5~ concentrations at the North Kensington site in London for 2010.
 #| fig-height: 6
 #| fig-width: 10
-trajLevel(traj,
-          pollutant = "nv2.5",
-          statistic =  "sqtba",
-          map.fill = FALSE,
-          cols = "default",
-          lat.inc = 0.5,
-          lon.inc = 0.5
-          )
+knitr::include_graphics("../../assets/media/sqtba3.png")
 ```
 
 The analysis above was demonstrated for a single site. However, to exploit the full potential of the SQTBA approach, multiple receptors should be considered. The reason why multiple sites should be considered is that there will be better geographic coverage of the trajectories and potential for source regions to be sampled multiple times. To conduct an analysis of multiple sites, trajectories linked to pollutant concentrations should be combined into a single data frame in the format similar to `traj` above but with an additional variable that identifies the different sites. When running `trajLevel` the option `.combine` should be used to identify the relevant column e.g. `.combine = "site"`.
@@ -560,7 +580,7 @@ As an example we will consider back trajectories for London in 2011.
 #| echo: false
 ## load pre-calculated cluster data for kc1
 ## provides traj and kc1
-load("../../book_data/clusterData.RData")
+load("../../assets/data/clusterData.RData")
 ```
 
 First, the back trajectory data for London is imported together with the air pollution data for the North Kensington site (KC1).
@@ -568,7 +588,7 @@ First, the back trajectory data for London is imported together with the air pol
 ```{r}
 #| label: importTrajKC1
 traj <- importTraj(site = "london", year = 2011)
-kc1 <- importAURN(site = "kc1", year = 2011)
+kc1 <- importUKAQ(site = "kc1", year = 2011)
 ```
 
 The clusters are straightforward to calculate. In this case the back trajectory data (`traj`) is supplied and the angle-based distance matrix is used. Furthermore, we choose to calculate 6 clusters and choose a specific colour scheme. In this case we read the output from `trajCluster` into a variable `clust` so that the results can be post-processed.
@@ -588,14 +608,14 @@ clust <- trajCluster(traj, method = "Angle",
 
 ```{r}
 #| eval: false
-trajPlot(clust$data, group = "cluster")
+trajPlot(clust$data$traj, group = "cluster")
 ```
 
 A useful way in which to see where these air masses come from by trajectory is to produce a frequency plot by cluster. Such a plot (not shown, but code below) provides a good indication of the spread of the different trajectory clusters as well as providing an indication of where air masses spend most of their time. For the London 2011 data it can be seen cluster 1 is dominated by air from the European mainland to the south.
 
 ```{r}
 #| eval: false
-trajLevel(clust$data, type = "cluster", 
+trajLevel(clust$data$traj, type = "cluster", 
           col = "increment", 
           border = NA)
 ```

@@ -18,7 +18,7 @@ First the data are loaded:
 
 ```{r}
 #| label: loadCMAQ
-load("../../book_data/CMAQozone.RData")
+load("../../assets/data/CMAQozone.RData")
 class(CMAQ.KCL$date) <- c("POSIXct", "POSIXt")
 head(CMAQ.KCL)
 ```
@@ -85,7 +85,7 @@ As an example, similar data to that described above from CMAQ have been used as 
 
 ```{r}
 #| echo: false
-load("../../book_data/condDat.RData")
+load("../../assets/data/condDat.RData")
 ```
 
 A subset of the data for the North Kensington site can be imported as shown below.
