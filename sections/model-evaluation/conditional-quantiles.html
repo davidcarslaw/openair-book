@@ -83,7 +83,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <link href="../../sections/maps/maps-overview.html" rel="next">
 <link href="../../sections/model-evaluation/taylor-diagram.html" rel="prev">
-<link href="../../favicon.png" rel="icon" type="image/png">
+<link href="../../assets/media/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -146,7 +146,7 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="../../style.css">
+</script><link rel="stylesheet" href="style.css">
 </head>
 <body class="nav-sidebar floating slimcontent">
 
@@ -166,7 +166,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/plume.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../../assets/media/plume.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">The openair book</a> 
         <div class="sidebar-tools-main">
@@ -523,7 +523,7 @@ Wilks, D.S., 2005. <span class="nocase">Statistical Methods in the Atmospheric S
 <p>To make things more interesting we will use data from a model evaluation exercise organised by Defra in 2010/2011. Many models were evaluated but we only consider hourly ozone predictions from the CMAQ model being used at King’s College London.</p>
 <p>First the data are loaded:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"../../book_data/CMAQozone.RData"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"../../assets/data/CMAQozone.RData"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">CMAQ.KCL</span><span class="op">$</span><span class="va">date</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"POSIXct"</span>, <span class="st">"POSIXt"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">CMAQ.KCL</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

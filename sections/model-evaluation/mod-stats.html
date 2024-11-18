@@ -83,7 +83,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../">
 <link href="../../sections/model-evaluation/taylor-diagram.html" rel="next">
 <link href="../../sections/trend-analysis/trend-level.html" rel="prev">
-<link href="../../favicon.png" rel="icon" type="image/png">
+<link href="../../assets/media/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -143,7 +143,7 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="../../style.css">
+</script><link rel="stylesheet" href="style.css">
 </head>
 <body class="nav-sidebar floating slimcontent">
 
@@ -163,7 +163,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/plume.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../../assets/media/plume.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">The openair book</a> 
         <div class="sidebar-tools-main">
@@ -638,7 +638,7 @@ IOA = \left\{
 <p>The <code>modStats</code> function is however much more flexible than indicated above. While it is useful to calculate model evaluation statistics in a straightforward way it can be much more informative to consider the statistics split by different periods.</p>
 <p>Data have been assembled from a Defra model evaluation exercise which consists of hourly O<sub>3</sub> predictions at 15 receptor points around the UK for 2006. The aim here is not to identify a particular model that is ‘best’ and for this reason the models are simply referred to as <code>model 1</code>, <code>model 2</code> and so on. We will aim to make the data more widely available. However, data set has this form:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"../../book_data/modelData.RData"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"../../assets/data/modelData.RData"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">modTest</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        site                date o3   mod   group
