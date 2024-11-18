@@ -8,7 +8,7 @@ Understanding trends is a core component of air quality and the atmospheric scie
 
 Generalized Additive Models (GAMs) offer a flexible approach to calculating trends and in particular, the [mgcv]{.pkg} package contains many functions that are very useful for such modelling. Some of the details of this type of model are presented in @Wood2006 and the [mgcv]{.pkg} package itself.
 
-The example considered is 23 years of O~3~ measurements at Mace Head on the West coast of Ireland. The example shows the sorts of steps that might be taken to build a model to explain the trend. The data are first imported and then the year, month and `trend' estimated. Note that`trend' here is simply a decimal date that can be used to construct various explanatory models.
+The example considered is 23 years of O~3~ measurements at Mace Head on the West coast of Ireland. The example shows the sorts of steps that might be taken to build a model to explain the trend. The data are first imported and then the year, month and `trend` estimated. Note that `trend` here is simply a decimal date that can be used to construct various explanatory models.
 
 First we import the data:
 
@@ -58,7 +58,7 @@ M0 <- gam(o3 ~ s(trend), data = monthly)
 summary(M0)
 ```
 
-This model only explains about 2% of the variation as shown by the adjusted r^2^. More of a problem however is that no account has been taken of the seasonal variation. An easy way of seeing the effect of this omission is to plot the autocorrelation function (ACF) of the residuals, shown in @fig-M0ACF). This Figure clearly shows the residuals have a strong seasonal pattern. @Chatfield2004 provides lots of useful information on time series modelling.
+This model only explains about 2% of the variation as shown by the adjusted r^2^. More of a problem however is that no account has been taken of the seasonal variation. An easy way of seeing the effect of this omission is to plot the autocorrelation function (ACF) of the residuals, shown in @fig-M0ACF. This Figure clearly shows the residuals have a strong seasonal pattern. @Chatfield2004 provides lots of useful information on time series modelling.
 
 ```{r}
 #| label: fig-M0ACF
@@ -99,7 +99,7 @@ plot.gam(M1, select = 2, shade = TRUE)
 
 The seasonal component shown in @fig-M1seas clearly shows the strong seasonal effect on O~3~ at this site (peaking in April). The trend component is actually linear in this case and could be modelled as such. This model looks much better, but as is often the case autocorrelation could remain important. The ACF is shown in @fig-M1ACF and shows there is still some short-term correlation in the residuals.
 
-Note also that there are other diagnostic tests one should consider when comparing these models that are not shown here e.g. such as considering the normality of the residuals. Indeed a consideration of the residuals shows that the model fails to some extent in explaining the very low values of O~3~, which can be seen in @fig-MHplot. These few points (which skew the residuals) may well be associated with air masses from the polluted regions of Europe. Better and more useful models would likely be possible if the data were split my airmass origin, which is something that will be returned to when [openair]{.pkg} includes a consideration of back trajectories.
+Note also that there are other diagnostic tests one should consider when comparing these models that are not shown here e.g. such as considering the normality of the residuals. Indeed a consideration of the residuals shows that the model fails to some extent in explaining the very low values of O~3~, which can be seen in @fig-MHplot. These few points (which skew the residuals) may well be associated with air masses from the polluted regions of Europe. Better and more useful models would likely be possible if the data were split by airmass origin, which is something that will be returned to when [openair]{.pkg} includes a consideration of back trajectories.
 
 ```{r}
 #| label: fig-M1ACF

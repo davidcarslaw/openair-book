@@ -196,7 +196,7 @@ Which, interestingly still clearly shows elevated PM~10~ concentrations for thos
 
 ## Trajectory gridded frequencies {#trajectory-analysis-trajLevel}
 
-The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. sec- The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the North Kensington data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
+The Hysplit model itself contains various analysis options for gridding trajectory data. Similar capabilities are also available in [openair]{.pkg} where the analyses can be extended using other [openair]{.pkg} capabilities. It is useful to gain an idea of where trajectories come from. Over the course of a year representing trajectories as lines or points results in a lot of over-plotting. Therefore it is useful to grid the trajectory data and calculate various statistics by considering latitude-longitude intervals. The first analysis considers the number of unique trajectories in a particular grid square. This is achieved by using the `trajLevel` function and setting the `statistic` option to "frequency". @fig-trajFreq shows the frequency of back trajectory crossings for the London data. In this case it highlights that most trajectory origins are from the west and north for 2010 at this site. Note that in this case, `pollutant` can just be the trajectory height (or another numeric field) rather than an actual pollutant because only the frequencies are considered.
 
 ```{r}
 #| label: fig-trajFreq
@@ -445,7 +445,7 @@ x' y': Centreline of trajectory
 
 This means at each trajectory point, the probability is calculated across a pre-defined grid. These calculations can take some time to run. For example, with 96 hour back trajectories calculated every 3 hours in a year, there are 840,960 trajectory end points. Each one of these points is used to estimate the probability on a grid, which itself can be large (a one degree grid from 35 to 80°N and -55 to 25°W is 3600 grid points).
 
-A *potential mass transfer potential field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
+A *potential mass transfer field* is calculated for a given trajectory l, arriving at time t, is integrated over back trajectory time 𝜏:
 
 $$
 \overline{T_l}(x | x') = \frac{\int_{t-\tau}^{t} Q(x,t| x', t')dt'}{\int_{t-\tau}^{t}dt'} 
@@ -457,7 +457,7 @@ $$
 \widetilde{T}(x|x') = \sum_{l=1}^{l=L}\overline{T_l}(x|x')c_l 
 $$
 
-c~l~: Receptor concentration of back trajectory I
+c~l~: Receptor concentration of back trajectory l
 
 L: Total number of back trajectories
 
@@ -608,14 +608,14 @@ clust <- trajCluster(traj, method = "Angle",
 
 ```{r}
 #| eval: false
-trajPlot(clust$data, group = "cluster")
+trajPlot(clust$data$traj, group = "cluster")
 ```
 
 A useful way in which to see where these air masses come from by trajectory is to produce a frequency plot by cluster. Such a plot (not shown, but code below) provides a good indication of the spread of the different trajectory clusters as well as providing an indication of where air masses spend most of their time. For the London 2011 data it can be seen cluster 1 is dominated by air from the European mainland to the south.
 
 ```{r}
 #| eval: false
-trajLevel(clust$data, type = "cluster", 
+trajLevel(clust$data$traj, type = "cluster", 
           col = "increment", 
           border = NA)
 ```
