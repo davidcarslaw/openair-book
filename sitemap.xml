@@ -10,19 +10,19 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/intro/openair-package.html</loc>
-    <lastmod>2024-11-18T17:24:13.664Z</lastmod>
+    <lastmod>2024-11-18T19:26:22.080Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/data-access/UK-air-quality-data.html</loc>
-    <lastmod>2024-11-18T17:24:13.639Z</lastmod>
+    <lastmod>2024-11-18T19:40:08.558Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/data-access/access-met-data.html</loc>
-    <lastmod>2024-11-18T17:24:13.639Z</lastmod>
+    <lastmod>2024-11-18T19:36:19.441Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/directional-analysis/wind-roses.html</loc>
-    <lastmod>2024-11-18T17:24:13.655Z</lastmod>
+    <lastmod>2024-11-18T19:26:22.079Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/directional-analysis/polar-freq.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/directional-analysis/polar-plots.html</loc>
-    <lastmod>2024-11-18T17:24:13.655Z</lastmod>
+    <lastmod>2024-11-18T19:35:39.625Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/directional-analysis/polar-annulus.html</loc>
@@ -42,11 +42,11 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/directional-analysis/trajectory-analysis.html</loc>
-    <lastmod>2024-11-18T18:36:29.148Z</lastmod>
+    <lastmod>2024-11-18T19:36:19.445Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/time-plot.html</loc>
-    <lastmod>2024-11-18T17:24:13.696Z</lastmod>
+    <lastmod>2024-11-18T19:28:15.315Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/time-variation.html</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/calendar-plot.html</loc>
-    <lastmod>2024-11-18T17:24:13.688Z</lastmod>
+    <lastmod>2024-11-18T19:43:04.777Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/time-proportion.html</loc>
@@ -66,11 +66,11 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/smooth-trend.html</loc>
-    <lastmod>2024-11-18T17:24:13.696Z</lastmod>
+    <lastmod>2024-11-18T19:28:15.315Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/run-regression.html</loc>
-    <lastmod>2024-11-18T17:24:13.688Z</lastmod>
+    <lastmod>2024-11-18T19:28:15.313Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/trend-analysis/trend-level.html</loc>
@@ -90,23 +90,23 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/maps/maps-overview.html</loc>
-    <lastmod>2024-11-18T19:05:19.305Z</lastmod>
+    <lastmod>2024-11-18T19:26:22.082Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/maps/maps-network.html</loc>
-    <lastmod>2024-11-18T19:10:17.603Z</lastmod>
+    <lastmod>2024-11-18T19:26:22.081Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/maps/maps-polar.html</loc>
-    <lastmod>2024-11-18T19:15:41.043Z</lastmod>
+    <lastmod>2024-11-18T19:28:15.308Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/maps/maps-traj.html</loc>
-    <lastmod>2024-11-18T19:10:09.971Z</lastmod>
+    <lastmod>2024-11-18T19:26:22.084Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/utilities/utility-functions.html</loc>
-    <lastmod>2024-11-18T17:24:13.709Z</lastmod>
+    <lastmod>2024-11-18T19:28:15.315Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/utilities/scatter-plot.html</loc>
@@ -126,10 +126,10 @@
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/appendices/appendix-trends.html</loc>
-    <lastmod>2024-11-18T17:24:13.639Z</lastmod>
+    <lastmod>2024-11-18T19:27:24.193Z</lastmod>
   </url>
   <url>
     <loc>https://bookdown.org/david_carslaw/openair/sections/appendices/appendix-gethelp.html</loc>
-    <lastmod>2024-11-18T17:24:13.631Z</lastmod>
+    <lastmod>2024-11-18T19:27:19.505Z</lastmod>
   </url>
 </urlset>
