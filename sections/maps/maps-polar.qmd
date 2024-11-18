@@ -9,7 +9,7 @@ execute:
 
 ## Data Requirements
 
-[openairmaps]{.pkg} contains the `polar_data` dataset to allow users to test the directional analysis functions. The structure of this data set is provided below, and a summary is given in @tbl-polardata. The important feature of this data when compared to `openair::mydata` is latitude and longitude information, which [openairmaps]{.pkg} needs to place the directional analysis markers in the correct positions.
+[openairmaps]{.pkg} contains the `polar_data` dataset to allow users to test the directional analysis functions^[By "directional analysis", we are referring to the outputs from [openair]{.pkg} functions like `polarPlot()`.]. The structure of this data set is provided below, and a summary is given in @tbl-polardata. The important feature of this data when compared to `openair::mydata` is latitude and longitude information, which [openairmaps]{.pkg} needs to place the directional analysis markers in the correct positions.
 
 ```{r}
 #| label: glimpsePolar
@@ -37,31 +37,6 @@ If you would prefer to use data from different sites or years, the `import*()` f
 #| label: importlatlon
 sunderland <- openair::importAURN(site = c("sun2", "sunr"), year = 2015, meta = TRUE)
 names(sunderland)
-```
-
-By "directional analysis", we are referring to the outputs from [openair]{.pkg} functions like `polarPlot()`. As a reminder as to what these figures look like, see @fig-openairplots.
-
-```{r}
-#| label: fig-openairplots
-#| fig-cap: "All of the directional analysis figures which can be plotted on a map."
-#| column: body-outset
-#| fig-subcap: 
-#| - "Polar Annulus"
-#| - "Polar Frequency"
-#| - "Percentile Rose"
-#| - "Polar Plot"
-#| - "Pollution Rose"
-#| - "Wind Rose"
-#| - "Polar Diff"
-#| layout-ncol: 2
-set.seed(123)
-openair::polarAnnulus(polar_data)
-openair::polarFreq(polar_data)
-openair::percentileRose(polar_data)
-openair::polarPlot(polar_data)
-openair::pollutionRose(polar_data)
-openair::windRose(polar_data)
-openair::polarDiff(polar_data, dplyr::mutate(polar_data, nox = jitter(nox, factor = 5)))
 ```
 
 ## Overview

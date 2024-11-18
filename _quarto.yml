@@ -92,6 +92,7 @@ format:
     citation-location: margin
     css: style.css
     lightbox: true
+    html-table-processing: none
     
 editor_options: 
   chunk_output_type: console
